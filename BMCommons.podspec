@@ -49,6 +49,7 @@ TODO: Add long description of the pod here.
     s_uicore.source_files = 'BMCommons/BMUICore/Sources/**/*.{c,m,h}'
     s_uicore.exclude_files = 'BMCommons/BMUICore/**/*_Private.*'
     s_uicore.resource_bundle = { 'BMUICore' => 'BMCommons/BMUICore/Resources/**/*.*' }
+    s_uicore.dependency 'BMCommons/BMCore'
   end
 
   s.subspec 'BMUIExtensions' do |s_uiext|
@@ -80,6 +81,7 @@ TODO: Add long description of the pod here.
     s_xml.source_files = 'BMCommons/BMXML/Sources/**/*.{c,m,h}'
     s_xml.exclude_files = 'BMCommons/BMXML/**/*_Private.*'
     s_xml.xcconfig     = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2' }
+    s_xml.dependency 'BMCommons/BMCore'
   end
 
   s.subspec 'BMRestKit' do |s_restkit|
@@ -90,7 +92,7 @@ TODO: Add long description of the pod here.
     s_restkit.compiler_flags = '-Wno-arc-performSelector-leaks'
     s_restkit.source_files = 'BMCommons/BMRestKit/Sources/**/*.{c,m,h}'
     s_restkit.exclude_files = 'BMCommons/BMRestKit/**/*_Private.*'
-    s_restkit.dependency 'BMCommons/BMCore'
+    s_restkit.dependency 'BMCommons/BMXML'
     s_restkit.dependency 'yajl-objc', '0.3.0'
   end
 
