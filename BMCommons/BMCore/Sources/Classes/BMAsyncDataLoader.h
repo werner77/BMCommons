@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMCoreObject.h>
+#import <BMCommons/BMCoreObject.h>
 
 #define BM_ASYNCDATALOADER_DEFAULT_MAX_RETRY_COUNT 2
 #define BM_ASYNCDATALOADER_DEFAULT_MAX_CONNECTIONS 3

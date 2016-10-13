@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <BMUIExtensions/BMTextCell.h>
-#import <BMUIExtensions/BMValidatingTextField.h>
+#import <BMCommons/BMTextCell.h>
+#import <BMCommons/BMValidatingTextField.h>
 
 @class BMTextFieldCell;
 

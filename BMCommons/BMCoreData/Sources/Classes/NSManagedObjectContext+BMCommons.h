@@ -7,7 +7,7 @@
 //
 
 #import <CoreData/CoreData.h>
-#import <BMCoreData/BMCoreDataHelper.h>
+#import <BMCommons/BMCoreDataHelper.h>
 
 @interface NSManagedObjectContext (BMCommons)
 

@@ -10,9 +10,9 @@
 #import "BMStringHelper.h"
 #import "BMRootManagedObject.h"
 #import "BMEnumeratorWrapper.h"
-#import <BMCore/BMCore.h>
-#import <BMCore/NSObject+BMCommons.h>
-#import <BMCore/BMErrorHelper.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/NSObject+BMCommons.h>
+#import <BMCommons/BMErrorHelper.h>
 
 #define FETCH_BATCH_SIZE 1000
 

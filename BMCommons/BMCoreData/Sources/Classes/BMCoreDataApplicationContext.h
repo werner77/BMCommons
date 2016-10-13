@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import <BMCore/BMApplicationContext.h>
-#import <BMCoreData/BMCoreDataStack.h>
-#import <BMCoreData/BMCoreDataStoreCollectionDescriptor.h>
+#import <BMCommons/BMApplicationContext.h>
+#import <BMCommons/BMCoreDataStack.h>
+#import <BMCommons/BMCoreDataStoreCollectionDescriptor.h>
 
 @interface BMCoreDataApplicationContext : BMApplicationContext {
 	BMCoreDataStack *coreDataStack;

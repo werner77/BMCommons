@@ -7,8 +7,8 @@
 //
 
 #import "BMAlphabeticListTableViewController.h"
-#import <BMCore/BMCore.h>
-#import <BMUICore/BMDialogHelper.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/BMDialogHelper.h>
 
 @interface BMAlphabeticListTableViewController(Private)
 

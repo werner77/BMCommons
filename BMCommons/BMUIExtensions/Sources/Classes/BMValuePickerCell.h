@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMUIExtensions/BMEnumeratedValueCell.h>
+#import <BMCommons/BMEnumeratedValueCell.h>
 
 @interface BMValuePickerCell : BMEnumeratedValueCell {
     NSString *valueSelectionControllerNibName;

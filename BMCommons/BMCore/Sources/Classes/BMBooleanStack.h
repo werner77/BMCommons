@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import <BMCore/BMCore.h>
-#import <BMCore/BMPropertyDescriptor.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/BMPropertyDescriptor.h>
 #import "BMValueStack.h"
 
 typedef NS_ENUM(NSUInteger, BMBooleanStackOperationType) {

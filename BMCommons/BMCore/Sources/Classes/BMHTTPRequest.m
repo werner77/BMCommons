@@ -16,7 +16,7 @@
 #import "NSString+BMCommons.h"
 #import "BMLogging.h"
 #import "BMHTTPMultiPartBodyInputStream.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 #define BOUNDARY_STRING @"0xUn1quEKhTmLbOuNdArYx0"
 

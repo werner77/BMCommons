@@ -9,10 +9,10 @@
 #if KAL_ENABLED
 
 #import "BMDateSelectionViewController.h"
-#import <BMCore/BMPropertyDescriptor.h>
-#import <BMUIExtensions/BMCustomKalViewController.h>
+#import <BMCommons/BMPropertyDescriptor.h>
+#import <BMCommons/BMCustomKalViewController.h>
 #import "KalDate.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 @implementation BMDateSelectionViewController
 

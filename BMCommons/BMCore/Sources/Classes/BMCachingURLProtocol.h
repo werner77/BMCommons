@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMURLCache.h>
+#import <BMCommons/BMURLCache.h>
 
 @class BMDataRecorder;
 

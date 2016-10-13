@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMAbstractInputStream.h>
+#import <BMCommons/BMAbstractInputStream.h>
 
 /**
  Inputstream for doing a HTTP multipart post with specified content parts in a streaming fashion.

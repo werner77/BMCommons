@@ -5,7 +5,7 @@
 //  Copyright 2008 Instinctive Code. All rights reserved.
 //
 
-#import <BMCore/BMMGTemplateFilter.h>
+#import <BMCommons/BMMGTemplateFilter.h>
 #import <Foundation/Foundation.h>
 
 /**

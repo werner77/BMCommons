@@ -7,16 +7,16 @@
 //
 
 #if BM_PRIVATE_ENABLED
-#import <BMUICore/BMUICore_Private.h>
+#import <BMCommons/BMUICore_Private.h>
 #endif
 
 #ifndef BMUICoreCheckLicense
 #define BMUICoreCheckLicense() {}
 #endif
 
-#import <BMCore/BMCore.h>
-#import <BMUICore/BMUICoreObject.h>
-#import <BMUICore/BMStyleSheet.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/BMUICoreObject.h>
+#import <BMCommons/BMStyleSheet.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Dimensions of common iPhone OS Views

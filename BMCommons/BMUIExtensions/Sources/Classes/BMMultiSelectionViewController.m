@@ -7,8 +7,8 @@
 //
 
 #import "BMMultiSelectionViewController.h"
-#import <BMCore/BMPropertyDescriptor.h>
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMPropertyDescriptor.h>
+#import <BMCommons/BMUICore.h>
 
 #define MARGIN 10.0f
 

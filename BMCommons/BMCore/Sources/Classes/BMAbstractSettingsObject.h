@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMSettingsObject.h>
-#import <BMCore/BMCoreObject.h>
-#import <BMCore/BMSettingsPropertyDescriptor.h>
+#import <BMCommons/BMSettingsObject.h>
+#import <BMCommons/BMCoreObject.h>
+#import <BMCommons/BMSettingsPropertyDescriptor.h>
 
 /**
  Base class for implementing application settings, stored in NSUserDefaults.

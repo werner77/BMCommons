@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMRestKit/BMAbstractMappableObject.h>
+#import <BMCommons/BMAbstractMappableObject.h>
 
 /**
  Object which is mapped from a SOAP fault response.

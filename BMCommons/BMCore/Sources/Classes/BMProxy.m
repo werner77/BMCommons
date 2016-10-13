@@ -7,7 +7,7 @@
 //
 
 #import "BMProxy.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation BMProxy 
 

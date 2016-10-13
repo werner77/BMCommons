@@ -7,9 +7,9 @@
 //
 
 #import "BMEnumeratedValueToStringTransformer.h"
-#import <BMCore/BMStringHelper.h>
-#import <BMUICore/BMEnumeratedValue.h>
-#import <BMUICore/BMInputValueType.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMEnumeratedValue.h>
+#import <BMCommons/BMInputValueType.h>
 
 @implementation BMEnumeratedValueToStringTransformer
 

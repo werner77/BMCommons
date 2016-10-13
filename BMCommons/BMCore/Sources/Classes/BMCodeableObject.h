@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import <BMCore/BMCoreObject.h>
+#import <BMCommons/BMCoreObject.h>
 
 /**
  Class that implements the NSCoding protocol in a dynamic way using BMPropertyDescriptors which properties to code for this class.

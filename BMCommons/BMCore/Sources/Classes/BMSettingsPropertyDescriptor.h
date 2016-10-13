@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import <BMCore/BMPropertyDescriptor.h>
+#import <BMCommons/BMPropertyDescriptor.h>
 
 /**
  Extension of BMPropertyDescriptor for describing properties used by BMAbstractSettingsObject.

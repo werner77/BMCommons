@@ -7,7 +7,7 @@
 //
 
 #import "BMOperationQueue.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 #define FINISHED_KEYPATH @"isFinished"
 

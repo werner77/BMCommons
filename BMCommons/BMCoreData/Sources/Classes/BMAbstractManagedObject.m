@@ -14,7 +14,7 @@
 #import "BMDateHelper.h"
 #import "NSArray+BMCommons.h"
 #import "NSString+BMCommons.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 #define MERGE_BATCH_SIZE NSUIntegerMax
 

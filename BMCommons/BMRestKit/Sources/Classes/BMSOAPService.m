@@ -8,16 +8,16 @@
 
 #import "BMSOAPService.h"
 
-#import <BMCore/BMMGTemplateEngine.h>
-#import <BMCore/BMICUTemplateMatcher.h>
-#import <BMRestKit/BMObjectMappingParserHandler.h>
-#import <BMCore/BMErrorHelper.h>
-#import <BMCore/BMHTTPRequest.h>
-#import <BMRestKit/BMSOAPData.h>
-#import <BMRestKit/BMSOAPFault.h>
-#import <BMXML/BMXMLElement.h>
-#import <BMRestKit/BMMappableObjectXMLSerializer.h>
-#import <BMRestKit/BMRestKit.h>
+#import <BMCommons/BMMGTemplateEngine.h>
+#import <BMCommons/BMICUTemplateMatcher.h>
+#import <BMCommons/BMObjectMappingParserHandler.h>
+#import <BMCommons/BMErrorHelper.h>
+#import <BMCommons/BMHTTPRequest.h>
+#import <BMCommons/BMSOAPData.h>
+#import <BMCommons/BMSOAPFault.h>
+#import <BMCommons/BMXMLElement.h>
+#import <BMCommons/BMMappableObjectXMLSerializer.h>
+#import <BMCommons/BMRestKit.h>
 
 @implementation BMSOAPService
 

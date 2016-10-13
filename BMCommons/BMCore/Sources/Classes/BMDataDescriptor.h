@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMCoreObject.h>
+#import <BMCommons/BMCoreObject.h>
 
 /**
  A descriptor for data containing a filename, contentType, data, whether it is or should be compressed and/or base64 encoded.

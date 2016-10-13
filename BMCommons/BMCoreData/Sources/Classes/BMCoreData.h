@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @interface BMCoreData : NSObject
 

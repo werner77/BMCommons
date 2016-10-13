@@ -5,7 +5,7 @@
 
 #import "NSString+BMUICore.h"
 #import "NSDictionary+BMCommons.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation NSString (BMUICore)
 

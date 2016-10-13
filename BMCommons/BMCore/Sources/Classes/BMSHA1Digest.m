@@ -7,7 +7,7 @@
 //
 
 #import "BMSHA1Digest.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 #import <CommonCrypto/CommonCryptor.h>
 #import <CommonCrypto/CommonDigest.h>
 #import <Security/Security.h>

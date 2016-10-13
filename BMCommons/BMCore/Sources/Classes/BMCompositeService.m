@@ -8,7 +8,7 @@
 
 #import "BMCompositeService.h"
 #import "BMErrorHelper.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation BMCompositeService {
 }

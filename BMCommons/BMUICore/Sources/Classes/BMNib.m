@@ -7,7 +7,7 @@
 //
 
 #import "BMNib.h"
-#import <BMCore/BMWeakTimer.h>
+#import <BMCommons/BMWeakTimer.h>
 
 @interface BMNib()
 

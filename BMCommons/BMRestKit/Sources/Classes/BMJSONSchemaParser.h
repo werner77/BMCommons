@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import <BMRestKit/BMAbstractSchemaParserHandler.h>
-#import <BMRestKit/BMMappableObjectClassResolver.h>
+#import <BMCommons/BMAbstractSchemaParserHandler.h>
+#import <BMCommons/BMMappableObjectClassResolver.h>
 
 @interface BMJSONSchemaParser : BMAbstractSchemaParserHandler {
 }

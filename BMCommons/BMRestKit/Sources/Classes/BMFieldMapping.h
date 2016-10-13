@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMRestKit/BMMappableObject.h>
-#import <BMRestKit/BMSchemaFieldType.h>
+#import <BMCommons/BMMappableObject.h>
+#import <BMCommons/BMSchemaFieldType.h>
 
 #define MAPPING_ELEMENT_SEPARATOR @"/"
 #define MAPPING_ATTRIBUTE_SEPARATOR @"@"

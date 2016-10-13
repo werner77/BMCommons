@@ -7,10 +7,10 @@
 //
 
 #import "BMValuePickerCell.h"
-#import <BMUIExtensions/BMEnumeratedValueSelectionViewController.h>
-#import <BMCore/BMPropertyDescriptor.h>
+#import <BMCommons/BMEnumeratedValueSelectionViewController.h>
+#import <BMCommons/BMPropertyDescriptor.h>
 #import "BMEnumeratedValueToStringTransformer.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 @implementation BMValuePickerCell
 

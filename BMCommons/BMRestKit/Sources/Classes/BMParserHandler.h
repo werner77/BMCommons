@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMRestKit/BMParserElement.h>
-#import <BMCore/BMParser.h>
-#import <BMCore/BMResponseContainer.h>
-#import <BMCore/BMErrorContainer.h>
+#import <BMCommons/BMParserElement.h>
+#import <BMCommons/BMParser.h>
+#import <BMCommons/BMResponseContainer.h>
+#import <BMCommons/BMErrorContainer.h>
 
 @class BMParserHandler;
 @protocol BMMappableObject;

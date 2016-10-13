@@ -5,7 +5,7 @@
 //  Copyright 2008 BehindMedia. All rights reserved.
 //
 
-#import <BMCore/BMCoreObject.h>
+#import <BMCommons/BMCoreObject.h>
 
 
 #define HTTP_STATUS_CONTINUE 100

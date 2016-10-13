@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMRestKit/BMParserHandler.h>
-#import <BMRestKit/BMMappableObjectClassResolver.h>
+#import <BMCommons/BMParserHandler.h>
+#import <BMCommons/BMMappableObjectClassResolver.h>
 
 @class BMXMLElement;
 @class BMXMLDocument;

@@ -4,7 +4,7 @@
 //
 
 #import "BMAlertController.h"
-#import <BMCore/BMBooleanStack.h>
+#import <BMCommons/BMBooleanStack.h>
 #import "BMAlertView.h"
 #import "BMUICore.h"
 #import "BMDefaultAlertView.h"

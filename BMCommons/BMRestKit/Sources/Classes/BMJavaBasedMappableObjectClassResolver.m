@@ -7,8 +7,8 @@
 //
 
 #import "BMJavaBasedMappableObjectClassResolver.h"
-#import <BMCore/NSString+BMCommons.h>
-#import <BMCore/BMCore.h>
+#import <BMCommons/NSString+BMCommons.h>
+#import <BMCommons/BMCore.h>
 
 @implementation BMJavaBasedMappableObjectClassResolver
 

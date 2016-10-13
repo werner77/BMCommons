@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMUIExtensions/BMValueSelectionCell.h>
+#import <BMCommons/BMValueSelectionCell.h>
 
 @interface BMAbstractDatePickerCell : BMValueSelectionCell {
     

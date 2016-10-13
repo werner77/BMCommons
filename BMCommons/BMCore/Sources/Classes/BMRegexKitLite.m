@@ -48,7 +48,7 @@
 #import <string.h>
 #import <stdlib.h>
 #import "BMRegexKitLite.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 #ifndef RKL_CACHE_SIZE
 #define RKL_CACHE_SIZE 23

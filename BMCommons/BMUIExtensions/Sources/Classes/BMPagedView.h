@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMReusableObject.h>
+#import <BMCommons/BMReusableObject.h>
 #import <UIKit/UIKit.h>
 
 @class BMPagedView;

@@ -7,7 +7,7 @@
 //
 
 #import "BMEncodingHelper.h"
-#import <BMCore/NSString+BMCommons.h>
+#import <BMCommons/NSString+BMCommons.h>
 
 @implementation BMEncodingHelper
 

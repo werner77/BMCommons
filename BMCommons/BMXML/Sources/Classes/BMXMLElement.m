@@ -72,7 +72,7 @@
 #import <libxml/parser.h>
 #import <libxml/xpathInternals.h>
 #import "BMXMLUtilities.h"
-#import <BMCore/BMOrderedDictionary.h>
+#import <BMCommons/BMOrderedDictionary.h>
 
 typedef NS_ENUM(NSUInteger, JSONElementType) {
     JSONElementTypeSingle = 0,

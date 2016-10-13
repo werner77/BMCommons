@@ -40,17 +40,41 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>1AE084AB5EF032A6A0A770F2</key>
+		<dict>
+			<key>fileRef</key>
+			<string>EB3271529B08B9525A0D1338</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>28E7ABD7CE1F841798504F93</key>
 		<dict>
 			<key>children</key>
 			<array>
 				<string>E805DE249C90EDE55C9DE80E</string>
 				<string>056798030D0257C00C93916A</string>
+				<string>B46C16886D43CE9A38A4843F</string>
+				<string>47942AB2BB91A4170AF6AA39</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
 			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>47942AB2BB91A4170AF6AA39</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-BMCommons_Example.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-BMCommons_Example/Pods-BMCommons_Example.release.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -158,6 +182,7 @@
 				<string>6003F590195388D20070C39A</string>
 				<string>6003F592195388D20070C39A</string>
 				<string>6003F58E195388D20070C39A</string>
+				<string>1AE084AB5EF032A6A0A770F2</string>
 			</array>
 			<key>isa</key>
 			<string>PBXFrameworksBuildPhase</string>
@@ -805,6 +830,8 @@
 		</dict>
 		<key>6003F5C0195388D20070C39A</key>
 		<dict>
+			<key>baseConfigurationReference</key>
+			<string>B46C16886D43CE9A38A4843F</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
@@ -833,6 +860,8 @@
 		</dict>
 		<key>6003F5C1195388D20070C39A</key>
 		<dict>
+			<key>baseConfigurationReference</key>
+			<string>47942AB2BB91A4170AF6AA39</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
@@ -1133,6 +1162,21 @@ fi
 </string>
 			<key>showEnvVarsInLog</key>
 			<string>0</string>
+		</dict>
+		<key>B46C16886D43CE9A38A4843F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-BMCommons_Example.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-BMCommons_Example/Pods-BMCommons_Example.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>BAD7925F3218F36D1404227E</key>
 		<dict>

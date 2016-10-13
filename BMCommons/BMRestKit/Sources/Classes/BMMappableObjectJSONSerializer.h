@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMRestKit/BMMappableObject.h>
+#import <BMCommons/BMMappableObject.h>
 
 /**
  Serializer for serializing a BMMappableObject to JSON and back.

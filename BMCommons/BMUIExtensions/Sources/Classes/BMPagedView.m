@@ -8,7 +8,7 @@
 
 #import "BMPagedView.h"
 #import "BMPageControl.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 @interface BMPagedView()<UIScrollViewDelegate>
 

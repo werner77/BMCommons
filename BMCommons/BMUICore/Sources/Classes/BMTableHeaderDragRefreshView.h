@@ -8,7 +8,7 @@
 
 
 #import <Foundation/Foundation.h>
-#import <BMUICore/BMStyleSheet.h>
+#import <BMCommons/BMStyleSheet.h>
 
 typedef NS_ENUM(NSUInteger, BMTableHeaderDragRefreshStatus) {
     BMTableHeaderDragRefreshReleaseToReload,

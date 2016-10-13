@@ -8,8 +8,8 @@
 
 #import "BMAbstractSettingsObject.h"
 #import "BMObjectHelper.h"
-#import <BMCore/NSObject+BMCommons.h>
-#import <BMCore/BMCore.h>
+#import <BMCommons/NSObject+BMCommons.h>
+#import <BMCommons/BMCore.h>
 
 @implementation BMAbstractSettingsObject
 

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMUICore/BMObjectPropertyTableViewCell.h>
+#import <BMCommons/BMObjectPropertyTableViewCell.h>
 
 /**
  Commons tableviewcell that contains a switch (represents a boolean value)

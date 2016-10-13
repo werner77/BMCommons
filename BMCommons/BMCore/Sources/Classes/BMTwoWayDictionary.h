@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMCoreObject.h>
+#import <BMCommons/BMCoreObject.h>
 
 /**
  Dictionary that allows two-way access, i.e. also allows getting a key for an object as well as an object for a key.

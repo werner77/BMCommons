@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMUICore/BMMaskView.h>
+#import <BMCommons/BMMaskView.h>
 
 @class BMBusyView;
 

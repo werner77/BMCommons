@@ -8,7 +8,7 @@
 
 #import "NSManagedObjectContext+BMCommons.h"
 #import <objc/runtime.h>
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation NSManagedObjectContext (BMCommons)
 

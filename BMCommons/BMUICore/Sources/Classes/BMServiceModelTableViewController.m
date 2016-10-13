@@ -7,8 +7,8 @@
 //
 
 #import "BMServiceModelTableViewController.h"
-#import <BMCore/BMApplicationHelper.h>
-#import <BMCore/BMServiceManager.h>
+#import <BMCommons/BMApplicationHelper.h>
+#import <BMCommons/BMServiceManager.h>
 
 @implementation BMServiceModelTableViewController
 

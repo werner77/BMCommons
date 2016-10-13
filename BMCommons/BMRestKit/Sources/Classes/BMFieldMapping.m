@@ -14,11 +14,11 @@
 #import "BMStringHelper.h"
 #import "BMValueTransformer.h"
 #import "NSString+BMCommons.h"
-#import <BMCore/BMRegexKitLite.h>
-#import <BMRestKit/BMRestKit.h>
-#import <BMRestKit/BMKeyValuePair.h>
-#import <BMCore/NSNumber+BMCommons.h>
-#import <BMCore/BMErrorHelper.h>
+#import <BMCommons/BMRegexKitLite.h>
+#import <BMCommons/BMRestKit.h>
+#import <BMCommons/BMKeyValuePair.h>
+#import <BMCommons/NSNumber+BMCommons.h>
+#import <BMCommons/BMErrorHelper.h>
 
 @interface BMFieldMapping(Private)
 

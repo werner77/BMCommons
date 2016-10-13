@@ -6,7 +6,7 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import <BMCore/BMAbstractMutableDictionary.h>
+#import <BMCommons/BMAbstractMutableDictionary.h>
 
 /**
  Dictionary which retains the insertion order and allows objects to be inserted at specified indexes.

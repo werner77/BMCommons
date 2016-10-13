@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMUICore/BMViewController.h>
-#import <BMUIExtensions/BMEditViewController.h>
+#import <BMCommons/BMViewController.h>
+#import <BMCommons/BMEditViewController.h>
 
 @interface BMTimeSelectionViewController : BMViewController<BMEditViewController> {
 	BMPropertyDescriptor *propertyDescriptor;

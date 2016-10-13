@@ -6,7 +6,7 @@
 #import "BMValueStack.h"
 #import "BMPropertyDescriptor.h"
 #import "NSObject+BMCommons.h"
-#import <BMCore/BMWeakReferenceRegistry.h>
+#import <BMCommons/BMWeakReferenceRegistry.h>
 
 @interface BMValueStackObject : NSObject
 

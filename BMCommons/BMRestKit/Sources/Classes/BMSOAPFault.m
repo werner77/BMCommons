@@ -7,8 +7,8 @@
 //
 
 #import "BMSOAPFault.h"
-#import <BMCore/BMErrorHelper.h>
-#import <BMRestKit/BMRestKit.h>
+#import <BMCommons/BMErrorHelper.h>
+#import <BMCommons/BMRestKit.h>
 
 @implementation BMSOAPFault
 

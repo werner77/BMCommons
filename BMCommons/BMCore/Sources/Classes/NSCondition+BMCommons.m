@@ -7,7 +7,7 @@
 //
 
 #import "NSCondition+BMCommons.h"
-#import <BMCore/NSObject+BMCommons.h>
+#import <BMCommons/NSObject+BMCommons.h>
 
 @implementation NSCondition (BMCommons)
 

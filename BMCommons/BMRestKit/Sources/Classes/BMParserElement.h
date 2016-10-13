@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMRestKit/BMFieldMapping.h>
+#import <BMCommons/BMFieldMapping.h>
 
 /**
  Class that is used when parsing XML/JSON documents

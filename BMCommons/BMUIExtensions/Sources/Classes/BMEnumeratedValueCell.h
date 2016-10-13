@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMUIExtensions/BMValueSelectionCell.h>
-#import <BMUICore/BMEnumeratedValue.h>
+#import <BMCommons/BMValueSelectionCell.h>
+#import <BMCommons/BMEnumeratedValue.h>
 
 @interface BMEnumeratedValueCell : BMValueSelectionCell {
 	NSArray *possibleValues;

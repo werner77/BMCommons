@@ -8,7 +8,7 @@
 
 #import "BMAbstractService.h"
 #import "BMStringHelper.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation BMAbstractService {
     NSString *_instanceIdentifier;

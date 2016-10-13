@@ -15,7 +15,7 @@
 */
 
 #import "BMWebDialog.h"
-#import <BMUICore/UIScreen+BMCommons.h>
+#import <BMCommons/UIScreen+BMCommons.h>
 
 @interface BMWebDialog()<UIWebViewDelegate> 
 

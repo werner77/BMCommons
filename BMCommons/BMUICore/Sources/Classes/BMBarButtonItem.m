@@ -8,7 +8,7 @@
 
 #import "BMBarButtonItem.h"
 #import "UIButton+BMCommons.h"
-#import <BMUICore/BMImageHelper.h>
+#import <BMCommons/BMImageHelper.h>
 
 static const CGFloat kMinWidth = 25.0;
 

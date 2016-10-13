@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMUICore/BMEntityServiceModelTableViewController.h>
-#import <BMCore/BMNamedObject.h>
+#import <BMCommons/BMEntityServiceModelTableViewController.h>
+#import <BMCommons/BMNamedObject.h>
 
 @interface BMAlphabeticListTableViewController : BMEntityServiceModelTableViewController {
 	NSDictionary *allObjects;

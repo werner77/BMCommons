@@ -9,7 +9,7 @@
 //Class is only available for iOS
 
 #import <UIKit/UIKit.h>
-#import <BMCore/BMAsyncDataLoader.h>
+#import <BMCommons/BMAsyncDataLoader.h>
 
 /**
  Async data loader for loading images.

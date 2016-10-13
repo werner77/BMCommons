@@ -7,8 +7,8 @@
 //
 
 #import "BMPropertyDescriptor.h"
-#import <BMCore/NSObject+BMCommons.h>
-#import <BMCore/BMStringHelper.h>
+#import <BMCommons/NSObject+BMCommons.h>
+#import <BMCommons/BMStringHelper.h>
 
 @interface BMPropertyDescriptor()
 

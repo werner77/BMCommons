@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @interface BMKeyObject : BMCoreObject<NSCopying>
 

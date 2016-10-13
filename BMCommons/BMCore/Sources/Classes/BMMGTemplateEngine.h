@@ -49,8 +49,8 @@
 - (NSDictionary *)firstMarkerWithinRange:(NSRange)range;
 @end
 
-#import <BMCore/BMMGTemplateMarker.h>
-#import <BMCore/BMMGTemplateFilter.h>
+#import <BMCommons/BMMGTemplateMarker.h>
+#import <BMCommons/BMMGTemplateFilter.h>
 
 /**
  Fork of MGTemplateEngine part of Matt Gemmel's MGTemplateEngine project.

@@ -9,7 +9,7 @@
 #import "BMHTTPMultiPartBodyInputStream.h"
 #import "BMHTTPContentPart.h"
 #import "BMStringHelper.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @interface BMHTTPMultiPartBodyInputStream() 
 

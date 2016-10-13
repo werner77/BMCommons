@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMApplicationContext.h>
-#import <BMUICore/BMBusyView.h>
-#import <BMUICore/BMUICoreObject.h>
+#import <BMCommons/BMApplicationContext.h>
+#import <BMCommons/BMBusyView.h>
+#import <BMCommons/BMUICoreObject.h>
 
 /**
  Base class for UIApplicationDelegate implementations.

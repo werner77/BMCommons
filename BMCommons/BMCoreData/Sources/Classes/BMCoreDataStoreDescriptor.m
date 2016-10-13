@@ -8,7 +8,7 @@
 
 #import "BMCoreDataStoreDescriptor.h"
 #import "BMFileHelper.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 #define FILE_EXT @".sqlite"
 

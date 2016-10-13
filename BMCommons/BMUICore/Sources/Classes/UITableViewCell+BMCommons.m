@@ -8,7 +8,7 @@
 
 #import "UITableViewCell+BMCommons.h"
 #import "UIView+BMCommons.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation UITableViewCell (BMCommons)
 

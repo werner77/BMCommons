@@ -7,7 +7,7 @@
 //
 
 #import "BMKeyObject.h"
-#import <BMCore/BMPropertyDescriptor.h>
+#import <BMCommons/BMPropertyDescriptor.h>
 
 @implementation BMKeyObject
 

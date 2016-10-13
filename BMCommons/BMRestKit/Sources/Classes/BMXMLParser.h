@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMParser.h>
+#import <BMCommons/BMParser.h>
 
 @class _BMXMLParserInternal;
 @class BMXMLParser;

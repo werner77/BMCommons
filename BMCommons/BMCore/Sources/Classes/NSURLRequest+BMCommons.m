@@ -7,13 +7,13 @@
 //
 
 #import "NSURLRequest+BMCommons.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 #import "NSData+BMEncryption.h"
 #import <objc/runtime.h>
-#import <BMCore/BMSHA1Digest.h>
-#import <BMCore/NSObject+BMCommons.h>
-#import <BMCore/NSDictionary+BMCommons.h>
-#import <BMCore/BMCachingURLProtocol.h>
+#import <BMCommons/BMSHA1Digest.h>
+#import <BMCommons/NSObject+BMCommons.h>
+#import <BMCommons/NSDictionary+BMCommons.h>
+#import <BMCommons/BMCachingURLProtocol.h>
 
 @implementation NSURLRequest (BMCommons)
 

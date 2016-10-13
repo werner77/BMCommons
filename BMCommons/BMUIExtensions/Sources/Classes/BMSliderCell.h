@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import <BMUICore/BMObjectPropertyTableViewCell.h>
-#import <BMUIExtensions/BMSlider.h>
+#import <BMCommons/BMObjectPropertyTableViewCell.h>
+#import <BMCommons/BMSlider.h>
 
 @interface BMSliderCell : BMObjectPropertyTableViewCell<BMSliderDelegate> {
 	IBOutlet BMSlider *slider;

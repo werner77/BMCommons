@@ -1,7 +1,7 @@
 
 
-#import <BMUICore/BMUICore.h>
-#import <BMUICore/UIScreen+BMCommons.h>
+#import <BMCommons/BMUICore.h>
+#import <BMCommons/UIScreen+BMCommons.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 static int gNetworkTaskCount = 0;

@@ -12,9 +12,9 @@
 #import "BMErrorHelper.h"
 #import "BMHTTPStatusCodes.h"
 #import "BMStringHelper.h"
-#import <BMCore/BMCore.h>
-#import <BMCore/NSArray+BMCommons.h>
-#import <BMCore/NSObject+BMCommons.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/NSArray+BMCommons.h>
+#import <BMCommons/NSObject+BMCommons.h>
 
 @interface BMAsyncDataLoader()
 

@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMHTTPRequest.h>
-#import <BMCore/BMAbstractService.h>
+#import <BMCommons/BMHTTPRequest.h>
+#import <BMCommons/BMAbstractService.h>
 
 /**
  Plain HTTP service. 

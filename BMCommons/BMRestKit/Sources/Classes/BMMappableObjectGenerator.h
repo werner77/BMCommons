@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMMGTemplateEngine.h>
+#import <BMCommons/BMMGTemplateEngine.h>
 
 typedef NS_ENUM(NSUInteger, BMMappableObjectSchemaType) {
     BMMappableObjectSchemaTypeXSD = 0,

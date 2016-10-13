@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMServiceManager.h>
-#import <BMCore/BMCoreObject.h>
-#import <BMCore/BMSettingsRegistry.h>
-#import <BMCore/BMOperationQueue.h>
+#import <BMCommons/BMServiceManager.h>
+#import <BMCommons/BMCoreObject.h>
+#import <BMCommons/BMSettingsRegistry.h>
+#import <BMCommons/BMOperationQueue.h>
 
 @class BMApplicationContext;
 

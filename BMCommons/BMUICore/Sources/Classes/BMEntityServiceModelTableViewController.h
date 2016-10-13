@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import <BMUICore/BMServiceModelTableViewController.h>
-#import <BMCore/BMService.h>
+#import <BMCommons/BMServiceModelTableViewController.h>
+#import <BMCommons/BMService.h>
 
 /**
  BMTableViewController which loads entities using a BMService and represents the entities with a cell for each entity.

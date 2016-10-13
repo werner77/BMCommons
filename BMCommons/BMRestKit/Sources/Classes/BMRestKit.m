@@ -8,7 +8,7 @@
 
 #import "BMRestKit.h"
 #if BM_PRIVATE_ENABLED
-#import <BMCore/BMLicenseKey_Private.h>
+#import <BMCommons/BMLicenseKey_Private.h>
 #endif
 
 @implementation BMRestKit

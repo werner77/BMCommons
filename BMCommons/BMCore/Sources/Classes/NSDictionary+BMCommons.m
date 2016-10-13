@@ -8,9 +8,9 @@
 
 #import "NSDictionary+BMCommons.h"
 #import "BMPropertyDescriptor.h"
-#import <BMCore/BMStringHelper.h>
-#import <BMCore/BMObjectHelper.h>
-#import <BMCore/NSObject+BMCommons.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMObjectHelper.h>
+#import <BMCommons/NSObject+BMCommons.h>
 
 @implementation NSDictionary(BMCommons)
 

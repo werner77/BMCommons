@@ -6,8 +6,8 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 #import <Foundation/Foundation.h>
-#import <BMCore/BMService.h>
-#import <BMCore/BMCoreObject.h>
+#import <BMCommons/BMService.h>
+#import <BMCommons/BMCoreObject.h>
 
 @class BMServiceManager;
 @class BMDataRecorder;

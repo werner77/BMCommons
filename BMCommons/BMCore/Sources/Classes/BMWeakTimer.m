@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import <BMCore/BMWeakTimer.h>
-#import <BMCore/BMCore.h>
-#import <BMCore/BMVersionAvailability.h>
-#import <BMCore/NSInvocation+BMCommons.h>
+#import <BMCommons/BMWeakTimer.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/BMVersionAvailability.h>
+#import <BMCommons/NSInvocation+BMCommons.h>
 #import <CoreFoundation/CoreFoundation.h>
 
 @interface BMWeakTimer()

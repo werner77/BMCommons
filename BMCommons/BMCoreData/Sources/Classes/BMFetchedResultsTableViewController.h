@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import <BMUICore/BMTableViewController.h>
+#import <BMCommons/BMTableViewController.h>
 
 /**
  TableViewController with support for showing core data objects and reloading automatically upon changes.

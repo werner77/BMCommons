@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMUIExtensions/BMValueSelectionCell.h>
-#import <BMUIExtensions/BMPickerDataSource.h>
+#import <BMCommons/BMValueSelectionCell.h>
+#import <BMCommons/BMPickerDataSource.h>
 
 @interface BMMultiPickerCell : BMValueSelectionCell {
 	id <BMPickerDataSource> dataSource;

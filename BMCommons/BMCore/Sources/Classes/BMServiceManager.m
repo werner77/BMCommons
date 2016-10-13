@@ -12,13 +12,13 @@
 #import "NSDictionary+BMCommons.h"
 #import "BMObjectHelper.h"
 #import "BMDataRecorder.h"
-#import <BMCore/BMErrorHelper.h>
-#import <BMCore/BMFileHelper.h>
-#import <BMCore/BMStringHelper.h>
-#import <BMCore/BMCoreObject.h>
-#import <BMCore/BMCore.h>
-#import <BMCore/NSObject+BMCommons.h>
-#import <BMCore/BMBlockServiceDelegate.h>
+#import <BMCommons/BMErrorHelper.h>
+#import <BMCommons/BMFileHelper.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMCoreObject.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/NSObject+BMCommons.h>
+#import <BMCommons/BMBlockServiceDelegate.h>
 #import <Foundation/Foundation.h>
 
 @interface BMServiceManager()

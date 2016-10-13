@@ -7,9 +7,9 @@
 //
 
 #import "BMStringHelper.h"
-#import <BMCore/NSString+BMCommons.h>
-#import <BMCore/BMOrderedDictionary.h>
-#import <BMCore/BMEncodingHelper.h>
+#import <BMCommons/NSString+BMCommons.h>
+#import <BMCommons/BMOrderedDictionary.h>
+#import <BMCommons/BMEncodingHelper.h>
 
 @implementation BMStringHelper
 

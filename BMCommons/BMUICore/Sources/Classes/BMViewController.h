@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMLocalization.h>
-#import <BMUICore/BMViewFactory.h>
-#import <BMUICore/BMStyleSheet.h>
+#import <BMCommons/BMLocalization.h>
+#import <BMCommons/BMViewFactory.h>
+#import <BMCommons/BMStyleSheet.h>
 #import <UIKit/UIKit.h>
-#import <BMUICore/BMViewState.h>
+#import <BMCommons/BMViewState.h>
 
 @class BMViewController;
 

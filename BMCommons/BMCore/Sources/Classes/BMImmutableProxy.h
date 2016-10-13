@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMProxy.h>
+#import <BMCommons/BMProxy.h>
 
 /**
  Proxy that throws an exception when property setters are called, otherwise delegates all messages to the underlying object.

@@ -10,7 +10,7 @@
 #define BM_JSON_DEFAULT_ELEMENT_TEXT_SPECIFIER @"#text"
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMParser.h>
+#import <BMCommons/BMParser.h>
 #import "YAJLParser.h"
 
 @class BMJSONParser;

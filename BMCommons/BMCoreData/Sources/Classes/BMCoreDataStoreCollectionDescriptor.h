@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCoreData/BMCoreDataStoreDescriptor.h>
+#import <BMCommons/BMCoreDataStoreDescriptor.h>
 
 @interface BMCoreDataStoreCollectionDescriptor : NSObject<NSCoding> 
 

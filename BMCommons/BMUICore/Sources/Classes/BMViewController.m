@@ -9,7 +9,7 @@
 #import "BMViewController.h"
 #import "UIView+BMCommons.h"
 #import "UIViewController+BMCommons.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 @interface BMViewController()<BMLocalizable>
 

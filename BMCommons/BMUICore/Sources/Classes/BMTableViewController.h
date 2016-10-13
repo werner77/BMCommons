@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMUICore/BMViewController.h>
+#import <BMCommons/BMViewController.h>
 
 @class BMTableHeaderDragRefreshView;
 @class BMTableFooterDragLoadMoreView;

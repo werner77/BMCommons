@@ -8,7 +8,7 @@
 
 // Error Domains
 
-#import <BMCore/BMHTTPStatusCodes.h>
+#import <BMCommons/BMHTTPStatusCodes.h>
 
 //Error related to invalid/inconsistent settings
 #define BM_ERROR_DOMAIN_SETTINGS @"BM_ERROR_DOMAIN_SETTINGS"

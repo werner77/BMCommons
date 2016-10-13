@@ -8,7 +8,7 @@
 
 #import "BMObjectMappingParserService.h"
 #import "BMObjectMappingParserHandler.h"
-#import <BMRestKit/BMRestKit.h>
+#import <BMCommons/BMRestKit.h>
 
 @implementation BMObjectMappingParserService
 

@@ -3,7 +3,7 @@
 // Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import <BMCore/BMDigest.h>
+#import <BMCommons/BMDigest.h>
 
 @interface BMSHA256Digest : BMDigest
 @end

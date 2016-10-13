@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import <BMRestKit/BMObjectMappingParserService.h>
+#import <BMCommons/BMObjectMappingParserService.h>
 
 @class BMSOAPData;
 

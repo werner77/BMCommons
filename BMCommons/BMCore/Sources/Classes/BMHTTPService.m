@@ -11,7 +11,7 @@
 #import "BMErrorHelper.h"
 #import "BMURLCache.h"
 #import "NSObject+BMCommons.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @interface BMHTTPService()
 

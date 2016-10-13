@@ -7,7 +7,7 @@
 //
 
 #import "BMErrorView.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 @implementation BMErrorView {
     UIButton *_refreshButton;

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 @interface BMUIExtensions : NSObject
 

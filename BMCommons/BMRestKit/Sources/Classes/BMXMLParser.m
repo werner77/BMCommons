@@ -22,7 +22,7 @@
 //#import <CoreServices/../Frameworks/CFNetwork.framework/Headers/CFNetwork.h>
 #endif
 
-#import <BMRestKit/BMRestKit.h>
+#import <BMCommons/BMRestKit.h>
 
 @interface _BMXMLParserInternal : NSObject
 {

@@ -7,7 +7,7 @@
 //
 
 #import "BMSettingsObject.h"
-#import <BMCore/BMCoreObject.h>
+#import <BMCommons/BMCoreObject.h>
 
 /**
  Class that manages loading/saving settings objects (implementations of BMSettingsObject).

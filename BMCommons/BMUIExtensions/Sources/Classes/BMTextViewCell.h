@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMUIExtensions/BMTextCell.h>
-#import <BMUICore/BMAutoResizable.h>
+#import <BMCommons/BMTextCell.h>
+#import <BMCommons/BMAutoResizable.h>
 
 @interface BMTextViewCell : BMTextCell <UITextViewDelegate, BMAutoResizable> {
 	IBOutlet UITextView *textView;

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <BMUICore/BMViewController.h>
+#import <BMCommons/BMViewController.h>
 
 // possible to use predefined viewTransition styles instead of custom enum?
 typedef enum BMSwitchTransitionType {

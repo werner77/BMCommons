@@ -5,12 +5,12 @@
 //  Copyright 2008 BehindMedia. All rights reserved.
 //
 
-#import <BMCore/BMHTTPStatusCodes.h>
+#import <BMCommons/BMHTTPStatusCodes.h>
 #import <Foundation/Foundation.h>
-#import <BMCore/BMHTTPContentPart.h>
-#import <BMCore/BMCoreObject.h>
-#import <BMCore/BMURLConnectionInputStream.h>
-#import <BMCore/NSURLRequest+BMCommons.h>
+#import <BMCommons/BMHTTPContentPart.h>
+#import <BMCommons/BMCoreObject.h>
+#import <BMCommons/BMURLConnectionInputStream.h>
+#import <BMCommons/NSURLRequest+BMCommons.h>
 
 #define BM_HTTP_METHOD_POST @"POST"
 #define BM_HTTP_METHOD_GET @"GET"

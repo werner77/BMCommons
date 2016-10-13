@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <BMUICore/BMTableViewCell.h>
-#import <BMCore/BMPropertyDescriptor.h>
+#import <BMCommons/BMTableViewCell.h>
+#import <BMCommons/BMPropertyDescriptor.h>
 
 @class BMObjectPropertyTableViewCell;
 

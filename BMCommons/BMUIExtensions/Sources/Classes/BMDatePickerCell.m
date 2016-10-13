@@ -10,7 +10,7 @@
 
 #import "BMDatePickerCell.h"
 #import "BMDateSelectionViewController.h"
-#import <BMCore/BMPropertyDescriptor.h>
+#import <BMCommons/BMPropertyDescriptor.h>
 
 @implementation BMDatePickerCell
 

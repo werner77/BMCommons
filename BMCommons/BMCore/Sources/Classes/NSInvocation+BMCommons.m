@@ -8,7 +8,7 @@
 
 #import "NSInvocation+BMCommons.h"
 #import "NSMethodSignature+BMCommons.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation NSInvocation (BMCommons)
 

@@ -4,7 +4,7 @@
 //
 
 #import "BMAlertView.h"
-#import <BMCore/BMWeakTimer.h>
+#import <BMCommons/BMWeakTimer.h>
 
 @implementation BMAlertView {
     BMWeakTimer *_automaticDismissTimer;

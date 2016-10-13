@@ -7,12 +7,12 @@
 //
 
 #import "BMMappableObjectXMLSerializer.h"
-#import <BMRestKit/BMXMLParser.h>
-#import <BMRestKit/BMObjectMappingParserHandler.h>
-#import <BMCore/BMErrorHelper.h>
-#import <BMCore/BMOrderedDictionary.h>
-#import <BMCore/BMStringHelper.h>
-#import <BMRestKit/BMRestKit.h>
+#import <BMCommons/BMXMLParser.h>
+#import <BMCommons/BMObjectMappingParserHandler.h>
+#import <BMCommons/BMErrorHelper.h>
+#import <BMCommons/BMOrderedDictionary.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMRestKit.h>
 
 @interface BMMappableObjectXMLSerializer(Private)
 

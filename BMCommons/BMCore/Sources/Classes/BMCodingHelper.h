@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMPropertyDescriptor.h>
+#import <BMCommons/BMPropertyDescriptor.h>
 
 /**
  Helper to encode/decode objects using NSCoding based on BMPropertyDescriptor.

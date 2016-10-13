@@ -7,7 +7,7 @@
 //
 
 #import "BMTimeSelectionViewController.h"
-#import <BMCore/BMPropertyDescriptor.h>
+#import <BMCommons/BMPropertyDescriptor.h>
 #import "BMUICore.h"
 
 @implementation BMTimeSelectionViewController

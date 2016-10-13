@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMUICore/BMViewController.h>
-#import <BMUIExtensions/BMEditViewController.h>
-#import <BMUIExtensions/BMPickerDataSource.h>
+#import <BMCommons/BMViewController.h>
+#import <BMCommons/BMEditViewController.h>
+#import <BMCommons/BMPickerDataSource.h>
 
 @interface BMMultiSelectionViewController : BMViewController<BMEditViewController> {
 	BMPropertyDescriptor *propertyDescriptor;

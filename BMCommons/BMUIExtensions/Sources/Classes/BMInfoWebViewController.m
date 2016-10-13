@@ -8,7 +8,7 @@
 
 #import "BMInfoWebViewController.h"
 #import "UIWebView+BMCommons.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 #define X_MARGIN 10
 #define Y_MARGIN 0

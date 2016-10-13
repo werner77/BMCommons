@@ -7,9 +7,9 @@
 //
 
 #import "BMSOAPData.h"
-#import <BMCore/BMStringHelper.h>
-#import <BMCore/BMDateHelper.h>
-#import <BMRestKit/BMRestKit.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMDateHelper.h>
+#import <BMCommons/BMRestKit.h>
 
 @implementation BMSOAPData
 

@@ -13,9 +13,9 @@
 #import "BMXMLSchemaParser.h"
 #import "BMICUTemplateMatcher.h"
 #import "BMJSONSchemaParser.h"
-#import <BMCore/BMErrorHelper.h>
-#import <BMRestKit/BMRestKit.h>
-#import <BMRestKit/BMJavaBasedMappableObjectClassResolver.h>
+#import <BMCommons/BMErrorHelper.h>
+#import <BMCommons/BMRestKit.h>
+#import <BMCommons/BMJavaBasedMappableObjectClassResolver.h>
 
 @interface BMMappableObjectGenerator(Private)
 

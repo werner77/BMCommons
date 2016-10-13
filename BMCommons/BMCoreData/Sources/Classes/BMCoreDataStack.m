@@ -14,9 +14,9 @@
 #import "BMCoreDataModelDescriptor.h"
 #import "BMCoreDataStoreDescriptor.h"
 #import "BMCoreDataModelDescriptor.h"
-#import <BMCore/BMCore.h>
-#import <BMCore/NSObject+BMCommons.h>
-#import <BMCoreData/NSManagedObjectContext+BMCommons.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/NSObject+BMCommons.h>
+#import <BMCommons/NSManagedObjectContext+BMCommons.h>
 
 @interface BMCoreDataStack (Private)
 

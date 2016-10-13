@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <BMUICore/BMStyleSheet.h>
+#import <BMCommons/BMStyleSheet.h>
 
 typedef NS_ENUM(NSUInteger, BMTableFooterDragLoadMoreStatus) {
     BMTableFooterDragLoadMoreNone = 0,

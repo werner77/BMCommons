@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMRestKit/BMParserService.h>
-#import <BMRestKit/BMMappableObject.h>
+#import <BMCommons/BMParserService.h>
+#import <BMCommons/BMMappableObject.h>
 
 /**
  Implementation of parser service that uses BMObjectMappingParserHandler to automatically map XML/JSON responses to objects.

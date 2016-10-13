@@ -7,14 +7,14 @@
 //
 
 #import "BMJSONSchemaParser.h"
-#import <BMCore/NSObject+BMCommons.h>
-#import <BMCore/NSDictionary+BMCommons.h>
-#import <BMRestKit/BMObjectMapping.h>
-#import <BMCore/BMStringHelper.h>
-#import <BMCore/NSString+BMCommons.h>
-#import <BMCore/BMLogging.h>
-#import <BMCore/BMErrorHelper.h>
-#import <BMCore/NSArray+BMCommons.h>
+#import <BMCommons/NSObject+BMCommons.h>
+#import <BMCommons/NSDictionary+BMCommons.h>
+#import <BMCommons/BMObjectMapping.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/NSString+BMCommons.h>
+#import <BMCommons/BMLogging.h>
+#import <BMCommons/BMErrorHelper.h>
+#import <BMCommons/NSArray+BMCommons.h>
 
 @implementation BMJSONSchemaParser
 

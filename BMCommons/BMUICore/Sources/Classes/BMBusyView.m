@@ -8,9 +8,9 @@
 
 #import "BMBusyView.h"
 #import <QuartzCore/QuartzCore.h>
-#import <BMUICore/UIButton+BMCommons.h>
-#import <BMUICore/BMUICore.h>
-#import <BMUICore/UIScreen+BMCommons.h>
+#import <BMCommons/UIButton+BMCommons.h>
+#import <BMCommons/BMUICore.h>
+#import <BMCommons/UIScreen+BMCommons.h>
 
 #define BACKGROUND_VIEW_TAG 100
 #define SEND_TO_BACKGROUND_BUTTON_TAG 101

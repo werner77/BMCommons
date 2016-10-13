@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMRestKit/BMObjectMapping.h>
-#import <BMRestKit/BMXMLParser.h>
-#import <BMCore/BMParser.h>
-#import <BMRestKit/BMAbstractSchemaParserHandler.h>
+#import <BMCommons/BMObjectMapping.h>
+#import <BMCommons/BMXMLParser.h>
+#import <BMCommons/BMParser.h>
+#import <BMCommons/BMAbstractSchemaParserHandler.h>
 
 /**
  BMParserHandler implementation that parses an XSD schema file and returns an array of BMObjectMappings.

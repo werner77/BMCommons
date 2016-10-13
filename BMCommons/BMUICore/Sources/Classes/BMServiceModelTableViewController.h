@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import <BMUICore/BMTableViewController.h>
-#import <BMCore/BMService.h>
+#import <BMCommons/BMTableViewController.h>
+#import <BMCommons/BMService.h>
 
 /**
  BMTableViewController sub-class which implements loading using the BMService framework.

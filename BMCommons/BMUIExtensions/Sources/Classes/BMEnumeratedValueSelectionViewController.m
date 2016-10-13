@@ -9,7 +9,7 @@
 #import "BMEnumeratedValueSelectionViewController.h"
 #import "BMPropertyDescriptor.h"
 #import "BMLabelCell.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 #define DEFAULT_WIDTH 200.0
 #define CELL_MARGIN 20.0

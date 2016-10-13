@@ -10,7 +10,7 @@
 #import "BMXPathQuery.h"
 #import "BMStringHelper.h"
 #import "BMKeyValuePair.h"
-#import <BMRestKit/BMRestKit.h>
+#import <BMCommons/BMRestKit.h>
 
 @interface BMParserElement(Private)
 

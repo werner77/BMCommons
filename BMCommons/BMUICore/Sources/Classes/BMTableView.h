@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <BMCore/BMReusableObject.h>
+#import <BMCommons/BMReusableObject.h>
 
 /**
  Custom UITableView.

@@ -6,7 +6,7 @@
 //  Copyright 2008 BehindMedia. All rights reserved.
 //
 
-#import <BMCore/BMCoreObject.h>
+#import <BMCommons/BMCoreObject.h>
 
 /**
  Class with file utility methods

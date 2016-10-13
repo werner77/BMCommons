@@ -11,7 +11,7 @@
 #import "BMErrorCodes.h"
 #import "BMURLCache.h"
 #import "BMJSONParser.h"
-#import <BMRestKit/BMRestKit.h>
+#import <BMCommons/BMRestKit.h>
 
 @interface CacheData : NSObject {
 	NSString *key;

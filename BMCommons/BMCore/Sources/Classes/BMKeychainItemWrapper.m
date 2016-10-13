@@ -51,7 +51,7 @@
 #import <Security/Security.h>
 #import "BMErrorHelper.h"
 #import "BMStringToDataTransformer.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 //!!!THIS FILE IS NON-ARC!!!!
 

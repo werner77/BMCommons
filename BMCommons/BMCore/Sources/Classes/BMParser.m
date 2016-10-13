@@ -9,7 +9,7 @@
 #import "BMParser.h"
 #import "BMURLConnectionInputStream.h"
 #import "BMStringHelper.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 #if TARGET_OS_IPHONE
 #import <CFNetwork/CFNetwork.h>

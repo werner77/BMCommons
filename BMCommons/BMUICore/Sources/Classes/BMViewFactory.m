@@ -1,8 +1,8 @@
 #import "BMViewFactory.h"  
-#import <BMUICore/BMUICore.h>
-#import <BMCore/BMWeakReferenceRegistry.h>
-#import <BMCore/NSObject+BMCommons.h>
-#import <BMUICore/BMNib.h>
+#import <BMCommons/BMUICore.h>
+#import <BMCommons/BMWeakReferenceRegistry.h>
+#import <BMCommons/NSObject+BMCommons.h>
+#import <BMCommons/BMNib.h>
 
 @implementation BMViewFactory {
 	NSBundle *_bundle;

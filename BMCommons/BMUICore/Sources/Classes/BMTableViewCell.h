@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <BMUICore/BMClickable.h>
-#import <BMCore/BMReusableObject.h>
+#import <BMCommons/BMClickable.h>
+#import <BMCommons/BMReusableObject.h>
 
 /**
  Tableview cell that works together with BMTableViewController. 

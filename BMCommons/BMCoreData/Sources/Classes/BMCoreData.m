@@ -7,7 +7,7 @@
 //
 
 #import "BMCoreData.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation BMCoreData
 

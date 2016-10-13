@@ -13,12 +13,12 @@
 #import "BMTableHeaderDragRefreshView.h"
 #import "BMTableFooterDragLoadMoreView.h"
 #import "BMObjectPropertyTableViewCell.h"
-#import <BMCore/BMCache.h>
-#import <BMUICore/BMUICore.h>
-#import <BMCore/BMApplicationHelper.h>
-#import <BMUICore/BMTableView.h>
-#import <BMUICore/UIScreen+BMCommons.h>
-#import <BMUICore/UITableViewCell+BMCommons.h>
+#import <BMCommons/BMCache.h>
+#import <BMCommons/BMUICore.h>
+#import <BMCommons/BMApplicationHelper.h>
+#import <BMCommons/BMTableView.h>
+#import <BMCommons/UIScreen+BMCommons.h>
+#import <BMCommons/UITableViewCell+BMCommons.h>
 
 // The number of pixels the table needs to be pulled down by in order to initiate the refresh.
 static const CGFloat kRefreshDeltaY = -65.0f;

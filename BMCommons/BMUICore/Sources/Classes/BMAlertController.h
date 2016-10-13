@@ -4,8 +4,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMCore.h>
-#import <BMUICore/BMAlertView.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/BMAlertView.h>
 
 /**
  * Notifications posted upon showing/dismissing an alert.

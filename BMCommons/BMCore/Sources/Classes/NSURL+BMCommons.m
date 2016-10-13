@@ -8,7 +8,7 @@
 
 #import "NSURL+BMCommons.h"
 #import "NSDictionary+BMCommons.h"
-#import <BMCore/BMStringHelper.h>
+#import <BMCommons/BMStringHelper.h>
 
 @implementation NSURL (BMCommons)
 

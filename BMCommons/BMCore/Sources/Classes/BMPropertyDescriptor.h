@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMCoreObject.h>
-#import <BMCore/BMValueType.h>
+#import <BMCommons/BMCoreObject.h>
+#import <BMCommons/BMValueType.h>
 
 /**
  Class to describe/access a property on a specified target object.

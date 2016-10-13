@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <BMUICore/BMTextField.h>
+#import <BMCommons/BMTextField.h>
 
 @class BMInputValueType;
 

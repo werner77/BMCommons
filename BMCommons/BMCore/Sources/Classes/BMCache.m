@@ -8,7 +8,7 @@
 
 #import "BMCache.h"
 #import "BMOrderedDictionary.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 #import <malloc/malloc.h>
 
 @interface _BMCacheDate : NSObject

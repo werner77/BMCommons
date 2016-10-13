@@ -10,7 +10,7 @@
 #import "BMCoreDataHelper.h"
 #import "BMCoreDataStoreCollectionDescriptor.h"
 #import "BMFileHelper.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 #define STORE_DESCRIPTOR_FILENAME @"storedescriptor.scd"
 

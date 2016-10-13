@@ -7,7 +7,7 @@
 //
 
 #import "UIResponder+BMCommons.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 NSString *const BMResponderDidBecomeFirstNotification = @"BMResponderDidBecomeFirstNotification";
 NSString *const BMResponderDidResignFirstNotification = @"BMResponderDidResignFirstNotification";

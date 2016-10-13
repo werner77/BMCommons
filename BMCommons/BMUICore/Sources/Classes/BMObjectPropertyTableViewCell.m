@@ -8,7 +8,7 @@
 
 #import "BMObjectPropertyTableViewCell.h"
 #import "BMStringHelper.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 @interface BMObjectPropertyTableViewCell (Private)
 

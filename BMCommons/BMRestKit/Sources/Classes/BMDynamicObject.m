@@ -7,8 +7,8 @@
 //
 
 #import "BMDynamicObject.h"
-#import <BMCore/BMPropertyDescriptor.h>
-#import <BMCore/BMPropertyMethod.h>
+#import <BMCommons/BMPropertyDescriptor.h>
+#import <BMCommons/BMPropertyMethod.h>
 
 @implementation BMDynamicObject
 

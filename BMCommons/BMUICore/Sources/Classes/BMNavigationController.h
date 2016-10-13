@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMLocalization.h>
-#import <BMUICore/BMStyleSheet.h>
+#import <BMCommons/BMLocalization.h>
+#import <BMCommons/BMStyleSheet.h>
 #import <UIKit/UIKit.h>
 
 /**

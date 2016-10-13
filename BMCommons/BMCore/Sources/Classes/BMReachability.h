@@ -57,7 +57,7 @@
 
 #import <Foundation/Foundation.h>
 #import <SystemConfiguration/SystemConfiguration.h>
-#import <BMCore/BMCoreObject.h>
+#import <BMCommons/BMCoreObject.h>
 
 typedef NS_ENUM(NSUInteger, BMNetworkStatus) {
     BMNetworkStatusNotReachable = 0,

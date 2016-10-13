@@ -7,9 +7,9 @@
 //
 
 #import "BMFileBackedMutableArray.h"
-#import <BMCore/BMFileHelper.h>
-#import <BMCore/BMCore.h>
-#import <BMCore/BMCache.h>
+#import <BMCommons/BMFileHelper.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/BMCache.h>
 
 @interface BMFileBackedMutableArrayCacheKey : NSObject<NSCopying>
 

@@ -8,7 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "UIView+Genie.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 #pragma mark - Constants
 

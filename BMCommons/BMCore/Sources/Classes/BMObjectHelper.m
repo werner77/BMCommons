@@ -9,7 +9,7 @@
 #import "BMObjectHelper.h"
 #import "BMPropertyDescriptor.h"
 
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation BMObjectHelper
 

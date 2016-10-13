@@ -7,12 +7,12 @@
 //
 
 #if BM_PRIVATE_ENABLED
-#import <BMRestKit/BMRestKit_Private.h>
+#import <BMCommons/BMRestKit_Private.h>
 #endif
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMCore.h>
-#import <BMXML/BMXML.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/BMXML.h>
 
 #ifndef BMRestKitCheckLicense
 #define BMRestKitCheckLicense() {}

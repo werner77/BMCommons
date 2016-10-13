@@ -8,7 +8,7 @@
 
 #import "BMAsyncImageLoader.h"
 #import "BMURLCache.h"
-#import <BMUICore/UIImage+BMCommons.h>
+#import <BMCommons/UIImage+BMCommons.h>
 
 @implementation BMAsyncImageLoader
 

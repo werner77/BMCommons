@@ -7,7 +7,7 @@
 //
 
 #import "NSDateFormatter+BMCommons.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation NSDateFormatter(BMCommons)
 

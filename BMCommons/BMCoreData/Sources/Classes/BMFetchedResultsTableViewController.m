@@ -6,8 +6,8 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import <BMCoreData/BMFetchedResultsTableViewController.h>
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMFetchedResultsTableViewController.h>
+#import <BMCommons/BMCore.h>
 
 @interface BMFetchedResultsTableViewController()
 {

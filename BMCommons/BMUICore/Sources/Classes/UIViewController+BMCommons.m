@@ -7,10 +7,10 @@
 //
 
 #import "UIViewController+BMCommons.h"
-#import <BMUICore/UIView+BMCommons.h>
-#import <BMUICore/BMUICoreObject.h>
-#import <BMUICore/BMUICore.h>
-#import <BMUICore/UIScreen+BMCommons.h>
+#import <BMCommons/UIView+BMCommons.h>
+#import <BMCommons/BMUICoreObject.h>
+#import <BMCommons/BMUICore.h>
+#import <BMCommons/UIScreen+BMCommons.h>
 
 @implementation UIViewController(BMCommons)
 

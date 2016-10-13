@@ -7,10 +7,10 @@
  */
 
 #if BM_PRIVATE_ENABLED
-#import <BMCore/BMCore_Private.h>
+#import <BMCommons/BMCore_Private.h>
 #endif
 
-#import <BMCore/BMVersionAvailability.h>
+#import <BMCommons/BMVersionAvailability.h>
 
 #ifndef BMCoreCheckLicense
 #define BMCoreCheckLicense() {}
@@ -22,8 +22,8 @@
 #endif
 
 //Should be imported first, because it redefines NSLocalizedString
-#import <BMCore/BMCoreObject.h>
-#import <BMCore/BMLocalization.h>
+#import <BMCommons/BMCoreObject.h>
+#import <BMCommons/BMLocalization.h>
 
 #import <Foundation/Foundation.h>
 
@@ -34,11 +34,11 @@
 #endif
 
 #import <CoreData/CoreData.h>
-#import <BMCore/BMLogging.h>
-#import <BMCore/BMLicensedModule.h>
-#import <BMCore/BMURLCache.h>
-#import <BMCore/BMSingleton.h>
-#import <BMCore/NSArray+BMCommons.h>
+#import <BMCommons/BMLogging.h>
+#import <BMCommons/BMLicensedModule.h>
+#import <BMCommons/BMURLCache.h>
+#import <BMCommons/BMSingleton.h>
+#import <BMCommons/NSArray+BMCommons.h>
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

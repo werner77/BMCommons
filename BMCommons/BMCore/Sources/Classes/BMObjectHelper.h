@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMCoreObject.h>
-#import <BMCore/BMDigest.h>
+#import <BMCommons/BMCoreObject.h>
+#import <BMCommons/BMDigest.h>
 
 /**
  Object helper methods

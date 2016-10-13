@@ -66,8 +66,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 #import <Foundation/Foundation.h>
 
-#import <BMXML/BMXMLReader.h>
-#import <BMXML/BMXMLModelObject.h>
+#import <BMCommons/BMXMLReader.h>
+#import <BMCommons/BMXMLModelObject.h>
 #import <libxml/xmlstring.h>
 
 /*

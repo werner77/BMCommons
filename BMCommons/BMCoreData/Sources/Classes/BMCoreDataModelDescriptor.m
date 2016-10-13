@@ -7,7 +7,7 @@
 //
 
 #import "BMCoreDataModelDescriptor.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation BMCoreDataModelDescriptor {
 }

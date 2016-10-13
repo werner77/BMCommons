@@ -16,7 +16,7 @@
 #import "BMXMLDocument.h"
 #import "BMJSONParser.h"
 #import "BMDynamicObject.h"
-#import <BMRestKit/BMRestKit.h>
+#import <BMCommons/BMRestKit.h>
 
 @interface BMObjectMappingParserHandler(Private)
 

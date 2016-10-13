@@ -8,7 +8,7 @@
 
 #import "UIView+BMCommons.h"
 #import <QuartzCore/QuartzCore.h>
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation UIView(BMCommons)
 

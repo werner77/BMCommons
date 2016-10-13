@@ -7,7 +7,7 @@
 
 #import "BMMGTemplateStandardMarkers.h"
 #import "BMMGTemplateFilter.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 //==============================================================================
 

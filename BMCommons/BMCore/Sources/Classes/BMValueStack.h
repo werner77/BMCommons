@@ -3,9 +3,9 @@
 // Copyright (c) 2016 BehindMedia. All rights reserved.
 //
 
-#import <BMCore/BMCoreObject.h>
-#import <BMCore/BMCore.h>
-#import <BMCore/BMPropertyDescriptor.h>
+#import <BMCommons/BMCoreObject.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/BMPropertyDescriptor.h>
 
 @class BMValueStack;
 

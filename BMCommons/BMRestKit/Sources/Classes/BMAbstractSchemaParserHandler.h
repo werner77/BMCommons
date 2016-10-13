@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMRestKit/BMSchemaFieldType.h>
-#import <BMRestKit/BMMappableObjectClassResolver.h>
+#import <BMCommons/BMSchemaFieldType.h>
+#import <BMCommons/BMMappableObjectClassResolver.h>
 
 @interface BMAbstractSchemaParserHandler : NSObject 
 

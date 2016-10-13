@@ -8,7 +8,7 @@
 
 #import "BMTableFooterDragLoadMoreView.h"
 #import <QuartzCore/QuartzCore.h>
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 @implementation BMTableFooterDragLoadMoreView {
     UILabel*                  _countLabel;

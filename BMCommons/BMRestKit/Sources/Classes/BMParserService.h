@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMHTTPRequest.h>
-#import <BMRestKit/BMXMLParser.h>
-#import <BMRestKit/BMParserHandler.h>
-#import <BMCore/BMURLCache.h>
-#import <BMCore/BMAbstractService.h>
+#import <BMCommons/BMHTTPRequest.h>
+#import <BMCommons/BMXMLParser.h>
+#import <BMCommons/BMParserHandler.h>
+#import <BMCommons/BMURLCache.h>
+#import <BMCommons/BMAbstractService.h>
 
 @class ParserContext;
 @class CacheLoadingContext;

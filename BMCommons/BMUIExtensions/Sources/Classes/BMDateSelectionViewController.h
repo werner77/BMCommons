@@ -9,8 +9,8 @@
 #if KAL_ENABLED
 
 #import <Foundation/Foundation.h>
-#import <BMUIExtensions/BMEditViewController.h>
-#import <BMUICore/BMViewController.h>
+#import <BMCommons/BMEditViewController.h>
+#import <BMCommons/BMViewController.h>
 
 @class BMCustomKalViewController;
 

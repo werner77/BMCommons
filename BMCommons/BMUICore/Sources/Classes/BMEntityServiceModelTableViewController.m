@@ -7,8 +7,8 @@
 //
 
 #import "BMEntityServiceModelTableViewController.h"
-#import <BMUICore/UIViewController+BMCommons.h>
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/UIViewController+BMCommons.h>
+#import <BMCommons/BMUICore.h>
 
 @interface BMEntityServiceModelTableViewController (Private)
 

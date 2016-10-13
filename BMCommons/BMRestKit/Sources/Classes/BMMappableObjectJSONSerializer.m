@@ -7,14 +7,14 @@
 //
 
 #import "BMMappableObjectJSONSerializer.h"
-#import <BMCore/BMStringHelper.h>
-#import <BMRestKit/BMMappableObject.h>
-#import <BMXML/BMXMLElement.h>
-#import <BMRestKit/BMMappableObjectXMLSerializer.h>
-#import <BMRestKit/BMJSONParser.h>
-#import <BMRestKit/BMObjectMappingParserHandler.h>
-#import <BMCore/BMErrorHelper.h>
-#import <BMRestKit/BMRestKit.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMMappableObject.h>
+#import <BMCommons/BMXMLElement.h>
+#import <BMCommons/BMMappableObjectXMLSerializer.h>
+#import <BMCommons/BMJSONParser.h>
+#import <BMCommons/BMObjectMappingParserHandler.h>
+#import <BMCommons/BMErrorHelper.h>
+#import <BMCommons/BMRestKit.h>
 
 @implementation BMMappableObjectJSONSerializer
 

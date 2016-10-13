@@ -7,7 +7,7 @@
 //
 
 #import "BMDialogHelper.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 #define TEXT_FIELD_TAG 8654
 

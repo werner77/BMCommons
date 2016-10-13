@@ -8,8 +8,8 @@
 
 #import "BMXMLSchemaParser.h"
 #import "NSString+BMCommons.h"
-#import <BMCore/NSArray+BMCommons.h>
-#import <BMRestKit/BMRestKit.h>
+#import <BMCommons/NSArray+BMCommons.h>
+#import <BMCommons/BMRestKit.h>
 
 @interface BMXMLSchemaParser(Private)
 

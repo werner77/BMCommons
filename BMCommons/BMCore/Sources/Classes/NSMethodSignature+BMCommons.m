@@ -4,7 +4,7 @@
 //
 
 #import "NSMethodSignature+BMCommons.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation NSMethodSignature (BMCommons)
 

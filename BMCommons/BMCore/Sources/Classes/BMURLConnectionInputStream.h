@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMAbstractInputStream.h>
+#import <BMCommons/BMAbstractInputStream.h>
 
 @class BMURLConnectionInputStream;
 

@@ -8,8 +8,8 @@
 
 #import "BMAnimatedImageView.h"
 #import <QuartzCore/QuartzCore.h>
-#import <BMUICore/BMUICore.h>
-#import <BMCore/BMProxy.h>
+#import <BMCommons/BMUICore.h>
+#import <BMCommons/BMProxy.h>
 
 @implementation BMAnimatedImageView {
     NSTimer *animationTimer;

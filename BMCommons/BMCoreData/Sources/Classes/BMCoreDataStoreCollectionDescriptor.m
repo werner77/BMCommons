@@ -7,7 +7,7 @@
 //
 
 #import "BMCoreDataStoreCollectionDescriptor.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation BMCoreDataStoreCollectionDescriptor
 

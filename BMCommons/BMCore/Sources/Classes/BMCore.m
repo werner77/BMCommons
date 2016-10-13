@@ -6,7 +6,7 @@
  *  Copyright 2011 BehindMedia. All rights reserved.
  */
 
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 #import <objc/runtime.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

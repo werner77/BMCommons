@@ -3,7 +3,7 @@
 // Copyright (c) 2016 BehindMedia. All rights reserved.
 //
 
-#import <BMCore/BMCompositeService.h>
+#import <BMCommons/BMCompositeService.h>
 
 /**
  * Service which wraps another service to possibly add functionality to it such as retry, error handling, etc.

@@ -13,7 +13,7 @@
 #import "BMInputValueType.h"
 #import "BMTwoWayDictionary.h"
 #import "BMStringHelper.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 @interface BMEnumeratedValue(Private)
 

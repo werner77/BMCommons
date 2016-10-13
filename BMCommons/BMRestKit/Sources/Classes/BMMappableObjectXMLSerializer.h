@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMRestKit/BMMappableObject.h>
-#import <BMXML/BMXMLElement.h>
+#import <BMCommons/BMMappableObject.h>
+#import <BMCommons/BMXMLElement.h>
 
 /**
  Serializer for serializing a BMMappableObject to XML and back.

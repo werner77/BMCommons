@@ -7,7 +7,7 @@
 //
 
 #import "BMAbstractMappableObjectClassResolver.h"
-#import <BMCore/NSString+BMCommons.h>
+#import <BMCommons/NSString+BMCommons.h>
 
 @implementation BMAbstractMappableObjectClassResolver
 

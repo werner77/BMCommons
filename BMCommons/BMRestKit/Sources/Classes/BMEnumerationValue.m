@@ -8,7 +8,7 @@
 
 #import "BMEnumerationValue.h"
 #import "NSNumber+BMCommons.h"
-#import <BMRestKit/BMRestKit.h>
+#import <BMCommons/BMRestKit.h>
 
 @implementation BMEnumerationValue 
 

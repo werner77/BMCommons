@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import <BMUICore/BMObjectPropertyTableViewCell.h>
-#import <BMUICore/BMAsyncLoadingImageButton.h>
+#import <BMCommons/BMObjectPropertyTableViewCell.h>
+#import <BMCommons/BMAsyncLoadingImageButton.h>
 
 @interface BMAsyncLoadingImageButtonCell : BMObjectPropertyTableViewCell
 

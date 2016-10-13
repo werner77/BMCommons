@@ -10,7 +10,7 @@
 #import <CommonCrypto/CommonCryptor.h>
 #import <CommonCrypto/CommonDigest.h>
 #import <Security/Security.h>
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation BMMD5Digest {
     CC_MD5_CTX _md5Context;

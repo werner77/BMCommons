@@ -7,8 +7,8 @@
 //
 
 #import "BMMaskView.h"
-#import <BMUICore/BMUICore.h>
-#import <BMUICore/UIScreen+BMCommons.h>
+#import <BMCommons/BMUICore.h>
+#import <BMCommons/UIScreen+BMCommons.h>
 
 @implementation BMMaskView {
 	UIImageView *imageView;

@@ -7,9 +7,9 @@
 //
 
 #import <CoreData/CoreData.h>
-#import <BMCoreData/BMCoreDataHelper.h>
-#import <BMCoreData/BMManagedObjectContext.h>
-#import <BMCoreData/BMCoreDataStoreCollectionDescriptor.h>
+#import <BMCommons/BMCoreDataHelper.h>
+#import <BMCommons/BMManagedObjectContext.h>
+#import <BMCommons/BMCoreDataStoreCollectionDescriptor.h>
 
 @interface BMCoreDataStack : NSObject 
 

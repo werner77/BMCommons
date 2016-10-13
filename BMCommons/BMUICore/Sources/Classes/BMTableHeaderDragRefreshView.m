@@ -9,7 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BMTableHeaderDragRefreshView.h"
 #import "BMStyleSheet.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 @implementation BMTableHeaderDragRefreshView {
     NSDate*                   _lastUpdatedDate;

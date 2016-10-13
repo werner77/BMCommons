@@ -7,7 +7,7 @@
 //
 
 #import "BMTableViewCell.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 @implementation BMTableViewCell {
 	BOOL clickEnabled;

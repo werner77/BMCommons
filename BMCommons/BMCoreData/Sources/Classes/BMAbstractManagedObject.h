@@ -7,7 +7,7 @@
 //
 
 #import <CoreData/CoreData.h>
-#import <BMCoreData/BMRootManagedObject.h>
+#import <BMCommons/BMRootManagedObject.h>
 
 @interface BMAbstractManagedObjectID : NSManagedObjectID
 

@@ -7,7 +7,7 @@
 //
 
 #import "BMUICoreObject.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 @implementation BMUICoreObject
 

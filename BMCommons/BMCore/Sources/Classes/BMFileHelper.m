@@ -9,7 +9,7 @@
 #import "BMFileHelper.h"
 #import "BMStringHelper.h"
 #import <Foundation/NSPathUtilities.h>
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation BMFileHelper
 

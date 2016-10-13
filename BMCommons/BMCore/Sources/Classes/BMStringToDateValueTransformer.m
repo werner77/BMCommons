@@ -9,7 +9,7 @@
 #import "BMStringToDateValueTransformer.h"
 #import "NSDateFormatter+BMCommons.h"
 #import "BMStringHelper.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation BMStringToDateValueTransformer 
 

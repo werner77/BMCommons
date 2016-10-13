@@ -7,7 +7,7 @@
 
 #import "BMURLConnectionInputStream.h"
 #import "BMLogging.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @interface BMURLConnectionInputStream()
 

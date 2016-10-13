@@ -18,8 +18,8 @@
 #import "BMXMLElement.h"
 #import "BMMappableObjectXMLSerializer.h"
 #import "BMMappableObjectJSONSerializer.h"
-#import <BMRestKit/BMRestKit.h>
-#import <BMCore/NSObject+BMCommons.h>
+#import <BMCommons/BMRestKit.h>
+#import <BMCommons/NSObject+BMCommons.h>
 
 @interface BMAbstractMappableObject(Private)
 

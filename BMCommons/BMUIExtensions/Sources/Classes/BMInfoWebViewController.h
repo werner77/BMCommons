@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMUICore/BMTableViewController.h>
+#import <BMCommons/BMTableViewController.h>
 
 /**
  View controller to load a rich text HTML resource in a table view (single cell).

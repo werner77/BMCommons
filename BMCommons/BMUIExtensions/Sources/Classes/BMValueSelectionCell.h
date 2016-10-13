@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMUICore/BMObjectPropertyTableViewCell.h>
-#import <BMUIExtensions/BMEditViewController.h>
+#import <BMCommons/BMObjectPropertyTableViewCell.h>
+#import <BMCommons/BMEditViewController.h>
 
 @class BMValueSelectionCell;
 

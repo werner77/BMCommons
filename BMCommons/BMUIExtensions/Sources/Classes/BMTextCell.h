@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <BMUICore/BMObjectPropertyTableViewCell.h>
+#import <BMCommons/BMObjectPropertyTableViewCell.h>
 
 @class BMTextCell;
 

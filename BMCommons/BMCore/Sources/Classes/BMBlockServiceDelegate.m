@@ -7,9 +7,9 @@
 //
 
 #import "BMBlockServiceDelegate.h"
-#import <BMCore/BMWeakReference.h>
-#import <BMCore/BMWeakReferenceRegistry.h>
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMWeakReference.h>
+#import <BMCommons/BMWeakReferenceRegistry.h>
+#import <BMCommons/BMCore.h>
 
 @interface BMBlockServiceDelegate ()
 

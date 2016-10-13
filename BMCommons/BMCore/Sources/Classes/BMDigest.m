@@ -11,7 +11,7 @@
 #import "BMMD5Digest.h"
 #import "BMSHA1Digest.h"
 #import "BMSHA256Digest.h"
-#import <BMCore/BMPropertyDescriptor.h>
+#import <BMCommons/BMPropertyDescriptor.h>
 
 @implementation BMDigest {
     unsigned char *_result;

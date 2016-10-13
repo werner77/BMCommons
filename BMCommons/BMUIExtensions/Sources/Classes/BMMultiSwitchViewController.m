@@ -9,10 +9,10 @@
 #import "BMMultiSwitchViewController.h"
 #import "UIViewController+BMCommons.h"
 #import "BMStringHelper.h"
-#import <BMCore/NSObject+BMCommons.h>
-#import <BMCore/NSCondition+BMCommons.h>
-#import <BMUICore/BMUICore.h>
-#import <BMUICore/UIScreen+BMCommons.h>
+#import <BMCommons/NSObject+BMCommons.h>
+#import <BMCommons/NSCondition+BMCommons.h>
+#import <BMCommons/BMUICore.h>
+#import <BMCommons/UIScreen+BMCommons.h>
 
 @interface BMMultiSwitchViewController()
 

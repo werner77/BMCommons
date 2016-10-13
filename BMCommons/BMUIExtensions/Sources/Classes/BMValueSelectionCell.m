@@ -7,13 +7,13 @@
 //
 
 #import "BMValueSelectionCell.h"
-#import <BMUICore/UIButton+BMCommons.h>
-#import <BMUIExtensions/BMEnumeratedValueSelectionViewController.h>
-#import <BMCore/BMPropertyDescriptor.h>
-#import <BMCore/BMStringHelper.h>
-#import <BMUIExtensions/BMEditViewController.h>
+#import <BMCommons/UIButton+BMCommons.h>
+#import <BMCommons/BMEnumeratedValueSelectionViewController.h>
+#import <BMCommons/BMPropertyDescriptor.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMEditViewController.h>
 #import "BMEnumeratedValueToStringTransformer.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 @implementation BMValueSelectionCell
 

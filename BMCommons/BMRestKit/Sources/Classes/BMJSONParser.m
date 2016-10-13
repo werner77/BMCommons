@@ -9,7 +9,7 @@
 #import "BMJSONParser.h"
 #import "NSString+BMCommons.h"
 #import "BMStringHelper.h"
-#import <BMRestKit/BMRestKit.h>
+#import <BMCommons/BMRestKit.h>
 
 @interface BMJSONParser()
 

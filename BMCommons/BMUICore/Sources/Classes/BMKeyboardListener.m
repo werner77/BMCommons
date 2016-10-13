@@ -7,7 +7,7 @@
 //
 
 #import "BMKeyboardListener.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 @implementation BMKeyboardListener {
     BOOL _visible;

@@ -7,7 +7,7 @@
 //
 
 #import "BMValueType.h"
-#import <BMCore/NSObject+BMCommons.h>
+#import <BMCommons/NSObject+BMCommons.h>
 
 @implementation BMValueTypeConverter
 

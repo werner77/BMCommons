@@ -8,8 +8,8 @@
 
 #import "BMMultiPickerCell.h"
 #import "BMMultiSelectionViewController.h"
-#import <BMCore/BMPropertyDescriptor.h>
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMPropertyDescriptor.h>
+#import <BMCommons/BMUICore.h>
 
 @implementation BMMultiPickerCell
 

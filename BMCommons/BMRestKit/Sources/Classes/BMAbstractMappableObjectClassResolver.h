@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMRestKit/BMMappableObjectClassResolver.h>
+#import <BMCommons/BMMappableObjectClassResolver.h>
 
 @interface BMAbstractMappableObjectClassResolver : NSObject<BMMappableObjectClassResolver>
 

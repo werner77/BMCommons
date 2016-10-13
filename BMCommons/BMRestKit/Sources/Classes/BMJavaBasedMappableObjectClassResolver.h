@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMRestKit/BMAbstractMappableObjectClassResolver.h>
+#import <BMCommons/BMAbstractMappableObjectClassResolver.h>
 
 @interface BMJavaBasedMappableObjectClassResolver : BMAbstractMappableObjectClassResolver
 

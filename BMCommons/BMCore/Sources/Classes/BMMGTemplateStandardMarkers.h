@@ -5,8 +5,8 @@
 //  Copyright 2008 Instinctive Code. All rights reserved.
 //
 
-#import <BMCore/BMMGTemplateEngine.h>
-#import <BMCore/BMMGTemplateMarker.h>
+#import <BMCommons/BMMGTemplateEngine.h>
+#import <BMCommons/BMMGTemplateMarker.h>
 
 /**
  Standard markers for BMMGTemplateEngine.

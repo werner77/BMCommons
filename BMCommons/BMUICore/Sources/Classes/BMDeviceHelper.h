@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMUICore/BMUICoreObject.h>
+#import <BMCommons/BMUICoreObject.h>
 
 /**
  UIDevice utility methods.

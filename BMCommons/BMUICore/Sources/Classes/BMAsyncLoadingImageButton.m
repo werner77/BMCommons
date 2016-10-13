@@ -7,9 +7,9 @@
 //
 
 #import "BMAsyncLoadingImageButton.h"
-#import <BMCore/BMAsyncImageLoader.h>
-#import <BMUICore/UIButton+BMCommons.h>
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMAsyncImageLoader.h>
+#import <BMCommons/UIButton+BMCommons.h>
+#import <BMCommons/BMUICore.h>
 
 @interface BMAsyncLoadingImageButton() <BMAsyncDataLoaderDelegate>
 

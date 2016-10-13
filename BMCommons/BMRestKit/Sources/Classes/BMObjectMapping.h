@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMRestKit/BMFieldMapping.h>
-#import <BMRestKit/BMEnumerationValue.h>
+#import <BMCommons/BMFieldMapping.h>
+#import <BMCommons/BMEnumerationValue.h>
 
 /**
  Describes a XML/JSON to object mapping

@@ -7,7 +7,7 @@
 //
 
 #import "BMParserHandler.h"
-#import <BMRestKit/BMRestKit.h>
+#import <BMCommons/BMRestKit.h>
 
 @implementation BMParserHandler
 

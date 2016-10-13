@@ -12,7 +12,7 @@
 #include <sys/sysctl.h>
 #include <net/if.h>
 #include <net/if_dl.h>
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 @implementation BMDeviceHelper
 

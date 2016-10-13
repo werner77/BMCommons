@@ -9,19 +9,19 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "BMStringHelper.h"
 #import "BMFileHelper.h"
-#import <BMCore/BMCore.h>
-#import <BMCore/BMObjectHelper.h>
-#import <BMCore/BMCache.h>
-#import <BMCore/NSString+BMCommons.h>
-#import <BMCore/BMWeakTimer.h>
-#import <BMCore/NSObject+BMCommons.h>
-#import <BMCore/BMFileAttributes.h>
-#import <BMCore/NSFileManager+BMCommons.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/BMObjectHelper.h>
+#import <BMCommons/BMCache.h>
+#import <BMCommons/NSString+BMCommons.h>
+#import <BMCommons/BMWeakTimer.h>
+#import <BMCommons/NSObject+BMCommons.h>
+#import <BMCommons/BMFileAttributes.h>
+#import <BMCommons/NSFileManager+BMCommons.h>
 #import <QuartzCore/QuartzCore.h>
 
 #if TARGET_OS_IPHONE
 
-#import <BMUICore/UIImage+BMCommons.h>
+#import <BMCommons/UIImage+BMCommons.h>
 
 #endif
 

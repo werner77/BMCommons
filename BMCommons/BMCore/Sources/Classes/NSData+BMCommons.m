@@ -7,7 +7,7 @@
 //
 
 #import "NSData+BMCommons.h"
-#import <BMCore/BMEncodingHelper.h>
+#import <BMCommons/BMEncodingHelper.h>
 
 @implementation NSData (BMCommons)
 

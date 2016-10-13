@@ -8,7 +8,7 @@
 
 #import "BMTextCell.h"
 #import "BMStringHelper.h"
-#import <BMCore/BMRegexKitLite.h>
+#import <BMCommons/BMRegexKitLite.h>
 
 @implementation BMTextCell
 

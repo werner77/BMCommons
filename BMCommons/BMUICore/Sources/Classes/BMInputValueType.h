@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <BMUICore/BMUICoreObject.h>
+#import <BMCommons/BMUICoreObject.h>
 
 //Predefined value types: use these as argument to [BMValueType registeredValueTypeForKey:]
 #define VALUE_TYPE_DEFAULT @"default"

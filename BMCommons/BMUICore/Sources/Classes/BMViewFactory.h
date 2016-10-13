@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <BMUICore/BMUICoreObject.h>
-#import <BMCore/BMReusableObject.h>
-#import <BMCore/BMVersionAvailability.h>
+#import <BMCommons/BMUICoreObject.h>
+#import <BMCommons/BMReusableObject.h>
+#import <BMCommons/BMVersionAvailability.h>
 
 //Kinds for use by [BMViewFactory registerOnceReusableViewOfType:ofKind:forView:]
 extern NSString * const BMCollectionViewCellKind;

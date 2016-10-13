@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMUICore/BMUICoreObject.h>
+#import <BMCommons/BMUICoreObject.h>
 #import <UIKit/UIKit.h>
 
 /**

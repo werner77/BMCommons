@@ -8,8 +8,8 @@
 
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMService.h>
-#import <BMCore/BMCoreObject.h>
+#import <BMCommons/BMService.h>
+#import <BMCommons/BMCoreObject.h>
 
 /**
  Success block for service.

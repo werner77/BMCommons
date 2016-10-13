@@ -9,10 +9,10 @@
 #import "BMApplicationContext.h"
 #import "BMURLCache.h"
 #import "BMFileHelper.h"
-#import <BMCore/BMApplicationHelper.h>
-#import <BMCore/BMCore.h>
-#import <BMCore/BMApp.h>
-#import <BMCore/NSArray+BMCommons.h>
+#import <BMCommons/BMApplicationHelper.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/BMApp.h>
+#import <BMCommons/NSArray+BMCommons.h>
 
 #define STORE_DESCRIPTOR_FILENAME @"storedescriptor.scd"
 

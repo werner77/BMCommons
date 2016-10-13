@@ -4,11 +4,11 @@
 //  Created by Werner Altewischer on 12/09/09.
 //  Copyright 2012 BehindMedia. All rights reserved.
 //
-#import <BMCore/BMCoreObject.h>
+#import <BMCommons/BMCoreObject.h>
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
 #endif
-#import <BMCore/BMFileAttributes.h>
+#import <BMCommons/BMFileAttributes.h>
 
 typedef NS_ENUM(NSUInteger, BMURLCacheState) {
     BMURLCacheStateNone = 0,

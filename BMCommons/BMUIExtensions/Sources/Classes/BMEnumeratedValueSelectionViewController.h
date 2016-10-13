@@ -8,8 +8,8 @@
 
 
 #import <Foundation/Foundation.h>
-#import <BMUICore/BMTableViewController.h>
-#import <BMUIExtensions/BMEditViewController.h>
+#import <BMCommons/BMTableViewController.h>
+#import <BMCommons/BMEditViewController.h>
 
 @class BMPropertyDescriptor;
 

@@ -4,7 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMUICore/BMAlertView.h>
+#import <BMCommons/BMAlertView.h>
 
 /**
  * Default implementation of alert view which matches the style of an iOS 7 UIAlertView.

@@ -8,7 +8,7 @@
 
 #import "BMNavigationController.h"
 #import "BMViewController.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 @implementation BMNavigationController {
     BOOL _firstAppearAfterLoad;

@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMCore.h>
-#import <BMCore/BMCoreObject.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/BMCoreObject.h>
 
 @interface BMWeakReferenceRegistry : BMCoreObject
 

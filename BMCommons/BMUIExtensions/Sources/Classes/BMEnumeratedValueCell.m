@@ -6,10 +6,10 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import <BMUIExtensions/BMEnumeratedValueCell.h>
-#import <BMUICore/BMEnumeratedValueToStringTransformer.h>
-#import <BMUICore/BMEnumeratedValueTransformer.h>
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMEnumeratedValueCell.h>
+#import <BMCommons/BMEnumeratedValueToStringTransformer.h>
+#import <BMCommons/BMEnumeratedValueTransformer.h>
+#import <BMCommons/BMUICore.h>
 
 @implementation BMEnumeratedValueCell
 

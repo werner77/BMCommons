@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMAbstractService.h>
+#import <BMCommons/BMAbstractService.h>
 
 /**
  Service that acts as a facade for 2 or more other services that are executed in succession.

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import <BMUICore/BMAppDelegate.h>
-#import <BMUICore/BMUICore.h>
-#import <BMCore/BMServiceManager.h>
+#import <BMCommons/BMAppDelegate.h>
+#import <BMCommons/BMUICore.h>
+#import <BMCommons/BMServiceManager.h>
 
 @interface BMAppDelegate(Private)
 

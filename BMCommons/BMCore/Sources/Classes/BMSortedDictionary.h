@@ -3,7 +3,7 @@
 // Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import <BMCore/BMAbstractMutableDictionary.h>
+#import <BMCommons/BMAbstractMutableDictionary.h>
 
 /**
  * Dictionary which maintains order by sorting the keys using the supplied comparator or sortDescriptors.

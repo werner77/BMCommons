@@ -9,7 +9,7 @@
 #import "BMLocalization.h"
 #import "BMStringHelper.h"
 #import "BMLogging.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation BMLocalization 
 

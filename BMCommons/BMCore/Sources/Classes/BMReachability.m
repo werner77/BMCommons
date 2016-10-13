@@ -65,7 +65,7 @@
 #import <CoreFoundation/CoreFoundation.h>
 
 #import "BMReachability.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 #define kShouldPrintReachabilityFlags 1
 

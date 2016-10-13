@@ -9,7 +9,7 @@
 #if KAL_ENABLED
 
 #import <Foundation/Foundation.h>
-#import <BMUIExtensions/BMAbstractDatePickerCell.h>
+#import <BMCommons/BMAbstractDatePickerCell.h>
 
 @interface BMDatePickerCell : BMAbstractDatePickerCell {
 

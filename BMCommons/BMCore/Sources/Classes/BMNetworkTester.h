@@ -6,8 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMReachability.h>
-#import <BMCore/BMCoreObject.h>
+#import <BMCommons/BMReachability.h>
+#import <BMCommons/BMCoreObject.h>
 
 #define BM_NETWORKTESTER_DEFAULT_TEST_HOSTNAME @"www.google.com"
 

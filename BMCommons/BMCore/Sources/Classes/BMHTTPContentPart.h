@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMCore/BMCoreObject.h>
+#import <BMCommons/BMCoreObject.h>
 
 #define BM_HTTP_CONTENT_TYPE_HEADER @"Content-Type"
 #define BM_HTTP_CONTENT_DISPOSITION_HEADER @"Content-Disposition"

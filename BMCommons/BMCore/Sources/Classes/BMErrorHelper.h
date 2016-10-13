@@ -6,7 +6,7 @@
 //  Copyright 2008 BehindMedia. All rights reserved.
 //
 
-#import <BMCore/BMErrorCodes.h>
+#import <BMCommons/BMErrorCodes.h>
 
 /**
  Utility methods for creating/manipulating NSError objects.

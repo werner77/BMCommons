@@ -14,7 +14,7 @@
 #import "BMDateHelper.h"
 #import "BMStringHelper.h"
 #import "BMRegexKitLite.h"
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 @implementation BMInputValueType {
 	NSString *typeKey;

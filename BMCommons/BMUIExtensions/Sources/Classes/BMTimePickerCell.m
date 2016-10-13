@@ -8,7 +8,7 @@
 
 #import "BMTimePickerCell.h"
 #import "BMTimeSelectionViewController.h"
-#import <BMCore/BMPropertyDescriptor.h>
+#import <BMCommons/BMPropertyDescriptor.h>
 
 @implementation BMTimePickerCell
 

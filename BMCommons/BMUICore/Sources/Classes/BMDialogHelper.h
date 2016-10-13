@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <BMUICore/BMUICoreObject.h>
+#import <BMCommons/BMUICoreObject.h>
 
 /**
  Helper methods to create and show common alerts/actionsheets.

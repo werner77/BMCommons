@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BMRestKit/BMFieldMapping.h>
-#import <BMXML/BMXMLElement.h>
+#import <BMCommons/BMFieldMapping.h>
+#import <BMCommons/BMXMLElement.h>
 #import <CoreData/CoreData.h>
 
 #define SET_IF_DEFINED(x, y) {id z = y;  if (z) {x = z;}}

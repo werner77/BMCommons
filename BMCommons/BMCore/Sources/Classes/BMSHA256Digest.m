@@ -5,7 +5,7 @@
 
 #import <CommonCrypto/CommonDigest.h>
 #import "BMSHA256Digest.h"
-#import <BMCore/BMCore.h>
+#import <BMCommons/BMCore.h>
 
 @implementation BMSHA256Digest {
     CC_SHA256_CTX _sha256Context;

@@ -11,8 +11,8 @@
 #import "BMMailComposeController.h"
 #import "BMDialogHelper.h"
 #import "BMBusyView.h"
-#import <BMCore/BMCore.h>
-#import <BMCore/BMStringHelper.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/BMStringHelper.h>
 
 @interface BMMailComposeController(Private)
 

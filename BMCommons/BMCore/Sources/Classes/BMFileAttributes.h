@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import <BMCore/BMCoreObject.h>
+#import <BMCommons/BMCoreObject.h>
 
 @interface BMFileAttributes : BMCoreObject
 

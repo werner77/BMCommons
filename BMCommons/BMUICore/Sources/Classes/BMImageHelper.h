@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <BMUICore/BMUICore.h>
+#import <BMCommons/BMUICore.h>
 
 /**
  UIImage helper methods. 
