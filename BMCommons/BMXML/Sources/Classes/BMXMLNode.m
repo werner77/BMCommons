@@ -66,8 +66,14 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #import <BMCommons/BMXMLNode.h>
 #import <BMCommons/BMXMLElement.h>
 #import <BMCommons/BMXMLUtilities.h>
+#import "BMXMLNode_Private.h"
+#import "BMXMLElement_Private.h"
 
-@implementation BMXMLNode
+@implementation BMXMLNode  {
+@private
+    xmlNode *_libXMLNode;
+    xmlDoc *_libXMLDocument;
+}
 
 @synthesize libXMLNode = _libXMLNode;
 @synthesize libXMLDocument = _libXMLDocument;

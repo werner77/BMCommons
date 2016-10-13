@@ -21,8 +21,13 @@
 #import <libxml/xpathInternals.h>
 #import <BMCommons/BMCore.h>
 #import <BMCommons/BMXMLElement.h>
+#import "BMXPathQuery_Private.h"
+#import "BMXMLElement_Private.h"
 
-@implementation BMXPathQuery
+@implementation BMXPathQuery {
+	xmlDocPtr doc;
+	BOOL shouldFreeDoc;
+}
 
 @synthesize doc;
 

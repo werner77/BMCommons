@@ -65,21 +65,14 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMXMLNode.h>
-#import <libxml/xmlmemory.h>
-#import <libxml/xpath.h>
-
 
 /**
  Class describing an XML element.
  */
-@interface BMXMLElement : BMXMLNode {
-    xmlXPathContextPtr _XPathContext;
-}
+@interface BMXMLElement : BMXMLNode
 
-+ (BMXMLElement *)elementWithXMLNode:(xmlNode *)node;
 + (BMXMLElement *)elementWithName:(NSString *)name;
 
-- (BMXMLElement *)initWithXMLNode:(xmlNode *)node;
 - (BMXMLElement *)initWithName:(NSString *)name;
 
 - (void)setArrayElement:(BOOL)arrayElement;

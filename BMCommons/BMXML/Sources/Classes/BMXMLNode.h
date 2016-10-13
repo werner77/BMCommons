@@ -64,7 +64,6 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 */
 
 #import <Foundation/Foundation.h>
-#import <libxml/xmlmemory.h>
 
 @class BMXMLElement;
 
@@ -79,19 +78,9 @@ typedef NS_ENUM(NSUInteger, XMLExtraInfoFlags) {
     XMLExtraInfoEmptyElement = 4
 };
 
-@interface BMXMLNode : NSObject <NSCopying> {
-	
-@private
-    xmlNode *_libXMLNode;
-    xmlDoc *_libXMLDocument;
-}
+@interface BMXMLNode : NSObject <NSCopying>
 
-@property (assign) xmlNode *libXMLNode;
-@property (assign) xmlDoc *libXMLDocument;
-
-+ (BMXMLNode *)nodeWithXMLNode:(xmlNode *)nodeWithXMLNode;
 + (BMXMLNode *)nodeWithString:(NSString *)string;
-- (id)initWithXMLNode:(xmlNode *)node;
 
 - (XMLNodeKind) kind;
 - (BOOL) isTextNode;

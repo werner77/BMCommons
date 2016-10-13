@@ -12,7 +12,6 @@
 //  appreciated but not required.
 //
 
-#import <libxml/tree.h>
 #import <Foundation/Foundation.h>
 
 /**
@@ -23,16 +22,9 @@
  * This means that the NSArray (and the XMLNode instances it contains) returned from performXPathQuery has to be processed and converted into other objects before the XPathQuery is released.
  */
 @interface BMXPathQuery : NSObject
-{
-	xmlDocPtr doc;	
-	BOOL shouldFreeDoc;
-}
-
-@property (nonatomic, assign) xmlDocPtr doc;
 
 - (id)initWithXMLDocument:(NSData *)document;
 - (id)initWithHTMLDocument:(NSData *)document;
-- (id)initWithDoc:(xmlDocPtr)theDoc;
 - (NSArray *)performXPathQuery:(NSString *)query;
 
 @end

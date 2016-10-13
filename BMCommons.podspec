@@ -32,11 +32,11 @@ TODO: Add long description of the pod here.
       s_core_arc.requires_arc = true
       s_core_arc.compiler_flags = '-Wno-arc-performSelector-leaks'
       s_core_arc.source_files = 'BMCommons/BMCore/Sources/**/*.{c,m,h}'
-      s_core_arc.exclude_files = 'BMCommons/BMCore/**/*_Private.*','BMCommons/BMCore/Sources/Classes/BMRegexKitLite.m','BMCommons/BMCore/Sources/Classes/BMKeychainItemWrapper.m','BMCommons/BMCore/Sources/Classes/NSString+BMCommons_noarc.m'
+      s_core_arc.exclude_files = 'BMCommons/BMCore/**/*_Private.*','BMCommons/BMCore/Sources/Classes/BMRegexKitLite.*','BMCommons/BMCore/Sources/Classes/BMKeychainItemWrapper.*','BMCommons/BMCore/Sources/Classes/NSString+BMCommons_noarc.*'
     end
     s_core.subspec 'no-arc' do |s_core_noarc|
       s_core_noarc.requires_arc = false
-      s_core_noarc.source_files = 'BMCommons/BMCore/Sources/Classes/BMRegexKitLite.m','BMCommons/BMCore/Sources/Classes/BMKeychainItemWrapper.m','BMCommons/BMCore/Sources/Classes/NSString+BMCommons_noarc.m'
+      s_core_noarc.source_files = 'BMCommons/BMCore/Sources/Classes/BMRegexKitLite.*','BMCommons/BMCore/Sources/Classes/BMKeychainItemWrapper.*','BMCommons/BMCore/Sources/Classes/NSString+BMCommons_noarc.*'
     end
   end
 
@@ -70,16 +70,16 @@ TODO: Add long description of the pod here.
     s_coredata.compiler_flags = '-Wno-arc-performSelector-leaks'
     s_coredata.source_files = 'BMCommons/BMCoreData/Sources/**/*.{c,m,h}'
     s_coredata.exclude_files = 'BMCommons/BMCoreData/**/*_Private.*'
-    s_coredata.dependency 'BMCommons/BMCore'
+    s_coredata.dependency 'BMCommons/BMUICore'
   end  
 
   s.subspec 'BMXML' do |s_xml|
     s_xml.prefix_header_file = 'BMCommons/BMXML/Sources/Other/BMXML-Prefix.pch'
     s_xml.header_dir = 'BMXML'
     s_xml.requires_arc = true
-    s_xml.compiler_flags = '-Wno-arc-performSelector-leaks'
+    s_xml.compiler_flags = '-Wno-arc-performSelector-leaks -Wnon-modular-include-in-framework-module'
     s_xml.source_files = 'BMCommons/BMXML/Sources/**/*.{c,m,h}'
-    s_xml.exclude_files = 'BMCommons/BMXML/**/*_Private.*'
+    s_xml.private_header_files = 'BMCommons/BMXML/**/Private/*.h'
     s_xml.xcconfig     = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2' }
     s_xml.dependency 'BMCommons/BMCore'
   end

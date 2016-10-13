@@ -70,9 +70,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 /**
  Class for reading and parsing XML data.
  */
-@interface BMXMLReader : NSObject {
-
-}
+@interface BMXMLReader : NSObject
 
 + (BMXMLDocument *)parseXMLFileAtURL:(NSURL *)URL parseError:(NSError **)error;
 + (BMXMLDocument *)parseXMLString:(NSString *)XMLString parseError:(NSError **)error;

@@ -64,7 +64,8 @@
  */
 
 #import <BMCommons/BMXMLElement.h>
-
+#import <libxml/xmlmemory.h>
+#import <libxml/xpath.h>
 #import <libxml/globals.h>
 #import <libxml/xmlerror.h>
 #import <libxml/parserInternals.h>
@@ -73,6 +74,7 @@
 #import <libxml/xpathInternals.h>
 #import <BMCommons/BMXMLUtilities.h>
 #import <BMCommons/BMOrderedDictionary.h>
+#import "BMXMLElement_Private.h"
 
 typedef NS_ENUM(NSUInteger, JSONElementType) {
     JSONElementTypeSingle = 0,
@@ -87,7 +89,9 @@ typedef NS_ENUM(NSUInteger, JSONElementType) {
 - (void)appendJSONString:(NSMutableString *)descriptionString withAttributePrefix:(NSString *)attributePrefix textContentIdentifier:(NSString *)textContentIdentifier elementType:(JSONElementType)elementType;
 @end
 
-@implementation BMXMLElement
+@implementation BMXMLElement  {
+    xmlXPathContextPtr _XPathContext;
+}
 
 static NSArray * childElementsOf(xmlNodePtr a_node, BMXMLElement *contextElement);
 static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode);

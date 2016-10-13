@@ -65,23 +65,15 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMXMLElement.h>
-#import <libxml/xmlmemory.h>
 
 /**
  Class describing an XML document.
  */
-@interface BMXMLDocument : NSObject {
+@interface BMXMLDocument : NSObject
 
-@private
-    xmlDocPtr _xmlDocument;
-    BMXMLElement *_rootElement;
-}
-
-@property xmlDocPtr xmlDocument;
 @property (strong) BMXMLElement *rootElement;
 @property (strong, readonly) NSString *XMLString;
 
-+ (BMXMLDocument *)documentWithXMLDocument:(xmlDocPtr)doc;
 + (BMXMLDocument *)documentWithData:(NSData *)data error:(NSError **)error;
 + (BMXMLDocument *)documentWithXMLString:(NSString *)string error:(NSError **)error;
 + (BMXMLDocument *)documentWithContentsOfURL:(NSURL *)URL error:(NSError **)error;

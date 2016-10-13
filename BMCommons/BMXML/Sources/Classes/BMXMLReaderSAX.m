@@ -68,6 +68,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 #import <BMCommons/BMXMLUtilities.h>
 #import <BMCommons/BMCore.h>
+#import <libxml/xmlstring.h>
 
 @interface BMXMLReaderSAX()
 
@@ -120,7 +121,16 @@ static xmlSAXHandler simpleSAXHandlerStruct = {
 
 static xmlSAXHandler *simpleSAXHandler = &simpleSAXHandlerStruct;
 
-@implementation BMXMLReaderSAX
+@implementation BMXMLReaderSAX {
+
+@private
+    id _currentModelObject;
+    NSDictionary *_modelObjectDictionary;
+    NSMutableArray *_parsedModelObjects;
+    NSMutableString *_currentElementContent;
+
+    NSString *_childElementSetterSelectorName;
+}
 
 @synthesize currentModelObject = _currentModelObject;
 @synthesize modelObjectDictionary = _modelObjectDictionary;

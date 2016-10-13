@@ -68,7 +68,6 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 #import <BMCommons/BMXMLReader.h>
 #import <BMCommons/BMXMLModelObject.h>
-#import <libxml/xmlstring.h>
 
 /*
     This class implements a streaming XML parser on top of the libxml SAX API.
@@ -119,16 +118,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 /**
  Class for reading and parsing XML data using SAX parsing.
  */
-@interface BMXMLReaderSAX : BMXMLReader {
-
-@private
-    id _currentModelObject;
-    NSDictionary *_modelObjectDictionary;
-    NSMutableArray *_parsedModelObjects;
-    NSMutableString *_currentElementContent;
-    
-    NSString *_childElementSetterSelectorName;
-}
+@interface BMXMLReaderSAX : BMXMLReader
 
 @property (nonatomic, strong) id currentModelObject;
 @property (nonatomic, strong) NSDictionary *modelObjectDictionary;

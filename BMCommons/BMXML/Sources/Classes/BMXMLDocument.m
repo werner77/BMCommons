@@ -64,10 +64,16 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 */
 
 #import <BMCommons/BMXMLDocument.h>
-
 #import <BMCommons/BMXMLReader.h>
+#import <libxml/xmlmemory.h>
+#import "BMXMLDocument_Private.h"
+#import "BMXMLElement_Private.h"
 
-@implementation BMXMLDocument
+@implementation BMXMLDocument {
+@private
+    xmlDocPtr _xmlDocument;
+    BMXMLElement *_rootElement;
+}
 
 @synthesize xmlDocument = _xmlDocument;
 @synthesize rootElement = _rootElement;
