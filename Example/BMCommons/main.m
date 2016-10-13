@@ -7,11 +7,11 @@
 //
 
 @import UIKit;
-#import "BMAppDelegate.h"
+#import "ExampleAppDelegate.h"
 
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([BMAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([ExampleAppDelegate class]));
     }
 }

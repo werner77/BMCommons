@@ -1,0 +1,70 @@
+/* 
+  BMUICore.strings
+  BMCommons
+
+  Created by Werner Altewischer on 6/2/13.
+  Copyright (c) 2013 BehindMedia. All rights reserved.
+*/
+
+/* Default Value: 'never' */
+"dragrefreshview.text.never" = "never";
+
+/* Default Value: 'Yes' */
+"button.title.yes" = "Yes";
+
+/* Default Value: 'Cancel' */
+"button.title.cancel" = "Cancel";
+
+"button.title.save" = "Save";
+
+/* Default Value: 'shown' */
+"dragloadmoreview.text.shown" = "shown";
+
+/* Default Value: 'Last updated' */
+"dragrefreshview.title.lastupdated" = "Last updated";
+
+/* Default Value: 'Updating...' */
+"dragrefreshview.title.updating" = "Updating...";
+
+/* Default Value: 'Release to load more...' */
+"dragloadmoreview.title.release" = "Release to load more...";
+
+/* Default Value: 'item' */
+"dragloadmoreview.text.item" = "item";
+
+/* Default Value: 'Continue in background' */
+"busyview.sendtobackgroundbutton.title" = "Continue in background";
+
+/* Default Value: 'Release to update...' */
+"dragrefreshview.title.release" = "Release to update...";
+
+/* Default Value: 'Pull up to load more...' */
+"dragloadmoreview.title.pullup" = "Pull up to load more...";
+
+/* Default Value: 'All %@ shown' */
+"dragloadmoreview.title.allshown" = "All %@ shown";
+
+/* Default Value: 'Tap to cancel' */
+"busyview.message" = "Tap to cancel";
+
+/* Default Value: 'No' */
+"button.title.no" = "No";
+
+/* Default Value: 'total' */
+"dragloadmoreview.text.total" = "total";
+
+/* Default Value: 'items' */
+"dragloadmoreview.text.items" = "items";
+
+/* Default Value: 'OK' */
+"button.title.ok" = "OK";
+
+/* Default Value: 'Loading more...' */
+"dragloadmoreview.title.loading" = "Loading more...";
+
+/* Default Value: 'Loading...' */
+"busyview.title" = "Loading...";
+
+/* Default Value: 'Pull down to update...' */
+"dragrefreshview.title.pulldown" = "Pull down to update...";
+

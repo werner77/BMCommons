@@ -1,0 +1,6 @@
+//
+// Prefix header for all source files of the 'BMCoreData' target in the 'BMCoreData' project
+//
+
+#ifdef __OBJC__
+#endif

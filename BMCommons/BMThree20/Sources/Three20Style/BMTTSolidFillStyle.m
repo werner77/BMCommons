@@ -1,0 +1,78 @@
+//
+// Copyright 2009-2011 Facebook
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+#import "Three20Style/BMTTSolidFillStyle.h"
+
+// Style
+#import "Three20Style/BMTTShape.h"
+#import "Three20Style/BMTTStyleContext.h"
+
+// Core
+#import "Three20Core/BMTTCorePreprocessorMacros.h"
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation BMTTSolidFillStyle
+
+@synthesize color = _color;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)dealloc {
+  BMTT_RELEASE_SAFELY(_color);
+
+  [super dealloc];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Class public
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BMTTSolidFillStyle*)styleWithColor:(UIColor*)color next:(BMTTStyle*)next {
+  BMTTSolidFillStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.color = color;
+  return style;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark BMTTStyle
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)draw:(BMTTStyleContext*)context {
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+
+  CGContextSaveGState(ctx);
+  [context.shape addToPath:context.frame];
+
+  [_color setFill];
+  CGContextFillPath(ctx);
+  CGContextRestoreGState(ctx);
+
+  return [self.next draw:context];
+}
+
+
+@end

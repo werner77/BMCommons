@@ -1,0 +1,74 @@
+//
+// Copyright 2009-2011 Facebook
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+#import "Three20Style/BMTTBlendStyle.h"
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation BMTTBlendStyle
+
+@synthesize blendMode = _blendMode;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithNext:(BMTTStyle*)next {
+  if (self = [super initWithNext:next]) {
+    _blendMode = kCGBlendModeNormal;
+  }
+
+  return self;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Class public
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BMTTBlendStyle*)styleWithBlend:(CGBlendMode)blendMode next:(BMTTStyle*)next {
+  BMTTBlendStyle* style = [[[self alloc] initWithNext:next] autorelease];
+  style.blendMode = blendMode;
+  return style;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark BMTTStyle
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)draw:(BMTTStyleContext*)context {
+  if (_blendMode) {
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(ctx);
+    CGContextSetBlendMode(ctx, _blendMode);
+
+    [self.next draw:context];
+    CGContextRestoreGState(ctx);
+
+  } else {
+    return [self.next draw:context];
+  }
+}
+
+
+@end

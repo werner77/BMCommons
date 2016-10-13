@@ -1,0 +1,18 @@
+/* 
+  BMYouTube.strings
+  BMCommons
+
+  Created by Werner Altewischer on 6/1/13.
+  Copyright (c) 2013 BehindMedia. All rights reserved.
+*/
+
+/* Default Value: 'Video entry URL is not valid' */
+"service.delete.error.invalidentry" = "Video entry URL is not valid";
+
+/* Default Value: 'Select Videos' */
+"controller.videolist.title" = "Select Videos";
+
+/* Default Value: 'Video to upload could not be located' */
+"service.upload.error.novideo" = "Video to upload could not be located";
+
+"cell.youtubeentry.text.views" = "views";

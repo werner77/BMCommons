@@ -1,11 +1,9 @@
 use_frameworks!
-
-target 'BMCommons_Example' do
-  pod 'BMCommons', :path => '../'
-
-  target 'BMCommons_Tests' do
-    inherit! :search_paths
-
-    
-  end
+target 'BMCommons_Tests' do
+  pod 'BMCommons/BMCore', :path => '../'
+  pod 'BMCommons/BMUICore', :path => '../'
+  pod 'BMCommons/BMUIExtensions', :path => '../'
+  pod 'BMCommons/BMCoreData', :path => '../'
+  pod 'BMCommons/BMXML', :path => '../'
+  pod 'BMCommons/BMRestKit', :path => '../'  
 end

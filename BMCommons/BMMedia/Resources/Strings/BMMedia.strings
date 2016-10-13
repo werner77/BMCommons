@@ -1,0 +1,95 @@
+/* 
+  BMMedia.strings
+  BMCommons
+
+  Created by Werner Altewischer on 5/30/13.
+  Copyright (c) 2013 BehindMedia. All rights reserved.
+*/
+
+/* Default Value: 'Delete' */
+"mediabrowser.alert.button.delete" = "Delete";
+
+/* Default Value: 'Saving data...' */
+"camera.busyview.savingdata" = "Saving data...";
+
+/* Default Value: 'photos' */
+"assetpicker.summary.photos" = "photos";
+
+/* Default Value: 'Done' */
+"camera.button.done" = "Done";
+
+/* Default Value: 'videos' */
+"assetpicker.summary.videos" = "videos";
+
+/* Default Value: 'Loading...' */
+"albumpicker.title.loading" = "Loading...";
+
+/* Default Value: 'Videos' */
+"assetpicker.selectioncontrol.videos" = "Videos";
+
+/* Default Value: 'Captions are not supported for this item' */
+"mediabrowser.alert.message.captionsnotsupported" = "Captions are not supported for this item";
+
+/* Default Value: 'Caption' */
+"mediabrowser.editcaption.title" = "Caption";
+
+/* Default Value: 'Auto' */
+"camera.button.flash.auto" = "Auto";
+
+/* Default Value: 'Sorry' */
+"alert.title.sorry" = "Sorry";
+
+/* Default Value: 'Albums' */
+"albumpicker.title" = "Albums";
+
+/* Default Value: 'Copying media...' */
+"medialibrarypicker.busyview.copying" = "Copying media...";
+
+/* Default Value: 'Off' */
+"camera.button.flash.off" = "Off";
+
+/* Default Value: 'OK' */
+"button.ok" = "OK";
+
+/* Default Value: 'All' */
+"assetpicker.selectioncontrol.all" = "All";
+
+/* Default Value: 'Error loading albums: %@' */
+"albumpicker.error.loading" = "Error loading albums: %@";
+
+/* Default Value: 'Pick Media' */
+"assetpicker.title.pickmedia" = "Pick Media";
+
+/* Default Value: 'No camera available on this device' */
+"camera.alert.message.notavailable" = "No camera available on this device";
+
+/* Default Value: 'On' */
+"camera.button.flash.on" = "On";
+
+/* Default Value: 'Loading...' */
+"assetpicker.title.loading" = "Loading...";
+
+/* Default Value: 'Photos' */
+"assetpicker.selectioncontrol.photos" = "Photos";
+
+/* Default Value: 'Media' */
+"mediasource.title.default" = "Media";
+
+/* Default Value: 'This item cannot be deleted' */
+"mediabrowser.alert.message.deletenotsupported" = "This item cannot be deleted";
+
+/* Default Value: 'video' */
+"assetpicker.summary.video" = "video";
+
+/* Default Value: 'Back' */
+"mediabrowser.barbutton.back" = "Back";
+
+/* Default Value: 'photo' */
+"assetpicker.summary.photo" = "photo";
+
+/* Default Value: 'Cancel' */
+"button.cancel" = "Cancel";
+
+/* Default Value: 'Are you sure you want to delete this item?' */
+"mediabrowser.alert.message.deleteconfirmation" = "Are you sure you want to delete this item?";
+
