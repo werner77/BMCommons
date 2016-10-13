@@ -18,7 +18,7 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/werner77/BMCommons'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Werner Altewischer' => 'werner.altewischer@gmail.com' }
-  s.source           = { :git => 'https://github.com/werner77/BMCommons.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/werner77/BMCommons.git', :branch => 'master' }
   
   s.ios.deployment_target = '6.0'
   s.platform = :ios
