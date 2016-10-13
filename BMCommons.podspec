@@ -75,6 +75,7 @@ TODO: Add long description of the pod here.
     s_xml.source_files = 'BMCommons/BMXML/Sources/**/*.{c,m,h}'
     s_xml.private_header_files = 'BMCommons/BMXML/**/Private/*.h'
     s_xml.libraries = 'xml2'
+    s_xml.pod_target_xcconfig     = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2' }
     s_xml.dependency 'BMCommons/BMCore'
   end
 

@@ -104,7 +104,7 @@
 - (id)initWithIdentifier: (NSString *)identifier accessGroup:(NSString *) accessGroup valueDataTransformer:(NSValueTransformer *)transformer {
 	if ((self = [super init]))
     {
-		valueDataTransformer = [transformer retain];
+		valueDataTransformer = transformer;
 		
         // Begin Keychain search setup. The genericPasswordQuery leverages the special user
         // defined attribute kSecAttrGeneric to distinguish itself between other generic Keychain
@@ -180,11 +180,6 @@
         }
     }
 	return self;
-}
-
-- (void)dealloc
-{
-	[super dealloc];
 }
 
 - (void)setObject:(id)inObject forKey:(id)key flush:(BOOL)flush

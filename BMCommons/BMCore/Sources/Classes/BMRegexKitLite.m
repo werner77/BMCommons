@@ -68,11 +68,7 @@
 #define NSNotFoundRange                    ((NSRange){NSNotFound, 0})
 #define NSMaxiumRange                      ((NSRange){0, NSUIntegerMax})
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
-#define CFAutorelease(obj) ({CFTypeRef _obj = (obj); (_obj == NULL) ? NULL : (__bridge_transfer id)CFMakeCollectable(_obj); })
-#else
 #define CFAutorelease(obj) ({CFTypeRef _obj = (obj); (_obj == NULL) ? NULL : (__bridge_transfer id)(_obj); })
-#endif
 
 #define RKLMakeString(str, hash, len, uc) ((RKLString){(str), (hash), (len), (UniChar *)(uc)})
 #define RKLClearCacheSlotLastString(ce) ({ ce->last = RKLMakeString(NULL, 0, 0, NULL); ce->lastFindRange = NSNotFoundRange; ce->lastMatchRange = NSNotFoundRange; })
@@ -104,14 +100,14 @@ typedef struct UParseError {
 } UParseError;
 
 typedef struct {
-  void       *string; // Used ONLY for pointer equality tests! Never messaged!
+  void   *string; // Used ONLY for pointer equality tests! Never messaged!
   CFHashCode  hash;
   NSUInteger  length;
   UniChar    *uniChar;
 } RKLString;
 
 typedef struct {
-  NSString        *regexString;
+  CFTypeRef        regexString;
   RKLRegexOptions  regexOptions;
   uregex          *icu_regex;
   NSInteger        captureCount;
@@ -140,7 +136,7 @@ static NSError      *RKLNSErrorForRegex (NSString *regexString, RKLRegexOptions 
 static OSSpinLock    cacheSpinLock = OS_SPINLOCK_INIT;
 static RKLCacheSlot  RKLCache[RKL_CACHE_SIZE];
 static RKLCacheSlot *lastCacheSlot;
-static void         *lastRegexString;
+static NSString     *lastRegexString = nil;
 static UniChar       fixedUniChar[(RKL_FIXED_LENGTH * sizeof(UniChar))];
 static RKLString     fixedString = {NULL, 0, 0, &fixedUniChar[0]};
 static RKLString     dynamicString;
@@ -150,7 +146,7 @@ static RKLString     dynamicString;
 //  ----------
 
 static RKLCacheSlot *getCachedRegex(NSString *regexString, RKLRegexOptions regexOptions, NSError **error) {
-  CFHashCode    regexHash    = CFHash(regexString);
+  CFHashCode    regexHash    = CFHash((__bridge CFTypeRef)regexString);
   RKLCacheSlot *cacheSlot    = &RKLCache[regexHash % RKL_CACHE_SIZE]; // Retrieve the cache slot for this regex.
   UParseError   parseError   = (UParseError){-1, -1, {0}, {0}};
   UniChar      *regexUniChar = NULL;
@@ -158,13 +154,13 @@ static RKLCacheSlot *getCachedRegex(NSString *regexString, RKLRegexOptions regex
   int32_t       status       = 0;
 
   // Return the cached entry if it's a match, otherwise clear the slot and create a new ICU regex in its place.
-  if((cacheSlot->regexOptions == regexOptions) && (cacheSlot->icu_regex != NULL) && (cacheSlot->regexString != NULL) && (CFEqual(regexString, cacheSlot->regexString) == YES)) { lastCacheSlot = cacheSlot; lastRegexString = regexString; return(cacheSlot); }
+  if((cacheSlot->regexOptions == regexOptions) && (cacheSlot->icu_regex != NULL) && (cacheSlot->regexString != NULL) && (CFEqual((__bridge CFTypeRef)regexString, cacheSlot->regexString) == YES)) { lastCacheSlot = cacheSlot; lastRegexString = regexString; return(cacheSlot); }
 
   RKLClearCacheSlotLastString(cacheSlot); // Clear any cached string state for this cache slot.
   if(cacheSlot->regexString != NULL) { CFRelease(cacheSlot->regexString);  cacheSlot->regexString = NULL; cacheSlot->regexOptions =  0; }
   if(cacheSlot->icu_regex   != NULL) { uregex_close(cacheSlot->icu_regex); cacheSlot->icu_regex   = NULL; cacheSlot->captureCount = -1; }
 
-  cacheSlot->regexString  = (NSString *)CFStringCreateCopy(NULL, (CFStringRef)regexString); // Get a cheap immutable copy.
+  cacheSlot->regexString  = CFStringCreateCopy(NULL, (CFStringRef)regexString); // Get a cheap immutable copy.
   cacheSlot->regexOptions = regexOptions;
   regexLength             = CFStringGetLength((CFStringRef)regexString); // In UTF16 code pairs.
 
@@ -304,13 +300,13 @@ static NSError *RKLNSErrorForRegex(NSString *regexString, RKLRegexOptions regexO
   OSSpinLockLock(&cacheSpinLock); // Grab the lock and get cache entry.
   // Fast path the common case where this regex is the same one used last time.
   // On a miss, do full lookup with getCachedRegex(), which compiles the regex if it's not in the cache.
-  if((lastCacheSlot != NULL) && (options == lastCacheSlot->regexOptions) && (CFEqual(regexString, lastCacheSlot->regexString) == YES)) { cacheSlot = lastCacheSlot; }
+  if((lastCacheSlot != NULL) && (options == lastCacheSlot->regexOptions) && (CFEqual((__bridge CFTypeRef)regexString, lastCacheSlot->regexString) == YES)) { cacheSlot = lastCacheSlot; }
   else if((cacheSlot = getCachedRegex(regexString, options, error)) == NULL) { goto exitNow; }
   if(cacheSlot->icu_regex == NULL) { exception = RKLInternalException; goto exitNow; } // assertion check.
 
   if((capture < 0) || (capture > cacheSlot->captureCount)) { exception = [NSException exceptionWithName:NSInvalidArgumentException reason:@"The capture argument is not valid." userInfo:NULL]; goto exitNow; }
 
-  RKLString  selfString = RKLMakeString(self, CFHash(self), stringLength, CFStringGetCharactersPtr((CFStringRef)self));
+  RKLString  selfString = RKLMakeString((__bridge void *)self, CFHash((__bridge CFTypeRef)self), stringLength, CFStringGetCharactersPtr((__bridge CFStringRef)self));
   // *string will point to the most approrpiate buffer.  If selfString contains a valid uniChar pointer, that's used.
   // Otherwise, use the strings length to determine if the fixed or dynamically sized conversion buffer should be used.
   RKLString *string     = (selfString.uniChar != NULL) ? &selfString : (stringLength < RKL_FIXED_LENGTH) ? &fixedString : &dynamicString;
@@ -319,8 +315,8 @@ static NSError *RKLNSErrorForRegex(NSString *regexString, RKLRegexOptions regexO
   if((cacheSlot->last.uniChar == string->uniChar) && (cacheSlot->last.string == selfString.string) && (cacheSlot->last.hash == selfString.hash) && (cacheSlot->last.length == selfString.length) && (cacheSlot->last.string != NULL)) { goto alreadySetText; }
   
   // If we didn't get direct UTF16 access, perform any required UTF16 conversions if the current buffer doesn't match this string.
-  if((string != &selfString) && ((string->string != self) || (string->length != selfString.length) || (string->hash != selfString.hash))) {
-    *string = RKLMakeString(self, selfString.hash, selfString.length, string->uniChar);
+  if((string != &selfString) && ((string->string != (__bridge void *)self) || (string->length != selfString.length) || (string->hash != selfString.hash))) {
+    *string = RKLMakeString((__bridge void *)self, selfString.hash, selfString.length, string->uniChar);
     // If this is the dynamically sized buffer, resize the allocation to the correct size.
     if((stringLength >= RKL_FIXED_LENGTH) && ((string->uniChar = reallocf(string->uniChar, (selfString.length * sizeof(UniChar)))) == NULL)) { goto exitNow; }
     CFStringGetCharacters((CFStringRef)self, CFRangeMake(0, string->length), string->uniChar); // Convert to a UTF16 string.
