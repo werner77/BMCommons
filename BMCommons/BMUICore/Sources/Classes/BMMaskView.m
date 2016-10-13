@@ -6,7 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMMaskView.h"
+#import <BMCommons/BMMaskView.h>
 #import <BMCommons/BMUICore.h>
 #import <BMCommons/UIScreen+BMCommons.h>
 

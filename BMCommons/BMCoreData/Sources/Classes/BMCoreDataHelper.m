@@ -6,10 +6,10 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMCoreDataHelper.h"
-#import "BMStringHelper.h"
-#import "BMRootManagedObject.h"
-#import "BMEnumeratorWrapper.h"
+#import <BMCommons/BMCoreDataHelper.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMRootManagedObject.h>
+#import <BMCommons/BMEnumeratorWrapper.h>
 #import <BMCommons/BMCore.h>
 #import <BMCommons/NSObject+BMCommons.h>
 #import <BMCommons/BMErrorHelper.h>

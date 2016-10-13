@@ -6,8 +6,8 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMMediaLibraryPickerController.h"
-#import "BMAlbumPickerController.h"
+#import <BMCommons/BMMediaLibraryPickerController.h>
+#import <BMCommons/BMAlbumPickerController.h>
 #import "ALAsset+BMMedia.h"
 #import <BMCore/BMFileHelper.h>
 #import <BMCore/BMApplicationHelper.h>
@@ -15,7 +15,7 @@
 #import <BMUICore/BMDialogHelper.h>
 #import <BMUICore/BMBusyView.h>
 #import <CoreGraphics/CoreGraphics.h>
-#import "BMAssetPickerController.h"
+#import <BMCommons/BMAssetPickerController.h>
 #import <BMMedia/BMAssetPickerController.h>
 #import <BMMedia/BMMedia.h>
 

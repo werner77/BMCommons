@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMCoreDataStoreCollectionDescriptor.h"
+#import <BMCommons/BMCoreDataStoreCollectionDescriptor.h>
 #import <BMCommons/BMCore.h>
 
 @implementation BMCoreDataStoreCollectionDescriptor

@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMHTTPContentPart.h"
-#import "BMEncodingHelper.h"
-#import "BMStringHelper.h"
-#import "BMDataDescriptor.h"
-#import "BMMIMEType.h"
+#import <BMCommons/BMHTTPContentPart.h>
+#import <BMCommons/BMEncodingHelper.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMDataDescriptor.h>
+#import <BMCommons/BMMIMEType.h>
 #import "NSData+BMCompression.h"
 
 #define TEXT_CONTENT_TYPE @"text/plain; charset=UTF-8"

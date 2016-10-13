@@ -5,10 +5,10 @@
 //  Copyright 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMURLCache.h"
+#import <BMCommons/BMURLCache.h>
 #import <CommonCrypto/CommonDigest.h>
-#import "BMStringHelper.h"
-#import "BMFileHelper.h"
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMFileHelper.h>
 #import <BMCommons/BMCore.h>
 #import <BMCommons/BMObjectHelper.h>
 #import <BMCommons/BMCache.h>

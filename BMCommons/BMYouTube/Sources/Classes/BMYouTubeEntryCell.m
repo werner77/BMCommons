@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMYouTubeEntryCell.h"
+#import <BMCommons/BMYouTubeEntryCell.h>
 #import "GDataEntryYouTubeVideo.h"
-#import "BMYouTubeEntryTransformer.h"
+#import <BMCommons/BMYouTubeEntryTransformer.h>
 #import <BMYouTube/BMYouTube.h>
 
 #define LOCATION_ENABLED 0

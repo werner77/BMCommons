@@ -6,23 +6,23 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMCameraController.h"
+#import <BMCommons/BMCameraController.h>
 #import <BMMedia/BMMedia.h>
 #import <BMUICore/BMDialogHelper.h>
 #import <BMUICore/BMViewFactory.h>
 #import <BMUICore/BMImageHelper.h>
 #import <BMUICore/UIView+BMCommons.h>
 #import <BMUICore/UIButton+BMCommons.h>
-#import "BMPictureSaveOperation.h"
+#import <BMCommons/BMPictureSaveOperation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/MobileCoreServices.h>
-#import "BMVideoSaveOperation.h"
+#import <BMCommons/BMVideoSaveOperation.h>
 #import <QuartzCore/QuartzCore.h>
-#import "BMApplicationHelper.h"
-#import "BMBusyView.h"
+#import <BMCommons/BMApplicationHelper.h>
+#import <BMCommons/BMBusyView.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <BMUICore/BMEnumeratedValue.h>
-#import "BMCameraOverlayView.h"
+#import <BMCommons/BMCameraOverlayView.h>
 #import <BMMedia/BMMediaContainer.h>
 #import <BMMedia/BMImagePickerController.h>
 #import <BMCore/BMOperationQueue.h>

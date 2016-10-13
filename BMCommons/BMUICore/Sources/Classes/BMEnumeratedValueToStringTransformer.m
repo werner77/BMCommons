@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMEnumeratedValueToStringTransformer.h"
+#import <BMCommons/BMEnumeratedValueToStringTransformer.h>
 #import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMEnumeratedValue.h>
 #import <BMCommons/BMInputValueType.h>

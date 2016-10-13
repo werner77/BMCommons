@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMImageViewCell.h"
+#import <BMCommons/BMImageViewCell.h>
 
 @implementation BMImageViewCell
 

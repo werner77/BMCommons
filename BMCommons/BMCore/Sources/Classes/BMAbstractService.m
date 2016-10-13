@@ -6,8 +6,8 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMAbstractService.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMAbstractService.h>
+#import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMCore.h>
 
 @implementation BMAbstractService {

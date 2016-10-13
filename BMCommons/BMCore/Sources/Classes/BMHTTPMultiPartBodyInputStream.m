@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMHTTPMultiPartBodyInputStream.h"
-#import "BMHTTPContentPart.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMHTTPMultiPartBodyInputStream.h>
+#import <BMCommons/BMHTTPContentPart.h>
+#import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMCore.h>
 
 @interface BMHTTPMultiPartBodyInputStream() 

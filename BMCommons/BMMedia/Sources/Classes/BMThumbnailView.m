@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMThumbnailView.h"
+#import <BMCommons/BMThumbnailView.h>
 #import <BMMedia/BMVideoOverlayView.h>
 #import <BMMedia/BMMedia.h>
 

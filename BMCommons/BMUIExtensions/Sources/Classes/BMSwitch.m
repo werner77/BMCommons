@@ -6,7 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMSwitch.h"
+#import <BMCommons/BMSwitch.h>
 
 #define SWITCH_DISPLAY_WIDTH		94.0
 #define SWITCH_WIDTH				149.0

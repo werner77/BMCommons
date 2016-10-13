@@ -6,7 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMBusyView.h"
+#import <BMCommons/BMBusyView.h>
 #import <QuartzCore/QuartzCore.h>
 #import <BMCommons/UIButton+BMCommons.h>
 #import <BMCommons/BMUICore.h>

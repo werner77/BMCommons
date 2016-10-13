@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMRootObjectMappingParserService.h"
-#import "BMMappableObject.h"
-#import "BMJSONParser.h"
+#import <BMCommons/BMRootObjectMappingParserService.h>
+#import <BMCommons/BMMappableObject.h>
+#import <BMCommons/BMJSONParser.h>
 
 @interface BMRootObjectMappingParserService(Private)
 

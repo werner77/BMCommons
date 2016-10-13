@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import "BMKeyObject.h"
+#import <BMCommons/BMKeyObject.h>
 #import <BMCommons/BMPropertyDescriptor.h>
 
 @implementation BMKeyObject

@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMOAuth2ViewControllerTouch.h"
-#import "BMGoogle.h"
+#import <BMCommons/BMOAuth2ViewControllerTouch.h>
+#import <BMCommons/BMGoogle.h>
 
 @interface GTMOAuth2ViewControllerTouch()
 

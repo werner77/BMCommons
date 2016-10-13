@@ -7,7 +7,7 @@
 //
 
 #import "NSString+BMCommons.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMStringHelper.h>
 #import "NSArray+BMCommons.h"
 
 @interface NSString(Private)

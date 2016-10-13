@@ -6,9 +6,9 @@
 //
 
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "BMAlbumPickerController.h"
-#import "BMAssetPickerController.h"
-#import "BMAssetTablePickerController.h"
+#import <BMCommons/BMAlbumPickerController.h>
+#import <BMCommons/BMAssetPickerController.h>
+#import <BMCommons/BMAssetTablePickerController.h>
 #import <BMUICore/BMTableViewCell.h>
 #import <BMMedia/BMMedia.h>
 

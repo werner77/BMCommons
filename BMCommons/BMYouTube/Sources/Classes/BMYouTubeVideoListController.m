@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMYouTubeVideoListController.h"
+#import <BMCommons/BMYouTubeVideoListController.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <BMCore/BMServiceManager.h>
-#import "BMYouTubeListUserVideosService.h"
-#import "BMYouTube.h"
+#import <BMCommons/BMYouTubeListUserVideosService.h>
+#import <BMCommons/BMYouTube.h>
 #import <BMCore/BMService.h>
 #import <BMCore/BMCache.h>
 #import <BMCore/BMStringHelper.h>

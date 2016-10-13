@@ -6,7 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMEnumeratorWrapper.h"
+#import <BMCommons/BMEnumeratorWrapper.h>
 
 
 @implementation BMEnumeratorWrapper 

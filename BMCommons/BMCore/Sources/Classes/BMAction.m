@@ -5,7 +5,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMAction.h"
+#import <BMCommons/BMAction.h>
 
 
 @implementation BMAction 

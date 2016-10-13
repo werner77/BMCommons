@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMLicenseChecker_Private.h"
+#import <BMCommons/BMLicenseChecker_Private.h>
 #import "NSString+BMCommons.h"
-#import "BMStringHelper.h"
-#import "BMLogging.h"
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMLogging.h>
 #import "NSData+BMEncryption.h"
-#import "BMEncodingHelper.h"
-#import "BMCache.h"
+#import <BMCommons/BMEncodingHelper.h>
+#import <BMCommons/BMCache.h>
 
 #define FIELD_CONTENT_TYPE @"Content-Type"
 #define FIELD_CONTENT_ENCODING @"Content-Encoding"

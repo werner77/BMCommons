@@ -5,7 +5,7 @@
 //  Created by Werner Altewischer on 08/06/11.
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
-#import "BMValueTransformer.h"
+#import <BMCommons/BMValueTransformer.h>
 
 
 @implementation BMValueTransformer 

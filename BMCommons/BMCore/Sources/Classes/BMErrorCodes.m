@@ -1,4 +1,4 @@
-#import "BMErrorCodes.h"
+#import <BMCommons/BMErrorCodes.h>
 
 @implementation BMErrorCodes
 

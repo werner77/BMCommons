@@ -5,7 +5,7 @@
 //  Copyright 2010 BehindMedia All rights reserved.
 //
 
-#import "BMReachability.h"
+#import <BMCommons/BMReachability.h>
 
 
 /*
@@ -64,7 +64,7 @@
 
 #import <CoreFoundation/CoreFoundation.h>
 
-#import "BMReachability.h"
+#import <BMCommons/BMReachability.h>
 #import <BMCommons/BMCore.h>
 
 #define kShouldPrintReachabilityFlags 1

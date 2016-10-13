@@ -8,7 +8,7 @@
 
 #if KAL_ENABLED
 
-#import "BMDateSelectionViewController.h"
+#import <BMCommons/BMDateSelectionViewController.h>
 #import <BMCommons/BMPropertyDescriptor.h>
 #import <BMCommons/BMCustomKalViewController.h>
 #import "KalDate.h"

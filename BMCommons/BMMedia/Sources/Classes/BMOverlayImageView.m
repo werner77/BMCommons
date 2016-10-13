@@ -6,7 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMOverlayImageView.h"
+#import <BMCommons/BMOverlayImageView.h>
 #import <BMMedia/BMMedia.h>
 
 @implementation BMOverlayImageView {

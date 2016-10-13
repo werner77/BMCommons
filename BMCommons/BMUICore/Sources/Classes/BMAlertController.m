@@ -3,13 +3,13 @@
 // Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import "BMAlertController.h"
+#import <BMCommons/BMAlertController.h>
 #import <BMCommons/BMBooleanStack.h>
-#import "BMAlertView.h"
-#import "BMUICore.h"
-#import "BMDefaultAlertView.h"
-#import "BMWindowView.h"
-#import "BMAttributedStringTransformer.h"
+#import <BMCommons/BMAlertView.h>
+#import <BMCommons/BMUICore.h>
+#import <BMCommons/BMDefaultAlertView.h>
+#import <BMCommons/BMWindowView.h>
+#import <BMCommons/BMAttributedStringTransformer.h>
 
 @implementation BMAlertController {
     BMBooleanStack *_blockedStack;

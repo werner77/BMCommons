@@ -7,7 +7,7 @@
 //
 
 #import "NSDictionary+BMCommons.h"
-#import "BMPropertyDescriptor.h"
+#import <BMCommons/BMPropertyDescriptor.h>
 #import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMObjectHelper.h>
 #import <BMCommons/NSObject+BMCommons.h>

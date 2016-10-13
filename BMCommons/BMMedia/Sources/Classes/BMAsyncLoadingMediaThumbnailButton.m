@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMAsyncLoadingMediaThumbnailButton.h"
+#import <BMCommons/BMAsyncLoadingMediaThumbnailButton.h>
 #import <BMCore/BMStringHelper.h>
 #import <BMCore/BMURLCache.h>
 #import <BMMedia/BMMediaContainer.h>

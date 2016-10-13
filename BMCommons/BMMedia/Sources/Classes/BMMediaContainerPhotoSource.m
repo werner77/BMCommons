@@ -6,10 +6,10 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMMediaContainerPhotoSource.h"
+#import <BMCommons/BMMediaContainerPhotoSource.h>
 #import <BMCore/BMObjectHelper.h>
 #import <BMCore/BMStringHelper.h>
-#import "BMMediaContainerPhoto.h"
+#import <BMCommons/BMMediaContainerPhoto.h>
 #import <BMMedia/BMMedia.h>
 
 @interface BMMediaContainerPhotoSource(Private)

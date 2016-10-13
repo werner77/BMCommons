@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import "BMAbstractMappableObjectClassResolver.h"
+#import <BMCommons/BMAbstractMappableObjectClassResolver.h>
 #import <BMCommons/NSString+BMCommons.h>
 
 @implementation BMAbstractMappableObjectClassResolver

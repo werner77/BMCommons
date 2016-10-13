@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMXMLSchemaParser.h"
+#import <BMCommons/BMXMLSchemaParser.h>
 #import "NSString+BMCommons.h"
 #import <BMCommons/NSArray+BMCommons.h>
 #import <BMCommons/BMRestKit.h>

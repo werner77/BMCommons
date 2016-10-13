@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMMediaRollThumbnailCell.h"
+#import <BMCommons/BMMediaRollThumbnailCell.h>
 #import <BMMedia/BMMedia.h>
 
 @implementation BMMediaRollThumbnailCell

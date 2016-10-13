@@ -6,8 +6,8 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMObjectPropertyTableViewCell.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMObjectPropertyTableViewCell.h>
+#import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMUICore.h>
 
 @interface BMObjectPropertyTableViewCell (Private)

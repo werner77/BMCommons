@@ -6,8 +6,8 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMSettingsRegistry.h"
-#import "BMApp.h"
+#import <BMCommons/BMSettingsRegistry.h>
+#import <BMCommons/BMApp.h>
 
 @interface BMSettingsRegistry(Private)
 

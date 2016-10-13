@@ -6,8 +6,8 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMStringToIntegerValueTransformer.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMStringToIntegerValueTransformer.h>
+#import <BMCommons/BMStringHelper.h>
 
 @implementation BMStringToIntegerValueTransformer
 

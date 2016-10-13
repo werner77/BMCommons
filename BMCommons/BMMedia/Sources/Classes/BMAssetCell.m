@@ -5,7 +5,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMAssetCell.h"
+#import <BMCommons/BMAssetCell.h>
 #import <BMMedia/BMMedia.h>
 
 #define THUMBNAIL_DIMENSION 75

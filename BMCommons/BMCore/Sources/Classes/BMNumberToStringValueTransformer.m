@@ -6,9 +6,9 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMNumberToStringValueTransformer.h"
+#import <BMCommons/BMNumberToStringValueTransformer.h>
 #import "NSNumber+BMCommons.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMStringHelper.h>
 
 @implementation BMNumberToStringValueTransformer
 

@@ -5,8 +5,8 @@
 //  Copyright 2008 Instinctive Code. All rights reserved.
 //
 
-#import "BMICUTemplateMatcher.h"
-#import "BMRegexKitLite.h"
+#import <BMCommons/BMICUTemplateMatcher.h>
+#import <BMCommons/BMRegexKitLite.h>
 
 
 @implementation BMICUTemplateMatcher

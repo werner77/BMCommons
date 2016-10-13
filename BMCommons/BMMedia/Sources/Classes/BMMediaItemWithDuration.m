@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BMMediaItemWithDuration.h"
+#import <BMCommons/BMMediaItemWithDuration.h>
 
 @implementation BMMediaItemWithDuration {
     NSNumber *duration;

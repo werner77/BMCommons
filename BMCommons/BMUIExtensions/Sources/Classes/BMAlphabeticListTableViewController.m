@@ -6,7 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMAlphabeticListTableViewController.h"
+#import <BMCommons/BMAlphabeticListTableViewController.h>
 #import <BMCommons/BMCore.h>
 #import <BMCommons/BMDialogHelper.h>
 

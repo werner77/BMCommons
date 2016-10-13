@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BMCommons. All rights reserved.
 //
 
-#import "BMWeakReference.h"
+#import <BMCommons/BMWeakReference.h>
 
 @implementation BMWeakReference
 

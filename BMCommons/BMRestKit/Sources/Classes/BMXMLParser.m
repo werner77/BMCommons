@@ -6,7 +6,7 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMXMLParser.h"
+#import <BMCommons/BMXMLParser.h>
 
 #import <libxml/parser.h> // add -I/usr/include/libxml2 -lxml2 if you have No such file or directory errors
 #import <libxml/HTMLparser.h>

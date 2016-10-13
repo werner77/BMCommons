@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMObjectToStringTransformer.h"
+#import <BMCommons/BMObjectToStringTransformer.h>
 
 @implementation BMObjectToStringTransformer 
 

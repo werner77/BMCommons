@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMTableFooterDragLoadMoreView.h"
+#import <BMCommons/BMTableFooterDragLoadMoreView.h>
 #import <QuartzCore/QuartzCore.h>
 #import <BMCommons/BMUICore.h>
 

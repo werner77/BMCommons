@@ -6,13 +6,13 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMValueSelectionCell.h"
+#import <BMCommons/BMValueSelectionCell.h>
 #import <BMCommons/UIButton+BMCommons.h>
 #import <BMCommons/BMEnumeratedValueSelectionViewController.h>
 #import <BMCommons/BMPropertyDescriptor.h>
 #import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMEditViewController.h>
-#import "BMEnumeratedValueToStringTransformer.h"
+#import <BMCommons/BMEnumeratedValueToStringTransformer.h>
 #import <BMCommons/BMUICore.h>
 
 @implementation BMValueSelectionCell

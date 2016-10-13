@@ -1,4 +1,4 @@
-#import "BMGoogle.h"
+#import <BMCommons/BMGoogle.h>
 #if BM_PRIVATE_ENABLED
 #import <BMCore/BMLicenseKey_Private.h>
 #endif

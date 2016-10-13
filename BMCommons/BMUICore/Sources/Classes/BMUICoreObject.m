@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMUICoreObject.h"
+#import <BMCommons/BMUICoreObject.h>
 #import <BMCommons/BMUICore.h>
 
 @implementation BMUICoreObject

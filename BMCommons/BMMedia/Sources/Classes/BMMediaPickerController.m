@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMMediaPickerController.h"
+#import <BMCommons/BMMediaPickerController.h>
 #import <BMUICore/BMDialogHelper.h>
 #import <BMMedia/BMMedia.h>
 #import <BMCore/BMCore.h>

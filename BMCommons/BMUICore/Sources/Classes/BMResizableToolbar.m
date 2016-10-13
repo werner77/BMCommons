@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMResizableToolbar.h"
+#import <BMCommons/BMResizableToolbar.h>
 
 
 @implementation BMResizableToolbar {

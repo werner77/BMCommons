@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMImagePickerController.h"
+#import <BMCommons/BMImagePickerController.h>
 #import <BMUICore/BMUICore.h>
 #import <QuartzCore/QuartzCore.h>
 

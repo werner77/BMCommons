@@ -6,9 +6,9 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMLocalization.h"
-#import "BMStringHelper.h"
-#import "BMLogging.h"
+#import <BMCommons/BMLocalization.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMLogging.h>
 #import <BMCommons/BMCore.h>
 
 @implementation BMLocalization 

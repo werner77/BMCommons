@@ -6,12 +6,13 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMJSONParser.h"
+#import <BMCommons/BMJSONParser.h>
 #import "NSString+BMCommons.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMRestKit.h>
+#import "YAJLParser.h"
 
-@interface BMJSONParser()
+@interface BMJSONParser()<YAJLParserDelegate>
 
 @property(nonatomic, assign) BOOL emptyArray;
 
@@ -39,7 +40,25 @@
 
 @end
 
-@implementation BMJSONParser
+@implementation BMJSONParser {
+    int _elementLevel;
+    NSString *_currentKey;
+    NSString *_lastElement;
+    NSMutableArray *_elementStack;
+    NSMutableDictionary *_attributes;
+    
+    NSString *_attributeSpecifier;
+    NSString *_elementTextSpecifier;
+    
+    YAJLParser *_parser;
+    BOOL _started;
+    BOOL _isProcessingAttribute;
+    BOOL _isProcessingElementText;
+    NSString *_jsonRootElementName;
+    BOOL _startedDocumentWithArray;
+    BOOL _emptyDocument;
+    int _skipArrayLevel;
+}
 
 @synthesize attributeSpecifier = _attributeSpecifier, elementTextSpecifier = _elementTextSpecifier, jsonRootElementName = _jsonRootElementName, startedDocumentWithArray = _startedDocumentWithArray, emptyArray = _emptyArray;
 
@@ -224,9 +243,6 @@ static BOOL defaultDecodeEntities = NO;
 		case YAJLParserStatusOK:
 			//Finished
 			[self endDocument];
-			break;
-		case YAJLParserStatusInsufficientData:
-			//OK: more data to read
 			break;
 		case YAJLParserStatusError:
 			//Error

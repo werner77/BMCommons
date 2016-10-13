@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMGoogleService.h"
+#import <BMCommons/BMGoogleService.h>
 #import <BMCore/BMErrorHelper.h>
 #import <BMGoogle/BMGoogle.h>
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMMediaHelper.h"
+#import <BMCommons/BMMediaHelper.h>
 #import <BMCore/BMRegexKitLite.h>
 #import <BMCore/BMServiceManager.h>
 #import <BMMedia/BMGetYouTubeStreamInfoService.h>

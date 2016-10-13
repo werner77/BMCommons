@@ -6,7 +6,7 @@
 //  Copyright © 2015 BehindMedia. All rights reserved.
 //
 
-#import "BMCompressDataTransformer.h"
+#import <BMCommons/BMCompressDataTransformer.h>
 #import "NSData+BMCompression.h"
 
 @implementation BMCompressDataTransformer

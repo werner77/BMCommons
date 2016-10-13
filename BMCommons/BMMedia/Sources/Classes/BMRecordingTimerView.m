@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMRecordingTimerView.h"
+#import <BMCommons/BMRecordingTimerView.h>
 #import <BMMedia/BMMedia.h>
 #import <BMCore/BMProxy.h>
 

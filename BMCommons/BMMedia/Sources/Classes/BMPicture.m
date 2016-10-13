@@ -8,7 +8,7 @@
 
 
 #import <Foundation/Foundation.h>
-#import "BMPicture.h"
+#import <BMCommons/BMPicture.h>
 #import <BMUICore/UIImageToJPEGDataTransformer.h>
 #import <BMUICore/BMImageHelper.h>
 

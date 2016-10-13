@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMMapsHelper.h"
+#import <BMCommons/BMMapsHelper.h>
 #import <BMCore/BMStringHelper.h>
 #import <BMCore/BMCore.h>
 

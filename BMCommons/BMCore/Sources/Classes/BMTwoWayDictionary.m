@@ -6,7 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMTwoWayDictionary.h"
+#import <BMCommons/BMTwoWayDictionary.h>
 #import <BMCommons/BMCore.h>
 
 @implementation BMTwoWayDictionary

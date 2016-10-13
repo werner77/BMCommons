@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMBarButtonItem.h"
+#import <BMCommons/BMBarButtonItem.h>
 #import "UIButton+BMCommons.h"
 #import <BMCommons/BMImageHelper.h>
 

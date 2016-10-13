@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMKeyboardListener.h"
+#import <BMCommons/BMKeyboardListener.h>
 #import <BMCommons/BMUICore.h>
 
 @implementation BMKeyboardListener {

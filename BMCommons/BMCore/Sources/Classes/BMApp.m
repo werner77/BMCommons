@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMApp.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMApp.h>
+#import <BMCommons/BMStringHelper.h>
 
 @implementation BMApp
 

@@ -6,8 +6,8 @@
 //  Copyright (c) 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMImmutableProxy.h"
-#import "BMPropertyMethod.h"
+#import <BMCommons/BMImmutableProxy.h>
+#import <BMCommons/BMPropertyMethod.h>
 
 @implementation BMImmutableProxy
 

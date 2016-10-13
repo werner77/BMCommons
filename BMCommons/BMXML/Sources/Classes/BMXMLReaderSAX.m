@@ -64,9 +64,9 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 */
 
-#import "BMXMLReaderSAX.h"
+#import <BMCommons/BMXMLReaderSAX.h>
 
-#import "BMXMLUtilities.h"
+#import <BMCommons/BMXMLUtilities.h>
 #import <BMCommons/BMCore.h>
 
 @interface BMXMLReaderSAX()

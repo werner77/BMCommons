@@ -11,7 +11,6 @@
 
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMParser.h>
-#import "YAJLParser.h"
 
 @class BMJSONParser;
 
@@ -31,25 +30,7 @@
  *
  * The only restriction is that attributes should not come after other types of elements, otherwise they won't be treated as such.
  */
-@interface BMJSONParser : BMParser<YAJLParserDelegate> {
-    @private
-	int _elementLevel;
-	NSString *_currentKey;
-	NSString *_lastElement;
-	NSMutableArray *_elementStack;
-	NSMutableDictionary *_attributes;
-    
-	NSString *_attributeSpecifier;
-	NSString *_elementTextSpecifier;
-    
-	YAJLParser *_parser;
-	BOOL _started;
-	BOOL _isProcessingAttribute;
-	BOOL _isProcessingElementText;
-    NSString *_jsonRootElementName;
-    BOOL _startedDocumentWithArray;
-    BOOL _emptyDocument;
-    int _skipArrayLevel;
+@interface BMJSONParser : BMParser {
 }
 
 /**

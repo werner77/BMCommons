@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMOperationQueue.h"
+#import <BMCommons/BMOperationQueue.h>
 #import <BMCommons/BMCore.h>
 
 #define FINISHED_KEYPATH @"isFinished"

@@ -6,8 +6,8 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMCompositeService.h"
-#import "BMErrorHelper.h"
+#import <BMCommons/BMCompositeService.h>
+#import <BMCommons/BMErrorHelper.h>
 #import <BMCommons/BMCore.h>
 
 @implementation BMCompositeService {

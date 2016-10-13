@@ -6,8 +6,8 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMStringToBooleanValueTransformer.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMStringToBooleanValueTransformer.h>
+#import <BMCommons/BMStringHelper.h>
 
 @implementation BMStringToBooleanValueTransformer
 

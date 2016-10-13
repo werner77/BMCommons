@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMCoreObject.h"
+#import <BMCommons/BMCoreObject.h>
 #import <BMCommons/BMCore.h>
 
 @implementation BMCoreObject

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMGoogleAuthenticationController.h"
+#import <BMCommons/BMGoogleAuthenticationController.h>
 #import "GTMOAuth2SignIn.h"
-#import "BMOAuth2ViewControllerTouch.h"
+#import <BMCommons/BMOAuth2ViewControllerTouch.h>
 #import <BMGoogle/BMGoogle.h>
 #import <BMUICore/BMBusyView.h>
 

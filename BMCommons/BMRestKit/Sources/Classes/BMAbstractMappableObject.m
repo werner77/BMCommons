@@ -6,18 +6,18 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMAbstractMappableObject.h"
-#import "BMStringHelper.h"
-#import "BMPropertyDescriptor.h"
-#import "BMOrderedDictionary.h"
-#import "BMObjectMappingParserHandler.h"
-#import "BMXMLParser.h"
-#import "BMErrorHelper.h"
-#import "BMJSONParser.h"
-#import "BMObjectHelper.h"
-#import "BMXMLElement.h"
-#import "BMMappableObjectXMLSerializer.h"
-#import "BMMappableObjectJSONSerializer.h"
+#import <BMCommons/BMAbstractMappableObject.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMPropertyDescriptor.h>
+#import <BMCommons/BMOrderedDictionary.h>
+#import <BMCommons/BMObjectMappingParserHandler.h>
+#import <BMCommons/BMXMLParser.h>
+#import <BMCommons/BMErrorHelper.h>
+#import <BMCommons/BMJSONParser.h>
+#import <BMCommons/BMObjectHelper.h>
+#import <BMCommons/BMXMLElement.h>
+#import <BMCommons/BMMappableObjectXMLSerializer.h>
+#import <BMCommons/BMMappableObjectJSONSerializer.h>
 #import <BMCommons/BMRestKit.h>
 #import <BMCommons/NSObject+BMCommons.h>
 

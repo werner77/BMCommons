@@ -6,8 +6,8 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMObjectHelper.h"
-#import "BMPropertyDescriptor.h"
+#import <BMCommons/BMObjectHelper.h>
+#import <BMCommons/BMPropertyDescriptor.h>
 
 #import <BMCommons/BMCore.h>
 

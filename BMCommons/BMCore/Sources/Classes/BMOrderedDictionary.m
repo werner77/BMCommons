@@ -3,8 +3,8 @@
 //  BMOrderedDictionary
 //
 
-#import "BMAbstractMutableDictionary.h"
-#import "BMOrderedDictionary.h"
+#import <BMCommons/BMAbstractMutableDictionary.h>
+#import <BMCommons/BMOrderedDictionary.h>
 #import "NSArray+BMCommons.h"
 
 @implementation BMOrderedDictionary {

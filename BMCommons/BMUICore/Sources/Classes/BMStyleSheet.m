@@ -7,8 +7,8 @@
 //
 
 
-#import "BMStyleSheet.h"
-#import "BMURLCache.h"
+#import <BMCommons/BMStyleSheet.h>
+#import <BMCommons/BMURLCache.h>
 #import <BMCommons/BMUICore.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

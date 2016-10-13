@@ -3,7 +3,7 @@
 // Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import "BMCollatedDataSource.h"
+#import <BMCommons/BMCollatedDataSource.h>
 #import "NSArray+BMCommons.h"
 
 @interface BMCollatedDataSource()

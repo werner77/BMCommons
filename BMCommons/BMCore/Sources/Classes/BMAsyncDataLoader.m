@@ -6,12 +6,12 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMAsyncDataLoader.h"
-#import "BMURLCache.h"
-#import "BMErrorCodes.h"
-#import "BMErrorHelper.h"
-#import "BMHTTPStatusCodes.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMAsyncDataLoader.h>
+#import <BMCommons/BMURLCache.h>
+#import <BMCommons/BMErrorCodes.h>
+#import <BMCommons/BMErrorHelper.h>
+#import <BMCommons/BMHTTPStatusCodes.h>
+#import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMCore.h>
 #import <BMCommons/NSArray+BMCommons.h>
 #import <BMCommons/NSObject+BMCommons.h>

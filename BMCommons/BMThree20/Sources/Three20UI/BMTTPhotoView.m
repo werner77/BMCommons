@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMTTPhotoView.h"
+#import <BMCommons/BMTTPhotoView.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <BMCore/BMCore.h>
 #import "UIViewAdditions.h"

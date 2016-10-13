@@ -5,8 +5,8 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMURLConnectionInputStream.h"
-#import "BMLogging.h"
+#import <BMCommons/BMURLConnectionInputStream.h>
+#import <BMCommons/BMLogging.h>
 #import <BMCommons/BMCore.h>
 
 @interface BMURLConnectionInputStream()

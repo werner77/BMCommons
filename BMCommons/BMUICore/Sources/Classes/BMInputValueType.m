@@ -6,14 +6,14 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMInputValueType.h"
-#import "BMStringToBooleanValueTransformer.h"
-#import "BMStringToIntegerValueTransformer.h"
-#import "BMStringToFloatValueTransformer.h"
-#import "BMStringToDateValueTransformer.h"
-#import "BMDateHelper.h"
-#import "BMStringHelper.h"
-#import "BMRegexKitLite.h"
+#import <BMCommons/BMInputValueType.h>
+#import <BMCommons/BMStringToBooleanValueTransformer.h>
+#import <BMCommons/BMStringToIntegerValueTransformer.h>
+#import <BMCommons/BMStringToFloatValueTransformer.h>
+#import <BMCommons/BMStringToDateValueTransformer.h>
+#import <BMCommons/BMDateHelper.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMRegexKitLite.h>
 #import <BMCommons/BMUICore.h>
 
 @implementation BMInputValueType {

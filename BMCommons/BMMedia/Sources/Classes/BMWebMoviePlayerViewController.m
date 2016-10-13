@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMWebMoviePlayerViewController.h"
+#import <BMCommons/BMWebMoviePlayerViewController.h>
 #import <BMMedia/BMEmbeddedVideoView.h>
 #import <BMMedia/BMMedia.h>
 

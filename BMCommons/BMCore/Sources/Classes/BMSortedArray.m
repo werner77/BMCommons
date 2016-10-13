@@ -3,7 +3,7 @@
 // Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import "BMSortedArray.h"
+#import <BMCommons/BMSortedArray.h>
 
 @interface BMSortedArray()
 

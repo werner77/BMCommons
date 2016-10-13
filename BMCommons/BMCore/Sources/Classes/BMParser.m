@@ -6,9 +6,9 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMParser.h"
-#import "BMURLConnectionInputStream.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMParser.h>
+#import <BMCommons/BMURLConnectionInputStream.h>
+#import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMCore.h>
 
 #if TARGET_OS_IPHONE

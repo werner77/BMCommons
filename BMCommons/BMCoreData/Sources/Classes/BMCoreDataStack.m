@@ -6,14 +6,14 @@
 //  Copyright 2010 BehindMedia All rights reserved.
 //
 
-#import "BMCoreDataStoreCollectionDescriptor.h"
-#import "BMCoreDataStack.h"
-#import "BMFileHelper.h"
-#import "BMCoreDataHelper.h"
-#import "BMCoreDataStoreDescriptor.h"
-#import "BMCoreDataModelDescriptor.h"
-#import "BMCoreDataStoreDescriptor.h"
-#import "BMCoreDataModelDescriptor.h"
+#import <BMCommons/BMCoreDataStoreCollectionDescriptor.h>
+#import <BMCommons/BMCoreDataStack.h>
+#import <BMCommons/BMFileHelper.h>
+#import <BMCommons/BMCoreDataHelper.h>
+#import <BMCommons/BMCoreDataStoreDescriptor.h>
+#import <BMCommons/BMCoreDataModelDescriptor.h>
+#import <BMCommons/BMCoreDataStoreDescriptor.h>
+#import <BMCommons/BMCoreDataModelDescriptor.h>
 #import <BMCommons/BMCore.h>
 #import <BMCommons/NSObject+BMCommons.h>
 #import <BMCommons/NSManagedObjectContext+BMCommons.h>

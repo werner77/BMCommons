@@ -6,13 +6,13 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMTableViewController.h"
-#import "BMClickable.h"
+#import <BMCommons/BMTableViewController.h>
+#import <BMCommons/BMClickable.h>
 #import "UIResponder+BMCommons.h"
 #import "UIView+BMCommons.h"
-#import "BMTableHeaderDragRefreshView.h"
-#import "BMTableFooterDragLoadMoreView.h"
-#import "BMObjectPropertyTableViewCell.h"
+#import <BMCommons/BMTableHeaderDragRefreshView.h>
+#import <BMCommons/BMTableFooterDragLoadMoreView.h>
+#import <BMCommons/BMObjectPropertyTableViewCell.h>
 #import <BMCommons/BMCache.h>
 #import <BMCommons/BMUICore.h>
 #import <BMCommons/BMApplicationHelper.h>

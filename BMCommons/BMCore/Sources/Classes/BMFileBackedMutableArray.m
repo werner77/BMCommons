@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import "BMFileBackedMutableArray.h"
+#import <BMCommons/BMFileBackedMutableArray.h>
 #import <BMCommons/BMFileHelper.h>
 #import <BMCommons/BMCore.h>
 #import <BMCommons/BMCache.h>

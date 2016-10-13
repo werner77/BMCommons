@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMCameraOverlayView.h"
+#import <BMCommons/BMCameraOverlayView.h>
 #import <QuartzCore/QuartzCore.h>
 #import <BMMedia/BMMedia.h>
 #import <CoreImage/CoreImage.h>

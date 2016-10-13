@@ -3,7 +3,7 @@
 // Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import "BMAlertView.h"
+#import <BMCommons/BMAlertView.h>
 #import <BMCommons/BMWeakTimer.h>
 
 @implementation BMAlertView {

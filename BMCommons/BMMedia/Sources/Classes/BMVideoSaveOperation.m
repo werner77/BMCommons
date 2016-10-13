@@ -6,7 +6,7 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMVideoSaveOperation.h"
+#import <BMCommons/BMVideoSaveOperation.h>
 #import <AVFoundation/AVFoundation.h>
 #import <BMCore/BMCore.h>
 

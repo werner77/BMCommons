@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMCoreDataErrorHelper.h"
+#import <BMCommons/BMCoreDataErrorHelper.h>
 #import <CoreData/CoreData.h>
 
 @implementation BMCoreDataErrorHelper

@@ -3,9 +3,9 @@
 // Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import "BMSortedDictionary.h"
+#import <BMCommons/BMSortedDictionary.h>
 #import "NSArray+BMCommons.h"
-#import "BMSortedArray.h"
+#import <BMCommons/BMSortedArray.h>
 
 @implementation BMSortedDictionary {
     NSMutableDictionary *_dictionary;

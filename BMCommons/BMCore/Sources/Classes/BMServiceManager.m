@@ -6,12 +6,12 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMServiceManager.h"
-#import "BMProxy.h"
-#import "BMAbstractService.h"
+#import <BMCommons/BMServiceManager.h>
+#import <BMCommons/BMProxy.h>
+#import <BMCommons/BMAbstractService.h>
 #import "NSDictionary+BMCommons.h"
-#import "BMObjectHelper.h"
-#import "BMDataRecorder.h"
+#import <BMCommons/BMObjectHelper.h>
+#import <BMCommons/BMDataRecorder.h>
 #import <BMCommons/BMErrorHelper.h>
 #import <BMCommons/BMFileHelper.h>
 #import <BMCommons/BMStringHelper.h>

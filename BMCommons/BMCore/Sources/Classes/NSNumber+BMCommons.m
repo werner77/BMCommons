@@ -7,7 +7,7 @@
 //
 
 #import "NSNumber+BMCommons.h"
-#import "BMCore.h"
+#import <BMCommons/BMCore.h>
 
 @implementation NSNumber(BMCommons)
 

@@ -6,13 +6,13 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMFieldMapping.h"
-#import "BMNumberHelper.h"
-#import "BMDateHelper.h"
+#import <BMCommons/BMFieldMapping.h>
+#import <BMCommons/BMNumberHelper.h>
+#import <BMCommons/BMDateHelper.h>
 #import "NSDateFormatter+BMCommons.h"
-#import "BMOrderedDictionary.h"
-#import "BMStringHelper.h"
-#import "BMValueTransformer.h"
+#import <BMCommons/BMOrderedDictionary.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMValueTransformer.h>
 #import "NSString+BMCommons.h"
 #import <BMCommons/BMRegexKitLite.h>
 #import <BMCommons/BMRestKit.h>

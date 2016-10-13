@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import "BMDigest.h"
-#import "BMEncodingHelper.h"
-#import "BMMD5Digest.h"
-#import "BMSHA1Digest.h"
-#import "BMSHA256Digest.h"
+#import <BMCommons/BMDigest.h>
+#import <BMCommons/BMEncodingHelper.h>
+#import <BMCommons/BMMD5Digest.h>
+#import <BMCommons/BMSHA1Digest.h>
+#import <BMCommons/BMSHA256Digest.h>
 #import <BMCommons/BMPropertyDescriptor.h>
 
 @implementation BMDigest {

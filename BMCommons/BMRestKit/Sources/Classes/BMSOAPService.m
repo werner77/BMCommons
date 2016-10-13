@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMSOAPService.h"
+#import <BMCommons/BMSOAPService.h>
 
 #import <BMCommons/BMMGTemplateEngine.h>
 #import <BMCommons/BMICUTemplateMatcher.h>

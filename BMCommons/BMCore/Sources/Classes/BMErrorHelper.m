@@ -6,7 +6,7 @@
 //  Copyright 2008 BehindMedia. All rights reserved.
 //
 
-#import "BMErrorHelper.h"
+#import <BMCommons/BMErrorHelper.h>
 
 @implementation BMErrorHelper
 

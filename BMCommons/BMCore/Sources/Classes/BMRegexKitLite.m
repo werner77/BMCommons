@@ -47,7 +47,7 @@
 #import <libkern/OSAtomic.h>
 #import <string.h>
 #import <stdlib.h>
-#import "BMRegexKitLite.h"
+#import <BMCommons/BMRegexKitLite.h>
 #import <BMCommons/BMCore.h>
 
 #ifndef RKL_CACHE_SIZE

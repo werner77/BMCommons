@@ -6,8 +6,8 @@
 //  Copyright (c) 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMPropertyMethod.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMPropertyMethod.h>
+#import <BMCommons/BMStringHelper.h>
 
 @implementation BMPropertyMethod
 

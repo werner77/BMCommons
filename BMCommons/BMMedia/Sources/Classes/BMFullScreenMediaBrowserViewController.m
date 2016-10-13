@@ -6,11 +6,11 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMFullScreenMediaBrowserViewController.h"
-#import "BMMutablePhotoSource.h"
-#import "BMPhotoView.h"
+#import <BMCommons/BMFullScreenMediaBrowserViewController.h>
+#import <BMCommons/BMMutablePhotoSource.h>
+#import <BMCommons/BMPhotoView.h>
 #import <BMCore/BMStringHelper.h>
-#import "BMMediaContainerPhoto.h"
+#import <BMCommons/BMMediaContainerPhoto.h>
 #import <BMThree20/Three20UI/UIToolbarAdditions.h>
 #import <BMUICore/UIView+BMCommons.h>
 #import <BMUICore/UIButton+BMCommons.h>

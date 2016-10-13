@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMYouTubeListDirectStreamableVideosService.h"
-#import "BMGetYouTubeStreamInfoService.h"
+#import <BMCommons/BMYouTubeListDirectStreamableVideosService.h>
+#import <BMCommons/BMGetYouTubeStreamInfoService.h>
 #import <BMCore/NSArray+BMCommons.h>
 #import <BMYouTube/BMYouTube.h>
 #import <GData/GData.h>

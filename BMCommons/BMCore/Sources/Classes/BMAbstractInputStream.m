@@ -5,7 +5,7 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMAbstractInputStream.h"
+#import <BMCommons/BMAbstractInputStream.h>
 #import <BMCommons/BMCore.h>
 
 @implementation BMAbstractInputStream

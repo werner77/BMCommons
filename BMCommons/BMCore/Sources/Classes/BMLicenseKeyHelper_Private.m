@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMLicenseKeyHelper_Private.h"
+#import <BMCommons/BMLicenseKeyHelper_Private.h>
 #import <BMCore/NSData+BMEncryption.h>
 #import <BMCore/BMEncryptionHelper.h>
 #import <BMCore/BMRegexKitLite.h>

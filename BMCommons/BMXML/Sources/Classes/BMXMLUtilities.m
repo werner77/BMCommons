@@ -63,7 +63,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 */
 
-#import "BMXMLUtilities.h"
+#import <BMCommons/BMXMLUtilities.h>
 
 NSString *XMLParsingErrorDomainString = @"XMLParsingErrorDomain";
 

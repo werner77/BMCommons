@@ -6,7 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMPageControl.h"
+#import <BMCommons/BMPageControl.h>
 
 #define kDotSize 6
 #define kDotSpacing 10

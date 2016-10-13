@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMAbstractDatePickerCell.h"
-#import "BMDateSelectionViewController.h"
+#import <BMCommons/BMAbstractDatePickerCell.h>
+#import <BMCommons/BMDateSelectionViewController.h>
 #import <BMCommons/BMPropertyDescriptor.h>
 
 @implementation BMAbstractDatePickerCell

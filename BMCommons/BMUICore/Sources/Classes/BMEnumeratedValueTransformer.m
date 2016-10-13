@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMEnumeratedValueTransformer.h"
-#import "BMEnumeratedValue.h"
+#import <BMCommons/BMEnumeratedValueTransformer.h>
+#import <BMCommons/BMEnumeratedValue.h>
 
 @implementation BMEnumeratedValueTransformer
 

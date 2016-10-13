@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import "BMKeyedArchiveDataTransformer.h"
+#import <BMCommons/BMKeyedArchiveDataTransformer.h>
 
 @implementation BMKeyedArchiveDataTransformer
 

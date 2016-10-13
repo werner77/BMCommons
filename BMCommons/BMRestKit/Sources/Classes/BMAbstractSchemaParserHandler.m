@@ -6,7 +6,7 @@
 //
 //
 
-#import "BMAbstractSchemaParserHandler.h"
+#import <BMCommons/BMAbstractSchemaParserHandler.h>
 #import <BMCommons/NSString+BMCommons.h>
 #import <BMCommons/BMObjectMapping.h>
 #import <BMCommons/BMLogging.h>

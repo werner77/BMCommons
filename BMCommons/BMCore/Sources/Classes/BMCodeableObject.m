@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import "BMCodeableObject.h"
-#import "BMCodingHelper.h"
+#import <BMCommons/BMCodeableObject.h>
+#import <BMCommons/BMCodingHelper.h>
 #import "NSObject+BMCommons.h"
 
 @implementation BMCodeableObject

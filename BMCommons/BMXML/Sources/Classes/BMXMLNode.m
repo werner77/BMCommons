@@ -63,9 +63,9 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 */
 
-#import "BMXMLNode.h"
-#import "BMXMLElement.h"
-#import "BMXMLUtilities.h"
+#import <BMCommons/BMXMLNode.h>
+#import <BMCommons/BMXMLElement.h>
+#import <BMCommons/BMXMLUtilities.h>
 
 @implementation BMXMLNode
 

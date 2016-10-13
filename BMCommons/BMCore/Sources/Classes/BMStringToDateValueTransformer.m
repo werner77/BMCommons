@@ -6,9 +6,9 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMStringToDateValueTransformer.h"
+#import <BMCommons/BMStringToDateValueTransformer.h>
 #import "NSDateFormatter+BMCommons.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMCore.h>
 
 @implementation BMStringToDateValueTransformer 

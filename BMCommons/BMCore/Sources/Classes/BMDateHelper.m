@@ -6,10 +6,10 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMDateHelper.h"
+#import <BMCommons/BMDateHelper.h>
 #import "NSDateFormatter+BMCommons.h"
-#import "BMProxy.h"
-#import "BMImmutableProxy.h"
+#import <BMCommons/BMProxy.h>
+#import <BMCommons/BMImmutableProxy.h>
 
 static NSDateFormatter *rfc3339TimestampFormatter;
 static NSDateFormatter *rfc3339TimestampFractionalFormatter;

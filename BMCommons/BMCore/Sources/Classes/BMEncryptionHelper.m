@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMEncryptionHelper.h"
+#import <BMCommons/BMEncryptionHelper.h>
 #import "NSData+BMEncryption.h"
-#import "BMEncodingHelper.h"
+#import <BMCommons/BMEncodingHelper.h>
 #import <CommonCrypto/CommonDigest.h>
 
 #define FileHashDefaultChunkSizeForReadingData 4096

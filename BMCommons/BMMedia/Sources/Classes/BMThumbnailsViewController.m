@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMThumbnailsViewController.h"
+#import <BMCommons/BMThumbnailsViewController.h>
 #import <BMMedia/BMThumbnailView.h>
 #import <BMThree20/Three20UI/BMTTThumbsTableViewCell.h>
 #import <BMThree20/Three20UI/BMTTLoadMoreTableViewCell.h>

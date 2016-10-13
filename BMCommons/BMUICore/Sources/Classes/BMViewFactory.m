@@ -1,4 +1,4 @@
-#import "BMViewFactory.h"  
+#import <BMCommons/BMViewFactory.h>
 #import <BMCommons/BMUICore.h>
 #import <BMCommons/BMWeakReferenceRegistry.h>
 #import <BMCommons/NSObject+BMCommons.h>

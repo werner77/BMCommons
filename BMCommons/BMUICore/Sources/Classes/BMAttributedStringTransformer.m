@@ -4,8 +4,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BMAttributedStringTransformer.h"
-#import "BMAttributedStringDescriptor.h"
+#import <BMCommons/BMAttributedStringTransformer.h>
+#import <BMCommons/BMAttributedStringDescriptor.h>
 
 
 @implementation BMAttributedStringTransformer

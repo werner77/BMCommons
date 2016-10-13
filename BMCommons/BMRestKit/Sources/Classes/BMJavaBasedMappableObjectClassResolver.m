@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import "BMJavaBasedMappableObjectClassResolver.h"
+#import <BMCommons/BMJavaBasedMappableObjectClassResolver.h>
 #import <BMCommons/NSString+BMCommons.h>
 #import <BMCommons/BMCore.h>
 

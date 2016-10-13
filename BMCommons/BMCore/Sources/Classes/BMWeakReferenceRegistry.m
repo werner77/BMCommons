@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMWeakReferenceRegistry.h"
-#import "BMWeakReference.h"
+#import <BMCommons/BMWeakReferenceRegistry.h>
+#import <BMCommons/BMWeakReference.h>
 
 @interface BMWeakReferenceContext : NSObject
 

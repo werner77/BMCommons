@@ -6,7 +6,7 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMMediaRollCell.h"
+#import <BMCommons/BMMediaRollCell.h>
 #import <BMMedia/BMMedia.h>
 
 #define DEFAULT_HORIZONTAL_MARGIN 5.0

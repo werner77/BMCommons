@@ -6,9 +6,9 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMMultiSwitchViewController.h"
+#import <BMCommons/BMMultiSwitchViewController.h>
 #import "UIViewController+BMCommons.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMStringHelper.h>
 #import <BMCommons/NSObject+BMCommons.h>
 #import <BMCommons/NSCondition+BMCommons.h>
 #import <BMCommons/BMUICore.h>

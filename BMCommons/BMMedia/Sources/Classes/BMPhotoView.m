@@ -6,10 +6,10 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMPhotoView.h"
+#import <BMCommons/BMPhotoView.h>
 #import <BMMedia/BMMediaContainer.h>
 #import <BMUICore/UIButton+BMCommons.h>
-#import "BMMediaContainerPhoto.h"
+#import <BMCommons/BMMediaContainerPhoto.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <BMThree20/Three20UI/UIViewAdditions.h>
 #import <BMCore/BMURLCache.h>

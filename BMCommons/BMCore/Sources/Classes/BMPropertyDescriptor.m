@@ -6,7 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMPropertyDescriptor.h"
+#import <BMCommons/BMPropertyDescriptor.h>
 #import <BMCommons/NSObject+BMCommons.h>
 #import <BMCommons/BMStringHelper.h>
 

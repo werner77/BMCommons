@@ -6,10 +6,10 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMHTTPService.h"
-#import "BMStringHelper.h"
-#import "BMErrorHelper.h"
-#import "BMURLCache.h"
+#import <BMCommons/BMHTTPService.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMErrorHelper.h>
+#import <BMCommons/BMURLCache.h>
 #import "NSObject+BMCommons.h"
 #import <BMCommons/BMCore.h>
 

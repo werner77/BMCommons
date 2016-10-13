@@ -3,7 +3,7 @@
 // Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import "BMAttributedStringDescriptor.h"
+#import <BMCommons/BMAttributedStringDescriptor.h>
 #import "NSDictionary+BMCommons.h"
 
 @implementation BMAttributedStringDescriptor

@@ -6,8 +6,8 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMCoreDataStoreDescriptor.h"
-#import "BMFileHelper.h"
+#import <BMCommons/BMCoreDataStoreDescriptor.h>
+#import <BMCommons/BMFileHelper.h>
 #import <BMCommons/BMCore.h>
 
 #define FILE_EXT @".sqlite"

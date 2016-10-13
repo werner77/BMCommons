@@ -6,7 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMSettingsObject.h"
+#import <BMCommons/BMSettingsObject.h>
 #import <BMCommons/BMCoreObject.h>
 
 /**

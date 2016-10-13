@@ -8,8 +8,8 @@
 
 #if KAL_ENABLED
 
-#import "BMDatePickerCell.h"
-#import "BMDateSelectionViewController.h"
+#import <BMCommons/BMDatePickerCell.h>
+#import <BMCommons/BMDateSelectionViewController.h>
 #import <BMCommons/BMPropertyDescriptor.h>
 
 @implementation BMDatePickerCell

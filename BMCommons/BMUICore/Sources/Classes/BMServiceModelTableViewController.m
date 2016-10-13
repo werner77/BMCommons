@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMServiceModelTableViewController.h"
+#import <BMCommons/BMServiceModelTableViewController.h>
 #import <BMCommons/BMApplicationHelper.h>
 #import <BMCommons/BMServiceManager.h>
 

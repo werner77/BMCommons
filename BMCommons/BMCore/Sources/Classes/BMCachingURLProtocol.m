@@ -6,19 +6,19 @@
 //  Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import "BMCachingURLProtocol.h"
+#import <BMCommons/BMCachingURLProtocol.h>
 #import "NSURLRequest+BMCommons.h"
 #import "NSObject+BMCommons.h"
 #import "NSDateFormatter+BMCommons.h"
-#import "BMLogging.h"
-#import "BMDateHelper.h"
-#import "BMHTTPRequest.h"
-#import "BMCore.h"
-#import "BMCache.h"
+#import <BMCommons/BMLogging.h>
+#import <BMCommons/BMDateHelper.h>
+#import <BMCommons/BMHTTPRequest.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/BMCache.h>
 #import "NSDictionary+BMCommons.h"
-#import "BMDataRecorder.h"
+#import <BMCommons/BMDataRecorder.h>
 #import "NSData+BMEncryption.h"
-#import "BMErrorHelper.h"
+#import <BMCommons/BMErrorHelper.h>
 #import "NSCondition+BMCommons.h"
 
 @interface BMCachedURLResponse : NSObject <NSCoding, NSCopying>

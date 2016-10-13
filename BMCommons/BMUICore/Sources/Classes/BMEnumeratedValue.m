@@ -6,13 +6,13 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMEnumeratedValue.h"
-#import "BMStringToIntegerValueTransformer.h"
-#import "BMStringToBooleanValueTransformer.h"
-#import "BMStringToFloatValueTransformer.h"
-#import "BMInputValueType.h"
-#import "BMTwoWayDictionary.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMEnumeratedValue.h>
+#import <BMCommons/BMStringToIntegerValueTransformer.h>
+#import <BMCommons/BMStringToBooleanValueTransformer.h>
+#import <BMCommons/BMStringToFloatValueTransformer.h>
+#import <BMCommons/BMInputValueType.h>
+#import <BMCommons/BMTwoWayDictionary.h>
+#import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMUICore.h>
 
 @interface BMEnumeratedValue(Private)

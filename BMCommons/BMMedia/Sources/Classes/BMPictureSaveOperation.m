@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMPictureSaveOperation.h"
+#import <BMCommons/BMPictureSaveOperation.h>
 #import <BMMedia/BMMedia.h>
 
 @implementation BMPictureSaveOperation {

@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import "BMBase64DataTransformer.h"
-#import "BMEncodingHelper.h"
+#import <BMCommons/BMBase64DataTransformer.h>
+#import <BMCommons/BMEncodingHelper.h>
 
 @implementation BMBase64DataTransformer
 

@@ -8,9 +8,9 @@
 
 #if BM_MAIL_ENABLED
 
-#import "BMMailComposeController.h"
-#import "BMDialogHelper.h"
-#import "BMBusyView.h"
+#import <BMCommons/BMMailComposeController.h>
+#import <BMCommons/BMDialogHelper.h>
+#import <BMCommons/BMBusyView.h>
 #import <BMCommons/BMCore.h>
 #import <BMCommons/BMStringHelper.h>
 

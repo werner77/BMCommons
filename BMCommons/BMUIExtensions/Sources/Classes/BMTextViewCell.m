@@ -5,9 +5,9 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMTextViewCell.h"
+#import <BMCommons/BMTextViewCell.h>
 #import "UITextView+BMCommons.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMStringHelper.h>
 
 @interface BMTextViewCell(Private)
 

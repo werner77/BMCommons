@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import "BMDynamicObject.h"
+#import <BMCommons/BMDynamicObject.h>
 #import <BMCommons/BMPropertyDescriptor.h>
 #import <BMCommons/BMPropertyMethod.h>
 

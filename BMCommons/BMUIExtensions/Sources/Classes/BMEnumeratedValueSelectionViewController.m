@@ -6,9 +6,9 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMEnumeratedValueSelectionViewController.h"
-#import "BMPropertyDescriptor.h"
-#import "BMLabelCell.h"
+#import <BMCommons/BMEnumeratedValueSelectionViewController.h>
+#import <BMCommons/BMPropertyDescriptor.h>
+#import <BMCommons/BMLabelCell.h>
 #import <BMCommons/BMUICore.h>
 
 #define DEFAULT_WIDTH 200.0

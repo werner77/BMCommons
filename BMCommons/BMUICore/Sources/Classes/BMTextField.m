@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMTextField.h"
+#import <BMCommons/BMTextField.h>
 
 @implementation BMTextField
 

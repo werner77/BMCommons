@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMDeviceHelper.h"
+#import <BMCommons/BMDeviceHelper.h>
 
 #include <sys/socket.h>
 #include <sys/sysctl.h>

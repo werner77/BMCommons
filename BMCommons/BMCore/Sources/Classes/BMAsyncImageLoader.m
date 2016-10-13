@@ -6,8 +6,8 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMAsyncImageLoader.h"
-#import "BMURLCache.h"
+#import <BMCommons/BMAsyncImageLoader.h>
+#import <BMCommons/BMURLCache.h>
 #import <BMCommons/UIImage+BMCommons.h>
 
 @implementation BMAsyncImageLoader

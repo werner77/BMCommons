@@ -6,13 +6,13 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMMappableObjectGenerator.h"
-#import "BMFileHelper.h"
-#import "BMObjectMapping.h"
-#import "BMXMLParser.h"
-#import "BMXMLSchemaParser.h"
-#import "BMICUTemplateMatcher.h"
-#import "BMJSONSchemaParser.h"
+#import <BMCommons/BMMappableObjectGenerator.h>
+#import <BMCommons/BMFileHelper.h>
+#import <BMCommons/BMObjectMapping.h>
+#import <BMCommons/BMXMLParser.h>
+#import <BMCommons/BMXMLSchemaParser.h>
+#import <BMCommons/BMICUTemplateMatcher.h>
+#import <BMCommons/BMJSONSchemaParser.h>
 #import <BMCommons/BMErrorHelper.h>
 #import <BMCommons/BMRestKit.h>
 #import <BMCommons/BMJavaBasedMappableObjectClassResolver.h>

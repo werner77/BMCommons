@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMTTLoadMoreTableViewCell.h"
+#import <BMCommons/BMTTLoadMoreTableViewCell.h>
 
 #import "Three20Core/BMTTCorePreprocessorMacros.h"
 #import "Three20Core/BMTTGlobalCoreLocale.h"

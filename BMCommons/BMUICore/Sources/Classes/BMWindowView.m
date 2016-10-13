@@ -4,7 +4,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BMWindowView.h"
+#import <BMCommons/BMWindowView.h>
 
 
 static CGFloat UIInterfaceOrientationAngleBetween(UIInterfaceOrientation o1, UIInterfaceOrientation o2);

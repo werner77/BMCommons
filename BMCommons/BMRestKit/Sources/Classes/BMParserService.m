@@ -6,11 +6,11 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMParserService.h"
-#import "BMErrorHelper.h"
-#import "BMErrorCodes.h"
-#import "BMURLCache.h"
-#import "BMJSONParser.h"
+#import <BMCommons/BMParserService.h>
+#import <BMCommons/BMErrorHelper.h>
+#import <BMCommons/BMErrorCodes.h>
+#import <BMCommons/BMURLCache.h>
+#import <BMCommons/BMJSONParser.h>
 #import <BMCommons/BMRestKit.h>
 
 @interface CacheData : NSObject {

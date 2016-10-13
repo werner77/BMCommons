@@ -5,8 +5,8 @@
 //  Copyright 2008 Instinctive Code. All rights reserved.
 //
 
-#import "BMMGTemplateStandardMarkers.h"
-#import "BMMGTemplateFilter.h"
+#import <BMCommons/BMMGTemplateStandardMarkers.h>
+#import <BMCommons/BMMGTemplateFilter.h>
 #import <BMCommons/BMCore.h>
 
 //==============================================================================

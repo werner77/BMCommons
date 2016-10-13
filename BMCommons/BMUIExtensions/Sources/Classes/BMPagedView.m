@@ -6,8 +6,8 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMPagedView.h"
-#import "BMPageControl.h"
+#import <BMCommons/BMPagedView.h>
+#import <BMCommons/BMPageControl.h>
 #import <BMCommons/BMUICore.h>
 
 @interface BMPagedView()<UIScrollViewDelegate>

@@ -5,7 +5,7 @@
 //  Copyright 2008 Instinctive Code. All rights reserved.
 //
 
-#import "BMMGTemplateStandardFilters.h"
+#import <BMCommons/BMMGTemplateStandardFilters.h>
 
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMMappableObjectXMLSerializer.h"
+#import <BMCommons/BMMappableObjectXMLSerializer.h>
 #import <BMCommons/BMXMLParser.h>
 #import <BMCommons/BMObjectMappingParserHandler.h>
 #import <BMCommons/BMErrorHelper.h>

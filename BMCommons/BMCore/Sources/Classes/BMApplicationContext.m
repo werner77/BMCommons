@@ -6,9 +6,9 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMApplicationContext.h"
-#import "BMURLCache.h"
-#import "BMFileHelper.h"
+#import <BMCommons/BMApplicationContext.h>
+#import <BMCommons/BMURLCache.h>
+#import <BMCommons/BMFileHelper.h>
 #import <BMCommons/BMApplicationHelper.h>
 #import <BMCommons/BMCore.h>
 #import <BMCommons/BMApp.h>

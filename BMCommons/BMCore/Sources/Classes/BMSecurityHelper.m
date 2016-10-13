@@ -6,14 +6,14 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMSecurityHelper.h"
+#import <BMCommons/BMSecurityHelper.h>
 
 #import <Security/Security.h>
 #import <CoreFoundation/CoreFoundation.h>
 
-#import "BMErrorCodes.h"
-#import "BMErrorHelper.h"
-#import "BMLogging.h"
+#import <BMCommons/BMErrorCodes.h>
+#import <BMCommons/BMErrorHelper.h>
+#import <BMCommons/BMLogging.h>
 #import "NSData+BMEncryption.h"
 
 @interface BMSecurityHelper(Private)

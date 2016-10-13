@@ -6,8 +6,8 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMTextCell.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMTextCell.h>
+#import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMRegexKitLite.h>
 
 @implementation BMTextCell

@@ -5,9 +5,9 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMAssetThumbnailView.h"
-#import "BMAssetTablePickerController.h"
-#import "BMMediaThumbnailView.h"
+#import <BMCommons/BMAssetThumbnailView.h>
+#import <BMCommons/BMAssetTablePickerController.h>
+#import <BMCommons/BMMediaThumbnailView.h>
 #import "ALAsset+BMMedia.h"
 #import <BMMedia/BMMedia.h>
 

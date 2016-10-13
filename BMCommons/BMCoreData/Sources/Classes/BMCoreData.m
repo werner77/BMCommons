@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMCoreData.h"
+#import <BMCommons/BMCoreData.h>
 #import <BMCommons/BMCore.h>
 
 @implementation BMCoreData

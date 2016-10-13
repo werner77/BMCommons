@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMYouTubeEntryTransformer.h"
+#import <BMCommons/BMYouTubeEntryTransformer.h>
 #import <CoreLocation/CoreLocation.h>
 #import <BMYouTube/BMYouTube.h>
 

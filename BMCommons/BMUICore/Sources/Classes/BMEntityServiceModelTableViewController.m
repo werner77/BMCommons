@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMEntityServiceModelTableViewController.h"
+#import <BMCommons/BMEntityServiceModelTableViewController.h>
 #import <BMCommons/UIViewController+BMCommons.h>
 #import <BMCommons/BMUICore.h>
 

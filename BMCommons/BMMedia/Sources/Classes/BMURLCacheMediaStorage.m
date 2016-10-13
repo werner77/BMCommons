@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMURLCacheMediaStorage.h"
+#import <BMCommons/BMURLCacheMediaStorage.h>
 #import <BMCore/BMURLCache.h>
 #import <BMUICore/UIImage+BMCommons.h>
 #import <BMUICore/UIImageToJPEGDataTransformer.h>

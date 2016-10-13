@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMStyleSheet+BMMedia.h"
+#import <BMCommons/BMStyleSheet+BMMedia.h>
 #import <BMCore/BMURLCache.h>
 #import <BMMedia/BMMedia.h>
 

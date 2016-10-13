@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMCoreDataApplicationContext.h"
-#import "BMCoreDataHelper.h"
-#import "BMCoreDataStoreCollectionDescriptor.h"
-#import "BMFileHelper.h"
+#import <BMCommons/BMCoreDataApplicationContext.h>
+#import <BMCommons/BMCoreDataHelper.h>
+#import <BMCommons/BMCoreDataStoreCollectionDescriptor.h>
+#import <BMCommons/BMFileHelper.h>
 #import <BMCommons/BMCore.h>
 
 #define STORE_DESCRIPTOR_FILENAME @"storedescriptor.scd"

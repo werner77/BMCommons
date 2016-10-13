@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMBufferedInputStream.h"
+#import <BMCommons/BMBufferedInputStream.h>
 
 
 @implementation BMBufferedInputStream

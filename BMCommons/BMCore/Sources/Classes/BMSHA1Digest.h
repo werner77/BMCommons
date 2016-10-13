@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import "BMDigest.h"
+#import <BMCommons/BMDigest.h>
 
 @interface BMSHA1Digest : BMDigest
 

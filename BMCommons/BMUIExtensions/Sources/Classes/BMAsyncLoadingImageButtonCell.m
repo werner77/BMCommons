@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import "BMAsyncLoadingImageButtonCell.h"
+#import <BMCommons/BMAsyncLoadingImageButtonCell.h>
 
 @implementation BMAsyncLoadingImageButtonCell
 

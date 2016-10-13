@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMProxy.h"
+#import <BMCommons/BMProxy.h>
 #import <BMCommons/BMCore.h>
 
 @implementation BMProxy 

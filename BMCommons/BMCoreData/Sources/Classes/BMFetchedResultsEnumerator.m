@@ -6,7 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMFetchedResultsEnumerator.h"
+#import <BMCommons/BMFetchedResultsEnumerator.h>
 
 @implementation BMFetchedResultsEnumerator
 

@@ -6,7 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMManagedObjectContext.h"
+#import <BMCommons/BMManagedObjectContext.h>
 #import <BMCommons/BMCore.h>
 
 @implementation BMManagedObjectContext {

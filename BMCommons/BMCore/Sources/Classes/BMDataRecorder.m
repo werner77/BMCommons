@@ -3,10 +3,10 @@
 // Copyright (c) 2016 BehindMedia. All rights reserved.
 //
 
-#import "BMDataRecorder.h"
-#import "BMLogging.h"
-#import "BMStringHelper.h"
-#import "BMObjectHelper.h"
+#import <BMCommons/BMDataRecorder.h>
+#import <BMCommons/BMLogging.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMObjectHelper.h>
 
 @implementation BMDataRecorder {
     NSMutableDictionary *_recordingDictionary;

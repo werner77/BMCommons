@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMInfoWebViewController.h"
+#import <BMCommons/BMInfoWebViewController.h>
 #import "UIWebView+BMCommons.h"
 #import <BMCommons/BMUICore.h>
 

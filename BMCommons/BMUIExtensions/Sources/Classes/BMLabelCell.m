@@ -6,7 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMLabelCell.h"
+#import <BMCommons/BMLabelCell.h>
 
 @implementation BMLabelCell
 

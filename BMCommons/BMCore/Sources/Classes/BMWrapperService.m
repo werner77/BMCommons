@@ -3,9 +3,9 @@
 // Copyright (c) 2016 BehindMedia. All rights reserved.
 //
 
-#import "BMWrapperService.h"
-#import "BMErrorHelper.h"
-#import "BMCore.h"
+#import <BMCommons/BMWrapperService.h>
+#import <BMCommons/BMErrorHelper.h>
+#import <BMCommons/BMCore.h>
 
 @interface BMWrapperService()
 

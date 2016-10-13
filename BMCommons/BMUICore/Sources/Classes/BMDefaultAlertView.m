@@ -5,8 +5,8 @@
 
 #import <CoreGraphics/CoreGraphics.h>
 #import <UIKit/UIKit.h>
-#import "BMDefaultAlertView.h"
-#import "BMUICore.h"
+#import <BMCommons/BMDefaultAlertView.h>
+#import <BMCommons/BMUICore.h>
 #import "NSString+BMUICore.h"
 
 static const CGFloat kBMAlertViewCornerRadius = 7.0f;

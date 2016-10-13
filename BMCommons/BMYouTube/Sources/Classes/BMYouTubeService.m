@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMYouTubeService.h"
+#import <BMCommons/BMYouTubeService.h>
 #import <BMYouTube/BMYouTube.h>
 
 @implementation BMYouTubeService {

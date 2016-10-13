@@ -14,7 +14,7 @@
  * limitations under the License.
 */
 
-#import "BMWebDialog.h"
+#import <BMCommons/BMWebDialog.h>
 #import <BMCommons/UIScreen+BMCommons.h>
 
 @interface BMWebDialog()<UIWebViewDelegate> 

@@ -6,9 +6,9 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMObjectMapping.h"
-#import "BMAbstractMappableObject.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMObjectMapping.h>
+#import <BMCommons/BMAbstractMappableObject.h>
+#import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMRestKit.h>
 
 @implementation BMObjectMapping

@@ -4,7 +4,7 @@
 //
 
 #import <CommonCrypto/CommonDigest.h>
-#import "BMSHA256Digest.h"
+#import <BMCommons/BMSHA256Digest.h>
 #import <BMCommons/BMCore.h>
 
 @implementation BMSHA256Digest {

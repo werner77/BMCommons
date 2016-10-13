@@ -6,10 +6,10 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMParserElement.h"
-#import "BMXPathQuery.h"
-#import "BMStringHelper.h"
-#import "BMKeyValuePair.h"
+#import <BMCommons/BMParserElement.h>
+#import <BMCommons/BMXPathQuery.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMKeyValuePair.h>
 #import <BMCommons/BMRestKit.h>
 
 @interface BMParserElement(Private)

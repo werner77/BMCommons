@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMErrorView.h"
+#import <BMCommons/BMErrorView.h>
 #import <BMCommons/BMUICore.h>
 
 @implementation BMErrorView {

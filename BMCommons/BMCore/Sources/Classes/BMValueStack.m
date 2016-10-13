@@ -3,8 +3,8 @@
 // Copyright (c) 2016 BehindMedia. All rights reserved.
 //
 
-#import "BMValueStack.h"
-#import "BMPropertyDescriptor.h"
+#import <BMCommons/BMValueStack.h>
+#import <BMCommons/BMPropertyDescriptor.h>
 #import "NSObject+BMCommons.h"
 #import <BMCommons/BMWeakReferenceRegistry.h>
 

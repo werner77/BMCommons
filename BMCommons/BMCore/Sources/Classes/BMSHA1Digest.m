@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import "BMSHA1Digest.h"
+#import <BMCommons/BMSHA1Digest.h>
 #import <BMCommons/BMCore.h>
 #import <CommonCrypto/CommonCryptor.h>
 #import <CommonCrypto/CommonDigest.h>

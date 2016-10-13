@@ -6,7 +6,7 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMNumberHelper.h"
+#import <BMCommons/BMNumberHelper.h>
 
 @implementation BMNumberHelper
 

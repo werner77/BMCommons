@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMEmbeddedWebView.h"
+#import <BMCommons/BMEmbeddedWebView.h>
 #import <BMUICore/UIWebView+BMCommons.h>
 #import <BMCore/BMRegexKitLite.h>
 #import <BMCore/BMStringHelper.h>

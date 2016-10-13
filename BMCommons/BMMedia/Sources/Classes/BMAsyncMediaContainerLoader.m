@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMAsyncMediaContainerLoader.h"
+#import <BMCommons/BMAsyncMediaContainerLoader.h>
 #import <BMCore/BMStringHelper.h>
 #import <BMCore/BMAsyncDataLoader.h>
 #import <BMCore/BMMIMEType.h>

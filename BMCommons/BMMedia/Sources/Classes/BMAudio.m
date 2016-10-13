@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BMAudio.h"
+#import <BMCommons/BMAudio.h>
 
 @implementation BMAudio 
 

@@ -6,15 +6,15 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMYouTubeDeleteService.h"
-#import "BMMediaContainer.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMYouTubeDeleteService.h>
+#import <BMCommons/BMMediaContainer.h>
+#import <BMCommons/BMStringHelper.h>
 #import "GDataEntryYouTubeUpload.h"
 #import "GDataGeo.h"
 #import "GDataMediaGroup.h"
-#import "BMYouTubeEntryTransformer.h"
-#import "BMYouTubeUploadTransformer.h"
-#import "BMErrorHelper.h"
+#import <BMCommons/BMYouTubeEntryTransformer.h>
+#import <BMCommons/BMYouTubeUploadTransformer.h>
+#import <BMCommons/BMErrorHelper.h>
 #import "GDataServiceGoogleYouTube.h"
 #import <GData/GData.h>
 #import <BMYouTube/BMYouTube.h>

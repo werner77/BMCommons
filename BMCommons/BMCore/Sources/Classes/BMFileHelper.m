@@ -6,8 +6,8 @@
 //  Copyright 2008 BehindMedia. All rights reserved.
 //
 
-#import "BMFileHelper.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMFileHelper.h>
+#import <BMCommons/BMStringHelper.h>
 #import <Foundation/NSPathUtilities.h>
 #import <BMCommons/BMCore.h>
 

@@ -6,12 +6,12 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMAbstractManagedObject.h"
-#import "BMCoreDataHelper.h"
-#import "BMPropertyDescriptor.h"
-#import "BMStringHelper.h"
-#import "BMObjectHelper.h"
-#import "BMDateHelper.h"
+#import <BMCommons/BMAbstractManagedObject.h>
+#import <BMCommons/BMCoreDataHelper.h>
+#import <BMCommons/BMPropertyDescriptor.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMObjectHelper.h>
+#import <BMCommons/BMDateHelper.h>
 #import "NSArray+BMCommons.h"
 #import "NSString+BMCommons.h"
 #import <BMCommons/BMCore.h>

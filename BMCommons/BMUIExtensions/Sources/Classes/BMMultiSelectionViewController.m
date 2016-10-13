@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMMultiSelectionViewController.h"
+#import <BMCommons/BMMultiSelectionViewController.h>
 #import <BMCommons/BMPropertyDescriptor.h>
 #import <BMCommons/BMUICore.h>
 

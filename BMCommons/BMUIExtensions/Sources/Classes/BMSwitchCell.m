@@ -6,7 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMSwitchCell.h"
+#import <BMCommons/BMSwitchCell.h>
 
 
 @implementation BMSwitchCell

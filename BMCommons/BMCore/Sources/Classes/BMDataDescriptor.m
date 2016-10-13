@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMDataDescriptor.h"
+#import <BMCommons/BMDataDescriptor.h>
 
 @implementation BMDataDescriptor 
 

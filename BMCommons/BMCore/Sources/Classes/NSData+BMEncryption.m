@@ -10,9 +10,9 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <Security/Security.h>
 #import "NSData+BMEncryption.h"
-#import "BMEncodingHelper.h"
-#import "BMDigest.h"
-#import "BMLogging.h"
+#import <BMCommons/BMEncodingHelper.h>
+#import <BMCommons/BMDigest.h>
+#import <BMCommons/BMLogging.h>
 
 @implementation NSData (BMEncryption)
 

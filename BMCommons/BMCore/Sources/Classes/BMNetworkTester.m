@@ -5,7 +5,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMNetworkTester.h"
+#import <BMCommons/BMNetworkTester.h>
 
 @implementation BMNetworkTester 
 

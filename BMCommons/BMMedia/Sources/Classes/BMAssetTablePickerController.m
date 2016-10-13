@@ -5,11 +5,11 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMAssetTablePickerController.h"
-#import "BMAssetCell.h"
-#import "BMAlbumPickerController.h"
+#import <BMCommons/BMAssetTablePickerController.h>
+#import <BMCommons/BMAssetCell.h>
+#import <BMCommons/BMAlbumPickerController.h>
 #import "ALAsset+BMMedia.h"
-#import "BMAssetPickerController.h"
+#import <BMCommons/BMAssetPickerController.h>
 #import <BMMedia/BMAssetThumbnailView.h>
 #import <BMMedia/BMMedia.h>
 

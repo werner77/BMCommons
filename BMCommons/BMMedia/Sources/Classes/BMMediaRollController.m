@@ -6,9 +6,9 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMMediaRollController.h"
+#import <BMCommons/BMMediaRollController.h>
 #import <BMUICore/BMViewFactory.h>
-#import "BMMediaContainerThumbnailCell.h"
+#import <BMCommons/BMMediaContainerThumbnailCell.h>
 #import <BMMedia/BMMedia.h>
 	
 #define CELL_COUNT 1000

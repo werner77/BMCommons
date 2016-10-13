@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMJSONSchemaParser.h"
+#import <BMCommons/BMJSONSchemaParser.h>
 #import <BMCommons/NSObject+BMCommons.h>
 #import <BMCommons/NSDictionary+BMCommons.h>
 #import <BMCommons/BMObjectMapping.h>

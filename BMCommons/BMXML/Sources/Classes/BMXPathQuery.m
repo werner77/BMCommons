@@ -12,15 +12,15 @@
 //  appreciated but not required.
 //
 
-#import "BMXPathQuery.h"
-#import "BMLogging.h"
+#import <BMCommons/BMXPathQuery.h>
+#import <BMCommons/BMLogging.h>
 #import <libxml/tree.h>
 #import <libxml/parser.h>
 #import <libxml/HTMLparser.h>
 #import <libxml/xpath.h>
 #import <libxml/xpathInternals.h>
 #import <BMCommons/BMCore.h>
-#import "BMXMLElement.h"
+#import <BMCommons/BMXMLElement.h>
 
 @implementation BMXPathQuery
 

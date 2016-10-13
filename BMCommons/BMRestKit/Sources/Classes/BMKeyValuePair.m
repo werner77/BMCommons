@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import "BMKeyValuePair.h"
+#import <BMCommons/BMKeyValuePair.h>
 
 @implementation BMKeyValuePair
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMUIExtensions.h"
+#import <BMCommons/BMUIExtensions.h>
 
 @implementation BMUIExtensions
 

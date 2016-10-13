@@ -6,8 +6,8 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMMediaContainerThumbnailCell.h"
-#import "BMMediaThumbnailView.h"
+#import <BMCommons/BMMediaContainerThumbnailCell.h>
+#import <BMCommons/BMMediaThumbnailView.h>
 
 #import <QuartzCore/QuartzCore.h>
 

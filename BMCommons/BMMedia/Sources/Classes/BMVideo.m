@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BMVideo.h"
+#import <BMCommons/BMVideo.h>
 
 @implementation BMVideo
 

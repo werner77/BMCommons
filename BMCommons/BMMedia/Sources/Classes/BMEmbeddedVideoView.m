@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMEmbeddedVideoView.h"
+#import <BMCommons/BMEmbeddedVideoView.h>
 #import <BMUICore/UIWebView+BMCommons.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <BMUICore/UIView+BMCommons.h>

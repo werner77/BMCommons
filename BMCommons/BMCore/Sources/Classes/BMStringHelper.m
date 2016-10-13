@@ -6,7 +6,7 @@
 //  Copyright 2008 BehindMedia. All rights reserved.
 //
 
-#import "BMStringHelper.h"
+#import <BMCommons/BMStringHelper.h>
 #import <BMCommons/NSString+BMCommons.h>
 #import <BMCommons/BMOrderedDictionary.h>
 #import <BMCommons/BMEncodingHelper.h>

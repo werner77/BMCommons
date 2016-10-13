@@ -63,7 +63,7 @@
  
  */
 
-#import "BMXMLElement.h"
+#import <BMCommons/BMXMLElement.h>
 
 #import <libxml/globals.h>
 #import <libxml/xmlerror.h>
@@ -71,7 +71,7 @@
 #import <libxml/xmlmemory.h>
 #import <libxml/parser.h>
 #import <libxml/xpathInternals.h>
-#import "BMXMLUtilities.h"
+#import <BMCommons/BMXMLUtilities.h>
 #import <BMCommons/BMOrderedDictionary.h>
 
 typedef NS_ENUM(NSUInteger, JSONElementType) {

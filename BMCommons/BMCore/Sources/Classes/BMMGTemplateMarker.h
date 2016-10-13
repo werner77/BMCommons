@@ -6,7 +6,7 @@
  *
  */
 
-#import "BMMGTemplateEngine.h"
+#import <BMCommons/BMMGTemplateEngine.h>
 
 /**
  Marker for BMMGTemplateEngine.

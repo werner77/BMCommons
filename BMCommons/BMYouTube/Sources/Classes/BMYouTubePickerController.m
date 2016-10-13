@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMYouTubePickerController.h"
+#import <BMCommons/BMYouTubePickerController.h>
 #import <BMUICore/BMDialogHelper.h>
 #import <BMUICore/BMNavigationController.h>
 #import <BMYouTube/BMYouTubeEntryTransformer.h>

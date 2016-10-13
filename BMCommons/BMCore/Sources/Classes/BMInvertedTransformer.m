@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMInvertedTransformer.h"
+#import <BMCommons/BMInvertedTransformer.h>
 #import <BMCommons/BMCore.h>
 
 @implementation BMInvertedTransformer 

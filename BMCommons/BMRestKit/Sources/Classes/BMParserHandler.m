@@ -6,7 +6,7 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMParserHandler.h"
+#import <BMCommons/BMParserHandler.h>
 #import <BMCommons/BMRestKit.h>
 
 @implementation BMParserHandler

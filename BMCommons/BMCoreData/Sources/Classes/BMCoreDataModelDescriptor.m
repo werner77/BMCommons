@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMCoreDataModelDescriptor.h"
+#import <BMCommons/BMCoreDataModelDescriptor.h>
 #import <BMCommons/BMCore.h>
 
 @implementation BMCoreDataModelDescriptor {

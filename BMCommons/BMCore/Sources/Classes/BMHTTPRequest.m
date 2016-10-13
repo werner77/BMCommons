@@ -5,17 +5,17 @@
 //  Copyright 2008 BehindMedia. All rights reserved.
 //
 
-#import "BMHTTPRequest.h"
-#import "BMEncodingHelper.h"
-#import "BMStringHelper.h"
-#import "BMURLConnectionInputStream.h"
+#import <BMCommons/BMHTTPRequest.h>
+#import <BMCommons/BMEncodingHelper.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMURLConnectionInputStream.h>
 #import "NSData+BMEncryption.h"
-#import "BMErrorHelper.h"
-#import "BMErrorCodes.h"
-#import "BMSecurityHelper.h"
+#import <BMCommons/BMErrorHelper.h>
+#import <BMCommons/BMErrorCodes.h>
+#import <BMCommons/BMSecurityHelper.h>
 #import "NSString+BMCommons.h"
-#import "BMLogging.h"
-#import "BMHTTPMultiPartBodyInputStream.h"
+#import <BMCommons/BMLogging.h>
+#import <BMCommons/BMHTTPMultiPartBodyInputStream.h>
 #import <BMCommons/BMCore.h>
 
 #define BOUNDARY_STRING @"0xUn1quEKhTmLbOuNdArYx0"

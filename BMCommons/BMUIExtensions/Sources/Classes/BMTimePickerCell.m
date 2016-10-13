@@ -6,8 +6,8 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMTimePickerCell.h"
-#import "BMTimeSelectionViewController.h"
+#import <BMCommons/BMTimePickerCell.h>
+#import <BMCommons/BMTimeSelectionViewController.h>
 #import <BMCommons/BMPropertyDescriptor.h>
 
 @implementation BMTimePickerCell

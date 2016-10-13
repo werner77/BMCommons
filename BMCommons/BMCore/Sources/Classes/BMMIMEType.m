@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMMIMEType.h"
+#import <BMCommons/BMMIMEType.h>
 
 @implementation BMMIMEType 
 

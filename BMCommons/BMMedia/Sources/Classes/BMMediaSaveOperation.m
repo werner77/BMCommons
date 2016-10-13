@@ -7,7 +7,7 @@
 //
 
 #import <BMCore/BMCore.h>
-#import "BMMediaSaveOperation.h"
+#import <BMCommons/BMMediaSaveOperation.h>
 #import <BMMedia/BMMedia.h>
 
 @implementation BMMediaSaveOperation {

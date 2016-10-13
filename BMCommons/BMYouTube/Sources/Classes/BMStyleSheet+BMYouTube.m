@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMStyleSheet+BMYouTube.h"
+#import <BMCommons/BMStyleSheet+BMYouTube.h>
 
 @implementation BMStyleSheet(BMYouTube)
 

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMValidatingTextField.h"
-#import "BMStringHelper.h"
-#import "BMInputValueType.h"
+#import <BMCommons/BMValidatingTextField.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMInputValueType.h>
 
 @interface BMValidatingTextField()<UITextFieldDelegate>
 @end

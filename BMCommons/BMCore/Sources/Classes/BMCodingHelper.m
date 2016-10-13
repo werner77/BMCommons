@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import "BMCodingHelper.h"
+#import <BMCommons/BMCodingHelper.h>
 
 @implementation BMCodingHelper
 

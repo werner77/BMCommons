@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMAnimatedImageView.h"
+#import <BMCommons/BMAnimatedImageView.h>
 #import <QuartzCore/QuartzCore.h>
 #import <BMCommons/BMUICore.h>
 #import <BMCommons/BMProxy.h>

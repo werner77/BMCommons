@@ -91,7 +91,7 @@ TODO: Add long description of the pod here.
     s_restkit.source_files = 'BMCommons/BMRestKit/Sources/**/*.{c,m,h}'
     s_restkit.exclude_files = 'BMCommons/BMRestKit/**/*_Private.*'
     s_restkit.dependency 'BMCommons/BMCore'
-    s_restkit.dependency 'yajl-objc'
+    s_restkit.dependency 'yajl-objc', '0.3.0'
   end
 
 end

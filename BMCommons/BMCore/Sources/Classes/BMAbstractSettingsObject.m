@@ -6,8 +6,8 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMAbstractSettingsObject.h"
-#import "BMObjectHelper.h"
+#import <BMCommons/BMAbstractSettingsObject.h>
+#import <BMCommons/BMObjectHelper.h>
 #import <BMCommons/NSObject+BMCommons.h>
 #import <BMCommons/BMCore.h>
 

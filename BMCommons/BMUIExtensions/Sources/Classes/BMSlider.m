@@ -6,7 +6,7 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMSlider.h"
+#import <BMCommons/BMSlider.h>
 
 @interface BMSlider(Private)
 

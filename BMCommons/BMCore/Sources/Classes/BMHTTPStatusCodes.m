@@ -5,7 +5,7 @@
 //  Copyright 2008 BehindMedia. All rights reserved.
 //
 
-#import "BMHTTPStatusCodes.h"
+#import <BMCommons/BMHTTPStatusCodes.h>
 
 
 @implementation BMHTTPStatusCodes

@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMResponderButton.h"
+#import <BMCommons/BMResponderButton.h>
 
 
 @implementation BMResponderButton

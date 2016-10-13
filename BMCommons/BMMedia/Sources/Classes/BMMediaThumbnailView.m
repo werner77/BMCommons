@@ -6,9 +6,9 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMMediaThumbnailView.h"
-#import "BMVideoOverlayView.h"
-#import "BMAudioOverlayView.h"
+#import <BMCommons/BMMediaThumbnailView.h>
+#import <BMCommons/BMVideoOverlayView.h>
+#import <BMCommons/BMAudioOverlayView.h>
 #import <BMMedia/BMMedia.h>
 
 @interface BMMediaThumbnailView(Private)

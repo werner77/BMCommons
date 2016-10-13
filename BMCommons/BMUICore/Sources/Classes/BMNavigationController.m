@@ -6,8 +6,8 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMNavigationController.h"
-#import "BMViewController.h"
+#import <BMCommons/BMNavigationController.h>
+#import <BMCommons/BMViewController.h>
 #import <BMCommons/BMUICore.h>
 
 @implementation BMNavigationController {

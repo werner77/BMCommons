@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMRestKit.h"
+#import <BMCommons/BMRestKit.h>
 #if BM_PRIVATE_ENABLED
 #import <BMCommons/BMLicenseKey_Private.h>
 #endif

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMFlashButton.h"
+#import <BMCommons/BMFlashButton.h>
 #import <BMUICore/BMEnumeratedValue.h>
 #import <BMMedia/BMMedia.h>
 #import <BMCore/BMCore.h>

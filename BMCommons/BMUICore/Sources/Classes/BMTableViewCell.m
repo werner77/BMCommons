@@ -6,7 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMTableViewCell.h"
+#import <BMCommons/BMTableViewCell.h>
 #import <BMCommons/BMUICore.h>
 
 @implementation BMTableViewCell {

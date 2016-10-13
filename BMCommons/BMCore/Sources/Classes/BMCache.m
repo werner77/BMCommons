@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMCache.h"
-#import "BMOrderedDictionary.h"
+#import <BMCommons/BMCache.h>
+#import <BMCommons/BMOrderedDictionary.h>
 #import <BMCommons/BMCore.h>
 #import <malloc/malloc.h>
 

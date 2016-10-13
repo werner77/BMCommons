@@ -6,9 +6,9 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMStringToFloatValueTransformer.h"
+#import <BMCommons/BMStringToFloatValueTransformer.h>
 #import "NSNumber+BMCommons.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMStringHelper.h>
 
 @implementation BMStringToFloatValueTransformer
 

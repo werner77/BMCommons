@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import "BMSettingsPropertyDescriptor.h"
+#import <BMCommons/BMSettingsPropertyDescriptor.h>
 
 @implementation BMSettingsPropertyDescriptor
 

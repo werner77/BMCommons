@@ -6,9 +6,9 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMReverseGeoCoder.h"
-#import "BMService.h"
-#import "BMGoogleMapsReverseGeocoder.h"
+#import <BMCommons/BMReverseGeoCoder.h>
+#import <BMCommons/BMService.h>
+#import <BMCommons/BMGoogleMapsReverseGeocoder.h>
 #import <BMCore/NSArray+BMCommons.h>
 #import <BMCore/BMCore.h>
 

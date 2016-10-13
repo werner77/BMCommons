@@ -6,16 +6,16 @@
 //  Copyright 2009 BehindMedia. All rights reserved.
 //
 
-#import "BMObjectMappingParserHandler.h"
-#import "BMErrorCodes.h"
-#import "BMErrorHelper.h"
-#import "BMStringHelper.h"
-#import "BMXMLParser.h"
-#import "BMOrderedDictionary.h"
-#import "BMXMLElement.h"
-#import "BMXMLDocument.h"
-#import "BMJSONParser.h"
-#import "BMDynamicObject.h"
+#import <BMCommons/BMObjectMappingParserHandler.h>
+#import <BMCommons/BMErrorCodes.h>
+#import <BMCommons/BMErrorHelper.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMXMLParser.h>
+#import <BMCommons/BMOrderedDictionary.h>
+#import <BMCommons/BMXMLElement.h>
+#import <BMCommons/BMXMLDocument.h>
+#import <BMCommons/BMJSONParser.h>
+#import <BMCommons/BMDynamicObject.h>
 #import <BMCommons/BMRestKit.h>
 
 @interface BMObjectMappingParserHandler(Private)

@@ -7,7 +7,7 @@
 //
 
 
-#import "BMImageHelper.h"
+#import <BMCommons/BMImageHelper.h>
 #import "UIImageToJPEGDataTransformer.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>

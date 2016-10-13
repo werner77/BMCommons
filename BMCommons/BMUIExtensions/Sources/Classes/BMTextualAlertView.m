@@ -6,9 +6,9 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMTextualAlertView.h"
-#import "BMDialogHelper.h"
-#import "BMStringHelper.h"
+#import <BMCommons/BMTextualAlertView.h>
+#import <BMCommons/BMDialogHelper.h>
+#import <BMCommons/BMStringHelper.h>
 
 @interface BMTextualAlertView()<UIAlertViewDelegate, UITextFieldDelegate>
 

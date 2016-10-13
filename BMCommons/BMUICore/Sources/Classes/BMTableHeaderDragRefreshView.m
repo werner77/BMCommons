@@ -7,8 +7,8 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-#import "BMTableHeaderDragRefreshView.h"
-#import "BMStyleSheet.h"
+#import <BMCommons/BMTableHeaderDragRefreshView.h>
+#import <BMCommons/BMStyleSheet.h>
 #import <BMCommons/BMUICore.h>
 
 @implementation BMTableHeaderDragRefreshView {

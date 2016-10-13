@@ -8,7 +8,7 @@
 
 #import <BMCommons/BMCore.h>
 #import <BMCommons/BMPropertyDescriptor.h>
-#import "BMValueStack.h"
+#import <BMCommons/BMValueStack.h>
 
 typedef NS_ENUM(NSUInteger, BMBooleanStackOperationType) {
     BMBooleanStackOperationTypeTop = 0, //Top value of the stack determines the outcome

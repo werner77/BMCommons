@@ -6,8 +6,8 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMObjectMappingParserService.h"
-#import "BMObjectMappingParserHandler.h"
+#import <BMCommons/BMObjectMappingParserService.h>
+#import <BMCommons/BMObjectMappingParserHandler.h>
 #import <BMCommons/BMRestKit.h>
 
 @implementation BMObjectMappingParserService

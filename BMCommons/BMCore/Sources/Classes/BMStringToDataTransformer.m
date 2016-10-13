@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMStringToDataTransformer.h"
+#import <BMCommons/BMStringToDataTransformer.h>
 
 @implementation BMStringToDataTransformer
 

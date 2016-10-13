@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMButtonCell.h"
+#import <BMCommons/BMButtonCell.h>
 #import <BMCommons/BMUICore.h>
 
 @implementation BMButtonCell

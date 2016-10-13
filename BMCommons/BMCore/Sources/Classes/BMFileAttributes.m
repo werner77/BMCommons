@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import "BMFileAttributes.h"
+#import <BMCommons/BMFileAttributes.h>
 
 
 @interface BMFileAttributes()

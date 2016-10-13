@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMEnumerationValue.h"
+#import <BMCommons/BMEnumerationValue.h>
 #import "NSNumber+BMCommons.h"
 #import <BMCommons/BMRestKit.h>
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMYouTubeListUserVideosService.h"
+#import <BMCommons/BMYouTubeListUserVideosService.h>
 #import <GData/GDataEntryYouTubeVideo.h>
 #import <BMCore/BMErrorHelper.h>
 #import <GData/GDataQuery.h>

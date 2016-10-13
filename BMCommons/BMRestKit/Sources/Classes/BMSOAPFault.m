@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMSOAPFault.h"
+#import <BMCommons/BMSOAPFault.h>
 #import <BMCommons/BMErrorHelper.h>
 #import <BMCommons/BMRestKit.h>
 

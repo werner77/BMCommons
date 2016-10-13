@@ -5,7 +5,7 @@
 //  Copyright 2008 Instinctive Code. All rights reserved.
 //
 
-#import "BMMGTemplateEngine.h"
+#import <BMCommons/BMMGTemplateEngine.h>
 
 /**
  Example Matcher for BMMGTemplateEngine.

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMWindow.h"
+#import <BMCommons/BMWindow.h>
 
 @implementation BMWindow
 

@@ -6,9 +6,9 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMTimeSelectionViewController.h"
+#import <BMCommons/BMTimeSelectionViewController.h>
 #import <BMCommons/BMPropertyDescriptor.h>
-#import "BMUICore.h"
+#import <BMCommons/BMUICore.h>
 
 @implementation BMTimeSelectionViewController
 

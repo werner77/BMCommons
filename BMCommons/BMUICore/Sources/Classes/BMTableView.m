@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMTableView.h"
+#import <BMCommons/BMTableView.h>
 
 @implementation BMTableView
 

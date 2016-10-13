@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BehindMedia. All rights reserved.
 //
 
-#import "BMSOAPData.h"
+#import <BMCommons/BMSOAPData.h>
 #import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMDateHelper.h>
 #import <BMCommons/BMRestKit.h>

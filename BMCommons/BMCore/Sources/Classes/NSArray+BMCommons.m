@@ -8,7 +8,7 @@
 
 #import "NSArray+BMCommons.h"
 #import "NSObject+BMCommons.h"
-#import "BMBlockValueTransformer.h"
+#import <BMCommons/BMBlockValueTransformer.h>
 #import <BMCommons/BMCore.h>
 
 @implementation NSArray (BMCommons)

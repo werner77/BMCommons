@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "BMGoogleMapsReverseGeocoder.h"
+#import <BMCommons/BMGoogleMapsReverseGeocoder.h>
 #import "SBJSON.h"
 #import <BMCore/BMErrorHelper.h>
 #import <BMCore/NSDictionary+BMCommons.h>

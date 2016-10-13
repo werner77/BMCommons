@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#import "BMValueType.h"
+#import <BMCommons/BMValueType.h>
 #import <BMCommons/NSObject+BMCommons.h>
 
 @implementation BMValueTypeConverter

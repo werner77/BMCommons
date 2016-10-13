@@ -6,7 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMAsyncLoadingImageButton.h"
+#import <BMCommons/BMAsyncLoadingImageButton.h>
 #import <BMCommons/BMAsyncImageLoader.h>
 #import <BMCommons/UIButton+BMCommons.h>
 #import <BMCommons/BMUICore.h>

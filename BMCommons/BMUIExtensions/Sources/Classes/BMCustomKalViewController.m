@@ -7,7 +7,7 @@
 //
 
 #if KAL_ENABLED
-#import "BMCustomKalViewController.h"
+#import <BMCommons/BMCustomKalViewController.h>
 #import <BMCommons/BMUICore.h>
 
 @implementation BMCustomKalViewController

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import "BMNib.h"
+#import <BMCommons/BMNib.h>
 #import <BMCommons/BMWeakTimer.h>
 
 @interface BMNib()

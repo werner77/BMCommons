@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMApplicationHelper.h"
+#import <BMCommons/BMApplicationHelper.h>
 #import <AudioToolbox/AudioToolbox.h>
 
 @implementation BMApplicationHelper

@@ -6,10 +6,10 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMTextFieldCell.h"
-#import "BMTextField.h"
-#import "BMStringHelper.h"
-#import "BMRegexKitLite.h"
+#import <BMCommons/BMTextFieldCell.h>
+#import <BMCommons/BMTextField.h>
+#import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMRegexKitLite.h>
 
 @implementation BMTextFieldCell
 

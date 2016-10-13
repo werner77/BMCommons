@@ -3,7 +3,7 @@
 // Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import "BMAbstractMutableDictionary.h"
+#import <BMCommons/BMAbstractMutableDictionary.h>
 
 @implementation BMAbstractMutableDictionary {
 

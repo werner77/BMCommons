@@ -6,7 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#import "BMDialogHelper.h"
+#import <BMCommons/BMDialogHelper.h>
 #import <BMCommons/BMUICore.h>
 
 #define TEXT_FIELD_TAG 8654

@@ -5,12 +5,12 @@
 //  Copyright 2008 Instinctive Code. All rights reserved.
 //
 
-#import "BMMGTemplateEngine.h"
-#import "BMMGTemplateStandardMarkers.h"
-#import "BMMGTemplateStandardFilters.h"
+#import <BMCommons/BMMGTemplateEngine.h>
+#import <BMCommons/BMMGTemplateStandardMarkers.h>
+#import <BMCommons/BMMGTemplateStandardFilters.h>
 #import "NSArray+DeepMutableCopy.h"
 #import "NSDictionary+DeepMutableCopy.h"
-#import "BMLocalization.h"
+#import <BMCommons/BMLocalization.h>
 
 #define DEFAULT_MARKER_START		@"{%"
 #define DEFAULT_MARKER_END			@"%}"

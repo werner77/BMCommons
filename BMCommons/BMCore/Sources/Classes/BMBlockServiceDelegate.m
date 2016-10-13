@@ -6,7 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 
-#import "BMBlockServiceDelegate.h"
+#import <BMCommons/BMBlockServiceDelegate.h>
 #import <BMCommons/BMWeakReference.h>
 #import <BMCommons/BMWeakReferenceRegistry.h>
 #import <BMCommons/BMCore.h>
