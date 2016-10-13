@@ -27,18 +27,11 @@ TODO: Add long description of the pod here.
     s_core.frameworks   = 'Foundation','UIKit','CoreGraphics','SystemConfiguration','AudioToolbox','Security'
     s_core.prefix_header_file = 'BMCommons/BMCore/Sources/Other/BMCore_Prefix.pch'
     s_core.header_dir = 'BMCore'
-    s_core.libraries = 'z', 'icucore', 'xml2'
-    s_core.subspec 'no-arc' do |s_core_noarc|
-      s_core_noarc.requires_arc = false
-      s_core_noarc.source_files = 'BMCommons/BMCore/Sources/Classes/BMRegexKitLite.*','BMCommons/BMCore/Sources/Classes/BMKeychainItemWrapper.*','BMCommons/BMCore/Sources/Classes/NSString+BMCommons_noarc.*'
-    end
-    s_core.subspec 'arc' do |s_core_arc|
-      s_core_arc.requires_arc = true
-      s_core_arc.compiler_flags = '-Wno-arc-performSelector-leaks'
-      s_core_arc.source_files = 'BMCommons/BMCore/Sources/**/*.{c,m,h}'
-      s_core_arc.exclude_files = 'BMCommons/BMCore/**/*_Private.*','BMCommons/BMCore/Sources/Classes/BMRegexKitLite.*','BMCommons/BMCore/Sources/Classes/BMKeychainItemWrapper.*','BMCommons/BMCore/Sources/Classes/NSString+BMCommons_noarc.*'
-      s_core_arc.dependency 'BMCommons/BMCore/no-arc'
-    end
+    s_core.libraries = 'z', 'icucore'
+    s_core.requires_arc = true
+    s_core.compiler_flags = '-Wno-arc-performSelector-leaks'
+    s_core.source_files = 'BMCommons/BMCore/Sources/**/*.{c,m,h}'
+    s_core.exclude_files = 'BMCommons/BMCore/**/*_Private.*'
   end
 
   s.subspec 'BMUICore' do |s_uicore|
@@ -81,7 +74,7 @@ TODO: Add long description of the pod here.
     s_xml.compiler_flags = '-Wno-arc-performSelector-leaks'
     s_xml.source_files = 'BMCommons/BMXML/Sources/**/*.{c,m,h}'
     s_xml.private_header_files = 'BMCommons/BMXML/**/Private/*.h'
-    s_xml.pod_target_xcconfig     = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2' }
+    s_xml.libraries = 'xml2'
     s_xml.dependency 'BMCommons/BMCore'
   end
 

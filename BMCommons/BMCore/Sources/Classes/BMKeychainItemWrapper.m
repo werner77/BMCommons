@@ -98,7 +98,7 @@
 
 - (id)initWithIdentifier: (NSString *)identifier accessGroup:(NSString *) accessGroup;
 {
-	return [self initWithIdentifier:identifier accessGroup:accessGroup valueDataTransformer:[[BMStringToDataTransformer new] autorelease]];
+	return [self initWithIdentifier:identifier accessGroup:accessGroup valueDataTransformer:[BMStringToDataTransformer new]];
 }
 
 - (id)initWithIdentifier: (NSString *)identifier accessGroup:(NSString *) accessGroup valueDataTransformer:(NSValueTransformer *)transformer {
@@ -140,7 +140,7 @@
         
         NSDictionary *tempQuery = [NSDictionary dictionaryWithDictionary:genericPasswordQuery];
         
-        NSMutableDictionary *outDictionary = nil;
+        CFTypeRef outDictionary = NULL;
         
         if (SecItemCopyMatching((CFDictionaryRef)tempQuery, (CFTypeRef *)&outDictionary) != noErr)
         {
@@ -172,21 +172,19 @@
         else
         {
             // load the saved data from Keychain.
-            self.keychainItemData = [self secItemFormatToDictionary:outDictionary];
+            self.keychainItemData = [self secItemFormatToDictionary:(__bridge NSDictionary *)outDictionary];
         }
 		
-        [outDictionary release];
+        if (outDictionary != NULL) {
+            CFRelease(outDictionary);
+        }
     }
 	return self;
 }
 
 - (void)dealloc
 {
-	[valueDataTransformer release];
-    [keychainItemData release];
-    [genericPasswordQuery release];
-    
-    [super dealloc];
+	[super dealloc];
 }
 
 - (void)setObject:(id)inObject forKey:(id)key flush:(BOOL)flush
@@ -223,7 +221,7 @@
     OSStatus junk = noErr;
     if (!keychainItemData)
     {
-        self.keychainItemData = [[[NSMutableDictionary alloc] init] autorelease];
+        self.keychainItemData = [[NSMutableDictionary alloc] init];
     }
     else if (keychainItemData)
     {
@@ -240,8 +238,6 @@
         if (junk != noErr) {
             LogWarn(@"Problem deleting current keychain dictionary., error: %d", (int)junk );
         }
-        [tempDictionary release];
-        [keys release];
     }
     
     // Default attributes for keychain item.
@@ -294,9 +290,10 @@
     [returnDictionary setObject:(id)kSecClassGenericPassword forKey:(id)kSecClass];
     
     // Acquire the password data from the attributes.
-    NSData *passwordData = NULL;
-    if (SecItemCopyMatching((CFDictionaryRef)returnDictionary, (CFTypeRef *)&passwordData) == noErr)
+    CFTypeRef passwordDataRef = NULL;
+    if (SecItemCopyMatching((CFDictionaryRef)returnDictionary, (CFTypeRef *)&passwordDataRef) == noErr)
     {
+        NSData *passwordData = (__bridge NSData *)passwordDataRef;
         // Remove the search, class, and identifier key/value, we don't need them anymore.
         [returnDictionary removeObjectForKey:(id)kSecReturnData];
         
@@ -321,14 +318,16 @@
         LogWarn(@"Serious error, no matching item found in the keychain.\n");
     }
     
-    [passwordData release];
+    if (passwordDataRef != NULL) {
+        CFRelease(passwordDataRef);
+    }
 	
     return returnDictionary;
 }
 
 - (void)writeToKeychain
 {
-    NSDictionary *attributes = NULL;
+    CFTypeRef attributes = NULL;
     NSMutableDictionary *updateItem = NULL;
     OSStatus result;
     
@@ -336,7 +335,7 @@
     if (result == noErr)
     {
         // First we need the attributes from the Keychain.
-        updateItem = [NSMutableDictionary dictionaryWithDictionary:attributes];
+        updateItem = [NSMutableDictionary dictionaryWithDictionary:(__bridge NSDictionary *)attributes];
         // Second we need to add the appropriate search key/values.
         [updateItem setObject:[genericPasswordQuery objectForKey:(id)kSecClass] forKey:(id)kSecClass];
         
@@ -374,6 +373,8 @@
             LogWarn(@"Couldn't add the Keychain Item, error: %d", (int)result);
         }
     }
-	[attributes release];
+    if (attributes != NULL) {
+        CFRelease(attributes);
+    }
 }
 @end

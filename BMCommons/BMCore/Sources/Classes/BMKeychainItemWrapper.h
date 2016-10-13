@@ -56,14 +56,9 @@
     CF/NS container objects.
 */
 @interface BMKeychainItemWrapper : NSObject
-{
-    NSMutableDictionary *keychainItemData;		// The actual keychain item data backing store.
-    NSMutableDictionary *genericPasswordQuery;	// A placeholder for the generic keychain item query used to locate the item.
-	NSValueTransformer *valueDataTransformer;
-}
 
-@property (nonatomic, retain) NSMutableDictionary *keychainItemData;
-@property (nonatomic, retain) NSMutableDictionary *genericPasswordQuery;
+@property (nonatomic, strong) NSMutableDictionary *keychainItemData;
+@property (nonatomic, strong) NSMutableDictionary *genericPasswordQuery;
 
 /** 
  Value transformer for converting the value data.

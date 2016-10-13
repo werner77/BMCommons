@@ -58,6 +58,7 @@
 		741401391DAF8E9800054D1D /* ExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController.m; sourceTree = "<group>"; };
 		7414013C1DAF8EB500054D1D /* Example-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Example-Info.plist"; sourceTree = "<group>"; };
 		7414013D1DAF8EB500054D1D /* Example-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example-Prefix.pch"; sourceTree = "<group>"; };
+		748E349A1DAFC99900093523 /* BMCommons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BMCommons; path = ../BMCommons; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B46C16886D43CE9A38A4843F /* Pods-BMCommons_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMCommons_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BMCommons_Example/Pods-BMCommons_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BAD7925F3218F36D1404227E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -107,6 +108,7 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
+				748E349A1DAFC99900093523 /* BMCommons */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for BMCommons */,
 				6003F5B5195388D20070C39A /* Tests */,
@@ -263,8 +265,6 @@
 			mainGroup = 6003F581195388D10070C39A;
 			productRefGroup = 6003F58B195388D20070C39A /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				6003F589195388D20070C39A /* BMCommons_Example */,
