@@ -1,6 +1,6 @@
 # BMCommons
 
-[![CI Status](http://img.shields.io/travis/Werner Altewischer/BMCommons.svg?style=flat)](https://travis-ci.org/Werner Altewischer/BMCommons)
+[![CI Status](http://img.shields.io/travis/werner77/BMCommons.svg?style=flat)](https://travis-ci.org/werner77/BMCommons)
 [![Version](https://img.shields.io/cocoapods/v/BMCommons.svg?style=flat)](http://cocoapods.org/pods/BMCommons)
 [![License](https://img.shields.io/cocoapods/l/BMCommons.svg?style=flat)](http://cocoapods.org/pods/BMCommons)
 [![Platform](https://img.shields.io/cocoapods/p/BMCommons.svg?style=flat)](http://cocoapods.org/pods/BMCommons)
