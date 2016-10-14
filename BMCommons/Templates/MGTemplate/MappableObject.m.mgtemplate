@@ -1,0 +1,145 @@
+//
+//  _{{ mapping.name }}.m
+//  BTFD
+//
+//  Generated Class
+//  Copyright 2011 BehindMedia. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <BMCommons/BMDateHelper.h>
+#import <BMCommons/BMTwoWayDictionary.h>
+#import <BMCommons/NSNumber+BMCommons.h>
+#import <BMCommons/NSDateFormatter+BMCommons.h>
+#import <BMRestKit/BMFieldMapping.h>
+#import <BMCommons/BMLogging.h>
+
+#import "_{{ mapping.name }}.h"
+{% for fieldMapping in mapping.fieldMappings %}{% if fieldMapping.fieldObjectClassIsCustom %}#import "{{ fieldMapping.fieldObjectClassName }}.h"{% /if %}
+{% /for %}
+
+
+@implementation _{{ mapping.name }} 
+
+{% if mapping.isEnumeration %}
+static BMTwoWayDictionary *valueMapping = nil;
+
++ (void)initialize {
+	if (!valueMapping) {
+		valueMapping = [[BMTwoWayDictionary alloc] initWithObjectsAndKeys:
+		{% for value in mapping.enumeratedValues %}{{ value.valueDeclaration }}, [NSNumber numberWithInt:{{ mapping.name }}{{ value.formattedValue }}],
+		{% /for %} 
+		nil];
+	}
+}
+{% /if %}
+
++ (NSArray *)fieldMappingFormatArray {
+    NSMutableArray *mappings = [NSMutableArray array];
+	{% if mapping.parentName != nil %}
+    [mappings addObjectsFromArray:[super fieldMappingFormatArray]];
+    {% /if %}
+	{% for fieldMapping in mapping.fieldMappings %}{% if fieldMapping.isDate %}[mappings addObject:[NSString stringWithFormat:@"{{ fieldMapping.fieldMappingFormatString }}:%@", [self dateFormatForField:@"{{ fieldMapping.fieldName }}"]]];{% else %}[mappings addObject:@"{{ fieldMapping.fieldMappingFormatString }}"];{% /if %}
+    {% /for %}
+	return mappings;
+}
+
+{% if mapping.isRootElement %}
++ (NSString *)rootElementName {
+    return @"{{ mapping.elementName }}";
+}
+{% /if %}
+
++ (NSDictionary *)fieldMappingNamespaces {
+    NSMutableDictionary *namespaces = [NSMutableDictionary dictionary];
+    {% if mapping.parentName != nil %}
+	[namespaces addEntriesFromDictionary:[super fieldMappingNamespaces]];
+	{% /if %}
+	{% for fieldMapping in mapping.fieldMappings %}{% if fieldMapping.namespaceURI != nil %}[namespaces setObject:@"{{ fieldMapping.namespaceURI }}" forKey:@"{{ fieldMapping.mappingPath }}"];{% /if %}
+	{% /for %}
+    return namespaces;
+}
+
++ (NSString *)namespaceURI {
+	return {% if mapping.namespaceURI == nil %}nil{% else %}@"{{ mapping.namespaceURI }}"{% /if %};
+}
+
++ (NSString *)dateFormatForField:(NSString *)fieldName {
+    return [self defaultDateFormat];
+}
+
++ (NSString *)defaultDateFormat {
+    return [BMFieldMapping defaultDateFormat];
+}
+
+- (id)init {
+    if ((self = [super init])) {
+    {% for fieldMapping in mapping.fieldMappings %}{% if fieldMapping.isArray %}    _{{ fieldMapping.fieldName }} = [NSMutableArray new];{% /if %}{% if fieldMapping.isSet %}    _{{ fieldMapping.fieldName }} = [NSMutableOrderedSet new];{% /if %}
+	{% /for %}    
+    }
+    return self;
+}
+
+- (NSString *)description {
+	NSMutableString *s = [NSMutableString string];
+	{% if mapping.parentName != nil %}
+	[s appendString:[super description]];
+	{% else %}
+	[s appendString:NSStringFromClass([self class])];
+	[s appendString:@"\n"];
+	{% /if %}
+	
+	[s appendString:@"{\n"];
+	
+	{% for fieldMapping in mapping.fieldMappings %}[s appendFormat:@"{{ fieldMapping.fieldName }}=%@\n", [self.{{ fieldMapping.fieldName }} description]];
+	{% /for %}
+	
+	[s appendString:@"}\n"];
+	return s;
+}
+
+{% if mapping.isEnumeration %}
+- ({{ mapping.name }}Value) enumValue {
+	NSNumber *n = [valueMapping keyForObject:self.value];
+	return [n intValue];
+}
+
+- (void)setEnumValue:({{ mapping.name }}Value)theValue {
+	NSString *sValue = [valueMapping objectForKey:[NSNumber numberWithInt:theValue]];
+	if (sValue == nil) {
+		LogWarn(@"Value %tu is not allowed for enumeration %@", theValue, NSStringFromClass([self class]));
+	}
+	self.value = sValue;
+}
+
+- (void)setValue:(NSString *)value {
+	if (value != nil && [valueMapping keyForObject:value] == nil) {
+		LogWarn(@"Value %@ is not allowed for enumeration %@", value, NSStringFromClass([self class]));
+		value = nil;
+	}
+	_value = value;
+}
+
+- (BOOL)isEqual:(id)other {
+    if (![other isKindOfClass:[self class]]) {
+        return NO;
+    }
+    _{{ mapping.name }} *otherValue = (_{{ mapping.name }} *)other;
+    
+    return (self.value == otherValue.value || [self.value isEqual:otherValue.value]);
+}
+
+- (NSUInteger)hash {
+    return self.value.hash;
+}
+
++ (id)instanceWithEnumValue:({{ mapping.name }}Value)theValue {
+    _{{ mapping.name }} * instance = [[self alloc] init];
+    [instance setEnumValue:theValue];
+    return instance;
+}
+
+{% /if %}
+
+
+@end

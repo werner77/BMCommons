@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>urn:microsoft-dynamics-schemas/codeunit/ipApplicationWS</key>
+	<string>IP</string>
+	<key>urn:microsoft-dynamics-nav/xmlports/x87404</key>
+	<string>Q4</string>
+	<key>urn:microsoft-dynamics-nav/xmlports/x87403</key>
+	<string>Q3</string>
+	<key>urn:microsoft-dynamics-nav/xmlports/x87400</key>
+	<string>Q1</string>
+	<key>urn:microsoft-dynamics-nav/xmlports/x87401</key>
+	<string>Q2</string>
+</dict>
+</plist>

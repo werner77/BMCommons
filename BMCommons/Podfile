@@ -1,0 +1,16 @@
+source 'https://github.com/werner77/BMPodSpecs.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
+project 'BMCommons.xcodeproj'
+workspace 'BMCommons.xcworkspace'
+platform:ios, '8.0'
+
+inhibit_all_warnings!
+
+target 'BMCommonsTest' do
+    pod 'yajl-objc', '0.3.0'
+    pod 'GHUnit', '0.6.0'
+    pod 'GoogleAPIClientForREST/Core'
+    pod 'GoogleAPIClientForREST/YouTube'
+    pod 'GTMOAuth2'
+end

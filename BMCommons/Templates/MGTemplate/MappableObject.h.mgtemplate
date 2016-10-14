@@ -1,0 +1,38 @@
+//
+//  _{{ mapping.name }}.h
+//  BTFD
+//
+//  Generated Class
+//  Copyright 2011 BehindMedia. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <BMRestKit/BMAbstractMappableObject.h>
+{% if mapping.parentName != nil %}#import "{{ mapping.parentName }}.h"{% /if %}
+{% for fieldMapping in mapping.fieldMappings %}
+{% if fieldMapping.fieldObjectClassIsCustom %}@class {{ fieldMapping.fieldObjectClassName }};{% /if %}{% /for %}
+
+{% if mapping.isEnumeration %}
+typedef NS_ENUM(NSUInteger, {{ mapping.name }}Value) {
+	{% for value in mapping.enumeratedValues %}{{ mapping.name }}{{ value.formattedValue }} = 1 << {{ currentLoop.currentIndex }},
+	{% /for %}
+};
+{% /if %}
+
+@interface _{{ mapping.name }} : {% if mapping.parentName == nil %}BMAbstractMappableObject{% else %}{{ mapping.parentName }}{% /if %} 
+
+{% for fieldMapping in mapping.fieldMappings %}
+@property (nonatomic, strong) {{ fieldMapping.fieldClassName }}{% if fieldMapping.isCollection %}<{{ fieldMapping.fieldObjectClassName }}*>{% /if %} *{{ fieldMapping.fieldName }};{% /for %}
+{% if mapping.isEnumeration %}
+@property (nonatomic, assign) {{ mapping.name }}Value enumValue;
++ (id)instanceWithEnumValue:({{ mapping.name }}Value)theValue;
+{% /if %}
+
+{% if mapping.isRootElement %}
++ (NSString *)rootElementName;
+{% /if %}
+
++ (NSString *)dateFormatForField:(NSString *)fieldName;
++ (NSString *)defaultDateFormat;
+
+@end

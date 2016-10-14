@@ -1,0 +1,633 @@
+{"type": "object", "title": "com.ahold.ecommerce.mobileservices.rest.winefinder.command.WineFinderSearchResultsCommand", "properties": {
+    "heroes": {
+        "type": "array",
+        "title": "[com.ahold.ecommerce.mobileservices.rest.winefinder.command.ProductHighlightCommand]",
+        "items": {
+            "type": "object",
+            "title": "com.ahold.ecommerce.mobileservices.rest.winefinder.command.ProductHighlightCommand:com.ahold.ecommerce.mobileservices.rest.general.command.ProductDetailCommand",
+            "properties": {
+                "assortmentGroups": {
+                    "type": "array",
+                    "title": "[com.ahold.ecommerce.mobileservices.rest.product.command.AssortmentGroupBySalesCommand]",
+                    "items": {
+                        "type": "object",
+                        "title": "com.ahold.ecommerce.mobileservices.rest.product.command.AssortmentGroupBySalesCommand",
+                        "properties": {
+                            "description": {
+                                "type": "string"
+                            },
+                            "formulaId": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                },
+                "product": {
+                    "type": "object",
+                    "title": "com.ahold.ecommerce.mobileservices.rest.general.command.ProductCommand",
+                    "properties": {
+                        "hqIdSource": {
+                            "type": "string"
+                        },
+                        "score": {
+                            "type": "integer"
+                        },
+                        "frozen": {
+                            "type": "boolean"
+                        },
+                        "checkRequired": {
+                            "type": "string",
+                            "enum": ["ALCOHOL"]
+                        },
+                        "hqId": {
+                            "type": "integer"
+                        },
+                        "sourceId": {
+                            "type": "object",
+                            "title": "com.ahold.ecommerce.mobileservices.rest.product.command.ProductDescriptionSourceIdCommand",
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "source": {
+                                    "type": "string"
+                                },
+                                "asString": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "storeLocationSearchTerm": {
+                            "type": "string"
+                        },
+                        "fromPrice": {
+                            "type": "number"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "longDescription": {
+                            "type": "string"
+                        },
+                        "salesUnitSize": {
+                            "type": "string"
+                        },
+                        "quantity": {
+                            "type": "integer"
+                        },
+                        "bonusInfoCommand": {
+                            "type": "object",
+                            "title": "com.ahold.ecommerce.mobileservices.rest.general.command.BonusInfoCommand",
+                            "properties": {
+                                "bonusPeriodLongDescription": {
+                                    "type": "string"
+                                },
+                                "discountType": {
+                                    "type": "string"
+                                },
+                                "bonusEndTimeMillis": {
+                                    "type": "integer"
+                                },
+                                "bonusOfferDescription": {
+                                    "type": "string"
+                                },
+                                "bonusSegmentDescription": {
+                                    "type": "string"
+                                },
+                                "bonusStartTimeMillis": {
+                                    "type": "integer"
+                                },
+                                "bonusPeriodDescription": {
+                                    "type": "string"
+                                },
+                                "bonusHqId": {
+                                    "type": "integer"
+                                },
+                                "sourceId": {
+                                    "type": "object",
+                                    "title": "com.ahold.ecommerce.mobileservices.rest.product.command.ProductDescriptionSourceIdCommand",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "source": {
+                                            "type": "string"
+                                        },
+                                        "asString": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "shoppingListProductId": {
+                            "type": "integer"
+                        },
+                        "subCategory": {
+                            "type": "object",
+                            "title": "com.ahold.ecommerce.mobileservices.rest.general.command.CategoryCommand",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "mainCategory": {
+                            "type": "object",
+                            "title": "com.ahold.ecommerce.mobileservices.rest.general.command.CategoryCommand",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "availableForOrdering": {
+                            "type": "boolean"
+                        },
+                        "itemId": {
+                            "type": "string"
+                        },
+                        "forPrice": {
+                            "type": "number"
+                        },
+                        "newInAssortment": {
+                            "type": "boolean"
+                        },
+                        "productId": {
+                            "type": "integer"
+                        },
+                        "outOfStock": {
+                            "type": "boolean"
+                        },
+                        "shortDescription": {
+                            "type": "string"
+                        },
+                        "isPBO": {
+                            "type": "boolean"
+                        },
+                        "images": {
+                            "type": "array",
+                            "title": "[com.ahold.ecommerce.mobileservices.rest.general.command.ImageCommand]",
+                            "items": {
+                                "type": "object",
+                                "title": "com.ahold.ecommerce.mobileservices.rest.general.command.ImageCommand",
+                                "properties": {
+                                    "height": {
+                                        "type": "integer"
+                                    },
+                                    "width": {
+                                        "type": "integer"
+                                    },
+                                    "src": {
+                                        "type": "string"
+                                    },
+                                    "url": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "extendedAttributes": {
+                            "type": "array",
+                            "title": "[com.ahold.ecommerce.mobileservices.rest.product.command.ExtendedAttributeCommand]",
+                            "items": {
+                                "type": "object",
+                                "title": "com.ahold.ecommerce.mobileservices.rest.product.command.ExtendedAttributeCommand",
+                                "properties": {
+                                    "values": {
+                                        "type": "array",
+                                        "title": "[java.lang.String]",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "key": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "basePrice": {
+                            "type": "object",
+                            "title": "com.ahold.ecommerce.mobileservices.rest.product.command.ProductPriceCommand",
+                            "properties": {
+                                "price": {
+                                    "type": "number"
+                                },
+                                "offerPrice": {
+                                    "type": "number"
+                                },
+                                "unitPriceDescription": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "assortmentGroupBySalesId": {
+                    "type": "array",
+                    "title": "[com.ahold.ecommerce.mobileservices.rest.product.command.AssortmentGroupBySalesCommand]",
+                    "items": {
+                        "type": "object",
+                        "title": "com.ahold.ecommerce.mobileservices.rest.product.command.AssortmentGroupBySalesCommand",
+                        "properties": {
+                            "description": {
+                                "type": "string"
+                            },
+                            "formulaId": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                },
+                "imageUrl": {
+                    "type": "string"
+                },
+                "extraDetails": {
+                    "type": "string"
+                },
+                "brand": {
+                    "type": "object",
+                    "title": "com.ahold.ecommerce.mobileservices.rest.product.command.BrandCommand",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "code": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "uniqueSellingPoints": {
+                    "type": "array",
+                    "title": "[com.ahold.ecommerce.mobileservices.rest.product.command.UniqueSellingPointCommand]",
+                    "items": {
+                        "type": "object",
+                        "title": "com.ahold.ecommerce.mobileservices.rest.product.command.UniqueSellingPointCommand",
+                        "properties": {
+                            "description": {
+                                "type": "string"
+                            },
+                            "type": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "enum": ["AFFORDABLE", "POPULAR", "SPECIAL"]
+                },
+                "temperatureZoneCode": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "products": {
+        "type": "object",
+        "title": "org.springframework.hateoas.PagedResources<com.ahold.ecommerce.mobileservices.rest.general.command.ProductCommand>",
+        "properties": {
+            "content": {
+                "type": "array",
+                "title": "[com.ahold.ecommerce.mobileservices.rest.general.command.ProductCommand]",
+                "items": {
+                    "type": "object",
+                    "title": "com.ahold.ecommerce.mobileservices.rest.general.command.ProductCommand",
+                    "properties": {
+                        "hqIdSource": {
+                            "type": "string"
+                        },
+                        "score": {
+                            "type": "integer"
+                        },
+                        "frozen": {
+                            "type": "boolean"
+                        },
+                        "checkRequired": {
+                            "type": "string",
+                            "enum": ["ALCOHOL"]
+                        },
+                        "hqId": {
+                            "type": "integer"
+                        },
+                        "sourceId": {
+                            "type": "object",
+                            "title": "com.ahold.ecommerce.mobileservices.rest.product.command.ProductDescriptionSourceIdCommand",
+                            "properties": {
+                                "id": {
+                                    "type": "integer"
+                                },
+                                "source": {
+                                    "type": "string"
+                                },
+                                "asString": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "storeLocationSearchTerm": {
+                            "type": "string"
+                        },
+                        "fromPrice": {
+                            "type": "number"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "longDescription": {
+                            "type": "string"
+                        },
+                        "salesUnitSize": {
+                            "type": "string"
+                        },
+                        "quantity": {
+                            "type": "integer"
+                        },
+                        "bonusInfoCommand": {
+                            "type": "object",
+                            "title": "com.ahold.ecommerce.mobileservices.rest.general.command.BonusInfoCommand",
+                            "properties": {
+                                "bonusPeriodLongDescription": {
+                                    "type": "string"
+                                },
+                                "discountType": {
+                                    "type": "string"
+                                },
+                                "bonusEndTimeMillis": {
+                                    "type": "integer"
+                                },
+                                "bonusOfferDescription": {
+                                    "type": "string"
+                                },
+                                "bonusSegmentDescription": {
+                                    "type": "string"
+                                },
+                                "bonusStartTimeMillis": {
+                                    "type": "integer"
+                                },
+                                "bonusPeriodDescription": {
+                                    "type": "string"
+                                },
+                                "bonusHqId": {
+                                    "type": "integer"
+                                },
+                                "sourceId": {
+                                    "type": "object",
+                                    "title": "com.ahold.ecommerce.mobileservices.rest.product.command.ProductDescriptionSourceIdCommand",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "source": {
+                                            "type": "string"
+                                        },
+                                        "asString": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "shoppingListProductId": {
+                            "type": "integer"
+                        },
+                        "subCategory": {
+                            "type": "object",
+                            "title": "com.ahold.ecommerce.mobileservices.rest.general.command.CategoryCommand",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "mainCategory": {
+                            "type": "object",
+                            "title": "com.ahold.ecommerce.mobileservices.rest.general.command.CategoryCommand",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "availableForOrdering": {
+                            "type": "boolean"
+                        },
+                        "itemId": {
+                            "type": "string"
+                        },
+                        "forPrice": {
+                            "type": "number"
+                        },
+                        "newInAssortment": {
+                            "type": "boolean"
+                        },
+                        "productId": {
+                            "type": "integer"
+                        },
+                        "outOfStock": {
+                            "type": "boolean"
+                        },
+                        "shortDescription": {
+                            "type": "string"
+                        },
+                        "isPBO": {
+                            "type": "boolean"
+                        },
+                        "images": {
+                            "type": "array",
+                            "title": "[com.ahold.ecommerce.mobileservices.rest.general.command.ImageCommand]",
+                            "items": {
+                                "type": "object",
+                                "title": "com.ahold.ecommerce.mobileservices.rest.general.command.ImageCommand",
+                                "properties": {
+                                    "height": {
+                                        "type": "integer"
+                                    },
+                                    "width": {
+                                        "type": "integer"
+                                    },
+                                    "src": {
+                                        "type": "string"
+                                    },
+                                    "url": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "extendedAttributes": {
+                            "type": "array",
+                            "title": "[com.ahold.ecommerce.mobileservices.rest.product.command.ExtendedAttributeCommand]",
+                            "items": {
+                                "type": "object",
+                                "title": "com.ahold.ecommerce.mobileservices.rest.product.command.ExtendedAttributeCommand",
+                                "properties": {
+                                    "values": {
+                                        "type": "array",
+                                        "title": "[java.lang.String]",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "key": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "basePrice": {
+                            "type": "object",
+                            "title": "com.ahold.ecommerce.mobileservices.rest.product.command.ProductPriceCommand",
+                            "properties": {
+                                "price": {
+                                    "type": "number"
+                                },
+                                "offerPrice": {
+                                    "type": "number"
+                                },
+                                "unitPriceDescription": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "page": {
+                "type": "object",
+                "title": "org.springframework.hateoas.PagedResources$PageMetadata",
+                "properties": {
+                    "totalElements": {
+                        "type": "integer"
+                    },
+                    "number": {
+                        "type": "integer"
+                    },
+                    "totalPages": {
+                        "type": "integer"
+                    },
+                    "size": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "links": {
+                "type": "array",
+                "title": "[org.springframework.hateoas.Link]",
+                "items": {
+                    "type": "object",
+                    "title": "org.springframework.hateoas.Link",
+                    "properties": {
+                        "rel": {
+                            "type": "string"
+                        },
+                        "href": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "filter": {
+        "type": "object",
+        "title": "com.ahold.ecommerce.mobileservices.rest.winefinder.command.WineFinderFilterCommand",
+        "properties": {
+            "title": {
+                "type": "string"
+            },
+            "backgroundImageUrl": {
+                "type": "string"
+            },
+            "name": {
+                "type": "string"
+            },
+            "subFilters": {
+                "type": "array",
+                "title": "[com.ahold.ecommerce.mobileservices.rest.winefinder.command.WineFinderSubFiltersCommand]",
+                "items": {
+                    "type": "object",
+                    "title": "com.ahold.ecommerce.mobileservices.rest.winefinder.command.WineFinderSubFiltersCommand",
+                    "properties": {
+                        "title": {
+                            "type": "string"
+                        },
+                        "values": {
+                            "type": "array",
+                            "title": "[com.ahold.ecommerce.mobileservices.rest.winefinder.command.WineFinderSubFilterCommand]",
+                            "items": {
+                                "type": "object",
+                                "title": "com.ahold.ecommerce.mobileservices.rest.winefinder.command.WineFinderSubFilterCommand",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "backgroundImageUrl": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "links": {
+                                        "type": "array",
+                                        "title": "[org.springframework.hateoas.Link]",
+                                        "items": {
+                                            "type": "object",
+                                            "title": "org.springframework.hateoas.Link",
+                                            "properties": {
+                                                "rel": {
+                                                    "type": "string"
+                                                },
+                                                "href": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "links": {
+                "type": "array",
+                "title": "[org.springframework.hateoas.Link]",
+                "items": {
+                    "type": "object",
+                    "title": "org.springframework.hateoas.Link",
+                    "properties": {
+                        "rel": {
+                            "type": "string"
+                        },
+                        "href": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}}

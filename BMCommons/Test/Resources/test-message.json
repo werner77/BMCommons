@@ -1,0 +1,254 @@
+{
+    "activeSorting": "E",
+    "dateLastSynced": "2014-09-22T10:25:15",
+    "dateLastSyncedMillis": 1411374315000,
+    "items": [
+              {
+              "@type": "com.ahold.ecommerce.mobileservices.controllers.list.resource.ShoppingListSearchTermItemResource",
+              "links": [{
+                        "href": "http://localhost:8088/rest/ah/v1/product-util/auto-suggest?text=bieggg&maxResults=5",
+                        "rel": "self"
+                        }],
+              "listItemId": 0,
+              "position": 0,
+              "quantity": 1,
+              "sourceCode": "TXT",
+              "storeSortingSequenceBucket": "B",
+              "strikedthrough": true,
+              "type": "shoppable",
+              "vagueTerm": {
+              "searchTermTitle": "bieggg",
+              "searchTermValue": "bieggg"
+              }
+              },
+              {
+              "@type": "com.ahold.ecommerce.mobileservices.controllers.list.resource.ShoppingListSearchTermItemResource",
+              "links": [{
+                        "href": "http://localhost:8088/rest/ah/v1/product-util/auto-suggest?text=hhjh&maxResults=5",
+                        "rel": "self"
+                        }],
+              "listItemId": 1,
+              "position": 1,
+              "quantity": 1,
+              "sourceCode": "TXT",
+              "storeSortingSequenceBucket": "B",
+              "strikedthrough": false,
+              "type": "shoppable",
+              "vagueTerm": {
+              "searchTermTitle": "hhjh",
+              "searchTermValue": "hhjh"
+              }
+              },
+              {
+              "@type": "com.ahold.ecommerce.mobileservices.controllers.list.resource.ShoppingListSearchTermItemResource",
+              "links": [{
+                        "href": "http://localhost:8088/rest/ah/v1/product-util/auto-suggest?text=kaas&maxResults=5",
+                        "rel": "self"
+                        }],
+              "listItemId": 5,
+              "position": 2,
+              "quantity": 1,
+              "sourceCode": "TXT",
+              "storeSortingSequenceBucket": "B",
+              "strikedthrough": false,
+              "type": "shoppable",
+              "vagueTerm": {
+              "searchTermTitle": "kaas",
+              "searchTermValue": "kaas"
+              }
+              },
+              {
+              "@type": "com.ahold.ecommerce.mobileservices.controllers.list.resource.ShoppingListProductItemResource",
+              "links": [{
+                        "href": "http://localhost:8088/rest/ah/v2/members/9276649/product/wi32786",
+                        "rel": "self"
+                        }],
+              "listItemId": 6,
+              "position": 3,
+              "product": {
+              "availableForOrdering": true,
+              "bonusInfoCommand": {
+              "bonusEndTimeMillis": 1411682399000,
+              "bonusHqId": 32784,
+              "bonusItemId": "wi32786",
+              "bonusOfferDescription": "3 halen 2 betalen",
+              "bonusPeriodDescription": "t/m donderdag",
+              "bonusPeriodLongDescription": "Geldig: t/m donderdag",
+              "bonusSegmentDescription": "69. AH Hagelslag melk en puur 275",
+              "bonusStartTimeMillis": 1411336800000,
+              "discountType": "AH"
+              },
+              "description": "AH Chocolade hagel puur",
+              "extendedAttributes": [],
+              "images": [],
+              "isPBO": false,
+              "itemId": "wi32786",
+              "links": [],
+              "outOfStock": false,
+              "quantity": 0,
+              "salesUnitSize": "250 gr",
+              "score": 0,
+              "storeLocationSearchTerm": "ah chocolade hagel puur"
+              },
+              "productForPrice": 0.94,
+              "productFromPrice": 0.94,
+              "quantity": 1,
+              "sourceCode": "PRD",
+              "storeSortingSequenceBucket": "B",
+              "strikedthrough": false,
+              "type": "shoppable"
+              },
+              {
+              "@type": "com.ahold.ecommerce.mobileservices.controllers.list.resource.ShoppingListSearchTermItemResource",
+              "links": [{
+                        "href": "http://localhost:8088/rest/ah/v1/product-util/auto-suggest?text=hggf&maxResults=5",
+                        "rel": "self"
+                        }],
+              "listItemId": 2,
+              "position": 4,
+              "quantity": 1,
+              "sourceCode": "TXT",
+              "storeSortingSequenceBucket": "B",
+              "strikedthrough": false,
+              "type": "shoppable",
+              "vagueTerm": {
+              "searchTermTitle": "hggf",
+              "searchTermValue": "hggf"
+              }
+              },
+              {
+              "@type": "com.ahold.ecommerce.mobileservices.controllers.list.resource.ShoppingListSearchTermItemResource",
+              "links": [{
+                        "href": "http://localhost:8088/rest/ah/v1/product-util/auto-suggest?text=fgj&maxResults=5",
+                        "rel": "self"
+                        }],
+              "listItemId": 3,
+              "position": 5,
+              "quantity": 1,
+              "sourceCode": "TXT",
+              "storeSortingSequenceBucket": "B",
+              "strikedthrough": false,
+              "type": "shoppable",
+              "vagueTerm": {
+              "searchTermTitle": "fgj",
+              "searchTermValue": "fgj"
+              }
+              },
+              {
+              "@type": "com.ahold.ecommerce.mobileservices.controllers.list.resource.ShoppingListProductItemResource",
+              "links": [{
+                        "href": "http://localhost:8088/rest/ah/v2/members/9276649/product/wi52034",
+                        "rel": "self"
+                        }],
+              "listItemId": 8,
+              "position": 6,
+              "product": {
+              "availableForOrdering": true,
+              "description": "Undurraga Chardonnay",
+              "extendedAttributes": [],
+              "images": [],
+              "isPBO": false,
+              "itemId": "wi52034",
+              "links": [],
+              "outOfStock": false,
+              "quantity": 0,
+              "salesUnitSize": "75 cl",
+              "score": 0,
+              "storeLocationSearchTerm": "undurraga chardonnay"
+              },
+              "productForPrice": 4.49,
+              "productFromPrice": 4.49,
+              "quantity": 1,
+              "sourceCode": "PRD",
+              "storeSortingSequenceBucket": "B",
+              "strikedthrough": false,
+              "type": "shoppable"
+              },
+              {
+              "@type": "com.ahold.ecommerce.mobileservices.controllers.list.resource.ShoppingListProductItemResource",
+              "linePrice": 2.38,
+              "links": [{
+                        "href": "http://localhost:8088/rest/ah/v2/members/9276649/product/wi4088",
+                        "rel": "self"
+                        }],
+              "listItemId": 4,
+              "position": 7,
+              "product": {
+              "availableForOrdering": true,
+              "bonusInfoCommand": {
+              "bonusEndTimeMillis": 1411941599000,
+              "bonusHqId": 4088,
+              "bonusItemId": "wi4088",
+              "bonusOfferDescription": "1 Euro KORTING",
+              "bonusPeriodLongDescription": "Geldig van maandag 22-09 t/m zondag 28-09",
+              "bonusSegmentDescription": "1. AH Tomaten",
+              "bonusStartTimeMillis": 1411336800000,
+              "discountType": "AH"
+              },
+              "description": "AH Tomaten",
+              "extendedAttributes": [],
+              "images": [],
+              "isPBO": false,
+              "itemId": "wi4088",
+              "links": [],
+              "outOfStock": false,
+              "quantity": 0,
+              "salesUnitSize": "1000 gr",
+              "score": 0,
+              "storeLocationSearchTerm": "ah tomaten"
+              },
+              "productForPrice": 1.38,
+              "productFromPrice": 2.38,
+              "quantity": 1,
+              "sourceCode": "TXT",
+              "storeSortingSequenceBucket": "B",
+              "strikedthrough": false,
+              "type": "shoppable"
+              },
+              {
+              "@type": "com.ahold.ecommerce.mobileservices.controllers.list.resource.ShoppingListProductItemResource",
+              "linePrice": 2.38,
+              "links": [{
+                        "href": "http://localhost:8088/rest/ah/v2/members/9276649/product/wi4088",
+                        "rel": "self"
+                        }],
+              "listItemId": 7,
+              "position": 8,
+              "product": {
+              "availableForOrdering": true,
+              "bonusInfoCommand": {
+              "bonusEndTimeMillis": 1411941599000,
+              "bonusHqId": 4088,
+              "bonusItemId": "wi4088",
+              "bonusOfferDescription": "1 Euro KORTING",
+              "bonusPeriodLongDescription": "Geldig van maandag 22-09 t/m zondag 28-09",
+              "bonusSegmentDescription": "1. AH Tomaten",
+              "bonusStartTimeMillis": 1411336800000,
+              "discountType": "AH"
+              },
+              "description": "AH Tomaten",
+              "extendedAttributes": [],
+              "images": [],
+              "isPBO": false,
+              "itemId": "wi4088",
+              "links": [],
+              "outOfStock": false,
+              "quantity": 0,
+              "salesUnitSize": "1000 gr",
+              "score": 0,
+              "storeLocationSearchTerm": "ah tomaten"
+              },
+              "productForPrice": 1.38,
+              "productFromPrice": 2.38,
+              "quantity": 1,
+              "sourceCode": "PRD",
+              "storeSortingSequenceBucket": "B",
+              "strikedthrough": false,
+              "type": "shoppable"
+              }
+              ],
+    "links": [{
+              "href": "http://localhost:8088/rest/ah/list/shoppinglist",
+              "rel": "self"
+              }]
+}

@@ -1,0 +1,15 @@
+//
+//  {{ mapping.name }}.h
+//  BTFD
+//
+//  Generated Class
+//  Copyright 2011 BehindMedia. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "_{{ mapping.name }}.h"
+
+@interface {{ mapping.name }} : _{{ mapping.name }} {
+}
+
+@end

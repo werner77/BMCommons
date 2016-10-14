@@ -1,0 +1,314 @@
+{
+ "query": {
+  "@count": 162,
+  "@created": "2011-02-04T09:49:04Z",
+  "lang": "en-US",
+  "diagnostics": {
+   "publiclyCallable": "true",
+   "user-time": "1",
+   "service-time": "0",
+   "build-version": "10970"
+  },
+  "results": {
+   "table": [
+    "answers.getbycategory",
+    "answers.getbyuser",
+    "answers.getquestion",
+    "answers.search",
+    {
+     "@security": "APP",
+     "#text": "appdb.application"
+    },
+    "appdb.categories",
+    "atom",
+    "avatars.get",
+    "csv",
+    "data.uri",
+    {
+     "@security": "USER",
+     "#text": "fantasysports.draftresults"
+    },
+    {
+     "@security": "USER",
+     "#text": "fantasysports.games"
+    },
+    {
+     "@security": "USER",
+     "#text": "fantasysports.leagues"
+    },
+    {
+     "@security": "USER",
+     "#text": "fantasysports.leagues.scoreboard"
+    },
+    {
+     "@security": "USER",
+     "#text": "fantasysports.leagues.settings"
+    },
+    {
+     "@security": "USER",
+     "#text": "fantasysports.leagues.standings"
+    },
+    {
+     "@security": "USER",
+     "#text": "fantasysports.players"
+    },
+    {
+     "@security": "USER",
+     "#text": "fantasysports.players.ownership"
+    },
+    {
+     "@security": "USER",
+     "#text": "fantasysports.players.stats"
+    },
+    {
+     "@security": "USER",
+     "#text": "fantasysports.teams"
+    },
+    {
+     "@security": "USER",
+     "#text": "fantasysports.teams.roster"
+    },
+    {
+     "@security": "USER",
+     "#text": "fantasysports.teams.roster.stats"
+    },
+    {
+     "@security": "USER",
+     "#text": "fantasysports.teams.stats"
+    },
+    "feed",
+    "feednormalizer",
+    "flickr.groups.info",
+    "flickr.groups.pools.photos",
+    "flickr.people.findbyusername",
+    "flickr.people.info2",
+    "flickr.people.publicphotos",
+    "flickr.photos.exif",
+    "flickr.photos.info",
+    "flickr.photos.interestingness",
+    "flickr.photos.recent",
+    "flickr.photos.search",
+    "flickr.photos.sizes",
+    "flickr.photosets.info",
+    "flickr.photosets.photos",
+    "flickr.places",
+    "flickr.places.info",
+    "flickr.urls.lookupuser",
+    "geo.concordance",
+    "geo.continents",
+    "geo.counties",
+    "geo.countries",
+    "geo.districts",
+    "geo.oceans",
+    "geo.placefinder",
+    "geo.placemaker",
+    "geo.places",
+    "geo.places.ancestors",
+    "geo.places.belongtos",
+    "geo.places.children",
+    "geo.places.common",
+    "geo.places.descendants",
+    "geo.places.neighbors",
+    "geo.places.parent",
+    "geo.places.siblings",
+    "geo.placetypes",
+    "geo.seas",
+    "geo.states",
+    "html",
+    "json",
+    "local.search",
+    "maps.map",
+    "maps.traffic",
+    "meme.comments",
+    "meme.followers",
+    "meme.following",
+    "meme.functions",
+    "meme.info",
+    "meme.people",
+    "meme.popular",
+    "meme.post.info",
+    "meme.posts",
+    "meme.posts.featured",
+    "meme.search",
+    {
+     "@security": "USER",
+     "#text": "meme.user.comments"
+    },
+    {
+     "@security": "USER",
+     "#text": "meme.user.dashboard"
+    },
+    {
+     "@security": "USER",
+     "#text": "meme.user.following"
+    },
+    {
+     "@security": "USER",
+     "#text": "meme.user.posts"
+    },
+    "microformats",
+    "music.artist.id",
+    "music.artist.popular",
+    "music.artist.search",
+    "music.artist.similar",
+    "music.release.artist",
+    "music.release.id",
+    "music.release.popular",
+    "music.release.search",
+    "music.track.id",
+    "music.track.popular",
+    "music.track.search",
+    "music.video.category",
+    "music.video.id",
+    "music.video.popular",
+    "music.video.search",
+    "music.video.similar",
+    "mybloglog.community.find",
+    "mybloglog.member",
+    "mybloglog.member.contacts",
+    "mybloglog.member.newwithcontacts",
+    "mybloglog.member.newwithme",
+    "mybloglog.members.find",
+    {
+     "@security": "APP",
+     "#text": "mybloglog.stats.find"
+    },
+    "rss",
+    "search.images",
+    "search.news",
+    "search.siteexplorer.inlinks",
+    "search.siteexplorer.pages",
+    "search.spelling",
+    "search.suggest",
+    "search.termextract",
+    "search.web",
+    {
+     "@security": "USER",
+     "#text": "social.connections"
+    },
+    {
+     "@security": "APP",
+     "#text": "social.connections.updates"
+    },
+    {
+     "@security": "USER",
+     "#text": "social.contacts"
+    },
+    {
+     "@security": "USER",
+     "#text": "social.contacts.connections"
+    },
+    {
+     "@security": "USER",
+     "#text": "social.contacts.sync"
+    },
+    {
+     "@security": "USER",
+     "#text": "social.contacts.updates"
+    },
+    {
+     "@security": "APP",
+     "#text": "social.entities"
+    },
+    {
+     "@security": "USER",
+     "#text": "social.notifications"
+    },
+    {
+     "@security": "APP",
+     "#text": "social.notifications.summary"
+    },
+    {
+     "@security": "APP",
+     "#text": "social.presence"
+    },
+    {
+     "@security": "APP",
+     "#text": "social.profile"
+    },
+    {
+     "@security": "APP",
+     "#text": "social.profile.image"
+    },
+    {
+     "@security": "APP",
+     "#text": "social.profile.status"
+    },
+    {
+     "@security": "USER",
+     "#text": "social.relationships"
+    },
+    {
+     "@security": "APP",
+     "#text": "social.relationships.updates"
+    },
+    {
+     "@security": "APP",
+     "#text": "social.updates"
+    },
+    {
+     "@security": "APP",
+     "#text": "social.updates.activitystreams"
+    },
+    {
+     "@security": "APP",
+     "#text": "social.updates.search"
+    },
+    "social.urlinfo",
+    "upcoming.category",
+    "upcoming.country",
+    "upcoming.events",
+    "upcoming.events.bestinplace",
+    "upcoming.groups",
+    "upcoming.metro",
+    "upcoming.state",
+    "upcoming.user",
+    "upcoming.venue",
+    "uritemplate",
+    "weather.forecast",
+    "xml",
+    "xslt",
+    {
+     "@security": "APP",
+     "#text": "yahoo.identity"
+    },
+    "yahoo.y.ahoo.it",
+    "yap.setsmallview",
+    {
+     "@security": "USER",
+     "#text": "ymail.folders"
+    },
+    {
+     "@security": "USER",
+     "#text": "ymail.messages"
+    },
+    {
+     "@security": "USER",
+     "#text": "ymail.msgcontent"
+    },
+    {
+     "@security": "USER",
+     "#text": "ymail.search"
+    },
+    {
+     "@security": "APP",
+     "#text": "yql.env"
+    },
+    {
+     "@security": "USER",
+     "#text": "yql.queries"
+    },
+    {
+     "@security": "USER",
+     "#text": "yql.queries.query"
+    },
+    "yql.query.multi",
+    "yql.storage",
+    "yql.storage.admin",
+    "yql.table.desc",
+    "yql.table.list",
+    "yql.tables"
+   ]
+  }
+ }
+}

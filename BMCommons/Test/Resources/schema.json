@@ -1,0 +1,1642 @@
+{
+    "type": "object",
+    "title": "com.ahold.ecommerce.mobileservices.rest.winefinder.command.WineFinderFilterCommand",
+    "properties": {
+        "backgroundImageUrl": {
+            "type": "string"
+        },
+        "products": {
+            "type": "array",
+            "title": "Ljava\/util\/List<Lcom\/ahold\/ecommerce\/appie\/product\/dto\/AppieProduct;>;",
+            "items": {
+                "type": "object",
+                "title": "Lcom\/ahold\/ecommerce\/appie\/product\/dto\/AppieProduct;",
+                "properties": {
+                    "orderableFrom": {
+                        "type": "object",
+                        "title": "Lorg\/joda\/time\/LocalDate;",
+                        "properties": {
+                            "yearOfEra": {
+                                "type": "integer"
+                            },
+                            "yearOfCentury": {
+                                "type": "integer"
+                            },
+                            "values": {
+                                "type": "array",
+                                "title": "[I;",
+                                "items": {
+                                    "type": "integer"
+                                }
+                            },
+                            "dayOfWeek": {
+                                "type": "integer"
+                            },
+                            "centuryOfEra": {
+                                "type": "integer"
+                            },
+                            "dayOfMonth": {
+                                "type": "integer"
+                            },
+                            "dayOfYear": {
+                                "type": "integer"
+                            },
+                            "weekyear": {
+                                "type": "integer"
+                            },
+                            "era": {
+                                "type": "integer"
+                            },
+                            "monthOfYear": {
+                                "type": "integer"
+                            },
+                            "chronology": {
+                                "type": "object",
+                                "title": "Lorg\/joda\/time\/Chronology;",
+                                "properties": {
+                                    "zone": {
+                                        "type": "object",
+                                        "title": "Lorg\/joda\/time\/DateTimeZone;",
+                                        "properties": {
+                                            "fixed": {
+                                                "type": "boolean"
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "fields": {
+                                "type": "array",
+                                "title": "[Lorg\/joda\/time\/DateTimeField;",
+                                "items": {
+                                    "type": "object",
+                                    "title": "Lorg\/joda\/time\/DateTimeField;",
+                                    "properties": {
+                                        "maximumValue": {
+                                            "type": "integer"
+                                        },
+                                        "minimumValue": {
+                                            "type": "integer"
+                                        },
+                                        "durationField": {
+                                            "type": "object",
+                                            "title": "Lorg\/joda\/time\/DurationField;",
+                                            "properties": {
+                                                "unitMillis": {
+                                                    "type": "integer"
+                                                },
+                                                "type": {
+                                                    "type": "object",
+                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "precise": {
+                                                    "type": "boolean"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "supported": {
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        },
+                                        "lenient": {
+                                            "type": "boolean"
+                                        },
+                                        "rangeDurationField": {
+                                            "type": "object",
+                                            "title": "Lorg\/joda\/time\/DurationField;",
+                                            "properties": {
+                                                "unitMillis": {
+                                                    "type": "integer"
+                                                },
+                                                "type": {
+                                                    "type": "object",
+                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "precise": {
+                                                    "type": "boolean"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "supported": {
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        },
+                                        "type": {
+                                            "type": "object",
+                                            "title": "Lorg\/joda\/time\/DateTimeFieldType;",
+                                            "properties": {
+                                                "rangeDurationType": {
+                                                    "type": "object",
+                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "durationType": {
+                                                    "type": "object",
+                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "leapDurationField": {
+                                            "type": "object",
+                                            "title": "Lorg\/joda\/time\/DurationField;",
+                                            "properties": {
+                                                "unitMillis": {
+                                                    "type": "integer"
+                                                },
+                                                "type": {
+                                                    "type": "object",
+                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "precise": {
+                                                    "type": "boolean"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "supported": {
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        },
+                                        "supported": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            },
+                            "weekOfWeekyear": {
+                                "type": "integer"
+                            },
+                            "year": {
+                                "type": "integer"
+                            },
+                            "fieldTypes": {
+                                "type": "array",
+                                "title": "[Lorg\/joda\/time\/DateTimeFieldType;",
+                                "items": {
+                                    "type": "object",
+                                    "title": "Lorg\/joda\/time\/DateTimeFieldType;",
+                                    "properties": {
+                                        "rangeDurationType": {
+                                            "type": "object",
+                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "durationType": {
+                                            "type": "object",
+                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "outOfStockInWebshop": {
+                        "type": "boolean"
+                    },
+                    "availableInAHXLOnly": {
+                        "type": "boolean"
+                    },
+                    "catalogCode": {
+                        "type": "string"
+                    },
+                    "specialAssortment": {
+                        "type": "boolean"
+                    },
+                    "price": {
+                        "type": "object",
+                        "title": "Lcom\/ahold\/ecommerce\/productdata\/dto\/Price;",
+                        "properties": {
+                            "forPrice": {
+                                "type": "number"
+                            },
+                            "discount": {
+                                "type": "number"
+                            },
+                            "discountUnit": {
+                                "type": "integer"
+                            },
+                            "unitPrice": {
+                                "type": "number"
+                            },
+                            "discountDescriptionText": {
+                                "type": "string"
+                            },
+                            "bonusSegmentType": {
+                                "type": "string"
+                            },
+                            "loyaltyCardType": {
+                                "type": "string",
+                                "enum": [
+                                         "BONUS_CARD",
+                                         "AIRMILES_CARD",
+                                         "GALL_WINE_CARD"
+                                         ]
+                            },
+                            "unitDescription": {
+                                "type": "string"
+                            },
+                            "forPriceForDisplay": {
+                                "type": "number"
+                            },
+                            "specialOfferPriceGroup": {
+                                "type": "object",
+                                "title": "Lcom\/ahold\/ecommerce\/productdata\/dto\/SpecialOfferPriceGroup;",
+                                "properties": {
+                                    "priceValidity": {
+                                        "type": "object",
+                                        "title": "Lcom\/ahold\/ecommerce\/productdata\/dto\/PriceValidity;",
+                                        "properties": {
+                                            "startDate": {
+                                                "type": "object",
+                                                "title": "Lorg\/joda\/time\/LocalDate;",
+                                                "properties": {
+                                                    "yearOfEra": {
+                                                        "type": "integer"
+                                                    },
+                                                    "yearOfCentury": {
+                                                        "type": "integer"
+                                                    },
+                                                    "values": {
+                                                        "type": "array",
+                                                        "title": "[I;",
+                                                        "items": {
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "dayOfWeek": {
+                                                        "type": "integer"
+                                                    },
+                                                    "centuryOfEra": {
+                                                        "type": "integer"
+                                                    },
+                                                    "dayOfMonth": {
+                                                        "type": "integer"
+                                                    },
+                                                    "dayOfYear": {
+                                                        "type": "integer"
+                                                    },
+                                                    "weekyear": {
+                                                        "type": "integer"
+                                                    },
+                                                    "era": {
+                                                        "type": "integer"
+                                                    },
+                                                    "monthOfYear": {
+                                                        "type": "integer"
+                                                    },
+                                                    "chronology": {
+                                                        "type": "object",
+                                                        "title": "Lorg\/joda\/time\/Chronology;",
+                                                        "properties": {
+                                                            "zone": {
+                                                                "type": "object",
+                                                                "title": "Lorg\/joda\/time\/DateTimeZone;",
+                                                                "properties": {
+                                                                    "fixed": {
+                                                                        "type": "boolean"
+                                                                    },
+                                                                    "id": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "fields": {
+                                                        "type": "array",
+                                                        "title": "[Lorg\/joda\/time\/DateTimeField;",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DateTimeField;",
+                                                            "properties": {
+                                                                "maximumValue": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "minimumValue": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "durationField": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationField;",
+                                                                    "properties": {
+                                                                        "unitMillis": {
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "type": {
+                                                                            "type": "object",
+                                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                            "properties": {
+                                                                                "name": {
+                                                                                    "type": "string"
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "precise": {
+                                                                            "type": "boolean"
+                                                                        },
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "supported": {
+                                                                            "type": "boolean"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "lenient": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "rangeDurationField": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationField;",
+                                                                    "properties": {
+                                                                        "unitMillis": {
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "type": {
+                                                                            "type": "object",
+                                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                            "properties": {
+                                                                                "name": {
+                                                                                    "type": "string"
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "precise": {
+                                                                            "type": "boolean"
+                                                                        },
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "supported": {
+                                                                            "type": "boolean"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "type": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DateTimeFieldType;",
+                                                                    "properties": {
+                                                                        "rangeDurationType": {
+                                                                            "type": "object",
+                                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                            "properties": {
+                                                                                "name": {
+                                                                                    "type": "string"
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "durationType": {
+                                                                            "type": "object",
+                                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                            "properties": {
+                                                                                "name": {
+                                                                                    "type": "string"
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "name": {
+                                                                    "type": "string"
+                                                                },
+                                                                "leapDurationField": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationField;",
+                                                                    "properties": {
+                                                                        "unitMillis": {
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "type": {
+                                                                            "type": "object",
+                                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                            "properties": {
+                                                                                "name": {
+                                                                                    "type": "string"
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "precise": {
+                                                                            "type": "boolean"
+                                                                        },
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "supported": {
+                                                                            "type": "boolean"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "supported": {
+                                                                    "type": "boolean"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "weekOfWeekyear": {
+                                                        "type": "integer"
+                                                    },
+                                                    "year": {
+                                                        "type": "integer"
+                                                    },
+                                                    "fieldTypes": {
+                                                        "type": "array",
+                                                        "title": "[Lorg\/joda\/time\/DateTimeFieldType;",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DateTimeFieldType;",
+                                                            "properties": {
+                                                                "rangeDurationType": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                    "properties": {
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "name": {
+                                                                    "type": "string"
+                                                                },
+                                                                "durationType": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                    "properties": {
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "endDate": {
+                                                "type": "object",
+                                                "title": "Lorg\/joda\/time\/LocalDate;",
+                                                "properties": {
+                                                    "yearOfEra": {
+                                                        "type": "integer"
+                                                    },
+                                                    "yearOfCentury": {
+                                                        "type": "integer"
+                                                    },
+                                                    "values": {
+                                                        "type": "array",
+                                                        "title": "[I;",
+                                                        "items": {
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "dayOfWeek": {
+                                                        "type": "integer"
+                                                    },
+                                                    "centuryOfEra": {
+                                                        "type": "integer"
+                                                    },
+                                                    "dayOfMonth": {
+                                                        "type": "integer"
+                                                    },
+                                                    "dayOfYear": {
+                                                        "type": "integer"
+                                                    },
+                                                    "weekyear": {
+                                                        "type": "integer"
+                                                    },
+                                                    "era": {
+                                                        "type": "integer"
+                                                    },
+                                                    "monthOfYear": {
+                                                        "type": "integer"
+                                                    },
+                                                    "chronology": {
+                                                        "type": "object",
+                                                        "title": "Lorg\/joda\/time\/Chronology;",
+                                                        "properties": {
+                                                            "zone": {
+                                                                "type": "object",
+                                                                "title": "Lorg\/joda\/time\/DateTimeZone;",
+                                                                "properties": {
+                                                                    "fixed": {
+                                                                        "type": "boolean"
+                                                                    },
+                                                                    "id": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "fields": {
+                                                        "type": "array",
+                                                        "title": "[Lorg\/joda\/time\/DateTimeField;",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DateTimeField;",
+                                                            "properties": {
+                                                                "maximumValue": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "minimumValue": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "durationField": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationField;",
+                                                                    "properties": {
+                                                                        "unitMillis": {
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "type": {
+                                                                            "type": "object",
+                                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                            "properties": {
+                                                                                "name": {
+                                                                                    "type": "string"
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "precise": {
+                                                                            "type": "boolean"
+                                                                        },
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "supported": {
+                                                                            "type": "boolean"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "lenient": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "rangeDurationField": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationField;",
+                                                                    "properties": {
+                                                                        "unitMillis": {
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "type": {
+                                                                            "type": "object",
+                                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                            "properties": {
+                                                                                "name": {
+                                                                                    "type": "string"
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "precise": {
+                                                                            "type": "boolean"
+                                                                        },
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "supported": {
+                                                                            "type": "boolean"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "type": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DateTimeFieldType;",
+                                                                    "properties": {
+                                                                        "rangeDurationType": {
+                                                                            "type": "object",
+                                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                            "properties": {
+                                                                                "name": {
+                                                                                    "type": "string"
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "durationType": {
+                                                                            "type": "object",
+                                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                            "properties": {
+                                                                                "name": {
+                                                                                    "type": "string"
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "name": {
+                                                                    "type": "string"
+                                                                },
+                                                                "leapDurationField": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationField;",
+                                                                    "properties": {
+                                                                        "unitMillis": {
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "type": {
+                                                                            "type": "object",
+                                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                            "properties": {
+                                                                                "name": {
+                                                                                    "type": "string"
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "precise": {
+                                                                            "type": "boolean"
+                                                                        },
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "supported": {
+                                                                            "type": "boolean"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "supported": {
+                                                                    "type": "boolean"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "weekOfWeekyear": {
+                                                        "type": "integer"
+                                                    },
+                                                    "year": {
+                                                        "type": "integer"
+                                                    },
+                                                    "fieldTypes": {
+                                                        "type": "array",
+                                                        "title": "[Lorg\/joda\/time\/DateTimeFieldType;",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DateTimeFieldType;",
+                                                            "properties": {
+                                                                "rangeDurationType": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                    "properties": {
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "name": {
+                                                                    "type": "string"
+                                                                },
+                                                                "durationType": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                    "properties": {
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "storeFormats": {
+                                                "type": "array",
+                                                "title": "Ljava\/util\/Set<Lcom\/ahold\/ecommerce\/aholdcore\/store\/enumeration\/StoreFormat;>;",
+                                                "items": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                             "AH_ALBERT",
+                                                             "AH_REGULAR",
+                                                             "AH_REGULAR_OLD",
+                                                             "AH_TOGO",
+                                                             "AH_DNTG",
+                                                             "AH_XL",
+                                                             "AH_BELGIUM",
+                                                             "ET_REGULAR",
+                                                             "GA_REGULAR",
+                                                             "GA_XS",
+                                                             "GA_XS_7UP",
+                                                             "GA_XS_WW"
+                                                             ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "discountDescription": {
+                                "type": "object",
+                                "title": "Lcom\/ahold\/ecommerce\/productdata\/dto\/DiscountDescription;",
+                                "properties": {
+                                    "startDate": {
+                                        "type": "object",
+                                        "title": "Lorg\/joda\/time\/LocalDate;",
+                                        "properties": {
+                                            "yearOfEra": {
+                                                "type": "integer"
+                                            },
+                                            "yearOfCentury": {
+                                                "type": "integer"
+                                            },
+                                            "values": {
+                                                "type": "array",
+                                                "title": "[I;",
+                                                "items": {
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "dayOfWeek": {
+                                                "type": "integer"
+                                            },
+                                            "centuryOfEra": {
+                                                "type": "integer"
+                                            },
+                                            "dayOfMonth": {
+                                                "type": "integer"
+                                            },
+                                            "dayOfYear": {
+                                                "type": "integer"
+                                            },
+                                            "weekyear": {
+                                                "type": "integer"
+                                            },
+                                            "era": {
+                                                "type": "integer"
+                                            },
+                                            "monthOfYear": {
+                                                "type": "integer"
+                                            },
+                                            "chronology": {
+                                                "type": "object",
+                                                "title": "Lorg\/joda\/time\/Chronology;",
+                                                "properties": {
+                                                    "zone": {
+                                                        "type": "object",
+                                                        "title": "Lorg\/joda\/time\/DateTimeZone;",
+                                                        "properties": {
+                                                            "fixed": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "id": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "fields": {
+                                                "type": "array",
+                                                "title": "[Lorg\/joda\/time\/DateTimeField;",
+                                                "items": {
+                                                    "type": "object",
+                                                    "title": "Lorg\/joda\/time\/DateTimeField;",
+                                                    "properties": {
+                                                        "maximumValue": {
+                                                            "type": "integer"
+                                                        },
+                                                        "minimumValue": {
+                                                            "type": "integer"
+                                                        },
+                                                        "durationField": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DurationField;",
+                                                            "properties": {
+                                                                "unitMillis": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "type": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                    "properties": {
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "precise": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "name": {
+                                                                    "type": "string"
+                                                                },
+                                                                "supported": {
+                                                                    "type": "boolean"
+                                                                }
+                                                            }
+                                                        },
+                                                        "lenient": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "rangeDurationField": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DurationField;",
+                                                            "properties": {
+                                                                "unitMillis": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "type": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                    "properties": {
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "precise": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "name": {
+                                                                    "type": "string"
+                                                                },
+                                                                "supported": {
+                                                                    "type": "boolean"
+                                                                }
+                                                            }
+                                                        },
+                                                        "type": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DateTimeFieldType;",
+                                                            "properties": {
+                                                                "rangeDurationType": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                    "properties": {
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "name": {
+                                                                    "type": "string"
+                                                                },
+                                                                "durationType": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                    "properties": {
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        },
+                                                        "leapDurationField": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DurationField;",
+                                                            "properties": {
+                                                                "unitMillis": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "type": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                    "properties": {
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "precise": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "name": {
+                                                                    "type": "string"
+                                                                },
+                                                                "supported": {
+                                                                    "type": "boolean"
+                                                                }
+                                                            }
+                                                        },
+                                                        "supported": {
+                                                            "type": "boolean"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "weekOfWeekyear": {
+                                                "type": "integer"
+                                            },
+                                            "year": {
+                                                "type": "integer"
+                                            },
+                                            "fieldTypes": {
+                                                "type": "array",
+                                                "title": "[Lorg\/joda\/time\/DateTimeFieldType;",
+                                                "items": {
+                                                    "type": "object",
+                                                    "title": "Lorg\/joda\/time\/DateTimeFieldType;",
+                                                    "properties": {
+                                                        "rangeDurationType": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                            "properties": {
+                                                                "name": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        },
+                                                        "durationType": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                            "properties": {
+                                                                "name": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "endDate": {
+                                        "type": "object",
+                                        "title": "Lorg\/joda\/time\/LocalDate;",
+                                        "properties": {
+                                            "yearOfEra": {
+                                                "type": "integer"
+                                            },
+                                            "yearOfCentury": {
+                                                "type": "integer"
+                                            },
+                                            "values": {
+                                                "type": "array",
+                                                "title": "[I;",
+                                                "items": {
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "dayOfWeek": {
+                                                "type": "integer"
+                                            },
+                                            "centuryOfEra": {
+                                                "type": "integer"
+                                            },
+                                            "dayOfMonth": {
+                                                "type": "integer"
+                                            },
+                                            "dayOfYear": {
+                                                "type": "integer"
+                                            },
+                                            "weekyear": {
+                                                "type": "integer"
+                                            },
+                                            "era": {
+                                                "type": "integer"
+                                            },
+                                            "monthOfYear": {
+                                                "type": "integer"
+                                            },
+                                            "chronology": {
+                                                "type": "object",
+                                                "title": "Lorg\/joda\/time\/Chronology;",
+                                                "properties": {
+                                                    "zone": {
+                                                        "type": "object",
+                                                        "title": "Lorg\/joda\/time\/DateTimeZone;",
+                                                        "properties": {
+                                                            "fixed": {
+                                                                "type": "boolean"
+                                                            },
+                                                            "id": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "fields": {
+                                                "type": "array",
+                                                "title": "[Lorg\/joda\/time\/DateTimeField;",
+                                                "items": {
+                                                    "type": "object",
+                                                    "title": "Lorg\/joda\/time\/DateTimeField;",
+                                                    "properties": {
+                                                        "maximumValue": {
+                                                            "type": "integer"
+                                                        },
+                                                        "minimumValue": {
+                                                            "type": "integer"
+                                                        },
+                                                        "durationField": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DurationField;",
+                                                            "properties": {
+                                                                "unitMillis": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "type": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                    "properties": {
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "precise": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "name": {
+                                                                    "type": "string"
+                                                                },
+                                                                "supported": {
+                                                                    "type": "boolean"
+                                                                }
+                                                            }
+                                                        },
+                                                        "lenient": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "rangeDurationField": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DurationField;",
+                                                            "properties": {
+                                                                "unitMillis": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "type": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                    "properties": {
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "precise": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "name": {
+                                                                    "type": "string"
+                                                                },
+                                                                "supported": {
+                                                                    "type": "boolean"
+                                                                }
+                                                            }
+                                                        },
+                                                        "type": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DateTimeFieldType;",
+                                                            "properties": {
+                                                                "rangeDurationType": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                    "properties": {
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "name": {
+                                                                    "type": "string"
+                                                                },
+                                                                "durationType": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                    "properties": {
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        },
+                                                        "leapDurationField": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DurationField;",
+                                                            "properties": {
+                                                                "unitMillis": {
+                                                                    "type": "integer"
+                                                                },
+                                                                "type": {
+                                                                    "type": "object",
+                                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                                    "properties": {
+                                                                        "name": {
+                                                                            "type": "string"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "precise": {
+                                                                    "type": "boolean"
+                                                                },
+                                                                "name": {
+                                                                    "type": "string"
+                                                                },
+                                                                "supported": {
+                                                                    "type": "boolean"
+                                                                }
+                                                            }
+                                                        },
+                                                        "supported": {
+                                                            "type": "boolean"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "weekOfWeekyear": {
+                                                "type": "integer"
+                                            },
+                                            "year": {
+                                                "type": "integer"
+                                            },
+                                            "fieldTypes": {
+                                                "type": "array",
+                                                "title": "[Lorg\/joda\/time\/DateTimeFieldType;",
+                                                "items": {
+                                                    "type": "object",
+                                                    "title": "Lorg\/joda\/time\/DateTimeFieldType;",
+                                                    "properties": {
+                                                        "rangeDurationType": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                            "properties": {
+                                                                "name": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        },
+                                                        "durationType": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                            "properties": {
+                                                                "name": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "text": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "discountType": {
+                                "type": "string",
+                                "enum": [
+                                         "AH_BONUS_DISCOUNT",
+                                         "AH_BONUS_LONG_RUNNING_DISCOUNT",
+                                         "AH_PERSONAL_BONUS_DISCOUNT",
+                                         "AH_XL_BONUS_DISCOUNT",
+                                         "AH_ONLINE_BONUS_DISCOUNT",
+                                         "VIRTUAL_BUNDLE",
+                                         "WEBSHOP_INFINITE_DISCOUNT",
+                                         "WEBSHOP_DISCOUNT"
+                                         ]
+                            },
+                            "fromPrice": {
+                                "type": "number"
+                            }
+                        }
+                    },
+                    "newAvailableOnline": {
+                        "type": "boolean"
+                    },
+                    "availableInWebshop": {
+                        "type": "boolean"
+                    },
+                    "productDescription": {
+                        "type": "object",
+                        "title": "Lcom\/ahold\/ecommerce\/productdata\/dto\/ProductDescription;",
+                        "properties": {
+                            "temperatureZone": {
+                                "type": "string",
+                                "enum": [
+                                         "FREEZER",
+                                         "COOLING_LOW",
+                                         "COOLING_HIGH",
+                                         "CONDITIONED_LOW",
+                                         "CONDITIONED_HIGH",
+                                         "CONDITIONED_NORMAL",
+                                         "UNCOOLED"
+                                         ]
+                            },
+                            "availableFromDate": {
+                                "type": "object",
+                                "title": "Lorg\/joda\/time\/LocalDate;",
+                                "properties": {
+                                    "yearOfEra": {
+                                        "type": "integer"
+                                    },
+                                    "yearOfCentury": {
+                                        "type": "integer"
+                                    },
+                                    "values": {
+                                        "type": "array",
+                                        "title": "[I;",
+                                        "items": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "dayOfWeek": {
+                                        "type": "integer"
+                                    },
+                                    "centuryOfEra": {
+                                        "type": "integer"
+                                    },
+                                    "dayOfMonth": {
+                                        "type": "integer"
+                                    },
+                                    "dayOfYear": {
+                                        "type": "integer"
+                                    },
+                                    "weekyear": {
+                                        "type": "integer"
+                                    },
+                                    "era": {
+                                        "type": "integer"
+                                    },
+                                    "monthOfYear": {
+                                        "type": "integer"
+                                    },
+                                    "chronology": {
+                                        "type": "object",
+                                        "title": "Lorg\/joda\/time\/Chronology;",
+                                        "properties": {
+                                            "zone": {
+                                                "type": "object",
+                                                "title": "Lorg\/joda\/time\/DateTimeZone;",
+                                                "properties": {
+                                                    "fixed": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "id": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "fields": {
+                                        "type": "array",
+                                        "title": "[Lorg\/joda\/time\/DateTimeField;",
+                                        "items": {
+                                            "type": "object",
+                                            "title": "Lorg\/joda\/time\/DateTimeField;",
+                                            "properties": {
+                                                "maximumValue": {
+                                                    "type": "integer"
+                                                },
+                                                "minimumValue": {
+                                                    "type": "integer"
+                                                },
+                                                "durationField": {
+                                                    "type": "object",
+                                                    "title": "Lorg\/joda\/time\/DurationField;",
+                                                    "properties": {
+                                                        "unitMillis": {
+                                                            "type": "integer"
+                                                        },
+                                                        "type": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                            "properties": {
+                                                                "name": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        },
+                                                        "precise": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        },
+                                                        "supported": {
+                                                            "type": "boolean"
+                                                        }
+                                                    }
+                                                },
+                                                "lenient": {
+                                                    "type": "boolean"
+                                                },
+                                                "rangeDurationField": {
+                                                    "type": "object",
+                                                    "title": "Lorg\/joda\/time\/DurationField;",
+                                                    "properties": {
+                                                        "unitMillis": {
+                                                            "type": "integer"
+                                                        },
+                                                        "type": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                            "properties": {
+                                                                "name": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        },
+                                                        "precise": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        },
+                                                        "supported": {
+                                                            "type": "boolean"
+                                                        }
+                                                    }
+                                                },
+                                                "type": {
+                                                    "type": "object",
+                                                    "title": "Lorg\/joda\/time\/DateTimeFieldType;",
+                                                    "properties": {
+                                                        "rangeDurationType": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                            "properties": {
+                                                                "name": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        },
+                                                        "durationType": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                            "properties": {
+                                                                "name": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "leapDurationField": {
+                                                    "type": "object",
+                                                    "title": "Lorg\/joda\/time\/DurationField;",
+                                                    "properties": {
+                                                        "unitMillis": {
+                                                            "type": "integer"
+                                                        },
+                                                        "type": {
+                                                            "type": "object",
+                                                            "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                            "properties": {
+                                                                "name": {
+                                                                    "type": "string"
+                                                                }
+                                                            }
+                                                        },
+                                                        "precise": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        },
+                                                        "supported": {
+                                                            "type": "boolean"
+                                                        }
+                                                    }
+                                                },
+                                                "supported": {
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "weekOfWeekyear": {
+                                        "type": "integer"
+                                    },
+                                    "year": {
+                                        "type": "integer"
+                                    },
+                                    "fieldTypes": {
+                                        "type": "array",
+                                        "title": "[Lorg\/joda\/time\/DateTimeFieldType;",
+                                        "items": {
+                                            "type": "object",
+                                            "title": "Lorg\/joda\/time\/DateTimeFieldType;",
+                                            "properties": {
+                                                "rangeDurationType": {
+                                                    "type": "object",
+                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "durationType": {
+                                                    "type": "object",
+                                                    "title": "Lorg\/joda\/time\/DurationFieldType;",
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "brand": {
+                                "type": "object",
+                                "title": "Lcom\/ahold\/ecommerce\/productdata\/dto\/Brand;",
+                                "properties": {
+                                    "brandId": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "code": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "categoryInWebshop": {
+                                "type": "string"
+                            },
+                            "categoriesForStoreFormat": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
+                            "fullDescription": {
+                                "type": "string"
+                            },
+                            "taxonomyLevelId": {
+                                "type": "integer"
+                            },
+                            "pqValue": {
+                                "type": "number"
+                            },
+                            "salesUnitSize": {
+                                "type": "string"
+                            },
+                            "imageUrl": {
+                                "type": "string"
+                            },
+                            "sourceId": {
+                                "type": "object",
+                                "title": "Lcom\/ahold\/ecommerce\/aholdcore\/product\/dto\/ProductDescriptionSourceId;",
+                                "properties": {
+                                    "asString": {
+                                        "type": "string"
+                                    },
+                                    "id": {
+                                        "type": "integer"
+                                    },
+                                    "source": {
+                                        "type": "string",
+                                        "enum": [
+                                                 "AH_HQ",
+                                                 "WEBSHOP"
+                                                 ]
+                                    }
+                                }
+                            },
+                            "productPropertyKeys": {
+                                "type": "array",
+                                "title": "Ljava\/util\/List<Ljava\/lang\/String;>;",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "key": {
+                                "type": "object",
+                                "title": "Lcom\/ahold\/ecommerce\/core\/dto\/Key<Ljava\/lang\/Object;>;",
+                                "properties": {
+                                    "value": {
+                                        "type": "any"
+                                    }
+                                }
+                            },
+                            "categoryInRegularStoreFormat": {
+                                "type": "string"
+                            },
+                            "imageUrls": {
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "previouslyBought": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        },
+        "numberOfResults": {
+            "type": "integer"
+        },
+        "filterURL": {
+            "type": "string"
+        },
+        "title": {
+            "type": "string"
+        },
+        "subFilters": {
+            "type": "object",
+            "title": "Lcom\/ahold\/ecommerce\/mobileservices\/rest\/winefinder\/dto\/WineFinderSubFiltersDTO;",
+            "properties": {
+                "values": {
+                    "type": "array",
+                    "title": "Ljava\/util\/List<Lcom\/ahold\/ecommerce\/mobileservices\/rest\/winefinder\/dto\/WineFinderSubFilterDTO;>;",
+                    "items": {
+                        "type": "object",
+                        "title": "Lcom\/ahold\/ecommerce\/mobileservices\/rest\/winefinder\/dto\/WineFinderSubFilterDTO;",
+                        "properties": {
+                            "backgroundImageUrl": {
+                                "type": "string"
+                            },
+                            "title": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

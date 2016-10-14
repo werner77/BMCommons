@@ -1,0 +1,1118 @@
+<definitions targetNamespace="urn:microsoft-dynamics-schemas/codeunit/ipApplicationWS"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/ipApplicationWS">
+    <types>
+        <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x87403"
+                xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x87403">
+            <complexType name="Gebreken">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="Gebrekcode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="GebrekOmschrijving" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="DefaultErnst" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Maatregelen">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="MaatregelCode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="MaatregelOmschrijving" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DakbouwdeelSoorten">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="Code" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Omschrijving" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Eenheid" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="false" name="Baanvormig" type="boolean"/>
+                    <element minOccurs="1" maxOccurs="1" default="false" name="Schubvormig" type="boolean"/>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Gebreken" type="tns:Gebreken"/>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Maatregelen" type="tns:Maatregelen"/>
+                </sequence>
+            </complexType>
+            <complexType name="DakbouwdeelCategorieen">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="Code" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Omschrijving" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="false" name="Accessoires" type="boolean"/>
+                    <element minOccurs="1" maxOccurs="1" default="false" name="Baanvormig" type="boolean"/>
+                    <element minOccurs="1" maxOccurs="1" default="false" name="Schubvormig" type="boolean"/>
+                    <element minOccurs="0" maxOccurs="unbounded" name="DakbouwdeelSoorten"
+                             type="tns:DakbouwdeelSoorten"/>
+                </sequence>
+            </complexType>
+            <complexType name="Root" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="DakbouwdeelCategorieen"
+                             type="tns:DakbouwdeelCategorieen"/>
+                </sequence>
+            </complexType>
+            <element name="Root" type="tns:Root"/>
+        </schema>
+        <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x87404"
+                xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x87404">
+            <complexType name="DakopbouwSoort">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="Materiaalcode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Omschrijving" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DakopbouwLaag">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="Materiaalcode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Omschrijving" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="false" name="Baanvormig" type="boolean"/>
+                    <element minOccurs="1" maxOccurs="1" default="false" name="Schubvormig" type="boolean"/>
+                    <element minOccurs="0" maxOccurs="unbounded" name="DakopbouwSoort" type="tns:DakopbouwSoort"/>
+                </sequence>
+            </complexType>
+            <complexType name="BevestigingswijzenStam">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="Bevestigingscode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Omschrijving" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Root" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="DakopbouwLaag" type="tns:DakopbouwLaag"/>
+                    <element minOccurs="0" maxOccurs="unbounded" name="BevestigingswijzenStam"
+                             type="tns:BevestigingswijzenStam"/>
+                </sequence>
+            </complexType>
+            <element name="Root" type="tns:Root"/>
+        </schema>
+        <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x87400"
+                xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x87400">
+            <complexType name="Problem_Text">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="LineNo" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="Comment" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Problem_Texts" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Problem_Text" type="tns:Problem_Text"/>
+                </sequence>
+            </complexType>
+            <complexType name="Internal_Text">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="LineNo" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="Comment" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Internal_Texts" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Internal_Text" type="tns:Internal_Text"/>
+                </sequence>
+            </complexType>
+            <complexType name="AangezichtsFoto_Properties">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Longitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Latitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="Title" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="Picture_Date" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="00:00:00" name="Picture_Time" type="time"/>
+                    <element minOccurs="1" maxOccurs="unbounded" name="AangezichtsFotoTimestamp" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Dakvlaktekening_Properties">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Longitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Latitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="Title" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="Picture_Date" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="00:00:00" name="Picture_Time" type="time"/>
+                    <element minOccurs="1" maxOccurs="unbounded" name="DakvlaktekeningTimestamp" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Complex_Text">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="LineNo" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="Comment" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Complex_Texts" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Complex_Text" type="tns:Complex_Text"/>
+                </sequence>
+            </complexType>
+            <complexType name="OverzichtFoto_Properties">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Longitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Latitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="Title" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="Picture_Date" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="00:00:00" name="Picture_Time" type="time"/>
+                    <element minOccurs="1" maxOccurs="unbounded" name="OverzichtFotoTimestamp" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="InsnijdingsFoto_Properties">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Longitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Latitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="Title" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="Picture_Date" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="00:00:00" name="Picture_Time" type="time"/>
+                    <element minOccurs="1" maxOccurs="unbounded" name="InsnijdingsFotoTimestamp" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Daktekening_Properties">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Longitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Latitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="Title" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="Picture_Date" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="00:00:00" name="Picture_Time" type="time"/>
+                    <element minOccurs="1" maxOccurs="unbounded" name="DaktekeningTimestamp" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Dak_Text">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="LineNo" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="Comment" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Dak_Texts" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Dak_Text" type="tns:Dak_Text"/>
+                </sequence>
+            </complexType>
+            <complexType name="Inspectie_Text">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="LineNo" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="Comment" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Inspectie_Texts" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Inspectie_Text" type="tns:Inspectie_Text"/>
+                </sequence>
+            </complexType>
+            <complexType name="Interneopmerking_Text">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="LineNo" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="Comment" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Interneopmerking_Texts" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Interneopmerking_Text"
+                             type="tns:Interneopmerking_Text"/>
+                </sequence>
+            </complexType>
+            <complexType name="DD_DakActiviteit">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="DakActiviteidId" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DD_Dakopbouw">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Volgnummer" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Dikte" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="MateriaalCodeKeuze1" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="MateriaalCodeKeuze2" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Bevestigingscode" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Dak_Opbouwen" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="DD_Dakopbouw" type="tns:DD_Dakopbouw"/>
+                </sequence>
+            </complexType>
+            <complexType name="DakbouwdeelOverzichtFoto_Properties">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Longitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Latitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="Title" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="Picture_Date" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="00:00:00" name="Picture_Time" type="time"/>
+                    <element minOccurs="1" maxOccurs="unbounded" name="DakbouwdeelOverzichtFotoTimestamp"
+                             type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="GebrekFoto_Properties">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Longitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Latitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="Title" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="Picture_Date" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="00:00:00" name="Picture_Time" type="time"/>
+                    <element minOccurs="1" maxOccurs="unbounded" name="GebrekFotoTimestamp" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="DDDakActiviteitGebrek">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Gebrekvolgnummer" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="GebrekFotoDocumentNo" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="GebrekFoto_Properties" type="tns:GebrekFoto_Properties"/>
+                </sequence>
+            </complexType>
+            <complexType name="DD_Dakbouwdeel">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="Dakbouwdeelcode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="DRegelNr" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Omvang" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="Strookmaat" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="OverzichtFotoDocumentNo" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="DakbouwdeelOverzichtFoto_Properties"
+                             type="tns:DakbouwdeelOverzichtFoto_Properties"/>
+                    <element minOccurs="1" maxOccurs="unbounded" name="DDDakActiviteitGebrek"
+                             type="tns:DDDakActiviteitGebrek"/>
+                </sequence>
+            </complexType>
+            <complexType name="Dak_Bouwdelen" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="DD_Dakbouwdeel" type="tns:DD_Dakbouwdeel"/>
+                </sequence>
+            </complexType>
+            <complexType name="DD_Dak">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="DakNo" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Complexcode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="AantalDaken" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="Daknummer" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Plaats" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Daknaam" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="false" name="InOnderhoud" type="boolean"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="GarantieVervaldatum" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="DakbedekkingAangebrachtInJaar" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="AanbrengjaarIngeschat" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="DakBereikbaarVia" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="DakBereikbaarInfo" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="TypeKlimmateriaal" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="SleutelNodig" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Dakhelling" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="InGebruikAls" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Gebruiksdak" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Waterdak" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Koeldak" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Groendak" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Energiedak" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="DakType" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="DakSoort" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="VerwachteLevensduur" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="MaxOpbrengstPV" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="OverzichtFotoDocumentNo" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="OverzichtFoto_Properties"
+                             type="tns:OverzichtFoto_Properties"/>
+                    <element minOccurs="1" maxOccurs="1" name="InsnijdingsFotoDocumentNo" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="InsnijdingsFoto_Properties"
+                             type="tns:InsnijdingsFoto_Properties"/>
+                    <element minOccurs="1" maxOccurs="1" name="DaktekeningDocumentNo" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="Daktekening_Properties"
+                             type="tns:Daktekening_Properties"/>
+                    <element minOccurs="0" maxOccurs="1" name="Dak_Texts" type="tns:Dak_Texts"/>
+                    <element minOccurs="0" maxOccurs="1" name="Inspectie_Texts" type="tns:Inspectie_Texts"/>
+                    <element minOccurs="0" maxOccurs="1" name="Interneopmerking_Texts"
+                             type="tns:Interneopmerking_Texts"/>
+                    <element minOccurs="1" maxOccurs="1" name="DD_DakActiviteit" type="tns:DD_DakActiviteit"/>
+                    <element minOccurs="0" maxOccurs="1" name="Dak_Opbouwen" type="tns:Dak_Opbouwen"/>
+                    <element minOccurs="0" maxOccurs="1" name="Dak_Bouwdelen" type="tns:Dak_Bouwdelen"/>
+                </sequence>
+            </complexType>
+            <complexType name="Service_Order_Object">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="DD_Dak" type="tns:DD_Dak"/>
+                </sequence>
+            </complexType>
+            <complexType name="DD_Complex">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="Code" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Complexnummer" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Complexnaam" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Relatienaam1" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="ContactpersoonComplex" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="TelefoonContactpersoon" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="TelefoonContactpersoon2" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Hooftnummer" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Hoofdstraat" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="HoofdPostcode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="HoofdPlaats" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="VoorkeursPand" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="VoorkeursAdresCode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Bouwjaar" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="Gebruiksdoelen" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="EindeExploitatiejaar" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="AantalDaken" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Aantalm2DakvlakVanBouwdelen" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="SleutelNodig" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="SleutelBedrijfsnaam" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="SleutelStraat" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="SleutelPostcode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="SleutelHuisnummer" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="SleutelHuisnummerExtensie" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="SleutelPlaats" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="TelefoonSleutel" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="TelefoonSleutel2" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="SleutelContactPersoon" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="VeiligheidsPaspoortVerplicht" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="VerklaringVOGVerplicht" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Bijzonderegevaren" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="DakBereikbaarVia" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="LadderBorgingAanwezig" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="TypeKlimmateriaal" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Valbeveiliging" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="AanzichtsFotoDocumentNo" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="AangezichtsFoto_Properties"
+                             type="tns:AangezichtsFoto_Properties"/>
+                    <element minOccurs="1" maxOccurs="1" name="DakvlakkentekeningDocumentNo" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="Dakvlaktekening_Properties"
+                             type="tns:Dakvlaktekening_Properties"/>
+                    <element minOccurs="0" maxOccurs="1" name="Complex_Texts" type="tns:Complex_Texts"/>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Service_Order_Object"
+                             type="tns:Service_Order_Object"/>
+                </sequence>
+            </complexType>
+            <complexType name="Service_Order">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="No" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Description" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Customer_No" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="SOName" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="SOAddress" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="SOCity" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="SOPostCode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Phone_No" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Customer_Name" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Your_Reference" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Contact_Name" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Status" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="E_Mail" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="First_Possible_Starting_Date"
+                             type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="00:00:00" name="First_Possible_Starting_Time"
+                             type="time"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="Starting_Date" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="00:00:00" name="Starting_Time" type="time"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="Last_Possible_Ending_Date"
+                             type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="00:00:00" name="Last_Possible_Ending_Time"
+                             type="time"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="Ending_Date" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="00:00:00" name="Ending_Time" type="time"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Expected_Hours" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="Service_Contract_No" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Priority" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Call_No" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Description_Call" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Employee_No" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Phone_No_2" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Actual_Reference_Point" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="Order_Kind" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Mobile_Phone_No" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Budget_Hours" type="decimal"/>
+                    <element minOccurs="0" maxOccurs="1" name="Problem_Texts" type="tns:Problem_Texts"/>
+                    <element minOccurs="0" maxOccurs="1" name="Internal_Texts" type="tns:Internal_Texts"/>
+                    <element minOccurs="0" maxOccurs="1" name="DD_Complex" type="tns:DD_Complex"/>
+                </sequence>
+            </complexType>
+            <complexType name="Root" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Service_Order" type="tns:Service_Order"/>
+                </sequence>
+            </complexType>
+            <element name="Root" type="tns:Root"/>
+        </schema>
+        <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x87401"
+                xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x87401">
+            <complexType name="Problem_Text">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="LineNo" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="Comment" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Problem_Texts" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Problem_Text" type="tns:Problem_Text"/>
+                </sequence>
+            </complexType>
+            <complexType name="Internal_Text">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="LineNo" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="Comment" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Internal_Texts" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Internal_Text" type="tns:Internal_Text"/>
+                </sequence>
+            </complexType>
+            <complexType name="AangezichtsFoto_Properties">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Longitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Latitude" type="decimal"/>
+                    <element minOccurs="0" maxOccurs="1" name="Title" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="Picture_Date" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="00:00:00" name="Picture_Time" type="time"/>
+                </sequence>
+            </complexType>
+            <complexType name="Dakvlaktekening_Properties">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Longitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Latitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="Title" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="Picture_Date" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="00:00:00" name="Picture_Time" type="time"/>
+                </sequence>
+            </complexType>
+            <complexType name="Complex_Text">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="LineNo" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="Comment" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Complex_Texts" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Complex_Text" type="tns:Complex_Text"/>
+                </sequence>
+            </complexType>
+            <complexType name="OverzichtFoto_Properties">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Longitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Latitude" type="decimal"/>
+                    <element minOccurs="0" maxOccurs="1" name="Title" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="Picture_Date" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="00:00:00" name="Picture_Time" type="time"/>
+                </sequence>
+            </complexType>
+            <complexType name="InsnijdingsFoto_Properties">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Longitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Latitude" type="decimal"/>
+                    <element minOccurs="0" maxOccurs="1" name="Title" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="Picture_Date" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="00:00:00" name="Picture_Time" type="time"/>
+                </sequence>
+            </complexType>
+            <complexType name="Daktekening_Properties">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Longitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Latitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="Title" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="Picture_Date" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="00:00:00" name="Picture_Time" type="time"/>
+                </sequence>
+            </complexType>
+            <complexType name="Dak_Text">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="LineNo" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="Comment" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Dak_Texts" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Dak_Text" type="tns:Dak_Text"/>
+                </sequence>
+            </complexType>
+            <complexType name="Inspectie_Text">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="LineNo" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="Comment" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Inspectie_Texts" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Inspectie_Text" type="tns:Inspectie_Text"/>
+                </sequence>
+            </complexType>
+            <complexType name="Interneopmerking_Text">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="LineNo" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="Comment" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Interneopmerking_Texts" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Interneopmerking_Text"
+                             type="tns:Interneopmerking_Text"/>
+                </sequence>
+            </complexType>
+            <complexType name="DD_Dakopbouw">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Volgnummer" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Dikte" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="MateriaalCodeKeuze1" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="MateriaalCodeKeuze2" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Bevestigingscode" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="Dak_Opbouwen" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="DD_Dakopbouw" type="tns:DD_Dakopbouw"/>
+                </sequence>
+            </complexType>
+            <complexType name="DakbouwdeelOverzichtFoto_Properties">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Longitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Latitude" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="Title" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="Picture_Date" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="00:00:00" name="Picture_Time" type="time"/>
+                </sequence>
+            </complexType>
+            <complexType name="DD_Dakbouwdeel">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="RegelNr" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="Dakbouwdeelcode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="false" name="Accessoires" type="boolean"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Omvang" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="Strookmaat" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="OverzichtFotoDocumentNo" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="DakbouwdeelOverzichtFoto_Properties"
+                             type="tns:DakbouwdeelOverzichtFoto_Properties"/>
+                </sequence>
+            </complexType>
+            <complexType name="Dak_Bouwdelen" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="DD_Dakbouwdeel" type="tns:DD_Dakbouwdeel"/>
+                </sequence>
+            </complexType>
+            <complexType name="DD_Dak">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="DakNo" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="DeleteYesNo" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Complexcode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="AantalDaken" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="Daknummer" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Daknaam" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="false" name="InOnderhoud" type="boolean"/>
+                    <element minOccurs="1" maxOccurs="1" default="0001-01-01" name="GarantieVervaldatum" type="date"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="DakbedekkingAangebrachtInJaar" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="AanbrengjaarIngeschat" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="DakBereikbaarVia" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="DakBereikbaarInfo" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="TypeKlimmateriaal" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="SleutelNodig" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="Dakhelling" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="InGebruikAls" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Gebruiksdak" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Waterdak" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Koeldak" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Groendak" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Energiedak" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="DakType" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="DakSoort" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="VerwachteLevensduur" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="MaxOpbrengstPV" type="decimal"/>
+                    <element minOccurs="1" maxOccurs="1" name="OverzichtFotoDocumentNo" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="OverzichtFoto_Properties"
+                             type="tns:OverzichtFoto_Properties"/>
+                    <element minOccurs="1" maxOccurs="1" name="InsnijdingsFotoDocumentNo" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="InsnijdingsFoto_Properties"
+                             type="tns:InsnijdingsFoto_Properties"/>
+                    <element minOccurs="1" maxOccurs="1" name="DaktekeningDocumentNo" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="Daktekening_Properties"
+                             type="tns:Daktekening_Properties"/>
+                    <element minOccurs="0" maxOccurs="1" name="Dak_Texts" type="tns:Dak_Texts"/>
+                    <element minOccurs="0" maxOccurs="1" name="Inspectie_Texts" type="tns:Inspectie_Texts"/>
+                    <element minOccurs="0" maxOccurs="1" name="Interneopmerking_Texts"
+                             type="tns:Interneopmerking_Texts"/>
+                    <element minOccurs="0" maxOccurs="1" name="Dak_Opbouwen" type="tns:Dak_Opbouwen"/>
+                    <element minOccurs="0" maxOccurs="1" name="Dak_Bouwdelen" type="tns:Dak_Bouwdelen"/>
+                </sequence>
+            </complexType>
+            <complexType name="Service_Order_Object">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="DD_Dak" type="tns:DD_Dak"/>
+                </sequence>
+            </complexType>
+            <complexType name="DD_Complex">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="Code" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Complexnummer" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Complexnaam" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="ContactpersoonComplex" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="TelefoonContactpersoon" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="TelefoonContactpersoon2" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="SleutelNodig" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="SleutelBedrijfsnaam" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="SleutelStraat" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="SleutelPostcode" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" default="0" name="SleutelHuisnummer" type="int"/>
+                    <element minOccurs="1" maxOccurs="1" name="SleutelHuisnummerExtensie" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="SleutelPlaats" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="TelefoonSleutel" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="TelefoonSleutel2" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="SleutelContactPersoon" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="VeiligheidsPaspoortVerplicht" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="VerklaringVOGVerplicht" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Bijzonderegevaren" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="DakBereikbaarVia" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="LadderBorgingAanwezig" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="TypeKlimmateriaal" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="Valbeveiliging" type="string"/>
+                    <element minOccurs="1" maxOccurs="1" name="AanzichtsFotoDocumentNo" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="AangezichtsFoto_Properties"
+                             type="tns:AangezichtsFoto_Properties"/>
+                    <element minOccurs="1" maxOccurs="1" name="DakvlakkentekeningDocumentNo" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="Dakvlaktekening_Properties"
+                             type="tns:Dakvlaktekening_Properties"/>
+                    <element minOccurs="0" maxOccurs="1" name="Complex_Texts" type="tns:Complex_Texts"/>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Service_Order_Object"
+                             type="tns:Service_Order_Object"/>
+                </sequence>
+            </complexType>
+            <complexType name="Service_Order">
+                <sequence>
+                    <element minOccurs="1" maxOccurs="1" name="No" type="string"/>
+                    <element minOccurs="0" maxOccurs="1" name="Problem_Texts" type="tns:Problem_Texts"/>
+                    <element minOccurs="0" maxOccurs="1" name="Internal_Texts" type="tns:Internal_Texts"/>
+                    <element minOccurs="0" maxOccurs="1" name="DD_Complex" type="tns:DD_Complex"/>
+                </sequence>
+            </complexType>
+            <complexType name="Root" mixed="true">
+                <sequence>
+                    <element minOccurs="0" maxOccurs="unbounded" name="Service_Order" type="tns:Service_Order"/>
+                </sequence>
+            </complexType>
+            <element name="Root" type="tns:Root"/>
+        </schema>
+        <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/ipApplicationWS"
+                xmlns="http://www.w3.org/2001/XMLSchema">
+            <element name="AmIAlive">
+                <complexType>
+                    <sequence/>
+                </complexType>
+            </element>
+            <element name="AmIAlive_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="return_value" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="AuthenticateUser">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="userName" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="password" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="employeeNo" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="employeeRole" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="AuthenticateUser_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="employeeNo" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="employeeRole" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ChangePassword">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="userName" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="password" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="newPassword" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ChangePassword_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="return_value" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="UpdateAllOptions">
+                <complexType>
+                    <sequence/>
+                </complexType>
+            </element>
+            <element name="UpdateAllOptions_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="return_value" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ExportCategorieSoortGebrekStam">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="iPadCategorieSoortGebrekMaatr" type="q1:Root"
+                                 xmlns:q1="urn:microsoft-dynamics-nav/xmlports/x87403"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ExportCategorieSoortGebrekStam_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="iPadCategorieSoortGebrekMaatr" type="q2:Root"
+                                 xmlns:q2="urn:microsoft-dynamics-nav/xmlports/x87403"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ExportDakopbouwdelenStam">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="iPadDakopbouwdelenStam" type="q3:Root"
+                                 xmlns:q3="urn:microsoft-dynamics-nav/xmlports/x87404"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ExportDakopbouwdelenStam_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="iPadDakopbouwdelenStam" type="q4:Root"
+                                 xmlns:q4="urn:microsoft-dynamics-nav/xmlports/x87404"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ExportServiceOrders">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="totalRecords" type="int"/>
+                        <element minOccurs="1" maxOccurs="1" name="iPadServiceOrderExport" type="q5:Root"
+                                 xmlns:q5="urn:microsoft-dynamics-nav/xmlports/x87400"/>
+                        <element minOccurs="1" maxOccurs="1" name="serviceOrderNoFilter" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="statusFilter" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="fromPlannedDateFilter" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="toPlannedDateFilter" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="employeeNoFilter" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ExportServiceOrders_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="totalRecords" type="int"/>
+                        <element minOccurs="1" maxOccurs="1" name="iPadServiceOrderExport" type="q6:Root"
+                                 xmlns:q6="urn:microsoft-dynamics-nav/xmlports/x87400"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ImportServiceOrder">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="iPadServiceOrderImport" type="q7:Root"
+                                 xmlns:q7="urn:microsoft-dynamics-nav/xmlports/x87401"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ImportServiceOrder_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="return_value" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="UpdateServiceOrderStatus">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="serviceOrderNo" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="employeeNo" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="fieldServicePoint" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="textLine" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="UpdateServiceOrderStatus_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="return_value" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="UpdateWorkAndTravel">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="serviceOrderNo" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="employeeNo" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="workMinutes" type="int"/>
+                        <element minOccurs="1" maxOccurs="1" name="travelMinutes" type="int"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="UpdateWorkAndTravel_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="return_value" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="GetPicture">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="documentNo" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="picture" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="GetPicture_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="picture" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="InsertPicture">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="picture" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="documentNo" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="InsertPicture_Result">
+                <complexType>
+                    <sequence>
+                        <element minOccurs="1" maxOccurs="1" name="return_value" type="string"/>
+                        <element minOccurs="1" maxOccurs="1" name="documentNo" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+    </types>
+    <message name="AmIAlive">
+        <part name="parameters" element="tns:AmIAlive"/>
+    </message>
+    <message name="AmIAlive_Result">
+        <part name="parameters" element="tns:AmIAlive_Result"/>
+    </message>
+    <message name="AuthenticateUser">
+        <part name="parameters" element="tns:AuthenticateUser"/>
+    </message>
+    <message name="AuthenticateUser_Result">
+        <part name="parameters" element="tns:AuthenticateUser_Result"/>
+    </message>
+    <message name="ChangePassword">
+        <part name="parameters" element="tns:ChangePassword"/>
+    </message>
+    <message name="ChangePassword_Result">
+        <part name="parameters" element="tns:ChangePassword_Result"/>
+    </message>
+    <message name="UpdateAllOptions">
+        <part name="parameters" element="tns:UpdateAllOptions"/>
+    </message>
+    <message name="UpdateAllOptions_Result">
+        <part name="parameters" element="tns:UpdateAllOptions_Result"/>
+    </message>
+    <message name="ExportCategorieSoortGebrekStam">
+        <part name="parameters" element="tns:ExportCategorieSoortGebrekStam"/>
+    </message>
+    <message name="ExportCategorieSoortGebrekStam_Result">
+        <part name="parameters" element="tns:ExportCategorieSoortGebrekStam_Result"/>
+    </message>
+    <message name="ExportDakopbouwdelenStam">
+        <part name="parameters" element="tns:ExportDakopbouwdelenStam"/>
+    </message>
+    <message name="ExportDakopbouwdelenStam_Result">
+        <part name="parameters" element="tns:ExportDakopbouwdelenStam_Result"/>
+    </message>
+    <message name="ExportServiceOrders">
+        <part name="parameters" element="tns:ExportServiceOrders"/>
+    </message>
+    <message name="ExportServiceOrders_Result">
+        <part name="parameters" element="tns:ExportServiceOrders_Result"/>
+    </message>
+    <message name="ImportServiceOrder">
+        <part name="parameters" element="tns:ImportServiceOrder"/>
+    </message>
+    <message name="ImportServiceOrder_Result">
+        <part name="parameters" element="tns:ImportServiceOrder_Result"/>
+    </message>
+    <message name="UpdateServiceOrderStatus">
+        <part name="parameters" element="tns:UpdateServiceOrderStatus"/>
+    </message>
+    <message name="UpdateServiceOrderStatus_Result">
+        <part name="parameters" element="tns:UpdateServiceOrderStatus_Result"/>
+    </message>
+    <message name="UpdateWorkAndTravel">
+        <part name="parameters" element="tns:UpdateWorkAndTravel"/>
+    </message>
+    <message name="UpdateWorkAndTravel_Result">
+        <part name="parameters" element="tns:UpdateWorkAndTravel_Result"/>
+    </message>
+    <message name="GetPicture">
+        <part name="parameters" element="tns:GetPicture"/>
+    </message>
+    <message name="GetPicture_Result">
+        <part name="parameters" element="tns:GetPicture_Result"/>
+    </message>
+    <message name="InsertPicture">
+        <part name="parameters" element="tns:InsertPicture"/>
+    </message>
+    <message name="InsertPicture_Result">
+        <part name="parameters" element="tns:InsertPicture_Result"/>
+    </message>
+    <portType name="ipApplicationWS_Port">
+        <operation name="AmIAlive">
+            <input name="AmIAlive" message="tns:AmIAlive"/>
+            <output name="AmIAlive_Result" message="tns:AmIAlive_Result"/>
+        </operation>
+        <operation name="AuthenticateUser">
+            <input name="AuthenticateUser" message="tns:AuthenticateUser"/>
+            <output name="AuthenticateUser_Result" message="tns:AuthenticateUser_Result"/>
+        </operation>
+        <operation name="ChangePassword">
+            <input name="ChangePassword" message="tns:ChangePassword"/>
+            <output name="ChangePassword_Result" message="tns:ChangePassword_Result"/>
+        </operation>
+        <operation name="UpdateAllOptions">
+            <input name="UpdateAllOptions" message="tns:UpdateAllOptions"/>
+            <output name="UpdateAllOptions_Result" message="tns:UpdateAllOptions_Result"/>
+        </operation>
+        <operation name="ExportCategorieSoortGebrekStam">
+            <input name="ExportCategorieSoortGebrekStam" message="tns:ExportCategorieSoortGebrekStam"/>
+            <output name="ExportCategorieSoortGebrekStam_Result" message="tns:ExportCategorieSoortGebrekStam_Result"/>
+        </operation>
+        <operation name="ExportDakopbouwdelenStam">
+            <input name="ExportDakopbouwdelenStam" message="tns:ExportDakopbouwdelenStam"/>
+            <output name="ExportDakopbouwdelenStam_Result" message="tns:ExportDakopbouwdelenStam_Result"/>
+        </operation>
+        <operation name="ExportServiceOrders">
+            <input name="ExportServiceOrders" message="tns:ExportServiceOrders"/>
+            <output name="ExportServiceOrders_Result" message="tns:ExportServiceOrders_Result"/>
+        </operation>
+        <operation name="ImportServiceOrder">
+            <input name="ImportServiceOrder" message="tns:ImportServiceOrder"/>
+            <output name="ImportServiceOrder_Result" message="tns:ImportServiceOrder_Result"/>
+        </operation>
+        <operation name="UpdateServiceOrderStatus">
+            <input name="UpdateServiceOrderStatus" message="tns:UpdateServiceOrderStatus"/>
+            <output name="UpdateServiceOrderStatus_Result" message="tns:UpdateServiceOrderStatus_Result"/>
+        </operation>
+        <operation name="UpdateWorkAndTravel">
+            <input name="UpdateWorkAndTravel" message="tns:UpdateWorkAndTravel"/>
+            <output name="UpdateWorkAndTravel_Result" message="tns:UpdateWorkAndTravel_Result"/>
+        </operation>
+        <operation name="GetPicture">
+            <input name="GetPicture" message="tns:GetPicture"/>
+            <output name="GetPicture_Result" message="tns:GetPicture_Result"/>
+        </operation>
+        <operation name="InsertPicture">
+            <input name="InsertPicture" message="tns:InsertPicture"/>
+            <output name="InsertPicture_Result" message="tns:InsertPicture_Result"/>
+        </operation>
+    </portType>
+    <binding name="ipApplicationWS_Binding" type="tns:ipApplicationWS_Port">
+        <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+        <operation name="AmIAlive">
+            <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ipApplicationWS:AmIAlive" style="document"
+                       xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            <input name="AmIAlive">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </input>
+            <output name="AmIAlive_Result">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </output>
+        </operation>
+        <operation name="AuthenticateUser">
+            <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ipApplicationWS:AuthenticateUser"
+                       style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            <input name="AuthenticateUser">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </input>
+            <output name="AuthenticateUser_Result">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </output>
+        </operation>
+        <operation name="ChangePassword">
+            <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ipApplicationWS:ChangePassword"
+                       style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            <input name="ChangePassword">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </input>
+            <output name="ChangePassword_Result">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </output>
+        </operation>
+        <operation name="UpdateAllOptions">
+            <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ipApplicationWS:UpdateAllOptions"
+                       style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            <input name="UpdateAllOptions">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </input>
+            <output name="UpdateAllOptions_Result">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </output>
+        </operation>
+        <operation name="ExportCategorieSoortGebrekStam">
+            <operation
+                    soapAction="urn:microsoft-dynamics-schemas/codeunit/ipApplicationWS:ExportCategorieSoortGebrekStam"
+                    style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            <input name="ExportCategorieSoortGebrekStam">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </input>
+            <output name="ExportCategorieSoortGebrekStam_Result">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </output>
+        </operation>
+        <operation name="ExportDakopbouwdelenStam">
+            <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ipApplicationWS:ExportDakopbouwdelenStam"
+                       style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            <input name="ExportDakopbouwdelenStam">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </input>
+            <output name="ExportDakopbouwdelenStam_Result">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </output>
+        </operation>
+        <operation name="ExportServiceOrders">
+            <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ipApplicationWS:ExportServiceOrders"
+                       style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            <input name="ExportServiceOrders">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </input>
+            <output name="ExportServiceOrders_Result">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </output>
+        </operation>
+        <operation name="ImportServiceOrder">
+            <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ipApplicationWS:ImportServiceOrder"
+                       style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            <input name="ImportServiceOrder">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </input>
+            <output name="ImportServiceOrder_Result">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </output>
+        </operation>
+        <operation name="UpdateServiceOrderStatus">
+            <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ipApplicationWS:UpdateServiceOrderStatus"
+                       style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            <input name="UpdateServiceOrderStatus">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </input>
+            <output name="UpdateServiceOrderStatus_Result">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </output>
+        </operation>
+        <operation name="UpdateWorkAndTravel">
+            <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ipApplicationWS:UpdateWorkAndTravel"
+                       style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            <input name="UpdateWorkAndTravel">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </input>
+            <output name="UpdateWorkAndTravel_Result">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </output>
+        </operation>
+        <operation name="GetPicture">
+            <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ipApplicationWS:GetPicture" style="document"
+                       xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            <input name="GetPicture">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </input>
+            <output name="GetPicture_Result">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </output>
+        </operation>
+        <operation name="InsertPicture">
+            <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ipApplicationWS:InsertPicture"
+                       style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            <input name="InsertPicture">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </input>
+            <output name="InsertPicture_Result">
+                <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="ipApplicationWS">
+        <port name="ipApplicationWS_Port" binding="tns:ipApplicationWS_Binding">
+            <address
+                    location="http://ws01.group.local:7047/DakotaTest/WS/ReplaceWithAPercentEncodedCompanyName/Codeunit/ipApplicationWS"
+                    xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+        </port>
+    </service>
+</definitions>

@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:btfd="http://api.behindthefrontdoor.com/v1"
+    elementFormDefault="unqualified"
+    targetNamespace="http://api.behindthefrontdoor.com/v1"
+    >
+    
+    <!-- Common -->
+    
+    <xs:complexType name="EntityReference">
+        <xs:simpleContent>
+            <xs:restriction base="xs:string">
+                <xs:attribute name="id" use="required" type="xs:integer"/>
+                <xs:attribute name="type" use="optional" type="xs:string"/>
+                <xs:attribute name="url" use="optional" type="xs:string"/>
+            </xs:restriction>
+        </xs:simpleContent>
+    </xs:complexType>
+    
+    <xs:complexType name="DefaultEntity" abstract="true">
+        <xs:attribute name="id" use="required" type="xs:integer"/>
+    </xs:complexType>
+    
+    <xs:complexType name="Location">
+        <xs:sequence>
+            <!-- read/write -->
+            <xs:element name="latitude" type="xs:decimal"/>
+            <xs:element name="longitude" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="altitude" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="horizontalAccuracy" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="verticalAccuracy" type="xs:decimal"/>
+            <xs:element minOccurs="0" name="measurementDate" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="geoName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="Gender">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MALE"/>
+            <xs:enumeration value="FEMALE"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- Countries -->
+    
+    <xs:complexType name="Country">
+        <xs:sequence>
+            <xs:element type="xs:string" name="countryCode"/>
+            <xs:element minOccurs="0" type="xs:string" name="countryName"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- Comments -->
+    
+    <xs:complexType name="Comment">
+        <xs:complexContent>
+            <xs:extension base="btfd:DefaultEntity">
+                <xs:sequence>
+                    <!-- read-only -->
+                    <xs:element minOccurs="0" name="creationDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="modificationDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="reply" type="btfd:EntityReference"/>
+                    
+                    <!-- write upon creation, otherwise read-only -->
+                    <xs:element minOccurs="0" name="replyTo" type="btfd:EntityReference"/>
+                    
+                    <!-- read/write -->
+                    <xs:element name="text" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <!-- Stats -->
+    
+    <xs:complexType abstract="true" name="Stats">
+        <xs:sequence>
+            <!-- read-only -->
+            <xs:element name="rating" type="xs:integer"/>
+            <xs:element name="ranking" type="xs:integer"/>
+            <xs:element name="followers" type="xs:integer"/>
+            <xs:element name="views" type="xs:integer"/>
+            <xs:element name="likes" type="xs:integer"/>
+            <xs:element name="date" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="PublicationStats">
+        <xs:complexContent>
+            <xs:extension base="btfd:Stats">
+                <xs:sequence/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="UserStats">
+        <xs:complexContent>
+            <xs:extension base="btfd:Stats">
+                <xs:sequence>
+                    <xs:element name="followedPublications" type="xs:integer"/>
+                    <xs:element name="followedUsers" type="xs:integer"/>
+                    <xs:element name="publications" type="xs:integer"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <!-- User -->
+    
+    <xs:complexType name="CreateUser">
+        <xs:sequence>
+            <xs:element type="xs:string" name="username"/>
+            <xs:element type="xs:string" name="emailAddress"/>
+            <xs:element type="xs:string" name="password"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="ResetPassword">
+        <xs:sequence>
+            <xs:element type="xs:string" name="emailAddress"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="ChangePassword">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element type="xs:string" name="emailAddress"/>
+                <xs:element type="xs:string" name="username"/>
+            </xs:choice>
+            <xs:element type="xs:string" name="oldPassword"/>
+            <xs:element type="xs:string" name="password"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="User">
+        <xs:complexContent>
+            <xs:extension base="btfd:DefaultEntity">
+                <xs:sequence>
+                    <!-- read-only -->
+                    <xs:element minOccurs="0" type="xs:dateTime" name="creationDate"/>
+                    <xs:element minOccurs="0" type="btfd:UserStats" name="stats"/>
+                    
+                    <!-- read/write -->
+                    <xs:element minOccurs="0" type="xs:string" name="username"/>
+                    <xs:element minOccurs="0" type="btfd:Profile" name="profile"/>
+                </xs:sequence>
+                <!-- read-only -->
+                <xs:attribute name="liked" use="optional" type="xs:boolean"/>
+                <xs:attribute name="followed" use="optional" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="Profile">
+        <xs:sequence>
+            <!-- read/write -->
+            <xs:element minOccurs="0" type="xs:date" name="birthDate"/>
+            <xs:element minOccurs="0" type="xs:string" name="description"/>
+            <xs:element minOccurs="0" name="tags" type="xs:string"/>
+            <xs:element minOccurs="0" type="btfd:Gender" name="gender"/>
+            <xs:element minOccurs="0" type="btfd:Location" name="currentLocation"/>
+            
+            <!-- only the id of the picture can be written (rest of the info is ignored upon update -->
+            <xs:element minOccurs="0" type="btfd:Picture" name="picture"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="ContactInfo">
+        <xs:sequence>
+            <!-- read/write -->
+            <xs:element minOccurs="0" type="xs:string" name="firstName"/>
+            <xs:element minOccurs="0" type="xs:string" name="lastName"/>
+            <xs:element minOccurs="0" type="xs:string" name="emailAddress"/>
+            <xs:element minOccurs="0" type="xs:string" name="street"/>
+            <xs:element minOccurs="0" type="xs:string" name="houseNumber"/>
+            <xs:element minOccurs="0" type="xs:string" name="houseNumberExtension"/>
+            <xs:element minOccurs="0" type="xs:string" name="phoneNumber"/>
+            <xs:element minOccurs="0" type="xs:string" name="postalCode"/>
+            <xs:element minOccurs="0" type="xs:string" name="stateProvince"/>
+            <xs:element minOccurs="0" type="xs:string" name="city"/>
+            <xs:element minOccurs="0" type="xs:string" name="companyName"/>
+            <xs:element minOccurs="0" type="btfd:Location" name="location"/>
+            
+            <!-- Only the country code is interpreted upon update -->
+            <xs:element minOccurs="0" type="btfd:Country" name="country"/>
+        </xs:sequence>
+        <!-- specifies if the contact info is inherited e.g. in the case of billing contact info -->
+        <xs:attribute name="inherited" type="xs:boolean" use="optional"/>
+    </xs:complexType>
+    
+    <!-- Attachments/Media -->
+    
+    <xs:complexType name="Attachments">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="audio" type="btfd:Audio"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="picture" type="btfd:Picture"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="video" type="btfd:Video"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="file" type="btfd:File"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="Attachment" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="btfd:DefaultEntity">
+                <xs:sequence>
+                    <!-- read-only -->
+                    <xs:element minOccurs="0" name="creationDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="modificationDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="creator" type="btfd:EntityReference"/>
+                    
+                    <!-- write once -->
+                    <xs:element minOccurs="0" name="url" type="xs:anyURI"/>
+                    <xs:element minOccurs="0" name="thumbnailUrl" type="xs:anyURI"/>
+                    <xs:element minOccurs="0" name="midSizeUrl" type="xs:anyURI"/>
+                    <xs:element minOccurs="0" name="hash" type="xs:string"/>
+                    
+                    <!-- read/write -->
+                    <xs:element minOccurs="0" name="caption" type="xs:string"/>
+                    <xs:element minOccurs="0" name="description" type="xs:string"/>
+                    
+                </xs:sequence>
+                <!-- occurs in case attachment is part of a list e.g. publication attachments -->
+                <xs:attribute name="order" use="optional" type="xs:integer"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="Media" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="btfd:Attachment">
+                <xs:sequence>
+                    <!-- read/write -->
+                    <xs:element minOccurs="0" name="location" type="btfd:Location"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="MediaWithDuration" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="btfd:Media">
+                <xs:sequence>
+                    <!-- read/write -->
+                    <xs:element minOccurs="0" name="duration" type="xs:decimal"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="Video">
+        <xs:complexContent>
+            <xs:extension base="btfd:MediaWithDuration"/>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="Audio">
+        <xs:complexContent>
+            <xs:extension base="btfd:MediaWithDuration"/>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="Picture">
+        <xs:complexContent>
+            <xs:extension base="btfd:Media"/>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="File">
+        <xs:complexContent>
+            <xs:extension base="btfd:Attachment"/>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <!-- Publications -->
+    
+    <xs:complexType name="Contributor">
+        <xs:sequence>
+            <!-- read/write -->
+            <xs:element name="user" type="btfd:EntityReference"/>
+            <xs:element name="percentage" type="xs:decimal"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="PublicationCategory">
+        <xs:complexContent>
+            <xs:extension base="btfd:DefaultEntity">
+                <xs:sequence>
+                    <!-- read/write -->
+                    <xs:element minOccurs="0" name="title" type="xs:string"/>
+                    <xs:element minOccurs="0" name="description" type="xs:string"/>
+                    <xs:element minOccurs="0" name="parent" type="btfd:EntityReference"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="Publication" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="btfd:DefaultEntity">
+                <xs:sequence>
+                    <!-- read-only -->
+                    <xs:element minOccurs="0" name="creator" type="btfd:EntityReference"/>
+                    <xs:element minOccurs="0" name="creationDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="modificationDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="stats" type="btfd:PublicationStats"/>
+                    
+                    <!-- read/write -->
+                    <xs:element minOccurs="0" name="attachments" type="btfd:Attachments"/>
+                    <xs:element minOccurs="0" name="title" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tags" type="xs:string"/>
+                    <xs:element minOccurs="0" name="description" type="xs:string"/>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="category" type="btfd:EntityReference"/>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="location" type="btfd:Location"/>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="contributor" type="btfd:Contributor"/>
+                </xs:sequence>
+                <!-- read-only -->
+                <xs:attribute name="liked" use="optional" type="xs:boolean"/>
+                <xs:attribute name="followed" use="optional" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="Show">
+        <xs:complexContent>
+            <xs:extension base="btfd:Publication"/>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="Vacancy">
+        <xs:complexContent>
+            <xs:extension base="btfd:Publication">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="dueDate" type="xs:dateTime"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <!-- Followers/Likers -->
+    
+    <xs:complexType name="Follower">
+        <xs:complexContent>
+            <xs:extension base="btfd:DefaultEntity">
+                <xs:sequence>
+                    <!-- read-only -->
+                    <xs:element minOccurs="0" name="creationDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="creator" type="btfd:EntityReference"/>
+                    
+                    <!-- read/write -->
+                    <xs:element minOccurs="0" name="followedEntity" type="btfd:EntityReference"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="Liker">
+        <xs:complexContent>
+            <xs:extension base="btfd:DefaultEntity">
+                <xs:sequence>
+                    <!-- read-only -->
+                    <xs:element minOccurs="0" name="creationDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="creator" type="btfd:EntityReference"/>
+                    
+                    <!-- read/write -->
+                    <xs:element minOccurs="0" name="likedEntity" type="btfd:EntityReference"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <!-- Flag -->
+    
+    <xs:complexType name="Flag">
+        <xs:complexContent>
+            <xs:extension base="btfd:DefaultEntity">
+                <xs:sequence>
+                    <!-- read-only -->
+                    <xs:element minOccurs="0" name="creationDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="creator" type="btfd:EntityReference"/>
+                    
+                    <!-- read/write -->
+                    <xs:element minOccurs="0" name="flaggedItem" type="btfd:EntityReference"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <!-- Audits -->
+    
+    <xs:complexType name="AuditRecord">
+        <xs:sequence>
+            <!-- read-only -->
+            <xs:element name="date" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="user" type="btfd:EntityReference"/>
+            <xs:element name="serviceName" type="xs:string"/>
+            <xs:element name="serviceMethod" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="serviceArgs" type="xs:anyType"/>
+            <xs:element minOccurs="0" name="serviceRetValue" type="xs:anyType"/>
+            <xs:element name="ipAddress" type="xs:string"/>
+            <xs:element name="host" type="xs:string"/>
+            <xs:element name="deviceId" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="id" use="required" type="xs:integer"/>
+    </xs:complexType>
+    
+    <!-- error related btfd -->
+    
+    <xs:complexType name="ErrorMessage">
+        <xs:sequence>
+            <xs:element name="defaultMessage" type="xs:string"/>
+            
+            <!-- uniquely identifies the error message -->
+            <xs:element name="code" type="xs:string"/>
+            
+            <!-- arguments for the message if any -->
+            <xs:element name="argument" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="ObjectError">
+        <xs:sequence>
+            <xs:element name="objectType" type="xs:string"/>
+            <xs:element name="objectId" minOccurs="0" type="xs:integer"/>
+            <xs:element name="errorMessage" type="btfd:ErrorMessage" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="FieldError">
+        <xs:complexContent>
+            <xs:extension base="btfd:ObjectError">
+                <xs:sequence>
+                    <xs:element name="field" type="xs:string"/>
+                    
+                    <!-- rejected value as string -->
+                    <xs:element name="rejectedValue" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="Error">
+        <xs:sequence>
+            <!-- error code, generally equals HTTP error code -->
+            <xs:element name="errorCode" type="xs:integer"/>
+            
+            <!-- global error message -->
+            <xs:element name="errorMessage" type="btfd:ErrorMessage"/>
+            
+            <xs:element name="errorDetails">
+                <xs:complexType>
+                    <xs:sequence>
+                        <!-- reference to the server side entities (if any) that are in conflict or contain validation errors -->
+                        <xs:element name="objectError" type="btfd:ObjectError" minOccurs="0"
+                        maxOccurs="unbounded"/>
+                        <xs:element name="fieldError" type="btfd:FieldError" minOccurs="0"
+                        maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            
+        </xs:sequence>
+    </xs:complexType>
+    
+    
+    <!-- Element definitions -->
+    
+    <xs:element name="users">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user" type="btfd:User" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="user" type="btfd:User"/>
+    
+    <xs:element name="contactInfo" type="btfd:ContactInfo"/>
+    
+    <xs:element name="createUser" type="btfd:CreateUser"/>
+    
+    <xs:element name="resetPassword" type="btfd:ResetPassword"/>
+    
+    <xs:element name="changePassword" type="btfd:ChangePassword"/>
+    
+    <xs:element name="publications">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="show" type="btfd:Show" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="vacancy" type="btfd:Vacancy" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="vacancy" type="btfd:Vacancy"/>
+    
+    <xs:element name="show" type="btfd:Show"/>
+    
+    <xs:element name="entityReference" type="btfd:EntityReference"/>
+    
+    <xs:element name="error" type="btfd:Error"/>
+    
+    <xs:element name="liker" type="btfd:Liker"/>
+    
+    <xs:element name="likers">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="liker" type="btfd:Liker" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="follower" type="btfd:Follower"/>
+    
+    <xs:element name="followers">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="follower" type="btfd:Follower" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="statsList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userStats" type="btfd:UserStats" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="publicationStats" type="btfd:PublicationStats" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="countries">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="country" type="btfd:Country" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="categories">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="category" type="btfd:PublicationCategory" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="attachments" type="btfd:Attachments"/>
+    
+    <xs:element name="video" type="btfd:Video"/>
+    
+    <xs:element name="picture" type="btfd:Picture"/>
+    
+    <xs:element name="audio" type="btfd:Audio"/>
+    
+    <xs:element name="auditRecords">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="auditRecord" type="btfd:AuditRecord" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+</xs:schema>
