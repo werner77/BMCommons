@@ -3288,7 +3288,7 @@
 				74FD61AB1786FA29007DF1EB /* OSX */,
 				18D9A86118285F74A5E107B0 /* libPods-BMCommonsTest.a */,
 			);
-			path = Frameworks;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		260BD2B0DAB930553EB08D1A /* Pods */ = {

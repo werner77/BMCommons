@@ -10,7 +10,8 @@
 #import "NSString+BMCommons.h"
 #import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMRestKit.h>
-#import <yajl-objc/YAJLParser.h>
+
+#import <yajl_objc/YAJLParser.h>
 
 @interface BMJSONParser()<YAJLParserDelegate>
 
