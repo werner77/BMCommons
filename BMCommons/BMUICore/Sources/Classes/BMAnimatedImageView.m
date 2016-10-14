@@ -71,7 +71,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-        BMUICoreCheckLicense();
+
     }
     return self;
 }

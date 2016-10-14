@@ -1,8 +1,4 @@
 #import <BMCommons/BMGoogle.h>
-#if BM_PRIVATE_ENABLED
-#import <BMCore/BMLicenseKey_Private.h>
-#endif
-#import <BMGoogle/BMGoogle.h>
 
 @implementation BMGoogle
 
@@ -24,7 +20,5 @@ static BMGoogle *instance = nil;
     }
     return bundle;
 }
-
-BM_LICENSED_MODULE_IMPLEMENTATION(BMGoogle)
 
 @end

@@ -25,14 +25,14 @@
 
 - (id)initWithCoder:(NSCoder *)coder {
     if ((self = [super initWithCoder:coder])) {
-        BMMediaCheckLicense();
+
     }
     return self;
 }
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-        BMMediaCheckLicense();
+
     }
     return self;
 }

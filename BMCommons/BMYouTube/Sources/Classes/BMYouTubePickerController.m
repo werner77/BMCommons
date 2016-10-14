@@ -35,7 +35,7 @@
 
 - (id)init {
     if ((self = [super init])) {
-        BMYouTubeCheckLicense();
+
         self.useNativeMode = BMSTYLEVAR(nativeYouTubeModeEnabled);
     }
     return self;

@@ -41,7 +41,7 @@
 
 - (id)init {
     if ((self = [super init])) {
-        BMMediaCheckLicense();
+
     }
     return self;
 }

@@ -24,7 +24,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-        BMMediaCheckLicense();
+
         self.placeHolderImage = BMSTYLEVAR(asyncImageButtonPlaceHolderImage);
     }
     return self;
@@ -32,7 +32,7 @@
 
 - (id)initWithCoder:(NSCoder *)coder {
     if ((self = [super initWithCoder:coder])) {
-        BMMediaCheckLicense();
+
     }
     return self;
 }

@@ -12,12 +12,10 @@
 @implementation BMCoreObject
 
 + (void)initialize {
-    BMCoreCheckLicense();
 }
 
 - (id)init {
     if ((self = [super init])) {
-        BMCoreCheckLicense();
     }
     return self;
 }

@@ -22,7 +22,7 @@
 
 - (id)init {
     if ((self = [super init])) {
-        BMRestKitCheckLicense();
+
     }
     return self;
 }

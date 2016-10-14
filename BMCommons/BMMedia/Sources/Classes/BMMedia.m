@@ -42,8 +42,6 @@ static BMMedia *instance = nil;
     return theOrientation;
 }
 
-BM_LICENSED_MODULE_IMPLEMENTATION(BMMedia)
-
 @end
 
 

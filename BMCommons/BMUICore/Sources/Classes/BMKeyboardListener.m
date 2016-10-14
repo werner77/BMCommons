@@ -30,7 +30,7 @@
 -(id) init {
     self = [super init];
     if ( self ) {
-        BMUICoreCheckLicense();
+
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(noticeShowKeyboard:) name:UIKeyboardDidShowNotification object:nil];
         [center addObserver:self selector:@selector(noticeHideKeyboard:) name:UIKeyboardWillHideNotification object:nil];

@@ -91,7 +91,7 @@ static BMObjectMappingParserHandlerInitBlock defaultInitBlock = nil;
 		 errorXPath:(NSString *)errorRootElementName errorRootElementClass:(Class <BMMappableObject>)errorElementClass	
 					 delegate:(id <BMParserHandlerDelegate>)theDelegate {
 	if ((self = [self init])) {
-        BMRestKitCheckLicense();
+
 		_topElement = rootElementName;
         if (elementClass) {
             [self initModelDictionaryFromRootClass:elementClass];    
@@ -108,7 +108,7 @@ static BMObjectMappingParserHandlerInitBlock defaultInitBlock = nil;
 
 - (id)init {
     if ((self = [super init])) {
-        BMRestKitCheckLicense();
+
         if (defaultInitBlock) {
             defaultInitBlock(self);
         }

@@ -63,7 +63,7 @@
 
 - (id)initWithTableView:(UITableView *)theTableView cellFactory:(BMViewFactory *)theCellFactory delegate:(id <BMMediaRollControllerDelegate>)theDelegate {
 	if (self = [super init]) {
-        BMMediaCheckLicense();
+
         if (!theCellFactory) {
             theCellFactory = [[BMViewFactory alloc] initWithBundle:[BMMedia bundle]];
         }

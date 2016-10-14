@@ -69,7 +69,7 @@
 
 - (id)initWithFrame:(CGRect)theFrame {
     if ((self = [super initWithFrame:theFrame])) {
-        BMMediaCheckLicense();
+
         BMMediaThumbnailView *thumbnailView = [[BMMediaThumbnailView alloc] initWithFrame:self.bounds];
         thumbnailView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self addSubview:thumbnailView];
@@ -83,7 +83,7 @@
 
 - (id)initWithCoder:(NSCoder *)coder {
     if ((self = [super initWithCoder:coder])) {
-        BMMediaCheckLicense();
+
         [self setup];
         [self setShowActivity:YES];
     }

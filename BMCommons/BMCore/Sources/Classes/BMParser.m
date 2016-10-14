@@ -51,7 +51,6 @@
 
 - (id)init {
     if ((self = [super init])) {
-        BMCoreCheckLicense();
     }
     return self;
 }
@@ -66,7 +65,6 @@
 
 - (id)initWithStream:(NSInputStream *)theStream {
 	if ((self = [super init])) {
-		BMCoreCheckLicense();
 		_stream = theStream;
 		if (_totalDataLength != 0.0 ) {
 			_totalDataLength = [self inputExpectedLength];

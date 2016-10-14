@@ -7,9 +7,6 @@
 //
 
 #import <BMCommons/BMRestKit.h>
-#if BM_PRIVATE_ENABLED
-#import <BMCommons/BMLicenseKey_Private.h>
-#endif
 
 @implementation BMRestKit
 
@@ -25,7 +22,5 @@ NSString * const BMParserDocumentTypeJSONDictionary = @"com.behindmedia.BMParser
     }
     return instance;
 }
-
-BM_LICENSED_MODULE_IMPLEMENTATION(BMRestKit)
 
 @end

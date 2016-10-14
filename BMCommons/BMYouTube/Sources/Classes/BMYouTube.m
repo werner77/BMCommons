@@ -1,8 +1,5 @@
 
 #import <BMYouTube/BMYouTube.h>
-#if BM_PRIVATE_ENABLED
-#import <BMCore/BMLicenseKey_Private.h>
-#endif
 
 @implementation BMYouTube
 
@@ -24,7 +21,5 @@ static BMYouTube *instance = nil;
     }
     return bundle;
 }
-
-BM_LICENSED_MODULE_IMPLEMENTATION(BMYouTube)
 
 @end

@@ -34,7 +34,6 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        BMMediaCheckLicense();
         self.adjustContentInsetsForTranslucentBars = YES;
     }
     return self;

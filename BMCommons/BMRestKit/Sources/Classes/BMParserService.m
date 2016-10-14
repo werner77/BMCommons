@@ -154,7 +154,7 @@ parserClass, successHandler, errorHandler, lastRequestError, parserType, cacheHi
 
 - (id)init {
 	if ((self = [super init])) {
-        BMRestKitCheckLicense();
+
         self.parserType = BMParserTypeXML;
 	}
 	return self;

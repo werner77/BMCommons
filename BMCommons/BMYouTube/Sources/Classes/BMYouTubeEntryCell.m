@@ -71,7 +71,7 @@ static NSDateFormatter *df = nil;
 - (void)initialize {
     [super initialize];
     
-    BMYouTubeCheckLicense();
+
     
     self.enabledSelectionStyle = BMSTYLEVAR(tableViewCellSelectionStyle);
     self.thumbnailView.loadingImage = BMSTYLEVAR(youTubeLoadingPlaceHolderImage);

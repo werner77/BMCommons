@@ -49,7 +49,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        BMMediaCheckLicense();
+
         selectedAssets = [NSMutableArray new];
         filteredMediaKinds = BMMediaKindAll;
         self.adjustContentInsetsForTranslucentBars = YES;

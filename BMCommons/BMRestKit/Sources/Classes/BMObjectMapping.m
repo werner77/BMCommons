@@ -17,7 +17,7 @@
 
 - (id)init {
 	if ((self = [super init])) {
-        BMRestKitCheckLicense();
+
 		fieldMappings = [NSMutableArray new];
 		enumerationValues = [NSMutableArray new];
 	}

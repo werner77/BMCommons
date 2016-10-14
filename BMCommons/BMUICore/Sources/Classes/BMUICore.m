@@ -189,6 +189,4 @@ static BMUICore *instance = nil;
     return bundle;
 }
 
-BM_LICENSED_MODULE_IMPLEMENTATION(BMUICore)
-
 @end

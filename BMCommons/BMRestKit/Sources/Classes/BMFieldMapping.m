@@ -129,14 +129,14 @@ static NSTimeZone *defaultTimeZone = nil;
 
 - (id)init {
     if ((self = [super init])) {
-        BMRestKitCheckLicense();
+
     }
     return self;
 }
 
 - (id)initWithFieldDescriptor:(NSString *)fieldDescriptor mappingPath:(NSString *)theMappingPath {
 	if ((self = [super init])) {
-		BMRestKitCheckLicense();
+
         NSError *error;
         if (![self setFieldDescriptor:fieldDescriptor withError:&error]) {
             LogWarn(@"Could not initialize from the specified fieldDescriptor: %@: %@", fieldDescriptor, error);

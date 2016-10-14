@@ -24,7 +24,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
 	if ((self = [super initWithFrame:frame])) {
-        BMUICoreCheckLicense();
+
 		self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.6];
 		[self hide];
 	}

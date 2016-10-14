@@ -12,12 +12,12 @@
 @implementation BMUICoreObject
 
 + (void)initialize {
-    BMUICoreCheckLicense();
+
 }
 
 - (id)init {
     if ((self = [super init])) {
-        BMUICoreCheckLicense();
+
     }
     return self;
 }

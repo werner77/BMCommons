@@ -47,7 +47,7 @@
 
 - (id)init {
     if ((self = [super init])) {
-        BMMediaCheckLicense();
+
         self.filteredPhotoKinds = BMTTPhotoKindAll;
         changed = NO;
         photos = [[NSMutableArray alloc] init];

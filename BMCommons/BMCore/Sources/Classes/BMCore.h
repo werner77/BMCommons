@@ -6,20 +6,7 @@
  *  Copyright 2011 BehindMedia. All rights reserved.
  */
 
-#if BM_PRIVATE_ENABLED
-#import <BMCommons/BMCore_Private.h>
-#endif
-
 #import <BMCommons/BMVersionAvailability.h>
-
-#ifndef BMCoreCheckLicense
-#define BMCoreCheckLicense() {}
-#endif
-
-#ifndef BM_LICENSED_MODULE_IMPLEMENTATION
-#define BM_LICENSED_MODULE_IMPLEMENTATION(name) \
-- (void)registerLicenseKey:(NSString *)licenseKey {}
-#endif
 
 //Should be imported first, because it redefines NSLocalizedString
 #import <BMCommons/BMCoreObject.h>
@@ -35,7 +22,7 @@
 
 #import <CoreData/CoreData.h>
 #import <BMCommons/BMLogging.h>
-#import <BMCommons/BMLicensedModule.h>
+
 #import <BMCommons/BMURLCache.h>
 #import <BMCommons/BMSingleton.h>
 #import <BMCommons/NSArray+BMCommons.h>
@@ -263,7 +250,7 @@ extern "C" {
 /**
  BMCore Module
  */
-@interface BMCore : NSObject<BMLicensedModule>
+@interface BMCore : NSObject
 
 + (id)instance;
 

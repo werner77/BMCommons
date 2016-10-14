@@ -80,7 +80,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-        BMUICoreCheckLicense();
+
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
         _countLabel = [[UILabel alloc]

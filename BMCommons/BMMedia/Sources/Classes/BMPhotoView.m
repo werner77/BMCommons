@@ -46,7 +46,7 @@
 - (id)initWithFrame:(CGRect)frame {
 	if ((self = [super initWithFrame:frame])) {
         
-        BMMediaCheckLicense();
+
         
         _imageView = [[BMAsyncLoadingMediaThumbnailButton alloc] initWithFrame:self.bounds];
         _imageView.userInteractionEnabled = NO;
@@ -85,7 +85,7 @@
 
 - (id)initWithCoder:(NSCoder *)coder {
     if ((self = [super initWithCoder:coder])) {
-        BMMediaCheckLicense();
+
     }
     return self;
 }

@@ -30,7 +30,7 @@
 
 - (id)init {
     if ((self = [super init])) {
-        BMMediaCheckLicense();
+
         albumController = [[BMAlbumPickerController alloc] initWithStyle:UITableViewStylePlain];
         albumController.delegate = self;
         [self setViewControllers:@[albumController]];

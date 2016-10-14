@@ -59,14 +59,14 @@ const NSTimeInterval BMFlashButtonExpandAnimationDuration = 0.2;
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-        BMMediaCheckLicense();
+
     }
     return self;
 }
 
 - (id)initWithCoder:(NSCoder *)coder {
     if ((self = [super initWithCoder:coder])) {
-        BMMediaCheckLicense();
+
         leftImage = [UIImage imageNamed:@"BMMedia.bundle/PLCameraFlashBackgroundLeft.png"];
         middleImage = [UIImage imageNamed:@"BMMedia.bundle/PLCameraFlashBackgroundMiddle.png"];
         borderImage = [UIImage imageNamed:@"BMMedia.bundle/PLCameraFlashBackgroundBorder.png"];

@@ -18,7 +18,7 @@
 
 - (id)initWithMedia:(id <BMMediaContainer>)theMedia {
 	if ((self = [super init])) {
-        BMMediaCheckLicense();
+
 		media = theMedia;
 		
 	}

@@ -5,15 +5,6 @@
 //  Created by Werner Altewischer on 21/02/12.
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
-
-#if BM_PRIVATE_ENABLED
-#import <BMCommons/BMUICore_Private.h>
-#endif
-
-#ifndef BMUICoreCheckLicense
-#define BMUICoreCheckLicense() {}
-#endif
-
 #import <BMCommons/BMCore.h>
 #import <BMCommons/BMUICoreObject.h>
 #import <BMCommons/BMStyleSheet.h>
@@ -174,7 +165,7 @@ void BMNetworkRequestStopped(void);
 /**
  BMUICore Module
  */
-@interface BMUICore : NSObject<BMLicensedModule>
+@interface BMUICore : NSObject
 {
     
 }

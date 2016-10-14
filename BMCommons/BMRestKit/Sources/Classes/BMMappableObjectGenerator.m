@@ -38,7 +38,7 @@
 
 - (id)init {
 	if ((self = [super init])) {
-        BMRestKitCheckLicense();
+
 		self.mappingVariableName = @"mapping";
         self.schemaType = BMMappableObjectSchemaTypeXSD;
 	}

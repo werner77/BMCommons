@@ -46,7 +46,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-        BMMediaCheckLicense();
+
         [self initWebView];
         self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         [self addSubview:self.activityIndicatorView];
@@ -57,7 +57,7 @@
 
 - (id)initWithCoder:(NSCoder *)coder {
     if ((self = [super initWithCoder:coder])) {
-        BMMediaCheckLicense();
+
         [self initWebView];
         [self setShowActivity:YES];
     }

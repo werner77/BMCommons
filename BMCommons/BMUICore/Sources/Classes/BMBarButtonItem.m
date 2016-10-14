@@ -84,7 +84,7 @@ static const CGFloat kMinWidth = 25.0;
         [barButton setBackgroundImage:highlightedBgImage forState:UIControlStateHighlighted];
     }
     if ((self = [super initWithCustomView:barButton])) {
-        BMUICoreCheckLicense();
+
         orientation = UIInterfaceOrientationPortrait;
         self.target = target;
         self.action = action;

@@ -33,14 +33,14 @@
 
 - (id)init {
     if ((self = [super init])) {
-        BMRestKitCheckLicense();
+
     }
     return self;
 }
 
 - (id)initWithName:(NSString *)theElementName attributes:(NSDictionary *)theAttributes parent:(BMParserElement *)theParent {
 	if ((self = [super init])) {
-        BMRestKitCheckLicense();
+
 		elementName = theElementName;
 		attributes = theAttributes;
 		parentElement = theParent;

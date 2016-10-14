@@ -52,7 +52,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        BMYouTubeCheckLicense();
+
         self.useNativeMode = BMSTYLEVAR(nativeYouTubeModeEnabled);
         entries = [NSMutableArray new];
         selectedEntries = [NSMutableArray new];

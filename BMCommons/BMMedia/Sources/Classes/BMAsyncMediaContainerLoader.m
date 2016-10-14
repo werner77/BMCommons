@@ -62,7 +62,7 @@ static UIImage *defaultErrorImage = nil;
 
 - (id)init {
 	if ((self = [super init])) {
-        BMMediaCheckLicense();
+
 	}
 	return self;
 }

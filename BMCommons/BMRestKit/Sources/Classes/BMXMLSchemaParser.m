@@ -65,7 +65,7 @@ static NSArray *w3cNamespaces = nil;
 
 - (id)init {
 	if ((self = [super init])) {
-        BMRestKitCheckLicense();
+
 		mappingStack = [NSMutableArray new];
 		namespaceDict = [NSMutableDictionary new];
         rootElementNamesDict = [NSMutableDictionary new];

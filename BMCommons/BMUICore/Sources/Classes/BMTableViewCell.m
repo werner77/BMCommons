@@ -22,7 +22,7 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
 	if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
-        BMUICoreCheckLicense();
+
 		self.enabledSelectionStyle = BMSTYLEVAR(tableViewCellSelectionStyle);
 		self.disabledSelectionStyle = UITableViewCellSelectionStyleNone;
         self.clickEnabled = YES;
@@ -53,7 +53,7 @@
 
 - (id)initWithCoder:(NSCoder *)coder {
 	if ((self = [super initWithCoder:coder])) {
-        BMUICoreCheckLicense();
+
 		self.enabledSelectionStyle = self.selectionStyle;
 		self.disabledSelectionStyle = UITableViewCellSelectionStyleNone;
         self.clickEnabled = YES;

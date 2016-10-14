@@ -22,8 +22,7 @@
 
 - (id)initWithReuseIdentifier:(NSString*)_identifier numberOfThumbnails:(NSInteger)numberOfThumbnails {
 	if((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_identifier])) {
-        BMMediaCheckLicense();
-		thumbnailViews = [NSMutableArray new];
+        thumbnailViews = [NSMutableArray new];
         for (int i =0; i < numberOfThumbnails; ++i) {
             BMAssetThumbnailView *assetView = [[BMAssetThumbnailView alloc] initWithFrame:CGRectMake(0,0,THUMBNAIL_DIMENSION,THUMBNAIL_DIMENSION)];
             [thumbnailViews addObject:assetView];

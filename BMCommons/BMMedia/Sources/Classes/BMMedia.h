@@ -6,15 +6,6 @@
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#if BM_PRIVATE_ENABLED
-#import <BMMedia/BMMedia_Private.h>
-#endif
-
-#ifndef BMMediaCheckLicense
-#define BMMediaCheckLicense() {}
-#endif
-
-
 #import <BMCore/BMCore.h>
 #import <BMUICore/BMUICore.h>
 #import <BMMedia/BMMediaContainer.h>
@@ -25,7 +16,7 @@
 /**
  BMMedia module
  */
-@interface BMMedia : NSObject<BMLicensedModule>
+@interface BMMedia : NSObject
 
 
 + (id)instance;

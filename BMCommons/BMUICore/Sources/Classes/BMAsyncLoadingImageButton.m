@@ -35,7 +35,7 @@
 
 - (id)initWithURL:(NSURL *)theURL {
     if ((self = [self initWithFrame:CGRectZero])) {
-        BMUICoreCheckLicense();
+
         self.url = theURL;
     }
     return self;
@@ -43,7 +43,7 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if ((self = [super initWithCoder:aDecoder])) {
-        BMUICoreCheckLicense();
+
         self.userInteractionEnabled = YES;
         enabled = YES;
         self.adjustsImageWhenDisabled = YES;

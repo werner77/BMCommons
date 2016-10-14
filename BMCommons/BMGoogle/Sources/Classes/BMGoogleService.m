@@ -23,7 +23,6 @@
 
 - (id)init {
     if ((self = [super init])) {
-        BMGoogleCheckLicense();
         googleService = [[self googleServiceClass] new];
     }
     return self;

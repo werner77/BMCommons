@@ -36,7 +36,6 @@
 
 - (id)init {
     if ((self = [super init])) {
-        BMGoogleCheckLicense();
     }
     return self;
 }

@@ -213,6 +213,4 @@ static BMCore *instance = nil;
     return instance;
 }
 
-BM_LICENSED_MODULE_IMPLEMENTATION(BMCore)
-
 @end

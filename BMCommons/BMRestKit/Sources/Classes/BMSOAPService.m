@@ -38,7 +38,7 @@ static NSMutableDictionary *sParserHandlers = nil;
 
 - (id)init {
     if ((self = [super init])) {
-        BMRestKitCheckLicense();
+
     }
     return self;
 }

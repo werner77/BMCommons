@@ -29,7 +29,7 @@
 
 - (id)init {
 	if ((self = [super init])) {
-        BMMediaCheckLicense();
+
 		media = [NSMutableArray new];
         maxDuration = 0.0;
 	}

@@ -68,7 +68,7 @@
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         self.nativeYouTubeModeEnabled = BMSTYLEVAR(nativeYouTubeModeEnabled);
-        BMMediaCheckLicense();
+
         iframeSize = CGSizeZero;
         orientation = UIInterfaceOrientationPortrait;
         [self registerNotifications];
@@ -79,7 +79,7 @@
 - (id)initWithCoder:(NSCoder *)coder {
     if ((self = [super initWithCoder:coder])) {
         self.nativeYouTubeModeEnabled = BMSTYLEVAR(nativeYouTubeModeEnabled);
-        BMMediaCheckLicense();
+
         iframeSize = CGSizeZero;
         orientation = UIInterfaceOrientationPortrait;
         [self registerNotifications];

@@ -17,8 +17,7 @@
 
 - (id)init {
 	if ((self = [super init])) {
-        BMCoreCheckLicense();
-		_streamStatus = NSStreamStatusNotOpen;
+        _streamStatus = NSStreamStatusNotOpen;
         [self setDelegate:self];
 	}
 	return self;

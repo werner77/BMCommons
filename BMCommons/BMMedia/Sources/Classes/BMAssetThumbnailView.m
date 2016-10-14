@@ -24,7 +24,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-        BMMediaCheckLicense();
+
         assetImageView = [[BMMediaThumbnailView alloc] initWithFrame:self.bounds];
 		[assetImageView setContentMode:UIViewContentModeScaleToFill];
         assetImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

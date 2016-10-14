@@ -27,7 +27,7 @@ NSString *const BMYouTubeQualityLow = @"low";
 
 - (id)init {
     if ((self = [super init])) {
-        BMMediaCheckLicense();
+
         self.readCacheEnabled = YES;
         self.writeCacheEnabled = YES;
         self.loadCachedResultOnError = YES;

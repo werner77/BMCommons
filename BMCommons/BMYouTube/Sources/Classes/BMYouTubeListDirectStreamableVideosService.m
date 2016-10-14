@@ -22,7 +22,7 @@
 
 - (id)init {
     if ((self = [super init])) {
-        BMYouTubeCheckLicense();
+
         _resultsToProcess = [NSMutableArray new];
         _validEntries = [NSMutableArray new];
     }

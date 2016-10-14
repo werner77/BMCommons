@@ -173,7 +173,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        BMMediaCheckLicense();
+
         self.nativeYouTubeModeEnabled = BMSTYLEVAR(nativeYouTubeModeEnabled);
     }
     return self;

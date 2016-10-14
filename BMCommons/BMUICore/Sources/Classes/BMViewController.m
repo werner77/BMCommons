@@ -49,7 +49,7 @@ NSString *const BMViewControllerDidDisappearNotification = @"BMViewControllerDid
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        BMUICoreCheckLicense();
+
         [self commonInit];
     }
     return self;
@@ -57,7 +57,7 @@ NSString *const BMViewControllerDidDisappearNotification = @"BMViewControllerDid
 
 - (id)initWithCoder:(NSCoder *)coder {
     if ((self = [super initWithCoder:coder])) {
-        BMUICoreCheckLicense();
+
         [self commonInit];
     }
     return self;

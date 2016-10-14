@@ -20,7 +20,7 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
-        BMMediaCheckLicense();
+
         self.mediaRoll = [[UITableView alloc] initWithFrame:self.bounds];
         self.promptLabel = [[UILabel alloc] initWithFrame:self.bounds];
         
@@ -35,7 +35,7 @@
 
 - (id)initWithCoder:(NSCoder *)coder {
     if ((self = [super initWithCoder:coder])) {
-        BMMediaCheckLicense();
+
         self.horizontalMargin = DEFAULT_HORIZONTAL_MARGIN;
         self.verticalMargin = DEFAULT_VERTICAL_MARGIN;
     }
