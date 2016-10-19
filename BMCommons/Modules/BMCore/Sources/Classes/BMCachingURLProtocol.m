@@ -6,19 +6,19 @@
 //  Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
-#import <BMCommons/BMCachingURLProtocol.h>
+#import "BMCachingURLProtocol.h"
 #import "NSURLRequest+BMCommons.h"
 #import "NSObject+BMCommons.h"
 #import "NSDateFormatter+BMCommons.h"
-#import <BMCommons/BMLogging.h>
-#import <BMCommons/BMDateHelper.h>
-#import <BMCommons/BMHTTPRequest.h>
-#import <BMCommons/BMCore.h>
-#import <BMCommons/BMCache.h>
+#import "BMLogging.h"
+#import "BMDateHelper.h"
+#import "BMHTTPRequest.h"
+#import "BMCore.h"
+#import "BMCache.h"
 #import "NSDictionary+BMCommons.h"
-#import <BMCommons/BMDataRecorder.h>
+#import "BMDataRecorder.h"
 #import "NSData+BMEncryption.h"
-#import <BMCommons/BMErrorHelper.h>
+#import "BMErrorHelper.h"
 #import "NSCondition+BMCommons.h"
 
 @interface BMCachedURLResponse : NSObject <NSCoding, NSCopying>
@@ -210,28 +210,15 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
 }
 
 + (NSString *)digestForRequest:(NSURLRequest *)request {
-
-    static BMCache *digestCache = nil;
-    BM_DISPATCH_ONCE(^{
-        digestCache = [BMCache new];
-        digestCache.maxCount = 10;
-    });
-
     NSString *hash = nil;
     if (request != nil) {
-        id key = [NSString stringWithFormat:@"%tu", (NSUInteger)request];
-        hash = [digestCache objectForKey:key];
-
-        if (hash == nil) {
-            NSArray *includeKeys = [self.class includedHeaderKeysForCacheEquivalence];
-            NSArray *excludeKeys = [self.class excludedHeaderKeysForCacheEquivalence];
-            BOOL includeBody = [self.class includeBodyForCacheEquivalence];
-            if (includeKeys != nil) {
-                hash = [request bmDigestByIncludingHeaders:includeKeys includeBody:includeBody];
-            } else {
-                hash = [request bmDigestByExcludingHeaders:excludeKeys includeBody:includeBody];
-            }
-            [digestCache setObject:hash forKey:key];
+        NSArray *includeKeys = [self.class includedHeaderKeysForCacheEquivalence];
+        NSArray *excludeKeys = [self.class excludedHeaderKeysForCacheEquivalence];
+        BOOL includeBody = [self.class includeBodyForCacheEquivalence];
+        if (includeKeys != nil) {
+            hash = [request bmDigestByIncludingHeaders:includeKeys includeBody:includeBody];
+        } else {
+            hash = [request bmDigestByExcludingHeaders:excludeKeys includeBody:includeBody];
         }
     }
     return hash;
@@ -267,7 +254,7 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
-    
+
     self.response = response;
     self.mutableData = [NSMutableData new];
 
@@ -396,10 +383,16 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
             } else {
                 [urlCache removeKey:cacheKey fromDisk:YES];
             }
+        } else if (playbackEnabled) {
+            LogWarn(@"Could not load cached response with digest '%@' for following request:\n--------------------\n%@--------------------\n", cacheKey, [self fullDescriptionForRequest:self.request]);
         }
     }
 
     return ret;
+}
+
+- (NSString *)fullDescriptionForRequest:(NSURLRequest *)request {
+    return [request bmRawDescription];
 }
 
 - (NSString *)cacheKey {
@@ -444,10 +437,11 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
             cachedResponse = [[BMCachedURLResponse alloc] initWithResponse:response data:self.mutableData timeout:timeout];
         }
 
+        NSString *cacheKey = self.cacheKey;
         if (timeout > 0) {
             @try {
                 NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cachedResponse];
-                [urlCache storeData:data forKey:self.cacheKey invalidationAge:timeout];
+                [urlCache storeData:data forKey:cacheKey invalidationAge:timeout];
             }
             @catch (NSException *exception) {
                 LogWarn(@"Could not save cached response: %@", exception);
@@ -456,7 +450,10 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
 
         if (recordingEnabled) {
             @try {
-                [self.class.recorder recordResult:cachedResponse forRecordingClass:[self.class recordingClassIdentifier] withDigest:self.cacheKey];
+                [self.class.recorder recordResult:cachedResponse forRecordingClass:[self.class recordingClassIdentifier] withDigest:cacheKey];
+
+                LogDebug(@"Saved cached response with digest '%@' for following request:\n--------------------\n%@--------------------\n", cacheKey, [self fullDescriptionForRequest:self.request]);
+
             } @catch (NSException *exception) {
                 LogWarn(@"Could not save recorded response: %@", exception);
             }
@@ -466,19 +463,19 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
 
 + (NSTimeInterval)expirationTimeForResponse:(NSURLResponse *)response {
     NSTimeInterval expirationTime = 0;
-    
+
     BOOL parsed = NO;
     NSHTTPURLResponse *httpResponse = [response bmCastSafely:[NSHTTPURLResponse class]];
-    
+
     NSDictionary *cacheHeaderDictionary = [self valuesForHTTPHeaderKey:@"Cache-Control" fromResponse:httpResponse];
     for (NSString *key in @[@"no-cache", @"no-store", @"s-maxage", @"max-age"]) {
         id value = [cacheHeaderDictionary objectForKey:key];
-        
+
         BOOL present = value != nil;
         if (value == [NSNull null]) {
             value = nil;
         }
-        
+
         if ([key isEqualToString:@"no-cache"] && present) {
             //No caching
             parsed = YES;
@@ -492,15 +489,15 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
             expirationTime = [value doubleValue];
             parsed = YES;
         }
-        
+
         if (parsed) {
             break;
         }
     }
-    
+
     if (!parsed) {
         NSString *expiresValue = [self valueForHTTPHeaderKey:@"Expires" fromResponse:httpResponse];
-        
+
         if (expiresValue) {
             @try {
                 NSDate *expiryDate = [[BMDateHelper rfc1123DateFormatter] bmDateByParsingFromString:expiresValue];
@@ -520,7 +517,7 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
     if (headerKey == nil) {
         return nil;
     }
-    
+
     NSDictionary *headerFields = [response allHeaderFields];
     NSString *headerValue = [headerFields objectForKey:headerKey];
     if (headerValue == nil) {
@@ -530,23 +527,23 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
 }
 
 + (NSDictionary *)valuesForHTTPHeaderKey:(NSString *)headerKey fromResponse:(NSHTTPURLResponse *)response {
-    
+
     NSString *headerValue = [self valueForHTTPHeaderKey:headerKey fromResponse:response];
-    
+
     if (headerValue == nil) {
         return nil;
     }
-    
+
     NSMutableDictionary *ret = [NSMutableDictionary new];
     NSCharacterSet *whitespaceSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     NSArray *components = [headerValue componentsSeparatedByString:@","];
     for (NSString *component in components) {
         NSArray *valueComponents = [component componentsSeparatedByString:@"="];
-        
+
         NSString *key = [[[valueComponents firstObject] lowercaseString] stringByTrimmingCharactersInSet:whitespaceSet];
         NSString *valueString = valueComponents.count > 1 ? valueComponents[1] : nil;
         id value = [[valueString lowercaseString] stringByTrimmingCharactersInSet:whitespaceSet];
-        
+
         if (value == nil) {
             value = [NSNull null];
         }
@@ -562,7 +559,7 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
 + (BMDataRecorder *)recorder {
     static BMDataRecorder *recorder = nil;
     BM_DISPATCH_ONCE(^{
-       recorder = [BMDataRecorder new];
+        recorder = [BMDataRecorder new];
     });
     return recorder;
 }

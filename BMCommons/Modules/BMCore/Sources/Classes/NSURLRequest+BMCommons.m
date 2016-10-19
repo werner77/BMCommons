@@ -90,6 +90,19 @@
     return [BMCachingURLProtocol isCachingEnabledForRequest:self];
 }
 
+- (NSString *)bmRawDescription {
+    NSMutableString *ret = [NSMutableString new];
+
+    [ret appendFormat:@"%@ %@\n", [self HTTPMethod], self.URL];
+
+    NSDictionary *allHeaderFields = [self allHTTPHeaderFields];
+    for (id key in allHeaderFields) {
+        [ret appendFormat:@"%@: %@\n", key, [allHeaderFields objectForKey:key]];
+    }
+    [ret appendFormat:@"\n%@\n", [[NSString alloc] initWithData:[self HTTPBody] encoding:NSUTF8StringEncoding]];
+    return ret;
+}
+
 @end
 
 @implementation NSMutableURLRequest (BMCommons)

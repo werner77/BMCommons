@@ -32,6 +32,11 @@
  */
 - (BOOL)isBMURLCachingEnabled;
 
+/**
+ * Returns the raw description for the request including the method, url, headers and body.
+ */
+- (NSString *)bmRawDescription;
+
 @end
 
 @interface NSMutableURLRequest (BMCommons)
