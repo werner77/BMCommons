@@ -11,7 +11,7 @@
 #import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMRestKit.h>
 
-#import <yajl_objc/YAJLParser.h>
+#import "YAJLParser.h"
 
 @interface BMJSONParser()<YAJLParserDelegate>
 
