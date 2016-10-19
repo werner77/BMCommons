@@ -22,6 +22,7 @@ TODO: Add long description of the pod here.
   
   s.ios.deployment_target = '6.0'
   s.platform = :ios
+  s.default_subspec = 'BMCore'
 
   s.subspec 'BMCore' do |s_core|
     s_core.frameworks   = 'Foundation','UIKit','CoreGraphics','SystemConfiguration','AudioToolbox','Security'
