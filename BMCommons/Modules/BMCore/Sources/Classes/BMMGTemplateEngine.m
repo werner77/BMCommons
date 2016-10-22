@@ -11,6 +11,7 @@
 #import "NSArray+DeepMutableCopy.h"
 #import "NSDictionary+DeepMutableCopy.h"
 #import <BMCommons/BMLocalization.h>
+#import <BMCommons/BMVersionAvailability.h>
 
 #define DEFAULT_MARKER_START		@"{%"
 #define DEFAULT_MARKER_END			@"%}"
@@ -186,7 +187,9 @@
 	if (delegate) {
 		SEL selector = (started) ? @selector(templateEngine:blockStarted:) : @selector(templateEngine:blockEnded:);
 		if ([(NSObject *)delegate respondsToSelector:selector]) {
+			BM_IGNORE_SELECTOR_LEAK_WARNING(
 			[(NSObject *)delegate performSelector:selector withObject:self withObject:[_openBlocksStack lastObject]];
+			)
 		}
 	}
 }
@@ -197,7 +200,9 @@
 	if (delegate) {
 		SEL selector = @selector(templateEngineFinishedProcessingTemplate:);
 		if ([(NSObject *)delegate respondsToSelector:selector]) {
+			BM_IGNORE_SELECTOR_LEAK_WARNING(
 			[(NSObject *)delegate performSelector:selector withObject:self];
+			)
 		}
 	}
 }

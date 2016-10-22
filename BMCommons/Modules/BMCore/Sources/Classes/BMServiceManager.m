@@ -493,7 +493,9 @@ static BMServiceManager *sharedInstance = nil;
 
 	for (BMServiceDelegateContainer *dc in theDelegates) {
 		if ([dc matchesService:service matchType:nil] && [dc.delegate respondsToSelector:selector]) {
+			BM_IGNORE_SELECTOR_LEAK_WARNING(
 			[dc.delegate performSelector:selector withObject:delegateService withObject:object];
+			)
 		}
 	}
 }

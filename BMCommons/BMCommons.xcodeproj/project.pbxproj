@@ -8120,7 +8120,7 @@
 				PUBLIC_HEADERS_FOLDER_PATH = "Headers/${TARGET_NAME}";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				WARNING_CFLAGS = "-Wno-arc-performSelector-leaks";
+				WARNING_CFLAGS = "";
 			};
 			name = Debug;
 		};
@@ -8165,7 +8165,7 @@
 				PUBLIC_HEADERS_FOLDER_PATH = "Headers/${TARGET_NAME}";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				WARNING_CFLAGS = "-Wno-arc-performSelector-leaks";
+				WARNING_CFLAGS = "";
 			};
 			name = Release;
 		};

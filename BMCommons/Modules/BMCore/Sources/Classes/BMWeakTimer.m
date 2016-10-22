@@ -158,7 +158,9 @@
         if (self.invocation) {
             [self.invocation invokeWithTarget:self.target];
         } else if (self.selector) {
-            [self.target performSelector:self.selector withObject:self];
+            BM_IGNORE_SELECTOR_LEAK_WARNING(
+                    [self.target performSelector:self.selector withObject:self];
+            )
         }
     } else if (self.block) {
         self.block(self);

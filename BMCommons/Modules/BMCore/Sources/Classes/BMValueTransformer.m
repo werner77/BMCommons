@@ -6,6 +6,7 @@
 //  Copyright 2011 BehindMedia. All rights reserved.
 //
 #import <BMCommons/BMValueTransformer.h>
+#import <BMCommons/BMVersionAvailability.h>
 
 
 @implementation BMValueTransformer 
@@ -38,7 +39,9 @@
 	if (self.converterSelector != nil) {
 		id ct = self.converterTarget;
 		if (!ct) ct = value;
+		BM_IGNORE_SELECTOR_LEAK_WARNING(
 		transformedValue = [ct performSelector:self.converterSelector withObject:value];
+		)
 	}
 	return transformedValue;
 }
@@ -48,7 +51,9 @@
 	if (self.inverseConverterSelector != nil) {
 		id ct = self.inverseConverterTarget;
 		if (!ct) ct = value;
+		BM_IGNORE_SELECTOR_LEAK_WARNING(
 		transformedValue = [ct performSelector:self.inverseConverterSelector withObject:value];
+		)
 	}
 	return transformedValue;
 }

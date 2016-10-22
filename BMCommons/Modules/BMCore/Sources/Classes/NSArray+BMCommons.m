@@ -19,7 +19,9 @@
   NSEnumerator* e = [copy objectEnumerator];
   for (id delegate; (delegate = [e nextObject]); ) {
     if ([delegate respondsToSelector:selector]) {
+        BM_IGNORE_SELECTOR_LEAK_WARNING(
       [delegate performSelector:selector];
+        )
     }
   }
 }
@@ -31,7 +33,9 @@
   NSEnumerator* e = [copy objectEnumerator];
   for (id delegate; (delegate = [e nextObject]); ) {
     if ([delegate respondsToSelector:selector]) {
+        BM_IGNORE_SELECTOR_LEAK_WARNING(
       [delegate performSelector:selector withObject:p1];
+        )
     }
   }
 }
@@ -43,7 +47,9 @@
   NSEnumerator* e = [copy objectEnumerator];
   for (id delegate; (delegate = [e nextObject]); ) {
     if ([delegate respondsToSelector:selector]) {
+        BM_IGNORE_SELECTOR_LEAK_WARNING(
       [delegate performSelector:selector withObject:p1 withObject:p2];
+        )
     }
   }
 }

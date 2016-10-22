@@ -9,6 +9,7 @@
 #import <BMCommons/BMPropertyDescriptor.h>
 #import <BMCommons/NSObject+BMCommons.h>
 #import <BMCommons/BMStringHelper.h>
+#import <BMCommons/BMVersionAvailability.h>
 
 @interface BMPropertyDescriptor()
 
@@ -122,7 +123,9 @@
             SEL getterSelector = NSSelectorFromString(ivar);
             
             if (!ignoreFailure || [t respondsToSelector:getterSelector]) {
+                BM_IGNORE_SELECTOR_LEAK_WARNING(
                 t = [t performSelector:getterSelector];
+                )
             } else {
                 t = nil;
                 break;
@@ -161,7 +164,9 @@
             if (last) {
                 ret = [t bmInvokeSelector:getter returnLength:valueLength];
             } else {
+                BM_IGNORE_SELECTOR_LEAK_WARNING(
                 t = [t performSelector:getter];
+                )
             }
         } else {
             t = nil;
@@ -182,7 +187,9 @@
 		}
 		SEL getter = NSSelectorFromString(ivar);
 		if (!ignoreFailure || [t respondsToSelector:getter]) {
+            BM_IGNORE_SELECTOR_LEAK_WARNING(
 			t = [t performSelector:getter];
+            )
 		} else {
 			t = nil;
 			break;
@@ -208,7 +215,9 @@
 			SEL getterSelector = NSSelectorFromString(ivar);
 			
 			if (!ignoreFailure || [t respondsToSelector:getterSelector]) {
+                BM_IGNORE_SELECTOR_LEAK_WARNING(
 				t = [t performSelector:getterSelector];
+                )
 			} else {
 				t = nil;
 				break;
@@ -222,7 +231,9 @@
 				//Convert the value first if a value transformer was set
 				value = [self.valueTransformer transformedValue:value];
 			}
+            BM_IGNORE_SELECTOR_LEAK_WARNING(
 			[t performSelector:setterSelector withObject:value];
+            )
 		}
 	}
 }
@@ -269,8 +280,10 @@
 	if (self.getters.count > 0) {
 		for (int i = 0; i < (self.getters.count - 1); ++i) {
 			NSString *ivar = [self.getters objectAtIndex:i];
-			SEL getterSelector = NSSelectorFromString(ivar);
+            SEL getterSelector = NSSelectorFromString(ivar);
+            BM_IGNORE_SELECTOR_LEAK_WARNING(
 			t = [t performSelector:getterSelector];
+            )
 		}
 	}
 	return t == nil || [t validateValue:value forKey:self.propertyName error:error];
