@@ -29,7 +29,6 @@ TODO: Add long description of the pod here.
     s_core.prefix_header_file = 'BMCommons/Modules/BMCore/Sources/Other/BMCore_Prefix.pch'
     s_core.libraries = 'z', 'icucore'
     s_core.requires_arc = true
-    s_core.compiler_flags = '-Wno-arc-performSelector-leaks'
     s_core.source_files = 'BMCommons/Modules/BMCore/Sources/**/*.{c,m,h}'
     s_core.exclude_files = 'BMCommons/Modules/BMCore/**/*_Private.*'
   end
@@ -38,7 +37,6 @@ TODO: Add long description of the pod here.
     s_uicore.frameworks   = 'CoreData'
     s_uicore.prefix_header_file = 'BMCommons/Modules/BMUICore/Sources/Other/BMUICore_Prefix.pch'
     s_uicore.requires_arc = true
-    s_uicore.compiler_flags = '-Wno-arc-performSelector-leaks'
     s_uicore.source_files = 'BMCommons/Modules/BMUICore/Sources/**/*.{c,m,h}'
     s_uicore.exclude_files = 'BMCommons/Modules/BMUICore/**/*_Private.*'
     s_uicore.resource_bundle = { 'BMUICore' => 'BMCommons/Modules/BMUICore/Resources/**/*.*' }
@@ -48,7 +46,6 @@ TODO: Add long description of the pod here.
   s.subspec 'BMUIExtensions' do |s_uiext|
     s_uiext.prefix_header_file = 'BMCommons/Modules/BMUIExtensions/Sources/Other/BMUIExtensions-Prefix.pch'
     s_uiext.requires_arc = true
-    s_uiext.compiler_flags = '-Wno-arc-performSelector-leaks'
     s_uiext.source_files = 'BMCommons/Modules/BMUIExtensions/Sources/**/*.{c,m,h}'
     s_uiext.exclude_files = 'BMCommons/Modules/BMUIExtensions/**/*_Private.*'
     s_uiext.dependency 'BMCommons/BMUICore'
@@ -58,7 +55,6 @@ TODO: Add long description of the pod here.
     s_coredata.frameworks   = 'CoreMedia','AVFoundation','QuartzCore'
     s_coredata.prefix_header_file = 'BMCommons/Modules/BMCoreData/Sources/Other/BMCoreData-Prefix.pch'
     s_coredata.requires_arc = true
-    s_coredata.compiler_flags = '-Wno-arc-performSelector-leaks'
     s_coredata.source_files = 'BMCommons/Modules/BMCoreData/Sources/**/*.{c,m,h}'
     s_coredata.exclude_files = 'BMCommons/Modules/BMCoreData/**/*_Private.*'
     s_coredata.dependency 'BMCommons/BMUICore'
@@ -67,7 +63,6 @@ TODO: Add long description of the pod here.
   s.subspec 'BMXML' do |s_xml|
     s_xml.prefix_header_file = 'BMCommons/Modules/BMXML/Sources/Other/BMXML-Prefix.pch'
     s_xml.requires_arc = true
-    s_xml.compiler_flags = '-Wno-arc-performSelector-leaks'
     s_xml.source_files = 'BMCommons/Modules/BMXML/Sources/**/*.{c,m,h}'
     s_xml.private_header_files = 'BMCommons/Modules/BMXML/**/Private/*.h'
     s_xml.libraries = 'xml2'
@@ -79,7 +74,6 @@ TODO: Add long description of the pod here.
     s_restkit.frameworks   = 'CoreData'
     s_restkit.prefix_header_file = 'BMCommons/Modules/BMRestKit/Sources/Other/BMRestKit-Prefix.pch'
     s_restkit.requires_arc = true
-    s_restkit.compiler_flags = '-Wno-arc-performSelector-leaks'
     s_restkit.source_files = 'BMCommons/Modules/BMRestKit/Sources/**/*.{c,m,h}'
     s_restkit.exclude_files = 'BMCommons/Modules/BMRestKit/**/*_Private.*'
     s_restkit.dependency 'BMCommons/BMXML'
