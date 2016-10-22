@@ -22,7 +22,7 @@ pod "BMCommons"
 
 ## Author
 
-Werner Altewischer, werner.altewischer@gmail.com
+Werner Altewischer
 
 ## License
 
