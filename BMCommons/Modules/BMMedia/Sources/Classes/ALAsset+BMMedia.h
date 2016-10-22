@@ -10,6 +10,9 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <BMMedia/BMMediaContainer.h>
 
+UIInterfaceOrientation BMInfaceOrientationFromAssetOrientation(ALAssetOrientation assetOrientation);
+UIImageOrientation BMImageOrientationFromAssetOrientation(ALAssetOrientation assetOrientation);
+
 /**
  Category on ALAsset for the BMMedia module.
  */
@@ -21,3 +24,4 @@
 - (BMMediaKind)bmMediaKind;
 
 @end
+

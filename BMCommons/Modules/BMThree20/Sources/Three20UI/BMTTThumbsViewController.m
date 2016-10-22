@@ -62,7 +62,7 @@ static CGFloat kThumbSpacing = 4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.wantsFullScreenLayout = YES;
+        self.edgesForExtendedLayout = UIRectEdgeAll;
         self.hidesBottomBarWhenPushed = YES;
     }
     
@@ -175,7 +175,6 @@ static CGFloat kThumbSpacing = 4;
     _selectionControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:BMTTLocalizedString(@"All", nil),
                                                                   BMTTLocalizedString(@"Photos", nil),
                                                                   BMTTLocalizedString(@"Videos", nil), nil]];
-    _selectionControl.segmentedControlStyle = UISegmentedControlStyleBar;
     
     int index = 0;
     

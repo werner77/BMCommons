@@ -81,7 +81,7 @@
             
             
             _signInViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle: BMUICoreLocalizedString(@"button.title.cancel", @"Cancel")
-                                                                                                       style: UIBarButtonItemStyleBordered
+                                                                                                       style: UIBarButtonItemStylePlain
                                                                                                       target: self
                                                                                                       action: @selector(cancel)];
             _signInViewController.title = BMLocalizedString(@"googleauthentication.title", @"Google Sign In");

@@ -13,13 +13,8 @@
 @implementation UITableViewCell (BMCommons)
 
 - (void)bmRemoveMarginsAndInsets {
-    [super bmRemoveMarginsAndInsets];
-    
-    BM_START_IGNORE_TOO_NEW
-    if ([self respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self setSeparatorInset:UIEdgeInsetsZero];
-    }
-    BM_END_IGNORE_TOO_NEW
+    [super bmRemoveMarginsAndInsets];    
+    [self setSeparatorInset:UIEdgeInsetsZero];
 }
 
 @end

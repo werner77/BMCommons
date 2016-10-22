@@ -177,30 +177,23 @@ static const CGFloat kHorizontalPadding = 30.0f;
     _parentView = nil;
 }
 
-BM_START_IGNORE_TOO_NEW
-
 - (void)applyMotionEffectsToView:(UIView *)dialogView
 {
-    // motion effects require iOS 7.0
-    if (BMOSVersionIsAtLeast(@"7.0")) {
-        UIInterpolatingMotionEffect *horizontalEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x"
-                                                                                                        type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-        horizontalEffect.minimumRelativeValue = @(-kIOS7MotionEffectExtent);
-        horizontalEffect.maximumRelativeValue = @( kIOS7MotionEffectExtent);
+    UIInterpolatingMotionEffect *horizontalEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x"
+                                                                                                    type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+    horizontalEffect.minimumRelativeValue = @(-kIOS7MotionEffectExtent);
+    horizontalEffect.maximumRelativeValue = @( kIOS7MotionEffectExtent);
 
-        UIInterpolatingMotionEffect *verticalEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y"
-                                                                                                      type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-        verticalEffect.minimumRelativeValue = @(-kIOS7MotionEffectExtent);
-        verticalEffect.maximumRelativeValue = @( kIOS7MotionEffectExtent);
+    UIInterpolatingMotionEffect *verticalEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y"
+                                                                                                  type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+    verticalEffect.minimumRelativeValue = @(-kIOS7MotionEffectExtent);
+    verticalEffect.maximumRelativeValue = @( kIOS7MotionEffectExtent);
 
-        UIMotionEffectGroup *motionEffectGroup = [[UIMotionEffectGroup alloc] init];
-        motionEffectGroup.motionEffects = @[horizontalEffect, verticalEffect];
+    UIMotionEffectGroup *motionEffectGroup = [[UIMotionEffectGroup alloc] init];
+    motionEffectGroup.motionEffects = @[horizontalEffect, verticalEffect];
 
-        [dialogView addMotionEffect:motionEffectGroup];
-    }
+    [dialogView addMotionEffect:motionEffectGroup];
 }
-
-BM_END_IGNORE_TOO_NEW
 
 - (void)presentDialog:(BMAlertView *)dialogView inView:(UIView *)parentView withCompletion:(void (^)(BOOL finished))completion {
 

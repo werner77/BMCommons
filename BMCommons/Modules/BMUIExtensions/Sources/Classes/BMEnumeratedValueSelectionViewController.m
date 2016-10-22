@@ -10,6 +10,7 @@
 #import <BMCommons/BMPropertyDescriptor.h>
 #import <BMCommons/BMLabelCell.h>
 #import <BMCommons/BMUICore.h>
+#import <BMCommons/NSString+BMUICore.h>
 
 #define DEFAULT_WIDTH 200.0
 #define CELL_MARGIN 20.0
@@ -37,7 +38,7 @@
         self.heightForViewInPopover = [self defaultHeightForViewInPopover];
     }
 	
-	self.contentSizeForViewInPopover = CGSizeMake(self.widthForViewInPopover,
+	self.preferredContentSize = CGSizeMake(self.widthForViewInPopover,
 												  self.heightForViewInPopover);
 	
 	if (self.firstLoad) {
@@ -51,7 +52,7 @@
 - (void)localize {
     [super localize];
     
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:BMUICoreLocalizedString(@"button.title.cancel", @"Cancel") style:UIBarButtonItemStyleBordered target:self action:@selector(cancelButtonPressed)];
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:BMUICoreLocalizedString(@"button.title.cancel", @"Cancel") style:UIBarButtonItemStylePlain target:self action:@selector(cancelButtonPressed)];
 	self.navigationItem.leftBarButtonItem = cancelButton;
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:BMUICoreLocalizedString(@"button.title.save", @"Save") style:UIBarButtonItemStyleDone target:self action:@selector(saveButtonPressed)];
@@ -147,7 +148,7 @@
 		
 		for (id possibleValue in possibleValues) {
             NSString *s = [self labelFromValue:possibleValue];
-			CGSize size = [s sizeWithFont:[self fontForCellLabel]];
+			CGSize size = [s bmSizeWithFont:[self fontForCellLabel]];
 			
 			maxWidth = MAX(maxWidth, size.width);
 		}

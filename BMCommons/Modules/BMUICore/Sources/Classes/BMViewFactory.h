@@ -37,35 +37,19 @@ extern NSString * const BMTableViewHeaderFooterViewKind;
 - (id)initWithBundle:(NSBundle *)bundle;
 
 /**
- Loads a tableview cell from the bundle set.
- 
- The nib name should equal the cellkind and the nib should only contain this tableview cell with reuseIdentifier set to
-the same value.
- */
-- (UITableViewCell*)cellOfKind:(NSString*)theCellKind forTable:(UITableView*)aTableView;
-
-/**
- This method is present for sub classes to override. 
- 
- Default just calls cellOfKind:forTable:
- When using custom backgrounds for tableviews you may want to use different cells depending on what position in the (grouped) UITableView they have.
- */
-- (UITableViewCell*)cellOfKind:(NSString*)theCellKind forTable:(UITableView*)aTableView atIndexPath:(NSIndexPath *)indexPath;
-
-/**
- Loads a view from a nib with the specified name (kind).
+ Loads a view from a nib with the specified name (type).
  
  Also checks whether the reuse identifier of the view corresponds to the kind.
  */
-- (UIView<BMReusableObject> *)viewOfKind:(NSString *)kind;
+- (UIView<BMReusableObject> *)viewOfType:(NSString *)type;
 
 /**
  Loads a reusable view from the container or from the nib if not available for dequeueing.
  
- @see viewOfKind:
+ @see viewOfType:
  @see [BMReusableObjectContainer dequeueReusableObjectWithIdentifier:]
  */
-- (UIView<BMReusableObject> *)viewOfKind:(NSString *)theKind forContainer:(id <BMReusableObjectContainer>)container;
+- (UIView<BMReusableObject> *)viewOfType:(NSString *)type forContainer:(id <BMReusableObjectContainer>)container;
 
 /**
  Loads the first view in the specified nib using the specified owner as owner.
@@ -85,10 +69,6 @@ the same value.
  Is called automatically on low memory conditions.
  */
 - (void)releaseMemory;
-
-#ifdef __IPHONE_6_0
-
-BM_START_IGNORE_TOO_NEW
 
 /**
  Returns a cell of the specified type for the specified tableview at the specified indexpath.
@@ -139,8 +119,4 @@ BM_START_IGNORE_TOO_NEW
  */
 - (BOOL)registerOnceReusableViewOfType:(NSString *)type ofKind:(NSString *)kind forView:(UIView *)view;
 
-BM_END_IGNORE_TOO_NEW
-
-#endif
-
-@end  
+@end

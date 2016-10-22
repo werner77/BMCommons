@@ -85,6 +85,8 @@
 
 - (BOOL)isShowingChrome;
 
+- (void)onEmbeddedVideoViewTap:(UIGestureRecognizer *)gr;
+
 @end
 
 @interface BMFullScreenMediaBrowserViewController (Private)
@@ -201,7 +203,7 @@
 
     if (self.navigationController.viewControllers.count > 0 &&
             (self.navigationController.viewControllers)[0] == self) {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:BMMediaLocalizedString(@"mediabrowser.barbutton.back", @"Back") style:UIBarButtonItemStyleBordered
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:BMMediaLocalizedString(@"mediabrowser.barbutton.back", @"Back") style:UIBarButtonItemStylePlain
                                                                                  target:self action:@selector(dismiss)];
     } else {
         self.navigationItem.leftBarButtonItem = nil;
@@ -246,15 +248,8 @@
     }
     
     _scrollView.centerPageIndex = _centerPhotoIndex;
-    
-    if (BMOSVersionIsAtLeast(@"7.0")) {
-        BM_START_IGNORE_TOO_NEW
-        _toolbar.barTintColor = self.navigationBarTintColor;
-        _toolbar.tintColor = self.navigationBarTextTintColor;
-        BM_END_IGNORE_TOO_NEW
-    } else {
-        _toolbar.tintColor = self.navigationBarTintColor;
-    }
+    _toolbar.barTintColor = self.navigationBarTintColor;
+    _toolbar.tintColor = self.navigationBarTextTintColor;
     _toolbar.barStyle = self.navigationBarStyle;
     
     UIButton *button = [UIButton bmButtonForBarButtonItemWithTarget:self action:@selector(deleteCurrentPhoto)];
@@ -704,9 +699,16 @@
 }
 
 - (void)embeddedVideoViewWillExitFullscreen:(BMEmbeddedVideoView *)view {
+    
+    BM_PUSH_IGNORE_DEPRECATION_WARNING
+    
+    //Hack needed for proper layout
+    
     [self willRotateToInterfaceOrientation:BMInterfaceOrientation() duration:0.0];
     [self willAnimateRotationToInterfaceOrientation:BMInterfaceOrientation() duration:0.0];
     [self didRotateFromInterfaceOrientation:BMInterfaceOrientation()];
+    
+    BM_POP_IGNORE_WARNING
 }
 
 - (void)embeddedVideoViewDidExitFullscreen:(BMEmbeddedVideoView *)view {

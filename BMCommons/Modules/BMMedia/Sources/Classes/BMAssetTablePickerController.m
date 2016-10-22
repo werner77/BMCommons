@@ -92,9 +92,7 @@
     
     selectionControl = [[UISegmentedControl alloc] initWithItems:@[BMMediaLocalizedString(@"assetpicker.selectioncontrol.all", @"All"),
                                                                                        BMMediaLocalizedString(@"assetpicker.selectioncontrol.photos", @"Photos"),
-                                                                                       BMMediaLocalizedString(@"assetpicker.selectioncontrol.videos", @"Videos")]];
-    selectionControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    
+                                                                                       BMMediaLocalizedString(@"assetpicker.selectioncontrol.videos", @"Videos")]];    
     if (filteredMediaKinds == BMMediaKindAll) {
         selectionControl.selectedSegmentIndex = 0;
     } else if (filteredMediaKinds == BMMediaKindPicture) {

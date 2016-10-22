@@ -24,7 +24,6 @@
   UIColor*  _shadowColor;
   CGSize    _shadowOffset;
 
-  CGFloat   _minimumFontSize;
   NSInteger _numberOfLines;
 
   NSTextAlignment                   _textAlignment;
@@ -39,7 +38,6 @@
 @property (nonatomic, retain) UIColor*  shadowColor;
 @property (nonatomic)         CGSize    shadowOffset;
 
-@property (nonatomic)         CGFloat   minimumFontSize;
 @property (nonatomic)         NSInteger numberOfLines;
 
 @property (nonatomic)         NSTextAlignment                   textAlignment;

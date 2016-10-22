@@ -67,14 +67,14 @@ static void DrawGradient(CGRect rect, CGContextRef ctx);
     CGSize constraint = CGSizeMake(maxWidth, CGFLOAT_MAX);
     if (_titleLabel != nil)
     {
-        CGSize textSize = [_titleLabel.text sizeWithFont:_titleLabel.font constrainedToSize:constraint lineBreakMode:_titleLabel.lineBreakMode];
+        CGSize textSize = [_titleLabel.text bmSizeWithFont:_titleLabel.font constrainedToSize:constraint lineBreakMode:_titleLabel.lineBreakMode];
         _titleLabel.frame = BMRectMakeIntegral(kBMLabelPadding, y, maxWidth, textSize.height);
         y += _titleLabel.frame.size.height + kBMLabelPadding;
     }
 
     if (_messageLabel != nil)
     {
-        CGSize textSize = [_messageLabel.text sizeWithFont:_messageLabel.font constrainedToSize:constraint lineBreakMode:_messageLabel.lineBreakMode];
+        CGSize textSize = [_messageLabel.text bmSizeWithFont:_messageLabel.font constrainedToSize:constraint lineBreakMode:_messageLabel.lineBreakMode];
         _messageLabel.frame = BMRectMakeIntegral(kBMLabelPadding, y, maxWidth, textSize.height);
     }
 

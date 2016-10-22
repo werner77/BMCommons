@@ -68,18 +68,9 @@
 #pragma mark UIViewController
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)loadView {
-  if (nil != self.nibName) {
-    [super loadView];
-
-  } else {
-    CGRect frame = self.wantsFullScreenLayout ? BMTTScreenBounds() : BMTTNavigationFrame();
-    self.view = [[[UIView alloc] initWithFrame:frame] autorelease];
-    self.view.autoresizesSubviews = YES;
-    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+- (void)viewDidLoad {
+    [super viewDidLoad];
     self.view.backgroundColor = (UIColor *)BMTTSTYLEVAR(backgroundColor);
-  }
 }
 
 

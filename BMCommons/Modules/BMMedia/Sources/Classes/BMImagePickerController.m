@@ -64,15 +64,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-#ifdef __IPHONE_7_0
-    if (BMOSVersionIsAtLeast(@"7.0")) {
-        BM_START_IGNORE_TOO_NEW
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        BM_END_IGNORE_TOO_NEW
-    }
-#endif
-    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     [self adjustViewForCaptureMode];
 }
 

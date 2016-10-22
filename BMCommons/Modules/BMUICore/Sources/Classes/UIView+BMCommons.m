@@ -31,18 +31,7 @@
     else
         UIGraphicsBeginImageContext(self.bounds.size);
 
-#ifdef __IPHONE_7_0
-    if ([self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-
-        BM_START_IGNORE_TOO_NEW
-        [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:NO];
-        BM_END_IGNORE_TOO_NEW
-    } else {
-        [self.layer renderInContext:UIGraphicsGetCurrentContext()];
-    }
-#else
-    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
-#endif
+    [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:NO];
     
     // Get the snapshot
     UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -66,17 +55,8 @@
 }
 
 - (void)bmRemoveMarginsAndInsets {
-    BM_START_IGNORE_TOO_NEW    
-    // Prevent the cell from inheriting the Table View's margin settings
-    if ([self respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
-        [self setPreservesSuperviewLayoutMargins:NO];
-    }
-    
-    // Explictly set your cell's layout margins
-    if ([self respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self setLayoutMargins:UIEdgeInsetsZero];
-    }
-    BM_END_IGNORE_TOO_NEW
+    [self setPreservesSuperviewLayoutMargins:NO];    
+    [self setLayoutMargins:UIEdgeInsetsZero];
 }
 
 - (void)bmLayoutWithBlock:(void (^)(void))block animationDuration:(NSTimeInterval)duration {

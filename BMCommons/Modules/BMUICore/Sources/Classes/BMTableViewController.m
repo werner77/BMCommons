@@ -470,13 +470,9 @@ static const float kAnimationDuration = 0.3f;
 - (void)keyboardWillShow:(NSNotification *)notification {
     NSDictionary *info = [notification userInfo];
     NSValue *aValue = info[UIKeyboardFrameEndUserInfoKey];
-    CGSize keyboardSize = [aValue CGRectValue].size;
+    CGRect keyboardFrame = [self.view convertRect:[aValue CGRectValue] fromView:nil];
     
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-        _keyboardHeight = keyboardSize.width;
-    } else {
-        _keyboardHeight = keyboardSize.height;
-    }
+    _keyboardHeight = keyboardFrame.size.height;
     
     if (self.shouldScrollForKeyboard) {
         UIWindow *window = [[UIApplication sharedApplication] keyWindow];

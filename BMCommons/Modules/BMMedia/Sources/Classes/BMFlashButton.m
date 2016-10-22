@@ -29,6 +29,7 @@
 - (void)stopAutoCollapseTimer;
 - (void)updateButtons;
 - (void)setExpanded:(BOOL)b animated:(BOOL)animated;
+- (void)onTap:(UITapGestureRecognizer *)gr;
 
 @end
 

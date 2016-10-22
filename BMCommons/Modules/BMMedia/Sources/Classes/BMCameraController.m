@@ -46,6 +46,7 @@
 - (BMOperationQueue *)operationQueue;
 - (void)hideButtons;
 - (void)showButtons;
+- (void)showButtonsConditionally;
 
 @end
 
@@ -271,6 +272,8 @@
 - (IBAction)onRecord:(UIButton *)sender {
     BMMediaKind kind = (imagePickerController.cameraCaptureMode == UIImagePickerControllerCameraCaptureModePhoto) ? BMMediaKindPicture : BMMediaKindVideo;
     
+    BM_PUSH_IGNORE_DEPRECATION_WARNING
+    
     if ([self checkSelectionLimitsForNewMediaOfKind:kind]) {
         if (imagePickerController.cameraCaptureMode == UIImagePickerControllerCameraCaptureModePhoto) {
             [overlayView animateIris];
@@ -292,6 +295,8 @@
         [self updateRecordingButtonForState];    
         [self updateCameraDeviceButtonForState];
     }
+    
+    BM_POP_IGNORE_WARNING
 }
 
 - (IBAction)onSelectCamera:(UIButton *)sender {

@@ -24,3 +24,4 @@
 + (BMMediaOrientation)mediaOrientationFromInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
 @end
+

@@ -44,30 +44,7 @@ NSString * const BMTableViewHeaderFooterViewKind = @"UITableViewHeaderFooterView
 	return cellKind;
 }
 
-- (UITableViewCell*)cellOfKind:(NSString*)theCellKind forTable: (UITableView*)aTableView {  
-	UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:theCellKind];  
-	if (!cell) {
-		NSArray * templates = [_bundle loadNibNamed:[self nibNameForKind:theCellKind] owner:nil options:nil];
-		for (id template in templates) {
-			if ([template isKindOfClass:[UITableViewCell class]] && [((UITableViewCell *)template).reuseIdentifier isEqual:theCellKind]) {
-				cell = template;
-				break;
-			}
-		}
-	}  
-	
-	if (!cell) {
-		LogError(@"ERROR: could not find cell for kind: %@", theCellKind);
-	} 
-	return cell;  
-}
-
-//Sub classes may do something with the index path to apply specific backgrounds, etc
-- (UITableViewCell*)cellOfKind:(NSString*)theCellKind forTable: (UITableView*)aTableView atIndexPath:(NSIndexPath *)indexPath {  
-	return [self cellOfKind:theCellKind forTable:aTableView];
-}  
-
-- (UIView<BMReusableObject> *)viewOfKind:(NSString *)theKind {
+- (UIView<BMReusableObject> *)viewOfType:(NSString *)theKind {
 	NSArray * templates = [_bundle loadNibNamed:[self nibNameForKind:theKind] owner:nil options:nil];
     UIView *v = nil;
 	for (id template in templates) {
@@ -80,13 +57,13 @@ NSString * const BMTableViewHeaderFooterViewKind = @"UITableViewHeaderFooterView
 	return (UIView <BMReusableObject> *)v;
 }
 
-- (UIView<BMReusableObject> *)viewOfKind:(NSString *)theKind forContainer:(id <BMReusableObjectContainer>)container {
+- (UIView<BMReusableObject> *)viewOfType:(NSString *)theKind forContainer:(id <BMReusableObjectContainer>)container {
     id<BMReusableObject> o = [container dequeueReusableObjectWithIdentifier:theKind];
     
     if ([o isKindOfClass:[UIView class]]) {
         return (UIView<BMReusableObject> *)o;
     } else {
-        return [self viewOfKind:theKind];
+        return [self viewOfType:theKind];
     }
 }
 
@@ -105,10 +82,6 @@ NSString * const BMTableViewHeaderFooterViewKind = @"UITableViewHeaderFooterView
 	}
 	return v;
 }
-
-#ifdef __IPHONE_6_0
-
-BM_START_IGNORE_TOO_NEW
 
 - (UITableViewCell*)cellOfType:(NSString*)type forTableView:(UITableView*)aTableView atIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
@@ -215,10 +188,5 @@ BM_START_IGNORE_TOO_NEW
     }
     return isRegistered;
 }
-
-BM_END_IGNORE_TOO_NEW
-
-#endif
-
 
 @end  

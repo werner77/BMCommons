@@ -52,14 +52,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
     
-    if (BMOSVersionIsAtLeast(@"7.0")) {
-        BM_START_IGNORE_TOO_NEW
-        self.navigationBar.barTintColor = BMSTYLEVAR(navigationBarTintColor);
-        self.navigationBar.tintColor = BMSTYLEVAR(navigationBarTextTintColor);
-        BM_END_IGNORE_TOO_NEW
-    } else {
-        self.navigationBar.tintColor = BMSTYLEVAR(navigationBarTintColor);
-    }
+    self.navigationBar.barTintColor = BMSTYLEVAR(navigationBarTintColor);
+    self.navigationBar.tintColor = BMSTYLEVAR(navigationBarTextTintColor);
     self.navigationBar.translucent = BMSTYLEVAR(navigationBarTranslucent);
     self.navigationBar.barStyle = BMSTYLEVAR(navigationBarStyle);
     

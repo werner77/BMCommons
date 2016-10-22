@@ -50,7 +50,7 @@
 
 - (void)localize {
     [super localize];
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:BMUICoreLocalizedString(@"button.title.cancel", @"Cancel") style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)];
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:BMUICoreLocalizedString(@"button.title.cancel", @"Cancel") style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
     [albumController.navigationItem setRightBarButtonItem:cancelButton];
 }
 

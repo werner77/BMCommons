@@ -50,7 +50,7 @@
 	for (int i = 0; i < [dataSource numberOfComponentsInPickerView:picker]; ++i) {
 		width += [dataSource pickerView:picker widthForComponent:i];
 	}
-	self.contentSizeForViewInPopover = CGSizeMake(width, CGRectGetMaxY(submitButton.frame));
+	self.preferredContentSize = CGSizeMake(width, CGRectGetMaxY(submitButton.frame));
 }
 
 - (void)viewDidUnload {

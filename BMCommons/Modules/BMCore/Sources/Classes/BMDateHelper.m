@@ -262,12 +262,12 @@ static NSDateFormatter *rfc1123DateFormatter = nil;
 }
 
 + (NSDate *)absoluteDateFromDate:(NSDate *)date withTimeZone:(NSTimeZone *)timeZone {
-	NSCalendar *localCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	NSCalendar *localCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 	[localCalendar setTimeZone:timeZone];
-	NSUInteger unitFlags = (NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit);
+	NSUInteger unitFlags = (NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear);
 	NSDateComponents *dateComponents = [localCalendar components:unitFlags fromDate:date];
 	
-	NSCalendar *utcCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	NSCalendar *utcCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 	[utcCalendar setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
 	NSDate *ret = [utcCalendar dateFromComponents:dateComponents];
 	

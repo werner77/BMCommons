@@ -295,17 +295,19 @@
             theMedia.entryUrl = [[assetRepresentation url] absoluteString];
             theMedia.entryId = theMedia.entryUrl;
 							
-            UIInterfaceOrientation interfaceOrientation = (UIImageOrientation)[assetRepresentation orientation];
+            ALAssetOrientation assetOrientation = [assetRepresentation orientation];
             
             UIImage *fullscreenImage = nil;
             if (BMOSVersionIsAtLeast(@"5.0")) {
                 fullscreenImage = [[UIImage alloc] initWithCGImage:[assetRepresentation fullScreenImage]];
             } else {
-                UIImage *tempImage = [[UIImage alloc] initWithCGImage:[assetRepresentation fullScreenImage] scale:[assetRepresentation scale] orientation:interfaceOrientation];
+                UIImageOrientation imageOrientation = BMImageOrientationFromAssetOrientation(assetOrientation);
+                UIImage *tempImage = [[UIImage alloc] initWithCGImage:[assetRepresentation fullScreenImage] scale:[assetRepresentation scale] orientation:imageOrientation];
                 fullscreenImage = [BMImageHelper rotateImage:tempImage];
             }
 				
             if ([theMedia conformsToProtocol:@protocol(BMMediaWithSizeContainer)]) {
+                UIInterfaceOrientation interfaceOrientation = BMInfaceOrientationFromAssetOrientation(assetOrientation);
                 BMMediaOrientation mediaOrientation = [BMMedia mediaOrientationFromInterfaceOrientation:interfaceOrientation];
                 ((id <BMMediaWithSizeContainer>)theMedia).mediaOrientation = mediaOrientation;
             }

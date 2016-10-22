@@ -212,39 +212,13 @@ NSString *const BMViewControllerDidDisappearNotification = @"BMViewControllerDid
     [super didReceiveMemoryWarning];
 }
 
-#ifdef __IPHONE_7_0
-- (CGSize)preferredContentSize {
-    CGSize size = [self contentSizeForViewInPopover];
-    if (BMOSVersionIsAtLeast(@"7.0")) {
-        BM_START_IGNORE_TOO_NEW
-        CGSize theSize = [super preferredContentSize];
-        if (!CGSizeEqualToSize(theSize, CGSizeZero)) {
-            size = theSize;
-        }
-        BM_END_IGNORE_TOO_NEW
-    }
-    return size;
-}
-#endif
-
 - (void)setUseFullScreenLayout:(BOOL)useFullScreenLayout {
     _useFullScreenLayout = useFullScreenLayout;
-    
-#ifdef __IPHONE_7_0
-    if (BMOSVersionIsAtLeast(@"7.0")) {
-BM_START_IGNORE_TOO_NEW
-        if (useFullScreenLayout) {
-            self.edgesForExtendedLayout = UIRectEdgeAll;
-        } else {
-            self.edgesForExtendedLayout = UIRectEdgeNone;
-        }
-BM_END_IGNORE_TOO_NEW
+    if (useFullScreenLayout) {
+        self.edgesForExtendedLayout = UIRectEdgeAll;
     } else {
-        self.wantsFullScreenLayout = useFullScreenLayout;
+        self.edgesForExtendedLayout = UIRectEdgeNone;
     }
-#else
-    self.wantsFullScreenLayout = useFullScreenLayout;
-#endif
 }
 
 - (BOOL)isViewVisible {

@@ -50,13 +50,17 @@
 	}
 	[indexTitles addObject:@"#"];
 	
+    BM_PUSH_IGNORE_DEPRECATION_WARNING
+    
 	if (searching) {
 		[self.searchDisplayController setActive:searching];
 		[self.searchDisplayController.searchBar setText:searchString];
 	} else {
 		BM_RELEASE_SAFELY(searchString);
 		searching = NO;
-	}	
+	}
+    
+    BM_POP_IGNORE_WARNING
 }
 
 - (void)viewDidUnload {
@@ -158,6 +162,8 @@
 #pragma mark -
 #pragma mark UISearchDisplayController Delegate Methods
 
+BM_PUSH_IGNORE_DEPRECATION_WARNING
+
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)theSearchString {
     [self filterObjectsByName:theSearchString];
 	
@@ -175,6 +181,8 @@
 	searching = NO;
 	[self.tableView reloadData];
 }
+
+BM_POP_IGNORE_WARNING
 
 #pragma mark -
 #pragma mark Abstract methods to override

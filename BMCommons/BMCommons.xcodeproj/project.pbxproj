@@ -667,20 +667,16 @@
 		747469B917401ABF00D1DB6D /* BMRegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 747469B617401ABF00D1DB6D /* BMRegexKitLite.m */; };
 		747469BA17401ABF00D1DB6D /* BMRegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 747469B617401ABF00D1DB6D /* BMRegexKitLite.m */; };
 		7477810E14468077006353AD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7477810D14468077006353AD /* AVFoundation.framework */; };
-		7477811014468077006353AD /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7477810F14468077006353AD /* libsqlite3.dylib */; };
-		74778142144680A7006353AD /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 74778141144680A7006353AD /* libz.dylib */; };
 		7477829D144680E4006353AD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		7477829E144680E4006353AD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7419384613FAAC0900D05AB7 /* CoreLocation.framework */; };
 		7477829F144680E4006353AD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F52B9412F0438900ACC646 /* Security.framework */; };
 		747782A0144680E4006353AD /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7446157A13B2204E0057948E /* MediaPlayer.framework */; };
 		747782A1144680E4006353AD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F52B9112F0438900ACC646 /* UIKit.framework */; };
 		747782A2144680E4006353AD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7419384813FAAC0900D05AB7 /* MapKit.framework */; };
-		747782A3144680E4006353AD /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F24762A112FBD749009E5B77 /* libicucore.dylib */; };
 		747782A4144680E4006353AD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2A9ABF812F817460070A66B /* SystemConfiguration.framework */; };
 		747782A5144680E4006353AD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F52B9312F0438900ACC646 /* CoreData.framework */; };
 		747782A6144680E4006353AD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F52B9512F0438900ACC646 /* QuartzCore.framework */; };
 		747782A7144680E4006353AD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E360C312FAB2A40072189A /* CFNetwork.framework */; };
-		747782A8144680E4006353AD /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F2E71712F9656100C7EA01 /* libxml2.2.dylib */; };
 		747782A9144680E4006353AD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F52B9212F0438900ACC646 /* CoreGraphics.framework */; };
 		747782AA144680E4006353AD /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74576E62134CB92C00E14D9A /* MessageUI.framework */; };
 		747782AB144680E5006353AD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7477810D14468077006353AD /* AVFoundation.framework */; };
@@ -1759,15 +1755,6 @@
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
-		};
-		74FB2A6C168DF28C00324FD9 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/${PRODUCT_NAME}";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -3215,20 +3202,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				7477810E14468077006353AD /* AVFoundation.framework in Frameworks */,
-				7477811014468077006353AD /* libsqlite3.dylib in Frameworks */,
-				74778142144680A7006353AD /* libz.dylib in Frameworks */,
 				7477829D144680E4006353AD /* Foundation.framework in Frameworks */,
 				7477829E144680E4006353AD /* CoreLocation.framework in Frameworks */,
 				7477829F144680E4006353AD /* Security.framework in Frameworks */,
 				747782A0144680E4006353AD /* MediaPlayer.framework in Frameworks */,
 				747782A1144680E4006353AD /* UIKit.framework in Frameworks */,
 				747782A2144680E4006353AD /* MapKit.framework in Frameworks */,
-				747782A3144680E4006353AD /* libicucore.dylib in Frameworks */,
 				747782A4144680E4006353AD /* SystemConfiguration.framework in Frameworks */,
 				747782A5144680E4006353AD /* CoreData.framework in Frameworks */,
 				747782A6144680E4006353AD /* QuartzCore.framework in Frameworks */,
 				747782A7144680E4006353AD /* CFNetwork.framework in Frameworks */,
-				747782A8144680E4006353AD /* libxml2.2.dylib in Frameworks */,
 				747782A9144680E4006353AD /* CoreGraphics.framework in Frameworks */,
 				747782AA144680E4006353AD /* MessageUI.framework in Frameworks */,
 				7477831D1446E4A6006353AD /* MobileCoreServices.framework in Frameworks */,
@@ -6530,8 +6513,6 @@
 				74D6B85A18292FD40020BE12 /* Headers */,
 				74FB2A6A168DF28C00324FD9 /* Sources */,
 				74FB2A6B168DF28C00324FD9 /* Frameworks */,
-				74FB2A6C168DF28C00324FD9 /* CopyFiles */,
-				74C319A817993D0E009AD294 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -7055,19 +7036,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "OUTPUT_DIR=\"$SYMROOT/Documentation\"\n\nmkdir -p \"/tmp/doc-templates\"\n\nMODULES=\"BMCore BMUICore BMUIExtensions BMMedia BMGoogle BMYouTube BMXML BMLocation BMCoreData BMRestKit\"\n\nfor MODULE_NAME in $MODULES\ndo\n\nBin/ClassOverviewGenerator -h \"__${MODULE_NAME} Classes__\\n\" -i ./Include/${MODULE_NAME} \"/tmp/doc-templates/${MODULE_NAME}ClassesOverview-template.md\"\n\ndone\n\nBin/appledoc \\\n--project-name BMCommons \\\n--project-company \"BehindMedia\" \\\n--company-id com.behindmedia \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--logformat xcode \\\n--exit-threshold 2 \\\n--no-repeat-first-par \\\n--ignore *_Private.h \\\n--ignore .m \\\n--ignore GData \\\n--include \"/tmp/doc-templates\" \\\n--include ./Documentation/Templates \\\n--index-desc ./Documentation/index.md \\\n--output \"$OUTPUT_DIR\" \\\n--keep-intermediate-files \\\n--no-warn-undocumented-object \\\n--no-warn-undocumented-member \\\n--no-warn-missing-arg \\\n--no-warn-empty-description \\\n./Include\n\nrm -rf \"/tmp/doc-templates\"";
-		};
-		74C319A817993D0E009AD294 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "rm -rf \"${BUILT_PRODUCTS_DIR}/Headers/BMThree20\"\nmkdir -p \"${BUILT_PRODUCTS_DIR}/Headers/BMThree20\"\ncp -RaP \"${BMCOMMONS_SRC}/Include/BMThree20\"/*  \"${BUILT_PRODUCTS_DIR}/Headers/BMThree20\"\n\nfind \"${BUILT_PRODUCTS_DIR}/Headers/BMThree20\" -name *.m | xargs rm\nfind \"${BUILT_PRODUCTS_DIR}/Headers/BMThree20\" -name *.c | xargs rm\nfind \"${BUILT_PRODUCTS_DIR}/Headers/BMThree20\" -name *.pch | xargs rm\nfind \"${BUILT_PRODUCTS_DIR}/Headers/BMThree20\" -name .svn | xargs rm -rf\n\n";
 		};
 		89B1F37C7EEBDD2EC073F2C3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -8124,7 +8092,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = Frameworks;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -8172,7 +8140,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = Frameworks;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -8640,6 +8608,7 @@
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
 					Modules/BMRestKit/Include,
+					Modules/BMRestKit/Include/yajl_objc,
 					Modules/BMXML/Include,
 					Modules/BMCore/Include,
 				);
@@ -8669,6 +8638,7 @@
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
 					Modules/BMRestKit/Include,
+					Modules/BMRestKit/Include/yajl_objc,
 					Modules/BMXML/Include,
 					Modules/BMCore/Include,
 				);

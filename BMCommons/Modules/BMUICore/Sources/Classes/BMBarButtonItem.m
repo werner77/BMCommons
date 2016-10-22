@@ -9,6 +9,7 @@
 #import <BMCommons/BMBarButtonItem.h>
 #import "UIButton+BMCommons.h"
 #import <BMCommons/BMImageHelper.h>
+#import <BMCommons/NSString+BMUICore.h>
 
 static const CGFloat kMinWidth = 25.0;
 
@@ -120,7 +121,7 @@ static const CGFloat kMinWidth = 25.0;
     UIImage *image = [button imageForState:UIControlStateNormal];
     NSString *title = [button titleForState:UIControlStateNormal];
     
-    CGFloat width = image.size.width + 25 + [title sizeWithFont:button.titleLabel.font].width;
+    CGFloat width = image.size.width + 25 + [title bmSizeWithFont:button.titleLabel.font].width;
     width = MAX(kMinWidth, width);
     CGFloat height = UIInterfaceOrientationIsPortrait(self.orientation) ? 30 : 24;
     button.frame = CGRectMake(0, 0, width, height);

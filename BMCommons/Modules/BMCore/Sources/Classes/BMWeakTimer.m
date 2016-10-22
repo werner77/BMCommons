@@ -177,25 +177,13 @@
     return self.timerImpl.timeInterval;
 }
 
-#if TARGET_OS_IPHONE
 - (NSTimeInterval)tolerance {
-    if ([self.timerImpl respondsToSelector:@selector(tolerance)]) {
-        BM_START_IGNORE_TOO_NEW
-        return self.timerImpl.tolerance;
-        BM_END_IGNORE_TOO_NEW
-    } else {
-        return 0.0;
-    }
+    return self.timerImpl.tolerance;
 }
 
 - (void)setTolerance:(NSTimeInterval)tolerance {
-    if ([self.timerImpl respondsToSelector:@selector(setTolerance:)]) {
-        BM_START_IGNORE_TOO_NEW
-        [self.timerImpl setTolerance:tolerance];
-        BM_END_IGNORE_TOO_NEW
-    }
+    [self.timerImpl setTolerance:tolerance];
 }
-#endif
 
 - (void)invalidate {
     [self.timerImpl invalidate];

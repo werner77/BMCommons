@@ -121,7 +121,7 @@
         identifier = DEFAULT_CELL_IDENTIFIER;
     }
     
-    BMMediaContainerThumbnailCell *cell = (BMMediaContainerThumbnailCell *)[cellFactory cellOfKind:identifier forTable:tableView];
+    BMMediaContainerThumbnailCell *cell = (BMMediaContainerThumbnailCell *)[cellFactory cellOfType:identifier forTableView:tableView atIndexPath:indexPath];
 	[cell constructCellWithObject:mediaContainer propertyName:nil];
    
     UIViewContentMode contentMode = UIViewContentModeScaleAspectFill;

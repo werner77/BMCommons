@@ -114,24 +114,10 @@
 	}
 }
 
-- (BOOL)connection:(NSURLConnection *)theConnection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
-	if ([_urlConnectionDelegate respondsToSelector:@selector(connection:canAuthenticateAgainstProtectionSpace:)]) {
-		return [_urlConnectionDelegate connection:theConnection canAuthenticateAgainstProtectionSpace:protectionSpace];
-	} else {
-		return NO;
-	}
-}
-
-- (void)connection:(NSURLConnection *)theConnection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-	if ([_urlConnectionDelegate respondsToSelector:@selector(connection:didReceiveAuthenticationChallenge:)]) {
-		[_urlConnectionDelegate connection:theConnection didReceiveAuthenticationChallenge:challenge];
-	}
-}
-
-- (void)connection:(NSURLConnection *)theConnection didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-	if ([_urlConnectionDelegate respondsToSelector:@selector(connection:didCancelAuthenticationChallenge:)]) {
-		[_urlConnectionDelegate connection:theConnection didCancelAuthenticationChallenge:challenge];
-	}
+- (void)connection:(NSURLConnection *)theConnection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    if ([_urlConnectionDelegate respondsToSelector:@selector(connection:willSendRequestForAuthenticationChallenge:)]) {
+        [_urlConnectionDelegate connection:theConnection willSendRequestForAuthenticationChallenge:challenge];
+    }
 }
 
 - (BOOL)connectionShouldUseCredentialStorage:(NSURLConnection *)theConnection {

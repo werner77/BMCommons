@@ -36,6 +36,8 @@
 // Core
 #import "Three20Core/BMTTCorePreprocessorMacros.h"
 
+#import <BMCommons/NSString+BMUICore.h>
+
 static CGFloat kMargin          = 10;
 static CGFloat kPadding         = 15;
 static CGFloat kBannerPadding   = 8;
@@ -189,7 +191,7 @@ static CGFloat kProgressMargin  = 6;
 - (void)layoutSubviews {
   [super layoutSubviews];
 
-  CGSize textSize = [_label.text sizeWithFont:_label.font];
+  CGSize textSize = [_label.text bmSizeWithFont:_label.font];
 
   CGFloat indicatorSize = 0;
   [_activityIndicator sizeToFit];

@@ -164,14 +164,8 @@
 
   if (!self.popupViewController) {
     UINavigationBar* bar = self.navigationController.navigationBar;
-      if (BMOSVersionIsAtLeast(@"7.0")) {
-          BM_START_IGNORE_TOO_NEW
-          bar.barTintColor = _navigationBarTintColor;
-          bar.tintColor = _navigationBarTextTintColor;
-          BM_END_IGNORE_TOO_NEW
-      } else {
-        bar.tintColor = _navigationBarTintColor;
-      }
+    bar.barTintColor = _navigationBarTintColor;
+    bar.tintColor = _navigationBarTextTintColor;
     bar.barStyle = _navigationBarStyle;
 
     if (!BMTTIsPad()) {

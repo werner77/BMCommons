@@ -75,9 +75,9 @@ static const NSInteger kActivityLabelTag          = 96;
         target: nil
         action: nil] autorelease];
 
-    self.statusBarStyle = UIStatusBarStyleBlackTranslucent;
+    self.statusBarStyle = UIStatusBarStyleLightContent;
     self.navigationBarStyle = UIBarStyleBlackTranslucent;
-    self.wantsFullScreenLayout = YES;
+    self.edgesForExtendedLayout = UIRectEdgeAll;
     self.hidesBottomBarWhenPushed = YES;
 
     self.defaultImage = BMIMAGE(@"bundle://BMThree20.bundle/photoDefault.png");
@@ -217,7 +217,7 @@ static const NSInteger kActivityLabelTag          = 96;
       self.navigationItem.rightBarButtonItem =
       [[[UIBarButtonItem alloc] initWithTitle:BMTTLocalizedString(@"See All",
                                                                 @"See all photo thumbnails")
-                                        style:UIBarButtonItemStyleBordered
+                                        style:UIBarButtonItemStylePlain
                                        target:self
                                        action:@selector(showThumbnails)]
        autorelease];
@@ -381,6 +381,7 @@ static const NSInteger kActivityLabelTag          = 96;
   }
 }
 
+BM_PUSH_IGNORE_UNDECLARED_SELECTOR_WARNING
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)URLForThumbnails {
@@ -392,6 +393,8 @@ static const NSInteger kActivityLabelTag          = 96;
     return nil;
   }
 }
+
+BM_POP_IGNORE_WARNING
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showThumbnails {
@@ -406,14 +409,7 @@ static const NSInteger kActivityLabelTag          = 96;
     navController.navigationBar.translucent = self.navigationController.navigationBar.translucent;
     navController.navigationBar.tintColor = self.navigationController.navigationBar.tintColor;
     navController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    
-#ifdef __IPHONE_7_0
-    if (BMOSVersionIsAtLeast(@"7.0")) {
-        BM_START_IGNORE_TOO_NEW
-        navController.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
-        BM_END_IGNORE_TOO_NEW
-    }
-#endif
+    navController.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
     [self.navigationController presentViewController:navController animated:YES completion:nil];
     [navController release];
 }
@@ -489,26 +485,14 @@ static const NSInteger kActivityLabelTag          = 96;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showBarsAnimationDidStop {
   self.navigationController.navigationBarHidden = NO;
-#ifdef __IPHONE_7_0
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        BM_START_IGNORE_TOO_NEW
-        [self setNeedsStatusBarAppearanceUpdate];
-        BM_END_IGNORE_TOO_NEW
-    }
-#endif
+  [self setNeedsStatusBarAppearanceUpdate];
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)hideBarsAnimationDidStop {
   self.navigationController.navigationBarHidden = YES;
-#ifdef __IPHONE_7_0
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        BM_START_IGNORE_TOO_NEW
-        [self setNeedsStatusBarAppearanceUpdate];
-        BM_END_IGNORE_TOO_NEW
-    }
-#endif
+  [self setNeedsStatusBarAppearanceUpdate];
 }
 
 
@@ -587,7 +571,10 @@ static const NSInteger kActivityLabelTag          = 96;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+    
+    BM_PUSH_IGNORE_DEPRECATION_WARNING
   [self updateToolbarWithOrientation:self.interfaceOrientation];
+    BM_POP_IGNORE_WARNING
 }
 
 
@@ -662,14 +649,8 @@ static const NSInteger kActivityLabelTag          = 96;
     
     _toolbar.alpha = alpha;
     
-#ifdef __IPHONE_7_0
-    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
-        self.navigationController.navigationBarHidden = !show;
-        BM_START_IGNORE_TOO_NEW
-        [self setNeedsStatusBarAppearanceUpdate];
-        BM_END_IGNORE_TOO_NEW
-    }
-#endif
+    self.navigationController.navigationBarHidden = !show;
+    [self setNeedsStatusBarAppearanceUpdate];
     
     if (animated) {
         [UIView commitAnimations];

@@ -24,6 +24,8 @@
 // Core
 #import "Three20Core/BMTTCorePreprocessorMacros.h"
 
+#import <BMCommons/NSString+BMUICore.h>
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,7 +36,6 @@
 @synthesize color             = _color;
 @synthesize shadowColor       = _shadowColor;
 @synthesize shadowOffset      = _shadowOffset;
-@synthesize minimumFontSize   = _minimumFontSize;
 @synthesize numberOfLines     = _numberOfLines;
 @synthesize textAlignment     = _textAlignment;
 @synthesize verticalAlignment = _verticalAlignment;
@@ -128,7 +129,6 @@
   BMTTTextStyle* style = [[[self alloc] initWithNext:next] autorelease];
   style.font = font;
   style.color = color;
-  style.minimumFontSize = minimumFontSize;
   style.shadowColor = shadowColor;
   style.shadowOffset = shadowOffset;
   return style;
@@ -146,7 +146,6 @@
   BMTTTextStyle* style = [[[self alloc] initWithNext:next] autorelease];
   style.font = font;
   style.color = color;
-  style.minimumFontSize = minimumFontSize;
   style.shadowColor = shadowColor;
   style.shadowOffset = shadowOffset;
   style.textAlignment = textAlignment;
@@ -166,11 +165,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGSize)sizeOfText:(NSString*)text withFont:(UIFont*)font size:(CGSize)size {
   if (_numberOfLines == 1) {
-    return [text sizeWithFont:font];
+    return [text bmSizeWithFont:font];
 
   } else {
     CGSize maxSize = CGSizeMake(size.width, CGFLOAT_MAX);
-    CGSize textSize = [text sizeWithFont:font constrainedToSize:maxSize
+    CGSize textSize = [text bmSizeWithFont:font constrainedToSize:maxSize
                            lineBreakMode:_lineBreakMode];
     if (_numberOfLines) {
       CGFloat maxHeight = font.ttLineHeight * _numberOfLines;
@@ -241,20 +240,22 @@
 
   if (_numberOfLines == 1) {
     CGRect titleRect = [self rectForText:text forSize:rect.size withFont:font];
-    titleRect.size = [text drawAtPoint:
+      CGSize size;
+    [text bmDrawAtPoint:
                       CGPointMake(titleRect.origin.x+rect.origin.x,
                                   titleRect.origin.y+rect.origin.y)
                               forWidth:rect.size.width withFont:font
-                           minFontSize:_minimumFontSize ? _minimumFontSize : font.pointSize
-                        actualFontSize:nil lineBreakMode:_lineBreakMode
-                    baselineAdjustment:UIBaselineAdjustmentAlignCenters];
+                           lineBreakMode:_lineBreakMode actualSize:&size];
+      titleRect.size = size;
     context.contentFrame = titleRect;
 
   } else {
     CGRect titleRect = [self rectForText:text forSize:rect.size withFont:font];
     titleRect = CGRectOffset(titleRect, rect.origin.x, rect.origin.y);
-    rect.size = [text drawInRect:titleRect withFont:font lineBreakMode:_lineBreakMode
-                       alignment:_textAlignment];
+    CGSize size;
+    [text bmDrawInRect:titleRect withFont:font lineBreakMode:_lineBreakMode
+             alignment:_textAlignment actualSize:&size];
+    rect.size = size;
     context.contentFrame = rect;
   }
 

@@ -70,9 +70,7 @@ typedef void(^BMViewControllerDismissBlock)(BMViewController *vc, id result);
 @property(nonatomic, strong) BMStyleSheet *styleSheet;
 
 /**
- Property added to eliminate differences in behaviour between iOS 6 and 7.
- 
- Calls wantsFullScreenLayout under iOS 6 and adjust the edge insets on iOS 7;
+ Property adjust the edge insets on for full screen layout or not
  */
 @property(nonatomic, assign) BOOL useFullScreenLayout;
 

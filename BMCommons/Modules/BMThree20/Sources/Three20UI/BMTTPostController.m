@@ -62,7 +62,7 @@ static const CGFloat kMarginY = 6;
       
       self.navigationItem.leftBarButtonItem =
       [[[UIBarButtonItem alloc] initWithTitle: BMTTLocalizedString(@"Cancel", @"")
-                                        style: UIBarButtonItemStyleBordered
+                                        style: UIBarButtonItemStylePlain
                                        target: self
                                        action: @selector(cancel)] autorelease];
       
@@ -137,7 +137,7 @@ static const CGFloat kMarginY = 6;
   _originalStatusBarHidden = app.statusBarHidden;
   if (!_originalStatusBarHidden) {
     [app setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-    [app setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
+    [app setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
   }
   [_textView becomeFirstResponder];
 }

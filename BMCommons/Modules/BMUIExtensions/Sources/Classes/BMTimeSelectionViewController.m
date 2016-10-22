@@ -55,7 +55,7 @@
 	
 	datePicker.date = theDate;
 	
-	self.contentSizeForViewInPopover = CGSizeMake(CGRectGetMaxX(submitButton.frame), CGRectGetMaxY(submitButton.frame));
+	self.preferredContentSize = CGSizeMake(CGRectGetMaxX(submitButton.frame), CGRectGetMaxY(submitButton.frame));
 }
 
 - (void)viewDidUnload {
