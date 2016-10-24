@@ -67,7 +67,9 @@
 
 - (void)onClick {
 	if (self.clickEnabled && self.target && self.selector) {
+		BM_IGNORE_SELECTOR_LEAK_WARNING(
 		[self.target performSelector:self.selector withObject:self];
+		)
 	}
 }
 

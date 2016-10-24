@@ -293,7 +293,9 @@ NSString *const BMViewControllerDidDisappearNotification = @"BMViewControllerDid
     UIViewController* popup = nil;
     
     if ([self respondsToSelector:self.popupViewControllerSelector]) {
+        BM_IGNORE_SELECTOR_LEAK_WARNING(
         popup = [self performSelector:self.popupViewControllerSelector];
+        )
     }
     
     if (popup) {
@@ -309,7 +311,9 @@ NSString *const BMViewControllerDidDisappearNotification = @"BMViewControllerDid
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     UIViewController* popup = nil;
     if ([self respondsToSelector:self.popupViewControllerSelector]) {
+        BM_IGNORE_SELECTOR_LEAK_WARNING(
         popup = [self performSelector:self.popupViewControllerSelector];
+        )
     }
     
     if (popup) {

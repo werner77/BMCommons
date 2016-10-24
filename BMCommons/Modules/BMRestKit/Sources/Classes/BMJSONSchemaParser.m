@@ -15,6 +15,7 @@
 #import <BMCommons/BMLogging.h>
 #import <BMCommons/BMErrorHelper.h>
 #import <BMCommons/NSArray+BMCommons.h>
+#import <BMCommons/BMCore.h>
 
 @implementation BMJSONSchemaParser
 
@@ -91,14 +92,18 @@ static NSDictionary *jsonDataTypeDict = nil;
     SEL objectFromJSONDataSelector = NSSelectorFromString(@"objectFromJSONData");
     
     if ([schemaData respondsToSelector:objectFromJSONDataSelector]) {
+        BM_IGNORE_SELECTOR_LEAK_WARNING(
         jsonObject = [schemaData performSelector:objectFromJSONDataSelector withObject:nil];
+        )
     } else if (sbjsonClass) {
         id jsonParser = [sbjsonClass new];
         
         SEL objectWithStringSelector = NSSelectorFromString(@"objectWithString:");
         if ([jsonParser respondsToSelector:objectWithStringSelector]) {
             NSString *jsonString = [[NSString alloc] initWithData:schemaData encoding:NSUTF8StringEncoding];
+            BM_IGNORE_SELECTOR_LEAK_WARNING(
             jsonObject = [jsonParser performSelector:objectWithStringSelector withObject:jsonString];
+            )
         }
     }
     

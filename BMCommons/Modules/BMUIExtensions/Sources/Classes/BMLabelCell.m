@@ -7,6 +7,7 @@
 //
 
 #import <BMCommons/BMLabelCell.h>
+#import <BMCommons/BMCore.h>
 
 @implementation BMLabelCell
 
@@ -26,9 +27,13 @@
 		value = [NSString stringWithFormat:self.valueFormat, value];
 	} else if (self.valueFormatterSelector) {
 		if (self.valueFormatterTarget) {
+			BM_IGNORE_SELECTOR_LEAK_WARNING(
 			value = [self.valueFormatterTarget performSelector:self.valueFormatterSelector withObject:value];
+			)
 		} else {
+			BM_IGNORE_SELECTOR_LEAK_WARNING(
 			value = [value performSelector:self.valueFormatterSelector];
+			)
 		}
 	}
 	if (!value || [value isKindOfClass:[NSString class]]) {

@@ -421,7 +421,9 @@ static inline int64_t hash(NSString *s) {
 		if (correspondingData) {
 			//Existing object which should remain
 			if (mergeSelector) {
+				BM_IGNORE_SELECTOR_LEAK_WARNING(
 				[correspondingData performSelector:mergeSelector withObject:modelObject];
+				)
 			}
 			[dataDictionary removeObjectForKey:key];
 		} else {
@@ -442,7 +444,9 @@ static inline int64_t hash(NSString *s) {
         Protocol *protocol = NSProtocolFromString(@"BMRootManagedObject");
         
         if (protocol && [modelClass conformsToProtocol:protocol] && [modelClass respondsToSelector:@selector(entityName)]) {
+			BM_IGNORE_SELECTOR_LEAK_WARNING(
             entityName = [modelClass performSelector:@selector(entityName)];
+			)
         }
         
         if (!entityName) {
@@ -452,10 +456,14 @@ static inline int64_t hash(NSString *s) {
         id newObject = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context];
         
 		if (parentModelObject && addSelector) {
+			BM_IGNORE_SELECTOR_LEAK_WARNING(
 			[parentModelObject performSelector:addSelector withObject:newObject];
+			)
 		}
 		if (mergeSelector) {
+			BM_IGNORE_SELECTOR_LEAK_WARNING(
 			[dataObject performSelector:mergeSelector withObject:newObject];
+			)
 		}
 	}	
 }

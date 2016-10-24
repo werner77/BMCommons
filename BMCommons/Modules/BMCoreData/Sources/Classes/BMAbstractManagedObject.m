@@ -265,14 +265,18 @@
                                         [currentSubEntities removeObject:subEntity];
                                     } else {
                                         //Add the object
+                                        BM_IGNORE_SELECTOR_LEAK_WARNING(
                                         [managedObject performSelector:NSSelectorFromString(addSelectorName) withObject:subEntity];
+                                        )
                                     }
                                 }
                             }
                         }
                         
                         for (id superfluousSubEntity in [NSSet setWithSet:currentSubEntities]) {
+                            BM_IGNORE_SELECTOR_LEAK_WARNING(
                             [managedObject performSelector:NSSelectorFromString(removeSelectorName) withObject:superfluousSubEntity];
+                            )
                             if (relationshipDescription.deleteRule == NSCascadeDeleteRule) {
                                 [BMCoreDataHelper removeObject:superfluousSubEntity];
                             }
@@ -488,12 +492,16 @@
                         mergeSelector:mergeSelector
                     parentModelObject:self
                              addBlock:^(id parentObject, id modelObject) {
+                                 BM_IGNORE_SELECTOR_LEAK_WARNING(
                                  [parentObject performSelector:addSelector withObject:modelObject];
                                  [modelObject performSelector:inverseAddSelector withObject:parentObject];
+                                 )
                              }
                           removeBlock:^(id parentObject, id modelObject) {
+                              BM_IGNORE_SELECTOR_LEAK_WARNING(
                               [parentObject performSelector:removeSelector withObject:([relationShipDescription isToMany] ? modelObject : nil)];
                               [modelObject performSelector:inverseRemoveSelector withObject:([inverseRelationShipDescription isToMany] ? parentObject : nil)];
+                              )
                           }
                          relationship:relationShipDescription
              removeNonExistentObjects:deleteNonExistent
@@ -608,7 +616,9 @@
         } else if (correspondingData) {
 			//Existing object which should remain
 			if (mergeSelector) {
+                BM_IGNORE_SELECTOR_LEAK_WARNING(
 				[modelObject performSelector:mergeSelector withObject:correspondingData withObject:handledObjects];
+                )
 			}
 			[dataDictionary removeObjectForKey:key];
 		} else {
@@ -686,7 +696,9 @@
             addBlock(parentModelObject, newObject);
 		}
 		if (mergeSelector) {
+            BM_IGNORE_SELECTOR_LEAK_WARNING(
 			[newObject performSelector:mergeSelector withObject:dataObject withObject:handledObjects];
+            )
 		}
 	}
 }

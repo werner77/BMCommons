@@ -234,7 +234,9 @@ static NSTimeZone *defaultTimeZone = nil;
 	if (value != nil && self.converterSelector != nil) {
 		id ct = self.converterTarget;
 		if (!ct) ct = target;
+        BM_IGNORE_SELECTOR_LEAK_WARNING(
 		content = [ct performSelector:self.converterSelector withObject:value];
+        )
 		if (content == nil) {
 			LogWarn(@"Warning: converter returned nil for target [%@ %@[%@@\"%@\"]]", [ct class], NSStringFromSelector(self.setterSelector), NSStringFromSelector(self.converterSelector), value); 
 		}
@@ -244,38 +246,58 @@ static NSTimeZone *defaultTimeZone = nil;
 
     if (self.isArray) {
         if (content != nil) {
+            BM_IGNORE_SELECTOR_LEAK_WARNING(
             id theArray = [target performSelector:self.getterSelector];
+            )
             if (!theArray) {
                 //First set the array:
                 theArray = [NSMutableArray array];
+                BM_IGNORE_SELECTOR_LEAK_WARNING(
                 [target performSelector:self.setterSelector withObject:theArray];
+                )
             }
+            BM_IGNORE_SELECTOR_LEAK_WARNING(
             [theArray performSelector:@selector(addObject:) withObject:content];
+            )
         }
     } else if (self.isSet) {
         if (content != nil) {
+            BM_IGNORE_SELECTOR_LEAK_WARNING(
             id theSet = [target performSelector:self.getterSelector];
+            )
             if (!theSet) {
                 //First set the array:
                 theSet = [NSMutableOrderedSet new];
+                BM_IGNORE_SELECTOR_LEAK_WARNING(
                 [target performSelector:self.setterSelector withObject:theSet];
+                )
             }
+            BM_IGNORE_SELECTOR_LEAK_WARNING(
             [theSet performSelector:@selector(addObject:) withObject:content];
+            )
         }
     } else if (self.isDictionary) {
+        BM_IGNORE_SELECTOR_LEAK_WARNING(
         id theDictionary = [target performSelector:self.getterSelector];
+        )
         if (!theDictionary) {
 			//First set the array:
 			theDictionary = [NSMutableDictionary dictionary];
+            BM_IGNORE_SELECTOR_LEAK_WARNING(
 			[target performSelector:self.setterSelector withObject:theDictionary];
+            )
 		}
         
         if (keyValuePair) {
             if (keyValuePair.key) {
                 if (content == nil) {
+                    BM_IGNORE_SELECTOR_LEAK_WARNING(
                     [theDictionary performSelector:@selector(removeObjectForKey:) withObject:keyValuePair.key];
+                    )
                 } else {
+                    BM_IGNORE_SELECTOR_LEAK_WARNING(
                     [theDictionary performSelector:@selector(setObject:forKey:) withObject:content withObject:keyValuePair.key];
+                    )
                 }
             } else {
                 LogWarn(@"Warning: key is nil for dictionary mapping. Setter=%@, value=%@", NSStringFromSelector(self.setterSelector), value);
@@ -283,7 +305,9 @@ static NSTimeZone *defaultTimeZone = nil;
         }
 		
 	} else {
+        BM_IGNORE_SELECTOR_LEAK_WARNING(
 		[target performSelector:self.setterSelector withObject:content];
+        )
 	}
 }
 
@@ -292,9 +316,13 @@ static NSTimeZone *defaultTimeZone = nil;
     if (self.inverseConverterSelector != nil) {
         @try {
             if (self.inverseConverterTarget) {
+                BM_IGNORE_SELECTOR_LEAK_WARNING(
                 value = [self.inverseConverterTarget performSelector:self.inverseConverterSelector withObject:value];
+                )
             } else {
+                BM_IGNORE_SELECTOR_LEAK_WARNING(
                 value = [value performSelector:self.inverseConverterSelector];
+                )
             }
         }
         @catch (NSException *exception) {
@@ -349,11 +377,15 @@ static NSTimeZone *defaultTimeZone = nil;
 }
 
 - (NSObject *)invokeRawGetterOnTarget:(NSObject <BMMappableObject> *)target {
+    BM_IGNORE_SELECTOR_LEAK_WARNING(
     return [target performSelector:self.getterSelector];
+    )
 }
 
 - (void)invokeRawSetterOnTarget:(NSObject <BMMappableObject> *)target withValue:(NSObject *)value {
+    BM_IGNORE_SELECTOR_LEAK_WARNING(
     [target performSelector:self.setterSelector withObject:value];
+    )
 }
 
 - (NSString *)fieldClassName {

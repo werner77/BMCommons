@@ -207,7 +207,9 @@ static NSArray *w3cNamespaces = nil;
 		if (value) {
 			if ([NSNumber class] == restrictedFieldMapping.fieldObjectClass) {
 				//Only support for NSNumber (treat all other types as string)
+				BM_IGNORE_SELECTOR_LEAK_WARNING(
 				value = [restrictedFieldMapping.converterTarget performSelector:restrictedFieldMapping.converterSelector withObject:stringValue];
+				)
 			}
 			BMEnumerationValue *enumValue = [BMEnumerationValue enumerationValueWithValue:value];
 			[currentMapping addEnumerationValue:enumValue];
