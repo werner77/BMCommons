@@ -173,7 +173,7 @@
 - (NSError *)copyAsset:(ALAssetRepresentation *)assetRepresentation toStream:(NSOutputStream *)fos withProgressBlock:(void (^)(NSUInteger doneCount, NSUInteger totalCount))block {
     
     
-    NSUInteger totalLength = [assetRepresentation size];
+    NSUInteger totalLength = (NSUInteger)[assetRepresentation size];
     NSUInteger length = totalLength;
     NSUInteger bufferSize = 1024 * 1024;
     NSUInteger offset = 0;

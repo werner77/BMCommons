@@ -7035,7 +7035,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "OUTPUT_DIR=\"$SYMROOT/Documentation\"\n\nmkdir -p \"/tmp/doc-templates\"\n\nMODULES=\"BMCore BMUICore BMUIExtensions BMMedia BMGoogle BMYouTube BMXML BMLocation BMCoreData BMRestKit\"\n\nfor MODULE_NAME in $MODULES\ndo\n\nBin/ClassOverviewGenerator -h \"__${MODULE_NAME} Classes__\\n\" -i ./Include/${MODULE_NAME} \"/tmp/doc-templates/${MODULE_NAME}ClassesOverview-template.md\"\n\ndone\n\nBin/appledoc \\\n--project-name BMCommons \\\n--project-company \"BehindMedia\" \\\n--company-id com.behindmedia \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--logformat xcode \\\n--exit-threshold 2 \\\n--no-repeat-first-par \\\n--ignore *_Private.h \\\n--ignore .m \\\n--ignore GData \\\n--include \"/tmp/doc-templates\" \\\n--include ./Documentation/Templates \\\n--index-desc ./Documentation/index.md \\\n--output \"$OUTPUT_DIR\" \\\n--keep-intermediate-files \\\n--no-warn-undocumented-object \\\n--no-warn-undocumented-member \\\n--no-warn-missing-arg \\\n--no-warn-empty-description \\\n./Include\n\nrm -rf \"/tmp/doc-templates\"";
+			shellScript = "OUTPUT_DIR=\"$SYMROOT/Documentation\"\n\nmkdir -p \"/tmp/doc-templates\"\n\nMODULES=\"BMCore BMUICore BMUIExtensions BMMedia BMGoogle BMYouTube BMXML BMLocation BMCoreData BMRestKit\"\n\nfor MODULE_NAME in $MODULES\ndo\n\nBin/ClassOverviewGenerator -h \"__${MODULE_NAME} Classes__\n\" -i ./Include/${MODULE_NAME} \"/tmp/doc-templates/${MODULE_NAME}ClassesOverview-template.md\"\n\ndone\n\nBin/appledoc \\n--project-name BMCommons \\n--project-company \"BehindMedia\" \\n--company-id com.behindmedia \\n--keep-undocumented-objects \\n--keep-undocumented-members \\n--logformat xcode \\n--exit-threshold 2 \\n--no-repeat-first-par \\n--ignore *_Private.h \\n--ignore .m \\n--ignore GData \\n--include \"/tmp/doc-templates\" \\n--include ./Documentation/Templates \\n--index-desc ./Documentation/index.md \\n--output \"$OUTPUT_DIR\" \\n--keep-intermediate-files \\n--no-warn-undocumented-object \\n--no-warn-undocumented-member \\n--no-warn-missing-arg \\n--no-warn-empty-description \\n./Include\n\nrm -rf \"/tmp/doc-templates\"";
 		};
 		89B1F37C7EEBDD2EC073F2C3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -7079,7 +7079,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -8049,7 +8049,7 @@
 				GCC_PREFIX_HEADER = ./Modules/BMCore/Sources/Other/BMCore_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMCore/Include,
+					"${SRCROOT}/Modules/BMCore/Include",
 				);
 				INFOPLIST_FILE = "Modules/BMCore/Resources/BMCore-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.behindmedia.bmcommons;
@@ -8066,7 +8066,7 @@
 				GCC_PREFIX_HEADER = ./Modules/BMCore/Sources/Other/BMCore_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMCore/Include,
+					"${SRCROOT}/Modules/BMCore/Include",
 				);
 				INFOPLIST_FILE = "Modules/BMCore/Resources/BMCore-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.behindmedia.bmcommons;
@@ -8077,7 +8077,7 @@
 		1DEB922308733DC00010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -8127,7 +8127,7 @@
 		1DEB922408733DC00010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -8287,7 +8287,6 @@
 		743B454414F3F960002DA36F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -8299,8 +8298,8 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMCore/Include,
-					Modules/BMUICore/Include,
+					"${SRCROOT}/Modules/BMCore/Include",
+					"${SRCROOT}/Modules/BMUICore/Include",
 				);
 				INFOPLIST_FILE = "Modules/BMUICore/Resources/BMUICore-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
@@ -8313,7 +8312,6 @@
 		743B454514F3F960002DA36F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -8323,8 +8321,8 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMCore/Include,
-					Modules/BMUICore/Include,
+					"${SRCROOT}/Modules/BMCore/Include",
+					"${SRCROOT}/Modules/BMUICore/Include",
 				);
 				INFOPLIST_FILE = "Modules/BMUICore/Resources/BMUICore-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
@@ -8417,8 +8415,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMXML/Include,
-					Modules/BMCore/Include,
+					"${SRCROOT}/Modules/BMXML/Include",
+					"${SRCROOT}/Modules/BMCore/Include",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8445,8 +8443,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMXML/Include,
-					Modules/BMCore/Include,
+					"${SRCROOT}/Modules/BMXML/Include",
+					"${SRCROOT}/Modules/BMCore/Include",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8480,8 +8478,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMCore/Include,
-					Modules/BMLocation/Include,
+					"${SRCROOT}/Modules/BMCore/Include",
+					"${SRCROOT}/Modules/BMLocation/Include",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8509,8 +8507,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMCore/Include,
-					Modules/BMLocation/Include,
+					"${SRCROOT}/Modules/BMCore/Include",
+					"${SRCROOT}/Modules/BMLocation/Include",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8543,9 +8541,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMUICore/Include,
-					Modules/BMCoreData/Include,
-					Modules/BMCore/Include,
+					"${SRCROOT}/Modules/BMUICore/Include",
+					"${SRCROOT}/Modules/BMCoreData/Include",
+					"${SRCROOT}/Modules/BMCore/Include",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8572,9 +8570,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMUICore/Include,
-					Modules/BMCoreData/Include,
-					Modules/BMCore/Include,
+					"${SRCROOT}/Modules/BMUICore/Include",
+					"${SRCROOT}/Modules/BMCoreData/Include",
+					"${SRCROOT}/Modules/BMCore/Include",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8607,10 +8605,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMRestKit/Include,
-					Modules/BMRestKit/Include/yajl_objc,
-					Modules/BMXML/Include,
-					Modules/BMCore/Include,
+					"${SRCROOT}/Modules/BMRestKit/Include",
+					"${SRCROOT}/Modules/BMRestKit/Include/yajl_objc",
+					"${SRCROOT}/Modules/BMXML/Include",
+					"${SRCROOT}/Modules/BMCore/Include",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8637,10 +8635,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMRestKit/Include,
-					Modules/BMRestKit/Include/yajl_objc,
-					Modules/BMXML/Include,
-					Modules/BMCore/Include,
+					"${SRCROOT}/Modules/BMRestKit/Include",
+					"${SRCROOT}/Modules/BMRestKit/Include/yajl_objc",
+					"${SRCROOT}/Modules/BMXML/Include",
+					"${SRCROOT}/Modules/BMCore/Include",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8673,9 +8671,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMCore/Include,
-					Modules/BMUICore/Include,
-					Modules/BMUIExtensions/Include,
+					"${SRCROOT}/Modules/BMCore/Include",
+					"${SRCROOT}/Modules/BMUICore/Include",
+					"${SRCROOT}/Modules/BMUIExtensions/Include",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8702,9 +8700,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMCore/Include,
-					Modules/BMUICore/Include,
-					Modules/BMUIExtensions/Include,
+					"${SRCROOT}/Modules/BMCore/Include",
+					"${SRCROOT}/Modules/BMUICore/Include",
+					"${SRCROOT}/Modules/BMUIExtensions/Include",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8726,10 +8724,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMThree20/Include,
-					Modules/BMCore/Include,
-					Modules/BMUICore/Include,
-					Modules/BMMedia/Include,
+					"${SRCROOT}/Modules/BMThree20/Include",
+					"${SRCROOT}/Modules/BMCore/Include",
+					"${SRCROOT}/Modules/BMUICore/Include",
+					"${SRCROOT}/Modules/BMMedia/Include",
 				);
 				INFOPLIST_FILE = "Modules/BMMedia/Resources/BMMedia-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
@@ -8750,10 +8748,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMThree20/Include,
-					Modules/BMCore/Include,
-					Modules/BMUICore/Include,
-					Modules/BMMedia/Include,
+					"${SRCROOT}/Modules/BMThree20/Include",
+					"${SRCROOT}/Modules/BMCore/Include",
+					"${SRCROOT}/Modules/BMUICore/Include",
+					"${SRCROOT}/Modules/BMMedia/Include",
 				);
 				INFOPLIST_FILE = "Modules/BMMedia/Resources/BMMedia-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
@@ -8920,10 +8918,10 @@
 				GCC_PREFIX_HEADER = Modules/BMThree20/Sources/BMThree20_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMUICore/Include,
-					Modules/BMCore/Include,
-					Modules/BMThree20/Include,
-					Modules/BMThree20/Sources,
+					"${SRCROOT}/Modules/BMUICore/Include",
+					"${SRCROOT}/Modules/BMCore/Include",
+					"${SRCROOT}/Modules/BMThree20/Include",
+					"${SRCROOT}/Modules/BMThree20/Sources",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8945,10 +8943,10 @@
 				GCC_PREFIX_HEADER = Modules/BMThree20/Sources/BMThree20_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMUICore/Include,
-					Modules/BMCore/Include,
-					Modules/BMThree20/Include,
-					Modules/BMThree20/Sources,
+					"${SRCROOT}/Modules/BMUICore/Include",
+					"${SRCROOT}/Modules/BMCore/Include",
+					"${SRCROOT}/Modules/BMThree20/Include",
+					"${SRCROOT}/Modules/BMThree20/Sources",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8971,9 +8969,9 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMCore/Include,
-					Modules/BMGoogle/Include,
-					Modules/BMUICore/Include,
+					"${SRCROOT}/Modules/BMCore/Include",
+					"${SRCROOT}/Modules/BMGoogle/Include",
+					"${SRCROOT}/Modules/BMUICore/Include",
 				);
 				INFOPLIST_FILE = "Modules/BMGoogle/Resources/BMGoogle-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
@@ -8995,9 +8993,9 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMCore/Include,
-					Modules/BMGoogle/Include,
-					Modules/BMUICore/Include,
+					"${SRCROOT}/Modules/BMCore/Include",
+					"${SRCROOT}/Modules/BMGoogle/Include",
+					"${SRCROOT}/Modules/BMUICore/Include",
 				);
 				INFOPLIST_FILE = "Modules/BMGoogle/Resources/BMGoogle-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
@@ -9022,11 +9020,11 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMYouTube/Include,
-					Modules/BMGoogle/Include,
-					Modules/BMCore/Include,
-					Modules/BMUICore/Include,
-					Modules/BMMedia/Include,
+					"${SRCROOT}/Modules/BMYouTube/Include",
+					"${SRCROOT}/Modules/BMGoogle/Include",
+					"${SRCROOT}/Modules/BMCore/Include",
+					"${SRCROOT}/Modules/BMUICore/Include",
+					"${SRCROOT}/Modules/BMMedia/Include",
 				);
 				INFOPLIST_FILE = "Modules/BMYouTube/Resources/BMYouTube-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
@@ -9049,11 +9047,11 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
-					Modules/BMYouTube/Include,
-					Modules/BMGoogle/Include,
-					Modules/BMCore/Include,
-					Modules/BMUICore/Include,
-					Modules/BMMedia/Include,
+					"${SRCROOT}/Modules/BMYouTube/Include",
+					"${SRCROOT}/Modules/BMGoogle/Include",
+					"${SRCROOT}/Modules/BMCore/Include",
+					"${SRCROOT}/Modules/BMUICore/Include",
+					"${SRCROOT}/Modules/BMMedia/Include",
 				);
 				INFOPLIST_FILE = "Modules/BMYouTube/Resources/BMYouTube-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";

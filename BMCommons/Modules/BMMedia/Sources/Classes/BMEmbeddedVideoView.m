@@ -339,7 +339,10 @@
     UIView *v = nil;
     SEL viewSelector = NSSelectorFromString(@"view");
     if ([player respondsToSelector:viewSelector]) {
+        BM_IGNORE_SELECTOR_LEAK_WARNING(
         v = [player performSelector:viewSelector];
+        )
+        
     }
     return v;
 }
@@ -349,7 +352,9 @@
     UIView *v = nil;
     SEL fullScreenSelector = NSSelectorFromString(@"fullscreenView");
     if ([player respondsToSelector:fullScreenSelector]) {
+        BM_IGNORE_SELECTOR_LEAK_WARNING(
         v = [player performSelector:fullScreenSelector];
+        )
     }
     return v;
 }

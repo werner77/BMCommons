@@ -42,7 +42,7 @@
 @end
 
 @implementation BMJSONParser {
-    int _elementLevel;
+    NSInteger _elementLevel;
     NSString *_currentKey;
     NSString *_lastElement;
     NSMutableArray *_elementStack;
@@ -58,7 +58,8 @@
     NSString *_jsonRootElementName;
     BOOL _startedDocumentWithArray;
     BOOL _emptyDocument;
-    int _skipArrayLevel;
+    NSInteger _skipArrayLevel;
+    NSInteger _parserLevel;
 }
 
 @synthesize attributeSpecifier = _attributeSpecifier, elementTextSpecifier = _elementTextSpecifier, jsonRootElementName = _jsonRootElementName, startedDocumentWithArray = _startedDocumentWithArray, emptyArray = _emptyArray;
@@ -100,6 +101,7 @@ static BOOL defaultDecodeEntities = NO;
  @param parser Sender
  */
 - (void)parserDidStartDictionary:(YAJLParser *)parser {
+    _parserLevel++;
     if (!self.skip) {
         [self startDocumentWithArray:NO];
         
@@ -118,6 +120,7 @@ static BOOL defaultDecodeEntities = NO;
  @param parser Sender
  */
 - (void)parserDidEndDictionary:(YAJLParser *)parser {
+    _parserLevel--;
     if (!self.skip) {
         [self popElement];
         self.currentKey = nil;
@@ -129,6 +132,7 @@ static BOOL defaultDecodeEntities = NO;
  @param parser Sender
  */
 - (void)parserDidStartArray:(YAJLParser *)parser {
+    _parserLevel++;
     [self startDocumentWithArray:YES];
     if (self.emptyArray) {
         LogWarn(@"Arrays with dimensions > 1 are not supported by BMJSONParser. Ignoring array under key: %@", self.currentKey);
@@ -143,6 +147,7 @@ static BOOL defaultDecodeEntities = NO;
  @param parser Sender
  */
 - (void)parserDidEndArray:(YAJLParser *)parser {
+    _parserLevel--;
     if (!self.skip) {
         if (self.emptyArray) {
             [self incrementElementLevel:_emptyDocument];
@@ -243,7 +248,9 @@ static BOOL defaultDecodeEntities = NO;
 			break;
 		case YAJLParserStatusOK:
 			//Finished
-			[self endDocument];
+            if (_parserLevel <= 0) {
+                [self endDocument];
+            }
 			break;
 		case YAJLParserStatusError:
 			//Error
