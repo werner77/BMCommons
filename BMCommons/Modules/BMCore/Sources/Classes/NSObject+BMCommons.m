@@ -179,7 +179,7 @@ static BOOL throwAssertionExceptions;
 }
 
 - (void *)invokeSelector:(SEL)selector withArgs:(void **)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount safe:(BOOL)safe returnLength:(NSUInteger *)returnLength pointerType:(BOOL)pointerType {
-    NSData *data = [self dataFromInvokeSelector:selector withArgs:args argSizes:argSizes argCount:argCount safe:safe pointerType:pointerType];
+    NSData __autoreleasing *data = [self dataFromInvokeSelector:selector withArgs:args argSizes:argSizes argCount:argCount safe:safe pointerType:pointerType];
     if (returnLength) {
         *returnLength = data.length;
     }
