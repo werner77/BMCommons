@@ -121,7 +121,7 @@ static BOOL throwAssertionExceptions;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)performSelector:(SEL)selector withArgs:(void *)args argCount:(NSUInteger)argCount safe:(BOOL)safe {
-    id ret = nil;
+    id __autoreleasing ret = nil;
     NSUInteger returnLength;
     void *buffer = [self invokeSelector:selector withArgs:args argSizes:nil argCount:argCount safe:safe returnLength:&returnLength pointerType:YES];
     if (returnLength == sizeof(id)) {
