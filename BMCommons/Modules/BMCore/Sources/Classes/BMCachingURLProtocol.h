@@ -12,9 +12,18 @@
 @class BMDataRecorder;
 
 /**
+ * Notification sent when any NSURLRequest will be sent.
+ *
+ * May be used for logging or monitoring the responses.
+ * The userInfo key BMCachingURLProtocolURLRequestKey returns the NSMutableURLRequest which may be modified before it will be sent.
+ */
+extern NSString * const BMCachingURLProtocolWillSendURLRequestNotification;
+
+/**
  * Notification sent when any NSURLRequest is sent.
  *
  * May be used for logging or monitoring the responses.
+ * The userInfo key BMCachingURLProtocolURLRequestKey returns the NSMutableURLRequest which may be inspected to see the sent request.
  */
 extern NSString * const BMCachingURLProtocolDidSendURLRequestNotification;
 

@@ -105,6 +105,7 @@ static BOOL honorHTTPCacheHeaders = YES;
 static NSInteger connectionCount = 0;
 static BOOL mockConnectionFailureIfPlaybackFails = YES;
 
+NSString * const BMCachingURLProtocolWillSendURLRequestNotification = @"BMCachingURLProtocolWillSendURLRequestNotification";
 NSString * const BMCachingURLProtocolDidSendURLRequestNotification = @"BMCachingURLProtocolDidSendURLRequestNotification";
 NSString * const BMCachingURLProtocolDidReceiveURLResponseNotification = @"BMCachingURLProtocolDidReceiveURLResponseNotification";
 NSString * const BMCachingURLProtocolURLRequestKey = @"BMCachingURLProtocolURLRequestKey";
@@ -232,13 +233,15 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
             [self.client URLProtocol:self didFailWithError:mockError];
         } else {
             NSMutableURLRequest *mutableRequest = [self.request mutableCopy];
-            [NSURLProtocol setProperty:@YES forKey:kBMURLProtocolHandledKey inRequest:mutableRequest];
-            self.connection = [NSURLConnection connectionWithRequest:mutableRequest delegate:self];
-
-            NSMutableDictionary *userInfo = [NSMutableDictionary new];
-            [userInfo bmSafeSetObject:self.request forKey:BMCachingURLProtocolURLRequestKey];
-            [[NSNotificationCenter defaultCenter] postNotificationName:BMCachingURLProtocolDidSendURLRequestNotification object:self
-                                                              userInfo:userInfo];
+            if (mutableRequest != nil) {
+                [NSURLProtocol setProperty:@YES forKey:kBMURLProtocolHandledKey inRequest:mutableRequest];
+                NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithObject:mutableRequest forKey:BMCachingURLProtocolURLRequestKey];
+                [[NSNotificationCenter defaultCenter] postNotificationName:BMCachingURLProtocolWillSendURLRequestNotification object:self
+                                                                  userInfo:userInfo];
+                self.connection = [NSURLConnection connectionWithRequest:mutableRequest delegate:self];
+                [[NSNotificationCenter defaultCenter] postNotificationName:BMCachingURLProtocolDidSendURLRequestNotification object:self
+                                                                  userInfo:userInfo];
+            }
         }
     }
 }
