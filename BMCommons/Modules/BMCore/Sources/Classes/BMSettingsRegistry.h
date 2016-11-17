@@ -47,8 +47,17 @@
 
 /**
  Restores the state of all managed settings objects to default (if they are allowed to be restored to defaults, see BMSettingsObject protocol).
+
+ @see restoreToDefaultByForcingReset:
  */
 - (void)restoreToDefaults;
+
+/**
+ * Restores all defaults and if forceReset is true will fully reset the settings objects (even for non restorable defaults).
+ *
+ * @param forceReset
+ */
+- (void)restoreToDefaultsByForcingReset:(BOOL)forceReset;
 
 /**
  String identifying the version of the app

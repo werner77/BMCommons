@@ -37,13 +37,13 @@
 	return self;
 }
 
-- (void)load {
+- (void)loadByForcingReset:(BOOL)forceReset {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	BOOL shouldReset = self.isFirstRun;
-	
+	BOOL shouldReset = forceReset || self.isFirstRun;
+
 	//Lets first synchronyze with the device, the user might have changed settings via 'User Preferences' of the device
 	[defaults synchronize];
-	
+
 	NSEnumerator *enumerator = [_settingsObjects objectEnumerator];
 	id <BMSettingsObject> object;
 	while ((object = [enumerator nextObject])) {
@@ -52,7 +52,11 @@
 		}
 		[object loadStateFromUserDefaults:defaults];
 	}
-    _loaded = YES;
+	_loaded = YES;
+}
+
+- (void)load {
+	[self loadByForcingReset:NO];
 }
 
 - (void)save {
@@ -95,10 +99,10 @@
 	return [_settingsObjects objectForKey:clazz];
 }
 
-- (void)restoreToDefaults {
+- (void)restoreToDefaultsByForcingReset:(BOOL)forceReset {
 	[self save];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	NSDictionary *allDefaultSettings = [self allDefaultSettings:NO excludedNonRestorable:YES];
+	NSDictionary *allDefaultSettings = [self allDefaultSettings:NO excludedNonRestorable:!forceReset];
 	for (NSString *key in allDefaultSettings) {
 		id value = [allDefaultSettings objectForKey:key];
 		if ([NSNull null] != value) {
@@ -107,9 +111,12 @@
 			[defaults removeObjectForKey:key];
 		}
 	}
-	[self load];
+	[self loadByForcingReset:forceReset];
 }
 
+- (void)restoreToDefaults {
+	[self restoreToDefaultsByForcingReset:NO];
+}
 
 @end
 
