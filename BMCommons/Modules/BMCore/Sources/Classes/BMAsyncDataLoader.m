@@ -57,7 +57,6 @@
 @end
 
 static NSUInteger maxConnections = 1;
-static NSUInteger connectionCount = 0;
 static NSMutableDictionary *urlDataLoaders = nil;
 static NSMutableArray *loaderQueue = nil;
 static BMURLCache *defaultCache = nil;
@@ -94,7 +93,6 @@ static NSOperationQueue *backgroundOperationQueue = nil;
                 urlDataLoaders = [[NSMutableDictionary alloc] initWithCapacity:20];
             }
             [self setMaxConnections:BM_ASYNCDATALOADER_DEFAULT_MAX_CONNECTIONS];
-            connectionCount = 0;
             
             if (!backgroundOperationQueue) {
                 backgroundOperationQueue = [[NSOperationQueue alloc] init];
@@ -436,7 +434,6 @@ static NSOperationQueue *backgroundOperationQueue = nil;
         }
     }
     if (startedLoading) {
-        [[self class] incrementConnectionCount];
         [self startedLoading];
     } else {
         NSError *error = [BMErrorHelper errorForDomain:BM_ERROR_DOMAIN_SERVER code:BM_ERROR_NO_CONNECTION
@@ -457,10 +454,17 @@ static NSOperationQueue *backgroundOperationQueue = nil;
     }
 }
 
-+ (void)incrementConnectionCount {
-    @synchronized([BMAsyncDataLoader class]) {
-        connectionCount++;
++ (NSUInteger)connectionsCount {
+    NSUInteger numConns = 0;
+    for(NSArray *loaders in urlDataLoaders.allValues) {
+        for(BMAsyncDataLoader *loader in loaders) {
+            if(loader.loadingStatus == BMAsyncLoadingStatusLoading) {
+                numConns++;
+            }
+        }
     }
+    
+    return numConns;
 }
 
 + (void)addAndQueueLoader:(BMAsyncDataLoader *)loader {
@@ -476,7 +480,7 @@ static NSOperationQueue *backgroundOperationQueue = nil;
 + (void)queueLoader:(BMAsyncDataLoader *)loader withPriority:(BOOL)priority {
     @synchronized([BMAsyncDataLoader class]) {
         if (loader != nil) {
-            if (connectionCount < [self maxConnections]) {
+            if ([[self class] connectionsCount] < [self maxConnections]) {
                 [loader startLoadingImmediately];
             } else {
                 //Queue the loader
@@ -501,13 +505,12 @@ static NSOperationQueue *backgroundOperationQueue = nil;
                 ret = YES;
             } else if (loader.loadingStatus == BMAsyncLoadingStatusLoading) {
                 //active connection
-                connectionCount--;
                 ret = YES;
             }
             loader.loadingStatus = BMAsyncLoadingStatusIdle;
             
             if (startLoadingNext) {
-                while (connectionCount < [self maxConnections] && loaderQueue.count > 0) {
+                while ([[self class] connectionsCount] < [self maxConnections] && loaderQueue.count > 0) {
                     BMAsyncDataLoader *nextLoader = [loaderQueue objectAtIndex:0];
                     [loaderQueue removeObjectAtIndex:0];
                     [nextLoader startLoadingImmediately];
