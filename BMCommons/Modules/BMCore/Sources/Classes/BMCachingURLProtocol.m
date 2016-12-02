@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
+#import <BMCommons/BMCachingURLProtocol.h>
 #import "BMCachingURLProtocol.h"
-#import "NSURLRequest+BMCommons.h"
 #import "NSObject+BMCommons.h"
 #import "NSDateFormatter+BMCommons.h"
 #import "BMLogging.h"
@@ -47,6 +47,7 @@
 @implementation BMCachedURLResponse
 
 static NSString* const kBMURLCachingEnabledKey = @"BMURLCachingEnabled";
+static NSString* const kBMURLProtocolEnabledKey = @"BMURLProtocolEnabled";
 
 - (id)initWithCoder:(NSCoder *)coder {
     self = [self init];
@@ -104,12 +105,38 @@ static BOOL defaultCachingEnabled = YES;
 static BOOL honorHTTPCacheHeaders = YES;
 static NSInteger connectionCount = 0;
 static BOOL mockConnectionFailureIfPlaybackFails = YES;
+static BMCachingURLProtocolPredicateBlock canInitWithProtocolBlock = nil;
+static BMCachingURLProtocolPredicateBlock cachingEnabledBlock = nil;
 
 NSString * const BMCachingURLProtocolWillSendURLRequestNotification = @"BMCachingURLProtocolWillSendURLRequestNotification";
 NSString * const BMCachingURLProtocolDidSendURLRequestNotification = @"BMCachingURLProtocolDidSendURLRequestNotification";
 NSString * const BMCachingURLProtocolDidReceiveURLResponseNotification = @"BMCachingURLProtocolDidReceiveURLResponseNotification";
 NSString * const BMCachingURLProtocolURLRequestKey = @"BMCachingURLProtocolURLRequestKey";
 NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLResponseKey";
+
++ (void)setProtocolEnabledPredicateBlock:(BMCachingURLProtocolPredicateBlock)block {
+    @synchronized([BMCachingURLProtocol class]) {
+        canInitWithProtocolBlock = [block copy];
+    }
+}
+
++ (BMCachingURLProtocolPredicateBlock)protocolEnabledPredicateBlock {
+    @synchronized([BMCachingURLProtocol class]) {
+        return canInitWithProtocolBlock;
+    }
+}
+
++ (void)setCachingEnabledPredicateBlock:(BMCachingURLProtocolPredicateBlock)block {
+    @synchronized([BMCachingURLProtocol class]) {
+        cachingEnabledBlock = [block copy];
+    }
+}
+
++ (BMCachingURLProtocolPredicateBlock)cachingEnabledPredicateBlock {
+    @synchronized([BMCachingURLProtocol class]) {
+        return cachingEnabledBlock;
+    }
+}
 
 
 + (void)setCachingEnabledByDefault:(BOOL)defaultEnabled {
@@ -174,11 +201,36 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
     BOOL enabled = [NSURLProtocol propertyForKey:kBMURLProtocolHandledKey inRequest:request] == nil;
+    if (enabled) {
+        enabled = [self isProtocolEnabledForRequest:request];
+    }
     return enabled;
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
     return request;
+}
+
++ (void)setProtocolEnabled:(BOOL)protocolEnabled forRequest:(NSMutableURLRequest *)request {
+    [NSURLProtocol setProperty:@(protocolEnabled) forKey:kBMURLProtocolEnabledKey inRequest:request];
+}
+
++ (BOOL)isProtocolEnabledForRequest:(NSURLRequest *)request {
+    //Default is enabled
+    BOOL enabled = YES;
+    NSNumber *n = [NSURLProtocol propertyForKey:kBMURLProtocolEnabledKey inRequest:request];
+    BMCachingURLProtocolPredicateBlock block = [self protocolEnabledPredicateBlock];
+    if (n) {
+        enabled = [n boolValue];
+    } else if (block) {
+        BMCachingURLProtocolPredicateValue predicateValue = block(request);
+        if (predicateValue == BMCachingURLProtocolPredicateValueYES) {
+            enabled = YES;
+        } else if (predicateValue == BMCachingURLProtocolPredicateValueNO) {
+            enabled = NO;
+        }
+    }
+    return enabled;
 }
 
 + (void)setCachingEnabled:(BOOL)enabled forRequest:(NSMutableURLRequest *)request {
@@ -188,8 +240,16 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
 + (BOOL)isCachingEnabledForRequest:(NSURLRequest *)request {
     NSNumber *n = [NSURLProtocol propertyForKey:kBMURLCachingEnabledKey inRequest:request];
     BOOL enabled = [self isCachingEnabledByDefault];
+    BMCachingURLProtocolPredicateBlock block = [self cachingEnabledPredicateBlock];
     if (n) {
         enabled = [n boolValue];
+    } else if (block) {
+        BMCachingURLProtocolPredicateValue predicateValue = block(request);
+        if (predicateValue == BMCachingURLProtocolPredicateValueYES) {
+            enabled = YES;
+        } else if (predicateValue == BMCachingURLProtocolPredicateValueNO) {
+            enabled = NO;
+        }
     }
     return enabled;
 }
@@ -341,7 +401,7 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
 
 - (BOOL)loadCachedResponse {
     BOOL ret = NO;
-    BOOL cachingEnabled = [self.request isBMURLCachingEnabled];
+    BOOL cachingEnabled = [self.class isCachingEnabledForRequest:self.request];
     BOOL playbackEnabled = self.class.recorder.isPlayingBack;
 
     if (cachingEnabled || playbackEnabled) {
@@ -419,7 +479,7 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
 }
 
 - (void)saveCachedResponse {
-    BOOL cachingEnabled = [self.request isBMURLCachingEnabled];
+    BOOL cachingEnabled = [self.class isCachingEnabledForRequest:self.request];
     BOOL recordingEnabled = self.class.recorder.isRecording;
     if (cachingEnabled || recordingEnabled) {
         NSURLResponse *response = self.response;

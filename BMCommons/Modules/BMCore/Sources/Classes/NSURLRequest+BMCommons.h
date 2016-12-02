@@ -33,6 +33,11 @@
 - (BOOL)isBMURLCachingEnabled;
 
 /**
+ Whether or not handling by the BMURLCachingProtocol is enabled for this request.
+ */
+- (BOOL)isBMURLProtocolEnabled;
+
+/**
  * Returns the raw description for the request including the method, url, headers and body.
  */
 - (NSString *)bmRawDescription;
@@ -42,9 +47,14 @@
 @interface NSMutableURLRequest (BMCommons)
 
 /**
- Enables URL caching based on the BMURLCachingProtocol if the protocol is registered.
+ Enables/disables URL caching based on the BMURLCachingProtocol explicitly for this request, overriding the default behavior.
  */
 - (void)setBMURLCachingEnabled:(BOOL)enabled;
+
+/**
+ * Enables/disables handling by the BMURLCachingProtocol explicitly for this request, overriding the default behavior.
+ */
+- (void)setBMURLProtocolEnabled:(BOOL)enabled;
 
 @end
 

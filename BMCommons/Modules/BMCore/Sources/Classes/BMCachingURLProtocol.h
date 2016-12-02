@@ -44,7 +44,34 @@ extern NSString * const BMCachingURLProtocolURLRequestKey;
  */
 extern NSString * const BMCachingURLProtocolURLResponseKey;
 
+
+typedef NS_ENUM(NSUInteger, BMCachingURLProtocolPredicateValue) {
+    BMCachingURLProtocolPredicateValueDefault = 0,
+    BMCachingURLProtocolPredicateValueNO,
+    BMCachingURLProtocolPredicateValueYES
+};
+
+/**
+ * Predicate block to determine whether URL requests should be handled by this protocol class or not. Default is true if not set for all requests.
+ */
+typedef BMCachingURLProtocolPredicateValue (^BMCachingURLProtocolPredicateBlock)(NSURLRequest *request);
+
 @interface BMCachingURLProtocol : NSURLProtocol
+
+/**
+ * If set, requests can selectively be allowed to be handled by this protocol or not.
+ *
+ * Default is to handle all requests.
+ */
+@property (class) BMCachingURLProtocolPredicateBlock protocolEnabledPredicateBlock;
+
+/**
+ * If set, requests can selectively be allowed to be cached by this protocol or not.
+ *
+ * Caching enabled or disabled on individual request level overrides the outcome of the block.
+ * @see setCachingEnabled:forRequest:
+ */
+@property (class) BMCachingURLProtocolPredicateBlock cachingEnabledPredicateBlock;
 
 /**
  The BMURLCache used to cache the responses.
@@ -87,9 +114,21 @@ extern NSString * const BMCachingURLProtocolURLResponseKey;
 + (void)setCachingEnabled:(BOOL)enabled forRequest:(NSMutableURLRequest *)request;
 
 /**
- Returns the overridden cachingEnabled state for the specified request if set, otherwise returns the default cachingEnabled state.
+ Returns the overridden cachingEnabled state for the specified request if set,
+ otherwise returns the value returned by the cachingEnabledPredicateBlock for this request (if set), otherwise returns the default cachingEnabled state.
  */
 + (BOOL)isCachingEnabledForRequest:(NSURLRequest *)request;
+
+/**
+ Explicitly sets whether the specified request is allowed to be handled by this protocol or not.
+ */
++ (void)setProtocolEnabled:(BOOL)protocolEnabled forRequest:(NSMutableURLRequest *)request;
+
+/**
+ * Returns whether the specified request is allowed to be handled by this protocol based by the outcome of protocolEnabledPredicateBlock and
+ * setProtocolEnabled:forRequest: (The latter takes precedence).
+ */
++ (BOOL)isProtocolEnabledForRequest:(NSURLRequest *)request;
 
 /**
  If true the cache headers as returned by the response are honored for the max time to cache it (if allowed at all).

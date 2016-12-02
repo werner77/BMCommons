@@ -90,6 +90,11 @@
     return [BMCachingURLProtocol isCachingEnabledForRequest:self];
 }
 
+- (BOOL)isBMURLProtocolEnabled {
+    return [BMCachingURLProtocol isProtocolEnabledForRequest:self];
+}
+
+
 - (NSString *)bmRawDescription {
     NSMutableString *ret = [NSMutableString new];
 
@@ -109,6 +114,10 @@
 
 - (void)setBMURLCachingEnabled:(BOOL)enabled {
     [BMCachingURLProtocol setCachingEnabled:enabled forRequest:self];
+}
+
+- (void)setBMURLProtocolEnabled:(BOOL)enabled {
+    [BMCachingURLProtocol setProtocolEnabled:enabled forRequest:self];
 }
 
 @end

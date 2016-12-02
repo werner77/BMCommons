@@ -87,7 +87,7 @@
         
         //Should truncate file
         
-        NSUInteger fileSize = [array fileSize];
+        NSUInteger fileSize = (NSUInteger)[array fileSize];
         
         [array replaceObjectAtIndex:2 withObject:@"miep"];
         
