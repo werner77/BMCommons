@@ -57,20 +57,17 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON(BMWeakReferenceRegistry)
 }
 
 - (void)cleanupCheck:(NSTimer *)timer {
-    NSMutableIndexSet *discardedItems = [NSMutableIndexSet indexSet];
-    NSUInteger index = 0;
-    
     @synchronized(self) {
-        for (BMWeakReferenceContext *context in _referenceContexts) {
+        [_referenceContexts bmRemoveObjectsWithPredicate:^BOOL(BMWeakReferenceContext *context) {
+            BOOL ret = NO;
             if ([context canBeCleanedUp]) {
                 if (context.cleanupBlock) {
                     context.cleanupBlock();
                 }
-                [discardedItems addIndex:index];
+                ret = YES;
             }
-            index++;
-        }
-        [_referenceContexts removeObjectsAtIndexes:discardedItems];
+            return ret;
+        }];
     }
 }
 
@@ -78,9 +75,9 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON(BMWeakReferenceRegistry)
     if (reference && cleanup) {
         BMWeakReferenceContext *context = [BMWeakReferenceContext new];
         context.weakReference = [BMWeakReference weakReferenceWithTarget:reference];
-        context.owner = owner;
+        context.owner = (NSUInteger)owner;
         context.cleanupBlock = cleanup;
-        
+
         @synchronized(self) {
             [_referenceContexts addObject:context];
         }

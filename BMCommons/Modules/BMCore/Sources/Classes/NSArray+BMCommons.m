@@ -163,8 +163,10 @@
     NSMutableArray *ret = [NSMutableArray arrayWithCapacity:self.count];
     NSUInteger i = 0;
     for (id obj in self) {
-        if (predicate != nil && predicate(obj, i)) {
-            [ret addObject:obj];
+        //This is to avoid crashes related to deletions
+        id __autoreleasing autoReleasingObj = obj;
+        if (predicate != nil && predicate(autoReleasingObj, i)) {
+            [ret addObject:autoReleasingObj];
         }
         i++;
     }
@@ -247,7 +249,9 @@
 
 - (void)bmRetainObjectsWithPredicate:(BOOL(^)(id object))predicate {
     NSArray *retainArray = [self bmArrayFilteredWithPredicate:predicate];
-    [self setArray:retainArray];
+    if (retainArray.count != self.count) {
+        [self setArray:retainArray];
+    }
 }
 
 - (void)bmRemoveObjectsWithPredicate:(BOOL(^)(id object))predicate {
