@@ -250,6 +250,26 @@
     [self setArray:retainArray];
 }
 
+- (void)bmRemoveObjectsWithPredicate:(BOOL(^)(id object))predicate {
+    [self bmRetainObjectsWithPredicate:^BOOL(id object) {
+        BOOL ret = YES;
+        if (predicate) {
+            ret = !predicate(object);
+        }
+        return ret;
+    }];
+}
+
+- (void)bmRemoveObjectsWithIndexPredicate:(BOOL(^)(id object, NSUInteger index))predicate {
+    [self bmRetainObjectsWithIndexPredicate:^BOOL(id object, NSUInteger index) {
+        BOOL ret = YES;
+        if (predicate) {
+            ret = !predicate(object, index);
+        }
+        return ret;
+    }];
+}
+
 - (void)bmRetainObjectsWithIndexPredicate:(BOOL(^)(id object, NSUInteger index))predicate {
     NSArray *retainArray = [self bmArrayFilteredWithIndexPredicate:predicate];
     [self setArray:retainArray];

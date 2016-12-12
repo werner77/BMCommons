@@ -16,7 +16,8 @@ BM_DECLARE_DEFAULT_SINGLETON
 
 typedef void(^BMWeakReferenceCleanupBlock)(void);
 
-- (void)registerReference:(id)reference withCleanupBlock:(BMWeakReferenceCleanupBlock)cleanup;
-- (void)deregisterReference:(id)reference;
+- (void)registerReference:(id)reference forOwner:(id)owner withCleanupBlock:(BMWeakReferenceCleanupBlock)cleanup;
+- (void)deregisterReference:(id)reference forOwner:(id)owner;
+- (void)deregisterReferencesForOwner:(id)owner;
 
 @end

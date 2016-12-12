@@ -12,6 +12,7 @@
 @interface BMWeakReferenceContext : NSObject
 
 @property (nonatomic, strong) BMWeakReference *weakReference;
+@property (nonatomic, weak) id owner;
 @property (nonatomic, copy) BMWeakReferenceCleanupBlock cleanupBlock;
 
 - (BOOL)canBeCleanedUp;
@@ -25,15 +26,17 @@
 }
 
 - (NSUInteger)hash {
-    return (NSUInteger)self.weakReference.target;
+    NSUInteger hash = ((NSUInteger)self.weakReference.target) * 17 + ((NSUInteger)self.owner);
+    return hash;
 }
 
 - (BOOL)isEqual:(id)object {
+    BOOL ret = NO;
     if ([object isKindOfClass:[BMWeakReferenceContext class]]) {
         BMWeakReferenceContext *other = object;
-        return other.weakReference.target == self.weakReference.target;
+        ret = other.weakReference.target == self.weakReference.target && other.owner == self.owner;
     }
-    return NO;
+    return ret;
 }
 
 @end
@@ -71,28 +74,34 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON(BMWeakReferenceRegistry)
     }
 }
 
-- (void)registerReference:(id)reference withCleanupBlock:(BMWeakReferenceCleanupBlock)cleanup {
+- (void)registerReference:(id)reference forOwner:(id)owner withCleanupBlock:(BMWeakReferenceCleanupBlock)cleanup {
     if (reference && cleanup) {
         BMWeakReferenceContext *context = [BMWeakReferenceContext new];
         context.weakReference = [BMWeakReference weakReferenceWithTarget:reference];
+        context.owner = owner;
         context.cleanupBlock = cleanup;
         
         @synchronized(self) {
-            if (![_referenceContexts containsObject:context]) {
-                [_referenceContexts addObject:context];
-            }
+            [_referenceContexts addObject:context];
         }
     }
 }
 
-- (void)deregisterReference:(id)reference {
+- (void)deregisterReference:(id)reference forOwner:(id)owner {
     if (reference) {
-        BMWeakReferenceContext *context = [BMWeakReferenceContext new];
-        context.weakReference = [BMWeakReference weakReferenceWithTarget:reference];
-        
         @synchronized(self) {
-            [_referenceContexts removeObject:context];
+            [_referenceContexts bmRemoveObjectsWithPredicate:^BOOL(BMWeakReferenceContext *context) {
+                return (owner == nil || context.owner == owner) && context.weakReference.target == reference;
+            }];
         }
+    }
+}
+
+- (void)deregisterReferencesForOwner:(id)owner {
+    @synchronized(self) {
+        [_referenceContexts bmRemoveObjectsWithPredicate:^BOOL(BMWeakReferenceContext *context) {
+            return (owner == nil || context.owner == owner);
+        }];
     }
 }
 

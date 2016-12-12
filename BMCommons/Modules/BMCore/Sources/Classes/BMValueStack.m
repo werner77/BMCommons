@@ -35,6 +35,10 @@ BM_LISTENER_METHODS_IMPLEMENTATION(BMValueStackListener)
     return self;
 }
 
+- (void)dealloc {
+    [[BMWeakReferenceRegistry sharedInstance] deregisterReferencesForOwner:self];
+}
+
 - (id)keyForOwner:(id)owner {
     return [NSNumber numberWithUnsignedInteger:(NSUInteger)owner];
 }
@@ -45,7 +49,7 @@ BM_LISTENER_METHODS_IMPLEMENTATION(BMValueStackListener)
         id key = [self keyForOwner:owner];
 
         if (self.shouldAutomaticallyCleanupStatesForDeallocatedOwners) {
-            [[BMWeakReferenceRegistry sharedInstance] registerReference:owner withCleanupBlock:^{
+            [[BMWeakReferenceRegistry sharedInstance] registerReference:owner forOwner:self withCleanupBlock:^{
                 [weakSelf valuesForOwnerKey:key all:YES pop:YES];
             }];
         }

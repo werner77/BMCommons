@@ -32,6 +32,7 @@ NSString * const BMTableViewHeaderFooterViewKind = @"UITableViewHeaderFooterView
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[BMWeakReferenceRegistry sharedInstance] deregisterReferencesForOwner:self];
 }
 
 - (void)releaseMemory {
@@ -180,7 +181,7 @@ NSString * const BMTableViewHeaderFooterViewKind = @"UITableViewHeaderFooterView
             }
             
             if (isRegistered) {
-                [[BMWeakReferenceRegistry sharedInstance] registerReference:collectionView withCleanupBlock:^{
+                [[BMWeakReferenceRegistry sharedInstance] registerReference:collectionView forOwner:self withCleanupBlock:^{
                     [_registeredNibs removeObjectForKey:key];
                 }];
             }

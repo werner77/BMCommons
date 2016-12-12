@@ -19,7 +19,6 @@
 @end
 
 @implementation BMBlockServiceDelegate {
-    BMWeakReference *_ownerReference;
 }
 
 static NSMutableArray *runningServices = nil;
@@ -57,27 +56,23 @@ static NSMutableArray *runningServices = nil;
 }
 
 - (void)dealloc {
-    if (_ownerReference) {
-        [[BMWeakReferenceRegistry sharedInstance] deregisterReference:_ownerReference];
+    if (_owner) {
+        [[BMWeakReferenceRegistry sharedInstance] deregisterReferencesForOwner:self];
     }
     _service = nil;
-    _ownerReference = nil;
+    _owner = nil;
     BM_RELEASE_SAFELY(_successBlock);
     BM_RELEASE_SAFELY(_failureBlock);
 }
 
-- (id)owner {
-    return _ownerReference.target;
-}
-
 - (void)setOwner:(id)owner {
-    if (_ownerReference) {
-        [[BMWeakReferenceRegistry sharedInstance] deregisterReference:_ownerReference];
-        _ownerReference = nil;
+    if (_owner) {
+        [[BMWeakReferenceRegistry sharedInstance] deregisterReference:_owner forOwner:self];
+        _owner = nil;
     }
     if (owner) {
-        _ownerReference = [BMWeakReference weakReferenceWithTarget:owner];
-        [[BMWeakReferenceRegistry sharedInstance] registerReference:_ownerReference withCleanupBlock:^{
+        _owner = owner;
+        [[BMWeakReferenceRegistry sharedInstance] registerReference:_owner forOwner:self withCleanupBlock:^{
             [_service cancel];
         }];
     }

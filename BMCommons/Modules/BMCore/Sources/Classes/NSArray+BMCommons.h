@@ -163,4 +163,14 @@
  */
 - (void)bmRetainObjectsWithIndexPredicate:(BOOL(^)(id object, NSUInteger index))predicate;
 
+/**
+ * Removes all objects passing the test with the specified predicate block. Retains all other objects.
+ */
+- (void)bmRemoveObjectsWithPredicate:(BOOL(^)(id object))predicate;
+
+/**
+ * Removes all objects passing the test with the specified predicate block. Retains all other objects.
+ */
+- (void)bmRemoveObjectsWithIndexPredicate:(BOOL(^)(id object, NSUInteger index))predicate;
+
 @end
