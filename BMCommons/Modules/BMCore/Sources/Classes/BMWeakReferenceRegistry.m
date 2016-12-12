@@ -75,7 +75,7 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON(BMWeakReferenceRegistry)
     if (reference && cleanup) {
         BMWeakReferenceContext *context = [BMWeakReferenceContext new];
         context.weakReference = [BMWeakReference weakReferenceWithTarget:reference];
-        context.owner = (NSUInteger)owner;
+        context.owner = owner;
         context.cleanupBlock = cleanup;
 
         @synchronized(self) {
