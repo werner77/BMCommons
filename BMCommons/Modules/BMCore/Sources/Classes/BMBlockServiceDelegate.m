@@ -56,11 +56,8 @@ static NSMutableArray *runningServices = nil;
 }
 
 - (void)dealloc {
-    if (_owner) {
-        [[BMWeakReferenceRegistry sharedInstance] deregisterReferencesForOwner:self];
-    }
+    self.owner = nil;
     _service = nil;
-    _owner = nil;
     BM_RELEASE_SAFELY(_successBlock);
     BM_RELEASE_SAFELY(_failureBlock);
 }

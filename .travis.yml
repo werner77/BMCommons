@@ -11,6 +11,6 @@ before_install:
 - pod repo add BMPodSpecs https://github.com/werner77/BMPodSpecs.git
 - pod install --project-directory=Example
 script:
-- set -o pipefail && xcodebuild test -workspace Example/BMCommons.xcworkspace -scheme BMCommons-Example -sdk iphonesimulator10.1 ONLY_ACTIVE_ARCH=NO | xcpretty
+- set -o pipefail && xcodebuild test -workspace Example/BMCommons.xcworkspace -scheme BMCommons-Example -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.1' ONLY_ACTIVE_ARCH=NO | xcpretty
 - pod lib lint --sources=https://github.com/werner77/BMPodSpecs.git,master --allow-warnings
 
