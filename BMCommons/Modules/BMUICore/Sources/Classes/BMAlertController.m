@@ -19,7 +19,7 @@
 NSString * const BMAlertViewShownNotification = @"BMAlertViewShownNotification";
 NSString * const BMAlertViewDismissedNotification = @"BMAlertViewDismissedNotification";
 
-BM_SYNTHESIZE_DEFAULT_SINGLETON(BMAlertController)
+BM_SYNTHESIZE_DEFAULT_SINGLETON
 
 static NSMutableArray *alertQueue = nil;
 static BMAlertView __weak *currentAlertView = nil;

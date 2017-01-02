@@ -13,28 +13,14 @@
 
 @implementation BMAbstractSettingsObject
 
+BM_SYNTHESIZE_DEFAULT_SINGLETON
+
 static NSMutableDictionary *cachedDescriptors = nil;
-static NSMutableDictionary *instances = nil;
 
 + (void)initialize {
 	if (cachedDescriptors == nil) {
 		cachedDescriptors = [NSMutableDictionary new];
 	}
-    if (instances == nil) {
-        instances = [NSMutableDictionary new];
-    }
-}
-
-+ (instancetype)sharedInstance {
-    id key = NSStringFromClass(self);
-    @synchronized([BMAbstractSettingsObject class]) {
-        id instance = [instances objectForKey:key];
-        if (!instance) {
-            instance = [self new];
-            [instances setObject:instance forKey:key];
-        }
-        return instance;
-    }
 }
 
 + (NSArray *)keysArray {
