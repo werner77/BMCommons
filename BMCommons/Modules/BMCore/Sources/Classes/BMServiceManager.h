@@ -6,6 +6,7 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 #import <Foundation/Foundation.h>
+#import <BMCommons/BMCore.h>
 #import <BMCommons/BMService.h>
 #import <BMCommons/BMCoreObject.h>
 
@@ -68,6 +69,8 @@
 	NSMutableArray *_serviceDelegates;
 	NSValueTransformer *_serviceTransformer;
 }
+
+BM_DECLARE_DEFAULT_SINGLETON
 
 @property (nonatomic, weak) id <BMServiceManagerDelegate> delegate;
 
@@ -258,11 +261,6 @@
  @see [BMServiceManager activeServiceWithInstanceIdentifier:performReverseTransformation:]
  */
 - (id <BMService>)activeServiceWithInstanceIdentifier:(NSString *)instanceIdentifier;
-
-/**
- The singleton service manager instance.
- */
-+ (BMServiceManager *)sharedInstance;
 
 /**
  Returns true iff the classIdentifier of the supplied service matches the supplied service class identifier.

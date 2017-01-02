@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <BMMedia/BMMediaStorage.h>
+#import <BMCommons/BMSingleton.h>
 
 @class BMURLCache;
 
@@ -16,7 +17,7 @@
  */
 @interface BMURLCacheMediaStorage : NSObject<BMMediaStorage>
 
-+ (BMURLCacheMediaStorage *)sharedInstance;
+BM_DECLARE_DEFAULT_SINGLETON
 
 /**
  Set the cache implementation to use. 

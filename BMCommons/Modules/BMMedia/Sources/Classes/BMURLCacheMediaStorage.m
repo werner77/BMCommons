@@ -17,14 +17,7 @@
 
 @synthesize cache = _cache;
 
-static BMURLCacheMediaStorage *instance = nil;
-
-+ (BMURLCacheMediaStorage *)sharedInstance {
-    if (!instance) {
-        instance = [BMURLCacheMediaStorage new];
-    }
-    return instance;
-}
+BM_SYNTHESIZE_DEFAULT_SINGLETON
 
 - (BMURLCache *)cache {
     if (_cache) {

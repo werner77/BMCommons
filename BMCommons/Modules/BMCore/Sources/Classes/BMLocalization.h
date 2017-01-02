@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMCoreObject.h>
+#import <BMCommons/BMSingleton.h>
 
 /**
  Protocol to be implemented by classes that want to be notified when the locale settings change.
@@ -61,12 +62,7 @@
  */
 @property(nonatomic, readonly) NSDictionary *availableLocales;
 
-/**
- Instance for the main bundle.
- 
- @see [NSBundle mainBundle]
- */
-+ (BMLocalization *)sharedInstance;
+BM_DECLARE_DEFAULT_SINGLETON
 
 - (id)initWithBundle:(NSBundle *)bundle;
 

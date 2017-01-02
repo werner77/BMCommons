@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMCoreObject.h>
+#import <BMCommons/BMSingleton.h>
 
 @class BMOperationQueue;
 
@@ -32,7 +33,7 @@
 	NSMutableArray *delegates;
 }
 
-+ (BMOperationQueue *)sharedInstance;
+BM_DECLARE_DEFAULT_SINGLETON
 
 @property (nonatomic, readonly) NSOperationQueue *processingQueue;
 

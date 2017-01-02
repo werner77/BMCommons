@@ -19,8 +19,6 @@ typedef NS_ENUM(NSUInteger, AHShoppingListSortState) {AHShoppingListInputSorted 
 
 @interface BMTestSettingsObject : BMAbstractSettingsObject
 
-+ (BMTestSettingsObject *)sharedInstance;
-
 @property (nonatomic, strong) NSString *mijnAHEmailAddress;
 @property (nonatomic, assign) AHShoppingListSortState myListSortOrderState;
 @property (nonatomic, assign) BOOL synchingEnabled;

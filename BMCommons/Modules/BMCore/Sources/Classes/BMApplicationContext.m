@@ -23,23 +23,12 @@
 
 @implementation BMApplicationContext 
 
-static BMApplicationContext *instance = nil;
-
 @synthesize settings;
 @synthesize active;
 @synthesize serviceManager;
 @synthesize operationQueue;
 
-#pragma mark -
-#pragma mark Initialization and deallocation
-
-+ (BMApplicationContext *)sharedInstance {
-    if (!instance) {
-        instance = [self new];
-        [instance loadSettings];
-    }
-    return instance;
-}
+BM_SYNTHESIZE_DEFAULT_SINGLETON
 
 - (id)init {
 	if ((self = [super init])) {
@@ -55,6 +44,8 @@ static BMApplicationContext *instance = nil;
 
 		environment = [NSMutableDictionary new];
         operationQueue = [BMOperationQueue sharedInstance];
+
+		[self loadSettings];
 	}
 	return self;
 }

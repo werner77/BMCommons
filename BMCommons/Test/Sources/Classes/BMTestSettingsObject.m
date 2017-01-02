@@ -21,10 +21,6 @@
 
 @implementation BMTestSettingsObject
 
-+ (BMTestSettingsObject *)sharedInstance {
-    return [super sharedInstance];
-}
-
 + (NSArray *)keysArray {
     return @[AH_SETTINGS_MIJNAH_EMAIL, AH_SETTINGS_MYLIST_SORT_ORDER_STATE, AH_SETTINGS_SYNCHING_ENABLED];
 }

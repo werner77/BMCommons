@@ -41,6 +41,8 @@
     BMOperationQueue *operationQueue;
 }
 
+BM_DECLARE_DEFAULT_SINGLETON
+
 /**
  Operation queue to perform async operations.
  */
@@ -152,11 +154,6 @@ Returns the array of registered delegates, implementations of BMApplicationConte
  Gets a global environment variable
  */
 - (id)objectForEnvironmentVariable:(NSString *)variable;
-
-/**
- Reference to the shared singleton instance.
- */
-+ (BMApplicationContext *)sharedInstance;
 
 @end
 

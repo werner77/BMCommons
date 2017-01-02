@@ -22,17 +22,7 @@
 
 @synthesize processingQueue;
 
-static BMOperationQueue *instance = nil;
-
-+ (void)initialize {
-	if (instance == nil) {
-		instance = [BMOperationQueue new];
-	}
-}
-
-+ (BMOperationQueue *)sharedInstance {
-	return instance;
-}
+BM_SYNTHESIZE_DEFAULT_SINGLETON
 
 - (id)init {
 	if (self = [super init]) {

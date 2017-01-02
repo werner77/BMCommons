@@ -13,14 +13,7 @@
 
 @synthesize bundle = _bundle;
 
-static BMApp *instance = nil;
-
-+ (BMApp *)sharedInstance {
-    if (instance == nil) {
-        instance = [self new];
-    }
-    return instance;
-}
+BM_SYNTHESIZE_DEFAULT_SINGLETON
 
 - (id)init {
     if ((self = [super init])) {

@@ -15,14 +15,7 @@
 
 @synthesize currentLocaleIdentifier = _currentLocaleIdentifier, currentLocale = _currentLocale, bundle = _bundle, availableLocales = _availableLocales;
 
-static BMLocalization *instance = nil;
-
-+ (BMLocalization *)sharedInstance {
-    if (!instance) {
-        instance = [[BMLocalization alloc] initWithBundle:nil];
-    }
-    return instance;
-}
+BM_SYNTHESIZE_DEFAULT_SINGLETON
 
 - (NSString *)localeDisplayNameForIdentifier:(NSString *)localeIdentifier {
     return [[self availableLocales] objectForKey:localeIdentifier];

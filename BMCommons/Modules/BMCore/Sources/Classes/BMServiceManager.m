@@ -16,7 +16,6 @@
 #import <BMCommons/BMFileHelper.h>
 #import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMCoreObject.h>
-#import <BMCommons/BMCore.h>
 #import <BMCommons/NSObject+BMCommons.h>
 #import <BMCommons/BMBlockServiceDelegate.h>
 #import <Foundation/Foundation.h>
@@ -160,14 +159,7 @@ static NSInteger prioritySort(id container1, id container2, void *service)
 
 //Public
 
-static BMServiceManager *sharedInstance = nil;
-
-+ (BMServiceManager *)sharedInstance {
-    if (!sharedInstance) {
-        sharedInstance = [[self alloc] init];
-    }
-    return sharedInstance;
-}
+BM_SYNTHESIZE_DEFAULT_SINGLETON
 
 - (BOOL)service:(id <BMService>)service matchesClassIdentifier:(NSString *)serviceClassIdentifier {
     return service.classIdentifier == serviceClassIdentifier || [service.classIdentifier isEqual:serviceClassIdentifier];

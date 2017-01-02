@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <BMCommons/BMSingleton.h>
 
 /**
  Class with information about static identifiers of the app defined in the application plist (display name, identifier, version, etc).
@@ -15,7 +16,7 @@
     NSBundle * _bundle;
 }
 
-+ (BMApp *)sharedInstance;
+BM_DECLARE_DEFAULT_SINGLETON
 
 @property (strong, nonatomic, readonly) NSBundle *bundle;
 
