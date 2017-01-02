@@ -3,14 +3,13 @@
 // Copyright (c) 2017 BehindMedia. All rights reserved.
 //
 
-#import <BMCommons/BMSingleton.h>
-#import "BMSingletons.h"
+#import "BMSingleton.h"
 
-@implementation BMSingletons {
+@implementation BMSingleton {
 
 }
 
-+ (void)releaseAllSingletons {
++ (void)releaseAllSharedInstances {
     [[NSNotificationCenter defaultCenter] postNotificationName:BMReleaseSharedInstancesNotification object:nil];
 }
 

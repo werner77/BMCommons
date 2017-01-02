@@ -1436,7 +1436,6 @@
 		A83DF6AAA5097F8E340CF711 /* UIGestureRecognizer+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF7991879E1C1B7D61D3E /* UIGestureRecognizer+BMCommons.m */; };
 		A83DF70E9091B212F7DF0E6D /* BMWrapperService.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF1147DF6A71B5CC040C8 /* BMWrapperService.h */; };
 		A83DF71F8CEC236AFD80288D /* BMMiscTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFEF6084B937209304CF6 /* BMMiscTestCase.m */; };
-		A83DF72339B8EB2C9B514E93 /* BMSingletons.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF2829C8A0089D8FEA43A /* BMSingletons.h */; };
 		A83DF7321D275C5A4C8DAC87 /* BMValueStack.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF2DD88FAADD1F2904914 /* BMValueStack.m */; };
 		A83DF7355469D8AB62895F95 /* BMSHA256Digest.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF7D6A3D097A3F4B4ECBB /* BMSHA256Digest.m */; };
 		A83DF739D010C3AFD42B2918 /* BMSortedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFF493F4BDE24D25647E7 /* BMSortedArray.m */; };
@@ -1449,13 +1448,12 @@
 		A83DFA8CF37073C9D0E0C6A6 /* BMAttributedStringDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF0F4C42574B65407F5B3 /* BMAttributedStringDescriptor.m */; };
 		A83DFAA2E8C74035FC78F046 /* BMWindowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF5CAB9B5ED24360A305E /* BMWindowView.m */; };
 		A83DFB1418DBF13D76989D7F /* NSMethodSignature+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF7A74FBF9CA4238989D1 /* NSMethodSignature+BMCommons.m */; };
-		A83DFB24C40C3A11FFA2CB63 /* BMSingletons.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF2829C8A0089D8FEA43A /* BMSingletons.h */; };
 		A83DFBAD34D82B6BAFBFEF9E /* BMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFCA4E4A0A1B2008C13C5 /* BMParser.m */; };
 		A83DFBCDF8A17CE33ACBE712 /* BMWrapperService.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFFFCB18A6BC1FAEE8CB7 /* BMWrapperService.m */; };
 		A83DFBF3755EC42CAB9EEA5F /* BMCollatedDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFCA0096C02AAC96EB1EC /* BMCollatedDataSource.h */; };
 		A83DFC0B1D31777806D058D3 /* BMAbstractMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF7C52334826B37FB40BC /* BMAbstractMutableDictionary.m */; };
 		A83DFC94786F63E59BC0021A /* BMDataRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFA6684CE4F22DD668127 /* BMDataRecorder.h */; };
-		A83DFD228835C20BE1A81B3A /* BMSingletons.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF6B6C47C7A6A8C20D269 /* BMSingletons.m */; };
+		A83DFD228835C20BE1A81B3A /* BMSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF6B6C47C7A6A8C20D269 /* BMSingleton.m */; };
 		A83DFD614B84FE1DF3A6E450 /* BMValueStack.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF3DB150A200C9A200D82 /* BMValueStack.h */; };
 		A83DFD625D5956921A7DE7D4 /* BMSortedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFF493F4BDE24D25647E7 /* BMSortedArray.m */; };
 		A83DFD9A7212B66927D57950 /* BMCollatedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF6C7CF0543364656CD2C /* BMCollatedDataSource.m */; };
@@ -1465,7 +1463,7 @@
 		A83DFEC39A4D14E4D3390B92 /* BMParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFC44AF81238175B662C2 /* BMParser.h */; };
 		A83DFEEB85FF23DD6E0BAFD5 /* BMAttributedStringDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF2F936F359AB9F61C44B /* BMAttributedStringDescriptor.h */; };
 		A83DFF1883C9E6E6C598F47B /* NSString+BMUICore.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF9867D61E87E7B7F5C45 /* NSString+BMUICore.m */; };
-		A83DFF54980B0FDC3D866DDA /* BMSingletons.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF6B6C47C7A6A8C20D269 /* BMSingletons.m */; };
+		A83DFF54980B0FDC3D866DDA /* BMSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF6B6C47C7A6A8C20D269 /* BMSingleton.m */; };
 		A83DFF5535F1070EFF5520AD /* NSMethodSignature+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF1C6A7343A43EA87577E /* NSMethodSignature+BMCommons.h */; };
 		A83DFF7B4022F29FF4BF1E46 /* BMSortedArray.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF82D589F913ED8F096FD /* BMSortedArray.h */; };
 		CA54148FF98017C5077701F8 /* libPods-BMCommonsTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D9A86118285F74A5E107B0 /* libPods-BMCommonsTest.a */; };
@@ -2964,7 +2962,6 @@
 		A83DF0F8029A2B6030A1E65E /* BMSHA256Digest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSHA256Digest.h; sourceTree = "<group>"; };
 		A83DF1147DF6A71B5CC040C8 /* BMWrapperService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMWrapperService.h; sourceTree = "<group>"; };
 		A83DF1C6A7343A43EA87577E /* NSMethodSignature+BMCommons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMethodSignature+BMCommons.h"; sourceTree = "<group>"; };
-		A83DF2829C8A0089D8FEA43A /* BMSingletons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSingletons.h; sourceTree = "<group>"; };
 		A83DF2DD88FAADD1F2904914 /* BMValueStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMValueStack.m; sourceTree = "<group>"; };
 		A83DF2F936F359AB9F61C44B /* BMAttributedStringDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAttributedStringDescriptor.h; sourceTree = "<group>"; };
 		A83DF31C13AE7E68B2FFD0BD /* BMMiscTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMMiscTestCase.h; sourceTree = "<group>"; };
@@ -2972,7 +2969,7 @@
 		A83DF5CAB9B5ED24360A305E /* BMWindowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMWindowView.m; sourceTree = "<group>"; };
 		A83DF61EAD0EF8C994CEE591 /* BMWindowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMWindowView.h; sourceTree = "<group>"; };
 		A83DF69C80D14DF2B24AC68F /* BMAlertViewTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAlertViewTestCase.h; sourceTree = "<group>"; };
-		A83DF6B6C47C7A6A8C20D269 /* BMSingletons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSingletons.m; sourceTree = "<group>"; };
+		A83DF6B6C47C7A6A8C20D269 /* BMSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSingleton.m; sourceTree = "<group>"; };
 		A83DF6C7CF0543364656CD2C /* BMCollatedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCollatedDataSource.m; sourceTree = "<group>"; };
 		A83DF788B7987CC4B84769AF /* BMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAlertView.m; sourceTree = "<group>"; };
 		A83DF793FBC9C8B25E510A71 /* BMAbstractMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAbstractMutableDictionary.h; sourceTree = "<group>"; };
@@ -5309,8 +5306,7 @@
 				A83DF2DD88FAADD1F2904914 /* BMValueStack.m */,
 				A83DF7A74FBF9CA4238989D1 /* NSMethodSignature+BMCommons.m */,
 				A83DF1C6A7343A43EA87577E /* NSMethodSignature+BMCommons.h */,
-				A83DF6B6C47C7A6A8C20D269 /* BMSingletons.m */,
-				A83DF2829C8A0089D8FEA43A /* BMSingletons.h */,
+				A83DF6B6C47C7A6A8C20D269 /* BMSingleton.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -6072,7 +6068,6 @@
 				A83DF1CAFF01A26AE34AAF9E /* BMDataRecorder.h in Headers */,
 				A83DF69DC76A4F748D99E3CC /* BMValueStack.h in Headers */,
 				A83DF28D3E0C0CFB297C470A /* NSMethodSignature+BMCommons.h in Headers */,
-				A83DF72339B8EB2C9B514E93 /* BMSingletons.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6237,7 +6232,6 @@
 				A83DFC94786F63E59BC0021A /* BMDataRecorder.h in Headers */,
 				A83DFD614B84FE1DF3A6E450 /* BMValueStack.h in Headers */,
 				A83DFF5535F1070EFF5520AD /* NSMethodSignature+BMCommons.h in Headers */,
-				A83DFB24C40C3A11FFA2CB63 /* BMSingletons.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7540,7 +7534,7 @@
 				A83DF272EB1107BE50BB88D4 /* BMDataRecorder.m in Sources */,
 				A83DF8561243BF480A680570 /* BMValueStack.m in Sources */,
 				A83DF5CB539706C3784B8B62 /* NSMethodSignature+BMCommons.m in Sources */,
-				A83DFD228835C20BE1A81B3A /* BMSingletons.m in Sources */,
+				A83DFD228835C20BE1A81B3A /* BMSingleton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7772,7 +7766,7 @@
 				A83DF33768C507CAFDD93B13 /* BMDataRecorder.m in Sources */,
 				A83DF7321D275C5A4C8DAC87 /* BMValueStack.m in Sources */,
 				A83DFB1418DBF13D76989D7F /* NSMethodSignature+BMCommons.m in Sources */,
-				A83DFF54980B0FDC3D866DDA /* BMSingletons.m in Sources */,
+				A83DFF54980B0FDC3D866DDA /* BMSingleton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

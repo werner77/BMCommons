@@ -6,8 +6,7 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
-#ifndef BMCommons_BMSingleton_h
-#define BMCommons_BMSingleton_h
+#import <Foundation/Foundation.h>
 
 #define BMReleaseSharedInstancesNotification @"com.behindmedia.BMReleaseSharedInstancesNotification"
 
@@ -62,4 +61,10 @@ NSMutableDictionary *instances = [self bmSharedInstanceDictionary]; \
 #define BM_DECLARE_DEFAULT_SINGLETON BM_DECLARE_SINGLETON(sharedInstance)
 #define BM_SYNTHESIZE_DEFAULT_SINGLETON BM_SYNTHESIZE_SINGLETON(sharedInstance)
 
-#endif
+
+@interface BMSingleton : NSObject
+
++ (void)releaseAllSharedInstances;
+
+@end
+
