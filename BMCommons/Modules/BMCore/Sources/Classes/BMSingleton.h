@@ -23,11 +23,14 @@ return instances; \
     [self releaseSharedInstance]; \
 } \
 + (instancetype)getter { \
+return [self getter:YES]; \
+} \
++ (instancetype)getter:(BOOL)createIfNotExists { \
 id instance = nil; \
 NSMutableDictionary *instances = [self bmSharedInstanceDictionary]; \
 @synchronized(instances) { \
 instance = instances[(id <NSCopying>)self]; \
-if (instance == nil) { \
+if (instance == nil && createIfNotExists) { \
 id allocatedInstance = [self alloc]; \
 if (allocatedInstance != nil) { \
 instances[(id <NSCopying>)self] = allocatedInstance; \
