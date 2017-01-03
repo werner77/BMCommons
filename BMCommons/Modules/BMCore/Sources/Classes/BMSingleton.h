@@ -50,7 +50,10 @@ return instance; \
 + (void)releaseSharedInstance { \
 NSMutableDictionary *instances = [self bmSharedInstanceDictionary]; \
 @synchronized (instances) { \
+if ([instances objectForKey:(id <NSCopying>)self] != nil) { \
 [instances removeObjectForKey:(id <NSCopying>)self]; \
+[[NSNotificationCenter defaultCenter] removeObserver:self name:BMReleaseSharedInstancesNotification object:nil]; \
+} \
 } \
 }
 
@@ -63,6 +66,8 @@ NSMutableDictionary *instances = [self bmSharedInstanceDictionary]; \
 
 
 @interface BMSingleton : NSObject
+
+BM_DECLARE_DEFAULT_SINGLETON
 
 + (void)releaseAllSharedInstances;
 
