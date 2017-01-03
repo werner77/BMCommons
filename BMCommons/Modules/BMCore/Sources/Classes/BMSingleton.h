@@ -13,7 +13,7 @@
 #define BM_SYNTHESIZE_SINGLETON(getter) \
 + (NSMutableDictionary *)bmSharedInstanceDictionary { \
 static NSMutableDictionary *instances = nil; \
-dispatch_once_t token; \
+static dispatch_once_t token; \
 dispatch_once(&token, ^{ \
 instances = [NSMutableDictionary new]; \
 }); \
