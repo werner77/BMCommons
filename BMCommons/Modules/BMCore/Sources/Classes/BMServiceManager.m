@@ -159,7 +159,7 @@ static NSInteger prioritySort(id container1, id container2, void *service)
 
 //Public
 
-BM_SYNTHESIZE_DEFAULT_SINGLETON
+BM_SYNTHESIZE_DEFAULT_UNIQUE_SINGLETON
 
 - (BOOL)service:(id <BMService>)service matchesClassIdentifier:(NSString *)serviceClassIdentifier {
     return service.classIdentifier == serviceClassIdentifier || [service.classIdentifier isEqual:serviceClassIdentifier];

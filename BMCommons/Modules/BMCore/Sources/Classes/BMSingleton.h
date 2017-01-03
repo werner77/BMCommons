@@ -10,7 +10,7 @@
 
 #define BMReleaseSharedInstancesNotification @"com.behindmedia.BMReleaseSharedInstancesNotification"
 
-#define BM_SYNTHESIZE_SINGLETON(getter) \
+#define BM_SYNTHESIZE_SINGLETON_IMPL(getter, singletonKey) \
 + (NSMutableDictionary *)bmSharedInstanceDictionary { \
 static NSMutableDictionary *instances = nil; \
 static dispatch_once_t token; \
@@ -29,18 +29,19 @@ return [self getter:YES]; \
 id instance = nil; \
 NSMutableDictionary *instances = [self bmSharedInstanceDictionary]; \
 @synchronized(instances) { \
-instance = instances[(id <NSCopying>)self]; \
+id key = (id <NSCopying>)(singletonKey); \
+instance = instances[key]; \
 if (instance == nil && createIfNotExists) { \
 id allocatedInstance = [self alloc]; \
 if (allocatedInstance != nil) { \
-instances[(id <NSCopying>)self] = allocatedInstance; \
+instances[key] = allocatedInstance; \
 } \
 instance = [allocatedInstance init]; \
 if (allocatedInstance != instance) { \
 if (instance == nil) { \
-[instances removeObjectForKey:(id <NSCopying>)self]; \
+[instances removeObjectForKey:key]; \
 } else { \
-instances[(id <NSCopying>)self] = instance; \
+instances[key] = instance; \
 } \
 } \
 if (instance != nil) { \
@@ -53,8 +54,9 @@ return instance; \
 + (void)releaseSharedInstance { \
 NSMutableDictionary *instances = [self bmSharedInstanceDictionary]; \
 @synchronized (instances) { \
-if ([instances objectForKey:(id <NSCopying>)self] != nil) { \
-[instances removeObjectForKey:(id <NSCopying>)self]; \
+id key = (id <NSCopying>)(singletonKey); \
+if ([instances objectForKey:key] != nil) { \
+[instances removeObjectForKey:key]; \
 [[NSNotificationCenter defaultCenter] removeObserver:self name:BMReleaseSharedInstancesNotification object:nil]; \
 } \
 } \
@@ -66,8 +68,10 @@ if ([instances objectForKey:(id <NSCopying>)self] != nil) { \
 + (void)releaseSharedInstance;
 
 #define BM_DECLARE_DEFAULT_SINGLETON BM_DECLARE_SINGLETON(sharedInstance)
+#define BM_SYNTHESIZE_SINGLETON(getter) BM_SYNTHESIZE_SINGLETON_IMPL(getter, self)
+#define BM_SYNTHESIZE_UNIQUE_SINGLETON(getter) BM_SYNTHESIZE_SINGLETON_IMPL(getter, BMSingleton.class)
 #define BM_SYNTHESIZE_DEFAULT_SINGLETON BM_SYNTHESIZE_SINGLETON(sharedInstance)
-
+#define BM_SYNTHESIZE_DEFAULT_UNIQUE_SINGLETON BM_SYNTHESIZE_UNIQUE_SINGLETON(sharedInstance)
 
 @interface BMSingleton : NSObject
 

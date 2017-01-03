@@ -15,7 +15,7 @@
 
 @synthesize currentLocaleIdentifier = _currentLocaleIdentifier, currentLocale = _currentLocale, bundle = _bundle, availableLocales = _availableLocales;
 
-BM_SYNTHESIZE_DEFAULT_SINGLETON
+BM_SYNTHESIZE_DEFAULT_UNIQUE_SINGLETON
 
 - (NSString *)localeDisplayNameForIdentifier:(NSString *)localeIdentifier {
     return [[self availableLocales] objectForKey:localeIdentifier];
