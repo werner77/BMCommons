@@ -17,7 +17,7 @@
 
 @synthesize cache = _cache;
 
-BM_SYNTHESIZE_DEFAULT_UNIQUE_SINGLETON
+BM_SYNTHESIZE_DEFAULT_SINGLETON
 
 - (BMURLCache *)cache {
     if (_cache) {

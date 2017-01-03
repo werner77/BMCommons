@@ -13,7 +13,7 @@
 
 @implementation BMAbstractSettingsObject
 
-BM_SYNTHESIZE_DEFAULT_SINGLETON
+BM_SYNTHESIZE_DEFAULT_ABSTRACT_SINGLETON
 
 static NSMutableDictionary *cachedDescriptors = nil;
 

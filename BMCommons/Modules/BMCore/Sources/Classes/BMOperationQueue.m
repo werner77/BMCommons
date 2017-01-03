@@ -22,7 +22,7 @@
 
 @synthesize processingQueue;
 
-BM_SYNTHESIZE_DEFAULT_UNIQUE_SINGLETON
+BM_SYNTHESIZE_DEFAULT_SINGLETON
 
 - (id)init {
 	if (self = [super init]) {

@@ -9,7 +9,7 @@
 
 }
 
-BM_SYNTHESIZE_DEFAULT_SINGLETON
+BM_SYNTHESIZE_DEFAULT_ABSTRACT_SINGLETON
 
 + (void)releaseAllSharedInstances {
     [[NSNotificationCenter defaultCenter] postNotificationName:BMReleaseSharedInstancesNotification object:nil];
