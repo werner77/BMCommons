@@ -10,6 +10,7 @@
 #import <BMCommons/BMSettingsObject.h>
 #import <BMCommons/BMCoreObject.h>
 #import <BMCommons/BMSettingsPropertyDescriptor.h>
+#import <BMCommons/BMSingleton.h>
 
 /**
  Base class for implementing application settings, stored in NSUserDefaults.
@@ -17,6 +18,8 @@
 @interface BMAbstractSettingsObject : BMCoreObject<BMSettingsObject> {
 	BOOL observing;
 }
+
+BM_DECLARE_DEFAULT_SINGLETON
 
 /**
  Returns the array of keys that should be used to store the values in NSUserDefaults. 

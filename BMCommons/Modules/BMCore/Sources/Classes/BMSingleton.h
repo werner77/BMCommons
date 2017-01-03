@@ -62,6 +62,7 @@ if ([instances objectForKey:(id <NSCopying>)self] != nil) { \
 
 #define BM_DECLARE_SINGLETON(getter) \
 + (instancetype)getter; \
++ (instancetype)getter:(BOOL)createIfNotExists; \
 + (void)releaseSharedInstance;
 
 #define BM_DECLARE_DEFAULT_SINGLETON BM_DECLARE_SINGLETON(sharedInstance)
