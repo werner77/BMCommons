@@ -21,7 +21,7 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/werner77/BMCommons.git', :branch => 'master' }
   
   s.ios.deployment_target = '6.0'
-  s.osx.deployment_target = '10.10'
+  s.osx.deployment_target = '10.8'
   s.default_subspec = 'BMCore'
 
   s.subspec 'BMCore_OSX' do |s_core|
@@ -30,10 +30,11 @@ TODO: Add long description of the pod here.
     s_core.libraries = 'z', 'icucore'
     s_core.requires_arc = true
     s_core.source_files = 'BMCommons/Modules/BMCore_OSX/Sources/**/*.{c,m,h}'
-    s_core.exclude_files = 'BMCommons/Modules/BMCore_OSX/**/*_Private.*'
+    s_core.private_header_files = 'BMCommons/Modules/BMCore_OSX/**/*_Private.h'
     s_core.frameworks   = 'Foundation','CoreGraphics','SystemConfiguration','AudioToolbox','Security'
     s_core.libraries = 'xml2'
     s_core.pod_target_xcconfig     = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2' }
+    s_core.dependency 'yajl-objc', '0.3.0'
   end
 
   s.subspec 'BMCore' do |s_core|

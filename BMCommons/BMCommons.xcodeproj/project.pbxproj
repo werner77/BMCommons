@@ -1386,6 +1386,10 @@
 		74F84E151860B1AE002C2A6A /* BMAbstractSchemaParserHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F84E121860B1AE002C2A6A /* BMAbstractSchemaParserHandler.h */; };
 		74F84E161860B1AE002C2A6A /* BMAbstractSchemaParserHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F84E131860B1AE002C2A6A /* BMAbstractSchemaParserHandler.m */; };
 		74F84E171860B1AE002C2A6A /* BMAbstractSchemaParserHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F84E131860B1AE002C2A6A /* BMAbstractSchemaParserHandler.m */; };
+		74F8BEE81E1D6BF7008F33AD /* BMDynamicObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 7418B8CD18841F5500669588 /* BMDynamicObject.h */; };
+		74F8BEE91E1D6BF9008F33AD /* BMDynamicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7418B8CE18841F5500669588 /* BMDynamicObject.m */; };
+		74F8BEEA1E1D6C5C008F33AD /* BMXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007EA17452B1A007B0A22 /* BMXML.m */; };
+		74F8BEEB1E1D6C63008F33AD /* BMXML.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007E917452B1A007B0A22 /* BMXML.h */; };
 		74FB2A66168DE88300324FD9 /* BMAssetPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FB2A65168DE88200324FD9 /* BMAssetPickerController.m */; };
 		74FB2A6F168DF28C00324FD9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		74FBFC9519F7DA6100BD31F3 /* BMKeyedArchiveDataTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FBFC9319F7DA6100BD31F3 /* BMKeyedArchiveDataTransformer.h */; };
@@ -5917,6 +5921,7 @@
 				74E30B911B380C9C00ACD9B5 /* BMDigest.h in Headers */,
 				74D8315419D07C51001C1756 /* BMMappableObjectClassResolver.h in Headers */,
 				74E3C4FA14F3D15F00F4299D /* BMAsyncDataLoader.h in Headers */,
+				74F8BEEB1E1D6C63008F33AD /* BMXML.h in Headers */,
 				742CAB281B7393C000657A23 /* BMBase64DataTransformer.h in Headers */,
 				74E3C50314F3D15F00F4299D /* BMBufferedInputStream.h in Headers */,
 				74E3C50A14F3D15F00F4299D /* BMCore.h in Headers */,
@@ -5991,6 +5996,7 @@
 				74C866961A63BF720020CF7F /* NSInvocation+BMCommons.h in Headers */,
 				747469B31740148100D1DB6D /* BMLogging.h in Headers */,
 				747469B817401ABF00D1DB6D /* BMRegexKitLite.h in Headers */,
+				74F8BEE81E1D6BF7008F33AD /* BMDynamicObject.h in Headers */,
 				74B00D2F17458A95007B0A22 /* BMErrorHelper.h in Headers */,
 				748E34BD1DB0EB2900093523 /* BMXMLElement_Private.h in Headers */,
 				74B00D4217458AF1007B0A22 /* BMXMLDocument.h in Headers */,
@@ -7420,6 +7426,7 @@
 				74E3C57114F3D15F00F4299D /* BMObjectHelper.m in Sources */,
 				74E3C57B14F3D15F00F4299D /* BMObjectToStringTransformer.m in Sources */,
 				74E3C57D14F3D15F00F4299D /* BMOperationQueue.m in Sources */,
+				74F8BEEA1E1D6C5C008F33AD /* BMXML.m in Sources */,
 				74E3C57F14F3D15F00F4299D /* BMOrderedDictionary.m in Sources */,
 				74E3C58D14F3D15F00F4299D /* BMPropertyDescriptor.m in Sources */,
 				74E3C58F14F3D15F00F4299D /* BMPropertyMethod.m in Sources */,
@@ -7447,6 +7454,7 @@
 				74DAEE4F1591F121002B807F /* BMEncryptionHelper.m in Sources */,
 				742CAB2A1B7393C000657A23 /* BMBase64DataTransformer.m in Sources */,
 				74DAEE591591FF4B002B807F /* BMEncodingHelper.m in Sources */,
+				74F8BEE91E1D6BF9008F33AD /* BMDynamicObject.m in Sources */,
 				74DAEE7215921C76002B807F /* BMLocalization.m in Sources */,
 				74850A4515B6E90F00884E0B /* NSDictionary+BMCommons.m in Sources */,
 				74D45B9C1618527200F9173E /* NSObject+BMCommons.m in Sources */,

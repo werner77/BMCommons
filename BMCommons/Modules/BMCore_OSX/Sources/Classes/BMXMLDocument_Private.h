@@ -1,0 +1,1 @@
+../../../BMXML/Sources/Classes/Private/BMXMLDocument_Private.h
