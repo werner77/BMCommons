@@ -21,19 +21,33 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/werner77/BMCommons.git', :branch => 'master' }
   
   s.ios.deployment_target = '6.0'
-  s.platform = :ios
+  s.osx.deployment_target = '10.10'
   s.default_subspec = 'BMCore'
 
+  s.subspec 'BMCore_OSX' do |s_core|
+    s_core.platform = :osx
+    s_core.prefix_header_file = 'BMCommons/Modules/BMCore_OSX/Sources/Other/BMCore_OSX_Prefix.pch'
+    s_core.libraries = 'z', 'icucore'
+    s_core.requires_arc = true
+    s_core.source_files = 'BMCommons/Modules/BMCore_OSX/Sources/**/*.{c,m,h}'
+    s_core.exclude_files = 'BMCommons/Modules/BMCore_OSX/**/*_Private.*'
+    s_core.frameworks   = 'Foundation','CoreGraphics','SystemConfiguration','AudioToolbox','Security'
+    s_core.libraries = 'xml2'
+    s_core.pod_target_xcconfig     = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2' }
+  end
+
   s.subspec 'BMCore' do |s_core|
-    s_core.frameworks   = 'Foundation','UIKit','CoreGraphics','SystemConfiguration','AudioToolbox','Security'
+    s_core.platform = :ios
     s_core.prefix_header_file = 'BMCommons/Modules/BMCore/Sources/Other/BMCore_Prefix.pch'
     s_core.libraries = 'z', 'icucore'
     s_core.requires_arc = true
     s_core.source_files = 'BMCommons/Modules/BMCore/Sources/**/*.{c,m,h}'
     s_core.exclude_files = 'BMCommons/Modules/BMCore/**/*_Private.*'
+    s_core.frameworks   = 'Foundation','UIKit','CoreGraphics','SystemConfiguration','AudioToolbox','Security'
   end
 
   s.subspec 'BMUICore' do |s_uicore|
+    s_uicore.platform = :ios
     s_uicore.frameworks   = 'CoreData'
     s_uicore.prefix_header_file = 'BMCommons/Modules/BMUICore/Sources/Other/BMUICore_Prefix.pch'
     s_uicore.requires_arc = true
@@ -44,6 +58,7 @@ TODO: Add long description of the pod here.
   end
 
   s.subspec 'BMUIExtensions' do |s_uiext|
+    s_uiext.platform = :ios
     s_uiext.prefix_header_file = 'BMCommons/Modules/BMUIExtensions/Sources/Other/BMUIExtensions-Prefix.pch'
     s_uiext.requires_arc = true
     s_uiext.source_files = 'BMCommons/Modules/BMUIExtensions/Sources/**/*.{c,m,h}'
@@ -52,6 +67,7 @@ TODO: Add long description of the pod here.
   end
 
   s.subspec 'BMCoreData' do |s_coredata|
+    s_coredata.platform = :ios
     s_coredata.frameworks   = 'CoreMedia','AVFoundation','QuartzCore'
     s_coredata.prefix_header_file = 'BMCommons/Modules/BMCoreData/Sources/Other/BMCoreData-Prefix.pch'
     s_coredata.requires_arc = true
@@ -61,6 +77,7 @@ TODO: Add long description of the pod here.
   end  
 
   s.subspec 'BMXML' do |s_xml|
+    s_xml.platform = :ios
     s_xml.prefix_header_file = 'BMCommons/Modules/BMXML/Sources/Other/BMXML-Prefix.pch'
     s_xml.requires_arc = true
     s_xml.source_files = 'BMCommons/Modules/BMXML/Sources/**/*.{c,m,h}'
@@ -71,6 +88,7 @@ TODO: Add long description of the pod here.
   end
 
   s.subspec 'BMRestKit' do |s_restkit|
+    s_restkit.platform = :ios
     s_restkit.frameworks   = 'CoreData'
     s_restkit.prefix_header_file = 'BMCommons/Modules/BMRestKit/Sources/Other/BMRestKit-Prefix.pch'
     s_restkit.requires_arc = true

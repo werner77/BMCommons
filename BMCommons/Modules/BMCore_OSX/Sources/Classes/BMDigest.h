@@ -1,0 +1,1 @@
+../../../BMCore/Sources/Classes/BMDigest.h

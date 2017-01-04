@@ -8882,8 +8882,8 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = Modules/BMCore/Sources/Other/BMCore_Prefix.pch;
-				INFOPLIST_FILE = "Modules/BMCore/Resources/BMCore-Info.plist";
+				GCC_PREFIX_HEADER = Modules/BMCore_OSX/Sources/Other/BMCore_OSX_Prefix.pch;
+				INFOPLIST_FILE = "Modules/BMCore_OSX/Resources/BMCoreOSX-Info.plist";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.behindmedia.bmcommons;
 				PRODUCT_NAME = BMCore_OSX;
@@ -8900,8 +8900,8 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = Modules/BMCore/Sources/Other/BMCore_Prefix.pch;
-				INFOPLIST_FILE = "Modules/BMCore/Resources/BMCore-Info.plist";
+				GCC_PREFIX_HEADER = Modules/BMCore_OSX/Sources/Other/BMCore_OSX_Prefix.pch;
+				INFOPLIST_FILE = "Modules/BMCore_OSX/Resources/BMCoreOSX-Info.plist";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.behindmedia.bmcommons;
 				PRODUCT_NAME = BMCore_OSX;

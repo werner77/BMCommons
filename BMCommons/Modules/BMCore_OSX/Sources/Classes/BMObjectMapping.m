@@ -1,0 +1,1 @@
+../../../BMRestKit/Sources/Classes/BMObjectMapping.m

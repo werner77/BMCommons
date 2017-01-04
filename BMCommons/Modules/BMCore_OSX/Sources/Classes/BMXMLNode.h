@@ -1,0 +1,1 @@
+../../../BMXML/Sources/Classes/BMXMLNode.h
