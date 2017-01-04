@@ -21,7 +21,7 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/werner77/BMCommons.git', :branch => 'master' }
   
   s.ios.deployment_target = '6.0'
-  s.osx.deployment_target = '10.8'
+  s.osx.deployment_target = '10.10'
   s.default_subspec = 'BMCore'
 
   s.subspec 'BMCore_OSX' do |s_core|
