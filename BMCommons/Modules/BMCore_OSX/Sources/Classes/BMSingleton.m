@@ -1,1 +1,0 @@
-../../../BMCore/Sources/Classes/BMSingleton.m

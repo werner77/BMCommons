@@ -1,1 +1,0 @@
-../../../BMCore/Sources/Classes/BMStringToBooleanValueTransformer.m

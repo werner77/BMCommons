@@ -1,1 +1,0 @@
-../../../BMCore/Sources/Classes/BMBase64DataTransformer.m

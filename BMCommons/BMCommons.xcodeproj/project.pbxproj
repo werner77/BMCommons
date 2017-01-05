@@ -285,7 +285,6 @@
 		7434EA821BC68947006537FA /* BMCompressDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7434EA7F1BC68947006537FA /* BMCompressDataTransformer.m */; };
 		7434EA831BC68947006537FA /* BMCompressDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7434EA7F1BC68947006537FA /* BMCompressDataTransformer.m */; };
 		743B453C14F3F960002DA36F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
-		743B454A14F3FA69002DA36F /* BMUICore_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 743B454914F3FA69002DA36F /* BMUICore_Prefix.pch */; };
 		743B454B14F3FB9E002DA36F /* BMObjectPropertyTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB72F14F3CE040068FF3B /* BMObjectPropertyTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		743B454C14F3FB9E002DA36F /* BMObjectPropertyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB73014F3CE040068FF3B /* BMObjectPropertyTableViewCell.m */; };
 		743B454D14F3FB9E002DA36F /* UIActionSheet+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB78E14F3CE040068FF3B /* UIActionSheet+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -402,7 +401,6 @@
 		743B469814F3FF05002DA36F /* BMAssetCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 743B468E14F3FF05002DA36F /* BMAssetCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		743B469914F3FF05002DA36F /* BMAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743B468F14F3FF05002DA36F /* BMAssetCell.m */; };
 		743B469A14F3FF05002DA36F /* BMAssetPickerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 743B469014F3FF05002DA36F /* BMAssetPickerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		743B469D14F43226002DA36F /* BMMedia_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 743B469C14F43226002DA36F /* BMMedia_Prefix.pch */; settings = {ATTRIBUTES = (); }; };
 		743B469F14F432B6002DA36F /* BMMedia.h in Headers */ = {isa = PBXBuildFile; fileRef = 743B469E14F432B5002DA36F /* BMMedia.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		743B4ABE14F435DB002DA36F /* libBMMedia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74ACB67714F3CCDB0068FF3B /* libBMMedia.a */; };
 		743B4ABF14F435DB002DA36F /* libBMUICore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 743B453B14F3F960002DA36F /* libBMUICore.a */; };
@@ -976,7 +974,6 @@
 		74ACB8A614F3CE050068FF3B /* NSNumber+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB78B14F3CE040068FF3B /* NSNumber+BMCommons.m */; };
 		74ACB8A714F3CE050068FF3B /* NSString+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB78C14F3CE040068FF3B /* NSString+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74ACB8A814F3CE050068FF3B /* NSString+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB78D14F3CE040068FF3B /* NSString+BMCommons.m */; };
-		74ACB8C114F3CE060068FF3B /* BMCore_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB7A714F3CE040068FF3B /* BMCore_Prefix.pch */; settings = {ATTRIBUTES = (); }; };
 		74AD8C901A1E15C6002D658D /* BMViewState.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AD8C8F1A1E15C6002D658D /* BMViewState.h */; };
 		74AE63A11A7A22EA00F124F9 /* BMNib.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AE639F1A7A22EA00F124F9 /* BMNib.h */; };
 		74AE63A21A7A22EA00F124F9 /* BMNib.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AE63A01A7A22EA00F124F9 /* BMNib.m */; };
@@ -1154,13 +1151,6 @@
 		74D45B9A1618527200F9173E /* NSObject+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D45B971618527200F9173E /* NSObject+BMCommons.h */; };
 		74D45B9B1618527200F9173E /* NSObject+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D45B981618527200F9173E /* NSObject+BMCommons.m */; };
 		74D45B9C1618527200F9173E /* NSObject+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D45B981618527200F9173E /* NSObject+BMCommons.m */; };
-		74D6B85418292F010020BE12 /* BMCoreData-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 74B0083517452EE2007B0A22 /* BMCoreData-Prefix.pch */; };
-		74D6B85518292F190020BE12 /* BMXML-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 74B007FB17452B1A007B0A22 /* BMXML-Prefix.pch */; };
-		74D6B85618292F1C0020BE12 /* BMRestKit-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 74B007DB17451DD6007B0A22 /* BMRestKit-Prefix.pch */; };
-		74D6B85718292F270020BE12 /* BMGoogle_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 74FE751614F7A84600202F6D /* BMGoogle_Prefix.pch */; };
-		74D6B85818292F2A0020BE12 /* BMYouTube_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 74FE750F14F7A82600202F6D /* BMYouTube_Prefix.pch */; };
-		74D6B85B18292FDC0020BE12 /* BMThree20_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 74F62D661822986C000D4348 /* BMThree20_Prefix.pch */; };
-		74D6B85D18292FFD0020BE12 /* BMLocation-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 74B0081217452CD5007B0A22 /* BMLocation-Prefix.pch */; };
 		74D6B85E182930470020BE12 /* BMGoogleMapsReverseGeocoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B0080717452CD5007B0A22 /* BMGoogleMapsReverseGeocoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74D6B85F182930470020BE12 /* BMLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B0080B17452CD5007B0A22 /* BMLocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74D6B860182930470020BE12 /* BMMapsHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B0080D17452CD5007B0A22 /* BMMapsHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1196,7 +1186,6 @@
 		74D6B881182930DF0020BE12 /* BMMailComposeController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B0088017453A4E007B0A22 /* BMMailComposeController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74D6B882182930DF0020BE12 /* BMMultiSwitchViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B0088417453A4E007B0A22 /* BMMultiSwitchViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74D6B883182930DF0020BE12 /* BMTimeSelectionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B0089E17453A4E007B0A22 /* BMTimeSelectionViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74D6B885182930EC0020BE12 /* BMUIExtensions-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 74B008AB17453A4E007B0A22 /* BMUIExtensions-Prefix.pch */; };
 		74D7C71F1758F92500E2D9FC /* NSData+BMCompression.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D7C71D1758F92200E2D9FC /* NSData+BMCompression.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74D7C7201758F92500E2D9FC /* NSData+BMCompression.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D7C71D1758F92200E2D9FC /* NSData+BMCompression.h */; };
 		74D7C7211758F92500E2D9FC /* NSData+BMCompression.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D7C71E1758F92400E2D9FC /* NSData+BMCompression.m */; };
@@ -2017,7 +2006,6 @@
 		7434EA7E1BC68947006537FA /* BMCompressDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCompressDataTransformer.h; sourceTree = "<group>"; };
 		7434EA7F1BC68947006537FA /* BMCompressDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCompressDataTransformer.m; sourceTree = "<group>"; };
 		743B453B14F3F960002DA36F /* libBMUICore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBMUICore.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		743B454914F3FA69002DA36F /* BMUICore_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMUICore_Prefix.pch; sourceTree = "<group>"; };
 		743B463214F3FE8B002DA36F /* BMMediaRollController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMMediaRollController.h; sourceTree = "<group>"; };
 		743B463314F3FE8B002DA36F /* BMMediaRollController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMMediaRollController.m; sourceTree = "<group>"; };
 		743B463614F3FE8B002DA36F /* BMFullScreenMediaBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMFullScreenMediaBrowserViewController.h; sourceTree = "<group>"; };
@@ -2067,7 +2055,6 @@
 		743B468E14F3FF05002DA36F /* BMAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAssetCell.h; sourceTree = "<group>"; };
 		743B468F14F3FF05002DA36F /* BMAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAssetCell.m; sourceTree = "<group>"; };
 		743B469014F3FF05002DA36F /* BMAssetPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAssetPickerController.h; sourceTree = "<group>"; };
-		743B469C14F43226002DA36F /* BMMedia_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMMedia_Prefix.pch; sourceTree = "<group>"; };
 		743B469E14F432B5002DA36F /* BMMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMMedia.h; sourceTree = "<group>"; };
 		743EA2E217521D5E0059CD4F /* BMImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMImagePickerController.h; sourceTree = "<group>"; };
 		743EA2E317521D5E0059CD4F /* BMImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMImagePickerController.m; sourceTree = "<group>"; };
@@ -2703,7 +2690,6 @@
 		74ACB7A314F3CE040068FF3B /* UIViewController+BMCommons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BMCommons.m"; sourceTree = "<group>"; };
 		74ACB7A414F3CE040068FF3B /* UIWebView+BMCommons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+BMCommons.h"; sourceTree = "<group>"; };
 		74ACB7A514F3CE040068FF3B /* UIWebView+BMCommons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+BMCommons.m"; sourceTree = "<group>"; };
-		74ACB7A714F3CE040068FF3B /* BMCore_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCore_Prefix.pch; sourceTree = "<group>"; };
 		74ACB8CF14F3CEE20068FF3B /* BMCore-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BMCore-Info.plist"; sourceTree = "<group>"; };
 		74AD8C8F1A1E15C6002D658D /* BMViewState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMViewState.h; sourceTree = "<group>"; };
 		74AE639F1A7A22EA00F124F9 /* BMNib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNib.h; sourceTree = "<group>"; };
@@ -2731,7 +2717,6 @@
 		74B007D717451DD6007B0A22 /* BMRootObjectMappingParserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRootObjectMappingParserService.m; sourceTree = "<group>"; };
 		74B007D817451DD6007B0A22 /* BMXMLSchemaParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMXMLSchemaParser.h; sourceTree = "<group>"; };
 		74B007D917451DD6007B0A22 /* BMXMLSchemaParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMXMLSchemaParser.m; sourceTree = "<group>"; };
-		74B007DB17451DD6007B0A22 /* BMRestKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BMRestKit-Prefix.pch"; sourceTree = "<group>"; };
 		74B007E917452B1A007B0A22 /* BMXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMXML.h; sourceTree = "<group>"; };
 		74B007EA17452B1A007B0A22 /* BMXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMXML.m; sourceTree = "<group>"; };
 		74B007EB17452B1A007B0A22 /* BMXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMXMLDocument.h; sourceTree = "<group>"; };
@@ -2747,7 +2732,6 @@
 		74B007F517452B1A007B0A22 /* BMXMLReaderSAX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMXMLReaderSAX.m; sourceTree = "<group>"; };
 		74B007F817452B1A007B0A22 /* BMXPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMXPathQuery.h; sourceTree = "<group>"; };
 		74B007F917452B1A007B0A22 /* BMXPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMXPathQuery.m; sourceTree = "<group>"; };
-		74B007FB17452B1A007B0A22 /* BMXML-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BMXML-Prefix.pch"; sourceTree = "<group>"; };
 		74B0080717452CD5007B0A22 /* BMGoogleMapsReverseGeocoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMGoogleMapsReverseGeocoder.h; sourceTree = "<group>"; };
 		74B0080817452CD5007B0A22 /* BMGoogleMapsReverseGeocoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMGoogleMapsReverseGeocoder.m; sourceTree = "<group>"; };
 		74B0080B17452CD5007B0A22 /* BMLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMLocation.h; sourceTree = "<group>"; };
@@ -2756,7 +2740,6 @@
 		74B0080E17452CD5007B0A22 /* BMMapsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMMapsHelper.m; sourceTree = "<group>"; };
 		74B0080F17452CD5007B0A22 /* BMReverseGeocoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMReverseGeocoder.h; sourceTree = "<group>"; };
 		74B0081017452CD5007B0A22 /* BMReverseGeocoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMReverseGeocoder.m; sourceTree = "<group>"; };
-		74B0081217452CD5007B0A22 /* BMLocation-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BMLocation-Prefix.pch"; sourceTree = "<group>"; };
 		74B0081B17452EE2007B0A22 /* BMAbstractManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAbstractManagedObject.h; sourceTree = "<group>"; };
 		74B0081C17452EE2007B0A22 /* BMAbstractManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAbstractManagedObject.m; sourceTree = "<group>"; };
 		74B0081D17452EE2007B0A22 /* BMCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCoreData.h; sourceTree = "<group>"; };
@@ -2778,7 +2761,6 @@
 		74B0083117452EE2007B0A22 /* BMManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMManagedObjectContext.h; sourceTree = "<group>"; };
 		74B0083217452EE2007B0A22 /* BMManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMManagedObjectContext.m; sourceTree = "<group>"; };
 		74B0083317452EE2007B0A22 /* BMRootManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMRootManagedObject.h; sourceTree = "<group>"; };
-		74B0083517452EE2007B0A22 /* BMCoreData-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BMCoreData-Prefix.pch"; sourceTree = "<group>"; };
 		74B008441745323A007B0A22 /* BMJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMJSONParser.h; sourceTree = "<group>"; };
 		74B008451745323B007B0A22 /* BMJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMJSONParser.m; sourceTree = "<group>"; };
 		74B008481745323C007B0A22 /* BMParserHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMParserHandler.h; sourceTree = "<group>"; };
@@ -2847,7 +2829,6 @@
 		74B008A717453A4E007B0A22 /* BMValueSelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMValueSelectionCell.m; sourceTree = "<group>"; };
 		74B008A817453A4E007B0A22 /* BMWebDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMWebDialog.h; sourceTree = "<group>"; };
 		74B008A917453A4E007B0A22 /* BMWebDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMWebDialog.m; sourceTree = "<group>"; };
-		74B008AB17453A4E007B0A22 /* BMUIExtensions-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BMUIExtensions-Prefix.pch"; sourceTree = "<group>"; };
 		74B008CF1745552E007B0A22 /* BMMultiSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMMultiSelectionViewController.h; sourceTree = "<group>"; };
 		74B008D01745552E007B0A22 /* BMMultiSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMMultiSelectionViewController.m; sourceTree = "<group>"; };
 		74B03B8418D6F92E007BA709 /* schema1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema1.json; sourceTree = "<group>"; };
@@ -2935,7 +2916,6 @@
 		74F52B9312F0438900ACC646 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		74F52B9412F0438900ACC646 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		74F52B9512F0438900ACC646 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		74F62D661822986C000D4348 /* BMThree20_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMThree20_Prefix.pch; sourceTree = "<group>"; };
 		74F84E031860A3A7002C2A6A /* BMJSONSchemaParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMJSONSchemaParser.h; sourceTree = "<group>"; };
 		74F84E041860A3A7002C2A6A /* BMJSONSchemaParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMJSONSchemaParser.m; sourceTree = "<group>"; };
 		74F84E121860B1AE002C2A6A /* BMAbstractSchemaParserHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = BMAbstractSchemaParserHandler.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
@@ -2948,9 +2928,7 @@
 		74FBFCA119F7DB8800BD31F3 /* BMSettingsPropertyDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSettingsPropertyDescriptor.m; sourceTree = "<group>"; };
 		74FD558D17A3CFB700188BF5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		74FE750B14F7A82600202F6D /* BMYouTube-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BMYouTube-Info.plist"; sourceTree = "<group>"; };
-		74FE750F14F7A82600202F6D /* BMYouTube_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMYouTube_Prefix.pch; sourceTree = "<group>"; };
 		74FE751214F7A84600202F6D /* BMGoogle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BMGoogle-Info.plist"; sourceTree = "<group>"; };
-		74FE751614F7A84600202F6D /* BMGoogle_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMGoogle_Prefix.pch; sourceTree = "<group>"; };
 		74FE751714F7A87D00202F6D /* BMGoogle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMGoogle.h; sourceTree = "<group>"; };
 		74FE751814F7A8C000202F6D /* BMYouTube.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMYouTube.h; sourceTree = "<group>"; };
 		74FE751A14F7A95500202F6D /* BMGoogleAuthenticationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMGoogleAuthenticationController.h; sourceTree = "<group>"; };
@@ -3756,14 +3734,6 @@
 			name = Util;
 			sourceTree = "<group>";
 		};
-		743B454814F3FA69002DA36F /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				743B454914F3FA69002DA36F /* BMUICore_Prefix.pch */,
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
 		743B462A14F3FE10002DA36F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -3780,7 +3750,6 @@
 			isa = PBXGroup;
 			children = (
 				743B462D14F3FE10002DA36F /* Classes */,
-				743B462E14F3FE10002DA36F /* Other */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -3802,14 +3771,6 @@
 				74DAA1FA175795600011F1D1 /* BMStyleSheet+BMMedia.m */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		743B462E14F3FE10002DA36F /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				743B469C14F43226002DA36F /* BMMedia_Prefix.pch */,
-			);
-			path = Other;
 			sourceTree = "<group>";
 		};
 		743B462F14F3FE5E002DA36F /* Model */ = {
@@ -4420,7 +4381,6 @@
 		74A116D114F3EE7F00C31EB5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				743B454814F3FA69002DA36F /* Other */,
 				74A116D214F3EE7F00C31EB5 /* Classes */,
 			);
 			path = Sources;
@@ -4528,7 +4488,6 @@
 			isa = PBXGroup;
 			children = (
 				74ACB69E14F3CE040068FF3B /* Classes */,
-				74ACB7A614F3CE040068FF3B /* Other */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -4548,14 +4507,6 @@
 				74EBF59B18224D12006E9395 /* BMVersionAvailability.h */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		74ACB7A614F3CE040068FF3B /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				74ACB7A714F3CE040068FF3B /* BMCore_Prefix.pch */,
-			);
-			path = Other;
 			sourceTree = "<group>";
 		};
 		74ACB7B914F3CE040068FF3B /* BMMedia */ = {
@@ -4579,7 +4530,6 @@
 			isa = PBXGroup;
 			children = (
 				74B007C417451DD6007B0A22 /* Classes */,
-				74B007DA17451DD6007B0A22 /* Other */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -4646,14 +4596,6 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		74B007DA17451DD6007B0A22 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				74B007DB17451DD6007B0A22 /* BMRestKit-Prefix.pch */,
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
 		74B007E617452B1A007B0A22 /* BMXML */ = {
 			isa = PBXGroup;
 			children = (
@@ -4666,7 +4608,6 @@
 			isa = PBXGroup;
 			children = (
 				74B007E817452B1A007B0A22 /* Classes */,
-				74B007FA17452B1A007B0A22 /* Other */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -4694,14 +4635,6 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		74B007FA17452B1A007B0A22 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				74B007FB17452B1A007B0A22 /* BMXML-Prefix.pch */,
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
 		74B0080417452CD4007B0A22 /* BMLocation */ = {
 			isa = PBXGroup;
 			children = (
@@ -4714,7 +4647,6 @@
 			isa = PBXGroup;
 			children = (
 				74B0080617452CD5007B0A22 /* Classes */,
-				74B0081117452CD5007B0A22 /* Other */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -4734,14 +4666,6 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		74B0081117452CD5007B0A22 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				74B0081217452CD5007B0A22 /* BMLocation-Prefix.pch */,
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
 		74B0081817452EE2007B0A22 /* BMCoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -4754,7 +4678,6 @@
 			isa = PBXGroup;
 			children = (
 				74B0081A17452EE2007B0A22 /* Classes */,
-				74B0083417452EE2007B0A22 /* Other */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -4769,14 +4692,6 @@
 				74B0081E17452EE2007B0A22 /* BMCoreData.m */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		74B0083417452EE2007B0A22 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				74B0083517452EE2007B0A22 /* BMCoreData-Prefix.pch */,
-			);
-			path = Other;
 			sourceTree = "<group>";
 		};
 		74B0084217452F27007B0A22 /* Common */ = {
@@ -4828,7 +4743,6 @@
 			isa = PBXGroup;
 			children = (
 				74B0086917453A4E007B0A22 /* Classes */,
-				74B008AA17453A4E007B0A22 /* Other */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -4842,14 +4756,6 @@
 				74B008CC17453A58007B0A22 /* Controller */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		74B008AA17453A4E007B0A22 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				74B008AB17453A4E007B0A22 /* BMUIExtensions-Prefix.pch */,
-			);
-			path = Other;
 			sourceTree = "<group>";
 		};
 		74B008CC17453A58007B0A22 /* Controller */ = {
@@ -5439,7 +5345,6 @@
 		74FB2A69168DF12400324FD9 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				74F62D661822986C000D4348 /* BMThree20_Prefix.pch */,
 				745FE95A1691D35D006D1FE4 /* Three20Core */,
 				745FE9711691D35E006D1FE4 /* Three20Network */,
 				745FE9761691D35E006D1FE4 /* Three20Style */,
@@ -5524,7 +5429,6 @@
 			isa = PBXGroup;
 			children = (
 				74FE750D14F7A82600202F6D /* Classes */,
-				74FE750E14F7A82600202F6D /* Other */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -5541,14 +5445,6 @@
 				741A74301759EB150090C599 /* BMStyleSheet+BMYouTube.m */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		74FE750E14F7A82600202F6D /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				74FE750F14F7A82600202F6D /* BMYouTube_Prefix.pch */,
-			);
-			path = Other;
 			sourceTree = "<group>";
 		};
 		74FE751014F7A84600202F6D /* BMGoogle */ = {
@@ -5594,7 +5490,6 @@
 			isa = PBXGroup;
 			children = (
 				74FE755614F7AD6300202F6D /* BMGoogleResources-Info.plist */,
-				74FE751614F7A84600202F6D /* BMGoogle_Prefix.pch */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -5699,7 +5594,6 @@
 				744D644C17726EBD00A47C93 /* BMUICoreObject.h in Headers */,
 				74AD8C901A1E15C6002D658D /* BMViewState.h in Headers */,
 				742D0258179DA93500676AC3 /* BMAppDelegate.h in Headers */,
-				743B454A14F3FA69002DA36F /* BMUICore_Prefix.pch in Headers */,
 				A83DFDDB6C38439F0A0BBCE9 /* BMAlertController.h in Headers */,
 				A83DF49365070B069CB596A6 /* BMAlertView.h in Headers */,
 				A83DF4ADA97233EED9FB53A5 /* BMDefaultAlertView.h in Headers */,
@@ -5725,7 +5619,6 @@
 				7448826A181531E900EF96C1 /* BMManagedObjectContext.h in Headers */,
 				7448826B181531E900EF96C1 /* BMRootManagedObject.h in Headers */,
 				7448826D181531E900EF96C1 /* BMCoreData.h in Headers */,
-				74D6B85418292F010020BE12 /* BMCoreData-Prefix.pch in Headers */,
 				74488269181531E900EF96C1 /* BMCoreDataStoreDescriptor.h in Headers */,
 				74488261181531E900EF96C1 /* BMFetchedResultsEnumerator.h in Headers */,
 				74488263181531E900EF96C1 /* BMAbstractManagedObject.h in Headers */,
@@ -5787,7 +5680,6 @@
 				743B467214F3FEA4002DA36F /* BMVideoOverlayView.h in Headers */,
 				743B467414F3FEA4002DA36F /* BMAudioOverlayView.h in Headers */,
 				743B467814F3FEA4002DA36F /* BMCameraOverlayView.h in Headers */,
-				743B469D14F43226002DA36F /* BMMedia_Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5801,7 +5693,6 @@
 				748E34C61DB0EB2900093523 /* BMXPathQuery_Private.h in Headers */,
 				74C319AD17994250009AD294 /* BMXMLModelObject.h in Headers */,
 				748E34BC1DB0EB2900093523 /* BMXMLDocument_Private.h in Headers */,
-				74D6B85518292F190020BE12 /* BMXML-Prefix.pch in Headers */,
 				74C319AE17994250009AD294 /* BMXMLNode.h in Headers */,
 				74C319AF17994250009AD294 /* BMXMLReader.h in Headers */,
 				748E34C21DB0EB2900093523 /* BMXMLUtilities.h in Headers */,
@@ -5819,7 +5710,6 @@
 				74C319B4179942A3009AD294 /* BMRestKit.h in Headers */,
 				74C319B6179942A3009AD294 /* BMEnumerationValue.h in Headers */,
 				74C319B7179942A3009AD294 /* BMJSONParser.h in Headers */,
-				74D6B85618292F1C0020BE12 /* BMRestKit-Prefix.pch in Headers */,
 				74C319B9179942A3009AD294 /* BMParserHandler.h in Headers */,
 				74C319BA179942A3009AD294 /* BMParserService.h in Headers */,
 				74C319BB179942A3009AD294 /* BMXMLParser.h in Headers */,
@@ -5853,7 +5743,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74D6B85B18292FDC0020BE12 /* BMThree20_Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5865,7 +5754,6 @@
 				74D6B85E182930470020BE12 /* BMGoogleMapsReverseGeocoder.h in Headers */,
 				74D6B861182930470020BE12 /* BMReverseGeocoder.h in Headers */,
 				74D6B85F182930470020BE12 /* BMLocation.h in Headers */,
-				74D6B85D18292FFD0020BE12 /* BMLocation-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5874,7 +5762,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				74D6B87A182930DF0020BE12 /* BMEditViewController.h in Headers */,
-				74D6B885182930EC0020BE12 /* BMUIExtensions-Prefix.pch in Headers */,
 				74D6B871182930990020BE12 /* BMMultiPickerCell.h in Headers */,
 				74AEAAA318AE838A00E83CED /* BMAsyncLoadingImageButtonCell.h in Headers */,
 				74D6B87F182930DF0020BE12 /* BMEnumeratedValueSelectionViewController.h in Headers */,
@@ -6084,7 +5971,6 @@
 				74FE755A14F7AE3B00202F6D /* BMGoogleAuthenticationController.h in Headers */,
 				74FE755C14F7AE3B00202F6D /* BMGoogle.h in Headers */,
 				742F6DD315090F7900033C5C /* BMGoogleService.h in Headers */,
-				74D6B85718292F270020BE12 /* BMGoogle_Prefix.pch in Headers */,
 				745E17D914F7BDD700BD9CF6 /* BMOAuth2ViewControllerTouch.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6103,7 +5989,6 @@
 				742F6DDB15092B7700033C5C /* BMYouTubeEntryTransformer.h in Headers */,
 				742F6DDF1509354300033C5C /* BMYouTubeUploadTransformer.h in Headers */,
 				7470A309156FD08900F8C312 /* BMYouTubeDeleteService.h in Headers */,
-				74D6B85818292F2A0020BE12 /* BMYouTube_Prefix.pch in Headers */,
 				742FCEA015841E4400D37662 /* BMYouTubeGetUserProfileService.h in Headers */,
 				74271B90174A8AC400CCA22A /* BMYouTubeListDirectStreamableVideosService.h in Headers */,
 				741A74311759EB150090C599 /* BMStyleSheet+BMYouTube.h in Headers */,
@@ -6228,7 +6113,6 @@
 				742D023E179D8D5800676AC3 /* BMSettingsRegistry.h in Headers */,
 				74A1C40617F31DB2004BB554 /* BMApp.h in Headers */,
 				742D0244179DA87600676AC3 /* BMApplicationContext.h in Headers */,
-				74ACB8C114F3CE060068FF3B /* BMCore_Prefix.pch in Headers */,
 				A83DF2E2DFBA68434A6B676F /* BMSortedDictionary.h in Headers */,
 				A83DF9EB7B93BD8213B33285 /* BMAbstractMutableDictionary.h in Headers */,
 				A83DFE06593829887D53C2B7 /* BMSortedArray.h in Headers */,
@@ -8059,8 +7943,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ./Modules/BMCore/Sources/Other/BMCore_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
 					"${SRCROOT}/Modules/BMCore/Include",
@@ -8076,8 +7958,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ./Modules/BMCore/Sources/Other/BMCore_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
 					"${SRCROOT}/Modules/BMCore/Include",
@@ -8305,8 +8185,6 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ./Modules/BMUICore/Sources/Other/BMUICore_Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -8329,8 +8207,6 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ./Modules/BMUICore/Sources/Other/BMUICore_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (
@@ -8423,8 +8299,6 @@
 				DSTROOT = /tmp/BMXML.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Modules/BMXML/Sources/Other/BMXML-Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
@@ -8452,8 +8326,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/BMXML.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Modules/BMXML/Sources/Other/BMXML-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
@@ -8481,8 +8353,6 @@
 				DSTROOT = /tmp/BMLocation.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Modules/BMLocation/Sources/Other/BMLocation-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -8515,8 +8385,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/BMLocation.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Modules/BMLocation/Sources/Other/BMLocation-Prefix.pch";
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
@@ -8545,8 +8413,6 @@
 				DSTROOT = /tmp/BMCoreData.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Modules/BMCoreData/Sources/Other/BMCoreData-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -8579,8 +8445,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/BMCoreData.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Modules/BMCoreData/Sources/Other/BMCoreData-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
@@ -8609,8 +8473,6 @@
 				DSTROOT = /tmp/BMRestKit.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Modules/BMRestKit/Sources/Other/BMRestKit-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -8644,8 +8506,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/BMRestKit.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Modules/BMRestKit/Sources/Other/BMRestKit-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
@@ -8675,8 +8535,6 @@
 				DSTROOT = /tmp/BMUIExtensions.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Modules/BMUIExtensions/Sources/Other/BMUIExtensions-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -8709,8 +8567,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/BMUIExtensions.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Modules/BMUIExtensions/Sources/Other/BMUIExtensions-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
@@ -8731,8 +8587,6 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Modules/BMMedia/Sources/Other/BMMedia_Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -8756,8 +8610,6 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Modules/BMMedia/Sources/Other/BMMedia_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (
@@ -8889,8 +8741,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = Modules/BMCore_OSX/Sources/Other/BMCore_OSX_Prefix.pch;
 				INFOPLIST_FILE = "Modules/BMCore_OSX/Resources/BMCoreOSX-Info.plist";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.behindmedia.bmcommons;
@@ -8907,8 +8757,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = Modules/BMCore_OSX/Sources/Other/BMCore_OSX_Prefix.pch;
 				INFOPLIST_FILE = "Modules/BMCore_OSX/Resources/BMCoreOSX-Info.plist";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.behindmedia.bmcommons;
@@ -8928,8 +8776,6 @@
 				DSTROOT = /tmp/BMThree20.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Modules/BMThree20/Sources/BMThree20_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
 					"${SRCROOT}/Modules/BMUICore/Include",
@@ -8953,8 +8799,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/BMThree20.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Modules/BMThree20/Sources/BMThree20_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
 					"${SRCROOT}/Modules/BMUICore/Include",
@@ -8976,8 +8820,6 @@
 				DSTROOT = /tmp/BMGoogle.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Modules/BMGoogle/Sources/Other/BMGoogle_Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -9001,8 +8843,6 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/BMGoogle.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Modules/BMGoogle/Sources/Other/BMGoogle_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (
@@ -9027,8 +8867,6 @@
 				DSTROOT = /tmp/BMYouTube.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Modules/BMYouTube/Sources/Other/BMYouTube_Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -9055,8 +8893,6 @@
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/BMYouTube.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Modules/BMYouTube/Sources/Other/BMYouTube_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (

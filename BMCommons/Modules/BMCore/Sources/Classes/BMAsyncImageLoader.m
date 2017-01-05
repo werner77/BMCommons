@@ -6,6 +6,8 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
+
 #import <BMCommons/BMAsyncImageLoader.h>
 #import <BMCommons/BMURLCache.h>
 #import <BMCommons/UIImage+BMCommons.h>
@@ -57,5 +59,6 @@
     }
 }
 
-
 @end
+
+#endif

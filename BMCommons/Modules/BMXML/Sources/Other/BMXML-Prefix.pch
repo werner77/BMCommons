@@ -1,6 +1,0 @@
-//
-// Prefix header for all source files of the 'BMXML' target in the 'BMXML' project
-//
-
-#ifdef __OBJC__
-#endif

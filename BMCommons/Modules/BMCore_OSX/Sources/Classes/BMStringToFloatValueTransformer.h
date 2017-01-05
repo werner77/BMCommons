@@ -1,1 +1,0 @@
-../../../BMCore/Sources/Classes/BMStringToFloatValueTransformer.h

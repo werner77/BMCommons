@@ -1,1 +1,0 @@
-../../../BMXML/Sources/Classes/Private/BMXPathQuery_Private.h

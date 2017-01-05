@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
+
 #import "UIImage+BMCommons.h"
 #import "NSData+BMCommons.h"
 
@@ -108,3 +110,5 @@ static BOOL decodePNGOnLoad = YES;
 
 
 @end
+
+#endif

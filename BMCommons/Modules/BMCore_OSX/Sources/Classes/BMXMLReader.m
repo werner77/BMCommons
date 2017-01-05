@@ -1,1 +1,0 @@
-../../../BMXML/Sources/Classes/BMXMLReader.m

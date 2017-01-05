@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 BehindMedia. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
+
 #import <UIKit/UIKit.h>
 
 @interface UIImage (BMCommons)
@@ -29,3 +31,5 @@
 
 
 @end
+
+#endif
