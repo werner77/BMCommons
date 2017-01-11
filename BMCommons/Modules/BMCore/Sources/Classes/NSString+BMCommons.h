@@ -103,6 +103,12 @@
  */
 - (NSString *)bmStringByRetainingCharactersInSet:(NSCharacterSet *)charSet;
 
+/**
+ * Returns a new string with all the characters after the last occurrence of the specified string.
+ * If the searchString is not found, the receiver is returned unmodified.
+ */
+- (NSString *)bmStringByCroppingUptoLastOccurenceOfString:(NSString *)searchString;
+
 @end
 
 

@@ -209,6 +209,15 @@ static const unsigned char hex_lowercase[] = {'0','1','2','3','4','5','6','7','8
     return s;
 }
 
+- (NSString *)bmStringByCroppingUptoLastOccurenceOfString:(NSString *)searchString {
+	NSString *ret = self;
+	NSRange range = [ret rangeOfString:searchString options:NSBackwardsSearch];
+	if (range.location != NSNotFound) {
+		ret = [ret substringFromIndex:(range.location + 1)];
+	}
+	return ret;
+}
+
 @end
 
 @implementation NSMutableString(BMCommons)

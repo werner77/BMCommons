@@ -46,17 +46,22 @@
 	NSString *ret = nil;
 	if ([_value isKindOfClass:[NSNumber class]]) {
 		NSNumber *n = _value;
-		if ([n bmIsFloatNumber]) {
-			ret = [NSString stringWithFormat:@"[NSNumber numberWithDouble:%f]", [n doubleValue]];
-		} else if ([n bmIsBoolNumber]) {
-			ret = [NSString stringWithFormat:@"[NSNumber numberWithBool:%@]", [n stringValue]];
-		} else {
-			ret = [NSString stringWithFormat:@"[NSNumber numberWithInt:%d]", [n intValue]];
-		}
+        ret = [NSString stringWithFormat:@"@(%@)", [n stringValue]];
 	} else {
 		ret = [NSString stringWithFormat:@"@\"%@\"", [_value description]];
 	}
 	return ret;
+}
+
+- (NSString *)swiftValueDeclaration {
+    NSString *ret = nil;
+    if ([_value isKindOfClass:[NSNumber class]]) {
+        NSNumber *n = _value;
+        ret = [n stringValue];
+    } else {
+        ret = [NSString stringWithFormat:@"\"%@\"", [_value description]];
+    }
+    return ret;
 }
 
 - (BOOL)isEqual:(id)other {

@@ -77,6 +77,16 @@ typedef NS_ENUM(NSUInteger, BMMappableObjectSchemaType) {
 @property (nonatomic, strong) NSDictionary *namespacePrefixMappings;
 
 /**
+ The default namespace to use in case non is supplied by the parser (e.g. for JSON parsing)
+ */
+@property (nonatomic, strong) NSString *defaultNamespace;
+
+/**
+ The default module to use if no match found
+ */
+@property (nonatomic, strong) NSString *defaultModule;
+
+/**
  If true remove old generated files (only files beginning with '_') that are no longer valid.
  */
 @property (nonatomic, assign) BOOL removeOldFiles;

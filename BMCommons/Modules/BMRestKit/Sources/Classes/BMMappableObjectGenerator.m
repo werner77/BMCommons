@@ -71,10 +71,13 @@ typedef NS_ENUM(NSUInteger, BMFileType) {
     }
     
     BMAbstractMappableObjectClassResolver *classResolver = [BMJavaBasedMappableObjectClassResolver new];
+    classResolver.swiftMode = self.swiftMode;
     classResolver.namespacePrefixMappings = self.namespacePrefixMappings;
+    classResolver.defaultModule = self.defaultModule;
     classResolver.classNamePrefix = self.classNamePrefix;
     classResolver.classNameSuffix = self.classNameSuffix;
-    
+
+    parser.defaultNamespace = self.defaultNamespace;
     parser.mappableObjectClassResolver = classResolver;
     
     objectMappings = [parser parseSchemaPaths:schemaPaths withError:&error];
@@ -204,7 +207,7 @@ typedef NS_ENUM(NSUInteger, BMFileType) {
 
 - (BOOL)writeFileFromTemplate:(NSString *)templatePath objectMapping:(BMObjectMapping *)objectMapping fileType:(BMFileType)fileType custom:(BOOL)custom referenceDate:(NSDate *)referenceDate outputFile:(NSString **)outputFile error:(NSError **)error {
 	NSString *extension = fileType == BMFileTypeSwift ? @"swift" : ( fileType == BMFileTypeObjCHeader ? @"h" : @"m");
-	NSString *fileName = custom ? [NSString stringWithFormat:@"%@.%@", objectMapping.name, extension] : [NSString stringWithFormat:@"_%@.%@", objectMapping.name, extension];
+	NSString *fileName = custom ? [NSString stringWithFormat:@"%@.%@", objectMapping.unqualifiedName, extension] : [NSString stringWithFormat:@"_%@.%@", objectMapping.unqualifiedName, extension];
 	NSString *path = [self.outputDir stringByAppendingPathComponent:fileName];
     
     if (outputFile) {

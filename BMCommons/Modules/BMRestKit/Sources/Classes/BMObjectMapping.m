@@ -10,6 +10,7 @@
 #import <BMCommons/BMAbstractMappableObject.h>
 #import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMRestKit.h>
+#import "NSString+BMCommons.h"
 
 @implementation BMObjectMapping
 
@@ -63,8 +64,12 @@
     }
 }
 
+- (NSString *)unqualifiedName {
+    return [self.name bmStringByCroppingUptoLastOccurenceOfString:@"."];
+}
+
 - (NSString *)className {
-    return self.name;
+    return self.unqualifiedName;
 }
 
 @end

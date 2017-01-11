@@ -12,6 +12,8 @@
 
 @interface BMAbstractSchemaParserHandler : NSObject 
 
+//Namespace to return if targetNamespace == nil
+@property (nonatomic, strong) NSString *defaultNamespace;
 @property (nonatomic, strong) NSString *targetNamespace;
 @property (nonatomic, strong) id <BMMappableObjectClassResolver> mappableObjectClassResolver;
 

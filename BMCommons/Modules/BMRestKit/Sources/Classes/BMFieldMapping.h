@@ -257,5 +257,10 @@
  */
 - (BOOL)setFieldDescriptor:(NSString *)fieldDescriptor withError:(NSError **)error;
 
+/**
+ * Returns the class name without any module info (part after the last dot)
+ */
+- (NSString *)unqualifiedFieldObjectClassName;
+
 @end
 

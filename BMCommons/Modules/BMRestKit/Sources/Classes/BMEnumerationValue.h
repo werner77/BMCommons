@@ -33,4 +33,9 @@
  */
 - (NSString *)valueDeclaration;
 
+/**
+ Returns a string with the Swift declaration of the underlying value, such as 1 if value is an integer number 1 or "somestring" in the case of a string.
+ */
+- (NSString *)swiftValueDeclaration;
+
 @end

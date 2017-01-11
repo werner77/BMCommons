@@ -128,6 +128,10 @@ static NSSet *reservedPrefixes = nil;
     return self;
 }
 
+- (NSString *)targetNamespace {
+    return _targetNamespace == nil ? self.defaultNamespace : _targetNamespace;
+}
+
 - (NSString *)mappingNameForObjectType:(NSString *)theName forNamespace:(NSString *)theNamespace {
     
     if (!theName) {

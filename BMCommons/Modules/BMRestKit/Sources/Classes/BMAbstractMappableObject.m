@@ -214,11 +214,14 @@ static NSMutableDictionary *serialVersionUIDCache = nil;
             LogWarn(@"Version of class %@ does not match with the version of the data to deserialize", [self class]);
             return nil;
         }
-        
-		for (NSString *ivar in [[self class] objectPropertiesArray]) {
+        for (NSString *ivar in [[self class] objectPropertiesArray]) {
 			BMPropertyDescriptor *pd = [[self class] propertyDescriptorForPropertyName:ivar];
 			if (pd) {
-				[pd callSetterOnTarget:self withValue:[coder decodeObjectForKey:ivar]];
+                @try {
+                    [pd callSetterOnTarget:self withValue:[coder decodeObjectForKey:ivar]];
+                } @catch(NSException *exception) {
+                    LogWarn(@"Could not deserialize value for property: %@: %@", ivar, exception);
+                }
 			}
 		}
 	}

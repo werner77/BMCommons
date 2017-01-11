@@ -37,17 +37,23 @@
     }
     
     theName = [theName bmStringWithUppercaseFirstChar];
+    NSString *moduleName = self.defaultModule;
     
     if (theNamespace) {
         id o = [self.namespacePrefixMappings objectForKey:theNamespace];
         
         NSString *prefix = nil;
+
         if ([o isKindOfClass:[NSDictionary class]]) {
             prefix = [o objectForKey:@"prefix"];
+            NSString *m = [o objectForKey:@"module"];
+            if (m != nil) {
+                moduleName = m;
+            }
         } else if ([o isKindOfClass:[NSString class]]) {
             prefix = o;
         }
-        
+
         if (prefix) {
             theName = [prefix stringByAppendingString:theName];
         }
@@ -60,6 +66,11 @@
     if (self.classNameSuffix && ![theName hasSuffix:self.classNameSuffix]) {
         theName = [theName stringByAppendingString:self.classNameSuffix];
     }
+    
+    if (moduleName.length > 0 && self.swiftMode) {
+        theName = [NSString stringWithFormat:@"%@.%@", moduleName, theName];
+    }
+    
     return theName;
 }
 

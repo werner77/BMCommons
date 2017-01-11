@@ -19,6 +19,7 @@
 #import <BMCommons/BMKeyValuePair.h>
 #import <BMCommons/NSNumber+BMCommons.h>
 #import <BMCommons/BMErrorHelper.h>
+#import <BMCommons/NSObject+BMCommons.h>
 
 @interface BMFieldMapping(Private)
 
@@ -251,7 +252,7 @@ static NSTimeZone *defaultTimeZone = nil;
             )
             if (!theArray) {
                 //First set the array:
-                theArray = [NSMutableArray array];
+                theArray = [NSMutableArray new];
                 BM_IGNORE_SELECTOR_LEAK_WARNING(
                 [target performSelector:self.setterSelector withObject:theArray];
                 )
@@ -282,7 +283,7 @@ static NSTimeZone *defaultTimeZone = nil;
         )
         if (!theDictionary) {
 			//First set the array:
-			theDictionary = [NSMutableDictionary dictionary];
+			theDictionary = [BMOrderedDictionary new];
             BM_IGNORE_SELECTOR_LEAK_WARNING(
 			[target performSelector:self.setterSelector withObject:theDictionary];
             )
@@ -428,6 +429,10 @@ static NSTimeZone *defaultTimeZone = nil;
 	} else {
 		return [NSString stringWithFormat:@"%@;%@", fieldName, mappingPath];
 	}
+}
+
+- (NSString *)unqualifiedFieldObjectClassName {
+    return [self.fieldObjectClassName bmStringByCroppingUptoLastOccurenceOfString:@"."];
 }
 			
 - (NSString *)fieldFormat {

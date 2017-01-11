@@ -90,9 +90,9 @@
 - (NSString *)fqElementName;
 
 /**
- Returns just self.name for convenience.
+ Returns the unqualified typeName (name without any modules prepended).
  */
-- (NSString *)className;
+- (NSString *)unqualifiedName;
 
 @end
 

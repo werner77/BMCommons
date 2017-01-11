@@ -344,7 +344,7 @@ static NSDictionary *jsonDataTypeDict = nil;
         }
         return nil;
     }
-    
+
     currentMapping.name = mappingName;
     currentMapping.parentName = parentMappingName;
     

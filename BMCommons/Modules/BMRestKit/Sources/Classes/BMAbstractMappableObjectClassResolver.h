@@ -15,6 +15,10 @@
 @property (nonatomic, strong) NSString *classNameSuffix;
 @property (nonatomic, strong) NSDictionary *namespacePrefixMappings;
 
+//Module support
+@property (nonatomic, assign) BOOL swiftMode;
+@property (nonatomic, strong) NSString *defaultModule;
+
 @end
 
 @interface BMAbstractMappableObjectClassResolver(Protected)
