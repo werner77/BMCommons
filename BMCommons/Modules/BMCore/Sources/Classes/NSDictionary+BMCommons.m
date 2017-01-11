@@ -109,12 +109,7 @@
         @try {
             value = [valueTransformer transformedValue:value];
         } @catch (NSException *exception) {
-            //Ignore: could not transform value
-            if ([NSObject isBMThrowAssertionExceptions]) {
-                @throw exception;
-            } else {
-                value = nil;
-            }
+            value = nil;
         }
         value = [value bmCastSafely:[[valueTransformer class] transformedValueClass]];
     }
@@ -143,7 +138,7 @@
 }
 
 - (id)bmCheckNotNil:(id)value path:(NSString *)path {
-    if ([NSObject isBMThrowAssertionExceptions] && value == nil) {
+    if (value == nil) {
         NSException *ex = [NSException exceptionWithName:@"BMRequiredValueException" reason:[NSString stringWithFormat:@"Value for path '%@' should not be nil", path] userInfo:nil];
         @throw ex;
     }

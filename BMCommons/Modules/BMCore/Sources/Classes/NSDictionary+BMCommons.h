@@ -43,7 +43,6 @@
  Type-safe version of bmValueForXPath:
  
  This method checks whether the return value is an instance of the specified class, otherwise nil is returned.
- if [NSObject isBMThrowAssertionExceptions] returns YES an exception is thrown if the class is not matches instead of returning nil.
  */
 - (id)bmValueForXPath:(NSString *)xpath withClass:(Class)c;
 
@@ -55,12 +54,12 @@
 - (id)bmValueForXPath:(NSString *)xpath withValueTransformer:(NSValueTransformer *)valueTransformer;
 
 /**
- Same as bmValueForXPath:withClass: but this method throws an exception instead of returning nil if [NSObject isBMThrowAssertionExceptions] returns YES.
+ Same as bmValueForXPath:withClass: but this method throws an exception instead of returning nil.
  */
 - (id)bmRequiredValueForXPath:(NSString *)xpath withClass:(Class)c;
 
 /**
- Same as bmValueForXPath:withValueTransformer: but this method throws an exception instead of returning nil if [NSObject isBMThrowAssertionExceptions] returns YES.
+ Same as bmValueForXPath:withValueTransformer: but this method throws an exception instead of returning nil.
  */
 - (id)bmRequiredValueForXPath:(NSString *)xpath withValueTransformer:(NSValueTransformer *)valueTransformer;
 

@@ -253,7 +253,6 @@
 	}
 	@catch (NSException *exception) {
 		// do nothing
-        NSLog(@"Got exception: %@", exception);
 	}
 	
 	if (result) {
@@ -293,14 +292,20 @@
 				}
 				// Check to see if this is an array which we can index into.
 				if (!newObj && [currObj isKindOfClass:[NSArray class]]) {
-					NSCharacterSet *numbersSet = [NSCharacterSet decimalDigitCharacterSet];
-					NSScanner *scanner = [NSScanner scannerWithString:thisKey];
-					NSString *digits;
-					BOOL scanned = [scanner scanCharactersFromSet:numbersSet intoString:&digits];
-					if (scanned && digits && [digits length] > 0) {
-						int index = [digits intValue];
-						if (index >= 0 && index < [((NSArray *)currObj) count]) {
-							newObj = [((NSArray *)currObj) objectAtIndex:index];
+					if ([thisKey isEqualToString:@"first"]) {
+						newObj = [((NSArray *)currObj) firstObject];
+					} else if ([thisKey isEqualToString:@"last"]) {
+						newObj = [((NSArray *)currObj) lastObject];
+					} else {
+						NSCharacterSet *numbersSet = [NSCharacterSet decimalDigitCharacterSet];
+						NSScanner *scanner = [NSScanner scannerWithString:thisKey];
+						NSString *digits;
+						BOOL scanned = [scanner scanCharactersFromSet:numbersSet intoString:&digits];
+						if (scanned && digits && [digits length] > 0) {
+							NSInteger index = [digits integerValue];
+							if (index >= 0 && index < [((NSArray *)currObj) count]) {
+								newObj = [((NSArray *)currObj) objectAtIndex:index];
+							}
 						}
 					}
 				}

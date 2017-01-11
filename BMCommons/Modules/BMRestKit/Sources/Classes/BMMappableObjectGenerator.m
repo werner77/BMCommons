@@ -17,14 +17,19 @@
 #import <BMCommons/BMRestKit.h>
 #import <BMCommons/BMJavaBasedMappableObjectClassResolver.h>
 
+typedef NS_ENUM(NSUInteger, BMFileType) {
+    BMFileTypeObjCHeader,
+    BMFileTypeObjCImplementation,
+    BMFileTypeSwift
+};
+
 @interface BMMappableObjectGenerator(Private)
 
-- (BOOL)writeFileFromTemplate:(NSString *)templatePath objectMapping:(BMObjectMapping *)objectMapping header:(BOOL)header custom:(BOOL)custom referenceDate:(NSDate *)referenceDate outputFile:(NSString **)outputFile error:(NSError **)error;
+- (BOOL)writeFileFromTemplate:(NSString *)templatePath objectMapping:(BMObjectMapping *)objectMapping fileType:(BMFileType)fileType custom:(BOOL)custom referenceDate:(NSDate *)referenceDate outputFile:(NSString **)outputFile error:(NSError **)error;
 - (NSDate *)lastModificationDateForFiles:(NSArray *)files;
 - (NSDate *)modificationDateForFile:(NSString *)path;
 
 @end
-
 
 @implementation BMMappableObjectGenerator
 
@@ -90,21 +95,29 @@
         NSMutableArray *generatedFiles = [NSMutableArray array];
         
         int numberOfFilesWritten = 0;
-        
+
         for (BMObjectMapping *objectMapping in objectMappings) {
             NSString *outputFile;
-            if ([self writeFileFromTemplate:self.headerTemplatePath objectMapping:objectMapping header:YES custom:NO referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
-            if (outputFile) [generatedFiles addObject:outputFile];
-            if ([self writeFileFromTemplate:self.implementationTemplatePath objectMapping:objectMapping header:NO custom:NO referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
-            if (outputFile) [generatedFiles addObject:outputFile];
-            if ([self writeFileFromTemplate:self.customHeaderTemplatePath objectMapping:objectMapping header:YES custom:YES referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
-            if ([self writeFileFromTemplate:self.customImplementationTemplatePath objectMapping:objectMapping header:NO custom:YES referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
+
+            if (self.swiftMode) {
+                if ([self writeFileFromTemplate:self.implementationTemplatePath objectMapping:objectMapping fileType:BMFileTypeSwift custom:NO referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
+                if (outputFile) [generatedFiles addObject:outputFile];
+                if ([self writeFileFromTemplate:self.customImplementationTemplatePath objectMapping:objectMapping fileType:BMFileTypeSwift custom:YES referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
+            } else {
+                if ([self writeFileFromTemplate:self.headerTemplatePath objectMapping:objectMapping fileType:BMFileTypeObjCHeader custom:NO referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
+                if (outputFile) [generatedFiles addObject:outputFile];
+                if ([self writeFileFromTemplate:self.implementationTemplatePath objectMapping:objectMapping fileType:BMFileTypeObjCImplementation custom:NO referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
+                if (outputFile) [generatedFiles addObject:outputFile];
+                if ([self writeFileFromTemplate:self.customHeaderTemplatePath objectMapping:objectMapping fileType:BMFileTypeObjCHeader custom:YES referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
+                if ([self writeFileFromTemplate:self.customImplementationTemplatePath objectMapping:objectMapping fileType:BMFileTypeObjCImplementation custom:YES referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
+            }
+
             if (error != nil) {
                 break;
             }
         }
         
-        if (error == nil && removeOldFiles) {
+        if (error == nil && self.removeOldFiles) {
             NSFileManager *fm = [NSFileManager defaultManager];
             NSArray *allItems = [fm contentsOfDirectoryAtPath:self.outputDir error:nil];
             NSMutableArray *filesToRemove = [NSMutableArray array];
@@ -189,8 +202,8 @@
     return fileModificationDate;
 }
 
-- (BOOL)writeFileFromTemplate:(NSString *)templatePath objectMapping:(BMObjectMapping *)objectMapping header:(BOOL)header custom:(BOOL)custom referenceDate:(NSDate *)referenceDate outputFile:(NSString **)outputFile error:(NSError **)error {
-	NSString *extension = header ? @"h" : @"m";
+- (BOOL)writeFileFromTemplate:(NSString *)templatePath objectMapping:(BMObjectMapping *)objectMapping fileType:(BMFileType)fileType custom:(BOOL)custom referenceDate:(NSDate *)referenceDate outputFile:(NSString **)outputFile error:(NSError **)error {
+	NSString *extension = fileType == BMFileTypeSwift ? @"swift" : ( fileType == BMFileTypeObjCHeader ? @"h" : @"m");
 	NSString *fileName = custom ? [NSString stringWithFormat:@"%@.%@", objectMapping.name, extension] : [NSString stringWithFormat:@"_%@.%@", objectMapping.name, extension];
 	NSString *path = [self.outputDir stringByAppendingPathComponent:fileName];
     

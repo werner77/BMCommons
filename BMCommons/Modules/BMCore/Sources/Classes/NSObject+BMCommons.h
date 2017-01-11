@@ -183,12 +183,4 @@
  */
 - (id)bmProtocolCastSafely:(Protocol *)expectedProtocol;
 
-/**
- Whether or not to throw an exception in certain cases.
- 
- Default is NO and nil is returned instead.
- */
-+ (void)setBMThrowAssertionExceptions:(BOOL)b;
-+ (BOOL)isBMThrowAssertionExceptions;
-
 @end

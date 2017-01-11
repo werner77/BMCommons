@@ -87,6 +87,11 @@ typedef NS_ENUM(NSUInteger, BMMappableObjectSchemaType) {
 @property (nonatomic, assign) BOOL useModificationDateCheck;
 
 /**
+ * Set to true to enable swift output instead of objc
+ */
+@property (nonatomic, assign) BOOL swiftMode;
+
+/**
  The kind of schema that is expected as input. 
  
  Default is XSD.

@@ -10,8 +10,6 @@
 
 @implementation NSObject(BMCommons)
 
-static BOOL throwAssertionExceptions;
-
 + (void)bmPerformBlock:(void (^)(void))block afterDelay:(NSTimeInterval)delay  {
     if (block) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), block);
@@ -273,14 +271,6 @@ static BOOL throwAssertionExceptions;
         value = nil;
     }
     return value;
-}
-
-+ (void)setBMThrowAssertionExceptions:(BOOL)b {
-    throwAssertionExceptions = b;
-}
-
-+ (BOOL)isBMThrowAssertionExceptions {
-    return throwAssertionExceptions;
 }
 
 @end
