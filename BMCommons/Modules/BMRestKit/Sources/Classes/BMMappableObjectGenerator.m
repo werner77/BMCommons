@@ -207,7 +207,7 @@ typedef NS_ENUM(NSUInteger, BMFileType) {
 
 - (BOOL)writeFileFromTemplate:(NSString *)templatePath objectMapping:(BMObjectMapping *)objectMapping fileType:(BMFileType)fileType custom:(BOOL)custom referenceDate:(NSDate *)referenceDate outputFile:(NSString **)outputFile error:(NSError **)error {
 	NSString *extension = fileType == BMFileTypeSwift ? @"swift" : ( fileType == BMFileTypeObjCHeader ? @"h" : @"m");
-	NSString *fileName = custom ? [NSString stringWithFormat:@"%@.%@", objectMapping.unqualifiedName, extension] : [NSString stringWithFormat:@"_%@.%@", objectMapping.unqualifiedName, extension];
+	NSString *fileName = custom ? [NSString stringWithFormat:@"%@.%@", objectMapping.unqualifiedObjectClassName, extension] : [NSString stringWithFormat:@"_%@.%@", objectMapping.unqualifiedObjectClassName, extension];
 	NSString *path = [self.outputDir stringByAppendingPathComponent:fileName];
     
     if (outputFile) {

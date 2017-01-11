@@ -90,9 +90,14 @@
 - (NSString *)fqElementName;
 
 /**
+ * Returns the fully qualified type name (name including any modules).
+ */
+- (NSString *)objectClassName;
+
+/**
  Returns the unqualified typeName (name without any modules prepended).
  */
-- (NSString *)unqualifiedName;
+- (NSString *)unqualifiedObjectClassName;
 
 @end
 

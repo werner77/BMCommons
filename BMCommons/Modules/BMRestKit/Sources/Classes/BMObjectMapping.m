@@ -64,12 +64,12 @@
     }
 }
 
-- (NSString *)unqualifiedName {
-    return [self.name bmStringByCroppingUptoLastOccurenceOfString:@"."];
+- (NSString *)objectClassName {
+    return self.name;
 }
 
-- (NSString *)className {
-    return self.unqualifiedName;
+- (NSString *)unqualifiedObjectClassName {
+    return [self.name bmStringByCroppingUptoLastOccurenceOfString:@"."];
 }
 
 @end
