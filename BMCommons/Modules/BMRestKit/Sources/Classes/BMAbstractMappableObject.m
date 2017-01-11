@@ -217,11 +217,7 @@ static NSMutableDictionary *serialVersionUIDCache = nil;
         for (NSString *ivar in [[self class] objectPropertiesArray]) {
 			BMPropertyDescriptor *pd = [[self class] propertyDescriptorForPropertyName:ivar];
 			if (pd) {
-                @try {
-                    [pd callSetterOnTarget:self withValue:[coder decodeObjectForKey:ivar]];
-                } @catch(NSException *exception) {
-                    LogWarn(@"Could not deserialize value for property: %@: %@", ivar, exception);
-                }
+                [pd callSetterOnTarget:self withValue:[coder decodeObjectForKey:ivar]];
 			}
 		}
 	}
