@@ -108,6 +108,10 @@
     return ret;
 }
 
+- (NSString *)bmPrettyDescription {
+    return [self bmRawDescription];
+}
+
 @end
 
 @implementation NSMutableURLRequest (BMCommons)

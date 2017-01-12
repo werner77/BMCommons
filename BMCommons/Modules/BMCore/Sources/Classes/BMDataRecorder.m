@@ -7,9 +7,11 @@
 #import <BMCommons/BMLogging.h>
 #import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMObjectHelper.h>
+#import <BMCommons/NSObject+BMCommons.h>
 
 @implementation BMDataRecorder {
     NSMutableDictionary *_recordingDictionary;
+    NSFileHandle *_recordingLogFileHandle;
 }
 
 - (instancetype)init {
@@ -145,7 +147,22 @@
                 LogWarn(@"Recorded response for recording '%@' with digest '%@' at path: %@", recordingClassIdenfier, digest, resultPath);
             }
         }
+
+        [self writeToRecordingLog:[NSString stringWithFormat:@"----------------------------------------------\n"
+                                                                     "Recorded result for recording class '%@' with digest '%@':\n%@"
+                                                                     "----------------------------------------------\n", recordingClassIdenfier, digest, [result bmPrettyDescription]]];
     }
+}
+
+- (void)writeToRecordingLog:(NSString *)message {
+    if (_recordingLogFileHandle == nil) {
+        //First remove any exising log file
+        NSString *filePath = self.recordingLogFilePath;
+        [[NSFileManager defaultManager] createDirectoryAtPath:self.currentRecordingDir withIntermediateDirectories:YES attributes:nil error:nil];
+        [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+        _recordingLogFileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
+    }
+    [_recordingLogFileHandle writeData:[message dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 - (id)recordedResultForRecordingClass:(NSString *)recordingClassIdentier withDigest:(NSString *)digest {
@@ -195,6 +212,8 @@
         }
         _recording = NO;
         _currentRecordingIdentifier = nil;
+        [_recordingLogFileHandle closeFile];
+        _recordingLogFileHandle = nil;
         [_recordingDictionary removeAllObjects];
     }
 }
@@ -213,6 +232,11 @@
         _currentRecordingIdentifier = nil;
         [_recordingDictionary removeAllObjects];
     }
+}
+
+- (NSString *)recordingLogFilePath {
+    NSString *dir = [self currentRecordingDir];
+    return [dir stringByAppendingPathComponent:@"recording.log"];
 }
 
 @end
