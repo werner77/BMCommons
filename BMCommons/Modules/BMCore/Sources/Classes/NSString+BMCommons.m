@@ -9,6 +9,7 @@
 #import "NSString+BMCommons.h"
 #import <BMCommons/BMStringHelper.h>
 #import "NSArray+BMCommons.h"
+#import "NSObject+BMCommons.h"
 
 @interface NSString(Private)
 
@@ -216,6 +217,10 @@ static const unsigned char hex_lowercase[] = {'0','1','2','3','4','5','6','7','8
 		ret = [ret substringFromIndex:(range.location + 1)];
 	}
 	return ret;
+}
+
+- (NSString *)bmPrettyDescription {
+	return [NSString stringWithFormat:@"\"%@\"", [self description]];
 }
 
 @end

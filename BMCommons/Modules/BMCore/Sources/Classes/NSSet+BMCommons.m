@@ -7,8 +7,25 @@
 //
 
 #import "NSSet+BMCommons.h"
+#import "NSObject+BMCommons.h"
 
 @implementation NSSet (BMCommons)
+
+- (NSString *)bmPrettyDescription {
+    NSMutableString *ret = [NSMutableString new];
+    [ret appendString:@"["];
+    BOOL first = YES;
+    for (id obj in self) {
+        if (first) {
+            first = NO;
+        } else {
+            [ret appendString:@", "];
+        }
+        [ret appendString:[obj bmPrettyDescription]];
+    }
+    [ret appendString:@"]"];
+    return ret;
+}
 
 @end
 

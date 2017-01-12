@@ -8,8 +8,11 @@
 
 #import "NSArray+BMCommons.h"
 #import "NSObject+BMCommons.h"
+#import "../../../../../../../../../../../Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h"
 #import <BMCommons/BMBlockValueTransformer.h>
 #import <BMCommons/BMCore.h>
+#import <BMCommons/NSDictionary+BMCommons.h>
+#import "NSObject+BMCommons.h"
 
 @implementation NSArray (BMCommons)
 
@@ -187,6 +190,22 @@
 		[a addObject:self[i]];
 	}
 	return ret;
+}
+
+- (NSString *)bmPrettyDescription {
+    NSMutableString *ret = [NSMutableString new];
+    [ret appendString:@"["];
+    BOOL first = YES;
+    for (id obj in self) {
+        if (first) {
+            first = NO;
+        } else {
+            [ret appendString:@", "];
+        }
+        [ret appendString:[obj bmPrettyDescription]];
+    }
+    [ret appendString:@"]"];
+    return ret;
 }
 
 + (NSArray *)bmArrayWithConstantValue:(id)value count:(NSUInteger)count {

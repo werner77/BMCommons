@@ -183,4 +183,11 @@
  */
 - (id)bmProtocolCastSafely:(Protocol *)expectedProtocol;
 
+/**
+ * Defaults to [self description], may be overridden for a nicer representation if needed.
+ *
+ * @return
+ */
+- (NSString *)bmPrettyDescription;
+
 @end

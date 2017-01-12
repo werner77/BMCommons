@@ -7,6 +7,7 @@
 //
 
 #import "NSObject+BMCommons.h"
+#import "../../../../../../../../../../../Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h"
 
 @implementation NSObject(BMCommons)
 
@@ -257,6 +258,10 @@
 
 - (id)bmProtocolCastSafely:(Protocol *)expectedProtocol {
     return [[self class] checkTypeSafelyForValue:self andProtocol:expectedProtocol];
+}
+
+- (NSString *)bmPrettyDescription {
+    return [self description];
 }
 
 + (id)checkTypeSafelyForValue:(id)value andProtocol:(Protocol *)expectedProtocol {

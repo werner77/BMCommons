@@ -7,6 +7,8 @@
 //
 
 #import "NSDictionary+BMCommons.h"
+#import "../../../../../../../../../../../Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h"
+#import "NSObject+BMCommons.h"
 #import <BMCommons/BMPropertyDescriptor.h>
 #import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMObjectHelper.h>
@@ -151,6 +153,26 @@
     }
     return value;
 }
+
+- (NSString *)bmPrettyDescription {
+    NSMutableString *ret = [NSMutableString new];
+    [ret appendString:@"{"];
+    BOOL first = YES;
+    for (id key in self) {
+        id obj = self[key];
+        if (first) {
+            first = NO;
+        } else {
+            [ret appendString:@", "];
+        }
+        [ret appendString:[key bmPrettyDescription]];
+        [ret appendString:@" : "];
+        [ret appendString:[obj bmPrettyDescription]];
+    }
+    [ret appendString:@"}"];
+    return ret;
+}
+
 
 @end
 
