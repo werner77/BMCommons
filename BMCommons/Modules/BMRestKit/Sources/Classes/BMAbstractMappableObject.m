@@ -33,7 +33,7 @@
 			 addSelector:(SEL)addSelector
 			   inContext:(NSManagedObjectContext *)context;
 
-+ (BOOL)appendDataForValue:(id)value toDigest:(BMDigest *)digest;
++ (BOOL)appendDataForValue:(id)value forKeyPath:(NSString *)keyPath toDigest:(BMDigest *)digest ignoredKeyPaths:(NSSet<NSString *> *)ignoredKeyPaths;
 
 - (NSString *)namespacePrefixForURI:(NSString *)childNamespaceURI withNamespaces:(NSMutableDictionary *)namespaces;
 - (id)deepCopyValue:(id)otherValue ignoreNilValues:(BOOL)ignoreNilValues performClassCheck:(BOOL)performClassCheck;
@@ -264,9 +264,13 @@ static inline int64_t hash(NSString *s) {
 
 - (NSString *)sha1Digest {
     BMDigest *digest = [BMDigest digestOfType:BMDigestTypeSHA1];
-    [[self class] appendDataForValue:self toDigest:digest];
+    [[self class] appendDataForValue:self forKeyPath:@"" toDigest:digest ignoredKeyPaths:self.class.keyPathsToIgnoreForDigest];
     [digest finalizeDigest];
     return [digest stringRepresentation];
+}
+
++ (NSSet<NSString *> *)keyPathsToIgnoreForDigest {
+	return nil;
 }
 
 /**
@@ -467,53 +471,56 @@ static inline int64_t hash(NSString *s) {
 	}	
 }
 
-+ (BOOL)appendDataForValue:(id)value toDigest:(BMDigest *)digest {
++ (BOOL)appendDataForValue:(id)value forKeyPath:(NSString *)keyPath toDigest:(BMDigest *)digest ignoredKeyPaths:(NSSet<NSString *> *)ignoredKeyPaths {
     BOOL ret = NO;
-    if ([value isKindOfClass:[BMAbstractMappableObject class]]) {
-        if ([self appendDataForValue:NSStringFromClass([value class]) toDigest:digest]) {
-            for (BMFieldMapping *fm in [[[value class] fieldMappings] allValues]) {
-                id valueItem = [fm invokeGetterOnTarget:value];
-                if ([self appendDataForValue:fm.fieldName toDigest:digest]) {
-                    [self appendDataForValue:valueItem toDigest:digest];
-                }
-            }
-        }
-    } else if ([value isKindOfClass:[NSArray class]]) {
-        for (id valueItem in value) {
-            [self appendDataForValue:valueItem toDigest:digest];
-        }
-    } else if ([value isKindOfClass:[NSDictionary class]]) {
-        for (NSObject *key in value) {
-            if ([self appendDataForValue:key toDigest:digest]) {
-                id valueItem = [value objectForKey:key];
-                [self appendDataForValue:valueItem toDigest:digest];
-            }
-        }
-    } else {
-        NSData *data = nil;
-        NSString *s = nil;
-        if (value == nil) {
-            s = @"null";
-        } else if ([value isKindOfClass:[NSString class]]) {
-            s = value;
-        } else if ([value isKindOfClass:[NSNumber class]]) {
-            s = [value stringValue];
-        } else if ([value isKindOfClass:[NSData class]]) {
-            data = value;
-        }
-        
-        if (data == nil) {
-            if (s != nil) {
-                data = [value dataUsingEncoding:NSUTF8StringEncoding];
-            } else if ([value conformsToProtocol:@protocol(NSCoding)]) {
-                data = [NSKeyedArchiver archivedDataWithRootObject:value];
-            }
-        }
-        if (data != nil) {
-            [digest updateWithData:data last:NO];
-            ret = YES;
-        }
-    }
+	if (ignoredKeyPaths == nil || ![ignoredKeyPaths containsObject:keyPath]) {
+		if ([value isKindOfClass:[BMAbstractMappableObject class]]) {
+			if ([self appendDataForValue:NSStringFromClass([value class]) forKeyPath:keyPath toDigest:digest ignoredKeyPaths:ignoredKeyPaths]) {
+				for (BMFieldMapping *fm in [[[value class] fieldMappings] allValues]) {
+					id valueItem = [fm invokeGetterOnTarget:value];
+					NSString *fieldKeyPath = keyPath.length > 0 ? [keyPath stringByAppendingFormat:@".%@", fm.fieldName] : fm.fieldName;
+					if ([self appendDataForValue:fm.fieldName forKeyPath:fieldKeyPath toDigest:digest ignoredKeyPaths:ignoredKeyPaths]) {
+						[self appendDataForValue:valueItem forKeyPath:fieldKeyPath toDigest:digest ignoredKeyPaths:ignoredKeyPaths];
+					}
+				}
+			}
+		} else if ([value isKindOfClass:[NSArray class]]) {
+			for (id valueItem in value) {
+				[self appendDataForValue:valueItem forKeyPath:keyPath toDigest:digest ignoredKeyPaths:ignoredKeyPaths];
+			}
+		} else if ([value isKindOfClass:[NSDictionary class]]) {
+			for (NSObject *key in value) {
+				if ([self appendDataForValue:key forKeyPath:keyPath toDigest:digest ignoredKeyPaths:ignoredKeyPaths]) {
+					id valueItem = [value objectForKey:key];
+					[self appendDataForValue:valueItem forKeyPath:keyPath toDigest:digest ignoredKeyPaths:ignoredKeyPaths];
+				}
+			}
+		} else {
+			NSData *data = nil;
+			NSString *s = nil;
+			if (value == nil) {
+				s = @"null";
+			} else if ([value isKindOfClass:[NSString class]]) {
+				s = value;
+			} else if ([value isKindOfClass:[NSNumber class]]) {
+				s = [value stringValue];
+			} else if ([value isKindOfClass:[NSData class]]) {
+				data = value;
+			}
+
+			if (data == nil) {
+				if (s != nil) {
+					data = [value dataUsingEncoding:NSUTF8StringEncoding];
+				} else if ([value conformsToProtocol:@protocol(NSCoding)]) {
+					data = [NSKeyedArchiver archivedDataWithRootObject:value];
+				}
+			}
+			if (data != nil) {
+				[digest updateWithData:data last:NO];
+				ret = YES;
+			}
+		}
+	}
     return ret;
 }
 
