@@ -157,9 +157,11 @@
 - (void)writeToRecordingLog:(NSString *)message {
     if (_recordingLogFileHandle == nil) {
         //First remove any exising log file
-        NSString *filePath = self.recordingLogFilePath;
-        [[NSFileManager defaultManager] createDirectoryAtPath:self.currentRecordingDir withIntermediateDirectories:YES attributes:nil error:nil];
-        [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+        NSString *dir = [self currentRecordingDir];
+        NSString *filePath = [dir stringByAppendingPathComponent:@"recording.log"];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        [fileManager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:nil];
+        [fileManager createFileAtPath:filePath contents:[NSData data] attributes:nil];
         _recordingLogFileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
     }
     [_recordingLogFileHandle writeData:[message dataUsingEncoding:NSUTF8StringEncoding]];
@@ -232,11 +234,6 @@
         _currentRecordingIdentifier = nil;
         [_recordingDictionary removeAllObjects];
     }
-}
-
-- (NSString *)recordingLogFilePath {
-    NSString *dir = [self currentRecordingDir];
-    return [dir stringByAppendingPathComponent:@"recording.log"];
 }
 
 @end
