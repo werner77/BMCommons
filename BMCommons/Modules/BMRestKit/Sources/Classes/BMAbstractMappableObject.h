@@ -146,6 +146,11 @@
  */
 - (NSString *)sha1Digest;
 
+/**
+ * The keypaths that should not be included in the digest calculation.
+ */
++ (NSSet<NSString *> *)keyPathsToIgnoreForDigest;
+
 @end
 
 @interface BMAbstractMappableObject(CoreData)
