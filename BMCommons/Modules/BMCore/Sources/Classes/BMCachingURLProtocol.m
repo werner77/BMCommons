@@ -20,6 +20,7 @@
 #import "NSData+BMEncryption.h"
 #import "BMErrorHelper.h"
 #import "NSCondition+BMCommons.h"
+#import "NSHTTPURLResponse+BMCommons.h"
 
 @interface BMCachedURLResponse : NSObject <NSCoding, NSCopying>
 
@@ -84,37 +85,10 @@ static NSString* const kBMURLProtocolEnabledKey = @"BMURLProtocolEnabled";
     [coder encodeDouble:self.timeout forKey:@"timeout"];
 }
 
-+ (NSRegularExpression *)contentTypeRegex {
-    static NSRegularExpression *regex = nil;
-    BM_DISPATCH_ONCE(^{
-        regex = [NSRegularExpression regularExpressionWithPattern:@"^.*;?\\s*charset\\s*=([^;]*);?.*$" options:NSRegularExpressionAnchorsMatchLines | NSRegularExpressionCaseInsensitive error:nil];
-    });
-    return regex;
-}
-
 - (NSString *)description {
     NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: ", NSStringFromClass([self class])];
-
-    NSHTTPURLResponse *httpResponse = [self.response bmCastSafely:NSHTTPURLResponse.class];
-    NSString *contentType = nil;
-    if (httpResponse) {
-        NSDictionary *headerFields = [httpResponse allHeaderFields];
-        NSString *contentTypeKey = [[headerFields allKeys] bmFirstObjectWithPredicate:^BOOL(id key) {
-            NSString *stringKey = [key bmCastSafely:NSString.class];
-            return [[stringKey lowercaseString] isEqualToString:@"content-type"];
-        }];
-        NSString *contentTypeValue = headerFields[contentTypeKey];
-        if (contentTypeValue != nil) {
-            NSRegularExpression *regex = [self.class contentTypeRegex];
-            NSTextCheckingResult *result = [regex firstMatchInString:contentTypeValue options:0 range:NSMakeRange(0, contentTypeValue.length)];
-            contentType = result.numberOfRanges > 1 ? [contentTypeValue substringWithRange:[result rangeAtIndex:1]] : nil;
-        }
-    }
-
-    id dataValue = self.data;
-    if ([[contentType lowercaseString] isEqualToString:@"utf-8"]) {
-        dataValue = [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
-    }
+    NSStringEncoding contentEncoding = [[self.response bmCastSafely:NSHTTPURLResponse.class] bmContentCharacterEncoding];
+    id dataValue = contentEncoding == 0 ? self.data : [[NSString alloc] initWithData:self.data encoding:contentEncoding];
     [description appendFormat:@"\nself.response=%@", [self.response bmPrettyDescription]];
     [description appendFormat:@"\nself.timeout=%lf", self.timeout];
     [description appendFormat:@"\nself.data=%@", [dataValue bmPrettyDescription]];
@@ -559,7 +533,7 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
 
                 LogDebug(@"Saved cached response with digest '%@' for following request:\n--------------------\n%@--------------------\n", cacheKey, [self fullDescriptionForRequest:self.request]);
 
-                [recorder writeToRecordingLog:[NSString stringWithFormat:@"Recorder result for digest '%@':\n\nRequest:\n\n%@\n\nResponse:\n\n%@", cacheKey, [self fullDescriptionForRequest:self.request], cachedResponse]];
+                [recorder writeToRecordingLog:[NSString stringWithFormat:@"Recorded response for request with digest '%@':\n\nRequest:\n\n%@\nResponse:\n\n%@", cacheKey, [self fullDescriptionForRequest:self.request], cachedResponse]];
 
             } @catch (NSException *exception) {
                 LogWarn(@"Could not save recorded response: %@", exception);

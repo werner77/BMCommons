@@ -219,10 +219,6 @@ static const unsigned char hex_lowercase[] = {'0','1','2','3','4','5','6','7','8
 	return ret;
 }
 
-- (NSString *)bmPrettyDescription {
-	return [NSString stringWithFormat:@"\"%@\"", [self description]];
-}
-
 @end
 
 @implementation NSMutableString(BMCommons)
