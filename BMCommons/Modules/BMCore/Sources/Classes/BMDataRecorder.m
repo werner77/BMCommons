@@ -160,9 +160,17 @@
         NSString *dir = [self currentRecordingDir];
         NSString *filePath = [dir stringByAppendingPathComponent:@"recording.log"];
         NSFileManager *fileManager = [NSFileManager defaultManager];
-        [fileManager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:nil];
-        [fileManager createFileAtPath:filePath contents:[NSData data] attributes:nil];
+        NSError *error = nil;
+        if (![fileManager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:&error]) {
+            LogWarn(@"Could not create recording dictory: %@", error);
+        }
+        if (![fileManager createFileAtPath:filePath contents:[NSData data] attributes:nil]) {
+            LogWarn(@"Could not create log file in recording directory: %s", strerror(errno));
+        }
         _recordingLogFileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
+        if (_recordingLogFileHandle == nil) {
+            LogWarn(@"Recording log file handle could not be created");
+        }
     }
     [_recordingLogFileHandle writeData:[message dataUsingEncoding:NSUTF8StringEncoding]];
 }

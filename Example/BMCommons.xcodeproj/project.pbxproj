@@ -17,10 +17,41 @@
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
-		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		7414013A1DAF8E9800054D1D /* ExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 741401371DAF8E9800054D1D /* ExampleAppDelegate.m */; };
 		7414013B1DAF8E9800054D1D /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741401391DAF8E9800054D1D /* ExampleViewController.m */; };
+		74DD2E2B1E28D52C00C8581A /* BMBooleanStackTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2DF11E28D52C00C8581A /* BMBooleanStackTestCase.m */; };
+		74DD2E2C1E28D52C00C8581A /* BMCacheTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2DF31E28D52C00C8581A /* BMCacheTestCase.m */; };
+		74DD2E2D1E28D52C00C8581A /* BMCollectionClassesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2DF51E28D52C00C8581A /* BMCollectionClassesTestCase.m */; };
+		74DD2E2E1E28D52C00C8581A /* BMDateHelperTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2DF71E28D52C00C8581A /* BMDateHelperTestCase.m */; };
+		74DD2E2F1E28D52C00C8581A /* BMHTTPRequestTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2DF91E28D52C00C8581A /* BMHTTPRequestTestCase.m */; };
+		74DD2E301E28D52C00C8581A /* BMJSONParserTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2DFB1E28D52C00C8581A /* BMJSONParserTestCase.m */; };
+		74DD2E311E28D52C00C8581A /* BMJSONSchemaParserTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2DFD1E28D52C00C8581A /* BMJSONSchemaParserTestCase.m */; };
+		74DD2E321E28D52C00C8581A /* BMMiscTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2DFF1E28D52C00C8581A /* BMMiscTestCase.m */; };
+		74DD2E331E28D52C00C8581A /* BMRegexTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2E011E28D52C00C8581A /* BMRegexTestCase.m */; };
+		74DD2E341E28D52C00C8581A /* BMSettingsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2E031E28D52C00C8581A /* BMSettingsTestCase.m */; };
+		74DD2E351E28D52C00C8581A /* BMStringHelperTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2E051E28D52C00C8581A /* BMStringHelperTestCase.m */; };
+		74DD2E361E28D52C00C8581A /* BMTestCodeableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2E071E28D52C00C8581A /* BMTestCodeableObject.m */; };
+		74DD2E371E28D52C00C8581A /* BMTestSettingsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2E091E28D52C00C8581A /* BMTestSettingsObject.m */; };
+		74DD2E381E28D52C00C8581A /* BMWeakTimerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2E0B1E28D52C00C8581A /* BMWeakTimerTestCase.m */; };
+		74DD2E3B1E28D52C00C8581A /* BMMappableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2E111E28D52C00C8581A /* BMMappableObject.m */; };
+		74DD2E3D1E28D52C00C8581A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2E141E28D52C00C8581A /* Tests.m */; };
+		74DD2E3E1E28D52C00C8581A /* BMURLCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2E161E28D52C00C8581A /* BMURLCacheTest.m */; };
+		74DD2E3F1E28D52C00C8581A /* BehindMedia_private.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 74DD2E181E28D52C00C8581A /* BehindMedia_private.p12 */; };
+		74DD2E401E28D52C00C8581A /* BehindMedia_public.der in Resources */ = {isa = PBXBuildFile; fileRef = 74DD2E191E28D52C00C8581A /* BehindMedia_public.der */; };
+		74DD2E411E28D52C00C8581A /* BMCommonsTest-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74DD2E1A1E28D52C00C8581A /* BMCommonsTest-Info.plist */; };
+		74DD2E421E28D52C00C8581A /* btfd.xsd in Resources */ = {isa = PBXBuildFile; fileRef = 74DD2E1B1E28D52C00C8581A /* btfd.xsd */; };
+		74DD2E431E28D52C00C8581A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74DD2E1C1E28D52C00C8581A /* InfoPlist.strings */; };
+		74DD2E441E28D52C00C8581A /* ipApplicationWS.wsdl in Resources */ = {isa = PBXBuildFile; fileRef = 74DD2E1E1E28D52C00C8581A /* ipApplicationWS.wsdl */; };
+		74DD2E451E28D52C00C8581A /* namespace-mappings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74DD2E1F1E28D52C00C8581A /* namespace-mappings.plist */; };
+		74DD2E461E28D52C00C8581A /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 74DD2E201E28D52C00C8581A /* schema.json */; };
+		74DD2E471E28D52C00C8581A /* schema1.json in Resources */ = {isa = PBXBuildFile; fileRef = 74DD2E211E28D52C00C8581A /* schema1.json */; };
+		74DD2E481E28D52C00C8581A /* TemplateIcon2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DD2E221E28D52C00C8581A /* TemplateIcon2x.png */; };
+		74DD2E491E28D52C00C8581A /* test-message.json in Resources */ = {isa = PBXBuildFile; fileRef = 74DD2E231E28D52C00C8581A /* test-message.json */; };
+		74DD2E4A1E28D52C00C8581A /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 74DD2E241E28D52C00C8581A /* test.json */; };
+		74DD2E4B1E28D52C00C8581A /* test1.json in Resources */ = {isa = PBXBuildFile; fileRef = 74DD2E251E28D52C00C8581A /* test1.json */; };
+		74DD2E4C1E28D52C00C8581A /* test_empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 74DD2E261E28D52C00C8581A /* test_empty.json */; };
+		74DD2E561E28D90800C8581A /* BMTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2E551E28D90800C8581A /* BMTestCase.m */; };
+		74DD2E591E28D92200C8581A /* BMAsyncTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2E581E28D92200C8581A /* BMAsyncTestCase.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		D2FE7697D869FA1D0593B371 /* Pods_BMCommons_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3227906F686F2EDE1115FC /* Pods_BMCommons_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -48,16 +79,65 @@
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6003F5AE195388D20070C39A /* BMCommons_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BMCommons_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
-		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
-		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		741401361DAF8E9800054D1D /* ExampleAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleAppDelegate.h; sourceTree = "<group>"; };
 		741401371DAF8E9800054D1D /* ExampleAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleAppDelegate.m; sourceTree = "<group>"; };
 		741401381DAF8E9800054D1D /* ExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleViewController.h; sourceTree = "<group>"; };
 		741401391DAF8E9800054D1D /* ExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController.m; sourceTree = "<group>"; };
 		7414013C1DAF8EB500054D1D /* Example-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Example-Info.plist"; sourceTree = "<group>"; };
 		7414013D1DAF8EB500054D1D /* Example-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example-Prefix.pch"; sourceTree = "<group>"; };
+		74DD2DF01E28D52C00C8581A /* BMBooleanStackTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMBooleanStackTestCase.h; sourceTree = "<group>"; };
+		74DD2DF11E28D52C00C8581A /* BMBooleanStackTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMBooleanStackTestCase.m; sourceTree = "<group>"; };
+		74DD2DF21E28D52C00C8581A /* BMCacheTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCacheTestCase.h; sourceTree = "<group>"; };
+		74DD2DF31E28D52C00C8581A /* BMCacheTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCacheTestCase.m; sourceTree = "<group>"; };
+		74DD2DF41E28D52C00C8581A /* BMCollectionClassesTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCollectionClassesTestCase.h; sourceTree = "<group>"; };
+		74DD2DF51E28D52C00C8581A /* BMCollectionClassesTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMCollectionClassesTestCase.m; sourceTree = "<group>"; };
+		74DD2DF61E28D52C00C8581A /* BMDateHelperTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMDateHelperTestCase.h; sourceTree = "<group>"; };
+		74DD2DF71E28D52C00C8581A /* BMDateHelperTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMDateHelperTestCase.m; sourceTree = "<group>"; };
+		74DD2DF81E28D52C00C8581A /* BMHTTPRequestTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMHTTPRequestTestCase.h; sourceTree = "<group>"; };
+		74DD2DF91E28D52C00C8581A /* BMHTTPRequestTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMHTTPRequestTestCase.m; sourceTree = "<group>"; };
+		74DD2DFA1E28D52C00C8581A /* BMJSONParserTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMJSONParserTestCase.h; sourceTree = "<group>"; };
+		74DD2DFB1E28D52C00C8581A /* BMJSONParserTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMJSONParserTestCase.m; sourceTree = "<group>"; };
+		74DD2DFC1E28D52C00C8581A /* BMJSONSchemaParserTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMJSONSchemaParserTestCase.h; sourceTree = "<group>"; };
+		74DD2DFD1E28D52C00C8581A /* BMJSONSchemaParserTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMJSONSchemaParserTestCase.m; sourceTree = "<group>"; };
+		74DD2DFE1E28D52C00C8581A /* BMMiscTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMMiscTestCase.h; sourceTree = "<group>"; };
+		74DD2DFF1E28D52C00C8581A /* BMMiscTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMMiscTestCase.m; sourceTree = "<group>"; };
+		74DD2E001E28D52C00C8581A /* BMRegexTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMRegexTestCase.h; sourceTree = "<group>"; };
+		74DD2E011E28D52C00C8581A /* BMRegexTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRegexTestCase.m; sourceTree = "<group>"; };
+		74DD2E021E28D52C00C8581A /* BMSettingsTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMSettingsTestCase.h; sourceTree = "<group>"; };
+		74DD2E031E28D52C00C8581A /* BMSettingsTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMSettingsTestCase.m; sourceTree = "<group>"; };
+		74DD2E041E28D52C00C8581A /* BMStringHelperTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMStringHelperTestCase.h; sourceTree = "<group>"; };
+		74DD2E051E28D52C00C8581A /* BMStringHelperTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMStringHelperTestCase.m; sourceTree = "<group>"; };
+		74DD2E061E28D52C00C8581A /* BMTestCodeableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMTestCodeableObject.h; sourceTree = "<group>"; };
+		74DD2E071E28D52C00C8581A /* BMTestCodeableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMTestCodeableObject.m; sourceTree = "<group>"; };
+		74DD2E081E28D52C00C8581A /* BMTestSettingsObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMTestSettingsObject.h; sourceTree = "<group>"; };
+		74DD2E091E28D52C00C8581A /* BMTestSettingsObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMTestSettingsObject.m; sourceTree = "<group>"; };
+		74DD2E0A1E28D52C00C8581A /* BMWeakTimerTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMWeakTimerTestCase.h; sourceTree = "<group>"; };
+		74DD2E0B1E28D52C00C8581A /* BMWeakTimerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMWeakTimerTestCase.m; sourceTree = "<group>"; };
+		74DD2E101E28D52C00C8581A /* BMMappableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMMappableObject.h; sourceTree = "<group>"; };
+		74DD2E111E28D52C00C8581A /* BMMappableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMMappableObject.m; sourceTree = "<group>"; };
+		74DD2E141E28D52C00C8581A /* Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		74DD2E151E28D52C00C8581A /* BMURLCacheTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMURLCacheTest.h; sourceTree = "<group>"; };
+		74DD2E161E28D52C00C8581A /* BMURLCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMURLCacheTest.m; sourceTree = "<group>"; };
+		74DD2E181E28D52C00C8581A /* BehindMedia_private.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = BehindMedia_private.p12; sourceTree = "<group>"; };
+		74DD2E191E28D52C00C8581A /* BehindMedia_public.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = BehindMedia_public.der; sourceTree = "<group>"; };
+		74DD2E1A1E28D52C00C8581A /* BMCommonsTest-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BMCommonsTest-Info.plist"; sourceTree = "<group>"; };
+		74DD2E1B1E28D52C00C8581A /* btfd.xsd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = btfd.xsd; sourceTree = "<group>"; };
+		74DD2E1D1E28D52C00C8581A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		74DD2E1E1E28D52C00C8581A /* ipApplicationWS.wsdl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ipApplicationWS.wsdl; sourceTree = "<group>"; };
+		74DD2E1F1E28D52C00C8581A /* namespace-mappings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "namespace-mappings.plist"; sourceTree = "<group>"; };
+		74DD2E201E28D52C00C8581A /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		74DD2E211E28D52C00C8581A /* schema1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema1.json; sourceTree = "<group>"; };
+		74DD2E221E28D52C00C8581A /* TemplateIcon2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TemplateIcon2x.png; sourceTree = "<group>"; };
+		74DD2E231E28D52C00C8581A /* test-message.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "test-message.json"; sourceTree = "<group>"; };
+		74DD2E241E28D52C00C8581A /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
+		74DD2E251E28D52C00C8581A /* test1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test1.json; sourceTree = "<group>"; };
+		74DD2E261E28D52C00C8581A /* test_empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test_empty.json; sourceTree = "<group>"; };
+		74DD2E281E28D52C00C8581A /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		74DD2E291E28D52C00C8581A /* Tests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		74DD2E541E28D90800C8581A /* BMTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMTestCase.h; sourceTree = "<group>"; };
+		74DD2E551E28D90800C8581A /* BMTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMTestCase.m; sourceTree = "<group>"; };
+		74DD2E571E28D92200C8581A /* BMAsyncTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAsyncTestCase.h; sourceTree = "<group>"; };
+		74DD2E581E28D92200C8581A /* BMAsyncTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAsyncTestCase.m; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B46C16886D43CE9A38A4843F /* Pods-BMCommons_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMCommons_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BMCommons_Example/Pods-BMCommons_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BAD7925F3218F36D1404227E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -167,20 +247,11 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6003F5BB195388D20070C39A /* Tests.m */,
-				6003F5B6195388D20070C39A /* Supporting Files */,
+				74DD2DED1E28D52C00C8581A /* Sources */,
+				74DD2E171E28D52C00C8581A /* Resources */,
+				74DD2E271E28D52C00C8581A /* Other */,
 			);
 			path = Tests;
-			sourceTree = "<group>";
-		};
-		6003F5B6195388D20070C39A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				6003F5B7195388D20070C39A /* Tests-Info.plist */,
-				6003F5B8195388D20070C39A /* InfoPlist.strings */,
-				606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		60FF7A9C1954A5C5007DD14C /* Podspec Metadata */ = {
@@ -191,6 +262,104 @@
 				BAD7925F3218F36D1404227E /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		74DD2DED1E28D52C00C8581A /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				74DD2E531E28D8E700C8581A /* Base */,
+				74DD2E4F1E28D73900C8581A /* BMRestKit */,
+				74DD2E4E1E28D72000C8581A /* BMCore */,
+				74DD2E141E28D52C00C8581A /* Tests.m */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		74DD2E171E28D52C00C8581A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				74DD2E181E28D52C00C8581A /* BehindMedia_private.p12 */,
+				74DD2E191E28D52C00C8581A /* BehindMedia_public.der */,
+				74DD2E1A1E28D52C00C8581A /* BMCommonsTest-Info.plist */,
+				74DD2E1B1E28D52C00C8581A /* btfd.xsd */,
+				74DD2E1C1E28D52C00C8581A /* InfoPlist.strings */,
+				74DD2E1E1E28D52C00C8581A /* ipApplicationWS.wsdl */,
+				74DD2E1F1E28D52C00C8581A /* namespace-mappings.plist */,
+				74DD2E201E28D52C00C8581A /* schema.json */,
+				74DD2E211E28D52C00C8581A /* schema1.json */,
+				74DD2E221E28D52C00C8581A /* TemplateIcon2x.png */,
+				74DD2E231E28D52C00C8581A /* test-message.json */,
+				74DD2E241E28D52C00C8581A /* test.json */,
+				74DD2E251E28D52C00C8581A /* test1.json */,
+				74DD2E261E28D52C00C8581A /* test_empty.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		74DD2E271E28D52C00C8581A /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				74DD2E281E28D52C00C8581A /* Tests-Info.plist */,
+				74DD2E291E28D52C00C8581A /* Tests-Prefix.pch */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		74DD2E4E1E28D72000C8581A /* BMCore */ = {
+			isa = PBXGroup;
+			children = (
+				74DD2E151E28D52C00C8581A /* BMURLCacheTest.h */,
+				74DD2E161E28D52C00C8581A /* BMURLCacheTest.m */,
+				74DD2DFE1E28D52C00C8581A /* BMMiscTestCase.h */,
+				74DD2DFF1E28D52C00C8581A /* BMMiscTestCase.m */,
+				74DD2E001E28D52C00C8581A /* BMRegexTestCase.h */,
+				74DD2E011E28D52C00C8581A /* BMRegexTestCase.m */,
+				74DD2E0A1E28D52C00C8581A /* BMWeakTimerTestCase.h */,
+				74DD2E0B1E28D52C00C8581A /* BMWeakTimerTestCase.m */,
+				74DD2E061E28D52C00C8581A /* BMTestCodeableObject.h */,
+				74DD2E071E28D52C00C8581A /* BMTestCodeableObject.m */,
+				74DD2E081E28D52C00C8581A /* BMTestSettingsObject.h */,
+				74DD2E091E28D52C00C8581A /* BMTestSettingsObject.m */,
+				74DD2E021E28D52C00C8581A /* BMSettingsTestCase.h */,
+				74DD2E031E28D52C00C8581A /* BMSettingsTestCase.m */,
+				74DD2E041E28D52C00C8581A /* BMStringHelperTestCase.h */,
+				74DD2E051E28D52C00C8581A /* BMStringHelperTestCase.m */,
+				74DD2DF01E28D52C00C8581A /* BMBooleanStackTestCase.h */,
+				74DD2DF11E28D52C00C8581A /* BMBooleanStackTestCase.m */,
+				74DD2DF21E28D52C00C8581A /* BMCacheTestCase.h */,
+				74DD2DF31E28D52C00C8581A /* BMCacheTestCase.m */,
+				74DD2DF41E28D52C00C8581A /* BMCollectionClassesTestCase.h */,
+				74DD2DF51E28D52C00C8581A /* BMCollectionClassesTestCase.m */,
+				74DD2DF61E28D52C00C8581A /* BMDateHelperTestCase.h */,
+				74DD2DF71E28D52C00C8581A /* BMDateHelperTestCase.m */,
+				74DD2DF81E28D52C00C8581A /* BMHTTPRequestTestCase.h */,
+				74DD2DF91E28D52C00C8581A /* BMHTTPRequestTestCase.m */,
+			);
+			name = BMCore;
+			sourceTree = "<group>";
+		};
+		74DD2E4F1E28D73900C8581A /* BMRestKit */ = {
+			isa = PBXGroup;
+			children = (
+				74DD2E101E28D52C00C8581A /* BMMappableObject.h */,
+				74DD2E111E28D52C00C8581A /* BMMappableObject.m */,
+				74DD2DFA1E28D52C00C8581A /* BMJSONParserTestCase.h */,
+				74DD2DFB1E28D52C00C8581A /* BMJSONParserTestCase.m */,
+				74DD2DFC1E28D52C00C8581A /* BMJSONSchemaParserTestCase.h */,
+				74DD2DFD1E28D52C00C8581A /* BMJSONSchemaParserTestCase.m */,
+			);
+			name = BMRestKit;
+			sourceTree = "<group>";
+		};
+		74DD2E531E28D8E700C8581A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				74DD2E541E28D90800C8581A /* BMTestCase.h */,
+				74DD2E551E28D90800C8581A /* BMTestCase.m */,
+				74DD2E571E28D92200C8581A /* BMAsyncTestCase.h */,
+				74DD2E581E28D92200C8581A /* BMAsyncTestCase.m */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,7 +455,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
+				74DD2E481E28D52C00C8581A /* TemplateIcon2x.png in Resources */,
+				74DD2E3F1E28D52C00C8581A /* BehindMedia_private.p12 in Resources */,
+				74DD2E451E28D52C00C8581A /* namespace-mappings.plist in Resources */,
+				74DD2E441E28D52C00C8581A /* ipApplicationWS.wsdl in Resources */,
+				74DD2E421E28D52C00C8581A /* btfd.xsd in Resources */,
+				74DD2E4A1E28D52C00C8581A /* test.json in Resources */,
+				74DD2E4B1E28D52C00C8581A /* test1.json in Resources */,
+				74DD2E461E28D52C00C8581A /* schema.json in Resources */,
+				74DD2E491E28D52C00C8581A /* test-message.json in Resources */,
+				74DD2E4C1E28D52C00C8581A /* test_empty.json in Resources */,
+				74DD2E471E28D52C00C8581A /* schema1.json in Resources */,
+				74DD2E401E28D52C00C8581A /* BehindMedia_public.der in Resources */,
+				74DD2E411E28D52C00C8581A /* BMCommonsTest-Info.plist in Resources */,
+				74DD2E431E28D52C00C8581A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,7 +502,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		CF10FD5985EE39DBD2669532 /* [CP] Embed Pods Frameworks */ = {
@@ -365,7 +547,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F4AF4130A8CAD76B71749247 /* [CP] Copy Pods Resources */ = {
@@ -400,7 +582,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F5BC195388D20070C39A /* Tests.m in Sources */,
+				74DD2E371E28D52C00C8581A /* BMTestSettingsObject.m in Sources */,
+				74DD2E3B1E28D52C00C8581A /* BMMappableObject.m in Sources */,
+				74DD2E2C1E28D52C00C8581A /* BMCacheTestCase.m in Sources */,
+				74DD2E361E28D52C00C8581A /* BMTestCodeableObject.m in Sources */,
+				74DD2E561E28D90800C8581A /* BMTestCase.m in Sources */,
+				74DD2E3E1E28D52C00C8581A /* BMURLCacheTest.m in Sources */,
+				74DD2E2E1E28D52C00C8581A /* BMDateHelperTestCase.m in Sources */,
+				74DD2E311E28D52C00C8581A /* BMJSONSchemaParserTestCase.m in Sources */,
+				74DD2E2D1E28D52C00C8581A /* BMCollectionClassesTestCase.m in Sources */,
+				74DD2E591E28D92200C8581A /* BMAsyncTestCase.m in Sources */,
+				74DD2E301E28D52C00C8581A /* BMJSONParserTestCase.m in Sources */,
+				74DD2E351E28D52C00C8581A /* BMStringHelperTestCase.m in Sources */,
+				74DD2E2B1E28D52C00C8581A /* BMBooleanStackTestCase.m in Sources */,
+				74DD2E3D1E28D52C00C8581A /* Tests.m in Sources */,
+				74DD2E341E28D52C00C8581A /* BMSettingsTestCase.m in Sources */,
+				74DD2E331E28D52C00C8581A /* BMRegexTestCase.m in Sources */,
+				74DD2E2F1E28D52C00C8581A /* BMHTTPRequestTestCase.m in Sources */,
+				74DD2E321E28D52C00C8581A /* BMMiscTestCase.m in Sources */,
+				74DD2E381E28D52C00C8581A /* BMWeakTimerTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,10 +623,10 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		6003F5B8195388D20070C39A /* InfoPlist.strings */ = {
+		74DD2E1C1E28D52C00C8581A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6003F5B9195388D20070C39A /* en */,
+				74DD2E1D1E28D52C00C8581A /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -555,17 +755,16 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				GCC_PREFIX_HEADER = "Tests/Other/Tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				INFOPLIST_FILE = "Tests/Other/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BMCommons_Example.app/BMCommons_Example";
@@ -579,13 +778,12 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
-				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				GCC_PREFIX_HEADER = "Tests/Other/Tests-Prefix.pch";
+				INFOPLIST_FILE = "Tests/Other/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BMCommons_Example.app/BMCommons_Example";
