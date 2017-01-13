@@ -20,7 +20,6 @@
 #import "NSData+BMEncryption.h"
 #import "BMErrorHelper.h"
 #import "NSCondition+BMCommons.h"
-#import "../../../../../../../../../Library/Caches/AppCode2016.3/DerivedData/BMCommons-anuqnmualfulpudtogspcdvuklqh/Build/Products/Debug-iphoneos/BMCommons/BMCommons.framework/Headers/NSObject+BMCommons.h"
 
 @interface BMCachedURLResponse : NSObject <NSCoding, NSCopying>
 
