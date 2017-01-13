@@ -6,13 +6,16 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#if TARGET_OS_IPHONE
-
 #import <BMCommons/BMAsyncImageLoader.h>
 #import <BMCommons/BMURLCache.h>
+
+#if TARGET_OS_IPHONE
 #import <BMCommons/UIImage+BMCommons.h>
+#endif
 
 @implementation BMAsyncImageLoader
+
+#if TARGET_OS_IPHONE
 
 - (UIImage *)image {
 	UIImage *returnImage = nil;
@@ -25,6 +28,7 @@
 - (void)setImage:(UIImage *)theImage {	
 	self.object = theImage;
 }
+
 
 - (NSObject *)cachedObject {
 	BMURLCache *cache = self.effectiveCache;
@@ -59,6 +63,8 @@
     }
 }
 
+#endif
+
 @end
 
-#endif
+

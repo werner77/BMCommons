@@ -95,11 +95,11 @@
 #pragma mark - 
 #pragma mark BMAsyncLoaderDelegate
 
-- (void)asyncDataLoader:(BMAsyncImageLoader *)dataLoader didFinishLoadingWithError:(NSError *)error {
+- (void)asyncDataLoader:(BMAsyncDataLoader *)dataLoader didFinishLoadingWithError:(NSError *)error {
     if (error) {
         [self setImage:self.placeHolderImage forState:UIControlStateNormal];
     } else {
-        [self setImage:dataLoader.image forState:UIControlStateNormal];
+        [self setImage:[(BMAsyncImageLoader *)dataLoader image] forState:UIControlStateNormal];
     }
 }
 

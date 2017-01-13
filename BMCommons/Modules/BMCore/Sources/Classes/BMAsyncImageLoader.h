@@ -8,8 +8,6 @@
 
 //Class is only available for iOS
 
-#if TARGET_OS_IPHONE
-
 #import <UIKit/UIKit.h>
 #import <BMCommons/BMAsyncDataLoader.h>
 
@@ -21,11 +19,15 @@
 @interface BMAsyncImageLoader : BMAsyncDataLoader {
 }
 
+#if TARGET_OS_IPHONE
+
 /**
  The returned image after loading completes.
  */
 @property (nonatomic, strong) UIImage *image;
 
+#endif
+
 @end
 
-#endif
+

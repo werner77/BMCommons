@@ -34,8 +34,8 @@
 		74005F8F14FA7EC700A7059E /* BMWebMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74005F8C14FA7EC700A7059E /* BMWebMoviePlayerViewController.m */; };
 		74005F9314FA8A7500A7059E /* BMEmbeddedVideoView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74005F9114FA8A7500A7059E /* BMEmbeddedVideoView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74005F9414FA8A7500A7059E /* BMEmbeddedVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74005F9214FA8A7500A7059E /* BMEmbeddedVideoView.m */; };
-		74011B971B0F629100A30C13 /* BMCachingURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 74011B951B0F629100A30C13 /* BMCachingURLProtocol.h */; };
-		74011B981B0F629100A30C13 /* BMCachingURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 74011B951B0F629100A30C13 /* BMCachingURLProtocol.h */; };
+		74011B971B0F629100A30C13 /* BMCachingURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 74011B951B0F629100A30C13 /* BMCachingURLProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74011B981B0F629100A30C13 /* BMCachingURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 74011B951B0F629100A30C13 /* BMCachingURLProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74011B991B0F629100A30C13 /* BMCachingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 74011B961B0F629100A30C13 /* BMCachingURLProtocol.m */; };
 		74011B9A1B0F629100A30C13 /* BMCachingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 74011B961B0F629100A30C13 /* BMCachingURLProtocol.m */; };
 		74030C5314F557BA006BAC77 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E87628130BF5EE0034B19F /* CoreFoundation.framework */; };
@@ -143,40 +143,40 @@
 		74030DBB14F56B48006BAC77 /* switch_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 74030DB714F56B3B006BAC77 /* switch_on.png */; };
 		74030DBF14F56BE3006BAC77 /* BMMedia.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74030C5214F557BA006BAC77 /* BMMedia.bundle */; };
 		74030DC014F56BE3006BAC77 /* BMUICore.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74030DA614F56A7E006BAC77 /* BMUICore.bundle */; };
-		740869B119F63E8A003063FC /* BMFileBackedMutableArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 740869AF19F63E8A003063FC /* BMFileBackedMutableArray.h */; };
-		740869B219F63E8A003063FC /* BMFileBackedMutableArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 740869AF19F63E8A003063FC /* BMFileBackedMutableArray.h */; };
+		740869B119F63E8A003063FC /* BMFileBackedMutableArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 740869AF19F63E8A003063FC /* BMFileBackedMutableArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		740869B219F63E8A003063FC /* BMFileBackedMutableArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 740869AF19F63E8A003063FC /* BMFileBackedMutableArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		740869B319F63E8A003063FC /* BMFileBackedMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 740869B019F63E8A003063FC /* BMFileBackedMutableArray.m */; };
 		740869B419F63E8A003063FC /* BMFileBackedMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 740869B019F63E8A003063FC /* BMFileBackedMutableArray.m */; };
 		740869BE19F63F87003063FC /* BMCollectionClassesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 740869BD19F63F87003063FC /* BMCollectionClassesTestCase.m */; };
-		740869C719F7A1D8003063FC /* BMCodingHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 740869C519F7A1D8003063FC /* BMCodingHelper.h */; };
-		740869C819F7A1D8003063FC /* BMCodingHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 740869C519F7A1D8003063FC /* BMCodingHelper.h */; };
+		740869C719F7A1D8003063FC /* BMCodingHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 740869C519F7A1D8003063FC /* BMCodingHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		740869C819F7A1D8003063FC /* BMCodingHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 740869C519F7A1D8003063FC /* BMCodingHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		740869C919F7A1D8003063FC /* BMCodingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 740869C619F7A1D8003063FC /* BMCodingHelper.m */; };
 		740869CA19F7A1D8003063FC /* BMCodingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 740869C619F7A1D8003063FC /* BMCodingHelper.m */; };
 		740869D419F7B196003063FC /* BMTestCodeableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 740869D319F7B196003063FC /* BMTestCodeableObject.m */; };
-		740869D719F7B621003063FC /* BMCodeableObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 740869D519F7B621003063FC /* BMCodeableObject.h */; };
-		740869D819F7B621003063FC /* BMCodeableObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 740869D519F7B621003063FC /* BMCodeableObject.h */; };
+		740869D719F7B621003063FC /* BMCodeableObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 740869D519F7B621003063FC /* BMCodeableObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		740869D819F7B621003063FC /* BMCodeableObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 740869D519F7B621003063FC /* BMCodeableObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		740869D919F7B621003063FC /* BMCodeableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 740869D619F7B621003063FC /* BMCodeableObject.m */; };
 		740869DA19F7B621003063FC /* BMCodeableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 740869D619F7B621003063FC /* BMCodeableObject.m */; };
 		7408CA301802C91B00B30B68 /* BMStringHelperTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7408CA2F1802C91B00B30B68 /* BMStringHelperTestCase.m */; };
 		740A4E6C152F374A00B4C4C1 /* BMDeviceHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 740A4E6A152F374A00B4C4C1 /* BMDeviceHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		740A4E6D152F374A00B4C4C1 /* BMDeviceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 740A4E6B152F374A00B4C4C1 /* BMDeviceHelper.m */; };
-		740A694B1B96F11E00E3B468 /* NSManagedObjectContext+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 740A69491B96F11E00E3B468 /* NSManagedObjectContext+BMCommons.h */; };
+		740A694B1B96F11E00E3B468 /* NSManagedObjectContext+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 740A69491B96F11E00E3B468 /* NSManagedObjectContext+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		740A694C1B96F11E00E3B468 /* NSManagedObjectContext+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 740A694A1B96F11E00E3B468 /* NSManagedObjectContext+BMCommons.m */; };
-		740A694F1B96F1DB00E3B468 /* NSCondition+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 740A694D1B96F1DB00E3B468 /* NSCondition+BMCommons.h */; };
-		740A69501B96F1DB00E3B468 /* NSCondition+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 740A694D1B96F1DB00E3B468 /* NSCondition+BMCommons.h */; };
+		740A694F1B96F1DB00E3B468 /* NSCondition+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 740A694D1B96F1DB00E3B468 /* NSCondition+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		740A69501B96F1DB00E3B468 /* NSCondition+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 740A694D1B96F1DB00E3B468 /* NSCondition+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		740A69521B96F1DB00E3B468 /* NSCondition+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 740A694E1B96F1DB00E3B468 /* NSCondition+BMCommons.m */; };
 		740A69531B96F1DB00E3B468 /* NSCondition+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 740A694E1B96F1DB00E3B468 /* NSCondition+BMCommons.m */; };
 		740D60F81778F79900A5F023 /* BehindMedia_private.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 740D60F71778F79900A5F023 /* BehindMedia_private.p12 */; };
 		740D60FE1779A60C00A5F023 /* BehindMedia_public.der in Resources */ = {isa = PBXBuildFile; fileRef = 740D60FD1779A60C00A5F023 /* BehindMedia_public.der */; };
 		740D6101177A0C2A00A5F023 /* BMSecurityHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 740D60FF177A0C2800A5F023 /* BMSecurityHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		740D6102177A0C2A00A5F023 /* BMSecurityHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 740D60FF177A0C2800A5F023 /* BMSecurityHelper.h */; };
+		740D6102177A0C2A00A5F023 /* BMSecurityHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 740D60FF177A0C2800A5F023 /* BMSecurityHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		740D6103177A0C2A00A5F023 /* BMSecurityHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 740D6100177A0C2900A5F023 /* BMSecurityHelper.m */; };
 		740D6104177A0C2A00A5F023 /* BMSecurityHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 740D6100177A0C2900A5F023 /* BMSecurityHelper.m */; };
-		740E618B1A71328C00F2CF24 /* BMBlockValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 740E61891A71328C00F2CF24 /* BMBlockValueTransformer.h */; };
-		740E618C1A71328C00F2CF24 /* BMBlockValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 740E61891A71328C00F2CF24 /* BMBlockValueTransformer.h */; };
+		740E618B1A71328C00F2CF24 /* BMBlockValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 740E61891A71328C00F2CF24 /* BMBlockValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		740E618C1A71328C00F2CF24 /* BMBlockValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 740E61891A71328C00F2CF24 /* BMBlockValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		740E618D1A71328C00F2CF24 /* BMBlockValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E618A1A71328C00F2CF24 /* BMBlockValueTransformer.m */; };
 		740E618E1A71328C00F2CF24 /* BMBlockValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E618A1A71328C00F2CF24 /* BMBlockValueTransformer.m */; };
-		740E61A41A713B8700F2CF24 /* UITableViewCell+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 740E61A21A713B8700F2CF24 /* UITableViewCell+BMCommons.h */; };
+		740E61A41A713B8700F2CF24 /* UITableViewCell+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 740E61A21A713B8700F2CF24 /* UITableViewCell+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		740E61A51A713B8700F2CF24 /* UITableViewCell+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E61A31A713B8700F2CF24 /* UITableViewCell+BMCommons.m */; };
 		741342D4154FE8A900D5E9A2 /* UIToolbar+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 741342D2154FE8A400D5E9A2 /* UIToolbar+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		741342D5154FE8A900D5E9A2 /* UIToolbar+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 741342D3154FE8A700D5E9A2 /* UIToolbar+BMCommons.m */; };
@@ -186,20 +186,20 @@
 		741342E115501A6400D5E9A2 /* bar-button-item-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 741342E015501A6400D5E9A2 /* bar-button-item-background@2x.png */; };
 		7416A7B617919A2D00BF6B6D /* BMCoreDataApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416A7B517919A2D00BF6B6D /* BMCoreDataApplicationContext.m */; };
 		7416A7CC1791B83200BF6B6D /* BMErrorContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7416A7CA1791B83200BF6B6D /* BMErrorContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7416A7CD1791B83200BF6B6D /* BMErrorContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7416A7CA1791B83200BF6B6D /* BMErrorContainer.h */; };
-		7416A7E41792102400BF6B6D /* BMSOAPService.h in Headers */ = {isa = PBXBuildFile; fileRef = 7416A7E11792102000BF6B6D /* BMSOAPService.h */; };
+		7416A7CD1791B83200BF6B6D /* BMErrorContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7416A7CA1791B83200BF6B6D /* BMErrorContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7416A7E41792102400BF6B6D /* BMSOAPService.h in Headers */ = {isa = PBXBuildFile; fileRef = 7416A7E11792102000BF6B6D /* BMSOAPService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7416A7E61792102400BF6B6D /* BMSOAPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416A7E21792102200BF6B6D /* BMSOAPService.m */; };
-		7416A7EA1792104400BF6B6D /* BMSOAPData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7416A7E71792103F00BF6B6D /* BMSOAPData.h */; };
+		7416A7EA1792104400BF6B6D /* BMSOAPData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7416A7E71792103F00BF6B6D /* BMSOAPData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7416A7EC1792104400BF6B6D /* BMSOAPData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416A7E81792104200BF6B6D /* BMSOAPData.m */; };
-		7416A7F01792105900BF6B6D /* BMSOAPFault.h in Headers */ = {isa = PBXBuildFile; fileRef = 7416A7ED1792105400BF6B6D /* BMSOAPFault.h */; };
+		7416A7F01792105900BF6B6D /* BMSOAPFault.h in Headers */ = {isa = PBXBuildFile; fileRef = 7416A7ED1792105400BF6B6D /* BMSOAPFault.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7416A7F21792105900BF6B6D /* BMSOAPFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416A7EE1792105700BF6B6D /* BMSOAPFault.m */; };
 		7416A80B17931D8600BF6B6D /* BMSOAPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416A7E21792102200BF6B6D /* BMSOAPService.m */; };
 		7416A80C17931D8A00BF6B6D /* BMSOAPData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416A7E81792104200BF6B6D /* BMSOAPData.m */; };
 		7416A80D17931D8D00BF6B6D /* BMSOAPFault.m in Sources */ = {isa = PBXBuildFile; fileRef = 7416A7EE1792105700BF6B6D /* BMSOAPFault.m */; };
 		7418B8CC188414AC00669588 /* MappedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7418B8CB188414AC00669588 /* MappedObject.m */; };
-		7418B8CF18841F5500669588 /* BMDynamicObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 7418B8CD18841F5500669588 /* BMDynamicObject.h */; };
+		7418B8CF18841F5500669588 /* BMDynamicObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 7418B8CD18841F5500669588 /* BMDynamicObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7418B8D018841F5500669588 /* BMDynamicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7418B8CE18841F5500669588 /* BMDynamicObject.m */; };
-		7418B8D518842FB300669588 /* BMKeyValuePair.h in Headers */ = {isa = PBXBuildFile; fileRef = 7418B8D318842FB300669588 /* BMKeyValuePair.h */; };
+		7418B8D518842FB300669588 /* BMKeyValuePair.h in Headers */ = {isa = PBXBuildFile; fileRef = 7418B8D318842FB300669588 /* BMKeyValuePair.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7418B8D618842FB300669588 /* BMKeyValuePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 7418B8D418842FB300669588 /* BMKeyValuePair.m */; };
 		74190C6D14FC2B7E004483AD /* BMMediaRollThumbnailCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74190C6B14FC2B7D004483AD /* BMMediaRollThumbnailCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74190C6E14FC2B7E004483AD /* BMMediaRollThumbnailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74190C6C14FC2B7D004483AD /* BMMediaRollThumbnailCell.m */; };
@@ -218,37 +218,37 @@
 		7420E13C14FD6012008682CE /* btfd.xsd in Resources */ = {isa = PBXBuildFile; fileRef = 7420E13A14FD6012008682CE /* btfd.xsd */; };
 		74271B90174A8AC400CCA22A /* BMYouTubeListDirectStreamableVideosService.h in Headers */ = {isa = PBXBuildFile; fileRef = 74271B8E174A8AC300CCA22A /* BMYouTubeListDirectStreamableVideosService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74271B91174A8AC400CCA22A /* BMYouTubeListDirectStreamableVideosService.m in Sources */ = {isa = PBXBuildFile; fileRef = 74271B8F174A8AC400CCA22A /* BMYouTubeListDirectStreamableVideosService.m */; };
-		74295F7818BE26A5008612BA /* BMKeyValuePair.h in Headers */ = {isa = PBXBuildFile; fileRef = 7418B8D318842FB300669588 /* BMKeyValuePair.h */; };
+		74295F7818BE26A5008612BA /* BMKeyValuePair.h in Headers */ = {isa = PBXBuildFile; fileRef = 7418B8D318842FB300669588 /* BMKeyValuePair.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74295F7918BE26A6008612BA /* BMKeyValuePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 7418B8D418842FB300669588 /* BMKeyValuePair.m */; };
 		742B0446166D02F300CC0ACB /* ipApplicationWS.wsdl in Resources */ = {isa = PBXBuildFile; fileRef = 742B0445166D02F300CC0ACB /* ipApplicationWS.wsdl */; };
 		742B0448166D032200CC0ACB /* namespace-mappings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 742B0447166D032200CC0ACB /* namespace-mappings.plist */; };
-		742CAB271B7393C000657A23 /* BMBase64DataTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 742CAB251B7393C000657A23 /* BMBase64DataTransformer.h */; };
-		742CAB281B7393C000657A23 /* BMBase64DataTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 742CAB251B7393C000657A23 /* BMBase64DataTransformer.h */; };
+		742CAB271B7393C000657A23 /* BMBase64DataTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 742CAB251B7393C000657A23 /* BMBase64DataTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		742CAB281B7393C000657A23 /* BMBase64DataTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 742CAB251B7393C000657A23 /* BMBase64DataTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		742CAB291B7393C000657A23 /* BMBase64DataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 742CAB261B7393C000657A23 /* BMBase64DataTransformer.m */; };
 		742CAB2A1B7393C000657A23 /* BMBase64DataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 742CAB261B7393C000657A23 /* BMBase64DataTransformer.m */; };
-		742CAB341B73944800657A23 /* BMChainedTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 742CAB321B73944800657A23 /* BMChainedTransformer.h */; };
-		742CAB351B73944800657A23 /* BMChainedTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 742CAB321B73944800657A23 /* BMChainedTransformer.h */; };
+		742CAB341B73944800657A23 /* BMChainedTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 742CAB321B73944800657A23 /* BMChainedTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		742CAB351B73944800657A23 /* BMChainedTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 742CAB321B73944800657A23 /* BMChainedTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		742CAB361B73944800657A23 /* BMChainedTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 742CAB331B73944800657A23 /* BMChainedTransformer.m */; };
 		742CAB371B73944800657A23 /* BMChainedTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 742CAB331B73944800657A23 /* BMChainedTransformer.m */; };
 		742D0238179D8D5800676AC3 /* BMAbstractSettingsObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 742D0233179D8D5800676AC3 /* BMAbstractSettingsObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		742D0239179D8D5800676AC3 /* BMAbstractSettingsObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 742D0233179D8D5800676AC3 /* BMAbstractSettingsObject.h */; };
+		742D0239179D8D5800676AC3 /* BMAbstractSettingsObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 742D0233179D8D5800676AC3 /* BMAbstractSettingsObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		742D023A179D8D5800676AC3 /* BMAbstractSettingsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 742D0234179D8D5800676AC3 /* BMAbstractSettingsObject.m */; };
 		742D023B179D8D5800676AC3 /* BMAbstractSettingsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 742D0234179D8D5800676AC3 /* BMAbstractSettingsObject.m */; };
 		742D023C179D8D5800676AC3 /* BMSettingsObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 742D0235179D8D5800676AC3 /* BMSettingsObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		742D023D179D8D5800676AC3 /* BMSettingsObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 742D0235179D8D5800676AC3 /* BMSettingsObject.h */; };
+		742D023D179D8D5800676AC3 /* BMSettingsObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 742D0235179D8D5800676AC3 /* BMSettingsObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		742D023E179D8D5800676AC3 /* BMSettingsRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 742D0236179D8D5800676AC3 /* BMSettingsRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		742D023F179D8D5800676AC3 /* BMSettingsRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 742D0236179D8D5800676AC3 /* BMSettingsRegistry.h */; };
+		742D023F179D8D5800676AC3 /* BMSettingsRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 742D0236179D8D5800676AC3 /* BMSettingsRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		742D0240179D8D5800676AC3 /* BMSettingsRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 742D0237179D8D5800676AC3 /* BMSettingsRegistry.m */; };
 		742D0241179D8D5800676AC3 /* BMSettingsRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 742D0237179D8D5800676AC3 /* BMSettingsRegistry.m */; };
 		742D0244179DA87600676AC3 /* BMApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 742D0242179DA85900676AC3 /* BMApplicationContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		742D0245179DA87600676AC3 /* BMApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 742D0242179DA85900676AC3 /* BMApplicationContext.h */; };
+		742D0245179DA87600676AC3 /* BMApplicationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 742D0242179DA85900676AC3 /* BMApplicationContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		742D0246179DA87600676AC3 /* BMApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 742D0243179DA86200676AC3 /* BMApplicationContext.m */; };
 		742D0247179DA87600676AC3 /* BMApplicationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 742D0243179DA86200676AC3 /* BMApplicationContext.m */; };
 		742D0258179DA93500676AC3 /* BMAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 742D0256179DA93500676AC3 /* BMAppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		742D0259179DA93500676AC3 /* BMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 742D0257179DA93500676AC3 /* BMAppDelegate.m */; };
-		742E0A1B1D5485AF00B19B5F /* BMSchemaFieldType.h in Headers */ = {isa = PBXBuildFile; fileRef = 746706B019CA124A00E79E02 /* BMSchemaFieldType.h */; };
-		742F41B51B7CFBC700FC8E50 /* BMFileAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 742F41B31B7CFBC700FC8E50 /* BMFileAttributes.h */; };
-		742F41B61B7CFBC700FC8E50 /* BMFileAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 742F41B31B7CFBC700FC8E50 /* BMFileAttributes.h */; };
+		742E0A1B1D5485AF00B19B5F /* BMSchemaFieldType.h in Headers */ = {isa = PBXBuildFile; fileRef = 746706B019CA124A00E79E02 /* BMSchemaFieldType.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		742F41B51B7CFBC700FC8E50 /* BMFileAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 742F41B31B7CFBC700FC8E50 /* BMFileAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		742F41B61B7CFBC700FC8E50 /* BMFileAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 742F41B31B7CFBC700FC8E50 /* BMFileAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		742F41B71B7CFBC700FC8E50 /* BMFileAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 742F41B41B7CFBC700FC8E50 /* BMFileAttributes.m */; };
 		742F41B81B7CFBC700FC8E50 /* BMFileAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 742F41B41B7CFBC700FC8E50 /* BMFileAttributes.m */; };
 		742F6DCE15090A3100033C5C /* BMYouTubeUploadService.h in Headers */ = {isa = PBXBuildFile; fileRef = 742F6DCC15090A2F00033C5C /* BMYouTubeUploadService.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -278,10 +278,10 @@
 		7431FE6314F4F116006B4B50 /* BMJSONParserTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7431FE5414F4F0D6006B4B50 /* BMJSONParserTestCase.m */; };
 		7431FE6514F4F116006B4B50 /* BMRegexTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7431FE5814F4F0D6006B4B50 /* BMRegexTestCase.m */; };
 		7431FE6614F4F116006B4B50 /* TTURLCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7431FE5B14F4F0D6006B4B50 /* TTURLCacheTest.m */; };
-		74324837185DD8960006C4E5 /* BMMediaHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74324835185DD8960006C4E5 /* BMMediaHelper.h */; };
+		74324837185DD8960006C4E5 /* BMMediaHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74324835185DD8960006C4E5 /* BMMediaHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74324838185DD8960006C4E5 /* BMMediaHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74324836185DD8960006C4E5 /* BMMediaHelper.m */; };
-		7434EA801BC68947006537FA /* BMCompressDataTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7434EA7E1BC68947006537FA /* BMCompressDataTransformer.h */; };
-		7434EA811BC68947006537FA /* BMCompressDataTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7434EA7E1BC68947006537FA /* BMCompressDataTransformer.h */; };
+		7434EA801BC68947006537FA /* BMCompressDataTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7434EA7E1BC68947006537FA /* BMCompressDataTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7434EA811BC68947006537FA /* BMCompressDataTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7434EA7E1BC68947006537FA /* BMCompressDataTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7434EA821BC68947006537FA /* BMCompressDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7434EA7F1BC68947006537FA /* BMCompressDataTransformer.m */; };
 		7434EA831BC68947006537FA /* BMCompressDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7434EA7F1BC68947006537FA /* BMCompressDataTransformer.m */; };
 		743B453C14F3F960002DA36F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
@@ -415,8 +415,8 @@
 		744130D5173D00E800F6FA5B /* BMTTThumbsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 744130D4173D00E700F6FA5B /* BMTTThumbsViewController.m */; };
 		744130DF173D034800F6FA5B /* BMTTThumbsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 744130DE173D034700F6FA5B /* BMTTThumbsTableViewCell.m */; };
 		744130E2173D045100F6FA5B /* BMTTThumbView.m in Sources */ = {isa = PBXBuildFile; fileRef = 744130E1173D045000F6FA5B /* BMTTThumbView.m */; };
-		7443B3371A0A32AE002F31A2 /* BMBooleanStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 7443B3351A0A32AE002F31A2 /* BMBooleanStack.h */; };
-		7443B3381A0A32AE002F31A2 /* BMBooleanStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 7443B3351A0A32AE002F31A2 /* BMBooleanStack.h */; };
+		7443B3371A0A32AE002F31A2 /* BMBooleanStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 7443B3351A0A32AE002F31A2 /* BMBooleanStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7443B3381A0A32AE002F31A2 /* BMBooleanStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 7443B3351A0A32AE002F31A2 /* BMBooleanStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7443B3391A0A32AE002F31A2 /* BMBooleanStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 7443B3361A0A32AE002F31A2 /* BMBooleanStack.m */; };
 		7443B33A1A0A32AE002F31A2 /* BMBooleanStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 7443B3361A0A32AE002F31A2 /* BMBooleanStack.m */; };
 		7443B3441A0A3D75002F31A2 /* BMBooleanStackTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7443B3431A0A3D75002F31A2 /* BMBooleanStackTestCase.m */; };
@@ -445,31 +445,31 @@
 		7448826B181531E900EF96C1 /* BMRootManagedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B0083317452EE2007B0A22 /* BMRootManagedObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7448826C181531E900EF96C1 /* BMCoreDataErrorHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B0086417453580007B0A22 /* BMCoreDataErrorHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7448826D181531E900EF96C1 /* BMCoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B0081D17452EE2007B0A22 /* BMCoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		744B2D0E19F3137700D46E95 /* BMValueType.h in Headers */ = {isa = PBXBuildFile; fileRef = 744B2D0C19F3137700D46E95 /* BMValueType.h */; };
-		744B2D0F19F3137700D46E95 /* BMValueType.h in Headers */ = {isa = PBXBuildFile; fileRef = 744B2D0C19F3137700D46E95 /* BMValueType.h */; };
+		744B2D0E19F3137700D46E95 /* BMValueType.h in Headers */ = {isa = PBXBuildFile; fileRef = 744B2D0C19F3137700D46E95 /* BMValueType.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		744B2D0F19F3137700D46E95 /* BMValueType.h in Headers */ = {isa = PBXBuildFile; fileRef = 744B2D0C19F3137700D46E95 /* BMValueType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		744B2D1019F3137700D46E95 /* BMValueType.m in Sources */ = {isa = PBXBuildFile; fileRef = 744B2D0D19F3137700D46E95 /* BMValueType.m */; };
 		744B2D1119F3137700D46E95 /* BMValueType.m in Sources */ = {isa = PBXBuildFile; fileRef = 744B2D0D19F3137700D46E95 /* BMValueType.m */; };
-		744B2D2119F42E7C00D46E95 /* BMSettingsTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 744B2D1F19F42E7C00D46E95 /* BMSettingsTestCase.h */; };
+		744B2D2119F42E7C00D46E95 /* BMSettingsTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 744B2D1F19F42E7C00D46E95 /* BMSettingsTestCase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		744B2D2519F4DF7900D46E95 /* BMTestSettingsObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 744B2D2419F4DF7900D46E95 /* BMTestSettingsObject.m */; };
 		744D643F17726BC200A47C93 /* BMCoreObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 744D643D17726BC200A47C93 /* BMCoreObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		744D644017726BC200A47C93 /* BMCoreObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 744D643D17726BC200A47C93 /* BMCoreObject.h */; };
+		744D644017726BC200A47C93 /* BMCoreObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 744D643D17726BC200A47C93 /* BMCoreObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		744D644117726BC200A47C93 /* BMCoreObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 744D643E17726BC200A47C93 /* BMCoreObject.m */; };
 		744D644217726BC200A47C93 /* BMCoreObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 744D643E17726BC200A47C93 /* BMCoreObject.m */; };
 		744D644C17726EBD00A47C93 /* BMUICoreObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 744D644A17726EBD00A47C93 /* BMUICoreObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		744D644D17726EBD00A47C93 /* BMUICoreObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 744D644B17726EBD00A47C93 /* BMUICoreObject.m */; };
-		744DC08719A235A300A5B99A /* UIScreen+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 744DC08519A235A300A5B99A /* UIScreen+BMCommons.h */; };
+		744DC08719A235A300A5B99A /* UIScreen+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 744DC08519A235A300A5B99A /* UIScreen+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		744DC08819A235A300A5B99A /* UIScreen+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 744DC08619A235A300A5B99A /* UIScreen+BMCommons.m */; };
-		7450526A18ED8BAD00BBFA4D /* BMWeakTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7450526818ED8BAD00BBFA4D /* BMWeakTimer.h */; };
-		7450526B18ED8BAD00BBFA4D /* BMWeakTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7450526818ED8BAD00BBFA4D /* BMWeakTimer.h */; };
+		7450526A18ED8BAD00BBFA4D /* BMWeakTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7450526818ED8BAD00BBFA4D /* BMWeakTimer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7450526B18ED8BAD00BBFA4D /* BMWeakTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7450526818ED8BAD00BBFA4D /* BMWeakTimer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7450526C18ED8BAD00BBFA4D /* BMWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7450526918ED8BAD00BBFA4D /* BMWeakTimer.m */; };
 		7450526D18ED8BAD00BBFA4D /* BMWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7450526918ED8BAD00BBFA4D /* BMWeakTimer.m */; };
 		7450527718ED95A600BBFA4D /* BMWeakTimerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7450527618ED95A600BBFA4D /* BMWeakTimerTestCase.m */; };
-		74523D8718F2A711002521A6 /* NSSet+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74523D8518F2A711002521A6 /* NSSet+BMCommons.h */; };
-		74523D8818F2A711002521A6 /* NSSet+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74523D8518F2A711002521A6 /* NSSet+BMCommons.h */; };
+		74523D8718F2A711002521A6 /* NSSet+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74523D8518F2A711002521A6 /* NSSet+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74523D8818F2A711002521A6 /* NSSet+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74523D8518F2A711002521A6 /* NSSet+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74523D8918F2A711002521A6 /* NSSet+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74523D8618F2A711002521A6 /* NSSet+BMCommons.m */; };
 		74523D8A18F2A711002521A6 /* NSSet+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74523D8618F2A711002521A6 /* NSSet+BMCommons.m */; };
-		74523D9418F2A765002521A6 /* NSUserDefaults+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74523D9218F2A765002521A6 /* NSUserDefaults+BMCommons.h */; };
-		74523D9518F2A765002521A6 /* NSUserDefaults+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74523D9218F2A765002521A6 /* NSUserDefaults+BMCommons.h */; };
+		74523D9418F2A765002521A6 /* NSUserDefaults+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74523D9218F2A765002521A6 /* NSUserDefaults+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74523D9518F2A765002521A6 /* NSUserDefaults+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74523D9218F2A765002521A6 /* NSUserDefaults+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74523D9618F2A765002521A6 /* NSUserDefaults+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74523D9318F2A765002521A6 /* NSUserDefaults+BMCommons.m */; };
 		74523D9718F2A765002521A6 /* NSUserDefaults+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74523D9318F2A765002521A6 /* NSUserDefaults+BMCommons.m */; };
 		7456AFF5173D8B77002F7AAA /* BMTTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7456AFF4173D8B77002F7AAA /* BMTTNavigationController.m */; };
@@ -485,7 +485,7 @@
 		745E181614F804CA00BD9CF6 /* BMYouTubeEntryCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 745E181414F804CA00BD9CF6 /* BMYouTubeEntryCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		745E181714F804CA00BD9CF6 /* BMYouTubeEntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E181514F804CA00BD9CF6 /* BMYouTubeEntryCell.m */; };
 		745FE7C41691A7D3006D1FE4 /* BMStringToDataTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 745FE7C21691A7D3006D1FE4 /* BMStringToDataTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		745FE7C51691A7D3006D1FE4 /* BMStringToDataTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 745FE7C21691A7D3006D1FE4 /* BMStringToDataTransformer.h */; };
+		745FE7C51691A7D3006D1FE4 /* BMStringToDataTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 745FE7C21691A7D3006D1FE4 /* BMStringToDataTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		745FE7C61691A7D3006D1FE4 /* BMStringToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 745FE7C31691A7D3006D1FE4 /* BMStringToDataTransformer.m */; };
 		745FE7C71691A7D3006D1FE4 /* BMStringToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 745FE7C31691A7D3006D1FE4 /* BMStringToDataTransformer.m */; };
 		745FE80D1691C8BF006D1FE4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E87628130BF5EE0034B19F /* CoreFoundation.framework */; };
@@ -587,37 +587,37 @@
 		74615641153DC158005FE3D4 /* BMAsyncLoadingMediaThumbnailButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7461563F153DC158005FE3D4 /* BMAsyncLoadingMediaThumbnailButton.m */; };
 		7464F0991A7A9A7200A26214 /* BMCacheTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7464F0981A7A9A7200A26214 /* BMCacheTestCase.m */; };
 		7466A22914FFB8B800B60857 /* BMDataDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7466A22714FFB8B400B60857 /* BMDataDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7466A22A14FFB8B800B60857 /* BMDataDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7466A22714FFB8B400B60857 /* BMDataDescriptor.h */; };
+		7466A22A14FFB8B800B60857 /* BMDataDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7466A22714FFB8B400B60857 /* BMDataDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7466A22B14FFB8B800B60857 /* BMDataDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7466A22814FFB8B500B60857 /* BMDataDescriptor.m */; };
 		7466A22C14FFB8B800B60857 /* BMDataDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7466A22814FFB8B500B60857 /* BMDataDescriptor.m */; };
 		7469998415BB5CA20003ECEC /* BMTableFooterDragLoadMoreView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469998215BB5CA20003ECEC /* BMTableFooterDragLoadMoreView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7469998515BB5CA20003ECEC /* BMTableFooterDragLoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7469998315BB5CA20003ECEC /* BMTableFooterDragLoadMoreView.m */; };
 		7469FEF4178D99E50073FAEC /* NSDictionary+DeepMutableCopy.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEE6178D99E50073FAEC /* NSDictionary+DeepMutableCopy.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7469FEF5178D99E50073FAEC /* NSDictionary+DeepMutableCopy.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEE6178D99E50073FAEC /* NSDictionary+DeepMutableCopy.h */; };
+		7469FEF5178D99E50073FAEC /* NSDictionary+DeepMutableCopy.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEE6178D99E50073FAEC /* NSDictionary+DeepMutableCopy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7469FEF6178D99E50073FAEC /* NSDictionary+DeepMutableCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7469FEE7178D99E50073FAEC /* NSDictionary+DeepMutableCopy.m */; };
 		7469FEF7178D99E50073FAEC /* NSDictionary+DeepMutableCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7469FEE7178D99E50073FAEC /* NSDictionary+DeepMutableCopy.m */; };
 		7469FEF8178D99E50073FAEC /* NSArray+DeepMutableCopy.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEE8178D99E50073FAEC /* NSArray+DeepMutableCopy.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7469FEF9178D99E50073FAEC /* NSArray+DeepMutableCopy.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEE8178D99E50073FAEC /* NSArray+DeepMutableCopy.h */; };
+		7469FEF9178D99E50073FAEC /* NSArray+DeepMutableCopy.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEE8178D99E50073FAEC /* NSArray+DeepMutableCopy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7469FEFA178D99E50073FAEC /* NSArray+DeepMutableCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7469FEE9178D99E50073FAEC /* NSArray+DeepMutableCopy.m */; };
 		7469FEFB178D99E50073FAEC /* NSArray+DeepMutableCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7469FEE9178D99E50073FAEC /* NSArray+DeepMutableCopy.m */; };
 		7469FEFC178D99E50073FAEC /* BMICUTemplateMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEEA178D99E50073FAEC /* BMICUTemplateMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7469FEFD178D99E50073FAEC /* BMICUTemplateMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEEA178D99E50073FAEC /* BMICUTemplateMatcher.h */; };
+		7469FEFD178D99E50073FAEC /* BMICUTemplateMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEEA178D99E50073FAEC /* BMICUTemplateMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7469FEFE178D99E50073FAEC /* BMICUTemplateMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7469FEEB178D99E50073FAEC /* BMICUTemplateMatcher.m */; };
 		7469FEFF178D99E50073FAEC /* BMICUTemplateMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7469FEEB178D99E50073FAEC /* BMICUTemplateMatcher.m */; };
 		7469FF00178D99E50073FAEC /* BMMGTemplateEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEEC178D99E50073FAEC /* BMMGTemplateEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7469FF01178D99E50073FAEC /* BMMGTemplateEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEEC178D99E50073FAEC /* BMMGTemplateEngine.h */; };
+		7469FF01178D99E50073FAEC /* BMMGTemplateEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEEC178D99E50073FAEC /* BMMGTemplateEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7469FF02178D99E50073FAEC /* BMMGTemplateEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 7469FEED178D99E50073FAEC /* BMMGTemplateEngine.m */; };
 		7469FF03178D99E50073FAEC /* BMMGTemplateEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 7469FEED178D99E50073FAEC /* BMMGTemplateEngine.m */; };
 		7469FF04178D99E50073FAEC /* BMMGTemplateFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEEE178D99E50073FAEC /* BMMGTemplateFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7469FF05178D99E50073FAEC /* BMMGTemplateFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEEE178D99E50073FAEC /* BMMGTemplateFilter.h */; };
+		7469FF05178D99E50073FAEC /* BMMGTemplateFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEEE178D99E50073FAEC /* BMMGTemplateFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7469FF06178D99E50073FAEC /* BMMGTemplateMarker.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEEF178D99E50073FAEC /* BMMGTemplateMarker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7469FF07178D99E50073FAEC /* BMMGTemplateMarker.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEEF178D99E50073FAEC /* BMMGTemplateMarker.h */; };
+		7469FF07178D99E50073FAEC /* BMMGTemplateMarker.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEEF178D99E50073FAEC /* BMMGTemplateMarker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7469FF08178D99E50073FAEC /* BMMGTemplateStandardFilters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEF0178D99E50073FAEC /* BMMGTemplateStandardFilters.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7469FF09178D99E50073FAEC /* BMMGTemplateStandardFilters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEF0178D99E50073FAEC /* BMMGTemplateStandardFilters.h */; };
+		7469FF09178D99E50073FAEC /* BMMGTemplateStandardFilters.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEF0178D99E50073FAEC /* BMMGTemplateStandardFilters.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7469FF0A178D99E50073FAEC /* BMMGTemplateStandardFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7469FEF1178D99E50073FAEC /* BMMGTemplateStandardFilters.m */; };
 		7469FF0B178D99E50073FAEC /* BMMGTemplateStandardFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7469FEF1178D99E50073FAEC /* BMMGTemplateStandardFilters.m */; };
 		7469FF0C178D99E50073FAEC /* BMMGTemplateStandardMarkers.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEF2178D99E50073FAEC /* BMMGTemplateStandardMarkers.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7469FF0D178D99E50073FAEC /* BMMGTemplateStandardMarkers.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEF2178D99E50073FAEC /* BMMGTemplateStandardMarkers.h */; };
+		7469FF0D178D99E50073FAEC /* BMMGTemplateStandardMarkers.h in Headers */ = {isa = PBXBuildFile; fileRef = 7469FEF2178D99E50073FAEC /* BMMGTemplateStandardMarkers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7469FF0E178D99E50073FAEC /* BMMGTemplateStandardMarkers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7469FEF3178D99E50073FAEC /* BMMGTemplateStandardMarkers.m */; };
 		7469FF0F178D99E50073FAEC /* BMMGTemplateStandardMarkers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7469FEF3178D99E50073FAEC /* BMMGTemplateStandardMarkers.m */; };
 		7470A309156FD08900F8C312 /* BMYouTubeDeleteService.h in Headers */ = {isa = PBXBuildFile; fileRef = 7470A307156FD08800F8C312 /* BMYouTubeDeleteService.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -627,41 +627,41 @@
 		74732E57177D8DE700A68CB9 /* BMHTTPStatusCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 74732E4F177D8DE700A68CB9 /* BMHTTPStatusCodes.m */; };
 		74732E58177D8DE700A68CB9 /* BMHTTPStatusCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 74732E4F177D8DE700A68CB9 /* BMHTTPStatusCodes.m */; };
 		74732E59177D8DE700A68CB9 /* BMHTTPStatusCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E50177D8DE700A68CB9 /* BMHTTPStatusCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74732E5A177D8DE700A68CB9 /* BMHTTPStatusCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E50177D8DE700A68CB9 /* BMHTTPStatusCodes.h */; };
+		74732E5A177D8DE700A68CB9 /* BMHTTPStatusCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E50177D8DE700A68CB9 /* BMHTTPStatusCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74732E5B177D8DE700A68CB9 /* BMHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74732E51177D8DE700A68CB9 /* BMHTTPRequest.m */; };
 		74732E5C177D8DE700A68CB9 /* BMHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74732E51177D8DE700A68CB9 /* BMHTTPRequest.m */; };
 		74732E5D177D8DE700A68CB9 /* BMHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E52177D8DE700A68CB9 /* BMHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74732E5E177D8DE700A68CB9 /* BMHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E52177D8DE700A68CB9 /* BMHTTPRequest.h */; };
+		74732E5E177D8DE700A68CB9 /* BMHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E52177D8DE700A68CB9 /* BMHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74732E5F177D8DE700A68CB9 /* BMHTTPMultiPartBodyInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 74732E53177D8DE700A68CB9 /* BMHTTPMultiPartBodyInputStream.m */; };
 		74732E60177D8DE700A68CB9 /* BMHTTPMultiPartBodyInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 74732E53177D8DE700A68CB9 /* BMHTTPMultiPartBodyInputStream.m */; };
 		74732E61177D8DE700A68CB9 /* BMHTTPMultiPartBodyInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E54177D8DE700A68CB9 /* BMHTTPMultiPartBodyInputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74732E62177D8DE700A68CB9 /* BMHTTPMultiPartBodyInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E54177D8DE700A68CB9 /* BMHTTPMultiPartBodyInputStream.h */; };
+		74732E62177D8DE700A68CB9 /* BMHTTPMultiPartBodyInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E54177D8DE700A68CB9 /* BMHTTPMultiPartBodyInputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74732E63177D8DE700A68CB9 /* BMHTTPContentPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 74732E55177D8DE700A68CB9 /* BMHTTPContentPart.m */; };
 		74732E64177D8DE700A68CB9 /* BMHTTPContentPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 74732E55177D8DE700A68CB9 /* BMHTTPContentPart.m */; };
 		74732E65177D8DE700A68CB9 /* BMHTTPContentPart.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E56177D8DE700A68CB9 /* BMHTTPContentPart.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74732E66177D8DE700A68CB9 /* BMHTTPContentPart.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E56177D8DE700A68CB9 /* BMHTTPContentPart.h */; };
+		74732E66177D8DE700A68CB9 /* BMHTTPContentPart.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E56177D8DE700A68CB9 /* BMHTTPContentPart.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74732E6F177D8E8800A68CB9 /* BMHTTPService.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E69177D8E8800A68CB9 /* BMHTTPService.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74732E70177D8E8800A68CB9 /* BMHTTPService.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E69177D8E8800A68CB9 /* BMHTTPService.h */; };
+		74732E70177D8E8800A68CB9 /* BMHTTPService.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E69177D8E8800A68CB9 /* BMHTTPService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74732E71177D8E8800A68CB9 /* BMHTTPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 74732E6A177D8E8800A68CB9 /* BMHTTPService.m */; };
 		74732E72177D8E8800A68CB9 /* BMHTTPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 74732E6A177D8E8800A68CB9 /* BMHTTPService.m */; };
 		74732E8A177D939600A68CB9 /* BMMIMEType.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E88177D939600A68CB9 /* BMMIMEType.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74732E8B177D939600A68CB9 /* BMMIMEType.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E88177D939600A68CB9 /* BMMIMEType.h */; };
+		74732E8B177D939600A68CB9 /* BMMIMEType.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E88177D939600A68CB9 /* BMMIMEType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74732E8C177D939600A68CB9 /* BMMIMEType.m in Sources */ = {isa = PBXBuildFile; fileRef = 74732E89177D939600A68CB9 /* BMMIMEType.m */; };
 		74732E8D177D939600A68CB9 /* BMMIMEType.m in Sources */ = {isa = PBXBuildFile; fileRef = 74732E89177D939600A68CB9 /* BMMIMEType.m */; };
 		74732E9C177DF8E200A68CB9 /* BMKeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74732E9A177DF89900A68CB9 /* BMKeychainItemWrapper.m */; };
 		74732E9D177DF8E200A68CB9 /* BMKeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74732E9A177DF89900A68CB9 /* BMKeychainItemWrapper.m */; };
 		74732E9F177DF8E200A68CB9 /* BMKeychainItemWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E9B177DF8C200A68CB9 /* BMKeychainItemWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74732EA0177DF8E200A68CB9 /* BMKeychainItemWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E9B177DF8C200A68CB9 /* BMKeychainItemWrapper.h */; };
+		74732EA0177DF8E200A68CB9 /* BMKeychainItemWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732E9B177DF8C200A68CB9 /* BMKeychainItemWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74732FC4177F4EB400A68CB9 /* BMNamedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732FC3177F4EB300A68CB9 /* BMNamedObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74732FC5177F4EB400A68CB9 /* BMNamedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732FC3177F4EB300A68CB9 /* BMNamedObject.h */; };
+		74732FC5177F4EB400A68CB9 /* BMNamedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74732FC3177F4EB300A68CB9 /* BMNamedObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74732FDB1780452600A68CB9 /* BMOAuth2ViewTouch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74732FDA1780452500A68CB9 /* BMOAuth2ViewTouch.xib */; };
 		74746840173FD37800D1DB6D /* BMTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7474683E173FD37700D1DB6D /* BMTableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74746841173FD37800D1DB6D /* BMTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7474683F173FD37800D1DB6D /* BMTableView.m */; };
 		74746863173FD88800D1DB6D /* YouTube-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74746862173FD88700D1DB6D /* YouTube-icon.png */; };
 		747469B21740148100D1DB6D /* BMLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 747469B11740147300D1DB6D /* BMLogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		747469B31740148100D1DB6D /* BMLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 747469B11740147300D1DB6D /* BMLogging.h */; };
+		747469B31740148100D1DB6D /* BMLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 747469B11740147300D1DB6D /* BMLogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		747469B717401ABF00D1DB6D /* BMRegexKitLite.h in Headers */ = {isa = PBXBuildFile; fileRef = 747469B517401ABF00D1DB6D /* BMRegexKitLite.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		747469B817401ABF00D1DB6D /* BMRegexKitLite.h in Headers */ = {isa = PBXBuildFile; fileRef = 747469B517401ABF00D1DB6D /* BMRegexKitLite.h */; };
+		747469B817401ABF00D1DB6D /* BMRegexKitLite.h in Headers */ = {isa = PBXBuildFile; fileRef = 747469B517401ABF00D1DB6D /* BMRegexKitLite.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		747469B917401ABF00D1DB6D /* BMRegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 747469B617401ABF00D1DB6D /* BMRegexKitLite.m */; };
 		747469BA17401ABF00D1DB6D /* BMRegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 747469B617401ABF00D1DB6D /* BMRegexKitLite.m */; };
 		7477810E14468077006353AD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7477810D14468077006353AD /* AVFoundation.framework */; };
@@ -685,28 +685,28 @@
 		747B1BA517576C870097BE31 /* BMMedia.strings in Resources */ = {isa = PBXBuildFile; fileRef = 747B1BA417576C870097BE31 /* BMMedia.strings */; };
 		747B1BB8175792380097BE31 /* BMStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 747B1BB4175792360097BE31 /* BMStyleSheet.m */; };
 		747B1BB9175792380097BE31 /* BMStyleSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 747B1BB5175792370097BE31 /* BMStyleSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		747FA35B1B7F2AFC0051F5F6 /* NSFileManager+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 747FA3591B7F2AFC0051F5F6 /* NSFileManager+BMCommons.h */; };
-		747FA35C1B7F2AFC0051F5F6 /* NSFileManager+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 747FA3591B7F2AFC0051F5F6 /* NSFileManager+BMCommons.h */; };
+		747FA35B1B7F2AFC0051F5F6 /* NSFileManager+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 747FA3591B7F2AFC0051F5F6 /* NSFileManager+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		747FA35C1B7F2AFC0051F5F6 /* NSFileManager+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 747FA3591B7F2AFC0051F5F6 /* NSFileManager+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		747FA35D1B7F2AFC0051F5F6 /* NSFileManager+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 747FA35A1B7F2AFC0051F5F6 /* NSFileManager+BMCommons.m */; };
 		747FA35E1B7F2AFC0051F5F6 /* NSFileManager+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 747FA35A1B7F2AFC0051F5F6 /* NSFileManager+BMCommons.m */; };
 		7482AE2E183102BE0017B7E0 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7482AE2C183102BE0017B7E0 /* blackArrow.png */; };
 		74850A4215B6E90F00884E0B /* NSDictionary+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74850A4015B6E90F00884E0B /* NSDictionary+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74850A4315B6E90F00884E0B /* NSDictionary+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74850A4015B6E90F00884E0B /* NSDictionary+BMCommons.h */; };
+		74850A4315B6E90F00884E0B /* NSDictionary+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74850A4015B6E90F00884E0B /* NSDictionary+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74850A4415B6E90F00884E0B /* NSDictionary+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74850A4115B6E90F00884E0B /* NSDictionary+BMCommons.m */; };
 		74850A4515B6E90F00884E0B /* NSDictionary+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74850A4115B6E90F00884E0B /* NSDictionary+BMCommons.m */; };
 		74850A4815B8131E00884E0B /* TimeSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74850A4715B8131E00884E0B /* TimeSelectionView.xib */; };
 		74850A4B15B8155900884E0B /* buttonGray.png in Resources */ = {isa = PBXBuildFile; fileRef = 74850A4915B8155500884E0B /* buttonGray.png */; };
 		74850A4C15B8155900884E0B /* buttonGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 74850A4A15B8155700884E0B /* buttonGray@2x.png */; };
-		74885C0C19DD878100ACBC0A /* BMKeyObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74885C0A19DD878100ACBC0A /* BMKeyObject.h */; };
-		74885C0D19DD878100ACBC0A /* BMKeyObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74885C0A19DD878100ACBC0A /* BMKeyObject.h */; };
+		74885C0C19DD878100ACBC0A /* BMKeyObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74885C0A19DD878100ACBC0A /* BMKeyObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74885C0D19DD878100ACBC0A /* BMKeyObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74885C0A19DD878100ACBC0A /* BMKeyObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74885C0E19DD878100ACBC0A /* BMKeyObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74885C0B19DD878100ACBC0A /* BMKeyObject.m */; };
 		74885C0F19DD878100ACBC0A /* BMKeyObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74885C0B19DD878100ACBC0A /* BMKeyObject.m */; };
 		7489758A168CB14F007C4D73 /* BMBlockServiceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74897584168CB14F007C4D73 /* BMBlockServiceDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7489758B168CB14F007C4D73 /* BMBlockServiceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74897584168CB14F007C4D73 /* BMBlockServiceDelegate.h */; };
+		7489758B168CB14F007C4D73 /* BMBlockServiceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 74897584168CB14F007C4D73 /* BMBlockServiceDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7489758C168CB14F007C4D73 /* BMBlockServiceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74897585168CB14F007C4D73 /* BMBlockServiceDelegate.m */; };
 		7489758D168CB14F007C4D73 /* BMBlockServiceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74897585168CB14F007C4D73 /* BMBlockServiceDelegate.m */; };
 		74897592168CB14F007C4D73 /* BMObjectToArrayTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74897588168CB14F007C4D73 /* BMObjectToArrayTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74897593168CB14F007C4D73 /* BMObjectToArrayTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74897588168CB14F007C4D73 /* BMObjectToArrayTransformer.h */; };
+		74897593168CB14F007C4D73 /* BMObjectToArrayTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74897588168CB14F007C4D73 /* BMObjectToArrayTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74897594168CB14F007C4D73 /* BMObjectToArrayTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74897589168CB14F007C4D73 /* BMObjectToArrayTransformer.m */; };
 		74897595168CB14F007C4D73 /* BMObjectToArrayTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74897589168CB14F007C4D73 /* BMObjectToArrayTransformer.m */; };
 		74897606168CB6F5007C4D73 /* BMAudio.h in Headers */ = {isa = PBXBuildFile; fileRef = 748975FC168CB6F5007C4D73 /* BMAudio.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -724,24 +724,24 @@
 		748BA4DD1540036B001F388A /* BMResponderButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 748BA4DB1540036A001F388A /* BMResponderButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		748BA4DE1540036B001F388A /* BMResponderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 748BA4DC1540036B001F388A /* BMResponderButton.m */; };
 		748C1C0114F4F4E0007915DE /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748C1C0014F4F4E0007915DE /* AssetsLibrary.framework */; };
-		748E34BB1DB0EB2900093523 /* BMXMLDocument_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34B51DB0EB2900093523 /* BMXMLDocument_Private.h */; };
-		748E34BC1DB0EB2900093523 /* BMXMLDocument_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34B51DB0EB2900093523 /* BMXMLDocument_Private.h */; };
-		748E34BD1DB0EB2900093523 /* BMXMLElement_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34B61DB0EB2900093523 /* BMXMLElement_Private.h */; };
-		748E34BE1DB0EB2900093523 /* BMXMLElement_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34B61DB0EB2900093523 /* BMXMLElement_Private.h */; };
-		748E34BF1DB0EB2900093523 /* BMXMLNode_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34B71DB0EB2900093523 /* BMXMLNode_Private.h */; };
-		748E34C01DB0EB2900093523 /* BMXMLNode_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34B71DB0EB2900093523 /* BMXMLNode_Private.h */; };
-		748E34C11DB0EB2900093523 /* BMXMLUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34B81DB0EB2900093523 /* BMXMLUtilities.h */; };
-		748E34C21DB0EB2900093523 /* BMXMLUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34B81DB0EB2900093523 /* BMXMLUtilities.h */; };
+		748E34BB1DB0EB2900093523 /* BMXMLDocument_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34B51DB0EB2900093523 /* BMXMLDocument_Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		748E34BC1DB0EB2900093523 /* BMXMLDocument_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34B51DB0EB2900093523 /* BMXMLDocument_Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		748E34BD1DB0EB2900093523 /* BMXMLElement_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34B61DB0EB2900093523 /* BMXMLElement_Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		748E34BE1DB0EB2900093523 /* BMXMLElement_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34B61DB0EB2900093523 /* BMXMLElement_Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		748E34BF1DB0EB2900093523 /* BMXMLNode_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34B71DB0EB2900093523 /* BMXMLNode_Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		748E34C01DB0EB2900093523 /* BMXMLNode_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34B71DB0EB2900093523 /* BMXMLNode_Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		748E34C11DB0EB2900093523 /* BMXMLUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34B81DB0EB2900093523 /* BMXMLUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		748E34C21DB0EB2900093523 /* BMXMLUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34B81DB0EB2900093523 /* BMXMLUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		748E34C31DB0EB2900093523 /* BMXMLUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 748E34B91DB0EB2900093523 /* BMXMLUtilities.m */; };
 		748E34C41DB0EB2900093523 /* BMXMLUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 748E34B91DB0EB2900093523 /* BMXMLUtilities.m */; };
-		748E34C51DB0EB2900093523 /* BMXPathQuery_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34BA1DB0EB2900093523 /* BMXPathQuery_Private.h */; };
-		748E34C61DB0EB2900093523 /* BMXPathQuery_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34BA1DB0EB2900093523 /* BMXPathQuery_Private.h */; };
-		748E34CD1DB0EB6600093523 /* UIImage+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34C71DB0EB5B00093523 /* UIImage+BMCommons.h */; };
+		748E34C51DB0EB2900093523 /* BMXPathQuery_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34BA1DB0EB2900093523 /* BMXPathQuery_Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		748E34C61DB0EB2900093523 /* BMXPathQuery_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34BA1DB0EB2900093523 /* BMXPathQuery_Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		748E34CD1DB0EB6600093523 /* UIImage+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 748E34C71DB0EB5B00093523 /* UIImage+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		748E34CE1DB0EB6600093523 /* UIImage+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 748E34C81DB0EB5B00093523 /* UIImage+BMCommons.m */; };
 		748E34D01DB0EF6300093523 /* BMJavaBasedMappableObjectClassResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D8314519D07853001C1756 /* BMJavaBasedMappableObjectClassResolver.m */; };
-		748E34D11DB0EF6C00093523 /* BMJavaBasedMappableObjectClassResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D8314419D07853001C1756 /* BMJavaBasedMappableObjectClassResolver.h */; };
-		748E34D21DB0EF7500093523 /* BMMappableObjectClassResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D8315119D07C51001C1756 /* BMMappableObjectClassResolver.h */; };
-		748E34D31DB0EF7E00093523 /* BMAbstractMappableObjectClassResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D8315719D0845F001C1756 /* BMAbstractMappableObjectClassResolver.h */; };
+		748E34D11DB0EF6C00093523 /* BMJavaBasedMappableObjectClassResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D8314419D07853001C1756 /* BMJavaBasedMappableObjectClassResolver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		748E34D21DB0EF7500093523 /* BMMappableObjectClassResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D8315119D07C51001C1756 /* BMMappableObjectClassResolver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		748E34D31DB0EF7E00093523 /* BMAbstractMappableObjectClassResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D8315719D0845F001C1756 /* BMAbstractMappableObjectClassResolver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		748E34D41DB0EF7E00093523 /* BMAbstractMappableObjectClassResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D8315819D0845F001C1756 /* BMAbstractMappableObjectClassResolver.m */; };
 		7491242417450E3E0070E23E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		7491243517450E9B0070E23E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
@@ -755,15 +755,15 @@
 		749124A517451B1D0070E23E /* libBMUIExtensions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74912467174510620070E23E /* libBMUIExtensions.a */; };
 		749915761A595BF100773BB0 /* BMSettingsTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 744B2D2019F42E7C00D46E95 /* BMSettingsTestCase.m */; };
 		749A1282198A9421005267F5 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7482AE2D183102BE0017B7E0 /* blackArrow@2x.png */; };
-		749B10741D421D0600CEF8BB /* BMRestKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007CC17451DD6007B0A22 /* BMRestKit.h */; };
+		749B10741D421D0600CEF8BB /* BMRestKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007CC17451DD6007B0A22 /* BMRestKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		749B10751D421D0600CEF8BB /* BMRestKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007CD17451DD6007B0A22 /* BMRestKit.m */; };
 		749D239F15698C06006DD5FC /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749D239E15698C05006DD5FC /* CoreMedia.framework */; };
 		74A1C40617F31DB2004BB554 /* BMApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A1C40417F31DB2004BB554 /* BMApp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74A1C40717F31DB2004BB554 /* BMApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A1C40517F31DB2004BB554 /* BMApp.m */; };
-		74A1C40F17F32135004BB554 /* BMApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A1C40417F31DB2004BB554 /* BMApp.h */; };
+		74A1C40F17F32135004BB554 /* BMApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A1C40417F31DB2004BB554 /* BMApp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74A1C41017F32139004BB554 /* BMApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A1C40517F31DB2004BB554 /* BMApp.m */; };
 		74A4F75E174E4C08000AC5C8 /* BMCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A4F75C174E4C08000AC5C8 /* BMCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74A4F75F174E4C08000AC5C8 /* BMCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A4F75C174E4C08000AC5C8 /* BMCache.h */; };
+		74A4F75F174E4C08000AC5C8 /* BMCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A4F75C174E4C08000AC5C8 /* BMCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74A4F760174E4C08000AC5C8 /* BMCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A4F75D174E4C08000AC5C8 /* BMCache.m */; };
 		74A4F761174E4C08000AC5C8 /* BMCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A4F75D174E4C08000AC5C8 /* BMCache.m */; };
 		74A4F76C174E5643000AC5C8 /* BMGetYouTubeStreamInfoService.h in Headers */ = {isa = PBXBuildFile; fileRef = 74A4F76A174E5643000AC5C8 /* BMGetYouTubeStreamInfoService.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -974,10 +974,10 @@
 		74ACB8A614F3CE050068FF3B /* NSNumber+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB78B14F3CE040068FF3B /* NSNumber+BMCommons.m */; };
 		74ACB8A714F3CE050068FF3B /* NSString+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB78C14F3CE040068FF3B /* NSString+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74ACB8A814F3CE050068FF3B /* NSString+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB78D14F3CE040068FF3B /* NSString+BMCommons.m */; };
-		74AD8C901A1E15C6002D658D /* BMViewState.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AD8C8F1A1E15C6002D658D /* BMViewState.h */; };
-		74AE63A11A7A22EA00F124F9 /* BMNib.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AE639F1A7A22EA00F124F9 /* BMNib.h */; };
+		74AD8C901A1E15C6002D658D /* BMViewState.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AD8C8F1A1E15C6002D658D /* BMViewState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74AE63A11A7A22EA00F124F9 /* BMNib.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AE639F1A7A22EA00F124F9 /* BMNib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74AE63A21A7A22EA00F124F9 /* BMNib.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AE63A01A7A22EA00F124F9 /* BMNib.m */; };
-		74AEAAA318AE838A00E83CED /* BMAsyncLoadingImageButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AEAAA118AE838A00E83CED /* BMAsyncLoadingImageButtonCell.h */; };
+		74AEAAA318AE838A00E83CED /* BMAsyncLoadingImageButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AEAAA118AE838A00E83CED /* BMAsyncLoadingImageButtonCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74AEAAA418AE838A00E83CED /* BMAsyncLoadingImageButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AEAAA218AE838A00E83CED /* BMAsyncLoadingImageButtonCell.m */; };
 		74B007DC17451DD6007B0A22 /* BMAbstractMappableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007C617451DD6007B0A22 /* BMAbstractMappableObject.m */; };
 		74B007DD17451DD6007B0A22 /* BMFieldMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007C817451DD6007B0A22 /* BMFieldMapping.m */; };
@@ -1046,50 +1046,50 @@
 		74B008CA17453A4E007B0A22 /* BMValueSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B008A717453A4E007B0A22 /* BMValueSelectionCell.m */; };
 		74B008CB17453A4E007B0A22 /* BMWebDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B008A917453A4E007B0A22 /* BMWebDialog.m */; };
 		74B008D11745552E007B0A22 /* BMMultiSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B008D01745552E007B0A22 /* BMMultiSelectionViewController.m */; };
-		74B00D2F17458A95007B0A22 /* BMErrorHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B00860174534F9007B0A22 /* BMErrorHelper.h */; };
+		74B00D2F17458A95007B0A22 /* BMErrorHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B00860174534F9007B0A22 /* BMErrorHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D3017458A95007B0A22 /* BMErrorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B00861174534F9007B0A22 /* BMErrorHelper.m */; };
-		74B00D4217458AF1007B0A22 /* BMXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007EB17452B1A007B0A22 /* BMXMLDocument.h */; };
+		74B00D4217458AF1007B0A22 /* BMXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007EB17452B1A007B0A22 /* BMXMLDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D4317458AF1007B0A22 /* BMXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007EC17452B1A007B0A22 /* BMXMLDocument.m */; };
-		74B00D4417458AF1007B0A22 /* BMXMLElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007ED17452B1A007B0A22 /* BMXMLElement.h */; };
+		74B00D4417458AF1007B0A22 /* BMXMLElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007ED17452B1A007B0A22 /* BMXMLElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D4517458AF1007B0A22 /* BMXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007EE17452B1A007B0A22 /* BMXMLElement.m */; };
-		74B00D4617458AF1007B0A22 /* BMXMLModelObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007EF17452B1A007B0A22 /* BMXMLModelObject.h */; };
-		74B00D4717458AF1007B0A22 /* BMXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007F017452B1A007B0A22 /* BMXMLNode.h */; };
+		74B00D4617458AF1007B0A22 /* BMXMLModelObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007EF17452B1A007B0A22 /* BMXMLModelObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74B00D4717458AF1007B0A22 /* BMXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007F017452B1A007B0A22 /* BMXMLNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D4817458AF1007B0A22 /* BMXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007F117452B1A007B0A22 /* BMXMLNode.m */; };
-		74B00D4917458AF1007B0A22 /* BMXMLReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007F217452B1A007B0A22 /* BMXMLReader.h */; };
+		74B00D4917458AF1007B0A22 /* BMXMLReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007F217452B1A007B0A22 /* BMXMLReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D4A17458AF1007B0A22 /* BMXMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007F317452B1A007B0A22 /* BMXMLReader.m */; };
-		74B00D4B17458AF1007B0A22 /* BMXMLReaderSAX.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007F417452B1A007B0A22 /* BMXMLReaderSAX.h */; };
+		74B00D4B17458AF1007B0A22 /* BMXMLReaderSAX.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007F417452B1A007B0A22 /* BMXMLReaderSAX.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D4C17458AF1007B0A22 /* BMXMLReaderSAX.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007F517452B1A007B0A22 /* BMXMLReaderSAX.m */; };
-		74B00D4F17458AF1007B0A22 /* BMXPathQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007F817452B1A007B0A22 /* BMXPathQuery.h */; };
+		74B00D4F17458AF1007B0A22 /* BMXPathQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007F817452B1A007B0A22 /* BMXPathQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D5017458AF1007B0A22 /* BMXPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007F917452B1A007B0A22 /* BMXPathQuery.m */; };
-		74B00D5817458B35007B0A22 /* BMJSONParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B008441745323A007B0A22 /* BMJSONParser.h */; };
+		74B00D5817458B35007B0A22 /* BMJSONParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B008441745323A007B0A22 /* BMJSONParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D5917458B35007B0A22 /* BMJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B008451745323B007B0A22 /* BMJSONParser.m */; };
-		74B00D5C17458B35007B0A22 /* BMParserHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B008481745323C007B0A22 /* BMParserHandler.h */; };
+		74B00D5C17458B35007B0A22 /* BMParserHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B008481745323C007B0A22 /* BMParserHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D5D17458B35007B0A22 /* BMParserHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B008491745323C007B0A22 /* BMParserHandler.m */; };
-		74B00D5E17458B35007B0A22 /* BMParserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B0084A1745323D007B0A22 /* BMParserService.h */; };
+		74B00D5E17458B35007B0A22 /* BMParserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B0084A1745323D007B0A22 /* BMParserService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D5F17458B35007B0A22 /* BMParserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B0084B1745323D007B0A22 /* BMParserService.m */; };
-		74B00D6017458B35007B0A22 /* BMXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B0084C1745323D007B0A22 /* BMXMLParser.h */; };
+		74B00D6017458B35007B0A22 /* BMXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B0084C1745323D007B0A22 /* BMXMLParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D6117458B35007B0A22 /* BMXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B0084D1745323E007B0A22 /* BMXMLParser.m */; };
-		74B00D6217458B35007B0A22 /* BMAbstractMappableObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007C517451DD6007B0A22 /* BMAbstractMappableObject.h */; };
+		74B00D6217458B35007B0A22 /* BMAbstractMappableObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007C517451DD6007B0A22 /* BMAbstractMappableObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D6317458B35007B0A22 /* BMAbstractMappableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007C617451DD6007B0A22 /* BMAbstractMappableObject.m */; };
-		74B00D6417458B35007B0A22 /* BMFieldMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007C717451DD6007B0A22 /* BMFieldMapping.h */; };
+		74B00D6417458B35007B0A22 /* BMFieldMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007C717451DD6007B0A22 /* BMFieldMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D6517458B35007B0A22 /* BMFieldMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007C817451DD6007B0A22 /* BMFieldMapping.m */; };
-		74B00D6617458B35007B0A22 /* BMMappableObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007C917451DD6007B0A22 /* BMMappableObject.h */; };
-		74B00D6717458B35007B0A22 /* BMMappableObjectGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007CA17451DD6007B0A22 /* BMMappableObjectGenerator.h */; };
+		74B00D6617458B35007B0A22 /* BMMappableObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007C917451DD6007B0A22 /* BMMappableObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74B00D6717458B35007B0A22 /* BMMappableObjectGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007CA17451DD6007B0A22 /* BMMappableObjectGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D6817458B35007B0A22 /* BMMappableObjectGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007CB17451DD6007B0A22 /* BMMappableObjectGenerator.m */; };
-		74B00D6917458B35007B0A22 /* BMObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007CE17451DD6007B0A22 /* BMObjectMapping.h */; };
+		74B00D6917458B35007B0A22 /* BMObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007CE17451DD6007B0A22 /* BMObjectMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D6A17458B35007B0A22 /* BMObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007CF17451DD6007B0A22 /* BMObjectMapping.m */; };
-		74B00D6B17458B35007B0A22 /* BMObjectMappingParserHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007D017451DD6007B0A22 /* BMObjectMappingParserHandler.h */; };
+		74B00D6B17458B35007B0A22 /* BMObjectMappingParserHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007D017451DD6007B0A22 /* BMObjectMappingParserHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D6C17458B35007B0A22 /* BMObjectMappingParserHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007D117451DD6007B0A22 /* BMObjectMappingParserHandler.m */; };
-		74B00D6D17458B35007B0A22 /* BMObjectMappingParserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007D217451DD6007B0A22 /* BMObjectMappingParserService.h */; };
+		74B00D6D17458B35007B0A22 /* BMObjectMappingParserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007D217451DD6007B0A22 /* BMObjectMappingParserService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D6E17458B35007B0A22 /* BMObjectMappingParserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007D317451DD6007B0A22 /* BMObjectMappingParserService.m */; };
-		74B00D6F17458B35007B0A22 /* BMParserElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007D417451DD6007B0A22 /* BMParserElement.h */; };
+		74B00D6F17458B35007B0A22 /* BMParserElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007D417451DD6007B0A22 /* BMParserElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D7017458B35007B0A22 /* BMParserElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007D517451DD6007B0A22 /* BMParserElement.m */; };
-		74B00D7117458B35007B0A22 /* BMRootObjectMappingParserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007D617451DD6007B0A22 /* BMRootObjectMappingParserService.h */; };
+		74B00D7117458B35007B0A22 /* BMRootObjectMappingParserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007D617451DD6007B0A22 /* BMRootObjectMappingParserService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D7217458B35007B0A22 /* BMRootObjectMappingParserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007D717451DD6007B0A22 /* BMRootObjectMappingParserService.m */; };
-		74B00D7317458B35007B0A22 /* BMXMLSchemaParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007D817451DD6007B0A22 /* BMXMLSchemaParser.h */; };
+		74B00D7317458B35007B0A22 /* BMXMLSchemaParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007D817451DD6007B0A22 /* BMXMLSchemaParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B00D7417458B35007B0A22 /* BMXMLSchemaParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007D917451DD6007B0A22 /* BMXMLSchemaParser.m */; };
 		74B03B8518D6F92E007BA709 /* schema1.json in Resources */ = {isa = PBXBuildFile; fileRef = 74B03B8418D6F92E007BA709 /* schema1.json */; };
-		74B22F501D2D4D5600E9AE6D /* BMAsyncImageLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B22F4E1D2D4D5600E9AE6D /* BMAsyncImageLoader.h */; };
+		74B22F501D2D4D5600E9AE6D /* BMAsyncImageLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B22F4E1D2D4D5600E9AE6D /* BMAsyncImageLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74B22F511D2D4D5600E9AE6D /* BMAsyncImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B22F4F1D2D4D5600E9AE6D /* BMAsyncImageLoader.m */; };
 		74B7035A1761EFA80001755C /* no-video.png in Resources */ = {isa = PBXBuildFile; fileRef = 74B703591761EFA80001755C /* no-video.png */; };
 		74C319AA17994250009AD294 /* BMXML.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007E917452B1A007B0A22 /* BMXML.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1127,8 +1127,8 @@
 		74C493DE155144AE00DA516D /* BMErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C493DC155144AE00DA516D /* BMErrorView.m */; };
 		74C493E11551469600DA516D /* BMServiceModelTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C493DF1551469500DA516D /* BMServiceModelTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74C493E21551469600DA516D /* BMServiceModelTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C493E01551469600DA516D /* BMServiceModelTableViewController.m */; };
-		74C866951A63BF720020CF7F /* NSInvocation+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C866931A63BF720020CF7F /* NSInvocation+BMCommons.h */; };
-		74C866961A63BF720020CF7F /* NSInvocation+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C866931A63BF720020CF7F /* NSInvocation+BMCommons.h */; };
+		74C866951A63BF720020CF7F /* NSInvocation+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C866931A63BF720020CF7F /* NSInvocation+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74C866961A63BF720020CF7F /* NSInvocation+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C866931A63BF720020CF7F /* NSInvocation+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74C866971A63BF720020CF7F /* NSInvocation+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C866941A63BF720020CF7F /* NSInvocation+BMCommons.m */; };
 		74C866981A63BF720020CF7F /* NSInvocation+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C866941A63BF720020CF7F /* NSInvocation+BMCommons.m */; };
 		74CC19A7175F9B7400C0C4E2 /* default-no-image.png in Resources */ = {isa = PBXBuildFile; fileRef = 74CC19A5175F9B7400C0C4E2 /* default-no-image.png */; };
@@ -1141,14 +1141,14 @@
 		74D0210F1744180300B897CE /* BMThree20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 745FE80C1691C8BF006D1FE4 /* BMThree20.bundle */; };
 		74D02D89162040F7006D39B4 /* bar-button-item-background-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 74D02D87162040F7006D39B4 /* bar-button-item-background-highlighted.png */; };
 		74D02D8A162040F7006D39B4 /* bar-button-item-background-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 74D02D88162040F7006D39B4 /* bar-button-item-background-highlighted@2x.png */; };
-		74D203A51793E8400097147B /* BMMappableObjectXMLSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D203A31793E8400097147B /* BMMappableObjectXMLSerializer.h */; };
+		74D203A51793E8400097147B /* BMMappableObjectXMLSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D203A31793E8400097147B /* BMMappableObjectXMLSerializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74D203A61793E8400097147B /* BMMappableObjectXMLSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D203A41793E8400097147B /* BMMappableObjectXMLSerializer.m */; };
 		74D203A71793E8400097147B /* BMMappableObjectXMLSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D203A41793E8400097147B /* BMMappableObjectXMLSerializer.m */; };
-		74D203B11793E8560097147B /* BMMappableObjectJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D203AF1793E8550097147B /* BMMappableObjectJSONSerializer.h */; };
+		74D203B11793E8560097147B /* BMMappableObjectJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D203AF1793E8550097147B /* BMMappableObjectJSONSerializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74D203B21793E8560097147B /* BMMappableObjectJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D203B01793E8550097147B /* BMMappableObjectJSONSerializer.m */; };
 		74D203B31793E8560097147B /* BMMappableObjectJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D203B01793E8550097147B /* BMMappableObjectJSONSerializer.m */; };
 		74D45B991618527200F9173E /* NSObject+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D45B971618527200F9173E /* NSObject+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74D45B9A1618527200F9173E /* NSObject+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D45B971618527200F9173E /* NSObject+BMCommons.h */; };
+		74D45B9A1618527200F9173E /* NSObject+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D45B971618527200F9173E /* NSObject+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74D45B9B1618527200F9173E /* NSObject+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D45B981618527200F9173E /* NSObject+BMCommons.m */; };
 		74D45B9C1618527200F9173E /* NSObject+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D45B981618527200F9173E /* NSObject+BMCommons.m */; };
 		74D6B85E182930470020BE12 /* BMGoogleMapsReverseGeocoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B0080717452CD5007B0A22 /* BMGoogleMapsReverseGeocoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1187,7 +1187,7 @@
 		74D6B882182930DF0020BE12 /* BMMultiSwitchViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B0088417453A4E007B0A22 /* BMMultiSwitchViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74D6B883182930DF0020BE12 /* BMTimeSelectionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B0089E17453A4E007B0A22 /* BMTimeSelectionViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74D7C71F1758F92500E2D9FC /* NSData+BMCompression.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D7C71D1758F92200E2D9FC /* NSData+BMCompression.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74D7C7201758F92500E2D9FC /* NSData+BMCompression.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D7C71D1758F92200E2D9FC /* NSData+BMCompression.h */; };
+		74D7C7201758F92500E2D9FC /* NSData+BMCompression.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D7C71D1758F92200E2D9FC /* NSData+BMCompression.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74D7C7211758F92500E2D9FC /* NSData+BMCompression.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D7C71E1758F92400E2D9FC /* NSData+BMCompression.m */; };
 		74D7C7221758F92500E2D9FC /* NSData+BMCompression.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D7C71E1758F92400E2D9FC /* NSData+BMCompression.m */; };
 		74D815ED178B0DD20063B8CE /* ClassOverviewGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D815EC178B0DD20063B8CE /* ClassOverviewGenerator.m */; };
@@ -1205,57 +1205,57 @@
 		74D815FD178B657A0063B8CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740D6137177A43B000A5F023 /* Foundation.framework */; };
 		74D815FE178B657A0063B8CE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740D6134177A438C00A5F023 /* AudioToolbox.framework */; };
 		74D81603178B65B40063B8CE /* BMEnumerationValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 74732E4C177D8B5500A68CB9 /* BMEnumerationValue.m */; };
-		74D8314719D07853001C1756 /* BMJavaBasedMappableObjectClassResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D8314419D07853001C1756 /* BMJavaBasedMappableObjectClassResolver.h */; };
+		74D8314719D07853001C1756 /* BMJavaBasedMappableObjectClassResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D8314419D07853001C1756 /* BMJavaBasedMappableObjectClassResolver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74D8314919D07853001C1756 /* BMJavaBasedMappableObjectClassResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D8314519D07853001C1756 /* BMJavaBasedMappableObjectClassResolver.m */; };
-		74D8315419D07C51001C1756 /* BMMappableObjectClassResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D8315119D07C51001C1756 /* BMMappableObjectClassResolver.h */; };
-		74D8315A19D0845F001C1756 /* BMAbstractMappableObjectClassResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D8315719D0845F001C1756 /* BMAbstractMappableObjectClassResolver.h */; };
+		74D8315419D07C51001C1756 /* BMMappableObjectClassResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D8315119D07C51001C1756 /* BMMappableObjectClassResolver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74D8315A19D0845F001C1756 /* BMAbstractMappableObjectClassResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 74D8315719D0845F001C1756 /* BMAbstractMappableObjectClassResolver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74D8315C19D0845F001C1756 /* BMAbstractMappableObjectClassResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D8315819D0845F001C1756 /* BMAbstractMappableObjectClassResolver.m */; };
 		74DAA1FB175795600011F1D1 /* BMStyleSheet+BMMedia.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DAA1F9175795600011F1D1 /* BMStyleSheet+BMMedia.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74DAA1FC175795600011F1D1 /* BMStyleSheet+BMMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DAA1FA175795600011F1D1 /* BMStyleSheet+BMMedia.m */; };
 		74DAEE021591E65A002B807F /* NSData+BMEncryption.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DAEE001591E65A002B807F /* NSData+BMEncryption.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74DAEE031591E65A002B807F /* NSData+BMEncryption.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DAEE001591E65A002B807F /* NSData+BMEncryption.h */; };
+		74DAEE031591E65A002B807F /* NSData+BMEncryption.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DAEE001591E65A002B807F /* NSData+BMEncryption.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74DAEE041591E65A002B807F /* NSData+BMEncryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DAEE011591E65A002B807F /* NSData+BMEncryption.m */; };
 		74DAEE051591E65A002B807F /* NSData+BMEncryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DAEE011591E65A002B807F /* NSData+BMEncryption.m */; };
 		74DAEE4C1591F121002B807F /* BMEncryptionHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DAEE4A1591F121002B807F /* BMEncryptionHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74DAEE4D1591F121002B807F /* BMEncryptionHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DAEE4A1591F121002B807F /* BMEncryptionHelper.h */; };
+		74DAEE4D1591F121002B807F /* BMEncryptionHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DAEE4A1591F121002B807F /* BMEncryptionHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74DAEE4E1591F121002B807F /* BMEncryptionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DAEE4B1591F121002B807F /* BMEncryptionHelper.m */; };
 		74DAEE4F1591F121002B807F /* BMEncryptionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DAEE4B1591F121002B807F /* BMEncryptionHelper.m */; };
 		74DAEE561591FF4B002B807F /* BMEncodingHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DAEE541591FF49002B807F /* BMEncodingHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74DAEE571591FF4B002B807F /* BMEncodingHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DAEE541591FF49002B807F /* BMEncodingHelper.h */; };
+		74DAEE571591FF4B002B807F /* BMEncodingHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DAEE541591FF49002B807F /* BMEncodingHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74DAEE581591FF4B002B807F /* BMEncodingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DAEE551591FF4A002B807F /* BMEncodingHelper.m */; };
 		74DAEE591591FF4B002B807F /* BMEncodingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DAEE551591FF4A002B807F /* BMEncodingHelper.m */; };
 		74DAEE6F15921C76002B807F /* BMLocalization.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DAEE6D15921C76002B807F /* BMLocalization.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74DAEE7015921C76002B807F /* BMLocalization.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DAEE6D15921C76002B807F /* BMLocalization.h */; };
+		74DAEE7015921C76002B807F /* BMLocalization.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DAEE6D15921C76002B807F /* BMLocalization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74DAEE7115921C76002B807F /* BMLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DAEE6E15921C76002B807F /* BMLocalization.m */; };
 		74DAEE7215921C76002B807F /* BMLocalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DAEE6E15921C76002B807F /* BMLocalization.m */; };
-		74DD088318F2DF8000559BA7 /* BMWeakReferenceRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DD088118F2DF8000559BA7 /* BMWeakReferenceRegistry.h */; };
-		74DD088418F2DF8000559BA7 /* BMWeakReferenceRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DD088118F2DF8000559BA7 /* BMWeakReferenceRegistry.h */; };
+		74DD088318F2DF8000559BA7 /* BMWeakReferenceRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DD088118F2DF8000559BA7 /* BMWeakReferenceRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74DD088418F2DF8000559BA7 /* BMWeakReferenceRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DD088118F2DF8000559BA7 /* BMWeakReferenceRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74DD088518F2DF8000559BA7 /* BMWeakReferenceRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD088218F2DF8000559BA7 /* BMWeakReferenceRegistry.m */; };
 		74DD088618F2DF8000559BA7 /* BMWeakReferenceRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD088218F2DF8000559BA7 /* BMWeakReferenceRegistry.m */; };
-		74DD089018F2DFEC00559BA7 /* BMWeakReference.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DD088E18F2DFEC00559BA7 /* BMWeakReference.h */; };
-		74DD089118F2DFEC00559BA7 /* BMWeakReference.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DD088E18F2DFEC00559BA7 /* BMWeakReference.h */; };
+		74DD089018F2DFEC00559BA7 /* BMWeakReference.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DD088E18F2DFEC00559BA7 /* BMWeakReference.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74DD089118F2DFEC00559BA7 /* BMWeakReference.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DD088E18F2DFEC00559BA7 /* BMWeakReference.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74DD089218F2DFEC00559BA7 /* BMWeakReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD088F18F2DFEC00559BA7 /* BMWeakReference.m */; };
 		74DD089318F2DFEC00559BA7 /* BMWeakReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD088F18F2DFEC00559BA7 /* BMWeakReference.m */; };
-		74DD089518F2E07000559BA7 /* BMSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DD089418F2E07000559BA7 /* BMSingleton.h */; };
-		74DD089618F2E07000559BA7 /* BMSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DD089418F2E07000559BA7 /* BMSingleton.h */; };
+		74DD089518F2E07000559BA7 /* BMSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DD089418F2E07000559BA7 /* BMSingleton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74DD089618F2E07000559BA7 /* BMSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DD089418F2E07000559BA7 /* BMSingleton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74DD3F9E1BD2883A0022C11E /* BMLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 741F4C361AB9818700B20C53 /* BMLogging.m */; };
-		74DFE00A1A9202CB00E75493 /* NSURLRequest+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DFE0081A9202CB00E75493 /* NSURLRequest+BMCommons.h */; };
-		74DFE00B1A9202CB00E75493 /* NSURLRequest+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DFE0081A9202CB00E75493 /* NSURLRequest+BMCommons.h */; };
+		74DFE00A1A9202CB00E75493 /* NSURLRequest+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DFE0081A9202CB00E75493 /* NSURLRequest+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74DFE00B1A9202CB00E75493 /* NSURLRequest+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DFE0081A9202CB00E75493 /* NSURLRequest+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74DFE00C1A9202CB00E75493 /* NSURLRequest+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DFE0091A9202CB00E75493 /* NSURLRequest+BMCommons.m */; };
 		74DFE00D1A9202CB00E75493 /* NSURLRequest+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DFE0091A9202CB00E75493 /* NSURLRequest+BMCommons.m */; };
 		74E21ED6175B463F00F4E00B /* BMUICore.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74E21ED5175B463F00F4E00B /* BMUICore.strings */; };
-		74E22C7218E305C7001C885C /* UIApplication+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E22C7018E305C7001C885C /* UIApplication+BMCommons.h */; };
+		74E22C7218E305C7001C885C /* UIApplication+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E22C7018E305C7001C885C /* UIApplication+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E22C7318E305C7001C885C /* UIApplication+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E22C7118E305C7001C885C /* UIApplication+BMCommons.m */; };
-		74E30B901B380C9C00ACD9B5 /* BMDigest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E30B8E1B380C9C00ACD9B5 /* BMDigest.h */; };
-		74E30B911B380C9C00ACD9B5 /* BMDigest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E30B8E1B380C9C00ACD9B5 /* BMDigest.h */; };
+		74E30B901B380C9C00ACD9B5 /* BMDigest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E30B8E1B380C9C00ACD9B5 /* BMDigest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74E30B911B380C9C00ACD9B5 /* BMDigest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E30B8E1B380C9C00ACD9B5 /* BMDigest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E30B921B380C9C00ACD9B5 /* BMDigest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E30B8F1B380C9C00ACD9B5 /* BMDigest.m */; };
 		74E30B931B380C9C00ACD9B5 /* BMDigest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E30B8F1B380C9C00ACD9B5 /* BMDigest.m */; };
-		74E30B9D1B38125E00ACD9B5 /* BMMD5Digest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E30B9B1B38125E00ACD9B5 /* BMMD5Digest.h */; };
-		74E30B9E1B38125E00ACD9B5 /* BMMD5Digest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E30B9B1B38125E00ACD9B5 /* BMMD5Digest.h */; };
+		74E30B9D1B38125E00ACD9B5 /* BMMD5Digest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E30B9B1B38125E00ACD9B5 /* BMMD5Digest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74E30B9E1B38125E00ACD9B5 /* BMMD5Digest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E30B9B1B38125E00ACD9B5 /* BMMD5Digest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E30B9F1B38125E00ACD9B5 /* BMMD5Digest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E30B9C1B38125E00ACD9B5 /* BMMD5Digest.m */; };
 		74E30BA01B38125E00ACD9B5 /* BMMD5Digest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E30B9C1B38125E00ACD9B5 /* BMMD5Digest.m */; };
-		74E30BA31B38126900ACD9B5 /* BMSHA1Digest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E30BA11B38126900ACD9B5 /* BMSHA1Digest.h */; };
-		74E30BA41B38126900ACD9B5 /* BMSHA1Digest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E30BA11B38126900ACD9B5 /* BMSHA1Digest.h */; };
+		74E30BA31B38126900ACD9B5 /* BMSHA1Digest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E30BA11B38126900ACD9B5 /* BMSHA1Digest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74E30BA41B38126900ACD9B5 /* BMSHA1Digest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E30BA11B38126900ACD9B5 /* BMSHA1Digest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E30BA51B38126900ACD9B5 /* BMSHA1Digest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E30BA21B38126900ACD9B5 /* BMSHA1Digest.m */; };
 		74E30BA61B38126900ACD9B5 /* BMSHA1Digest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E30BA21B38126900ACD9B5 /* BMSHA1Digest.m */; };
 		74E3606512FAAF450072189A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
@@ -1268,98 +1268,98 @@
 		74E3606C12FAAF4D0072189A /* libBMCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC07E0554694100DB518D /* libBMCore.a */; };
 		74E360C012FAB2790072189A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2A9ABF812F817460070A66B /* SystemConfiguration.framework */; };
 		74E360C412FAB2A40072189A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E360C312FAB2A40072189A /* CFNetwork.framework */; };
-		74E3C4E814F3D15F00F4299D /* BMAbstractInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB69F14F3CE040068FF3B /* BMAbstractInputStream.h */; };
+		74E3C4E814F3D15F00F4299D /* BMAbstractInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB69F14F3CE040068FF3B /* BMAbstractInputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C4E914F3D15F00F4299D /* BMAbstractInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB6A014F3CE040068FF3B /* BMAbstractInputStream.m */; };
-		74E3C4EE14F3D15F00F4299D /* BMAbstractService.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6A514F3CE040068FF3B /* BMAbstractService.h */; };
+		74E3C4EE14F3D15F00F4299D /* BMAbstractService.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6A514F3CE040068FF3B /* BMAbstractService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C4EF14F3D15F00F4299D /* BMAbstractService.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB6A614F3CE040068FF3B /* BMAbstractService.m */; };
-		74E3C4F214F3D15F00F4299D /* BMAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6A914F3CE040068FF3B /* BMAction.h */; };
+		74E3C4F214F3D15F00F4299D /* BMAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6A914F3CE040068FF3B /* BMAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C4F314F3D15F00F4299D /* BMAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB6AA14F3CE040068FF3B /* BMAction.m */; };
-		74E3C4F814F3D15F00F4299D /* BMApplicationHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6AF14F3CE040068FF3B /* BMApplicationHelper.h */; };
+		74E3C4F814F3D15F00F4299D /* BMApplicationHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6AF14F3CE040068FF3B /* BMApplicationHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C4F914F3D15F00F4299D /* BMApplicationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB6B014F3CE040068FF3B /* BMApplicationHelper.m */; };
-		74E3C4FA14F3D15F00F4299D /* BMAsyncDataLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6B114F3CE040068FF3B /* BMAsyncDataLoader.h */; };
+		74E3C4FA14F3D15F00F4299D /* BMAsyncDataLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6B114F3CE040068FF3B /* BMAsyncDataLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C4FB14F3D15F00F4299D /* BMAsyncDataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB6B214F3CE040068FF3B /* BMAsyncDataLoader.m */; };
-		74E3C50314F3D15F00F4299D /* BMBufferedInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6BA14F3CE040068FF3B /* BMBufferedInputStream.h */; };
+		74E3C50314F3D15F00F4299D /* BMBufferedInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6BA14F3CE040068FF3B /* BMBufferedInputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C50414F3D15F00F4299D /* BMBufferedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB6BB14F3CE040068FF3B /* BMBufferedInputStream.m */; };
-		74E3C50A14F3D15F00F4299D /* BMCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6C114F3CE040068FF3B /* BMCore.h */; };
-		74E3C50B14F3D15F00F4299D /* BMCompositeService.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6C214F3CE040068FF3B /* BMCompositeService.h */; };
+		74E3C50A14F3D15F00F4299D /* BMCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6C114F3CE040068FF3B /* BMCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74E3C50B14F3D15F00F4299D /* BMCompositeService.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6C214F3CE040068FF3B /* BMCompositeService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C50C14F3D15F00F4299D /* BMCompositeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB6C314F3CE040068FF3B /* BMCompositeService.m */; };
-		74E3C51714F3D15F00F4299D /* BMDateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6CE14F3CE040068FF3B /* BMDateHelper.h */; };
+		74E3C51714F3D15F00F4299D /* BMDateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6CE14F3CE040068FF3B /* BMDateHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C51814F3D15F00F4299D /* BMDateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB6CF14F3CE040068FF3B /* BMDateHelper.m */; };
-		74E3C52A14F3D15F00F4299D /* BMEnumeratorWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6E114F3CE040068FF3B /* BMEnumeratorWrapper.h */; };
+		74E3C52A14F3D15F00F4299D /* BMEnumeratorWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6E114F3CE040068FF3B /* BMEnumeratorWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C52B14F3D15F00F4299D /* BMEnumeratorWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB6E214F3CE040068FF3B /* BMEnumeratorWrapper.m */; };
-		74E3C52C14F3D15F00F4299D /* BMErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6E314F3CE040068FF3B /* BMErrorCodes.h */; };
+		74E3C52C14F3D15F00F4299D /* BMErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6E314F3CE040068FF3B /* BMErrorCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C52D14F3D15F00F4299D /* BMErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB6E414F3CE040068FF3B /* BMErrorCodes.m */; };
-		74E3C53614F3D15F00F4299D /* BMFileHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6ED14F3CE040068FF3B /* BMFileHelper.h */; };
+		74E3C53614F3D15F00F4299D /* BMFileHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6ED14F3CE040068FF3B /* BMFileHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C53714F3D15F00F4299D /* BMFileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB6EE14F3CE040068FF3B /* BMFileHelper.m */; };
 		74E3C53914F3D15F00F4299D /* BMCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB6F014F3CE040068FF3B /* BMCore.m */; };
-		74E3C54814F3D15F00F4299D /* BMImmutableProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6FF14F3CE040068FF3B /* BMImmutableProxy.h */; };
+		74E3C54814F3D15F00F4299D /* BMImmutableProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB6FF14F3CE040068FF3B /* BMImmutableProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C54914F3D15F00F4299D /* BMImmutableProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB70014F3CE040068FF3B /* BMImmutableProxy.m */; };
-		74E3C54C14F3D15F00F4299D /* BMInvertedTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB70314F3CE040068FF3B /* BMInvertedTransformer.h */; };
+		74E3C54C14F3D15F00F4299D /* BMInvertedTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB70314F3CE040068FF3B /* BMInvertedTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C54D14F3D15F00F4299D /* BMInvertedTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB70414F3CE040068FF3B /* BMInvertedTransformer.m */; };
-		74E3C56A14F3D15F00F4299D /* BMNetworkTester.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB72114F3CE040068FF3B /* BMNetworkTester.h */; };
+		74E3C56A14F3D15F00F4299D /* BMNetworkTester.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB72114F3CE040068FF3B /* BMNetworkTester.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C56B14F3D15F00F4299D /* BMNetworkTester.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB72214F3CE040068FF3B /* BMNetworkTester.m */; };
-		74E3C56C14F3D15F00F4299D /* BMNumberHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB72314F3CE040068FF3B /* BMNumberHelper.h */; };
+		74E3C56C14F3D15F00F4299D /* BMNumberHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB72314F3CE040068FF3B /* BMNumberHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C56D14F3D15F00F4299D /* BMNumberHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB72414F3CE040068FF3B /* BMNumberHelper.m */; };
-		74E3C56E14F3D15F00F4299D /* BMNumberToStringValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB72514F3CE040068FF3B /* BMNumberToStringValueTransformer.h */; };
+		74E3C56E14F3D15F00F4299D /* BMNumberToStringValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB72514F3CE040068FF3B /* BMNumberToStringValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C56F14F3D15F00F4299D /* BMNumberToStringValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB72614F3CE040068FF3B /* BMNumberToStringValueTransformer.m */; };
-		74E3C57014F3D15F00F4299D /* BMObjectHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB72714F3CE040068FF3B /* BMObjectHelper.h */; };
+		74E3C57014F3D15F00F4299D /* BMObjectHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB72714F3CE040068FF3B /* BMObjectHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C57114F3D15F00F4299D /* BMObjectHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB72814F3CE040068FF3B /* BMObjectHelper.m */; };
-		74E3C57A14F3D15F00F4299D /* BMObjectToStringTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB73114F3CE040068FF3B /* BMObjectToStringTransformer.h */; };
+		74E3C57A14F3D15F00F4299D /* BMObjectToStringTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB73114F3CE040068FF3B /* BMObjectToStringTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C57B14F3D15F00F4299D /* BMObjectToStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB73214F3CE040068FF3B /* BMObjectToStringTransformer.m */; };
-		74E3C57C14F3D15F00F4299D /* BMOperationQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB73314F3CE040068FF3B /* BMOperationQueue.h */; };
+		74E3C57C14F3D15F00F4299D /* BMOperationQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB73314F3CE040068FF3B /* BMOperationQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C57D14F3D15F00F4299D /* BMOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB73414F3CE040068FF3B /* BMOperationQueue.m */; };
-		74E3C57E14F3D15F00F4299D /* BMOrderedDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB73514F3CE040068FF3B /* BMOrderedDictionary.h */; };
+		74E3C57E14F3D15F00F4299D /* BMOrderedDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB73514F3CE040068FF3B /* BMOrderedDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C57F14F3D15F00F4299D /* BMOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB73614F3CE040068FF3B /* BMOrderedDictionary.m */; };
-		74E3C58C14F3D15F00F4299D /* BMPropertyDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB74314F3CE040068FF3B /* BMPropertyDescriptor.h */; };
+		74E3C58C14F3D15F00F4299D /* BMPropertyDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB74314F3CE040068FF3B /* BMPropertyDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C58D14F3D15F00F4299D /* BMPropertyDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB74414F3CE040068FF3B /* BMPropertyDescriptor.m */; };
-		74E3C58E14F3D15F00F4299D /* BMPropertyMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB74514F3CE040068FF3B /* BMPropertyMethod.h */; };
+		74E3C58E14F3D15F00F4299D /* BMPropertyMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB74514F3CE040068FF3B /* BMPropertyMethod.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C58F14F3D15F00F4299D /* BMPropertyMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB74614F3CE040068FF3B /* BMPropertyMethod.m */; };
-		74E3C59014F3D15F00F4299D /* BMProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB74714F3CE040068FF3B /* BMProxy.h */; };
+		74E3C59014F3D15F00F4299D /* BMProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB74714F3CE040068FF3B /* BMProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C59114F3D15F00F4299D /* BMProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB74814F3CE040068FF3B /* BMProxy.m */; };
-		74E3C59214F3D15F00F4299D /* BMReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB74914F3CE040068FF3B /* BMReachability.h */; };
+		74E3C59214F3D15F00F4299D /* BMReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB74914F3CE040068FF3B /* BMReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C59314F3D15F00F4299D /* BMReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB74A14F3CE040068FF3B /* BMReachability.m */; };
-		74E3C59614F3D15F00F4299D /* BMResponseContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB74D14F3CE040068FF3B /* BMResponseContainer.h */; };
-		74E3C59714F3D15F00F4299D /* BMReusableObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB74E14F3CE040068FF3B /* BMReusableObject.h */; };
-		74E3C59B14F3D15F00F4299D /* BMService.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB75214F3CE040068FF3B /* BMService.h */; };
-		74E3C59C14F3D15F00F4299D /* BMServiceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB75314F3CE040068FF3B /* BMServiceManager.h */; };
+		74E3C59614F3D15F00F4299D /* BMResponseContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB74D14F3CE040068FF3B /* BMResponseContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74E3C59714F3D15F00F4299D /* BMReusableObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB74E14F3CE040068FF3B /* BMReusableObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74E3C59B14F3D15F00F4299D /* BMService.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB75214F3CE040068FF3B /* BMService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74E3C59C14F3D15F00F4299D /* BMServiceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB75314F3CE040068FF3B /* BMServiceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C59D14F3D15F00F4299D /* BMServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB75414F3CE040068FF3B /* BMServiceManager.m */; };
-		74E3C5A114F3D15F00F4299D /* BMStringHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB75814F3CE040068FF3B /* BMStringHelper.h */; };
+		74E3C5A114F3D15F00F4299D /* BMStringHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB75814F3CE040068FF3B /* BMStringHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C5A214F3D15F00F4299D /* BMStringHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB75914F3CE040068FF3B /* BMStringHelper.m */; };
-		74E3C5A314F3D15F00F4299D /* BMStringToBooleanValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB75A14F3CE040068FF3B /* BMStringToBooleanValueTransformer.h */; };
+		74E3C5A314F3D15F00F4299D /* BMStringToBooleanValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB75A14F3CE040068FF3B /* BMStringToBooleanValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C5A414F3D15F00F4299D /* BMStringToBooleanValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB75B14F3CE040068FF3B /* BMStringToBooleanValueTransformer.m */; };
-		74E3C5A514F3D15F00F4299D /* BMStringToDateValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB75C14F3CE040068FF3B /* BMStringToDateValueTransformer.h */; };
+		74E3C5A514F3D15F00F4299D /* BMStringToDateValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB75C14F3CE040068FF3B /* BMStringToDateValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C5A614F3D15F00F4299D /* BMStringToDateValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB75D14F3CE040068FF3B /* BMStringToDateValueTransformer.m */; };
-		74E3C5A714F3D15F00F4299D /* BMStringToFloatValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB75E14F3CE040068FF3B /* BMStringToFloatValueTransformer.h */; };
+		74E3C5A714F3D15F00F4299D /* BMStringToFloatValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB75E14F3CE040068FF3B /* BMStringToFloatValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C5A814F3D15F00F4299D /* BMStringToFloatValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB75F14F3CE040068FF3B /* BMStringToFloatValueTransformer.m */; };
-		74E3C5A914F3D15F00F4299D /* BMStringToIntegerValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB76014F3CE040068FF3B /* BMStringToIntegerValueTransformer.h */; };
+		74E3C5A914F3D15F00F4299D /* BMStringToIntegerValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB76014F3CE040068FF3B /* BMStringToIntegerValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C5AA14F3D15F00F4299D /* BMStringToIntegerValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB76114F3CE040068FF3B /* BMStringToIntegerValueTransformer.m */; };
-		74E3C5BB14F3D15F00F4299D /* BMTwoWayDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB77214F3CE040068FF3B /* BMTwoWayDictionary.h */; };
+		74E3C5BB14F3D15F00F4299D /* BMTwoWayDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB77214F3CE040068FF3B /* BMTwoWayDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C5BC14F3D15F00F4299D /* BMTwoWayDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB77314F3CE040068FF3B /* BMTwoWayDictionary.m */; };
-		74E3C5BD14F3D15F00F4299D /* BMURLCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB77414F3CE040068FF3B /* BMURLCache.h */; };
+		74E3C5BD14F3D15F00F4299D /* BMURLCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB77414F3CE040068FF3B /* BMURLCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C5BE14F3D15F00F4299D /* BMURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB77514F3CE040068FF3B /* BMURLCache.m */; };
-		74E3C5BF14F3D15F00F4299D /* BMURLConnectionInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB77614F3CE040068FF3B /* BMURLConnectionInputStream.h */; };
+		74E3C5BF14F3D15F00F4299D /* BMURLConnectionInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB77614F3CE040068FF3B /* BMURLConnectionInputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C5C014F3D15F00F4299D /* BMURLConnectionInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB77714F3CE040068FF3B /* BMURLConnectionInputStream.m */; };
-		74E3C5C514F3D15F00F4299D /* BMValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB77C14F3CE040068FF3B /* BMValueTransformer.h */; };
+		74E3C5C514F3D15F00F4299D /* BMValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB77C14F3CE040068FF3B /* BMValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C5C614F3D15F00F4299D /* BMValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB77D14F3CE040068FF3B /* BMValueTransformer.m */; };
-		74E3C5D114F3D15F00F4299D /* NSDateFormatter+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB78814F3CE040068FF3B /* NSDateFormatter+BMCommons.h */; };
+		74E3C5D114F3D15F00F4299D /* NSDateFormatter+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB78814F3CE040068FF3B /* NSDateFormatter+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C5D214F3D15F00F4299D /* NSDateFormatter+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB78914F3CE040068FF3B /* NSDateFormatter+BMCommons.m */; };
-		74E3C5D314F3D15F00F4299D /* NSNumber+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB78A14F3CE040068FF3B /* NSNumber+BMCommons.h */; };
+		74E3C5D314F3D15F00F4299D /* NSNumber+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB78A14F3CE040068FF3B /* NSNumber+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C5D414F3D15F00F4299D /* NSNumber+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB78B14F3CE040068FF3B /* NSNumber+BMCommons.m */; };
-		74E3C5D514F3D15F00F4299D /* NSString+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB78C14F3CE040068FF3B /* NSString+BMCommons.h */; };
+		74E3C5D514F3D15F00F4299D /* NSString+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74ACB78C14F3CE040068FF3B /* NSString+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E3C5D614F3D15F00F4299D /* NSString+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ACB78D14F3CE040068FF3B /* NSString+BMCommons.m */; };
-		74E4EC2E18C8BB3A006511B2 /* NSURL+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4EC2C18C8BB3A006511B2 /* NSURL+BMCommons.h */; };
-		74E4EC2F18C8BB3A006511B2 /* NSURL+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4EC2C18C8BB3A006511B2 /* NSURL+BMCommons.h */; };
+		74E4EC2E18C8BB3A006511B2 /* NSURL+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4EC2C18C8BB3A006511B2 /* NSURL+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74E4EC2F18C8BB3A006511B2 /* NSURL+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E4EC2C18C8BB3A006511B2 /* NSURL+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E4EC3018C8BB3A006511B2 /* NSURL+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E4EC2D18C8BB3A006511B2 /* NSURL+BMCommons.m */; };
 		74E4EC3118C8BB3A006511B2 /* NSURL+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E4EC2D18C8BB3A006511B2 /* NSURL+BMCommons.m */; };
-		74E6760A1A12708F008EEE09 /* BMSchemaFieldType.h in Headers */ = {isa = PBXBuildFile; fileRef = 746706B019CA124A00E79E02 /* BMSchemaFieldType.h */; };
+		74E6760A1A12708F008EEE09 /* BMSchemaFieldType.h in Headers */ = {isa = PBXBuildFile; fileRef = 746706B019CA124A00E79E02 /* BMSchemaFieldType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E706D51517B419004664FD /* NSArray+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E706D31517B419004664FD /* NSArray+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74E706D61517B419004664FD /* NSArray+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E706D31517B419004664FD /* NSArray+BMCommons.h */; };
+		74E706D61517B419004664FD /* NSArray+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E706D31517B419004664FD /* NSArray+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74E706D71517B419004664FD /* NSArray+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E706D41517B419004664FD /* NSArray+BMCommons.m */; };
 		74E706D81517B419004664FD /* NSArray+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E706D41517B419004664FD /* NSArray+BMCommons.m */; };
 		74EBF59C18224D12006E9395 /* BMVersionAvailability.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EBF59B18224D12006E9395 /* BMVersionAvailability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74EBF59D18224D12006E9395 /* BMVersionAvailability.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EBF59B18224D12006E9395 /* BMVersionAvailability.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74EFF4AC1A14BE0300029552 /* NSData+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EFF4AA1A14BE0300029552 /* NSData+BMCommons.h */; };
-		74EFF4AD1A14BE0300029552 /* NSData+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EFF4AA1A14BE0300029552 /* NSData+BMCommons.h */; };
+		74EFF4AC1A14BE0300029552 /* NSData+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EFF4AA1A14BE0300029552 /* NSData+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74EFF4AD1A14BE0300029552 /* NSData+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 74EFF4AA1A14BE0300029552 /* NSData+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74EFF4AE1A14BE0300029552 /* NSData+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFF4AB1A14BE0300029552 /* NSData+BMCommons.m */; };
 		74EFF4AF1A14BE0300029552 /* NSData+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFF4AB1A14BE0300029552 /* NSData+BMCommons.m */; };
 		74F3309B174A17D9004F9941 /* BMThumbnailsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F33099174A17D9004F9941 /* BMThumbnailsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1367,26 +1367,26 @@
 		74F330A6174A198C004F9941 /* BMThumbnailView.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F330A4174A198B004F9941 /* BMThumbnailView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74F330A7174A198C004F9941 /* BMThumbnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F330A5174A198B004F9941 /* BMThumbnailView.m */; };
 		74F330A9174A4837004F9941 /* YouTube-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F330A8174A4837004F9941 /* YouTube-icon@2x.png */; };
-		74F84E051860A3A7002C2A6A /* BMJSONSchemaParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F84E031860A3A7002C2A6A /* BMJSONSchemaParser.h */; };
-		74F84E061860A3A7002C2A6A /* BMJSONSchemaParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F84E031860A3A7002C2A6A /* BMJSONSchemaParser.h */; };
+		74F84E051860A3A7002C2A6A /* BMJSONSchemaParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F84E031860A3A7002C2A6A /* BMJSONSchemaParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74F84E061860A3A7002C2A6A /* BMJSONSchemaParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F84E031860A3A7002C2A6A /* BMJSONSchemaParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74F84E071860A3A7002C2A6A /* BMJSONSchemaParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F84E041860A3A7002C2A6A /* BMJSONSchemaParser.m */; };
 		74F84E081860A3A7002C2A6A /* BMJSONSchemaParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F84E041860A3A7002C2A6A /* BMJSONSchemaParser.m */; };
-		74F84E141860B1AE002C2A6A /* BMAbstractSchemaParserHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F84E121860B1AE002C2A6A /* BMAbstractSchemaParserHandler.h */; };
-		74F84E151860B1AE002C2A6A /* BMAbstractSchemaParserHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F84E121860B1AE002C2A6A /* BMAbstractSchemaParserHandler.h */; };
+		74F84E141860B1AE002C2A6A /* BMAbstractSchemaParserHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F84E121860B1AE002C2A6A /* BMAbstractSchemaParserHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74F84E151860B1AE002C2A6A /* BMAbstractSchemaParserHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F84E121860B1AE002C2A6A /* BMAbstractSchemaParserHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74F84E161860B1AE002C2A6A /* BMAbstractSchemaParserHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F84E131860B1AE002C2A6A /* BMAbstractSchemaParserHandler.m */; };
 		74F84E171860B1AE002C2A6A /* BMAbstractSchemaParserHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F84E131860B1AE002C2A6A /* BMAbstractSchemaParserHandler.m */; };
-		74F8BEE81E1D6BF7008F33AD /* BMDynamicObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 7418B8CD18841F5500669588 /* BMDynamicObject.h */; };
+		74F8BEE81E1D6BF7008F33AD /* BMDynamicObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 7418B8CD18841F5500669588 /* BMDynamicObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74F8BEE91E1D6BF9008F33AD /* BMDynamicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7418B8CE18841F5500669588 /* BMDynamicObject.m */; };
 		74F8BEEA1E1D6C5C008F33AD /* BMXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B007EA17452B1A007B0A22 /* BMXML.m */; };
-		74F8BEEB1E1D6C63008F33AD /* BMXML.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007E917452B1A007B0A22 /* BMXML.h */; };
+		74F8BEEB1E1D6C63008F33AD /* BMXML.h in Headers */ = {isa = PBXBuildFile; fileRef = 74B007E917452B1A007B0A22 /* BMXML.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74FB2A66168DE88300324FD9 /* BMAssetPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FB2A65168DE88200324FD9 /* BMAssetPickerController.m */; };
 		74FB2A6F168DF28C00324FD9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
-		74FBFC9519F7DA6100BD31F3 /* BMKeyedArchiveDataTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FBFC9319F7DA6100BD31F3 /* BMKeyedArchiveDataTransformer.h */; };
-		74FBFC9619F7DA6100BD31F3 /* BMKeyedArchiveDataTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FBFC9319F7DA6100BD31F3 /* BMKeyedArchiveDataTransformer.h */; };
+		74FBFC9519F7DA6100BD31F3 /* BMKeyedArchiveDataTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FBFC9319F7DA6100BD31F3 /* BMKeyedArchiveDataTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74FBFC9619F7DA6100BD31F3 /* BMKeyedArchiveDataTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FBFC9319F7DA6100BD31F3 /* BMKeyedArchiveDataTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74FBFC9719F7DA6100BD31F3 /* BMKeyedArchiveDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FBFC9419F7DA6100BD31F3 /* BMKeyedArchiveDataTransformer.m */; };
 		74FBFC9819F7DA6100BD31F3 /* BMKeyedArchiveDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FBFC9419F7DA6100BD31F3 /* BMKeyedArchiveDataTransformer.m */; };
-		74FBFCA219F7DB8800BD31F3 /* BMSettingsPropertyDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FBFCA019F7DB8700BD31F3 /* BMSettingsPropertyDescriptor.h */; };
-		74FBFCA319F7DB8800BD31F3 /* BMSettingsPropertyDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FBFCA019F7DB8700BD31F3 /* BMSettingsPropertyDescriptor.h */; };
+		74FBFCA219F7DB8800BD31F3 /* BMSettingsPropertyDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FBFCA019F7DB8700BD31F3 /* BMSettingsPropertyDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74FBFCA319F7DB8800BD31F3 /* BMSettingsPropertyDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FBFCA019F7DB8700BD31F3 /* BMSettingsPropertyDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74FBFCA419F7DB8800BD31F3 /* BMSettingsPropertyDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FBFCA119F7DB8800BD31F3 /* BMSettingsPropertyDescriptor.m */; };
 		74FBFCA519F7DB8800BD31F3 /* BMSettingsPropertyDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FBFCA119F7DB8800BD31F3 /* BMSettingsPropertyDescriptor.m */; };
 		74FD558E17A3CFB700188BF5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FD558D17A3CFB700188BF5 /* CoreData.framework */; };
@@ -1401,64 +1401,64 @@
 		74FE755A14F7AE3B00202F6D /* BMGoogleAuthenticationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FE751A14F7A95500202F6D /* BMGoogleAuthenticationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74FE755B14F7AE3B00202F6D /* BMGoogleAuthenticationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FE751B14F7A95500202F6D /* BMGoogleAuthenticationController.m */; };
 		74FE755C14F7AE3B00202F6D /* BMGoogle.h in Headers */ = {isa = PBXBuildFile; fileRef = 74FE751714F7A87D00202F6D /* BMGoogle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A83DF0BB682119699F7FD112 /* BMWindowView.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF61EAD0EF8C994CEE591 /* BMWindowView.h */; };
+		A83DF0BB682119699F7FD112 /* BMWindowView.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF61EAD0EF8C994CEE591 /* BMWindowView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A83DF0C3B085E0BA95CB439E /* BMAlertViewTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFE11C65504EB005E6437 /* BMAlertViewTestCase.m */; };
-		A83DF0FE4024B9C4F1A2B154 /* BMSortedDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF8B175F448A5C9179E79 /* BMSortedDictionary.h */; };
+		A83DF0FE4024B9C4F1A2B154 /* BMSortedDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF8B175F448A5C9179E79 /* BMSortedDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A83DF1790DA0D0718C76E54A /* BMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF788B7987CC4B84769AF /* BMAlertView.m */; };
 		A83DF191C7268CED3191F444 /* BMSortedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFC43268797A244B28705 /* BMSortedDictionary.m */; };
 		A83DF19C405006A96A0849A1 /* BMAbstractMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF7C52334826B37FB40BC /* BMAbstractMutableDictionary.m */; };
-		A83DF1B0D04D0F8813B390DF /* BMAttributedStringTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFFA3BE39EEC004BA4EFF /* BMAttributedStringTransformer.h */; };
+		A83DF1B0D04D0F8813B390DF /* BMAttributedStringTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFFA3BE39EEC004BA4EFF /* BMAttributedStringTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A83DF1BDF3FA87F11810F09C /* BMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFCA4E4A0A1B2008C13C5 /* BMParser.m */; };
-		A83DF1CAFF01A26AE34AAF9E /* BMDataRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFA6684CE4F22DD668127 /* BMDataRecorder.h */; };
-		A83DF1CC14A22C9650DD4BEA /* BMWrapperService.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF1147DF6A71B5CC040C8 /* BMWrapperService.h */; };
+		A83DF1CAFF01A26AE34AAF9E /* BMDataRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFA6684CE4F22DD668127 /* BMDataRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A83DF1CC14A22C9650DD4BEA /* BMWrapperService.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF1147DF6A71B5CC040C8 /* BMWrapperService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A83DF2460839C0A5856BD1B8 /* BMAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFF66D5D83209E61E56F8 /* BMAlertController.m */; };
 		A83DF272EB1107BE50BB88D4 /* BMDataRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFFF5541D09A9D64C21E5 /* BMDataRecorder.m */; };
-		A83DF28D3E0C0CFB297C470A /* NSMethodSignature+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF1C6A7343A43EA87577E /* NSMethodSignature+BMCommons.h */; };
-		A83DF2941A7C08401B3BC77D /* BMSHA256Digest.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF0F8029A2B6030A1E65E /* BMSHA256Digest.h */; };
+		A83DF28D3E0C0CFB297C470A /* NSMethodSignature+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF1C6A7343A43EA87577E /* NSMethodSignature+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A83DF2941A7C08401B3BC77D /* BMSHA256Digest.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF0F8029A2B6030A1E65E /* BMSHA256Digest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A83DF295D1984A635D3039EB /* BMWrapperService.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFFFCB18A6BC1FAEE8CB7 /* BMWrapperService.m */; };
 		A83DF2A06BA6995C40C58CEC /* BMSHA256Digest.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF7D6A3D097A3F4B4ECBB /* BMSHA256Digest.m */; };
-		A83DF2C7D73F71D0808EEAB7 /* BMParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFC44AF81238175B662C2 /* BMParser.h */; };
-		A83DF2E2DFBA68434A6B676F /* BMSortedDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF8B175F448A5C9179E79 /* BMSortedDictionary.h */; };
+		A83DF2C7D73F71D0808EEAB7 /* BMParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFC44AF81238175B662C2 /* BMParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A83DF2E2DFBA68434A6B676F /* BMSortedDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF8B175F448A5C9179E79 /* BMSortedDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A83DF33768C507CAFDD93B13 /* BMDataRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFFF5541D09A9D64C21E5 /* BMDataRecorder.m */; };
 		A83DF38F9E2515513463C0FE /* BMSortedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFC43268797A244B28705 /* BMSortedDictionary.m */; };
-		A83DF49365070B069CB596A6 /* BMAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFA18CEACB8E9D7195DB4 /* BMAlertView.h */; };
-		A83DF4ADA97233EED9FB53A5 /* BMDefaultAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFB807FC1B0573CEAB042 /* BMDefaultAlertView.h */; };
+		A83DF49365070B069CB596A6 /* BMAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFA18CEACB8E9D7195DB4 /* BMAlertView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A83DF4ADA97233EED9FB53A5 /* BMDefaultAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFB807FC1B0573CEAB042 /* BMDefaultAlertView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A83DF5CB539706C3784B8B62 /* NSMethodSignature+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF7A74FBF9CA4238989D1 /* NSMethodSignature+BMCommons.m */; };
-		A83DF69891E3784720326AC7 /* UIGestureRecognizer+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFB6B431789EF9ACDB094 /* UIGestureRecognizer+BMCommons.h */; };
-		A83DF69DC76A4F748D99E3CC /* BMValueStack.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF3DB150A200C9A200D82 /* BMValueStack.h */; };
+		A83DF69891E3784720326AC7 /* UIGestureRecognizer+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFB6B431789EF9ACDB094 /* UIGestureRecognizer+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A83DF69DC76A4F748D99E3CC /* BMValueStack.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF3DB150A200C9A200D82 /* BMValueStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A83DF6AAA5097F8E340CF711 /* UIGestureRecognizer+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF7991879E1C1B7D61D3E /* UIGestureRecognizer+BMCommons.m */; };
-		A83DF70E9091B212F7DF0E6D /* BMWrapperService.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF1147DF6A71B5CC040C8 /* BMWrapperService.h */; };
+		A83DF70E9091B212F7DF0E6D /* BMWrapperService.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF1147DF6A71B5CC040C8 /* BMWrapperService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A83DF71F8CEC236AFD80288D /* BMMiscTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFEF6084B937209304CF6 /* BMMiscTestCase.m */; };
 		A83DF7321D275C5A4C8DAC87 /* BMValueStack.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF2DD88FAADD1F2904914 /* BMValueStack.m */; };
 		A83DF7355469D8AB62895F95 /* BMSHA256Digest.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF7D6A3D097A3F4B4ECBB /* BMSHA256Digest.m */; };
 		A83DF739D010C3AFD42B2918 /* BMSortedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFF493F4BDE24D25647E7 /* BMSortedArray.m */; };
 		A83DF7C7353D278A32F562B5 /* BMAttributedStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF00C3C98E0214B16219A /* BMAttributedStringTransformer.m */; };
-		A83DF827E01766E65783C3BA /* NSString+BMUICore.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF983A2A5C9934133C544 /* NSString+BMUICore.h */; };
+		A83DF827E01766E65783C3BA /* NSString+BMUICore.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF983A2A5C9934133C544 /* NSString+BMUICore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A83DF8561243BF480A680570 /* BMValueStack.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF2DD88FAADD1F2904914 /* BMValueStack.m */; };
-		A83DF8E95B864B8F90DCBC42 /* BMSHA256Digest.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF0F8029A2B6030A1E65E /* BMSHA256Digest.h */; };
-		A83DF9EB7B93BD8213B33285 /* BMAbstractMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF793FBC9C8B25E510A71 /* BMAbstractMutableDictionary.h */; };
-		A83DFA46847BA932EA7C31D1 /* BMAbstractMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF793FBC9C8B25E510A71 /* BMAbstractMutableDictionary.h */; };
+		A83DF8E95B864B8F90DCBC42 /* BMSHA256Digest.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF0F8029A2B6030A1E65E /* BMSHA256Digest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A83DF9EB7B93BD8213B33285 /* BMAbstractMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF793FBC9C8B25E510A71 /* BMAbstractMutableDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A83DFA46847BA932EA7C31D1 /* BMAbstractMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF793FBC9C8B25E510A71 /* BMAbstractMutableDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A83DFA8CF37073C9D0E0C6A6 /* BMAttributedStringDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF0F4C42574B65407F5B3 /* BMAttributedStringDescriptor.m */; };
 		A83DFAA2E8C74035FC78F046 /* BMWindowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF5CAB9B5ED24360A305E /* BMWindowView.m */; };
 		A83DFB1418DBF13D76989D7F /* NSMethodSignature+BMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF7A74FBF9CA4238989D1 /* NSMethodSignature+BMCommons.m */; };
 		A83DFBAD34D82B6BAFBFEF9E /* BMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFCA4E4A0A1B2008C13C5 /* BMParser.m */; };
 		A83DFBCDF8A17CE33ACBE712 /* BMWrapperService.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFFFCB18A6BC1FAEE8CB7 /* BMWrapperService.m */; };
-		A83DFBF3755EC42CAB9EEA5F /* BMCollatedDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFCA0096C02AAC96EB1EC /* BMCollatedDataSource.h */; };
+		A83DFBF3755EC42CAB9EEA5F /* BMCollatedDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFCA0096C02AAC96EB1EC /* BMCollatedDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A83DFC0B1D31777806D058D3 /* BMAbstractMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF7C52334826B37FB40BC /* BMAbstractMutableDictionary.m */; };
-		A83DFC94786F63E59BC0021A /* BMDataRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFA6684CE4F22DD668127 /* BMDataRecorder.h */; };
+		A83DFC94786F63E59BC0021A /* BMDataRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFA6684CE4F22DD668127 /* BMDataRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A83DFD228835C20BE1A81B3A /* BMSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF6B6C47C7A6A8C20D269 /* BMSingleton.m */; };
-		A83DFD614B84FE1DF3A6E450 /* BMValueStack.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF3DB150A200C9A200D82 /* BMValueStack.h */; };
+		A83DFD614B84FE1DF3A6E450 /* BMValueStack.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF3DB150A200C9A200D82 /* BMValueStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A83DFD625D5956921A7DE7D4 /* BMSortedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFF493F4BDE24D25647E7 /* BMSortedArray.m */; };
 		A83DFD9A7212B66927D57950 /* BMCollatedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF6C7CF0543364656CD2C /* BMCollatedDataSource.m */; };
 		A83DFDBBC764211D37C8C595 /* BMDefaultAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DFAF6E8ADAC4599D930D2 /* BMDefaultAlertView.m */; };
-		A83DFDDB6C38439F0A0BBCE9 /* BMAlertController.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFBBCE999E53F35B24FDA /* BMAlertController.h */; };
-		A83DFE06593829887D53C2B7 /* BMSortedArray.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF82D589F913ED8F096FD /* BMSortedArray.h */; };
-		A83DFEC39A4D14E4D3390B92 /* BMParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFC44AF81238175B662C2 /* BMParser.h */; };
-		A83DFEEB85FF23DD6E0BAFD5 /* BMAttributedStringDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF2F936F359AB9F61C44B /* BMAttributedStringDescriptor.h */; };
+		A83DFDDB6C38439F0A0BBCE9 /* BMAlertController.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFBBCE999E53F35B24FDA /* BMAlertController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A83DFE06593829887D53C2B7 /* BMSortedArray.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF82D589F913ED8F096FD /* BMSortedArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A83DFEC39A4D14E4D3390B92 /* BMParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DFC44AF81238175B662C2 /* BMParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A83DFEEB85FF23DD6E0BAFD5 /* BMAttributedStringDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF2F936F359AB9F61C44B /* BMAttributedStringDescriptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A83DFF1883C9E6E6C598F47B /* NSString+BMUICore.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF9867D61E87E7B7F5C45 /* NSString+BMUICore.m */; };
 		A83DFF54980B0FDC3D866DDA /* BMSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF6B6C47C7A6A8C20D269 /* BMSingleton.m */; };
-		A83DFF5535F1070EFF5520AD /* NSMethodSignature+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF1C6A7343A43EA87577E /* NSMethodSignature+BMCommons.h */; };
-		A83DFF7B4022F29FF4BF1E46 /* BMSortedArray.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF82D589F913ED8F096FD /* BMSortedArray.h */; };
+		A83DFF5535F1070EFF5520AD /* NSMethodSignature+BMCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF1C6A7343A43EA87577E /* NSMethodSignature+BMCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A83DFF7B4022F29FF4BF1E46 /* BMSortedArray.h in Headers */ = {isa = PBXBuildFile; fileRef = A83DF82D589F913ED8F096FD /* BMSortedArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA54148FF98017C5077701F8 /* libPods-BMCommonsTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D9A86118285F74A5E107B0 /* libPods-BMCommonsTest.a */; };
 		F24762A212FBD749009E5B77 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F24762A112FBD749009E5B77 /* libicucore.dylib */; };
 		F2D74517134DA71200C41722 /* BMTableHeaderDragRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D74517134DA71200C41721 /* BMTableHeaderDragRefreshView.m */; };
@@ -5555,15 +5555,12 @@
 				743B456614F3FB9E002DA36F /* BMAsyncLoadingImageButton.h in Headers */,
 				743B456E14F3FB9E002DA36F /* BMTextField.h in Headers */,
 				743B457414F3FB9E002DA36F /* BMViewFactory.h in Headers */,
-				74E22C7218E305C7001C885C /* UIApplication+BMCommons.h in Headers */,
 				743B457614F3FB9E002DA36F /* BMAutoResizable.h in Headers */,
 				743B457714F3FB9E002DA36F /* BMDraggableButton.h in Headers */,
 				743B458314F3FB9E002DA36F /* BMMaskView.h in Headers */,
-				74AE63A11A7A22EA00F124F9 /* BMNib.h in Headers */,
 				743B458B14F3FB9E002DA36F /* BMKeyboardListener.h in Headers */,
 				743B458D14F3FB9E002DA36F /* BMResizableToolbar.h in Headers */,
 				743B459114F3FBB6002DA36F /* BMTableViewController.h in Headers */,
-				740E61A41A713B8700F2CF24 /* UITableViewCell+BMCommons.h in Headers */,
 				743B459814F3FBB6002DA36F /* BMNavigationController.h in Headers */,
 				743B459C14F3FBB6002DA36F /* BMViewController.h in Headers */,
 				743B45A014F3FBB6002DA36F /* UIViewController+BMCommons.h in Headers */,
@@ -5586,14 +5583,13 @@
 				74C493E11551469600DA516D /* BMServiceModelTableViewController.h in Headers */,
 				74449D12158937C5000D063E /* UISegmentedControl+BMCommons.h in Headers */,
 				7469998415BB5CA20003ECEC /* BMTableFooterDragLoadMoreView.h in Headers */,
-				744DC08719A235A300A5B99A /* UIScreen+BMCommons.h in Headers */,
 				74406769161E3F9900C77F94 /* BMWindow.h in Headers */,
 				74746840173FD37800D1DB6D /* BMTableView.h in Headers */,
-				74A4F77A174FA401000AC5C8 /* UIView+Genie.h in Headers */,
-				747B1BB9175792380097BE31 /* BMStyleSheet.h in Headers */,
-				744D644C17726EBD00A47C93 /* BMUICoreObject.h in Headers */,
+				74E22C7218E305C7001C885C /* UIApplication+BMCommons.h in Headers */,
+				74AE63A11A7A22EA00F124F9 /* BMNib.h in Headers */,
+				740E61A41A713B8700F2CF24 /* UITableViewCell+BMCommons.h in Headers */,
+				744DC08719A235A300A5B99A /* UIScreen+BMCommons.h in Headers */,
 				74AD8C901A1E15C6002D658D /* BMViewState.h in Headers */,
-				742D0258179DA93500676AC3 /* BMAppDelegate.h in Headers */,
 				A83DFDDB6C38439F0A0BBCE9 /* BMAlertController.h in Headers */,
 				A83DF49365070B069CB596A6 /* BMAlertView.h in Headers */,
 				A83DF4ADA97233EED9FB53A5 /* BMDefaultAlertView.h in Headers */,
@@ -5603,6 +5599,10 @@
 				A83DF827E01766E65783C3BA /* NSString+BMUICore.h in Headers */,
 				A83DFBF3755EC42CAB9EEA5F /* BMCollatedDataSource.h in Headers */,
 				A83DF69891E3784720326AC7 /* UIGestureRecognizer+BMCommons.h in Headers */,
+				74A4F77A174FA401000AC5C8 /* UIView+Genie.h in Headers */,
+				747B1BB9175792380097BE31 /* BMStyleSheet.h in Headers */,
+				744D644C17726EBD00A47C93 /* BMUICoreObject.h in Headers */,
+				742D0258179DA93500676AC3 /* BMAppDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5613,7 +5613,6 @@
 				74488264181531E900EF96C1 /* BMCoreDataHelper.h in Headers */,
 				7448826C181531E900EF96C1 /* BMCoreDataErrorHelper.h in Headers */,
 				74488268181531E900EF96C1 /* BMCoreDataStoreCollectionDescriptor.h in Headers */,
-				740A694B1B96F11E00E3B468 /* NSManagedObjectContext+BMCommons.h in Headers */,
 				74488265181531E900EF96C1 /* BMCoreDataModelDescriptor.h in Headers */,
 				74488262181531E900EF96C1 /* BMFetchedResultsTableViewController.h in Headers */,
 				7448826A181531E900EF96C1 /* BMManagedObjectContext.h in Headers */,
@@ -5623,6 +5622,7 @@
 				74488261181531E900EF96C1 /* BMFetchedResultsEnumerator.h in Headers */,
 				74488263181531E900EF96C1 /* BMAbstractManagedObject.h in Headers */,
 				74488260181531E900EF96C1 /* BMCoreDataApplicationContext.h in Headers */,
+				740A694B1B96F11E00E3B468 /* NSManagedObjectContext+BMCommons.h in Headers */,
 				74488267181531E900EF96C1 /* BMCoreDataStack.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5672,13 +5672,13 @@
 				743B469414F3FF05002DA36F /* BMAssetTablePickerController.h in Headers */,
 				743B469614F3FF05002DA36F /* BMAssetThumbnailView.h in Headers */,
 				743B469814F3FF05002DA36F /* BMAssetCell.h in Headers */,
-				74324837185DD8960006C4E5 /* BMMediaHelper.h in Headers */,
 				743B469A14F3FF05002DA36F /* BMAssetPickerController.h in Headers */,
 				74F330A6174A198C004F9941 /* BMThumbnailView.h in Headers */,
 				743B467A14F3FEA4002DA36F /* BMFlashButton.h in Headers */,
 				743B467C14F3FEA4002DA36F /* BMRecordingTimerView.h in Headers */,
 				743B467214F3FEA4002DA36F /* BMVideoOverlayView.h in Headers */,
 				743B467414F3FEA4002DA36F /* BMAudioOverlayView.h in Headers */,
+				74324837185DD8960006C4E5 /* BMMediaHelper.h in Headers */,
 				743B467814F3FEA4002DA36F /* BMCameraOverlayView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5690,11 +5690,11 @@
 				74C319AA17994250009AD294 /* BMXML.h in Headers */,
 				74C319AB17994250009AD294 /* BMXMLDocument.h in Headers */,
 				74C319AC17994250009AD294 /* BMXMLElement.h in Headers */,
-				748E34C61DB0EB2900093523 /* BMXPathQuery_Private.h in Headers */,
 				74C319AD17994250009AD294 /* BMXMLModelObject.h in Headers */,
-				748E34BC1DB0EB2900093523 /* BMXMLDocument_Private.h in Headers */,
 				74C319AE17994250009AD294 /* BMXMLNode.h in Headers */,
 				74C319AF17994250009AD294 /* BMXMLReader.h in Headers */,
+				748E34C61DB0EB2900093523 /* BMXPathQuery_Private.h in Headers */,
+				748E34BC1DB0EB2900093523 /* BMXMLDocument_Private.h in Headers */,
 				748E34C21DB0EB2900093523 /* BMXMLUtilities.h in Headers */,
 				748E34BE1DB0EB2900093523 /* BMXMLElement_Private.h in Headers */,
 				748E34C01DB0EB2900093523 /* BMXMLNode_Private.h in Headers */,
@@ -5717,23 +5717,23 @@
 				74C319BD179942A3009AD294 /* BMFieldMapping.h in Headers */,
 				74C319BE179942A3009AD294 /* BMMappableObject.h in Headers */,
 				74C319BF179942A3009AD294 /* BMMappableObjectGenerator.h in Headers */,
-				748E34D11DB0EF6C00093523 /* BMJavaBasedMappableObjectClassResolver.h in Headers */,
-				742E0A1B1D5485AF00B19B5F /* BMSchemaFieldType.h in Headers */,
 				74C319C0179942A3009AD294 /* BMObjectMapping.h in Headers */,
-				7418B8CF18841F5500669588 /* BMDynamicObject.h in Headers */,
 				74C319C1179942A3009AD294 /* BMObjectMappingParserHandler.h in Headers */,
-				748E34D21DB0EF7500093523 /* BMMappableObjectClassResolver.h in Headers */,
-				74F84E151860B1AE002C2A6A /* BMAbstractSchemaParserHandler.h in Headers */,
 				74C319C2179942A3009AD294 /* BMObjectMappingParserService.h in Headers */,
 				74C319C3179942A3009AD294 /* BMParserElement.h in Headers */,
-				7418B8D518842FB300669588 /* BMKeyValuePair.h in Headers */,
 				74C319C4179942A3009AD294 /* BMRootObjectMappingParserService.h in Headers */,
+				748E34D11DB0EF6C00093523 /* BMJavaBasedMappableObjectClassResolver.h in Headers */,
+				742E0A1B1D5485AF00B19B5F /* BMSchemaFieldType.h in Headers */,
+				7418B8CF18841F5500669588 /* BMDynamicObject.h in Headers */,
+				748E34D21DB0EF7500093523 /* BMMappableObjectClassResolver.h in Headers */,
+				74F84E151860B1AE002C2A6A /* BMAbstractSchemaParserHandler.h in Headers */,
+				7418B8D518842FB300669588 /* BMKeyValuePair.h in Headers */,
 				74F84E061860A3A7002C2A6A /* BMJSONSchemaParser.h in Headers */,
+				748E34D31DB0EF7E00093523 /* BMAbstractMappableObjectClassResolver.h in Headers */,
 				74C319C6179942A3009AD294 /* BMSOAPService.h in Headers */,
 				74C319C7179942A3009AD294 /* BMSOAPData.h in Headers */,
 				74C319C8179942A3009AD294 /* BMSOAPFault.h in Headers */,
 				74C319C9179942A3009AD294 /* BMMappableObjectXMLSerializer.h in Headers */,
-				748E34D31DB0EF7E00093523 /* BMAbstractMappableObjectClassResolver.h in Headers */,
 				74C319CA179942A3009AD294 /* BMMappableObjectJSONSerializer.h in Headers */,
 				74C319C5179942A3009AD294 /* BMXMLSchemaParser.h in Headers */,
 			);
@@ -5763,7 +5763,6 @@
 			files = (
 				74D6B87A182930DF0020BE12 /* BMEditViewController.h in Headers */,
 				74D6B871182930990020BE12 /* BMMultiPickerCell.h in Headers */,
-				74AEAAA318AE838A00E83CED /* BMAsyncLoadingImageButtonCell.h in Headers */,
 				74D6B87F182930DF0020BE12 /* BMEnumeratedValueSelectionViewController.h in Headers */,
 				74D6B880182930DF0020BE12 /* BMInfoWebViewController.h in Headers */,
 				74D6B86A182930830020BE12 /* BMWebDialog.h in Headers */,
@@ -5792,6 +5791,7 @@
 				74D6B870182930990020BE12 /* BMLabelCell.h in Headers */,
 				74D6B86C182930990020BE12 /* BMButtonCell.h in Headers */,
 				74D6B882182930DF0020BE12 /* BMMultiSwitchViewController.h in Headers */,
+				74AEAAA318AE838A00E83CED /* BMAsyncLoadingImageButtonCell.h in Headers */,
 				74D6B87B182930DF0020BE12 /* BMPickerDataSource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5999,19 +5999,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74E30BA31B38126900ACD9B5 /* BMSHA1Digest.h in Headers */,
 				74ACB7BA14F3CE050068FF3B /* BMAbstractInputStream.h in Headers */,
 				74ACB7C014F3CE050068FF3B /* BMAbstractService.h in Headers */,
-				7443B3371A0A32AE002F31A2 /* BMBooleanStack.h in Headers */,
 				74ACB7C414F3CE050068FF3B /* BMAction.h in Headers */,
 				74ACB7CA14F3CE050068FF3B /* BMApplicationHelper.h in Headers */,
 				74ACB7CC14F3CE050068FF3B /* BMAsyncDataLoader.h in Headers */,
-				744B2D2119F42E7C00D46E95 /* BMSettingsTestCase.h in Headers */,
 				74ACB7D514F3CE050068FF3B /* BMBufferedInputStream.h in Headers */,
 				74ACB7DC14F3CE050068FF3B /* BMCore.h in Headers */,
-				74DD089018F2DFEC00559BA7 /* BMWeakReference.h in Headers */,
-				74EFF4AC1A14BE0300029552 /* NSData+BMCommons.h in Headers */,
-				740869B119F63E8A003063FC /* BMFileBackedMutableArray.h in Headers */,
 				74ACB7E914F3CE050068FF3B /* BMDateHelper.h in Headers */,
 				74ACB7FC14F3CE050068FF3B /* BMEnumeratorWrapper.h in Headers */,
 				74ACB7FE14F3CE050068FF3B /* BMErrorCodes.h in Headers */,
@@ -6028,9 +6022,7 @@
 				74ACB85014F3CE050068FF3B /* BMOrderedDictionary.h in Headers */,
 				74ACB85E14F3CE050068FF3B /* BMPropertyDescriptor.h in Headers */,
 				74ACB86014F3CE050068FF3B /* BMPropertyMethod.h in Headers */,
-				74FBFCA219F7DB8800BD31F3 /* BMSettingsPropertyDescriptor.h in Headers */,
 				74ACB86214F3CE050068FF3B /* BMProxy.h in Headers */,
-				747FA35B1B7F2AFC0051F5F6 /* NSFileManager+BMCommons.h in Headers */,
 				74ACB86414F3CE050068FF3B /* BMReachability.h in Headers */,
 				74ACB86814F3CE050068FF3B /* BMResponseContainer.h in Headers */,
 				74ACB86914F3CE050068FF3B /* BMReusableObject.h in Headers */,
@@ -6039,8 +6031,6 @@
 				74ACB87314F3CE050068FF3B /* BMStringHelper.h in Headers */,
 				74ACB87514F3CE050068FF3B /* BMStringToBooleanValueTransformer.h in Headers */,
 				74ACB87714F3CE050068FF3B /* BMStringToDateValueTransformer.h in Headers */,
-				74C866951A63BF720020CF7F /* NSInvocation+BMCommons.h in Headers */,
-				74FBFC9519F7DA6100BD31F3 /* BMKeyedArchiveDataTransformer.h in Headers */,
 				74ACB87914F3CE050068FF3B /* BMStringToFloatValueTransformer.h in Headers */,
 				74ACB87B14F3CE050068FF3B /* BMStringToIntegerValueTransformer.h in Headers */,
 				74ACB88D14F3CE050068FF3B /* BMTwoWayDictionary.h in Headers */,
@@ -6051,68 +6041,57 @@
 				74ACB8A514F3CE050068FF3B /* NSNumber+BMCommons.h in Headers */,
 				74ACB8A714F3CE050068FF3B /* NSString+BMCommons.h in Headers */,
 				7466A22914FFB8B800B60857 /* BMDataDescriptor.h in Headers */,
-				74523D9418F2A765002521A6 /* NSUserDefaults+BMCommons.h in Headers */,
 				74E706D51517B419004664FD /* NSArray+BMCommons.h in Headers */,
 				74DAEE021591E65A002B807F /* NSData+BMEncryption.h in Headers */,
-				740A694F1B96F1DB00E3B468 /* NSCondition+BMCommons.h in Headers */,
 				74DAEE4C1591F121002B807F /* BMEncryptionHelper.h in Headers */,
 				74DAEE561591FF4B002B807F /* BMEncodingHelper.h in Headers */,
-				740E618B1A71328C00F2CF24 /* BMBlockValueTransformer.h in Headers */,
 				74DAEE6F15921C76002B807F /* BMLocalization.h in Headers */,
 				74850A4215B6E90F00884E0B /* NSDictionary+BMCommons.h in Headers */,
 				74D45B991618527200F9173E /* NSObject+BMCommons.h in Headers */,
 				7489758A168CB14F007C4D73 /* BMBlockServiceDelegate.h in Headers */,
 				74897592168CB14F007C4D73 /* BMObjectToArrayTransformer.h in Headers */,
-				742CAB271B7393C000657A23 /* BMBase64DataTransformer.h in Headers */,
 				745FE7C41691A7D3006D1FE4 /* BMStringToDataTransformer.h in Headers */,
 				747469B21740148100D1DB6D /* BMLogging.h in Headers */,
 				747469B717401ABF00D1DB6D /* BMRegexKitLite.h in Headers */,
-				740869C719F7A1D8003063FC /* BMCodingHelper.h in Headers */,
-				744B2D0E19F3137700D46E95 /* BMValueType.h in Headers */,
 				74B00862174534F9007B0A22 /* BMErrorHelper.h in Headers */,
-				7450526A18ED8BAD00BBFA4D /* BMWeakTimer.h in Headers */,
 				74A4F75E174E4C08000AC5C8 /* BMCache.h in Headers */,
 				74D7C71F1758F92500E2D9FC /* NSData+BMCompression.h in Headers */,
 				744D643F17726BC200A47C93 /* BMCoreObject.h in Headers */,
-				742CAB341B73944800657A23 /* BMChainedTransformer.h in Headers */,
 				740D6101177A0C2A00A5F023 /* BMSecurityHelper.h in Headers */,
 				74732E59177D8DE700A68CB9 /* BMHTTPStatusCodes.h in Headers */,
+				74732E5D177D8DE700A68CB9 /* BMHTTPRequest.h in Headers */,
+				74E30BA31B38126900ACD9B5 /* BMSHA1Digest.h in Headers */,
+				7443B3371A0A32AE002F31A2 /* BMBooleanStack.h in Headers */,
+				744B2D2119F42E7C00D46E95 /* BMSettingsTestCase.h in Headers */,
+				74DD089018F2DFEC00559BA7 /* BMWeakReference.h in Headers */,
+				74EFF4AC1A14BE0300029552 /* NSData+BMCommons.h in Headers */,
+				740869B119F63E8A003063FC /* BMFileBackedMutableArray.h in Headers */,
+				74FBFCA219F7DB8800BD31F3 /* BMSettingsPropertyDescriptor.h in Headers */,
+				747FA35B1B7F2AFC0051F5F6 /* NSFileManager+BMCommons.h in Headers */,
+				74C866951A63BF720020CF7F /* NSInvocation+BMCommons.h in Headers */,
+				74FBFC9519F7DA6100BD31F3 /* BMKeyedArchiveDataTransformer.h in Headers */,
+				74523D9418F2A765002521A6 /* NSUserDefaults+BMCommons.h in Headers */,
+				740A694F1B96F1DB00E3B468 /* NSCondition+BMCommons.h in Headers */,
+				740E618B1A71328C00F2CF24 /* BMBlockValueTransformer.h in Headers */,
+				742CAB271B7393C000657A23 /* BMBase64DataTransformer.h in Headers */,
+				740869C719F7A1D8003063FC /* BMCodingHelper.h in Headers */,
+				744B2D0E19F3137700D46E95 /* BMValueType.h in Headers */,
+				7450526A18ED8BAD00BBFA4D /* BMWeakTimer.h in Headers */,
+				742CAB341B73944800657A23 /* BMChainedTransformer.h in Headers */,
 				748E34CD1DB0EB6600093523 /* UIImage+BMCommons.h in Headers */,
 				74523D8718F2A711002521A6 /* NSSet+BMCommons.h in Headers */,
-				74732E5D177D8DE700A68CB9 /* BMHTTPRequest.h in Headers */,
 				740869D719F7B621003063FC /* BMCodeableObject.h in Headers */,
-				74732E61177D8DE700A68CB9 /* BMHTTPMultiPartBodyInputStream.h in Headers */,
-				74732E65177D8DE700A68CB9 /* BMHTTPContentPart.h in Headers */,
 				74DFE00A1A9202CB00E75493 /* NSURLRequest+BMCommons.h in Headers */,
-				74732E6F177D8E8800A68CB9 /* BMHTTPService.h in Headers */,
-				74732E8A177D939600A68CB9 /* BMMIMEType.h in Headers */,
-				74732E9F177DF8E200A68CB9 /* BMKeychainItemWrapper.h in Headers */,
-				74732FC4177F4EB400A68CB9 /* BMNamedObject.h in Headers */,
-				7469FEF4178D99E50073FAEC /* NSDictionary+DeepMutableCopy.h in Headers */,
 				74011B971B0F629100A30C13 /* BMCachingURLProtocol.h in Headers */,
-				74EBF59C18224D12006E9395 /* BMVersionAvailability.h in Headers */,
-				7469FEF8178D99E50073FAEC /* NSArray+DeepMutableCopy.h in Headers */,
-				7469FEFC178D99E50073FAEC /* BMICUTemplateMatcher.h in Headers */,
 				742F41B51B7CFBC700FC8E50 /* BMFileAttributes.h in Headers */,
-				7469FF00178D99E50073FAEC /* BMMGTemplateEngine.h in Headers */,
 				74E30B901B380C9C00ACD9B5 /* BMDigest.h in Headers */,
-				7469FF04178D99E50073FAEC /* BMMGTemplateFilter.h in Headers */,
 				74DD089518F2E07000559BA7 /* BMSingleton.h in Headers */,
 				74E30B9D1B38125E00ACD9B5 /* BMMD5Digest.h in Headers */,
-				7469FF06178D99E50073FAEC /* BMMGTemplateMarker.h in Headers */,
 				74B22F501D2D4D5600E9AE6D /* BMAsyncImageLoader.h in Headers */,
-				7469FF08178D99E50073FAEC /* BMMGTemplateStandardFilters.h in Headers */,
 				7434EA801BC68947006537FA /* BMCompressDataTransformer.h in Headers */,
-				7469FF0C178D99E50073FAEC /* BMMGTemplateStandardMarkers.h in Headers */,
 				74E4EC2E18C8BB3A006511B2 /* NSURL+BMCommons.h in Headers */,
 				74885C0C19DD878100ACBC0A /* BMKeyObject.h in Headers */,
 				74DD088318F2DF8000559BA7 /* BMWeakReferenceRegistry.h in Headers */,
-				7416A7CC1791B83200BF6B6D /* BMErrorContainer.h in Headers */,
-				742D0238179D8D5800676AC3 /* BMAbstractSettingsObject.h in Headers */,
-				742D023C179D8D5800676AC3 /* BMSettingsObject.h in Headers */,
-				742D023E179D8D5800676AC3 /* BMSettingsRegistry.h in Headers */,
-				74A1C40617F31DB2004BB554 /* BMApp.h in Headers */,
-				742D0244179DA87600676AC3 /* BMApplicationContext.h in Headers */,
 				A83DF2E2DFBA68434A6B676F /* BMSortedDictionary.h in Headers */,
 				A83DF9EB7B93BD8213B33285 /* BMAbstractMutableDictionary.h in Headers */,
 				A83DFE06593829887D53C2B7 /* BMSortedArray.h in Headers */,
@@ -6122,6 +6101,27 @@
 				A83DFC94786F63E59BC0021A /* BMDataRecorder.h in Headers */,
 				A83DFD614B84FE1DF3A6E450 /* BMValueStack.h in Headers */,
 				A83DFF5535F1070EFF5520AD /* NSMethodSignature+BMCommons.h in Headers */,
+				74732E61177D8DE700A68CB9 /* BMHTTPMultiPartBodyInputStream.h in Headers */,
+				74732E65177D8DE700A68CB9 /* BMHTTPContentPart.h in Headers */,
+				74732E6F177D8E8800A68CB9 /* BMHTTPService.h in Headers */,
+				74732E8A177D939600A68CB9 /* BMMIMEType.h in Headers */,
+				74732E9F177DF8E200A68CB9 /* BMKeychainItemWrapper.h in Headers */,
+				74732FC4177F4EB400A68CB9 /* BMNamedObject.h in Headers */,
+				7469FEF4178D99E50073FAEC /* NSDictionary+DeepMutableCopy.h in Headers */,
+				74EBF59C18224D12006E9395 /* BMVersionAvailability.h in Headers */,
+				7469FEF8178D99E50073FAEC /* NSArray+DeepMutableCopy.h in Headers */,
+				7469FEFC178D99E50073FAEC /* BMICUTemplateMatcher.h in Headers */,
+				7469FF00178D99E50073FAEC /* BMMGTemplateEngine.h in Headers */,
+				7469FF04178D99E50073FAEC /* BMMGTemplateFilter.h in Headers */,
+				7469FF06178D99E50073FAEC /* BMMGTemplateMarker.h in Headers */,
+				7469FF08178D99E50073FAEC /* BMMGTemplateStandardFilters.h in Headers */,
+				7469FF0C178D99E50073FAEC /* BMMGTemplateStandardMarkers.h in Headers */,
+				7416A7CC1791B83200BF6B6D /* BMErrorContainer.h in Headers */,
+				742D0238179D8D5800676AC3 /* BMAbstractSettingsObject.h in Headers */,
+				742D023C179D8D5800676AC3 /* BMSettingsObject.h in Headers */,
+				742D023E179D8D5800676AC3 /* BMSettingsRegistry.h in Headers */,
+				74A1C40617F31DB2004BB554 /* BMApp.h in Headers */,
+				742D0244179DA87600676AC3 /* BMApplicationContext.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8004,7 +8004,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"${SDKROOT}/usr/include/libxml2\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -8049,7 +8049,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"${SDKROOT}/usr/include/libxml2\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -8479,10 +8479,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
+					"${SRCROOT}/Modules/BMCore/Include",
+					"${SRCROOT}/Modules/BMXML/Include",
 					"${SRCROOT}/Modules/BMRestKit/Include",
 					"${SRCROOT}/Modules/BMRestKit/Include/yajl_objc",
-					"${SRCROOT}/Modules/BMXML/Include",
-					"${SRCROOT}/Modules/BMCore/Include",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8507,10 +8507,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				HEADER_SEARCH_PATHS = (
 					"${inherited}",
+					"${SRCROOT}/Modules/BMCore/Include",
+					"${SRCROOT}/Modules/BMXML/Include",
 					"${SRCROOT}/Modules/BMRestKit/Include",
 					"${SRCROOT}/Modules/BMRestKit/Include/yajl_objc",
-					"${SRCROOT}/Modules/BMXML/Include",
-					"${SRCROOT}/Modules/BMCore/Include",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
