@@ -188,7 +188,7 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 }
 
 - (void)dealloc {
-	for (id <BMService> s in _serviceDictionary) {
+	for (id <BMService> s in _serviceDictionary.allValues) {
 		s.delegate = nil;
 	}
     [self cancelServices];
