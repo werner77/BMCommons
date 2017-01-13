@@ -168,7 +168,7 @@
             LogWarn(@"Recording log file handle could not be created");
         }
     }
-    NSString *logMessage = [NSString stringWithFormat:@"----------------------------------------------\n%@----------------------------------------------\n", message];
+    NSString *logMessage = [NSString stringWithFormat:@"----------------------------------------------\n%@\n----------------------------------------------\n", message];
     [_recordingLogFileHandle writeData:[logMessage dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
