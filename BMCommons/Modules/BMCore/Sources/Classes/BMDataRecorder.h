@@ -69,4 +69,11 @@
  */
 - (id)recordedResultForRecordingClass:(NSString *)recordingClassIdentier withDigest:(NSString *)digest;
 
+/**
+ * Writes a message to the recording log.
+ *
+ * @param message
+ */
+- (void)writeToRecordingLog:(NSString *)message;
+
 @end

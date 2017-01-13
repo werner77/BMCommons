@@ -144,18 +144,14 @@
             if (!success) {
                 LogWarn(@"Failed recording response for recording '%@' with digest '%@' at path: %@", recordingClassIdenfier, digest, resultPath);
             } else {
-                LogWarn(@"Recorded response for recording '%@' with digest '%@' at path: %@", recordingClassIdenfier, digest, resultPath);
+                LogNotice(@"Recorded response for recording '%@' with digest '%@' at path: %@", recordingClassIdenfier, digest, resultPath);
             }
         }
-
-        [self writeToRecordingLog:[NSString stringWithFormat:@"----------------------------------------------\n"
-                                                                     "Recorded result for recording class '%@' with digest '%@':\n%@"
-                                                                     "----------------------------------------------\n", recordingClassIdenfier, digest, [result bmPrettyDescription]]];
     }
 }
 
 - (void)writeToRecordingLog:(NSString *)message {
-    if (_recordingLogFileHandle == nil) {
+    if (_recordingLogFileHandle == nil && self.isRecording) {
         //First remove any exising log file
         NSString *dir = [self currentRecordingDir];
         NSString *filePath = [dir stringByAppendingPathComponent:@"recording.log"];
@@ -172,7 +168,8 @@
             LogWarn(@"Recording log file handle could not be created");
         }
     }
-    [_recordingLogFileHandle writeData:[message dataUsingEncoding:NSUTF8StringEncoding]];
+    NSString *logMessage = [NSString stringWithFormat:@"----------------------------------------------\n%@----------------------------------------------\n", message];
+    [_recordingLogFileHandle writeData:[logMessage dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 - (id)recordedResultForRecordingClass:(NSString *)recordingClassIdentier withDigest:(NSString *)digest {
