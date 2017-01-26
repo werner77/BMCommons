@@ -22,7 +22,7 @@
 @implementation BMWeakReferenceContext
 
 - (BOOL)canBeCleanedUp {
-    return _weakReference.target == nil;
+    return _weakReference.target == nil || _owner == nil;
 }
 
 - (NSUInteger)hash {
@@ -73,6 +73,9 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 
 - (void)registerReference:(id)reference forOwner:(id)owner withCleanupBlock:(BMWeakReferenceCleanupBlock)cleanup {
     if (reference && cleanup) {
+        if (owner == nil) {
+            owner = self;
+        }
         BMWeakReferenceContext *context = [BMWeakReferenceContext new];
         context.weakReference = [BMWeakReference weakReferenceWithTarget:reference];
         context.owner = owner;
