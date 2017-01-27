@@ -76,7 +76,7 @@ return [NSArray arrayWithArray:_listeners]; \
 } \
 \
 - (void)addListener:(NSObject <protocol>*)listener { \
-if (![_listeners bmContainsObjectIdenticalTo:listener]) { \
+if (![self.listeners bmContainsObjectIdenticalTo:listener]) { \
 [(NSMutableArray *)_listeners addObject:listener]; \
 } \
 } \
