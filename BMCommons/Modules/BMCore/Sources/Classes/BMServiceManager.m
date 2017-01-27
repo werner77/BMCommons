@@ -470,9 +470,10 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 }
 
 - (void)releaseService:(id <BMService>)theService {
-	theService.delegate = nil;
-	[self removeServiceDelegatesForInstanceIdentifier:theService.instanceIdentifier];
-	[self removeServiceWithInstanceIdentifier:theService.instanceIdentifier];
+    id <BMService> __autoreleasing autoReleasingService = theService;
+    autoReleasingService.delegate = nil;
+	[self removeServiceDelegatesForInstanceIdentifier:autoReleasingService.instanceIdentifier];
+	[self removeServiceWithInstanceIdentifier:autoReleasingService.instanceIdentifier];
 }
 
 - (void)notifyDelegatesWithSelector:(SEL)selector service:(id <BMService>)service object:(id)object {

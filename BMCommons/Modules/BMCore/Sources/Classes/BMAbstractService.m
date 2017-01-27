@@ -210,10 +210,10 @@
 - (void)serviceSucceededWithResult:(id)result {
     _finished = YES;
     _executing = NO;
+    [self endBackgroundTask];
     if (!self.isCancelled) {
         [self.delegate service:self succeededWithResult:result];
     }
-    [self endBackgroundTask];
 }
 
 - (void)serviceFailedWithRawError:(NSError *)error {
@@ -233,10 +233,10 @@
 - (void)serviceFailedWithError:(NSError *)error {
     _finished = YES;
     _executing = NO;
+    [self endBackgroundTask];
     if (!self.isCancelled) {
         [self.delegate service:self failedWithError:error];
     }
-    [self endBackgroundTask];
 }
 
 - (NSInteger)delegatePriority {
