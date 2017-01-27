@@ -67,6 +67,7 @@
 - (void)notifyListeners:(void (^)(NSObject<protocol> *listener))notifyBlock;
 
 #define BM_LISTENER_METHODS_IMPLEMENTATION(protocol) \
+@synthesize listeners = _listeners; \
 - (NSArray *)listeners { \
 if (!_listeners) { \
 _listeners = BMCreateNonRetainingArray(); \
@@ -75,7 +76,7 @@ return [NSArray arrayWithArray:_listeners]; \
 } \
 \
 - (void)addListener:(NSObject <protocol>*)listener { \
-if (![self.listeners bmContainsObjectIdenticalTo:listener]) { \
+if (![_listeners bmContainsObjectIdenticalTo:listener]) { \
 [(NSMutableArray *)_listeners addObject:listener]; \
 } \
 } \
