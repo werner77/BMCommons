@@ -53,4 +53,16 @@ BM_DECLARE_DEFAULT_SINGLETON
  */
 + (NSArray *)settingsPropertiesDescriptorsArray;
 
+/**
+ * The default keyname that is used for the specified keypath for the property.
+ *
+ * Defaults to the namespace appended with the keypath where all dots are replaced with underscores and the result is converted to uppercase.
+ */
++ (NSString *)defaultKeyNameForKeyPath:(NSString *)keyPath;
+
+/**
+ * Defaults to the classname.
+ */
++ (NSString *)namespace;
+
 @end

@@ -71,13 +71,12 @@ static NSMutableDictionary *cachedDescriptors = nil;
     @synchronized (self) {
         NSMutableDictionary *dict = [cachedDescriptors objectForKey:classKey];
         if (dict == nil) {
-            NSString *className = NSStringFromClass(self);
             dict = [NSMutableDictionary new];
             for (BMSettingsPropertyDescriptor *pd in [self settingsPropertiesDescriptorsArray]) {
                 if (pd && pd.keyPath) {
                     if (pd.keyName == nil) {
                         //Use default keyName
-                        NSString *defaultKeyName = [[NSString stringWithFormat:@"%@_%@", className, [pd.keyPath stringByReplacingOccurrencesOfString:@"." withString:@"_"]] uppercaseString];
+                        NSString *defaultKeyName = [self defaultKeyNameForKeyPath:pd.keyPath];
                         pd.keyName = defaultKeyName;
                     }
                     [dict setObject:pd forKey:pd.keyPath];
@@ -127,6 +126,14 @@ static NSMutableDictionary *cachedDescriptors = nil;
 
 + (BMValueTypeConverter *)primitiveValueConverterForValueType:(BMValueType)valueType {
     return (valueType == BMValueTypeObject) ? nil : [BMValueTypeConverter converterForValueType:valueType];
+}
+
++ (NSString *)defaultKeyNameForKeyPath:(NSString *)keyPath {
+    return [[NSString stringWithFormat:@"%@_%@", [self namespace], [keyPath stringByReplacingOccurrencesOfString:@"." withString:@"_"]] uppercaseString];
+}
+
++ (NSString *)namespace {
+    return NSStringFromClass(self);
 }
 
 - (void)dealloc {
