@@ -8,7 +8,7 @@
 /**
  * Array which maintains sorting order upon adding/insertion of objects using the specified comparator/sortDescriptors/sortSelector in this order of precedence.
  */
-@interface BMSortedArray : NSMutableArray
+@interface BMSortedArray<ObjectType> : NSMutableArray<ObjectType>
 
 /**
  * Set to sort using the specified comparator, highest precedence

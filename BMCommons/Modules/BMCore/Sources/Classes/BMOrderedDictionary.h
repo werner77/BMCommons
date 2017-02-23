@@ -11,7 +11,7 @@
 /**
  Dictionary which retains the insertion order and allows objects to be inserted at specified indexes.
  */
-@interface BMOrderedDictionary : BMAbstractMutableDictionary
+@interface BMOrderedDictionary<KeyType, ObjectType> : BMAbstractMutableDictionary<KeyType, ObjectType>
 
 /**
  Inserts object for key at the specified index
@@ -20,7 +20,7 @@
  @param aKey the key to use
  @param anIndex the index
  */
-- (void)insertObject:(id)anObject forKey:(id)aKey atIndex:(NSUInteger)anIndex;
+- (void)insertObject:(ObjectType)anObject forKey:(KeyType)aKey atIndex:(NSUInteger)anIndex;
 
 /**
  Moves the specified object to a specified index.
@@ -29,7 +29,7 @@
  
  Returns YES if successful, no otherwise
  */
-- (BOOL)moveObjectForKey:(id)aKey toIndex:(NSUInteger)toIndex;
+- (BOOL)moveObjectForKey:(KeyType)aKey toIndex:(NSUInteger)toIndex;
 
 - (void)moveObjectFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 

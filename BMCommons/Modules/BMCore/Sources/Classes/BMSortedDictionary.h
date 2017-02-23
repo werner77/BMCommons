@@ -8,7 +8,7 @@
 /**
  * Dictionary which maintains order by sorting the keys using the supplied comparator or sortDescriptors.
  */
-@interface BMSortedDictionary : BMAbstractMutableDictionary
+@interface BMSortedDictionary<KeyType, ObjectType> : BMAbstractMutableDictionary<KeyType, ObjectType>
 
 /**
  * Set to sort using the specified comparator, highest precedence

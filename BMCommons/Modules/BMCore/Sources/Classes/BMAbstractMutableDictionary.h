@@ -6,47 +6,47 @@
 #import <Foundation/Foundation.h>
 
 
-@interface BMAbstractMutableDictionary : NSMutableDictionary
+@interface BMAbstractMutableDictionary<KeyType, ObjectType> : NSMutableDictionary<KeyType, ObjectType>
 
 /**
  Returns the key at the specified index.
  */
-- (id)keyAtIndex:(NSUInteger)anIndex;
+- (KeyType)keyAtIndex:(NSUInteger)anIndex;
 
 /**
  Returns the object at the specified index.
  */
-- (id)objectAtIndex:(NSUInteger)anIndex;
+- (ObjectType)objectAtIndex:(NSUInteger)anIndex;
 
 /**
  Returns the key for the specified index or nil if the index is out of bounds.
  */
-- (id)safeKeyAtIndex:(NSUInteger)anIndex;
+- (KeyType)safeKeyAtIndex:(NSUInteger)anIndex;
 
 /**
  Returns the object for the specified index or nil if the index is out of bounds.
  */
-- (id)safeObjectAtIndex:(NSUInteger)anIndex;
+- (ObjectType)safeObjectAtIndex:(NSUInteger)anIndex;
 
 /**
  * Enumerates objects in reverse order.
  */
-- (NSEnumerator *)reverseObjectEnumerator;
+- (NSEnumerator<ObjectType> *)reverseObjectEnumerator;
 
 /**
  * Enumerates keys in reverse order.
  */
-- (NSEnumerator *)reverseKeyEnumerator;
+- (NSEnumerator<KeyType> *)reverseKeyEnumerator;
 
 @end
 
-@interface BMAbstractMutableDictionary(Protected)
+@interface BMAbstractMutableDictionary<KeyType, ObjectType>(Protected)
 
 /**
  * To be implemented by sub classes
  */
-- (NSMutableArray *)keysInternal;
-- (NSMutableDictionary *)dictionaryInternal;
+- (NSMutableArray<KeyType> *)keysInternal;
+- (NSMutableDictionary<KeyType, ObjectType> *)dictionaryInternal;
 - (void)commonInitWithCapacity:(NSUInteger)capacity;
 
 @end

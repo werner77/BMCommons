@@ -15,7 +15,7 @@
  
  All instances of this class use a shared BMCache instance to cache lookups which has a default memory limit set to 20 MB.
  */
-@interface BMFileBackedMutableArray : NSMutableArray
+@interface BMFileBackedMutableArray<ObjectType> : NSMutableArray<ObjectType>
 
 /**
  The global cache used by all instances to cache lookups.
