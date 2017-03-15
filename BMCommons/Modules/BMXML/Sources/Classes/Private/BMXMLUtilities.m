@@ -217,6 +217,8 @@ append_char(diacrite, c, j, char_array, parsing_diacrite);
                     NSString *decodedDiacrite = [self decodedEntity:diacrite];
                     if (!decodedDiacrite) {
                         decodedDiacrite = diacrite;
+                    } else {
+                        decodedDiacrite = [self jsonStringWithXMLChar:(const xmlChar *)[decodedDiacrite cStringUsingEncoding:NSUTF8StringEncoding]];
                     }
                     stop_parsing_diacrite(decodedDiacrite, j, retCharArray, parsingDiacrite);
                 }
