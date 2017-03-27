@@ -20,31 +20,8 @@
 
 @implementation BMWeakReferenceContext
 
-+ (NSMutableArray *)allInstances {
-    static NSMutableArray *ret = nil;
-    BM_DISPATCH_ONCE(^{
-        ret = BMCreateNonRetainingArray();
-    });
-    return ret;
-}
-
-+ (void)addInstance:(BMWeakReferenceContext *)context {
-    NSMutableArray *allInstances = self.allInstances;
-    @synchronized (allInstances) {
-        [allInstances bmSafeAddObject:context];
-    }
-}
-
-+ (void)removeInstance:(BMWeakReferenceContext *)context {
-    NSMutableArray *allInstances = self.allInstances;
-    @synchronized (allInstances) {
-        [allInstances removeObjectIdenticalTo:context];
-    }
-}
-
 - (instancetype)init {
     if ((self = [super init])) {
-        [self.class addInstance:self];
     }
     return self;
 }
@@ -69,7 +46,6 @@
     if (cleanupBlock) {
         cleanupBlock();
     }
-    [self.class removeInstance:self];
 }
 
 @end
@@ -80,6 +56,7 @@
 - (void)bmRemoveWeakReferenceContext:(BMWeakReferenceContext *)context;
 - (void)bmRemoveWeakReferenceContexts;
 - (void)bmRemoveWeakReferenceContextsWithPredicate:(BOOL (^)(BMWeakReferenceContext *))predicate;
+- (BOOL)bmHasWeakReferenceContextWithPredicate:(BOOL (^)(BMWeakReferenceContext *))predicate;
 
 @end
 
@@ -122,6 +99,12 @@ static char * const kBMWeakReferenceContextsKey = "com.behindmedia.bmcommons.NSO
     }
 }
 
+- (BOOL)bmHasWeakReferenceContextWithPredicate:(BOOL (^)(BMWeakReferenceContext *))predicate {
+    @synchronized (self) {
+        return [self._bmWeakReferenceContexts bmFirstObjectWithPredicate:predicate] != nil;
+    }
+}
+
 @end
 
 @implementation BMWeakReferenceRegistry {
@@ -150,23 +133,20 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 
 - (void)deregisterReference:(id)reference forOwner:(id)owner {
     if (reference) {
-        @synchronized(self) {
-            [reference bmRemoveWeakReferenceContextsWithPredicate:^BOOL(BMWeakReferenceContext *context) {
-                return (owner == nil || context.owner == owner) && context.weakReference == reference;
-            }];
-        }
+        [reference bmRemoveWeakReferenceContextsWithPredicate:^BOOL(BMWeakReferenceContext *context) {
+            return (owner == nil || context.owner == owner);
+        }];
     }
 }
 
-- (void)deregisterReferencesForOwner:(id)owner {
-    NSArray *allContexts = [[BMWeakReferenceContext allInstances] copy];
-    for (BMWeakReferenceContext *context in allContexts) {
-        if (owner == nil) {
-            [context.weakReference bmRemoveWeakReferenceContexts];
-        } else if (owner == context.owner) {
-            [context.weakReference bmRemoveWeakReferenceContext:context];
-        }
+- (BOOL)hasRegisteredReference:(id)reference forOwner:(id)owner {
+    BOOL ret = NO;
+    if (reference) {
+        ret = [reference bmHasWeakReferenceContextWithPredicate:^BOOL(BMWeakReferenceContext *context) {
+            return (owner == nil || context.owner == owner);
+        }];
     }
+    return ret;
 }
 
 @end

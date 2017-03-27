@@ -18,6 +18,6 @@ typedef void(^BMWeakReferenceCleanupBlock)(void);
 
 - (void)registerReference:(id)reference forOwner:(id)owner withCleanupBlock:(BMWeakReferenceCleanupBlock)cleanup;
 - (void)deregisterReference:(id)reference forOwner:(id)owner;
-- (void)deregisterReferencesForOwner:(id)owner;
+- (BOOL)hasRegisteredReference:(id)reference forOwner:(id)owner;
 
 @end

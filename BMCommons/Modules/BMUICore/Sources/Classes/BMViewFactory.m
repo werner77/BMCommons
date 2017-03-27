@@ -32,7 +32,6 @@ NSString * const BMTableViewHeaderFooterViewKind = @"UITableViewHeaderFooterView
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[BMWeakReferenceRegistry sharedInstance] deregisterReferencesForOwner:self];
 }
 
 - (void)releaseMemory {

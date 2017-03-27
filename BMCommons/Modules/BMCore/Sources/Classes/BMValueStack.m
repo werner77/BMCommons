@@ -36,7 +36,6 @@ BM_LISTENER_METHODS_IMPLEMENTATION(BMValueStackListener)
 }
 
 - (void)dealloc {
-    [[BMWeakReferenceRegistry sharedInstance] deregisterReferencesForOwner:self];
 }
 
 - (id)keyForOwner:(id)owner {
