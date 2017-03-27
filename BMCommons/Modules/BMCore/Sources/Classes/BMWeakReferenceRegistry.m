@@ -8,25 +8,26 @@
 
 #import <BMCommons/BMWeakReferenceRegistry.h>
 #import <BMCommons/BMWeakReference.h>
+#import <objc/runtime.h>
 
 @interface BMWeakReferenceContext : NSObject
 
-@property (nonatomic, strong) BMWeakReference *weakReference;
-@property (nonatomic, weak) id owner;
+@property (nonatomic, weak) id weakReference;
 @property (nonatomic, copy) BMWeakReferenceCleanupBlock cleanupBlock;
 
-- (BOOL)canBeCleanedUp;
+@end
+
+@interface NSObject(BMWeakReferenceRegistry)
+
+- (void)bmAddWeakReferenceContext:(BMWeakReferenceContext *)context;
+- (void)bmRemoveWeakReferenceContexts;
 
 @end
 
 @implementation BMWeakReferenceContext
 
-- (BOOL)canBeCleanedUp {
-    return _weakReference.target == nil || _owner == nil;
-}
-
 - (NSUInteger)hash {
-    NSUInteger hash = ((NSUInteger)self.weakReference.target) * 17 + ((NSUInteger)self.owner);
+    NSUInteger hash = ((NSUInteger)self.weakReference);
     return hash;
 }
 
@@ -34,75 +35,73 @@
     BOOL ret = NO;
     if ([object isKindOfClass:[BMWeakReferenceContext class]]) {
         BMWeakReferenceContext *other = object;
-        ret = other.weakReference.target == self.weakReference.target && other.owner == self.owner;
+        ret = (other.weakReference == self.weakReference);
     }
     return ret;
 }
 
+- (void)dealloc {
+    //Object was deallocated: Do cleanup
+    BMWeakReferenceCleanupBlock cleanupBlock = self.cleanupBlock;
+    if (cleanupBlock) {
+        cleanupBlock();
+    }
+}
+
 @end
 
+@implementation NSObject(BMWeakReferenceRegistry)
+
+static char * const kBMWeakReferenceContextsKey = "com.behindmedia.bmcommons.NSObject.weakReferenceContexts";
+
+- (NSMutableArray<BMWeakReferenceContext *> *)_bmWeakReferenceContexts {
+    return objc_getAssociatedObject(self, kBMWeakReferenceContextsKey);
+}
+
+- (void)bmAddWeakReferenceContext:(BMWeakReferenceContext *)context {
+    if (context != nil) {
+        @synchronized (self) {
+            NSMutableArray<BMWeakReferenceContext *> *contexts = [self _bmWeakReferenceContexts];
+            if (contexts == nil) {
+                contexts = [NSMutableArray new];
+                objc_setAssociatedObject(self, kBMWeakReferenceContextsKey, contexts, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            }
+            [contexts addObject:context];
+        }
+    }
+}
+
+- (void)bmRemoveWeakReferenceContexts {
+    @synchronized (self) {
+        [self._bmWeakReferenceContexts removeAllObjects];
+    }
+}
+
+@end
+
+
 @implementation BMWeakReferenceRegistry {
-    NSMutableArray *_referenceContexts;
-    NSTimer *_timer;
 }
 
 BM_SYNTHESIZE_DEFAULT_SINGLETON
 
 - (id)init {
     if ((self = [super init])) {
-        _referenceContexts = [NSMutableArray new];
-        _timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(cleanupCheck:) userInfo:nil repeats:YES];
     }
     return self;
 }
 
-- (void)cleanupCheck:(NSTimer *)timer {
-    @synchronized(self) {
-        [_referenceContexts bmRemoveObjectsWithPredicate:^BOOL(BMWeakReferenceContext *context) {
-            BOOL ret = NO;
-            if ([context canBeCleanedUp]) {
-                if (context.cleanupBlock) {
-                    context.cleanupBlock();
-                }
-                ret = YES;
-            }
-            return ret;
-        }];
-    }
-}
-
-- (void)registerReference:(id)reference forOwner:(id)owner withCleanupBlock:(BMWeakReferenceCleanupBlock)cleanup {
+- (void)registerReference:(id)reference withCleanupBlock:(BMWeakReferenceCleanupBlock)cleanup {
     if (reference && cleanup) {
-        if (owner == nil) {
-            owner = self;
-        }
         BMWeakReferenceContext *context = [BMWeakReferenceContext new];
         context.weakReference = [BMWeakReference weakReferenceWithTarget:reference];
-        context.owner = owner;
         context.cleanupBlock = cleanup;
-
-        @synchronized(self) {
-            [_referenceContexts addObject:context];
-        }
+        [reference bmAddWeakReferenceContext:context];
     }
 }
 
-- (void)deregisterReference:(id)reference forOwner:(id)owner {
-    if (reference) {
-        @synchronized(self) {
-            [_referenceContexts bmRemoveObjectsWithPredicate:^BOOL(BMWeakReferenceContext *context) {
-                return (owner == nil || context.owner == owner) && context.weakReference.target == reference;
-            }];
-        }
-    }
-}
-
-- (void)deregisterReferencesForOwner:(id)owner {
-    @synchronized(self) {
-        [_referenceContexts bmRemoveObjectsWithPredicate:^BOOL(BMWeakReferenceContext *context) {
-            return (owner == nil || context.owner == owner);
-        }];
-    }
+- (void)deregisterReference:(id)reference {
+    [reference bmRemoveWeakReferenceContexts];
 }
 
 @end
