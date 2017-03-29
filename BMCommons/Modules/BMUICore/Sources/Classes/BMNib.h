@@ -27,7 +27,7 @@
  
  @see BMViewFactory
  */
-+ (NSUInteger)defaultPrecacheSizeForNibName:(NSString *)nibName;
++ (NSUInteger)defaultPreCacheSizeForNibName:(NSString *)nibName;
 
 /**
  Returns the minimum default precache size for all nibs with the specified nib name.
@@ -36,36 +36,31 @@
 
  @see BMViewFactory
  */
-+ (NSUInteger)defaultMinPrecacheSizeForNibName:(NSString *)nibName;
++ (NSUInteger)defaultCacheSizeForNibName:(NSString *)nibName;
 
 /**
  Sets the default precache size for all nibs with the specified nib name.
  */
-+ (void)setDefaultPrecacheSize:(NSUInteger)preCacheSize forNibName:(NSString *)nibName;
++ (void)setDefaultPreCacheSize:(NSUInteger)preCacheSize forNibName:(NSString *)nibName;
 
 /**
  Sets the default precache size for all nibs with the specified nib name.
  */
-+ (void)setDefaultMinPrecacheSize:(NSUInteger)preCacheSize forNibName:(NSString *)nibName;
++ (void)setDefaultCacheSize:(NSUInteger)preCacheSize forNibName:(NSString *)nibName;
 
 /**
  Set to a value higher than 0 (which is the default) to enable precaching of nib objects up to the specified size before the first allocation.
  
  Set this to the maximum number of objects that will simultaneously be allocated (e.g. UICollectionViewCells or UITableViewCells that are visible at the same time).
  */
-@property (nonatomic, assign) NSUInteger preCacheSize;
+@property (assign) NSUInteger preCacheSize;
 
 /**
  * Set to a value higher than 0 to always at least pre-allocate the specified amount of objects to avoid hickups when new cells have to be instantiated.
  *
- * When the precache pool size decreases below this threshold automatically new objects will be instantiated and added to the precache pool.
+ * When the cache pool size decreases below this threshold automatically new objects will be instantiated and added to the precache pool.
  */
-@property (nonatomic, assign) NSUInteger minPreCacheSize;
-
-/**
- * Set to true to allocate the precached objects in a background thread.
- */
-@property (nonatomic, assign) BOOL allocateInBackgroundThread;
+@property (assign) NSUInteger cacheSize;
 
 /**
  Populates the nib cache for faster loading of nibs.
