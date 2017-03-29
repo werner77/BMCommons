@@ -8,20 +8,22 @@
 
 #import <BMCommons/BMNib.h>
 #import <BMCommons/BMWeakTimer.h>
+#import <BMCommons/NSObject+BMCommons.h>
 
 @interface BMNib()
 
 @property (nonatomic, strong) UINib *nibImpl;
 @property (nonatomic, assign) Class objectClass;
 @property (nonatomic, strong) NSMutableArray *cache;
-@property (nonatomic, strong) BMWeakTimer *cacheWarmupTimer;
-@property (nonatomic, assign) NSUInteger instantiationCount;
+@property (assign) BOOL cacheWarmupScheduled;
+@property (assign) NSUInteger instantiationCount;
 
 @end
 
 @implementation BMNib
 
 static NSMutableDictionary *defaultCacheSizeDictionary = nil;
+static NSMutableDictionary *minCacheSizeDictionary = nil;
 
 // If the bundle parameter is nil, the main bundle is used.
 // Releases resources in response to memory pressure (e.g. memory warning), reloading from the bundle when necessary.
@@ -48,12 +50,25 @@ static NSMutableDictionary *defaultCacheSizeDictionary = nil;
     return [[defaultCacheSizeDictionary objectForKey:nibName] unsignedIntegerValue];
 }
 
++ (NSUInteger)defaultMinPrecacheSizeForNibName:(NSString *)nibName{
+    return [[minCacheSizeDictionary objectForKey:nibName] unsignedIntegerValue];
+}
+
 + (void)setDefaultPrecacheSize:(NSUInteger)preCacheSize forNibName:(NSString *)nibName {
     if (defaultCacheSizeDictionary == nil) {
         defaultCacheSizeDictionary = [NSMutableDictionary new];
     }
     if (nibName) {
         [defaultCacheSizeDictionary setObject:@(preCacheSize) forKey:nibName];
+    }
+}
+
++ (void)setDefaultMinPrecacheSize:(NSUInteger)preCacheSize forNibName:(NSString *)nibName{
+    if (minCacheSizeDictionary == nil) {
+        minCacheSizeDictionary = [NSMutableDictionary new];
+    }
+    if (nibName) {
+        [minCacheSizeDictionary setObject:@(preCacheSize) forKey:nibName];
     }
 }
 
@@ -82,36 +97,57 @@ static NSMutableDictionary *defaultCacheSizeDictionary = nil;
 }
 
 - (void)warmupCache {
-    self.cacheWarmupTimer = nil;
-    while (self.instantiationCount < self.preCacheSize) {
-        NSArray *data = [self instantiateReusable];
-        if (data) {
-            [self.cache addObject:data];
-        } else {
-            break;
+    @synchronized (self) {
+        while (self.instantiationCount < self.preCacheSize) {
+            NSArray *data = [self instantiateReusable];
+            if (data) {
+                [self.cache addObject:data];
+            } else {
+                break;
+            }
         }
+        self.cacheWarmupScheduled = NO;
     }
 }
 
 - (NSArray *)popDataFromCache {
-    NSArray *ret = [self.cache firstObject];
-    if (ret) {
-        [self.cache removeObjectAtIndex:0];
+    @synchronized (self) {
+        NSArray *ret = [self.cache firstObject];
+        if (ret) {
+            [self.cache removeObjectAtIndex:0];
+        }
+        NSUInteger minCacheSize = MIN(self.minPreCacheSize, self.preCacheSize);
+        if (self.cache.count < minCacheSize) {
+            self.instantiationCount = self.preCacheSize - minCacheSize;
+            [self scheduleWarmup];
+        }
+        return ret;
     }
-    return ret;
 }
 
 - (void)scheduleWarmup {
-    if (self.cacheWarmupTimer == nil) {
-        self.cacheWarmupTimer = [BMWeakTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(warmupCache) userInfo:nil repeats:NO];
+    if (!self.cacheWarmupScheduled) {
+        self.cacheWarmupScheduled = YES;
+        __typeof(self) __weak weakSelf = self;
+        void (^block)(void) = ^{
+            if (weakSelf.cacheWarmupScheduled) {
+                [weakSelf warmupCache];
+            }
+        };
+
+        if (self.allocateInBackgroundThread) {
+            [self bmPerformBlockInBackground:^id {
+                block();
+                return nil;
+            } withCompletion:nil];
+        } else {
+            [self bmPerformBlock:block afterDelay:0.1];
+        }
     }
 }
 
 - (void)unscheduleWarmup {
-    if (self.cacheWarmupTimer != nil) {
-        [self.cacheWarmupTimer invalidate];
-        self.cacheWarmupTimer = nil;
-    }
+    self.cacheWarmupScheduled = NO;
 }
 
 #pragma mark - Instantiation
@@ -141,6 +177,7 @@ static NSMutableDictionary *defaultCacheSizeDictionary = nil;
 }
 
 - (NSArray *)instantiateReusable {
+    NSLog(@"Instantiating new cell!");
     NSArray *ret = [self instantiateImplWithOwner:nil options:nil];
     if (ret) {
         self.instantiationCount++;
@@ -149,14 +186,16 @@ static NSMutableDictionary *defaultCacheSizeDictionary = nil;
 }
 
 - (void)clearCache {
-    self.instantiationCount -= self.cache.count;
-    self.cache = nil;
+    @synchronized (self) {
+        self.instantiationCount -= self.cache.count;
+        _cache = nil;
+    }
 }
 
 - (NSArray *)instantiateImplWithOwner:(id)ownerOrNil options:(NSDictionary *)optionsOrNil {
     Class objectClass = self.objectClass;
     NSArray *ret = nil;
-    
+
     if (self.nibImpl != nil) {
         return [self.nibImpl instantiateWithOwner:ownerOrNil options:optionsOrNil];
     } else if (objectClass != nil) {
