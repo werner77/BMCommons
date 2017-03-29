@@ -140,7 +140,7 @@ static NSMutableDictionary *defaultCacheSizeDictionary = nil;
     NSLog(@"Warming up cache...");
 #endif
     NSUInteger count = 0;
-    while (self.cacheCount < cacheSize) {
+    while (self.cacheCount < cacheSize || count < cacheSize) {
         NSArray *data = [self instantiateReusable];
         if (data) {
             @synchronized (self) {
