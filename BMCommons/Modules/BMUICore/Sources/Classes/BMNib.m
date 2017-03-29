@@ -9,6 +9,8 @@
 #import <BMCommons/BMNib.h>
 #import <BMCommons/BMWeakTimer.h>
 #import <BMCommons/NSObject+BMCommons.h>
+#import <BMCommons/BMCore.h>
+#import <BMCommons/BMObjectHelper.h>
 
 @interface BMNib()
 
@@ -25,14 +27,15 @@
     NSUInteger _preCacheSize;
 }
 
-static NSMutableDictionary *defaultPreCacheSizeDictionary = nil;
-static NSMutableDictionary *defaultCacheSizeDictionary = nil;
-
 // If the bundle parameter is nil, the main bundle is used.
 // Releases resources in response to memory pressure (e.g. memory warning), reloading from the bundle when necessary.
 + (BMNib *)nibWithNibName:(NSString *)name bundle:(NSBundle *)bundleOrNil {
     BMNib *nib = [BMNib new];
     nib.nibImpl = [UINib nibWithNibName:name bundle:bundleOrNil];
+    BMNibConfigurationBlock configurationBlock = [self configurationBlockForNibWithName:name];
+    if (configurationBlock) {
+        configurationBlock(nib);
+    }
     return nib;
 }
 
@@ -40,6 +43,10 @@ static NSMutableDictionary *defaultCacheSizeDictionary = nil;
 + (BMNib *)nibWithData:(NSData *)data bundle:(NSBundle *)bundleOrNil {
     BMNib *nib = [BMNib new];
     nib.nibImpl = [UINib nibWithData:data bundle:bundleOrNil];
+    BMNibConfigurationBlock configurationBlock = [self configurationBlockForNibWithName:nil];
+    if (configurationBlock) {
+        configurationBlock(nib);
+    }
     return nib;
 }
 
@@ -49,38 +56,32 @@ static NSMutableDictionary *defaultCacheSizeDictionary = nil;
     return nib;
 }
 
-+ (NSUInteger)defaultPreCacheSizeForNibName:(NSString *)nibName {
-    @synchronized (BMNib.class) {
-        return [[defaultPreCacheSizeDictionary objectForKey:nibName] unsignedIntegerValue];
-    }
++ (NSMutableDictionary *)configurationBlocks {
+    static NSMutableDictionary *ret = nil;
+    BM_DISPATCH_ONCE(^{
+        ret = [NSMutableDictionary new];
+    });
+    return ret;
 }
 
-+ (NSUInteger)defaultCacheSizeForNibName:(NSString *)nibName{
++ (void)setConfigurationBlock:(BMNibConfigurationBlock)block forNibWithName:(NSString *)nibName {
     @synchronized (BMNib.class) {
-        return [[defaultCacheSizeDictionary objectForKey:nibName] unsignedIntegerValue];
-    }
-}
-
-+ (void)setDefaultPreCacheSize:(NSUInteger)preCacheSize forNibName:(NSString *)nibName {
-    @synchronized (BMNib.class) {
-        if (defaultPreCacheSizeDictionary == nil) {
-            defaultPreCacheSizeDictionary = [NSMutableDictionary new];
-        }
-        if (nibName) {
-            [defaultPreCacheSizeDictionary setObject:@(preCacheSize) forKey:nibName];
+        if (block) {
+            self.configurationBlocks[[BMObjectHelper filterNullObject:nibName]] = [block copy];
         }
     }
 }
 
-+ (void)setDefaultCacheSize:(NSUInteger)preCacheSize forNibName:(NSString *)nibName{
++ (BMNibConfigurationBlock)configurationBlockForNibWithName:(NSString *)nibName {
+    BMNibConfigurationBlock block = nil;
     @synchronized (BMNib.class) {
-        if (defaultCacheSizeDictionary == nil) {
-            defaultCacheSizeDictionary = [NSMutableDictionary new];
-        }
-        if (nibName) {
-            [defaultCacheSizeDictionary setObject:@(preCacheSize) forKey:nibName];
+        block = self.configurationBlocks[[BMObjectHelper filterNullObject:nibName]];
+        if (block == nil && nibName != nil) {
+            //Revert to default block
+            block = self.configurationBlocks[[NSNull null]];
         }
     }
+    return block;
 }
 
 #pragma mark - Properties
@@ -187,10 +188,15 @@ static NSMutableDictionary *defaultCacheSizeDictionary = nil;
                 [weakSelf warmupCacheToSize:size];
             }
         };
-        [self bmPerformBlockInBackground:^id {
-            block();
-            return nil;
-        } withCompletion:nil];
+
+        if (self.warmupCacheInBackground) {
+            [self bmPerformBlockInBackground:^id {
+                block();
+                return nil;
+            } withCompletion:nil];
+        } else {
+            [self bmPerformBlock:block afterDelay:0.01];
+        }
     }
 }
 

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class BMNib;
+
+typedef void (^BMNibConfigurationBlock)(BMNib *nib);
+
 @interface BMNib : UINib
 
 + (BMNib *)nibWithNibName:(NSString *)name bundle:(NSBundle *)bundleOrNil;
@@ -21,32 +25,23 @@
 + (BMNib *)nibWithObjectClass:(Class)clazz;
 
 /**
- Returns the default precache size for all nibs with the specified nib name.
- 
- This is used by BMViewFactory.
- 
- @see BMViewFactory
+ * Sets the configuration block to perform to configure the nib for the specified name when instantiated.
+ *
+ * If nibName == nil, this supplied configuration block is used for all nibs that don't match any other registered name.
+ *
+ * @param block The configuration block
+ * @param nibName The name of the nib
+ * @see [BMNib nibWithNibName:bundle:]
  */
-+ (NSUInteger)defaultPreCacheSizeForNibName:(NSString *)nibName;
++ (void)setConfigurationBlock:(BMNibConfigurationBlock)block forNibWithName:(NSString *)nibName;
 
 /**
- Returns the minimum default precache size for all nibs with the specified nib name.
-
- This is used by BMViewFactory.
-
- @see BMViewFactory
+ * If set to true the cache warmup is performed in a background thread. For this to work the init/dealloc methods should be thread safe.
+ * UIViews are allowed to be instantiated in a background thread. If you are sure your views don't do custom non-thread safe logic inside their init/dealloc methods you may set this to true.
+ *
+ * Defaults to false.
  */
-+ (NSUInteger)defaultCacheSizeForNibName:(NSString *)nibName;
-
-/**
- Sets the default precache size for all nibs with the specified nib name.
- */
-+ (void)setDefaultPreCacheSize:(NSUInteger)preCacheSize forNibName:(NSString *)nibName;
-
-/**
- Sets the default precache size for all nibs with the specified nib name.
- */
-+ (void)setDefaultCacheSize:(NSUInteger)preCacheSize forNibName:(NSString *)nibName;
+@property (assign) BOOL warmupCacheInBackground;
 
 /**
  Set to a value higher than 0 (which is the default) to enable precaching of nib objects up to the specified size before the first allocation.

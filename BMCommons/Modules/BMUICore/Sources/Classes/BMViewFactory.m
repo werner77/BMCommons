@@ -164,10 +164,6 @@ NSString * const BMTableViewHeaderFooterViewKind = @"UITableViewHeaderFooterView
             }
             
             if (nib != nil) {
-                NSUInteger defaultPreCacheSize = [BMNib defaultPreCacheSizeForNibName:type];
-                NSUInteger defaultMinPreCacheSize = [BMNib defaultCacheSizeForNibName:type];
-                nib.preCacheSize = defaultPreCacheSize;
-                nib.cacheSize = defaultMinPreCacheSize;
                 if ([kind isEqualToString:BMTableViewCellKind]) {
                     [tableView registerNib:nib forCellReuseIdentifier:type];
                 } else if ([kind isEqualToString:BMTableViewHeaderFooterViewKind]) {
