@@ -63,13 +63,6 @@
 @property (assign) NSUInteger cacheSize;
 
 /**
- Populates the nib cache for faster loading of nibs.
- 
- This is also done automatically after the first call to instantiateWithOwner or when the precacheSize is set to a value higher than 0.
- */
-- (void)populateCache;
-
-/**
  Clears the nib cache.
  */
 - (void)clearCache;

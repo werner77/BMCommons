@@ -16,9 +16,10 @@
 @property (nonatomic, assign) Class objectClass;
 @property (nonatomic, strong) NSMutableArray *cache;
 @property (assign) BOOL cacheWarmupScheduled;
-@property (assign) NSUInteger instantiationCount;
 
 @end
+
+#define DEBUG_LOGGING 0
 
 @implementation BMNib {
     NSUInteger _preCacheSize;
@@ -88,7 +89,7 @@ static NSMutableDictionary *defaultCacheSizeDictionary = nil;
     @synchronized (self) {
         if (cacheSize != _preCacheSize) {
             _preCacheSize = cacheSize;
-            [self populateCache];
+            [self populatePreCache];
         }
     }
 }
@@ -122,23 +123,37 @@ static NSMutableDictionary *defaultCacheSizeDictionary = nil;
     }
 }
 
-- (void)populateCache {
-    if (self.instantiationCount < self.maxCacheSize) {
-        [self scheduleWarmup];
+- (void)populatePreCache {
+    if (self.cacheCount < self.maxCacheSize) {
+        [self scheduleWarmupToSize:self.maxCacheSize];
     }
 }
 
-- (void)warmupCache {
-    while (self.instantiationCount < self.maxCacheSize) {
+- (NSUInteger)cacheCount {
+    @synchronized (self) {
+        return self.cache.count;
+    }
+}
+
+- (void)warmupCacheToSize:(NSUInteger)cacheSize {
+#if DEBUG_LOGGING
+    NSLog(@"Warming up cache...");
+#endif
+    NSUInteger count = 0;
+    while (self.cacheCount < cacheSize) {
         NSArray *data = [self instantiateReusable];
         if (data) {
             @synchronized (self) {
                 [self.cache addObject:data];
             }
+            count++;
         } else {
             break;
         }
     }
+#if DEBUG_LOGGING
+    NSLog(@"Cache warm up finished: instantiated %tu objects", count);
+#endif
     [self unscheduleWarmup];
 }
 
@@ -150,20 +165,26 @@ static NSMutableDictionary *defaultCacheSizeDictionary = nil;
         }
         NSUInteger minCacheSize = self.minCacheSize;
         if (self.cache.count < minCacheSize) {
-            self.instantiationCount = self.maxCacheSize - minCacheSize;
-            [self scheduleWarmup];
+            [self scheduleWarmupToSize:minCacheSize];
         }
+#if DEBUG_LOGGING
+        if (ret == nil) {
+            NSLog(@"No cached object available!");
+        } else {
+            NSLog(@"Got object from cache, cache size is now: %tu", self.cache.count);
+        }
+#endif
         return ret;
     }
 }
 
-- (void)scheduleWarmup {
+- (void)scheduleWarmupToSize:(NSUInteger)size {
     if (!self.cacheWarmupScheduled) {
         self.cacheWarmupScheduled = YES;
         __typeof(self) __weak weakSelf = self;
         void (^block)(void) = ^{
             if (weakSelf.cacheWarmupScheduled) {
-                [weakSelf warmupCache];
+                [weakSelf warmupCacheToSize:size];
             }
         };
         [self bmPerformBlockInBackground:^id {
@@ -185,6 +206,9 @@ static NSMutableDictionary *defaultCacheSizeDictionary = nil;
     if (owner == nil && options == nil) {
         ret = [self popDataFromCache];
         if (ret == nil) {
+#if DEBUG_LOGGING
+            NSLog(@"Cache empty! Instantiating new object!");
+#endif
             ret = [self instantiateReusable];
         } else {
             cached = YES;
@@ -199,18 +223,13 @@ static NSMutableDictionary *defaultCacheSizeDictionary = nil;
 }
 
 - (NSArray *)instantiateReusable {
-    NSLog(@"Instantiating new cell!");
     NSArray *ret = [self instantiateImplWithOwner:nil options:nil];
-    if (ret) {
-        self.instantiationCount++;
-    }
     return ret;
 }
 
 - (void)clearCache {
     @synchronized (self) {
-        self.instantiationCount -= self.cache.count;
-        _cache = nil;
+        [_cache removeAllObjects];
     }
 }
 
