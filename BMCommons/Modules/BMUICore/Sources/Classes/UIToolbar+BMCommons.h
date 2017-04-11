@@ -1,5 +1,5 @@
 //
-//  UIToolBar+BMCommons.h
+//  UIToolbar+BMCommons.h
 //  BMCommons
 //
 //  Created by Werner Altewischer on 01/05/12.

@@ -15,7 +15,7 @@
 #import <BMCommons/UIView+BMCommons.h>
 #import <BMCommons/UIButton+BMCommons.h>
 #import <BMCommons/BMViewController.h>
-#import <BMCommons/UIToolBar+BMCommons.h>
+#import <BMCommons/UIToolbar+BMCommons.h>
 #import <BMCommons/Three20UICommon/UIViewControllerAdditions.h>
 #import <BMCommons/BMBarButtonItem.h>
 #import <BMCommons/BMUICore.h>

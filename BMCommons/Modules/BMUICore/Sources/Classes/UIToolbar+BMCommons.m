@@ -1,12 +1,12 @@
 //
-//  UIToolBar+BMCommons.m
+//  UIToolbar+BMCommons.m
 //  BMCommons
 //
 //  Created by Werner Altewischer on 01/05/12.
 //  Copyright (c) 2012 BehindMedia. All rights reserved.
 //
 
-#import "UIToolBar+BMCommons.h"
+#import "UIToolbar+BMCommons.h"
 
 @implementation UIToolbar(BMCommons)
 
