@@ -113,14 +113,8 @@ CGRect BMToolbarNavigationFrame() {
 }
 
 CGFloat BMStatusHeight() {
-    CGRect bounds = [UIScreen mainScreen].bmPortraitBounds;
-    CGRect applicationFrame = [UIScreen mainScreen].bmPortraitApplicationFrame;
-    
-    if (bounds.size.width != applicationFrame.size.width) {
-        return bounds.size.width - applicationFrame.size.width;
-    } else {
-        return bounds.size.height - applicationFrame.size.height;
-    }
+    CGRect statusBarFrame = [UIApplication sharedApplication].statusBarFrame;
+    return MIN(statusBarFrame.size.width, statusBarFrame.size.height);
 }
 
 CGFloat BMBarsHeight() {

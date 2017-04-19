@@ -10,7 +10,32 @@
 
 @interface UIScreen (BMCommons)
 
+/**
+ * The application frame corresponding with portrait orientation.
+ *
+ * @return
+ */
 - (CGRect)bmPortraitApplicationFrame;
+
+/**
+ * The bounds corresponding with the portrait orientation.
+ *
+ * @return
+ */
 - (CGRect)bmPortraitBounds;
+
+/**
+ * The application frame corresponding with the current orientation.
+ *
+ * @return
+ */
+- (CGRect)bmApplicationFrame;
+
+/**
+ * The bounds corresponding with the current orientation.
+ *
+ * @return
+ */
+- (CGRect)bmBounds;
 
 @end
