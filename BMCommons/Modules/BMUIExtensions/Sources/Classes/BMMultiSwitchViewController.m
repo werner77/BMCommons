@@ -14,6 +14,12 @@
 #import <BMCommons/BMUICore.h>
 #import <BMCommons/UIScreen+BMCommons.h>
 
+@interface BMViewController()
+
+- (void)setViewState:(BMViewState)viewState;
+
+@end
+
 @interface BMMultiSwitchViewController()
 
 @property (nonatomic, strong) NSCondition *switchCondition;
@@ -100,16 +106,23 @@
     BM_RELEASE_SAFELY(_viewControllers);
 }
 
-- (BOOL)replaceSelectedViewControllerWithViewController:(UIViewController *)viewController transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration {
+- (void)replaceSelectedViewControllerWithViewController:(UIViewController *)viewController transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration {
+    [self replaceSelectedViewControllerWithViewController:viewController transitionType:transitionType duration:duration completion:nil];
+}
+
+- (void)replaceSelectedViewControllerWithViewController:(UIViewController *)viewController transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration completion:(void (^)(BOOL success))completion {
     BOOL shouldSwitch = (_selectedIndex == NSNotFound);
-    BOOL ret = [self insertViewController:viewController atIndex:_selectedIndex overwriteExisting:YES withTransition:transitionType duration:duration];
+    BOOL insertedViewController = [self insertViewController:viewController atIndex:_selectedIndex overwriteExisting:YES withTransition:transitionType duration:duration];
     //This code is necessary because a switch is not performed by the insert method above if no view controller was selected in the first place
-    if (shouldSwitch) {
+    if (shouldSwitch && insertedViewController) {
         NSUInteger index = _selectedIndex;
         _selectedIndex = NSNotFound;
-        [self switchToViewControllerAtIndex:index transitionType:transitionType duration:duration];
+        [self switchToViewControllerAtIndex:index transitionType:transitionType duration:duration completion:completion];
+    } else {
+        if (completion) {
+            completion(NO);
+        }
     }
-    return ret;
 }
 
 - (void)insertViewController:(UIViewController *)viewController atIndex:(NSUInteger)index overwriteExisting:(BOOL)shouldOverwrite {
@@ -201,18 +214,19 @@
     [self.selectedViewController endAppearanceTransition];
 }
 
-- (BOOL)switchToViewController:(UIViewController *)theViewController transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration completion:(void (^)(void))completion {
-    BOOL ret = [self switchToViewController:theViewController transitionType:transitionType duration:duration];
-    [self waitForSwitchToFinishWithCompletion:completion];
-    return ret;
-}
-
-- (BOOL)switchToViewController:(UIViewController *)theViewController transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration {
+- (void)switchToViewController:(UIViewController *)theViewController transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration completion:(void (^)(BOOL success))completion {
     NSUInteger theIndex = [self.viewControllers indexOfObjectIdenticalTo:theViewController];
     if (theIndex != NSNotFound) {
-        return [self switchToViewControllerAtIndex:theIndex transitionType:transitionType duration:duration];
+        [self switchToViewControllerAtIndex:theIndex transitionType:transitionType duration:duration completion:completion];
+    } else {
+        if (completion) {
+            completion(NO);
+        }
     }
-    return NO;
+}
+
+- (void)switchToViewController:(UIViewController *)theViewController transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration {
+    [self switchToViewController:theViewController transitionType:transitionType duration:duration completion:nil];
 }
 
 - (BOOL)shouldAutomaticallyForwardAppearanceMethods {
@@ -225,8 +239,22 @@
     }];
 }
 
-- (UIView *)setupSwitchToViewControllerAtIndex:(NSUInteger)index currentViewController:(UIViewController **)vc1 newViewController:(UIViewController **)vc2 transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration {
-    if (self.isSwitching) {
+- (void)setViewState:(BMViewState)viewState {
+    [self.switchCondition bmBroadcastForPredicateModification:^{
+        [super setViewState:viewState];
+    }];
+}
+
+- (BOOL)isTransitioning {
+    return self.viewState != BMViewStateVisible && self.viewState != BMViewStateInvisible;
+}
+
+- (BOOL)isSwitchingAllowed {
+    return !self.isSwitching && !self.isTransitioning;
+}
+
+- (UIView *)setupSwitchToViewControllerAtIndex:(NSUInteger)index currentViewController:(UIViewController **)vc1 newViewController:(UIViewController **)vc2 transitionType:(BMSwitchTransitionType)transitionType duration:(NSTimeInterval)duration {
+    if (!self.isSwitchingAllowed) {
         return nil;
     }
 
@@ -262,68 +290,75 @@
     return theView;
 }
 
-- (BOOL)switchToViewControllerAtIndex:(NSUInteger)index transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration {
-    BOOL ret = [self switchToViewControllerAtIndex:index transitionType:transitionType duration:duration completion:nil];
-    return ret;
+- (void)switchToViewControllerAtIndex:(NSUInteger)index transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration {
+    [self switchToViewControllerAtIndex:index transitionType:transitionType duration:duration completion:nil];
 }
 
-- (BOOL)switchToViewControllerAtIndex:(NSUInteger)index transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration completion:(void (^)(void))completion {
-
-    UIViewController *currentSelectedViewController = nil;
-    UIViewController *newSelectedViewController = nil;
-    UIView *theView = [self setupSwitchToViewControllerAtIndex:index currentViewController:&currentSelectedViewController newViewController:&newSelectedViewController transitionType:transitionType duration:duration];
-    if (!theView) {
-        return NO;
-    }
-
-    NSMutableArray *vcArray = [[NSMutableArray alloc] init];
-    [vcArray addObject:newSelectedViewController];
-    if (currentSelectedViewController) {
-        [vcArray addObject:currentSelectedViewController];
-    }
-
-    if (self.viewState == BMViewStateVisible) {
-        [currentSelectedViewController beginAppearanceTransition:NO animated:YES];
-        [newSelectedViewController beginAppearanceTransition:YES animated:YES];
-    }
-
-    [self.containerView addSubview:theView];
-
-    if (transitionType == BMSwitchTransitionTypeCrossFade) {
-        theView.alpha = 0.0f;
-        [UIView animateWithDuration:duration animations:^{
-            theView.alpha = 1.0f;
-            currentSelectedViewController.view.alpha = 0.0f;
-        } completion:^(BOOL finished) {
-            currentSelectedViewController.view.alpha = 1.0f;
-            [self animationDidStop:finished context:vcArray completion:completion];
-        }];
-    } else if (transitionType == BMSwitchTransitionTypeFlip) {
-        UIViewAnimationOptions options;
-        if (_currentFlipTransition == UIViewAnimationTransitionFlipFromLeft) {
-            options = UIViewAnimationOptionTransitionFlipFromLeft;
-        } else {
-            options = UIViewAnimationOptionTransitionFlipFromRight;
+- (void)switchToViewControllerAtIndex:(NSUInteger)index transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)theDuration completion:(void (^)(BOOL success))completion {
+    [self waitUntilSwitchIsAllowedWithCompletion:^{
+        NSTimeInterval duration = theDuration;
+        if (self.viewState == BMViewStateInvisible) {
+            //Force non animated:
+            duration = 0.0;
         }
 
-        [UIView transitionWithView:self.containerView duration:duration options:options animations:^{
-            [currentSelectedViewController.view removeFromSuperview];
-        } completion:^(BOOL finished) {
-            [self animationDidStop:finished context:vcArray completion:completion];
-        }];
-        _currentFlipTransition = (_currentFlipTransition == UIViewAnimationTransitionFlipFromLeft) ? UIViewAnimationTransitionFlipFromRight : UIViewAnimationTransitionFlipFromLeft;
-    } else {
-        [self finishTransition:vcArray completion:completion];
-    }
-    return YES;
+        UIViewController *currentSelectedViewController = nil;
+        UIViewController *newSelectedViewController = nil;
+        UIView *theView = [self setupSwitchToViewControllerAtIndex:index currentViewController:&currentSelectedViewController newViewController:&newSelectedViewController transitionType:transitionType duration:duration];
+        if (theView == nil) {
+            if (completion) {
+                completion(NO);
+            }
+        } else {
+            NSMutableArray *vcArray = [[NSMutableArray alloc] init];
+            [vcArray addObject:newSelectedViewController];
+            if (currentSelectedViewController) {
+                [vcArray addObject:currentSelectedViewController];
+            }
+
+            if (self.viewState == BMViewStateVisible) {
+                [currentSelectedViewController beginAppearanceTransition:NO animated:YES];
+                [newSelectedViewController beginAppearanceTransition:YES animated:YES];
+            }
+
+            [self.containerView addSubview:theView];
+
+            if (transitionType == BMSwitchTransitionTypeCrossFade) {
+                theView.alpha = 0.0f;
+                [UIView animateWithDuration:duration animations:^{
+                    theView.alpha = 1.0f;
+                    currentSelectedViewController.view.alpha = 0.0f;
+                } completion:^(BOOL finished) {
+                    currentSelectedViewController.view.alpha = 1.0f;
+                    [self animationDidStop:finished context:vcArray completion:completion];
+                }];
+            } else if (transitionType == BMSwitchTransitionTypeFlip) {
+                UIViewAnimationOptions options;
+                if (_currentFlipTransition == UIViewAnimationTransitionFlipFromLeft) {
+                    options = UIViewAnimationOptionTransitionFlipFromLeft;
+                } else {
+                    options = UIViewAnimationOptionTransitionFlipFromRight;
+                }
+
+                [UIView transitionWithView:self.containerView duration:duration options:options animations:^{
+                    [currentSelectedViewController.view removeFromSuperview];
+                } completion:^(BOOL finished) {
+                    [self animationDidStop:finished context:vcArray completion:completion];
+                }];
+                _currentFlipTransition = (_currentFlipTransition == UIViewAnimationTransitionFlipFromLeft) ? UIViewAnimationTransitionFlipFromRight : UIViewAnimationTransitionFlipFromLeft;
+            } else {
+                [self finishTransition:vcArray completion:completion];
+            }
+        }
+    }];
 }
 
-- (BOOL)switchToFirstViewControllerWithTransitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration {
-    return [self switchToViewControllerAtIndex:0 transitionType:transitionType duration:duration];
+- (void)switchToFirstViewControllerWithTransitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration {
+    [self switchToViewControllerAtIndex:0 transitionType:transitionType duration:duration];
 }
 
-- (BOOL)switchToLastViewControllerWithTransitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration {
-    return [self switchToViewControllerAtIndex:(self.viewControllers.count - 1) transitionType:transitionType duration:duration];
+- (void)switchToLastViewControllerWithTransitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration {
+    [self switchToViewControllerAtIndex:(self.viewControllers.count - 1) transitionType:transitionType duration:duration];
 }
 
 - (UIViewController *)selectedViewController {
@@ -343,7 +378,7 @@
     return nil;
 }
 
-- (void)animationDidStop:(BOOL)finished context:(NSArray *)vcs completion:(void (^)(void))completion {
+- (void)animationDidStop:(BOOL)finished context:(NSArray *)vcs completion:(void (^)(BOOL success))completion {
     UIViewController *currentSelectedViewController = vcs.count == 2 ? vcs[1] : nil;
     UIViewController *newSelectedViewController = vcs[0];
 
@@ -370,7 +405,7 @@
     }
 
     if (completion) {
-        completion();
+        completion(YES);
     }
 }
 
@@ -389,13 +424,23 @@
 - (void)switchDidFinish {
 }
 
-- (void)finishTransition:(NSArray *)vcs completion:(void (^)(void))completion {
+- (void)finishTransition:(NSArray *)vcs completion:(void (^)(BOOL))completion {
     [self animationDidStop:YES context:vcs completion:completion];
 }
 
 - (void)waitForSwitchToFinishWithCompletion:(void (^)(void))completion {
     [self.switchCondition bmWaitForPredicate:^BOOL {
         return !self.isSwitching;
+    } completion:^(BOOL waited) {
+        if (completion) {
+            completion();
+        }
+    }];
+}
+
+- (void)waitUntilSwitchIsAllowedWithCompletion:(void (^)(void))completion {
+    [self.switchCondition bmWaitForPredicate:^BOOL {
+        return self.isSwitchingAllowed;
     } completion:^(BOOL waited) {
         if (completion) {
             completion();
@@ -452,14 +497,17 @@
         if (currentIndexOccupant == selectedViewController) {
             //Replacing the selectedViewController
             typeof(self) __weak weakSelf = self;
-            if (![self switchToViewControllerAtIndex:index transitionType:transition duration:duration completion:^ {
-                NSUInteger indexToRemove = [weakSelf.viewControllers indexOfObjectIdenticalTo:currentIndexOccupant];
-                [weakSelf removeChildViewControllerAtIndex:indexToRemove];
-            }]) {
-                ret = NO;
-            } else {
-                _selectedIndex = NSNotFound;
-            }
+            [self switchToViewControllerAtIndex:index transitionType:transition duration:duration completion:^(BOOL success) {
+                if (success) {
+                    NSUInteger indexToRemove = [weakSelf.viewControllers indexOfObjectIdenticalTo:currentIndexOccupant];
+                    [weakSelf removeChildViewControllerAtIndex:indexToRemove];
+                } else {
+                    NSUInteger indexToRemove = [weakSelf.viewControllers indexOfObjectIdenticalTo:viewController];
+                    [weakSelf removeChildViewControllerAtIndex:indexToRemove];
+                    _selectedIndex = [weakSelf.viewControllers indexOfObjectIdenticalTo:currentIndexOccupant];
+                }
+            }];
+            _selectedIndex = NSNotFound;
         } else {
             NSUInteger indexToRemove = [_viewControllers indexOfObjectIdenticalTo:currentIndexOccupant];
             [self removeChildViewControllerAtIndex:indexToRemove];

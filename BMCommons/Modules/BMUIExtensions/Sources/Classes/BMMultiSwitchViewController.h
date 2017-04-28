@@ -80,17 +80,17 @@ typedef enum BMSwitchTransitionType {
 - (void)removeViewController:(UIViewController *)viewController;
 - (void)removeLastViewController;
 
-- (BOOL)replaceSelectedViewControllerWithViewController:(UIViewController *)viewController transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration;
-- (BOOL)switchToViewControllerAtIndex:(NSUInteger)index transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration;
+- (void)replaceSelectedViewControllerWithViewController:(UIViewController *)viewController transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration;
+- (void)replaceSelectedViewControllerWithViewController:(UIViewController *)viewController transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration completion:(void (^)(BOOL success))completion;
 
-- (BOOL)switchToViewControllerAtIndex:(NSUInteger)index transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration completion:(void (^)(void))completion;
+- (void)switchToViewControllerAtIndex:(NSUInteger)index transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration;
+- (void)switchToViewControllerAtIndex:(NSUInteger)index transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration completion:(void (^)(BOOL success))completion;
 
-- (BOOL)switchToViewController:(UIViewController *)theViewController transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration;
+- (void)switchToViewController:(UIViewController *)theViewController transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration;
+- (void)switchToViewController:(UIViewController *)theViewController transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration completion:(void (^)(BOOL success))completion;
 
-- (BOOL)switchToViewController:(UIViewController *)theViewController transitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration completion:(void (^)(void))completion;
-
-- (BOOL)switchToFirstViewControllerWithTransitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration;
-- (BOOL)switchToLastViewControllerWithTransitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration;
+- (void)switchToFirstViewControllerWithTransitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration;
+- (void)switchToLastViewControllerWithTransitionType:(BMSwitchTransitionType)transitionType duration:(CGFloat)duration;
 
 /**
  Returns the currently selected view controller.
@@ -118,8 +118,9 @@ typedef enum BMSwitchTransitionType {
  */
 - (void)switchDidFinish;
 
-
 - (void)waitForSwitchToFinishWithCompletion:(void (^)(void))completion;
+
+- (void)waitUntilSwitchIsAllowedWithCompletion:(void (^)(void))completion;
 
 
 @end

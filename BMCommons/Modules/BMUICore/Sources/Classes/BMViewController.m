@@ -129,7 +129,7 @@ NSString *const BMViewControllerDidDisappearNotification = @"BMViewControllerDid
     if (_viewState == BMViewStateInvisible || _viewState == BMViewStateToBecomeInvisible) {
         [super viewWillAppear:animated];
 
-        _viewState = BMViewStateToBecomeVisible;
+        self.viewState = BMViewStateToBecomeVisible;
         
         if (_firstAppearAfterLoad) {
             [self localize];
@@ -154,7 +154,7 @@ NSString *const BMViewControllerDidDisappearNotification = @"BMViewControllerDid
     if (_viewState == BMViewStateToBecomeVisible) {
         [super viewDidAppear:animated];
         
-        _viewState = BMViewStateVisible;
+        self.viewState = BMViewStateVisible;
         _firstAppearAfterLoad = NO;
         _firstLoad = NO;
         
@@ -170,7 +170,7 @@ NSString *const BMViewControllerDidDisappearNotification = @"BMViewControllerDid
     if (_viewState == BMViewStateVisible || _viewState == BMViewStateToBecomeVisible) {
         [super viewWillDisappear:animated];
         
-        _viewState = BMViewStateToBecomeInvisible;
+        self.viewState = BMViewStateToBecomeInvisible;
         
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
@@ -194,7 +194,7 @@ NSString *const BMViewControllerDidDisappearNotification = @"BMViewControllerDid
         
         LogDebug(@"viewDidDisappear: %@", self);
 
-        _viewState = BMViewStateInvisible;
+        self.viewState = BMViewStateInvisible;
         
         [[self class] sendNotification:BMViewControllerDidDisappearNotification forViewController:self];
 
@@ -210,6 +210,10 @@ NSString *const BMViewControllerDidDisappearNotification = @"BMViewControllerDid
         }
     }
     [super didReceiveMemoryWarning];
+}
+
+- (void)setViewState:(BMViewState)viewState {
+    _viewState = viewState;
 }
 
 - (void)setUseFullScreenLayout:(BOOL)useFullScreenLayout {
