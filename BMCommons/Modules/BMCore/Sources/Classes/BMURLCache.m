@@ -350,8 +350,8 @@ static BOOL gImageCacheEnabled = YES;
     unsigned char md5[CC_MD5_DIGEST_LENGTH];
     {
         NSUInteger urlLength = URL.length;
-        NSUInteger bufferLength = urlLength;
-        unichar *buffer = malloc(bufferLength * sizeof(unichar));
+        NSUInteger bufferLength = urlLength * sizeof(unichar);
+        unichar *buffer = malloc(bufferLength);
         [URL getCharacters:buffer range:NSMakeRange(0, urlLength)];
         CC_MD5(buffer, bufferLength, md5);
         free(buffer);
