@@ -922,7 +922,7 @@ static BOOL gImageCacheEnabled = YES;
             }
         }
     } else {
-        [self removeKey:key fromDisk:toDisk];
+        [self removeKey:key fromDisk:YES];
     }
 }
 
