@@ -458,7 +458,7 @@ static BOOL gImageCacheEnabled = YES;
     return cacheState != BMURLCacheStateNone;
 }
 
-- (BMURLCacheState)cacheStateForKey:(NSString *)key {
+- (BMURLCacheState)cacheStateForKey:(NSString *)key checkDisk:(BOOL)checkDisk {
     BMURLCacheState cacheState = BMURLCacheStateNone;
     if (key != nil) {
         BOOL hasImage = NO;
@@ -469,7 +469,7 @@ static BOOL gImageCacheEnabled = YES;
         }
         if (hasImage) {
             cacheState = BMURLCacheStateMemory;
-        } else {
+        } else if (checkDisk) {
             hasImage = [self hasDataForKey:key];
             if (hasImage) {
                 cacheState = BMURLCacheStateDisk;
@@ -477,6 +477,15 @@ static BOOL gImageCacheEnabled = YES;
         }
     }
     return cacheState;
+}
+
+- (BMURLCacheState)cacheStateForKey:(NSString *)key {
+    return [self cacheStateForKey:key checkDisk:YES];
+}
+
+- (BOOL)hasImageForKey:(NSString*)key fromDisk:(BOOL)fromDisk {
+    BMURLCacheState cacheState = [self cacheStateForKey:key checkDisk:fromDisk];
+    return cacheState != BMURLCacheStateNone;
 }
 
 - (BMURLCacheState)cacheStateForURL:(NSString *)URL {

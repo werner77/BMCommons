@@ -190,6 +190,8 @@ typedef NS_ENUM(NSUInteger, BMURLCacheState) {
  */
 - (BOOL)hasImageForURL:(NSString*)URL fromDisk:(BOOL)fromDisk;
 
+- (BOOL)hasImageForKey:(NSString*)key fromDisk:(BOOL)fromDisk;
+
 - (BMURLCacheState)cacheStateForKey:(NSString *)key;
 
 /**
