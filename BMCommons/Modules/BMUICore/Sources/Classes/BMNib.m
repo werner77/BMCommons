@@ -14,6 +14,7 @@
 
 @interface BMNib()
 
+@property (nonatomic, strong) NSString *nibName;
 @property (nonatomic, strong) UINib *nibImpl;
 @property (nonatomic, assign) Class objectClass;
 @property (nonatomic, strong) NSMutableArray *cache;
@@ -32,10 +33,8 @@
 + (BMNib *)nibWithNibName:(NSString *)name bundle:(NSBundle *)bundleOrNil {
     BMNib *nib = [BMNib new];
     nib.nibImpl = [UINib nibWithNibName:name bundle:bundleOrNil];
-    BMNibConfigurationBlock configurationBlock = [self configurationBlockForNibWithName:name];
-    if (configurationBlock) {
-        configurationBlock(nib);
-    }
+    nib.nibName = name;
+    [nib configure];
     return nib;
 }
 
@@ -43,16 +42,16 @@
 + (BMNib *)nibWithData:(NSData *)data bundle:(NSBundle *)bundleOrNil {
     BMNib *nib = [BMNib new];
     nib.nibImpl = [UINib nibWithData:data bundle:bundleOrNil];
-    BMNibConfigurationBlock configurationBlock = [self configurationBlockForNibWithName:nil];
-    if (configurationBlock) {
-        configurationBlock(nib);
-    }
+    nib.nibName = nil;
+    [nib configure];
     return nib;
 }
 
 + (BMNib *)nibWithObjectClass:(Class)clazz {
     BMNib *nib = [BMNib new];
     nib.objectClass = clazz;
+    nib.nibName = NSStringFromClass(clazz);
+    [nib configure];
     return nib;
 }
 
@@ -85,6 +84,13 @@
 }
 
 #pragma mark - Properties
+
+- (void)configure {
+    BMNibConfigurationBlock configurationBlock = [self.class configurationBlockForNibWithName:self.nibName];
+    if (configurationBlock) {
+        configurationBlock(self);
+    }
+}
 
 - (void)setPreCacheSize:(NSUInteger)cacheSize {
     @synchronized (self) {
@@ -209,7 +215,7 @@
 - (NSArray *)instantiateCachedWithOwner:(id)owner options:(NSDictionary *)options fromCache:(BOOL *)fromCache {
     NSArray *ret = nil;
     BOOL cached = NO;
-    if (owner == nil && options == nil) {
+    if ((owner == nil && options == nil) || self.nibImpl == nil) {
         ret = [self popDataFromCache];
         if (ret == nil) {
 #if DEBUG_LOGGING
