@@ -340,28 +340,33 @@ static BOOL gImageCacheEnabled = YES;
 }
 
 - (NSString *)keyForURL:(NSString*)URL {
-    
+    //This method is optimized for performance instead of readability.
     if (URL == nil) {
         return nil;
     } else if ([URL hasPrefix:_localURLPrefix]) {
         return [URL substringFromIndex:_localURLPrefix.length];
     }
-    const char* str = [URL UTF8String];
-    unsigned char result[CC_MD5_DIGEST_LENGTH];
-    CC_MD5(str, (unsigned int)strlen(str), result);
-    
-    NSString *pathExtension = [URL pathExtension];
-    NSUInteger extLength = pathExtension.length;
-    if (extLength == 0 || extLength > 4) {
-        pathExtension = nil;
+
+    unsigned char md5[CC_MD5_DIGEST_LENGTH];
+    {
+        NSUInteger urlLength = URL.length;
+        NSUInteger bufferLength = urlLength;
+        unichar *buffer = malloc(bufferLength * sizeof(unichar));
+        [URL getCharacters:buffer range:NSMakeRange(0, urlLength)];
+        CC_MD5(buffer, bufferLength, md5);
+        free(buffer);
     }
-    
-    NSMutableString *keyString = [NSMutableString bmHexEncodedStringForBytes:result length:CC_MD5_DIGEST_LENGTH lowercase:YES];
-    if (pathExtension != nil) {
-        [keyString appendString:@"."];
-        [keyString appendString:pathExtension];
+
+    static const unichar base[] = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
+    NSUInteger hexLength = (CC_MD5_DIGEST_LENGTH * 2);
+    unichar *hex = malloc(hexLength * sizeof(unichar));
+
+    for (NSUInteger i = 0, j = 0; i < CC_MD5_DIGEST_LENGTH; ++i) {
+        unsigned char b = md5[i];
+        hex[j++] = base[b >> 4];
+        hex[j++] = base[b & 0xF];
     }
-    return keyString;
+    return [[NSString alloc] initWithCharactersNoCopy:hex length:hexLength freeWhenDone:YES];
 }
 
 - (NSString*)cachePathForURL:(NSString*)URL {
@@ -997,7 +1002,7 @@ static BOOL gImageCacheEnabled = YES;
         cachesPath = [BMFileHelper documentsDirectory];
     } else {
         NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-        cachesPath = [paths objectAtIndex:0];
+        cachesPath = [paths firstObject];
     }
     NSString* cachePath = [cachesPath stringByAppendingPathComponent:name];
     NSString* etagCachePath = [cachePath stringByAppendingPathComponent:kEtagCacheDirectoryName];
@@ -1015,25 +1020,28 @@ static BOOL gImageCacheEnabled = YES;
 }
 
 + (NSString*)doubleImageURLPath:(NSString*)urlPath {
-    if ([[urlPath substringToIndex:1] isEqualToString:@"."]) {
+    if ([urlPath hasPrefix:@"."]) {
         return urlPath;
     }
     
     // We'd ideally use stringByAppendingPathExtension: in this method, but it seems
     // to wreck bundle:// urls by replacing them with bundle:/ prefixes. Strange.
     NSString* pathExtension = [urlPath pathExtension];
-    
-    NSString* urlPathWithNoExtension = [urlPath substringToIndex:
-                                        [urlPath length] - [pathExtension length]
-                                        - (([pathExtension length] > 0) ? 1 : 0)];
-    
-    urlPath = [urlPathWithNoExtension stringByAppendingString:@"@2x"];
-    
-    if ([pathExtension length] > 0) {
-        urlPath = [urlPath stringByAppendingFormat:@".%@", pathExtension];
+    NSUInteger pathExtensionLength = pathExtension.length;
+    NSMutableString *ret = [urlPath mutableCopy];
+
+    if (pathExtensionLength > 0) {
+        NSUInteger length = pathExtensionLength + 1;
+        NSUInteger location = ret.length - length;
+        [ret deleteCharactersInRange:NSMakeRange(location, length)];
     }
+    [ret appendString:@"@2x"];
     
-    return urlPath;
+    if (pathExtensionLength > 0) {
+        [ret appendString:@"."];
+        [ret appendString:pathExtension];
+    }
+    return ret;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
