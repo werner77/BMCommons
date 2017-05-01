@@ -109,6 +109,7 @@ static NSMutableDictionary* gNamedCaches = nil;
     BOOL _performingInitialExpiration;
     BOOL _diskCacheEnabled;
     BOOL _imageCacheEnabled;
+    NSString *_localURLPrefix;
 }
 
 @synthesize cachePath = _cachePath, maxPixelCount = _maxPixelCount, invalidationAge = _invalidationAge,
@@ -205,6 +206,8 @@ static BOOL gImageCacheEnabled = YES;
     if ((self = [super init])) {
         _name = [name copy];
         _cachePath = [BMURLCache cachePathWithName:name persistent:persistent];
+        NSURL *url = [NSURL fileURLWithPath:_cachePath isDirectory:YES];
+        _localURLPrefix = [url absoluteString];
         _imageCache = nil;
         _imageSortedList = nil;
         _totalLoading = 0;
@@ -340,20 +343,21 @@ static BOOL gImageCacheEnabled = YES;
     
     if (URL == nil) {
         return nil;
-    } else if ([URL hasPrefix:self.localURLPrefix]) {
-        return [URL substringFromIndex:self.localURLPrefix.length];
+    } else if ([URL hasPrefix:_localURLPrefix]) {
+        return [URL substringFromIndex:_localURLPrefix.length];
     }
     const char* str = [URL UTF8String];
     unsigned char result[CC_MD5_DIGEST_LENGTH];
     CC_MD5(str, (unsigned int)strlen(str), result);
     
     NSString *pathExtension = [URL pathExtension];
-    if (!pathExtension || pathExtension.length > 4) {
+    NSUInteger extLength = pathExtension.length;
+    if (extLength == 0 || extLength > 4) {
         pathExtension = nil;
     }
     
     NSMutableString *keyString = [NSMutableString bmHexEncodedStringForBytes:result length:CC_MD5_DIGEST_LENGTH lowercase:YES];
-    if (pathExtension.length > 0) {
+    if (pathExtension != nil) {
         [keyString appendString:@"."];
         [keyString appendString:pathExtension];
     }
@@ -447,6 +451,27 @@ static BOOL gImageCacheEnabled = YES;
 - (BOOL)hasImageForURL:(NSString*)URL fromDisk:(BOOL)fromDisk {
     BMURLCacheState cacheState = [self cacheStateForURL:URL checkDisk:fromDisk];
     return cacheState != BMURLCacheStateNone;
+}
+
+- (BMURLCacheState)cacheStateForKey:(NSString *)key {
+    BMURLCacheState cacheState = BMURLCacheStateNone;
+    if (key != nil) {
+        BOOL hasImage = NO;
+        @synchronized(self) {
+            if (self.isImageCacheEnabled) {
+                hasImage = [_imageCache objectForKey:key] != nil;
+            }
+        }
+        if (hasImage) {
+            cacheState = BMURLCacheStateMemory;
+        } else {
+            hasImage = [self hasDataForKey:key];
+            if (hasImage) {
+                cacheState = BMURLCacheStateDisk;
+            }
+        }
+    }
+    return cacheState;
 }
 
 - (BMURLCacheState)cacheStateForURL:(NSString *)URL {
@@ -1229,8 +1254,7 @@ static BOOL gImageCacheEnabled = YES;
 #endif
 
 - (NSString *)localURLPrefix {
-    NSURL *url = [NSURL fileURLWithPath:_cachePath isDirectory:YES];
-    return [url absoluteString];
+    return _localURLPrefix;
 }
 
 - (NSString*)createTemporaryURLForFile:(NSString *)file {
