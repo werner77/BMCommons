@@ -22,19 +22,19 @@
 
 @implementation NSString(BMCommons)
 
-static const unsigned char hex_uppercase[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
-static const unsigned char hex_lowercase[] = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
+static const unichar hex_uppercase[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+static const unichar hex_lowercase[] = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
 
 + (instancetype)bmHexEncodedStringForBytes:(unsigned char *)bytes length:(NSUInteger)length lowercase:(BOOL)lowercase {
     NSUInteger targetLength = length * 2;
-    const unsigned char *base = lowercase ? hex_lowercase : hex_uppercase;
-    unsigned char *chars = malloc(targetLength);
+    const unichar *base = lowercase ? hex_lowercase : hex_uppercase;
+    unichar *chars = malloc(targetLength * sizeof(unichar));
     for (NSUInteger i = 0, j = 0; i < length; ++i) {
         unsigned char b = bytes[i];
         chars[j++] = base[b >> 4];
         chars[j++] = base[b & 0xF];
     }
-    return [[self alloc] initWithBytesNoCopy:chars length:targetLength encoding:NSUTF8StringEncoding freeWhenDone:YES];
+    return [[self alloc] initWithCharactersNoCopy:chars length:targetLength freeWhenDone:YES];
 }
 
 + (instancetype)bmHexEncodedStringForBytes:(unsigned char *)bytes length:(NSUInteger)length {
