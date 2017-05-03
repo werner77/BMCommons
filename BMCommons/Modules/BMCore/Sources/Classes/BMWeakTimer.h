@@ -75,7 +75,6 @@ typedef void(^BMWeakTimerBlock)(BMWeakTimer *timer);
 - (void)invalidate;
 - (BOOL)isValid;
 
-- (id)userInfo;
-- (void)setUserInfo:(id)info;
+@property (nonatomic, strong) id userInfo;
 
 @end

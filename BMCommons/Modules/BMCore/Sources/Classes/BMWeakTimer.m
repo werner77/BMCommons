@@ -25,7 +25,6 @@
 @interface BMTimerUserInfo : NSObject
 
 @property (nonatomic, weak) BMWeakTimer *timer;
-@property (nonatomic, strong) id userInfo;
 
 @end
 
@@ -88,9 +87,9 @@
     if ((self = [super init])) {
         
         BMTimerUserInfo *userInfo = [BMTimerUserInfo new];
-        userInfo.userInfo = ui;
         userInfo.timer = self;
-        
+
+        self.userInfo = ui;
         self.target = t;
         self.selector = s;
         
@@ -194,16 +193,6 @@
 
 - (BOOL)isValid {
     return self.timerImpl != nil && self.timerImpl.isValid;
-}
-
-- (id)userInfo {
-    BMTimerUserInfo *userInfo = self.timerImpl.userInfo;
-    return userInfo.userInfo;
-}
-
-- (void)setUserInfo:(id)info {
-    BMTimerUserInfo *userInfo = self.timerImpl.userInfo;
-    userInfo.userInfo = info;
 }
 
 @end
