@@ -22,7 +22,7 @@
 
 @interface BMServiceManager()
 
-@property (nonatomic, strong) BMDataRecorder *recorder;
+@property (strong) BMDataRecorder *recorder;
 
 @end
 
@@ -34,17 +34,14 @@ typedef enum ServiceMatchType {
 } ServiceMatchType;
 
 @interface BMServiceDelegateContainer : BMCoreObject {
-	id <BMServiceDelegate> __weak _delegate;
-	NSString *_serviceClassIdentifier;
-	NSString *_serviceInstanceIdentifier;
-    BOOL _primary;
 }
 
-@property (nonatomic, weak) id <BMServiceDelegate> delegate;
-@property (nonatomic, assign, getter = isPrimary) BOOL primary;
-@property (nonatomic, strong) NSString *serviceClassIdentifier;
-@property (nonatomic, strong) NSString *serviceInstanceIdentifier;
+@property (nonatomic, weak, readonly) id <BMServiceDelegate> delegate;
+@property (nonatomic, assign, getter = isPrimary, readonly) BOOL primary;
+@property (nonatomic, strong, readonly) NSString *serviceClassIdentifier;
+@property (nonatomic, strong, readonly) NSString *serviceInstanceIdentifier;
 
+- (instancetype)initWithDelegate:(id <BMServiceDelegate>)delegate primary:(BOOL)primary serviceClassIdentifier:(NSString *)serviceClassIdentifier serviceInstanceIdentifier:(NSString *)serviceInstanceIdentifier;
 - (BOOL)matchesService:(id <BMService>)service  matchType:(ServiceMatchType *)matchType;
 - (NSInteger)priorityForService:(id <BMService>)service;
 
@@ -52,10 +49,14 @@ typedef enum ServiceMatchType {
 
 @implementation BMServiceDelegateContainer
 
-@synthesize delegate = _delegate, serviceClassIdentifier = _serviceClassIdentifier, serviceInstanceIdentifier = _serviceInstanceIdentifier, primary = _primary;
-
-- (void)dealloc {
-	self.delegate = nil;
+- (instancetype)initWithDelegate:(id <BMServiceDelegate>)delegate primary:(BOOL)primary serviceClassIdentifier:(NSString *)serviceClassIdentifier serviceInstanceIdentifier:(NSString *)serviceInstanceIdentifier {
+    if ((self = [super init])) {
+        _delegate = delegate;
+        _primary = primary;
+        _serviceClassIdentifier = serviceClassIdentifier;
+        _serviceInstanceIdentifier = serviceInstanceIdentifier;
+    }
+    return self;
 }
 
 - (BOOL)isEqual:(id)object {
@@ -67,12 +68,16 @@ typedef enum ServiceMatchType {
 	if (self.delegate != other.delegate) {
 		return NO;
 	}
-	
-	if (!(self.serviceClassIdentifier == other.serviceClassIdentifier || [self.serviceClassIdentifier isEqual:other.serviceClassIdentifier])) {
+
+    NSString *classIdentifier = self.serviceClassIdentifier;
+    NSString *otherClassIdentifier = other.serviceClassIdentifier;
+    if (!(classIdentifier == otherClassIdentifier || [classIdentifier isEqual:otherClassIdentifier])) {
 		return NO;
 	}
-	
-	if (!(self.serviceInstanceIdentifier == other.serviceInstanceIdentifier || [self.serviceInstanceIdentifier isEqual:other.serviceInstanceIdentifier])) {
+
+    NSString *instanceIdentifier = self.serviceInstanceIdentifier;
+    NSString *otherInstanceIdentifier = other.serviceInstanceIdentifier;
+    if (!(instanceIdentifier == otherInstanceIdentifier || [instanceIdentifier isEqual:otherInstanceIdentifier])) {
 		return NO;
 	}
 	
@@ -80,11 +85,12 @@ typedef enum ServiceMatchType {
 }
 
 - (NSInteger)priorityForService:(id <BMService>)service {
-	if ([_delegate respondsToSelector:@selector(delegatePriorityForService:)]) {
-		return [_delegate delegatePriorityForService:service];
-	} else {
-		return 0;
-	}
+    NSInteger ret = 0;
+    id <BMServiceDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(delegatePriorityForService:)]) {
+		ret = [delegate delegatePriorityForService:service];
+	} 
+    return ret;
 }
 
 - (BOOL)matchesService:(id <BMService>)service matchType:(ServiceMatchType *)matchType {
@@ -136,6 +142,7 @@ static NSInteger prioritySort(id container1, id container2, void *service)
 
 - (void)releaseService:(id <BMService>)theService;
 - (void)notifyDelegatesWithSelector:(SEL)selector service:(id <BMService>)service object:(id)object;
+- (void)notifyDelegatesForService:(id <BMService>)service withInvocationBlock:(void (^)(id <BMServiceDelegate> delegate, id <BMService> delegateService))invocationBlock;
 - (void)addDelegateContainer:(BMServiceDelegateContainer *)dc;
 - (void)removeDelegateContainer:(BMServiceDelegateContainer *)dc;
 - (id <BMService>)transformedService:(id <BMService>)service;
@@ -153,9 +160,9 @@ static NSInteger prioritySort(id container1, id container2, void *service)
 @end
 
 @implementation BMServiceManager {
+    NSMutableDictionary *_serviceDictionary;
+    NSMutableArray *_serviceDelegates;
 }
-
-@synthesize serviceTransformer = _serviceTransformer;
 
 //Public
 
@@ -192,21 +199,18 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 		s.delegate = nil;
 	}
     [self cancelServices];
-	BM_RELEASE_SAFELY(_serviceDictionary);
-	BM_RELEASE_SAFELY(_serviceTransformer);
 }
 
 //Add/Remove delegate to receive all service events
 - (void)addServiceDelegate:(id <BMServiceDelegate>)theDelegate {
 	if (theDelegate) {
-		BMServiceDelegateContainer *dc = [BMServiceDelegateContainer new];
-		dc.delegate = theDelegate;
+		BMServiceDelegateContainer *dc = [[BMServiceDelegateContainer alloc] initWithDelegate:theDelegate primary:NO serviceClassIdentifier:nil serviceInstanceIdentifier:nil];
 		[self addDelegateContainer:dc];
 	}
 }
 
 - (void)removeServiceDelegate:(id <BMServiceDelegate>)theDelegate {
-    for (BMServiceDelegateContainer *delegateContainer in [NSArray arrayWithArray:_serviceDelegates]) {
+    for (BMServiceDelegateContainer *delegateContainer in self.serviceDelegates) {
         if (delegateContainer.delegate == theDelegate) {
             [self removeDelegateContainer:delegateContainer];
         }
@@ -216,15 +220,13 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 //Add/Remove delegate for service class specific events
 - (void)addServiceDelegate:(id <BMServiceDelegate>)theDelegate forClassIdentifier:(NSString *)classIdentifier {
 	if (theDelegate) {
-		BMServiceDelegateContainer *dc = [BMServiceDelegateContainer new];
-		dc.delegate = theDelegate;
-		dc.serviceClassIdentifier = classIdentifier;
+		BMServiceDelegateContainer *dc = [[BMServiceDelegateContainer alloc] initWithDelegate:theDelegate primary:NO serviceClassIdentifier:classIdentifier serviceInstanceIdentifier:nil];
 		[self addDelegateContainer:dc];
 	}
 }
 
 - (void)removeServiceDelegate:(id <BMServiceDelegate>)theDelegate forClassIdentifier:(NSString *)classIdentifier {
-    for (BMServiceDelegateContainer *delegateContainer in [NSArray arrayWithArray:_serviceDelegates]) {
+    for (BMServiceDelegateContainer *delegateContainer in self.serviceDelegates) {
         if (delegateContainer.delegate == theDelegate && [self classIdentifier:delegateContainer.serviceClassIdentifier matchesIdentifier:classIdentifier]) {
             [self removeDelegateContainer:delegateContainer];
         }
@@ -237,7 +239,7 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 }
 
 - (void)removeServiceDelegate:(id <BMServiceDelegate>)theDelegate forInstanceIdentifier:(NSString *)instanceIdentifier {
-    for (BMServiceDelegateContainer *delegateContainer in [NSArray arrayWithArray:_serviceDelegates]) {
+    for (BMServiceDelegateContainer *delegateContainer in self.serviceDelegates) {
         if (delegateContainer.delegate == theDelegate && [self instanceIdentifier:delegateContainer.serviceInstanceIdentifier matchesIdentifier:instanceIdentifier]) {
             [self removeDelegateContainer:delegateContainer];
         }
@@ -245,8 +247,7 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 }
 
 - (void)removeServiceDelegatesForInstanceIdentifier:(NSString *)instanceIdentifier {
-	NSArray *theDelegates = [NSArray arrayWithArray:_serviceDelegates];
-	for (BMServiceDelegateContainer *dc in theDelegates) {
+	for (BMServiceDelegateContainer *dc in self.serviceDelegates) {
 		if ([self instanceIdentifier:dc.serviceInstanceIdentifier matchesIdentifier:instanceIdentifier]) {
             [self removeDelegateContainer:dc];
 		}
@@ -376,7 +377,7 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 }
 
 - (id <BMServiceDelegate>)primaryServiceDelegateForInstanceIdentifier:(NSString *)instanceIdentifier {
-    for (BMServiceDelegateContainer *dc in [NSArray arrayWithArray:_serviceDelegates]) {
+    for (BMServiceDelegateContainer *dc in self.serviceDelegates) {
         if ([self instanceIdentifier:dc.serviceInstanceIdentifier matchesIdentifier:instanceIdentifier] && dc.isPrimary) {
             return dc.delegate;
         }
@@ -420,19 +421,11 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 }
 
 - (void)service:(id <BMService>)service updatedProgress:(double)progressPercentage withMessage:(NSString *)message {
-
-	NSArray *theDelegates = [self sortedDelegatesForService:service];
-
-	id delegateService = service;
-	if (self.automaticallyReverseTransformServices) {
-		delegateService = [self reverseTransformedService:service];
-	}
-    
-    for (BMServiceDelegateContainer *dc in theDelegates) {
-		if ([dc matchesService:service matchType:nil] && [dc.delegate respondsToSelector:@selector(service:updatedProgress:withMessage:)]) {
-			[dc.delegate service:delegateService updatedProgress:progressPercentage withMessage:message];
-		}
-	}	
+    [self notifyDelegatesForService:service withInvocationBlock:^(id <BMServiceDelegate> delegate, id <BMService> delegateService) {
+        if (@selector(service:updatedProgress:withMessage:)) {
+            [delegate service:delegateService updatedProgress:progressPercentage withMessage:message];
+        }
+    }];
 }
 
 - (void)serviceWasCancelled:(id <BMService>)service {
@@ -453,9 +446,10 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 @implementation BMServiceManager(Private)
 
 - (NSArray *)sortedDelegatesForService:(id <BMService>)service {
-    NSMutableArray *theDelegates = [NSMutableArray arrayWithCapacity:_serviceDelegates.count];
+    NSArray *serviceDelegates = self.serviceDelegates;
+    NSMutableArray *theDelegates = [NSMutableArray arrayWithCapacity:serviceDelegates.count];
     BMServiceDelegateContainer *primaryDelegate = nil;
-    for (BMServiceDelegateContainer *dc in [NSArray arrayWithArray:_serviceDelegates]) {
+    for (BMServiceDelegateContainer *dc in serviceDelegates) {
         if ([self instanceIdentifier:dc.serviceInstanceIdentifier matchesIdentifier:service.instanceIdentifier] && dc.isPrimary) {
             primaryDelegate = dc;
         } else {
@@ -477,30 +471,31 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 }
 
 - (void)notifyDelegatesWithSelector:(SEL)selector service:(id <BMService>)service object:(id)object {
-    NSArray *theDelegates = [self sortedDelegatesForService:service];
+    [self notifyDelegatesForService:service withInvocationBlock:^(id <BMServiceDelegate> delegate, id <BMService> delegateService) {
+        if ([delegate respondsToSelector:selector]) {
+            BM_IGNORE_SELECTOR_LEAK_WARNING(
+                    [delegate performSelector:selector withObject:delegateService withObject:object];
+            )
+        }
+    }];
+}
 
-	id <BMService> delegateService = service;
+- (void)notifyDelegatesForService:(id <BMService>)service withInvocationBlock:(void (^)(id <BMServiceDelegate> delegate, id <BMService> delegateService))invocationBlock {
+    id <BMService> delegateService = service;
 	if (self.automaticallyReverseTransformServices) {
 		delegateService = [self reverseTransformedService:service];
 	}
 
-	for (BMServiceDelegateContainer *dc in theDelegates) {
-		if ([dc matchesService:service matchType:nil] && [dc.delegate respondsToSelector:selector]) {
-			BM_IGNORE_SELECTOR_LEAK_WARNING(
-			[dc.delegate performSelector:selector withObject:delegateService withObject:object];
-			)
-		}
-	}
-}
+    __typeof(self) __weak weakSelf = self;
+    [self bmPerformBlockOnMainThread:^{
+        NSArray *theDelegates = [weakSelf sortedDelegatesForService:service];
 
-- (void)addDelegateContainer:(BMServiceDelegateContainer *)dc {
-	if (![_serviceDelegates containsObject:dc]) {
-		[_serviceDelegates addObject:dc];
-	}
-}
-
-- (void)removeDelegateContainer:(BMServiceDelegateContainer *)dc {
-	[_serviceDelegates removeObject:dc];
+        for (BMServiceDelegateContainer *dc in theDelegates) {
+            if ([dc matchesService:service matchType:nil]) {
+                invocationBlock(dc.delegate, delegateService);
+            }
+        }
+    }];
 }
 
 - (id <BMService>)transformedService:(id <BMService>)service {
@@ -509,8 +504,9 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 	if ([self.delegate respondsToSelector:@selector(serviceManager:transformedServiceForService:)]) {
 		transformedService = [self.delegate serviceManager:self transformedServiceForService:service];
 	}
-    if (transformedService == nil && self.serviceTransformer != nil) {
-		transformedService = [self.serviceTransformer transformedValue:theService];
+    NSValueTransformer *serviceTransformer = self.serviceTransformer;
+    if (transformedService == nil && serviceTransformer != nil) {
+		transformedService = [serviceTransformer transformedValue:theService];
 	}
 	if (transformedService != nil) {
 		theService = transformedService;
@@ -524,8 +520,9 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 	if ([self.delegate respondsToSelector:@selector(serviceManager:reverseTransformedServiceForService:)]) {
 		transformedService = [self.delegate serviceManager:self reverseTransformedServiceForService:service];
 	}
-    if (transformedService == nil && self.serviceTransformer != nil) {
-		transformedService = [self.serviceTransformer reverseTransformedValue:theService];
+    NSValueTransformer *serviceTransformer = self.serviceTransformer;
+    if (transformedService == nil && serviceTransformer != nil) {
+		transformedService = [serviceTransformer reverseTransformedValue:theService];
 	}
 	if (transformedService != nil) {
 		theService = transformedService;
@@ -535,10 +532,7 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 
 - (void)addDelegate:(id <BMServiceDelegate>)theDelegate forServiceInstance:(NSString *)instanceIdentifier primary:(BOOL)primary {
 	if (theDelegate) {
-		BMServiceDelegateContainer *dc = [BMServiceDelegateContainer new];
-		dc.delegate = theDelegate;
-		dc.serviceInstanceIdentifier = instanceIdentifier;
-        dc.primary = primary;
+		BMServiceDelegateContainer *dc = [[BMServiceDelegateContainer alloc] initWithDelegate:theDelegate primary:primary serviceClassIdentifier:nil serviceInstanceIdentifier:instanceIdentifier];
 		[self addDelegateContainer:dc];
 	}
 }
@@ -579,23 +573,53 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 }
 
 - (id <BMService>)serviceWithInstanceIdentifier:(NSString *)instanceIdentifier {
-	return _serviceDictionary[instanceIdentifier];
+    @synchronized(self) {
+        return _serviceDictionary[instanceIdentifier];
+    }
 }
 
 - (NSArray<id <BMService>> *)allServices {
-	return [_serviceDictionary allValues];
+    @synchronized(self) {
+        return [_serviceDictionary allValues];
+    }
 }
 
 - (NSArray<NSString *> *)allServiceInstanceIdentifiers {
-	return [_serviceDictionary allKeys];
+    @synchronized (self) {
+        return [_serviceDictionary allKeys];
+    }
 }
 
 - (void)removeServiceWithInstanceIdentifier:(NSString *)instanceIdentifier {
-	[_serviceDictionary removeObjectForKey:instanceIdentifier];
+    @synchronized (self) {
+        [_serviceDictionary removeObjectForKey:instanceIdentifier];
+    }
 }
 
 - (void)addService:(id <BMService>)service {
-	[_serviceDictionary bmSafeSetObject:service forKey:service.instanceIdentifier];
+    @synchronized (self) {
+        [_serviceDictionary bmSafeSetObject:service forKey:service.instanceIdentifier];
+    }
+}
+
+- (void)addDelegateContainer:(BMServiceDelegateContainer *)dc {
+    @synchronized (self) {
+        if (![_serviceDelegates containsObject:dc]) {
+            [_serviceDelegates addObject:dc];
+        }
+    }
+}
+
+- (void)removeDelegateContainer:(BMServiceDelegateContainer *)dc {
+    @synchronized(self) {
+        [_serviceDelegates removeObject:dc];
+    }
+}
+
+- (NSArray *)serviceDelegates {
+    @synchronized(self) {
+        return [NSArray arrayWithArray:_serviceDelegates];
+    }
 }
 
 @end

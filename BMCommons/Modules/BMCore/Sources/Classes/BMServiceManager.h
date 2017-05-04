@@ -13,6 +13,7 @@
 @class BMServiceManager;
 @class BMDataRecorder;
 
+//Beware to implement all the delegate methods in a thread-safe way, because this class is intended to be usable from any thread.
 @protocol BMServiceManagerDelegate<NSObject>
 
 @optional
@@ -62,22 +63,21 @@
  
  Although possible to execute BMService instances directly (using [BMService execute]) using this class is the prefered way of executing services.
  Use performService:withDelegate: to execute any service and register it with this instance.
+
+ This class is thread safe. Be sure to implement the BMServiceManagerDelegate also in a thread safe manner, because the methods on that protocol may be called from a background thread.
+ All the BMServiceDelegate methods will be called from the main thread.
  */
 @interface BMServiceManager : BMCoreObject<BMServiceDelegate> {
-@private
-	NSMutableDictionary *_serviceDictionary;
-	NSMutableArray *_serviceDelegates;
-	NSValueTransformer *_serviceTransformer;
 }
 
 BM_DECLARE_DEFAULT_SINGLETON
 
-@property (nonatomic, weak) id <BMServiceManagerDelegate> delegate;
+@property (weak) id <BMServiceManagerDelegate> delegate;
 
 /**
  * Access this object for recording/playback functionality.
  */
-@property (nonatomic, readonly) BMDataRecorder *recorder;
+@property (readonly) BMDataRecorder *recorder;
 
 /**
  An optional transformer that is used to transform the supplied service before executing it
@@ -87,9 +87,11 @@ BM_DECLARE_DEFAULT_SINGLETON
   The classIdentifier of the tranformed service should be equal to the classIdentifier of the original service for seamless integration.
   Preferably the instanceIdentifiers match also.
 
+  The implementation of this transformer should be thread safe.
+
   @see [BMServiceManagerDelegate serviceManager:transformedServiceForService:]
  */
-@property (nonatomic, strong) NSValueTransformer *serviceTransformer;
+@property (strong) NSValueTransformer *serviceTransformer;
 
 /**
  * If set to true a transformed service is automatically reverse transformed before it is handed to the delegates.
@@ -97,7 +99,7 @@ BM_DECLARE_DEFAULT_SINGLETON
  *
  * Default is true.
  */
-@property (nonatomic, assign) BOOL automaticallyReverseTransformServices;
+@property (assign) BOOL automaticallyReverseTransformServices;
 
 /**
  Add/Remove delegate to receive all service events
