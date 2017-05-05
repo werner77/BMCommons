@@ -21,6 +21,22 @@
 }
 
 /**
+ * Returns a shallow copy of this object by only copying the direct properties.
+ * This in contrast with copyWithZone: which will perform a deep copy of the object.
+ *
+ * @param zone
+ * @return
+ */
+- (id)shallowCopyWithZone:(NSZone *)zone;
+
+/**
+ * Calls shallowCopyWithZone with zone set to nil.
+ *
+ * @return
+ */
+- (id)shallowCopy;
+
+/**
  This array of strings describing property to message mappings is used to autogenerate implementations for: dealloc, initWithCoder, encodeWithCoder and [BMMappableObject fieldMappings].
  
  All properties designated in this array are automatically serialized using the NSCoding protocol and released in dealloc by calling the setter with a nil value. A mapping dictionary is generated from the format string as specified by [BMMappableObject fieldMappings].

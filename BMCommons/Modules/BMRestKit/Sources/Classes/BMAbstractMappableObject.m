@@ -37,6 +37,7 @@
 
 - (NSString *)namespacePrefixForURI:(NSString *)childNamespaceURI withNamespaces:(NSMutableDictionary *)namespaces;
 - (id)deepCopyValue:(id)otherValue ignoreNilValues:(BOOL)ignoreNilValues performClassCheck:(BOOL)performClassCheck;
+- (id)shallowCopyValue:(id)otherValue;
 
 @end
 
@@ -188,6 +189,16 @@ static NSMutableDictionary *serialVersionUIDCache = nil;
     return copy;
 }
 
+- (id)shallowCopyWithZone:(NSZone *)zone {
+	BMAbstractMappableObject *copy = [[[self class] allocWithZone:zone] init];
+	[copy mergeWithData:self ignoreNilValues:NO performClassCheck:YES deepMerge:NO];
+	return copy;
+}
+
+- (id)shallowCopy {
+	return [self shallowCopyWithZone:nil];
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder {
 	for (NSString *ivar in [[self class] objectPropertiesArray]) {
 		BMPropertyDescriptor *pd = [[self class] propertyDescriptorForPropertyName:ivar];
@@ -311,7 +322,9 @@ static inline int64_t hash(NSString *s) {
                 
                 if (deepMerge) {
                     otherValue = [self deepCopyValue:otherValue ignoreNilValues:ignoreNilValues performClassCheck:performClassCheck];
-                }
+                } else {
+					otherValue = [self shallowCopyValue:otherValue];
+				}
                 
                 if (!ignoreNilValues || otherValue != nil) {
                     [thisFieldMapping invokeRawSetterOnTarget:self withValue:otherValue];
@@ -366,6 +379,31 @@ static inline int64_t hash(NSString *s) {
         
     }
     return otherValueCopy;
+}
+
+- (id)shallowCopyValue:(id)otherValue {
+	id otherValueCopy = otherValue;
+	if ([otherValue isKindOfClass:[NSArray class]]) {
+
+		otherValueCopy = [NSMutableArray new];
+
+		for (id otherValueItem in otherValue) {
+			id otherValueItemCopy = [self shallowCopyValue:otherValueItem];
+			[otherValueCopy addObject:otherValueItemCopy];
+		}
+	} else if ([otherValue isKindOfClass:[NSDictionary class]]) {
+
+		otherValueCopy = [NSMutableDictionary new];
+
+		for (NSObject *key in otherValue) {
+			id value = [otherValue objectForKey:key];
+			id <NSCopying> copiedKey = [key copy];
+
+			id copiedValue = [self shallowCopyValue:value];
+			[otherValueCopy setObject:copiedValue forKey:copiedKey];
+		}
+	}
+	return otherValueCopy;
 }
 
 - (NSString *)namespacePrefixForURI:(NSString *)namespaceURI withNamespaces:(NSMutableDictionary *)namespaces {
