@@ -62,6 +62,7 @@ static const NSUInteger kMaxRetryCount = 1;
 @end
 
 @implementation BMHTTPRequest {
+    BOOL _manageCookies;
 }
 
 @synthesize httpResponseCode = _httpResponseCode;
@@ -79,7 +80,6 @@ static const NSUInteger kMaxRetryCount = 1;
 @synthesize context = _context;
 @synthesize shouldAllowSelfSignedCert = _shouldAllowSelfSignedCert;
 @synthesize clientIdentityRef = _clientIdentityRef;
-@synthesize manageCookies = _manageCookies;
 
 static NSURLRequestCachePolicy defaultCachePolicy = BM_HTTP_REQUEST_DEFAULT_CACHE_POLICY;
 static NSTimeInterval defaultTimeoutInterval = BM_HTTP_REQUEST_DEFAULT_TIMEOUT;
@@ -139,12 +139,12 @@ static NSTimeInterval defaultTimeoutInterval = BM_HTTP_REQUEST_DEFAULT_TIMEOUT;
     if ((self = [self initWithUrl:theUrl customHeaderFields:customHeaderFields userName:theUserName password:thePassword
                          delegate:theDelegate])) {
         [self.request setHTTPMethod:BM_HTTP_METHOD_POST];
-        
+
         NSString *stringBoundary = BOUNDARY_STRING;
         NSString *theContentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", stringBoundary];
         LogDebug(@"Creating MultiPart form request with boundary: %@", stringBoundary);
         [self.request addValue:theContentType forHTTPHeaderField:FIELD_CONTENT_TYPE];
-        
+
         BMHTTPMultiPartBodyInputStream *is = [[BMHTTPMultiPartBodyInputStream alloc] initWithContentParts:contentParts boundaryString:stringBoundary];
         [self.request setHTTPBodyStream:is];
     }
@@ -168,7 +168,7 @@ static NSTimeInterval defaultTimeoutInterval = BM_HTTP_REQUEST_DEFAULT_TIMEOUT;
     if ((self = [self init])) {
         self.delegate = theDelegate;
         self.url = [theRequest URL];
-        
+
         if ([theRequest isKindOfClass:[NSMutableURLRequest class]]) {
             self.request = (NSMutableURLRequest *)theRequest;
         } else {
@@ -183,39 +183,39 @@ customHeaderFields:(NSDictionary *)customHeaderFields
           userName:(NSString *)theUserName
           password:(NSString *)thePassword
           delegate:(id <BMHTTPRequestDelegate>)theDelegate {
-    
+
     //creating the url request:
     if (!theUrl) {
         LogError(@"Invalid URL: %@", theUrl);
         return nil;
     } else {
-        
+
         NSTimeInterval timeout = [[self class] defaultTimeoutInterval];
         NSURLRequestCachePolicy cachePolicy = [[self class] defaultCachePolicy];
-        
+
         if ([theDelegate respondsToSelector:@selector(cachePolicyForRequest:)]) {
             cachePolicy = [theDelegate cachePolicyForRequest:self];
         }
         if ([theDelegate respondsToSelector:@selector(timeoutIntervalForRequest:)]) {
             timeout = [theDelegate timeoutIntervalForRequest:self];
         }
-        
+
         NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:theUrl cachePolicy:cachePolicy timeoutInterval:timeout];
-        
+
         for (NSString *headerField in customHeaderFields) {
             NSString *headerValue = [customHeaderFields objectForKey:headerField];
             [urlRequest addValue:headerValue forHTTPHeaderField:headerField];
         }
-        
+
         //adding header information:
         if (theUserName && thePassword) {
             NSString *encodedCredentials = [[self class] encodeUserName:theUserName andPassword:thePassword];
             NSString *authorizationHeader = [NSString stringWithFormat:@"Basic %@", encodedCredentials];
             [urlRequest addValue:authorizationHeader forHTTPHeaderField:FIELD_AUTHORIZATION];
         }
-        
+
         LogInfo(@"Initialized request for URL: %@\n", theUrl);
-        
+
 #if LOGGING_LEVEL_DEBUG
         LogDebug(@"Header fields:\n");
         NSDictionary *allHeaderFields = [urlRequest allHTTPHeaderFields];
@@ -223,7 +223,7 @@ customHeaderFields:(NSDictionary *)customHeaderFields
             LogDebug(@"%@: %@\n", key, [allHeaderFields objectForKey:key]);
         }
 #endif
-        
+
         if ((self = [self initWithRequest:urlRequest delegate:theDelegate])) {
             self.userName = theUserName;
             self.password = thePassword;
@@ -298,7 +298,11 @@ customHeaderFields:(NSDictionary *)customHeaderFields
         if ([NSThread isMainThread]) {
             [self.connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
         } else {
-            [self.connection setDelegateQueue:[NSOperationQueue new]];
+            NSOperationQueue *operationQueue = [NSOperationQueue currentQueue];
+            if (operationQueue == nil) {
+                operationQueue = [NSOperationQueue new];
+            }
+            [self.connection setDelegateQueue:operationQueue];
         }
         [self.connection start];
     }
@@ -307,15 +311,15 @@ customHeaderFields:(NSDictionary *)customHeaderFields
 
 - (void)send {
     LogInfo(@"Sending request with HTTP method: %@", [self.request HTTPMethod]);
-    
+
     [self resetState];
-    
+
     self.sendCount = 1;
-    
+
     if (self.manageCookies) {
         [self setHttpCookies];
     }
-    
+
     [self prepareRequest:self.request];
     [self startConnection];
 }
@@ -323,25 +327,25 @@ customHeaderFields:(NSDictionary *)customHeaderFields
 - (void)resend {
     LogInfo(@"Resending request with HTTP method: %@", [self.request HTTPMethod]);
     [self resetState];
-    
+
     self.sendCount++;
-    
+
     [self startConnection];
 }
 
 - (BMURLConnectionInputStream *)inputStreamForConnection {
     LogInfo(@"Sending request with HTTP method: %@", [self.request HTTPMethod]);
-    
+
     [self resetState];
-    
+
     self.receivedData = nil;
-    
+
     if (self.manageCookies) {
         [self setHttpCookies];
     }
-    
+
     [self prepareRequest:self.request];
-    
+
     self.inputStream = [[BMURLConnectionInputStream alloc] initWithRequest:self.request urlConnectionDelegate:self];
     if (self.inputStream == nil) {
         self.lastError = [BMErrorHelper errorForDomain:BM_ERROR_DOMAIN_SERVER code:BM_ERROR_NO_CONNECTION description:BMLocalizedString(@"httprequest.error.noconnection", @"Could not get connection")];
@@ -355,7 +359,7 @@ customHeaderFields:(NSDictionary *)customHeaderFields
 - (void)cancel {
     [self.inputStream close];
     [self.connection cancel];
-    
+
     self.connection = nil;
     self.inputStream = nil;
 }
@@ -364,7 +368,7 @@ customHeaderFields:(NSDictionary *)customHeaderFields
     return [BMStringHelper stringRepresentationOfData:self.replyData];
 }
 
-- (NSString *)md5Hash {    
+- (NSString *)md5Hash {
     return [self.request.HTTPBody bmStringWithMD5Digest];
 }
 
@@ -390,7 +394,7 @@ customHeaderFields:(NSDictionary *)customHeaderFields
 }
 
 - (void)prepareRequest:(NSMutableURLRequest *)request {
-    
+
 }
 
 #pragma mark - BMURLConnectionInputStreamDelegate
@@ -401,8 +405,16 @@ customHeaderFields:(NSDictionary *)customHeaderFields
 
 #pragma mark - Overridden getters and setters
 -(void)setManageCookies:(BOOL)manageCookiesValue {
-	self.manageCookies = manageCookiesValue;
-	[self.request setHTTPShouldHandleCookies:self.manageCookies];
+    @synchronized(self) {
+        _manageCookies = manageCookiesValue;
+        [self.request setHTTPShouldHandleCookies:self.manageCookies];
+    }
+}
+
+- (BOOL)manageCookies {
+    @synchronized (self) {
+        return _manageCookies;
+    }
 }
 
 - (void)dealloc {
@@ -426,15 +438,15 @@ customHeaderFields:(NSDictionary *)customHeaderFields
 
 
 - (void) setHttpCookies {
-	NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:self.url];
-	NSDictionary *headers = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
-	[self.request setAllHTTPHeaderFields:headers];
+    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:self.url];
+    NSDictionary *headers = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
+    [self.request setAllHTTPHeaderFields:headers];
 }
 
 - (void) storeHttpCookiesForResponse:(NSHTTPURLResponse *)response {
-	[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
-	NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:[response allHeaderFields] forURL:self.url];
-	[[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookies:cookies forURL:self.url mainDocumentURL:nil];
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+    NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:[response allHeaderFields] forURL:self.url];
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookies:cookies forURL:self.url mainDocumentURL:nil];
 }
 
 + (void)addKey:(NSString *)key withValue:(id)p toQueryString:(NSMutableString *)queryString {
@@ -506,9 +518,9 @@ customHeaderFields:(NSDictionary *)customHeaderFields
     if (self.receivedData) {
         self.replyData = self.receivedData;
     }
-    
+
     LogInfo(@"Request completed");
-    
+
     self.receivedData = nil;
     [self requestCompleted:[self isSuccessfulHTTPResponse:self.httpResponseCode]];
 }
@@ -517,11 +529,11 @@ customHeaderFields:(NSDictionary *)customHeaderFields
   didFailWithError:(NSError *)error              // IN
 {
     LogError(@"Connection error: %@\n", [error localizedDescription]);
-    
+
     if (self.receivedData) {
         self.receivedData = nil;
     }
-    
+
     if (self.sendCount <= kMaxRetryCount && self.inputStream == nil && [self isRetriableError:error]) {
         [self resend];
     } else {
@@ -530,7 +542,7 @@ customHeaderFields:(NSDictionary *)customHeaderFields
                                                       code:BM_ERROR_CONNECTION_FAILURE
                                                description:BMLocalizedString(@"httprequest.error.connectionfailed", @"Connection failed")
                                            underlyingError:error
-                              ];
+            ];
         }
         [self requestCompleted:NO];
     }
@@ -539,7 +551,7 @@ customHeaderFields:(NSDictionary *)customHeaderFields
 - (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)space {
     BOOL canAuthenticate = NO;
     if (self.shouldAllowSelfSignedCert && [[space authenticationMethod]
-                                      isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+            isEqualToString:NSURLAuthenticationMethodServerTrust]) {
         canAuthenticate = YES; // Self-signed cert will be accepted
     } else if ([[space authenticationMethod] isEqual:NSURLAuthenticationMethodHTTPBasic]) {
         canAuthenticate = YES;
@@ -555,7 +567,7 @@ customHeaderFields:(NSDictionary *)customHeaderFields
 
 - (NSInputStream *)connection:(NSURLConnection *)theConnection needNewBodyStream:(NSURLRequest *)theRequest {
     LogDebug(@"Need new body stream for request: %@", theRequest);
-    
+
     if ([theRequest.HTTPBodyStream isKindOfClass:[BMHTTPMultiPartBodyInputStream class]]) {
         //Reusable
         BMHTTPMultiPartBodyInputStream *stream = (BMHTTPMultiPartBodyInputStream *)theRequest.HTTPBodyStream;
@@ -570,63 +582,63 @@ customHeaderFields:(NSDictionary *)customHeaderFields
    didSendBodyData:(NSInteger)bytesWritten
  totalBytesWritten:(NSInteger)totalBytesWritten
 totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
-    
+
     //Try to determine from the body stream
     if (totalBytesExpectedToWrite <= 0 && [self.request.HTTPBodyStream isKindOfClass:[BMHTTPMultiPartBodyInputStream class]]) {
         BMHTTPMultiPartBodyInputStream *stream = (BMHTTPMultiPartBodyInputStream *)self.request.HTTPBodyStream;
         totalBytesExpectedToWrite = (NSInteger)[stream length];
     }
-    
+
     if (totalBytesExpectedToWrite > 0) {
         float progress = ((float)totalBytesWritten)/((float)totalBytesExpectedToWrite);
         progress = MIN(1.0, progress);
         progress = MAX(0.0, progress);
         [self updateUploadProgress:progress];
     }
-    
-    
+
+
 }
 
 - (void)connection:(NSURLConnection *)theConnection // IN
 didReceiveResponse:(NSURLResponse *)theResponse     // IN
 {
     if (self.receivedData) {[self.receivedData setLength:0];}
-    
+
     self.bytesReceived = 0;
     self.bytesToReceive = 0;
-    
+
     self.responseHeaderFields = nil;
 
     self.response = theResponse;
-    
+
     //sometimes we have mock requests which do not have response headers and codes, so lets assume thay are always ok
     if ([theResponse isKindOfClass:[NSHTTPURLResponse class]]) {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)theResponse;
         LogInfo(@"Got response from server: %d", (int)httpResponse.statusCode);
-        
+
         self.responseHeaderFields = [httpResponse allHeaderFields];
-        
+
         NSString *n = [self.responseHeaderFields objectForKey:@"Content-Length"];
         if (n) {
             self.bytesToReceive = [n longLongValue];
         }
-        
+
         self.httpResponseCode = httpResponse.statusCode;
-        
+
         if (![self isSuccessfulHTTPResponse:httpResponse.statusCode]) {
             NSString *message = [BMHTTPStatusCodes messageForCode:httpResponse.statusCode];
             self.lastError = [BMErrorHelper errorForDomain:BM_ERROR_DOMAIN_SERVER
                                                       code:httpResponse.statusCode
                                                description:message];
         }
-        
+
         if (self.manageCookies) {
-    		[self storeHttpCookiesForResponse:httpResponse];
-    	}
+            [self storeHttpCookiesForResponse:httpResponse];
+        }
     } else {
         LogWarn("Response is not an HTTP response");
-    	//Lets assume a correct response
-    	self.httpResponseCode = HTTP_STATUS_OK;
+        //Lets assume a correct response
+        self.httpResponseCode = HTTP_STATUS_OK;
     }
 
     if ([self.delegate respondsToSelector:@selector(request:didReceiveResponse:)]) {
@@ -650,9 +662,9 @@ didReceiveResponse:(NSURLResponse *)theResponse     // IN
     if (self.receivedData) {
         [self.receivedData appendData:data];
     }
-    
+
     self.bytesReceived += data.length;
-    
+
     if (self.bytesToReceive > 0) {
         float progress = ((float)self.bytesReceived) / ((float)self.bytesToReceive);
         progress = MIN(1.0, progress);
@@ -664,29 +676,29 @@ didReceiveResponse:(NSURLResponse *)theResponse     // IN
 - (void)connection:(NSURLConnection *)theConnection
 didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
     LogInfo(@"Authentication method: %@", challenge.protectionSpace.authenticationMethod);
-    
+
     if ([challenge.protectionSpace.authenticationMethod isEqual:NSURLAuthenticationMethodHTTPBasic] ||
-        [challenge.protectionSpace.authenticationMethod isEqual:NSURLAuthenticationMethodNTLM]) {
+            [challenge.protectionSpace.authenticationMethod isEqual:NSURLAuthenticationMethodNTLM]) {
         if ([challenge previousFailureCount] == 0) {
             NSURLCredential *newCredential = [NSURLCredential credentialWithUser:self.userName
                                                                         password:self.password
                                                                      persistence:NSURLCredentialPersistenceNone];
             [[challenge sender] useCredential:newCredential
                    forAuthenticationChallenge:challenge];
-            
+
         } else {
             self.lastError = [BMErrorHelper errorForDomain:BM_ERROR_DOMAIN_SERVER code:BM_ERROR_AUTHENTICATION description:BMLocalizedString(@"httprequest.error.invalidcredentials", @"Invalid credentials. Please verify your username/password.")];
             [[challenge sender] cancelAuthenticationChallenge:challenge];
             [self requestCompleted:NO];
         }
     } else if ([challenge.protectionSpace.authenticationMethod isEqual:NSURLAuthenticationMethodServerTrust]) {
-        
+
         //Only called in the case shouldAllowSelfSignedCert==YES
         SecTrustResultType result;
-        
+
         OSStatus returnValue = SecTrustEvaluate(challenge.protectionSpace.serverTrust,
-                                                &result);
-        
+                &result);
+
         if (returnValue == 0) {
             //OK
             /*
@@ -699,12 +711,12 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
              kSecTrustResultFatalTrustFailure,
              kSecTrustResultOtherError
              */
-            
+
             LogDebug(@"Result of trust evaluation: %lu", (unsigned long) result);
         } else {
             LogWarn(@"Could not evaluate trust");
         }
-        
+
         if ([challenge previousFailureCount] == 0) {
             [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
             [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
@@ -713,38 +725,38 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
             [[challenge sender] cancelAuthenticationChallenge:challenge];
             [self requestCompleted:NO];
         }
-        
+
     } else if ([challenge.protectionSpace.authenticationMethod isEqual:NSURLAuthenticationMethodClientCertificate]) {
-        
+
         if ([challenge previousFailureCount] > 0) {
             self.lastError = [BMErrorHelper errorForDomain:BM_ERROR_DOMAIN_SERVER code:BM_ERROR_AUTHENTICATION description:BMLocalizedString(@"httprequest.error.invalidclientcertificate", @"Could not find a valid client certificate.")];
             [[challenge sender] cancelAuthenticationChallenge:challenge];
             [self requestCompleted:NO];
         } else {
-            
+
 #if TARGET_OS_IPHONE
             //Only called in the case clientIdentityRef != null
-            
+
             LogInfo(@"Authenticate client certificate");
-            
+
             SecIdentityRef myIdentity = [BMSecurityHelper newIdentityForPersistentRef:self.clientIdentityRef];
             SecCertificateRef myCert = [BMSecurityHelper copyCertificateFromIdentity:myIdentity];
-            
+
             if (myIdentity && myCert) {
-                
+
                 SecCertificateRef certArray[1] = {myCert};
                 CFArrayRef myCerts = CFArrayCreate(NULL, (void *) certArray, 1, NULL);
-                
+
                 NSURLCredential *credential = [NSURLCredential credentialWithIdentity:myIdentity
                                                                          certificates:(__bridge NSArray *) myCerts
                                                                           persistence:NSURLCredentialPersistenceNone];
-                
+
                 [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
                 CFRelease(myCerts);
             } else {
                 [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
             }
-            
+
             if (myIdentity) CFRelease(myIdentity);
             if (myCert) CFRelease(myCert);
 #else
