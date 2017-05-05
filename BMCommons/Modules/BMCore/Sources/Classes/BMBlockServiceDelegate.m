@@ -10,6 +10,7 @@
 #import <BMCommons/BMWeakReference.h>
 #import <BMCommons/BMWeakReferenceRegistry.h>
 #import <BMCommons/BMCore.h>
+#import <objc/runtime.h>
 
 @interface BMBlockServiceDelegate ()
 
@@ -26,6 +27,8 @@
 @synthesize successBlock = _successBlock;
 @synthesize failureBlock = _failureBlock;
 @synthesize service = _service;
+
+static const char * kBlockDelegateAssociationKey = "com.behindmedia.bmcommons.BMBlockServiceDelegate";
 
 + (BMBlockServiceDelegate *)delegateWithSuccess:(BMServiceSuccessBlock)success failure:(BMServiceFailureBlock)failure owner:(id)owner {
     return [[self alloc] initWithSuccess:success failure:failure owner:owner];
@@ -63,15 +66,20 @@
 
 - (void)setOwner:(id)owner {
     @synchronized(self) {
-        if (_owner) {
-            [[BMWeakReferenceRegistry sharedInstance] deregisterReference:_owner forOwner:self];
-            _owner = nil;
-        }
-        if (owner) {
-            _owner = owner;
-            [[BMWeakReferenceRegistry sharedInstance] registerReference:_owner forOwner:self withCleanupBlock:^{
-                [self.service cancel];
-            }];
+        if (_owner != owner) {
+            if (_owner) {
+                [[BMWeakReferenceRegistry sharedInstance] deregisterReference:_owner forOwner:self];
+                objc_setAssociatedObject(_owner, kBlockDelegateAssociationKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                _owner = nil;
+            }
+            if (owner) {
+                _owner = owner;
+                objc_setAssociatedObject(_owner, kBlockDelegateAssociationKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                __typeof(self) __weak weakSelf = self;
+                [[BMWeakReferenceRegistry sharedInstance] registerReference:_owner forOwner:self withCleanupBlock:^{
+                    [weakSelf.service cancel];
+                }];
+            }
         }
     }
 }
@@ -121,6 +129,7 @@
 
 + (void)popDelegate:(BMBlockServiceDelegate *)delegate forService:(id <BMService>)service {
     service.delegate = nil;
+    delegate.owner = nil;
     @synchronized (BMBlockServiceDelegate.class) {
         [self.runningServices removeObject:delegate];
     }
