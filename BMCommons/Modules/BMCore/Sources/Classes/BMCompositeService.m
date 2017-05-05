@@ -10,6 +10,12 @@
 #import <BMCommons/BMErrorHelper.h>
 #import <BMCommons/BMCore.h>
 
+@interface BMCompositeService()
+
+@property(strong) id <BMService> currentService;
+
+@end
+
 @implementation BMCompositeService {
 }
 
@@ -22,7 +28,6 @@
 
 - (void)dealloc {
 	self.currentService.delegate = nil;
-	BM_RELEASE_SAFELY(_currentService);
 }
 
 #pragma mark -
@@ -45,7 +50,7 @@
 
 - (void)reset {
     [super reset];
-    _currentService = nil;
+    self.currentService = nil;
 }
 
 - (BOOL)executeWithError:(NSError **)error {
@@ -56,16 +61,16 @@
 }
 
 - (void)executeService:(id <BMService>)nextService {
-	if (nextService != _currentService) {
-		_currentService = nextService;
+	if (nextService != self.currentService) {
+		self.currentService = nextService;
 	}
 	nextService.delegate = self;
 	[nextService execute];
 }
 
 - (void)mockExecuteService:(id <BMService>)nextService withResult:(id)result isRaw:(BOOL)isRaw {
-    if (nextService != _currentService) {
-        _currentService = nextService;
+    if (nextService != self.currentService) {
+        self.currentService = nextService;
     }
     nextService.delegate = self;
 	[nextService mockExecuteWithResult:result isRaw:isRaw];

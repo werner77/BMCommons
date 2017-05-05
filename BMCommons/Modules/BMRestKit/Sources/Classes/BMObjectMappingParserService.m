@@ -12,8 +12,6 @@
 
 @implementation BMObjectMappingParserService
 
-@synthesize rootXPath, errorXPath, rootElementClass, errorElementClass;
-
 - (id)init {
     if ((self = [super init])) {
 

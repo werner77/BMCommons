@@ -16,7 +16,7 @@
 /**
  * The wrapped service.
  */
-@property (nonatomic, readonly) id<BMService> wrappedService;
+@property (readonly) id<BMService> wrappedService;
 
 /**
  * Initializes with the specified wrapped service.

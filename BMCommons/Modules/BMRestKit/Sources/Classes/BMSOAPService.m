@@ -19,9 +19,10 @@
 #import <BMCommons/BMMappableObjectXMLSerializer.h>
 #import <BMCommons/BMRestKit.h>
 
-@implementation BMSOAPService
+@implementation BMSOAPService {
+    NSString *_soapRequestTemplate;
+}
 
-@synthesize soapRequestTemplate = _soapRequestTemplate;
 @synthesize endpointURL = _endpointURL;
 @synthesize soapAction = _soapAction;
 @synthesize soapUsername = _soapUsername;
@@ -55,10 +56,18 @@ static NSMutableDictionary *sParserHandlers = nil;
 }
 
 - (NSString *)soapRequestTemplate {
-    if (_soapRequestTemplate) {
-        return _soapRequestTemplate;
-    } else {
-        return [[self class] defaultSOAPRequestTemplate];
+    @synchronized (self) {
+        if (_soapRequestTemplate) {
+            return _soapRequestTemplate;
+        } else {
+            return [[self class] defaultSOAPRequestTemplate];
+        }
+    }
+}
+
+- (void)setSoapRequestTemplate:(NSString *)soapRequestTemplate {
+    @synchronized (self) {
+        _soapRequestTemplate = soapRequestTemplate;
     }
 }
 

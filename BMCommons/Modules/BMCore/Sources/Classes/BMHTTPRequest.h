@@ -89,31 +89,7 @@
  - Support for multi-part POST and form encoded POST
  
  */
-@interface BMHTTPRequest : BMCoreObject<NSCoding> {
-@private
-	NSMutableURLRequest *_request;
-    NSURLResponse *_response;
-	id<BMHTTPRequestDelegate> __weak _delegate;
-	BOOL _requestDidSucceed;
-	NSError* _lastError;
-	NSInteger _identifier;
-	NSURL *_url;
-	NSString *_userName;
-	NSString *_password;
-	NSMutableData *_receivedData;
-	BOOL _eventSent;
-	NSData* _replyData;
-	NSDictionary * _responseHeaderFields;
-	NSURLConnection *_connection;
-	BMURLConnectionInputStream* _inputStream;
-	NSInteger _httpResponseCode;
-	id _context;
-	BOOL _shouldAllowSelfSignedCert;
-	NSData *_clientIdentityRef;
-    BOOL _manageCookies;
-    long long _bytesToReceive;
-    long long _bytesReceived;
-}
+@interface BMHTTPRequest : BMCoreObject<NSCoding> 
 
 /**
  Sets the default cache policy to use for NSURLRequests.
@@ -139,92 +115,92 @@
 /**
  Last error that occured if any.
  */
-@property(strong, nonatomic, readonly) NSError *lastError;
+@property(strong, readonly) NSError *lastError;
 
 /**
  The data that was received. 
  
  If you use the inputStreamForConnection method rather than the send method this property returns nil always, because the response data is not buffered in that case.
  */
-@property(strong, nonatomic, readonly) NSData *replyData;
+@property(strong, readonly) NSData *replyData;
 
 /**
  Optional numeric identifier to attach to the request to distinguish it from other requests.
  */
-@property(nonatomic) NSInteger identifier;
+@property(assign) NSInteger identifier;
 
 /**
  Username for HTTP basic authentication.
  */
-@property(nonatomic, strong) NSString *userName;
+@property(strong) NSString *userName;
 
 /**
  Password for HTTP basic authentication.
  */
-@property(nonatomic, strong) NSString *password;
+@property(strong) NSString *password;
 
 /**
  Delegate for this request.
  
  Implementation of BMHTTPRequestDelegate.
  */
-@property(nonatomic, weak) id<BMHTTPRequestDelegate> delegate;
+@property(weak) id<BMHTTPRequestDelegate> delegate;
 
 /**
  The headers of the HTTP response.
  */
-@property(strong, nonatomic, readonly) NSDictionary *responseHeaderFields;
+@property(strong, readonly) NSDictionary *responseHeaderFields;
 
 /**
  The inputstream that was returned by inputStreamForConnection if called.
  */
-@property(strong, nonatomic, readonly) BMURLConnectionInputStream *inputStream;
+@property(strong, readonly) BMURLConnectionInputStream *inputStream;
 
 /**
  The URL for the request.
  */
-@property(nonatomic, readonly) NSURL *url;
+@property(readonly) NSURL *url;
 
 /**
  The NSURLRequest that is used internally by this class. 
  
  Use this property to manipulate it before sending if needed.
  */
-@property(nonatomic, readonly) NSMutableURLRequest *request;
+@property(readonly) NSMutableURLRequest *request;
 
 /**
  * The response received if any.
  */
-@property(nonatomic, readonly) NSURLResponse *response;
+@property(readonly) NSURLResponse *response;
 
 /**
  The HTTP response code returned by the server.
  */
-@property(nonatomic, readonly) NSInteger httpResponseCode;
+@property(readonly) NSInteger httpResponseCode;
 
 /**
  Context object to attach to the request
  */
-@property(nonatomic, strong) id context;
+@property(strong) id context;
 
 /**
  Whether self-signed certificates are OK when using SSL. 
  
  If false, self-signed certificates will result in an error (default behavior)
  */
-@property(nonatomic, assign) BOOL shouldAllowSelfSignedCert;
+@property(assign) BOOL shouldAllowSelfSignedCert;
 
 /**
  Persistent reference to the client identity in the keychain of the current application to use for authentication. 
  
  Use when client certificate authentication is required by the server.
  */
-@property(nonatomic, strong) NSData *clientIdentityRef;
+@property(strong) NSData *clientIdentityRef;
 
 /**
  Whether cookies returned by the server should be stored or not.
  */
-@property(nonatomic, assign) BOOL manageCookies;
+@property(assign) BOOL manageCookies;
 
 /**
  Initializes a HTTP POST request with the specified contentType and binary content.

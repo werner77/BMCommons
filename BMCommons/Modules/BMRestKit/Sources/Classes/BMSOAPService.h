@@ -14,14 +14,7 @@
  Base class for SOAP Web Services.
  */
 @interface BMSOAPService : BMObjectMappingParserService {
-    @private
-    NSString *_soapRequestTemplate;
-    NSURL *_endpointURL;
-    id<BMMappableObject> _requestObject;
-    Class<BMMappableObject> _responseObjectClass;
-    NSString *_soapAction;
-    NSString *_soapUsername;
-    NSString *_soapPassword;
+    
 }
 
 /**
@@ -29,17 +22,17 @@
  
  Default is the string which is returned from [BMSOAPService defaultSOAPRequestTemplate]
  */
-@property (nonatomic, strong) NSString *soapRequestTemplate;
+@property (strong) NSString *soapRequestTemplate;
 
 /**
  The endpoint URL for the service.
  */
-@property (nonatomic, strong) NSURL *endpointURL;
+@property (strong) NSURL *endpointURL;
 
 /**
  The soap action for the service.
  */
-@property (nonatomic, strong) NSString *soapAction;
+@property (strong) NSString *soapAction;
 
 /**
  The username for the service. 
@@ -48,7 +41,7 @@
  The default template does not contain a SOAP security header. If you wish to include the security header you have to supply a template manually.
  The username and password are part of the BMSOAPData which is fed to the protected method configureSOAPData:.
  */
-@property (nonatomic, strong) NSString *soapUsername;
+@property (strong) NSString *soapUsername;
 
 /**
  The password for the service.
@@ -57,7 +50,7 @@
  The default template does not contain a SOAP security header. If you wish to include the security header you have to supply a template manually.
  The username and password are part of the BMSOAPData which is fed to the protected method configureSOAPData:.
  */
-@property (nonatomic, strong) NSString *soapPassword;
+@property (strong) NSString *soapPassword;
 
 /**
  The default SOAP request template.

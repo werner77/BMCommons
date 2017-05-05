@@ -16,17 +16,9 @@
  Implementations are responsible for supplying the request and mapping the response via
  requestForServiceWithError: , resultFromRequest: and errorFromRequest:
  */
-@interface BMHTTPService : BMAbstractService<BMHTTPRequestDelegate, BMCachedService> {
-@protected
-	BMHTTPRequest *_request;
-    
-@private
-    BOOL _readCacheEnabled;
-    BOOL _writeCacheEnabled;
-    BOOL _loadCachedResultOnError;
-}
+@interface BMHTTPService : BMAbstractService<BMHTTPRequestDelegate, BMCachedService>
 
-@property (nonatomic, assign) BOOL parseInBackgroundThread;
+@property (assign) BOOL parseInBackgroundThread;
 
 @end
 

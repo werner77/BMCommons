@@ -10,25 +10,21 @@
 #import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMCore.h>
 
+@interface BMAbstractService()
+
+@property (assign, getter=isStarted) BOOL started;
+@property (assign, getter = isCancelled) BOOL cancelled;
+@property (assign, getter = isFinished) BOOL finished;
+@property (assign, getter = isExecuting) BOOL executing;
+@property (strong) NSString *instanceIdentifier;
+
+@end
+
 @implementation BMAbstractService {
-    NSString *_instanceIdentifier;
-    __weak id <BMServiceDelegate> _delegate;
-    id _context;
-    BOOL _backgroundService;
-    BOOL _sendToBackgroundSupported;
-    BOOL _userCancellable;
-    BOOL _started;
-    BOOL _cancelled;
-    BOOL _errorHandled;
-    BOOL _finished;
-    BOOL _executing;
-    NSString *_loadingMessage;
-#if TARGET_OS_IPHONE
-    UIBackgroundTaskIdentifier _bgTaskIdentifier;
-#endif
 }
 
 @synthesize context = _context, delegate = _delegate, backgroundService = _backgroundService, userCancellable = _userCancellable, errorHandled = _errorHandled, sendToBackgroundSupported = _sendToBackgroundSupported, resultTransformer = _resultTransformer, errorTransformer = _errorTransformer, cancelled = _cancelled, loadingMessage = _loadingMessage, finished = _finished, executing = _executing;
+@synthesize instanceIdentifier = _instanceIdentifier;
 
 #if TARGET_OS_IPHONE
 @synthesize bgTaskIdentifier = _bgTaskIdentifier;
@@ -37,26 +33,24 @@
 - (id)init {
 	if ((self = [super init])) {
 #if TARGET_OS_IPHONE
-        _bgTaskIdentifier = UIBackgroundTaskInvalid;
+        self.bgTaskIdentifier = UIBackgroundTaskInvalid;
 #endif
-		_instanceIdentifier = [BMStringHelper stringWithUUID];
-        _userCancellable = YES;
+		self.instanceIdentifier = [BMStringHelper stringWithUUID];
+        self.userCancellable = YES;
 	}
 	return self;
 }
 
 - (void)dealloc {
-	self.delegate = nil;
 	[self cancel];
-	BM_RELEASE_SAFELY(_instanceIdentifier);
 }
 
 - (void)reset {
-    _errorHandled = NO;
-    _started = NO;
-    _cancelled = NO;
-    _finished = NO;
-    _executing = YES;
+    self.errorHandled = NO;
+    self.started = NO;
+    self.cancelled = NO;
+    self.finished = NO;
+    self.executing = YES;
 }
 
 - (NSString *)classIdentifier {
@@ -67,14 +61,10 @@
     return NSStringFromClass(self);
 }
 
-- (NSString *)instanceIdentifier {
-	return _instanceIdentifier;
-}
-
 - (void)cancel {
-    if (_executing) {
+    if (self.isExecuting) {
         //Default implementation does nothing
-        _cancelled = YES;
+        self.cancelled = YES;
         [self serviceWasCancelled];
     }
 }
@@ -155,8 +145,8 @@
 
 - (void)serviceDidStart {
     if (!self.isCancelled) {
-        if (!_started) {
-            _started = YES;
+        if (!self.isStarted) {
+            self.started = YES;
             [self startBackgroundTask];
             if ([self.delegate respondsToSelector:@selector(serviceDidStart:)]) {
                 [self.delegate serviceDidStart:self];
@@ -166,7 +156,7 @@
 }
 
 - (void)serviceWasCancelled {
-    _executing = NO;
+    self.executing = NO;
     if ([self.delegate respondsToSelector:@selector(serviceWasCancelled:)]) {
         [self.delegate serviceWasCancelled:self];
     }
@@ -201,15 +191,15 @@
             [self serviceSucceededWithResult:result];
         }
     } else {
-        _finished = YES;
-        _executing = NO;
+        self.finished = YES;
+        self.executing = NO;
         [self endBackgroundTask];
     }
 }
 
 - (void)serviceSucceededWithResult:(id)result {
-    _finished = YES;
-    _executing = NO;
+    self.finished = YES;
+    self.executing = NO;
     [self endBackgroundTask];
     if (!self.isCancelled) {
         [self.delegate service:self succeededWithResult:result];
@@ -224,15 +214,15 @@
         error = [self errorByConvertingRawError:error];
         [self serviceFailedWithError:error];
     } else {
-        _finished = YES;
-        _executing = NO;
+        self.finished = YES;
+        self.executing = NO;
         [self endBackgroundTask];
     }
 }
 
 - (void)serviceFailedWithError:(NSError *)error {
-    _finished = YES;
-    _executing = NO;
+    self.finished = YES;
+    self.executing = NO;
     [self endBackgroundTask];
     if (!self.isCancelled) {
         [self.delegate service:self failedWithError:error];

@@ -17,10 +17,13 @@
 
 @property (assign) BOOL cacheHit;
 @property (strong) NSString *cacheURLUsed;
+@property (strong) BMHTTPRequest *request;
+@property (assign) BOOL startedFromMainThread;
 
 @end
 
-@implementation BMHTTPService
+@implementation BMHTTPService {
+}
 
 @synthesize readCacheEnabled = _readCacheEnabled, writeCacheEnabled = _writeCacheEnabled, loadCachedResultOnError = _loadCachedResultOnError, cacheURLUsed = _cacheURLUsed;
 @synthesize cacheHit = _cacheHit;
@@ -33,24 +36,23 @@
 
 - (void)dealloc {
 	self.context = nil;
-	_request.delegate = nil;
-    BM_RELEASE_SAFELY(_cacheURLUsed);
-	BM_RELEASE_SAFELY(_request);
+	self.request.delegate = nil;
 }
 
 - (void)cancel {
     self.cacheHit = NO;
-	_request.delegate = nil;
-	[_request cancel];
-	BM_RELEASE_SAFELY(_request);
+	self.request.delegate = nil;
+	[self.request cancel];
+	self.request = nil;
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [super cancel];
 }
 
 - (BOOL)executeWithError:(NSError **)error {
-	_request.delegate = nil;
+    self.startedFromMainThread = [NSThread isMainThread];
+	self.request.delegate = nil;
     self.cacheHit = NO;
-	BM_RELEASE_SAFELY(_request);
+	self.request = nil;
     self.cacheURLUsed = nil;
 	BMHTTPRequest *theRequest = [self requestForServiceWithError:error];
     
@@ -61,14 +63,14 @@
         return NO;
     } else {
         BOOL foundInCache = NO;
-        _request = theRequest;
-        _request.delegate = self;
+        self.request = theRequest;
+        self.request.delegate = self;
 
         if (self.readCacheEnabled) {
             foundInCache = [self loadCachedResultForRequest:theRequest];
         }
         if (!foundInCache) {
-            [_request send];
+            [self.request send];
         }
         return YES;
     }
@@ -92,14 +94,14 @@
 }
 
 - (void)serviceSucceededWithRawResult:(id)result {
-	_request.delegate = nil;
-	BM_AUTORELEASE_SAFELY(_request);
+	self.request.delegate = nil;
+	self.request = nil;
 	[super serviceSucceededWithRawResult:result];
 }
 
 - (void)serviceFailedWithRawError:(NSError *)error {
-	_request.delegate = nil;
-	BM_AUTORELEASE_SAFELY(_request);
+	self.request.delegate = nil;
+	self.request = nil;
 	[super serviceFailedWithRawError:error];
 }
 
@@ -108,7 +110,7 @@
 
 - (void)requestSucceeded:(BMHTTPRequest *)theRequest {
 	//Parse
-    if (self.parseInBackgroundThread) {
+    if (self.parseInBackgroundThread && [NSThread isMainThread]) {
         [self performSelectorInBackground:@selector(handleResponseFromRequest:) withObject:theRequest];
     } else {
         [self handleResponseFromRequest:theRequest];
@@ -116,7 +118,7 @@
 }
 
 - (void)requestFailed:(BMHTTPRequest *)theRequest {
-    if (self.parseInBackgroundThread) {
+    if (self.parseInBackgroundThread && [NSThread isMainThread]) {
         [self performSelectorInBackground:@selector(handleErrorFromRequest:) withObject:theRequest];
     } else {
         [self handleErrorFromRequest:theRequest];
@@ -173,7 +175,11 @@
 - (BOOL)loadCachedResultForRequest:(BMHTTPRequest *)theRequest {
     BOOL ret = [self hasCachedDataForRequest:theRequest withUrl:nil];
     if (ret) {
-        [self performSelectorInBackground:@selector(loadCachedResultAndNotifyForRequest:) withObject:theRequest];
+        if ([NSThread isMainThread]) {
+            [self performSelectorInBackground:@selector(loadCachedResultAndNotifyForRequest:) withObject:theRequest];
+        } else {
+            [self loadCachedResultAndNotifyForRequest:theRequest];
+        }
     }
     return ret;
 }
@@ -184,14 +190,22 @@
         if (result) {
             self.cacheHit = YES;
 
-            [NSObject bmPerformBlockOnMainThread:^{
+            if (self.startedFromMainThread) {
+                [NSObject bmPerformBlockOnMainThread:^{
+                    [self serviceSucceededWithRawResult:result];
+                }];
+            } else {
                 [self serviceSucceededWithRawResult:result];
-            }];
+            }
         } else {
             //Result is not valid: revert to loading the data remotely
-            [NSObject bmPerformBlockOnMainThread:^{
-                [_request send];
-            }];
+            if (self.startedFromMainThread) {
+                [NSObject bmPerformBlockOnMainThread:^{
+                    [self.request send];
+                }];
+            } else {
+                [self.request send];
+            }
         }
     }
 }
@@ -257,9 +271,13 @@
         }
         
         if (error) {
-            [NSObject bmPerformBlockOnMainThread:^{
+            if (self.startedFromMainThread) {
+                [NSObject bmPerformBlockOnMainThread:^{
+                    [self serviceFailedWithRawError:error];
+                }];
+            } else {
                 [self serviceFailedWithRawError:error];
-            }];
+            }
         } else {
             if (self.writeCacheEnabled && result && [result conformsToProtocol:@protocol(NSCoding)] && theRequest && ![self ignoreCacheForRequest:theRequest]) {
                 if ([NSThread isMainThread]) {
@@ -269,9 +287,13 @@
                 }
             }
 
-            [NSObject bmPerformBlockOnMainThread:^{
+            if (self.startedFromMainThread) {
+                [NSObject bmPerformBlockOnMainThread:^{
+                    [self serviceSucceededWithRawResult:result];
+                }];
+            } else {
                 [self serviceSucceededWithRawResult:result];
-            }];
+            }
         }
     }
 }
@@ -293,14 +315,23 @@
         }
         if (result) {
             self.cacheHit = YES;
-            [NSObject bmPerformBlockOnMainThread:^{
+            if (self.startedFromMainThread) {
+                [NSObject bmPerformBlockOnMainThread:^{
+                    [self serviceSucceededWithRawResult:result];
+                }];
+            } else {
                 [self serviceSucceededWithRawResult:result];
-            }];
+            }
+
         } else {
             NSError *error = [self errorFromRequest:theRequest];
-            [NSObject bmPerformBlockOnMainThread:^{
+            if (self.startedFromMainThread) {
+                [NSObject bmPerformBlockOnMainThread:^{
+                    [self serviceFailedWithRawError:error];
+                }];
+            } else {
                 [self serviceFailedWithRawError:error];
-            }];
+            }
         }
     }
 }

@@ -18,26 +18,26 @@
 /**
  Delegate of the service
  */
-@property(nonatomic, weak) id<BMServiceDelegate> delegate;
+@property(weak) id<BMServiceDelegate> delegate;
 
 #if TARGET_OS_IPHONE
 /**
  Identifier for the background task when the service is executed in the background.
  */
-@property(nonatomic, assign) UIBackgroundTaskIdentifier bgTaskIdentifier;
+@property(assign) UIBackgroundTaskIdentifier bgTaskIdentifier;
 #endif
 
 /**
  A context object which can be used when the service completed or failed
  */
-@property(nonatomic, strong) id context;
+@property(strong) id context;
 
 /**
  * Whether the service is executing in the foreground (user views progress) or hidden in the background. 
  
  Default should be NO (foreground).
  */
-@property(nonatomic, assign, getter = isBackgroundService) BOOL backgroundService;
+@property(assign, getter = isBackgroundService) BOOL backgroundService;
 
 /**
  * Whether the service supports transitioning to a background service. 
@@ -46,53 +46,53 @@
  
  Default should be NO.
  */
-@property(nonatomic, assign, getter = isSendToBackgroundSupported) BOOL sendToBackgroundSupported;
+@property(assign, getter = isSendToBackgroundSupported) BOOL sendToBackgroundSupported;
 
 /**
  * Whether the user is allowed to cancel the service or not. 
  
  Default should be YES.
  */
-@property(nonatomic, assign, getter = isUserCancellable) BOOL userCancellable;
+@property(assign, getter = isUserCancellable) BOOL userCancellable;
 
 /**
 * If an error is handled this boolean can be set to signal to delegates later in the chain that they don't need to take action.
 */
-@property(nonatomic, assign, getter = isErrorHandled) BOOL errorHandled;
+@property(assign, getter = isErrorHandled) BOOL errorHandled;
 
 /**
  Returns true iff the cancel method was called. 
  
  Is reset after calling execute.
  */
-@property(nonatomic, assign, readonly, getter = isCancelled) BOOL cancelled;
+@property(assign, readonly, getter = isCancelled) BOOL cancelled;
 
 /**
  Returns true iff the service is not executing and either serviceSucceededWithSuccess or serviceFailedWithError are called.
 */
-@property(nonatomic, assign, readonly, getter = isFinished) BOOL finished;
+@property(assign, readonly, getter = isFinished) BOOL finished;
 
 /**
  Returns true iff the service has started and has not been cancelled or succeededWithResult or failedWithError.
  */
-@property(nonatomic, assign, readonly, getter = isExecuting) BOOL executing;
+@property(assign, readonly, getter = isExecuting) BOOL executing;
 
 /**
  If set this transformer is used to process and transform the result. 
  
  This is done after retrieving the original response value from the cache (if applicable). This can be used to perform local data processing, e.g. with core data.
  */
-@property(nonatomic, strong) NSValueTransformer *resultTransformer;
+@property(strong) NSValueTransformer *resultTransformer;
 
 /**
  If set this transformer is used to transform the NSError object returned by the service before supplying it to the delegates.
  */
-@property(nonatomic, strong) NSValueTransformer *errorTransformer;
+@property(strong) NSValueTransformer *errorTransformer;
 
 /**
  Default message to show when loading.
  */
-@property(nonatomic, strong) NSString *loadingMessage;
+@property(strong) NSString *loadingMessage;
 
 /**
  * Executes the service. 
@@ -159,21 +159,21 @@
  
  Default is NO.
  */
-@property (nonatomic, assign) BOOL readCacheEnabled;
+@property (assign) BOOL readCacheEnabled;
 
 /**
  Whether response data should be written to the cache. 
  
  Default is NO.
  */
-@property (nonatomic, assign) BOOL writeCacheEnabled;
+@property (assign) BOOL writeCacheEnabled;
 
 /**
  Whether after a service error data should be loaded from the cache to at least provide a meaningful response. 
  
  Default is NO.
  */
-@property (nonatomic, assign) BOOL loadCachedResultOnError;
+@property (assign) BOOL loadCachedResultOnError;
 
 /**
  The key that was used to load/write the result from/to the cache.

@@ -14,46 +14,34 @@
 #import <BMCommons/BMRestKit.h>
 
 @interface CacheData : NSObject {
-	NSString *key;
-	id value;
 }
 
-@property (nonatomic, strong) NSString *key;
-@property (nonatomic, strong) id value;
+@property (strong) NSString *key;
+@property (strong) id value;
 
 @end
 
 @implementation CacheData
 
-@synthesize key, value;
-
-
 @end
 
 
 @interface ParserContext : NSObject {
-	BMParser *parser;
-	id __weak target;
-	SEL action;
-	BOOL parsingFinished;
-	NSCondition *parserCondition;
 }
 
-@property (nonatomic, strong) BMParser *parser;
-@property (nonatomic, strong) NSCondition *parserCondition;
-@property (nonatomic, assign) BOOL parsingFinished;
-@property (nonatomic, weak) id target;
-@property (nonatomic, assign) SEL action;
+@property (weak) BMParser *parser;
+@property (strong) NSCondition *parserCondition;
+@property (assign) BOOL parsingFinished;
+@property (weak) id target;
+@property (assign) SEL action;
 
 @end
 
 @implementation ParserContext
 
-@synthesize parser, target, action, parserCondition, parsingFinished;
-
 - (id)init {
 	if ((self = [super init])) {
-		parserCondition = [NSCondition new];
+		self.parserCondition = [NSCondition new];
 	}
 	return self;
 }
@@ -62,18 +50,14 @@
 @end
 
 @interface ParserSuccessArgument : NSObject {
-	BMHTTPRequest *request;
-	BOOL success;
 }
 
-@property (nonatomic, strong) BMHTTPRequest *request;
-@property (nonatomic, assign) BOOL success;
+@property (strong) BMHTTPRequest *request;
+@property (assign) BOOL success;
 
 @end
 
 @implementation ParserSuccessArgument
-
-@synthesize request, success;
 
 - (void)dealloc {
 	self.request = nil;
@@ -82,32 +66,17 @@
 @end
 
 @interface CacheLoadingContext : NSObject {
-	id __weak target;
-	SEL action;
-	NSData *data;
-    NSString *url;
-    BMURLCache *cache;
 }
 
-@property (nonatomic, weak) id target;
-@property (nonatomic, assign) SEL action;
-@property (nonatomic, strong) NSData *data;
-@property (nonatomic, strong) NSString *url;
-@property (nonatomic, strong) BMURLCache *cache;
+@property (weak) id target;
+@property (assign) SEL action;
+@property (strong) NSData *data;
+@property (strong) NSString *url;
+@property (strong) BMURLCache *cache;
 
 @end
 
 @implementation CacheLoadingContext
-
-@synthesize target, action, data, url, cache;
-
-
-@end
-
-@interface BMParserService()
-
-@property (assign) BOOL cacheHit;
-@property (strong) NSString *cacheURLUsed;
 
 @end
 
@@ -121,26 +90,33 @@
 - (void)destroyParserThread;
 - (void)destroyCacheLoadingThread;
 - (void)startParserThread;
-- (void)setHandler:(BMParserHandler *)theHandler;
-- (void)setRequest:(BMHTTPRequest *)theRequest;
-
 
 @end
 
 @interface BMParserService()
 
-@property (nonatomic, strong) BMParserHandler *successHandler;
-@property (nonatomic, strong) BMParserHandler *errorHandler;
-@property (nonatomic, strong) NSError *lastRequestError;
+@property (assign) BOOL cacheHit;
+@property (strong) NSString *cacheURLUsed;
+@property (strong) BMParserHandler *successHandler;
+@property (strong) BMParserHandler *errorHandler;
+@property (strong) NSError *lastRequestError;
+@property (strong) BMParser *parser;
+@property (assign) BOOL errorNotificationSent;
+@property (strong) NSThread *parserThread;
+@property (strong) ParserContext *parserContext;
+@property (strong) NSThread *cacheLoadingThread;
+@property (strong) BMHTTPRequest *request;
+@property (strong) BMParserHandler *handler;
 
 @end
 
-@implementation BMParserService
+@implementation BMParserService {
+}
 
 static volatile int threadCount = 0;
 
-@synthesize readCacheEnabled, writeCacheEnabled, request, handler, cacheURLUsed, loadCachedResultOnError,
-parserClass, successHandler, errorHandler, lastRequestError, parserType, cacheHit;
+@synthesize readCacheEnabled = _readCacheEnabled, writeCacheEnabled = _writeCacheEnabled, request = _request, handler = _handler, cacheURLUsed = _cacheURLUsed, loadCachedResultOnError = _loadCachedResultOnError,
+parserClass = _parserClass, successHandler = _successHandler, errorHandler = _errorHandler, lastRequestError = _lastRequestError, parserType = _parserType, cacheHit = _cacheHit;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation
@@ -154,14 +130,12 @@ parserClass, successHandler, errorHandler, lastRequestError, parserType, cacheHi
 
 - (id)init {
 	if ((self = [super init])) {
-
         self.parserType = BMParserTypeXML;
 	}
 	return self;
 }
 
 - (void)dealloc {
-	BM_RELEASE_SAFELY(cacheURLUsed);
 }
 
 - (Class)parserClass {
@@ -186,35 +160,36 @@ parserClass, successHandler, errorHandler, lastRequestError, parserType, cacheHi
 #pragma mark Other methods
 
 - (void)cancel {
-	BOOL wasLoadCachedResult = loadCachedResultOnError;
-	loadCachedResultOnError = NO;
-	[request cancel];
-	request.delegate = nil;
+	BOOL wasLoadCachedResult = self.loadCachedResultOnError;
+	self.loadCachedResultOnError = NO;
+	[self.request cancel];
+	self.request.delegate = nil;
 	[self destroyParserThread];
 	[self destroyCacheLoadingThread];
-	parser.delegate = nil;
-	BM_RELEASE_SAFELY(request);
-	BM_RELEASE_SAFELY(handler);
-    BM_RELEASE_SAFELY(errorHandler);
-    BM_RELEASE_SAFELY(successHandler);
-	BM_RELEASE_SAFELY(parser);
-    BM_RELEASE_SAFELY(lastRequestError);
-	loadCachedResultOnError = wasLoadCachedResult;
+	self.parser.delegate = nil;
+	self.request = nil;
+	self.handler = nil;
+	self.errorHandler = nil;
+	self.successHandler = nil;
+	self.parser = nil;
+	self.lastRequestError = nil;
+	self.loadCachedResultOnError = wasLoadCachedResult;
 	[super cancel];
 }
 
 - (void)prepare {
 	[self destroyParserThread];
-	BM_RELEASE_SAFELY(parser);
+	self.parser = nil;
     self.lastRequestError = nil;
     self.request.delegate = nil;
 	self.request = nil;
+	self.parser.delegate = nil;
 	self.handler = nil;
     self.errorHandler = nil;
     self.successHandler = nil;
     self.cacheURLUsed = nil;
 	
-	errorNotificationSent = NO;
+	self.errorNotificationSent = NO;
     self.cacheHit = NO;
 }
 
@@ -261,10 +236,10 @@ parserClass, successHandler, errorHandler, lastRequestError, parserType, cacheHi
 		BOOL hasCachedResult = [self loadCachedResultForRequest:theRequest];
 		if (!hasCachedResult) {
 			self.request = theRequest;
-			request.delegate = self;
-			NSInputStream *inputStream = [request inputStreamForConnection];
-			parser = [[self.parserClass alloc] initWithStream:inputStream];
-			[self configureParser:parser];
+			self.request.delegate = self;
+			NSInputStream *inputStream = [self.request inputStreamForConnection];
+			self.parser = [[self.parserClass alloc] initWithStream:inputStream];
+			[self configureParser:self.parser];
             self.successHandler = theHandler;
             self.errorHandler = theErrorHandler;
 			[self startParserThread];
@@ -283,9 +258,10 @@ parserClass, successHandler, errorHandler, lastRequestError, parserType, cacheHi
 	[self prepare];
 	
 	if (theData) {
-		parser = [[self.parserClass alloc] initWithData:theData];
-		[self configureParser:parser];
+		self.parser = [[self.parserClass alloc] initWithData:theData];
+		[self configureParser:self.parser];
 		self.handler = theHandler;
+		self.parser.delegate = theHandler;
 		[self startParserThread];
 		return YES;
 	} else {
@@ -300,7 +276,7 @@ parserClass, successHandler, errorHandler, lastRequestError, parserType, cacheHi
 
 - (void)requestSucceeded:(BMHTTPRequest *)theRequest {
 	LogInfo(@"Request succeeded");
-	request.delegate = nil;
+	self.request.delegate = nil;
 }
 
 - (void)requestFailed:(BMHTTPRequest *)theRequest {
@@ -308,15 +284,17 @@ parserClass, successHandler, errorHandler, lastRequestError, parserType, cacheHi
 	LogError(@"Request failed with error: %@", theRequest.lastError);
     
     self.lastRequestError = theRequest.lastError;
-    request.delegate = nil;
+    self.request.delegate = nil;
 }
 
 - (void)request:(BMHTTPRequest *)theRequest didReceiveResponse:(NSURLResponse *)response {
     BOOL successResponse = [theRequest isSuccessfulHTTPResponse];
     if (!successResponse && self.errorHandler) {
         self.handler = self.errorHandler;
+		self.parser.delegate = self.handler;
     } else {
         self.handler = self.successHandler;
+		self.parser.delegate = self.handler;
     }
 }
 
@@ -333,8 +311,8 @@ parserClass, successHandler, errorHandler, lastRequestError, parserType, cacheHi
             error = [self.handler error];
         }
 	} else {
-		if (parser.parserError) {
-			LogError(@"Error returned by parser: %@", parser.parserError);
+		if (self.parser.parserError) {
+			LogError(@"Error returned by parser: %@", self.parser.parserError);
 		}
 		
 		if (self.lastRequestError) {
@@ -359,12 +337,12 @@ parserClass, successHandler, errorHandler, lastRequestError, parserType, cacheHi
 		[self serviceSucceededWithRawResult:result];
 	}
 	
-	parser.delegate = nil;
-	BM_AUTORELEASE_SAFELY(parser);
-	BM_AUTORELEASE_SAFELY(handler);
-    BM_AUTORELEASE_SAFELY(successHandler);
-    BM_AUTORELEASE_SAFELY(errorHandler);
-    BM_AUTORELEASE_SAFELY(request);
+	self.parser.delegate = nil;
+	self.parser = nil;
+	self.handler = nil;
+	self.successHandler = nil;
+	self.errorHandler = nil;
+	self.request = nil;
 }
 
 - (NSString *)URLForRequest:(BMHTTPRequest *)theRequest {
@@ -426,35 +404,36 @@ parserClass, successHandler, errorHandler, lastRequestError, parserType, cacheHi
 #pragma mark Parser Thread
 
 - (void)startParserThread {
-	parserContext = [ParserContext new];
-	parserContext.parser = parser;
+	ParserContext *parserContext = [ParserContext new];
+	parserContext.parser = self.parser;
 	parserContext.target = self;
 	parserContext.action = @selector(parser:completedOK:context:);
 	parserContext.parsingFinished = NO;
-	parserThread = [[NSThread alloc] initWithTarget:[BMParserService class] selector:@selector(parseThread:) object:parserContext];
+	self.parserContext = parserContext;
+	self.parserThread = [[NSThread alloc] initWithTarget:[BMParserService class] selector:@selector(parseThread:) object:parserContext];
 	
-	[parserThread start];
+	[self.parserThread start];
 }
 
 - (void)destroyParserThread {
-	if (parserThread) {
-		parser.delegate = nil;
-		[parserThread cancel];
-		[parser abortParsing];
+	if (self.parserThread) {
+		self.parser.delegate = nil;
+		[self.parserThread cancel];
+		[self.parser abortParsing];
 		
-		if ([parserThread isExecuting]) {
-			[parserContext.parserCondition lock];
+		if ([self.parserThread isExecuting]) {
+			[self.parserContext.parserCondition lock];
 			
-			while (!parserContext.parsingFinished) {
-				[parserContext.parserCondition wait];
+			while (!self.parserContext.parsingFinished) {
+				[self.parserContext.parserCondition wait];
 			}
 			
-			[parserContext.parserCondition unlock];
+			[self.parserContext.parserCondition unlock];
 		}
 		
-		parserThread = nil;
+		self.parserThread = nil;
 		
-		parserContext = nil;
+		self.parserContext = nil;
 		
 		LogInfo(@"Parser thread destroyed");
 	}
@@ -527,8 +506,8 @@ parserClass, successHandler, errorHandler, lastRequestError, parserType, cacheHi
             cacheLoadingContext.url = key;
             cacheLoadingContext.cache = cache;
             
-            cacheLoadingThread = [[NSThread alloc] initWithTarget:[BMParserService class] selector:@selector(loadThread:) object:cacheLoadingContext];
-            [cacheLoadingThread start];
+            self.cacheLoadingThread = [[NSThread alloc] initWithTarget:[BMParserService class] selector:@selector(loadThread:) object:cacheLoadingContext];
+            [self.cacheLoadingThread start];
         }
     }
 	return ret;
@@ -543,11 +522,11 @@ parserClass, successHandler, errorHandler, lastRequestError, parserType, cacheHi
 }
 
 - (void)destroyCacheLoadingThread {
-	if (cacheLoadingThread) {
-		@synchronized(cacheLoadingThread) {
-			[cacheLoadingThread cancel];
+	if (self.cacheLoadingThread) {
+		@synchronized(self.cacheLoadingThread) {
+			[self.cacheLoadingThread cancel];
 		}
-		cacheLoadingThread = nil;
+		self.cacheLoadingThread = nil;
 	}
 }
 
@@ -619,21 +598,6 @@ parserClass, successHandler, errorHandler, lastRequestError, parserType, cacheHi
             [cache storeData:data forURL:key];
         }
 		LogInfo(@"Data save thread finished");
-	}
-}
-
-#pragma mark Private setters
-
-- (void)setHandler:(BMParserHandler *)theHandler {
-	if (handler != theHandler) {
-		handler = theHandler;
-	}
-    parser.delegate = theHandler;
-}
-
-- (void)setRequest:(BMHTTPRequest *)theRequest {
-	if (request != theRequest) {
-		request = theRequest;
 	}
 }
 

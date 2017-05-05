@@ -17,7 +17,7 @@
 /**
  Reference to the currently active underlying service.
  */
-@property(nonatomic, readonly) id <BMService> currentService;
+@property(readonly) id <BMService> currentService;
 
 - (id)initWithDelegate:(id <BMServiceDelegate>)theDelegate;
 

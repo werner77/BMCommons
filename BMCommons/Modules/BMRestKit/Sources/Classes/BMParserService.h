@@ -29,39 +29,14 @@ typedef NS_ENUM(NSUInteger, BMParserType) {
  
  @see BMParser
  */
-@interface BMParserService : BMAbstractService<BMHTTPRequestDelegate, BMCachedService> {
-    @private
-	BMHTTPRequest *request;
-	BMParser *parser;
-	BOOL errorNotificationSent;
-	BMParserHandler *handler;
-    
-    BMParserHandler *successHandler;
-    BMParserHandler *errorHandler;
-    
-	BOOL readCacheEnabled;
-	BOOL writeCacheEnabled;
-	NSString *cacheURLUsed;
-	
-	NSThread *parserThread;
-	
-	ParserContext *parserContext;
-	
-	NSThread *cacheLoadingThread;
-	BOOL loadCachedResultOnError;
-	Class parserClass;
-    
-    NSError *lastRequestError;
-    BMParserType parserType;
-    BOOL cacheHit;
-}
+@interface BMParserService : BMAbstractService<BMHTTPRequestDelegate, BMCachedService> 
 
 /**
  Parser type to use.
  
  BMXMLParser or BMJSONParser.
  */
-@property (nonatomic, assign) BMParserType parserType;
+@property (assign) BMParserType parserType;
 
 /**
  The parser implementation class to use.
@@ -70,38 +45,38 @@ typedef NS_ENUM(NSUInteger, BMParserType) {
  
  Should be an implementation of BMParser.
  */
-@property (nonatomic, readonly) Class parserClass;
+@property (readonly) Class parserClass;
 
 /**
  Whether the cache is used for reading data to bypass a remote call (data is retrieved from cache if present). 
  
  Default is NO. Uses BMURLCache.
  */
-@property (nonatomic, assign) BOOL readCacheEnabled;
+@property (assign) BOOL readCacheEnabled;
 
 /**
  Whether response data should be written to the cache. 
  
  Default is NO. Uses BMURLCache.
  */
-@property (nonatomic, assign) BOOL writeCacheEnabled;
+@property (assign) BOOL writeCacheEnabled;
 
 /**
  Whether after a service error data should be loaded from the cache to at least provide a meaningful response. 
  
  Default is NO.
  */
-@property (nonatomic, assign) BOOL loadCachedResultOnError;
+@property (assign) BOOL loadCachedResultOnError;
 
 /**
  The request that is being executed.
  */
-@property (strong, nonatomic, readonly) BMHTTPRequest *request;
+@property (strong, readonly) BMHTTPRequest *request;
 
 /**
  The parser handler that is used to parse the result.
  */
-@property (strong, nonatomic, readonly) BMParserHandler *handler;
+@property (strong, readonly) BMParserHandler *handler;
 
 /**
  The key that was used to load the result from the cache. 

@@ -9,7 +9,7 @@
 
 @interface BMWrapperService()
 
-@property (nonatomic, strong) id<BMService> wrappedService;
+@property (strong) id<BMService> wrappedService;
 
 @end
 
