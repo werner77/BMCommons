@@ -16,7 +16,6 @@
  Base class for implementing application settings, stored in NSUserDefaults.
  */
 @interface BMAbstractSettingsObject : BMCoreObject<BMSettingsObject> {
-	BOOL observing;
 }
 
 BM_DECLARE_DEFAULT_SINGLETON

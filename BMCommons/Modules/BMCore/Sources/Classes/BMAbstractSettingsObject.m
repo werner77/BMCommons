@@ -11,6 +11,12 @@
 #import <BMCommons/NSObject+BMCommons.h>
 #import <BMCommons/BMCore.h>
 
+@interface BMAbstractSettingsObject()
+
+@property(getter=isObserving) BOOL observing;
+
+@end
+
 @implementation BMAbstractSettingsObject
 
 BM_SYNTHESIZE_DEFAULT_ABSTRACT_SINGLETON
@@ -138,7 +144,7 @@ static NSMutableDictionary *cachedDescriptors = nil;
 
 - (void)dealloc {
 	NSArray *descriptors = [[[self class] settingsPropertyDescriptorsDictionary] allValues];
-	if (observing) {
+	if (self.isObserving) {
 		for (BMSettingsPropertyDescriptor *pd in descriptors) {
             [self removeObserver:self forKeyPath:pd.keyPath];
 		}
@@ -146,8 +152,9 @@ static NSMutableDictionary *cachedDescriptors = nil;
 }
 
 - (void)saveValueForIvar:(NSString *)valueIvar withKey:(NSString *)key inDefaults:(NSUserDefaults *)defaults {
-	BMSettingsPropertyDescriptor *pd = [[self class] settingsPropertyDescriptorForKeyPath:valueIvar];
+    BMSettingsPropertyDescriptor *pd = [[self class] settingsPropertyDescriptorForKeyPath:valueIvar];
     BMValueTypeConverter *converter = [[self class] primitiveValueConverterForValueType:pd.valueType];
+
     NSObject *value = nil;
     if (converter) {
         NSUInteger valueLength;
@@ -156,23 +163,23 @@ static NSMutableDictionary *cachedDescriptors = nil;
     } else {
         value = [pd callGetterOnTarget:self];
     }
-    
-	if (value && ![value isKindOfClass:[NSNull class]]) {
-		if ([value isKindOfClass:[NSString class]] ||
-			[value isKindOfClass:[NSNumber class]] ||
-			[value isKindOfClass:[NSDate class]] ||
-			[value isKindOfClass:[NSArray class]] ||
-			[value isKindOfClass:[NSDictionary class]]) {
-			[defaults setObject:value forKey:key];
-		} else if ([value conformsToProtocol:@protocol(NSCoding)]) {
-			NSData *data = [NSKeyedArchiver archivedDataWithRootObject:(id <NSCoding>)value];
-			[defaults setObject:data forKey:key];
-		} else {
-			LogError(@"Unsupported value %@ for key %@", value, key);
-		}
-	} else {
-		[defaults removeObjectForKey:key];
-	}
+
+    if (value && ![value isKindOfClass:[NSNull class]]) {
+        if ([value isKindOfClass:[NSString class]] ||
+                [value isKindOfClass:[NSNumber class]] ||
+                [value isKindOfClass:[NSDate class]] ||
+                [value isKindOfClass:[NSArray class]] ||
+                [value isKindOfClass:[NSDictionary class]]) {
+            [defaults setObject:value forKey:key];
+        } else if ([value conformsToProtocol:@protocol(NSCoding)]) {
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:(id <NSCoding>)value];
+            [defaults setObject:data forKey:key];
+        } else {
+            LogError(@"Unsupported value %@ for key %@", value, key);
+        }
+    } else {
+        [defaults removeObjectForKey:key];
+    }
 }
 
 - (void)saveStateInUserDefaults:(NSUserDefaults *)defaults {
@@ -210,11 +217,11 @@ static NSMutableDictionary *cachedDescriptors = nil;
         [self invokeSetterForPropertyDescriptor:pd withValue:value];
 	}
 	
-	if (!observing) {
+	if (!self.isObserving) {
+        self.observing = YES;
         for (BMSettingsPropertyDescriptor *pd in descriptors) {
 			[self addObserver:self forKeyPath:pd.keyPath options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:(__bridge void *)(defaults)];
 		}
-		observing = YES;
 	}
 }
 
