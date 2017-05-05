@@ -29,10 +29,7 @@ typedef void (^BMServiceFailureBlock)(BOOL cancelled, NSError * error);
  [BMServiceDelegate service:succeededWithResult:] and
  [BMServiceDelegate service:failedWithError:]
  */
-@interface BMBlockServiceDelegate : BMCoreObject<BMServiceDelegate> {
-    BMServiceSuccessBlock _successBlock;
-    BMServiceFailureBlock _failureBlock;
-}
+@interface BMBlockServiceDelegate : BMCoreObject<BMServiceDelegate>
 
 + (BMBlockServiceDelegate *)delegateWithSuccess:(BMServiceSuccessBlock)success failure:(BMServiceFailureBlock)failure;
 + (BMBlockServiceDelegate *)delegateWithSuccess:(BMServiceSuccessBlock)success failure:(BMServiceFailureBlock)failure owner:(id)owner;
@@ -47,14 +44,14 @@ typedef void (^BMServiceFailureBlock)(BOOL cancelled, NSError * error);
  
  If the owner is deallocated the service will automatically be cancelled.
  */
-@property (nonatomic, weak) id owner;
+@property (weak) id owner;
 
 /**
  The service for which this object is a delegate. 
  
  This property is only non-nil when the service is active.
  */
-@property (nonatomic, weak, readonly) id<BMService> service;
+@property (weak, readonly) id<BMService> service;
 
 - (id)initWithSuccess:(BMServiceSuccessBlock)success failure:(BMServiceFailureBlock)failure;
 - (id)initWithSuccess:(BMServiceSuccessBlock)success failure:(BMServiceFailureBlock)failure owner:(id)owner;

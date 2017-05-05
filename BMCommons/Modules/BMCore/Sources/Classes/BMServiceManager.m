@@ -140,6 +140,7 @@ static NSInteger prioritySort(id container1, id container2, void *service)
 
 @interface BMServiceManager(Private)
 
+- (NSArray *)serviceDelegates;
 - (void)releaseService:(id <BMService>)theService;
 - (void)notifyDelegatesWithSelector:(SEL)selector service:(id <BMService>)service object:(id)object;
 - (void)notifyDelegatesForService:(id <BMService>)service withInvocationBlock:(void (^)(id <BMServiceDelegate> delegate, id <BMService> delegateService))invocationBlock;

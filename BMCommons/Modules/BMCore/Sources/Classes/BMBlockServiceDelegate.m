@@ -13,15 +13,15 @@
 
 @interface BMBlockServiceDelegate ()
 
-@property(nonatomic, copy) BMServiceSuccessBlock successBlock;
-@property(nonatomic, copy) BMServiceFailureBlock failureBlock;
+@property(copy) BMServiceSuccessBlock successBlock;
+@property(copy) BMServiceFailureBlock failureBlock;
+@property (weak) id<BMService> service;
 
 @end
 
 @implementation BMBlockServiceDelegate {
+    id __weak _owner;
 }
-
-static NSMutableArray *runningServices = nil;
 
 @synthesize successBlock = _successBlock;
 @synthesize failureBlock = _failureBlock;
@@ -35,10 +35,12 @@ static NSMutableArray *runningServices = nil;
     return [[self alloc] initWithSuccess:success failure:failure];
 }
 
-+ (void)initialize {
-    if (runningServices == nil) {
++ (NSMutableArray *)runningServices {
+    static NSMutableArray *runningServices = nil;
+    BM_DISPATCH_ONCE((^ {
         runningServices = [NSMutableArray new];
-    }
+    }));
+    return runningServices;
 }
 
 - (id)initWithSuccess:(BMServiceSuccessBlock)success failure:(BMServiceFailureBlock)failure owner:(id)owner {
@@ -57,26 +59,31 @@ static NSMutableArray *runningServices = nil;
 
 - (void)dealloc {
     self.owner = nil;
-    _service = nil;
-    BM_RELEASE_SAFELY(_successBlock);
-    BM_RELEASE_SAFELY(_failureBlock);
 }
 
 - (void)setOwner:(id)owner {
-    if (_owner) {
-        [[BMWeakReferenceRegistry sharedInstance] deregisterReference:_owner forOwner:self];
-        _owner = nil;
+    @synchronized(self) {
+        if (_owner) {
+            [[BMWeakReferenceRegistry sharedInstance] deregisterReference:_owner forOwner:self];
+            _owner = nil;
+        }
+        if (owner) {
+            _owner = owner;
+            [[BMWeakReferenceRegistry sharedInstance] registerReference:_owner forOwner:self withCleanupBlock:^{
+                [self.service cancel];
+            }];
+        }
     }
-    if (owner) {
-        _owner = owner;
-        [[BMWeakReferenceRegistry sharedInstance] registerReference:_owner forOwner:self withCleanupBlock:^{
-            [_service cancel];
-        }];
+}
+
+- (id)owner {
+    @synchronized (self) {
+        return _owner;
     }
 }
 
 - (void)service:(id <BMService>)service succeededWithResult:(id)result {
-    _service = nil;
+    self.service = nil;
     if (self.successBlock) {
         self.successBlock(result);
     }
@@ -84,7 +91,7 @@ static NSMutableArray *runningServices = nil;
 }
 
 - (void)service:(id <BMService>)service failedWithError:(NSError *)error {
-    _service = nil;
+    self.service = nil;
     if (self.failureBlock) {
         self.failureBlock(NO, error);
     }
@@ -92,12 +99,12 @@ static NSMutableArray *runningServices = nil;
 }
 
 - (void)serviceDidStart:(id<BMService>)service {
-    _service = service;
+    self.service = service;
     [[self class] pushDelegate:self];
 }
 
 - (void)serviceWasCancelled:(id<BMService>)service {
-    _service = nil;
+    self.service = nil;
     if (self.failureBlock) {
         self.failureBlock(YES, nil);
     }
@@ -105,19 +112,27 @@ static NSMutableArray *runningServices = nil;
 }
 
 + (void)pushDelegate:(BMBlockServiceDelegate *)delegate {
-    if (![runningServices containsObject:delegate]) {
-        [runningServices addObject:delegate];
+    @synchronized (BMBlockServiceDelegate.class) {
+        if (![self.runningServices containsObject:delegate]) {
+            [self.runningServices addObject:delegate];
+        }
     }
 }
 
 + (void)popDelegate:(BMBlockServiceDelegate *)delegate forService:(id <BMService>)service {
     service.delegate = nil;
-    [runningServices removeObject:delegate];
+    @synchronized (BMBlockServiceDelegate.class) {
+        [self.runningServices removeObject:delegate];
+    }
 }
 
 + (NSArray *)activeBlockDelegatesForOwner:(id)owner {
+    NSArray *currentRunningServices = nil;
+    @synchronized(BMBlockServiceDelegate.class) {
+        currentRunningServices = [NSArray arrayWithArray:self.runningServices];
+    }
     NSMutableArray *ret = [NSMutableArray array];
-    for (BMBlockServiceDelegate *d in [NSArray arrayWithArray:runningServices]) {
+    for (BMBlockServiceDelegate *d in currentRunningServices) {
         if (owner == nil || d.owner == owner) {
             [ret addObject:d];
         }
