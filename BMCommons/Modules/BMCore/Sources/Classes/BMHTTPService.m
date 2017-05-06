@@ -64,13 +64,13 @@
     } else {
         BOOL foundInCache = NO;
         self.request = theRequest;
-        self.request.delegate = self;
+        theRequest.delegate = self;
 
         if (self.readCacheEnabled) {
             foundInCache = [self loadCachedResultForRequest:theRequest];
         }
         if (!foundInCache) {
-            [self.request send];
+            [theRequest send];
         }
         return YES;
     }

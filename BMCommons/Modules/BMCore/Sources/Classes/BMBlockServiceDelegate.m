@@ -28,7 +28,7 @@
 @synthesize failureBlock = _failureBlock;
 @synthesize service = _service;
 
-static const char * kBlockDelegateAssociationKey = "com.behindmedia.bmcommons.BMBlockServiceDelegate";
+static const char * kBlockDelegatesAssociationKey = "com.behindmedia.bmcommons.BMBlockServiceDelegates";
 
 + (BMBlockServiceDelegate *)delegateWithSuccess:(BMServiceSuccessBlock)success failure:(BMServiceFailureBlock)failure owner:(id)owner {
     return [[self alloc] initWithSuccess:success failure:failure owner:owner];
@@ -69,12 +69,12 @@ static const char * kBlockDelegateAssociationKey = "com.behindmedia.bmcommons.BM
         if (_owner != owner) {
             if (_owner) {
                 [[BMWeakReferenceRegistry sharedInstance] deregisterReference:_owner forOwner:self];
-                objc_setAssociatedObject(_owner, kBlockDelegateAssociationKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                [self setAssociatedWithOwner:NO];
                 _owner = nil;
             }
             if (owner) {
                 _owner = owner;
-                objc_setAssociatedObject(_owner, kBlockDelegateAssociationKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                [self setAssociatedWithOwner:YES];
                 __typeof(self) __weak weakSelf = self;
                 [[BMWeakReferenceRegistry sharedInstance] registerReference:_owner forOwner:self withCleanupBlock:^{
                     [weakSelf.service cancel];
@@ -87,6 +87,28 @@ static const char * kBlockDelegateAssociationKey = "com.behindmedia.bmcommons.BM
 - (id)owner {
     @synchronized (self) {
         return _owner;
+    }
+}
+
+- (void)setAssociatedWithOwner:(BOOL)associated {
+    @synchronized(self) {
+        if (_owner) {
+            @synchronized(_owner) {
+                NSMutableArray *associatedBlockDelegates = objc_getAssociatedObject(_owner, kBlockDelegatesAssociationKey);
+                if (associated) {
+                    if (associatedBlockDelegates == nil) {
+                        associatedBlockDelegates = [NSMutableArray new];
+                        objc_setAssociatedObject(_owner, kBlockDelegatesAssociationKey, associatedBlockDelegates, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                    }
+                    [associatedBlockDelegates addObject:self];
+                } else if (associatedBlockDelegates) {
+                    [associatedBlockDelegates removeObjectIdenticalTo:self];
+                    if (associatedBlockDelegates.count == 0) {
+                        objc_setAssociatedObject(_owner, kBlockDelegatesAssociationKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -129,7 +151,7 @@ static const char * kBlockDelegateAssociationKey = "com.behindmedia.bmcommons.BM
 
 + (void)popDelegate:(BMBlockServiceDelegate *)delegate forService:(id <BMService>)service {
     service.delegate = nil;
-    delegate.owner = nil;
+    [delegate setAssociatedWithOwner:NO];
     @synchronized (BMBlockServiceDelegate.class) {
         [self.runningServices removeObject:delegate];
     }

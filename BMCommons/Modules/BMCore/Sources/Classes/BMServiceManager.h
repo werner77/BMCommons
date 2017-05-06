@@ -65,7 +65,8 @@
  Use performService:withDelegate: to execute any service and register it with this instance.
 
  This class is thread safe. Be sure to implement the BMServiceManagerDelegate also in a thread safe manner, because the methods on that protocol may be called from a background thread.
- All the BMServiceDelegate methods will be called from the main thread.
+
+ All the BMServiceDelegate methods will by default be called on the main thread except when a delegate queue has been set explicitly.
  */
 @interface BMServiceManager : BMCoreObject<BMServiceDelegate> {
 }
@@ -100,6 +101,11 @@ BM_DECLARE_DEFAULT_SINGLETON
  * Default is true.
  */
 @property (assign) BOOL automaticallyReverseTransformServices;
+
+/**
+ * Set to use this queue to perform the delegate callbacks on. If not set the main thread (queue) is used.
+ */
+@property (strong) NSOperationQueue *delegateQueue;
 
 /**
  Add/Remove delegate to receive all service events

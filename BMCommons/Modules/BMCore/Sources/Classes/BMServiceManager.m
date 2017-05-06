@@ -485,7 +485,7 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
     }
 
     __typeof(self) __weak weakSelf = self;
-    [self bmPerformBlockOnMainThread:^{
+    void (^block)(void) =^ {
         NSArray *theDelegates = [weakSelf sortedDelegatesForService:service];
 
         for (BMServiceDelegateContainer *dc in theDelegates) {
@@ -497,7 +497,13 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
         if (releaseWhenDone) {
             [weakSelf releaseService:service];
         }
-    }];
+    };
+
+    if (self.delegateQueue != nil) {
+        [self.delegateQueue addOperationWithBlock:block];
+    } else {
+        [self bmPerformBlockOnMainThread:block];
+    }
 }
 
 - (id <BMService>)transformedService:(id <BMService>)service {

@@ -136,8 +136,9 @@
 
 - (void)endBackgroundTask {
 #if TARGET_OS_IPHONE
-    if (self.bgTaskIdentifier != UIBackgroundTaskInvalid) {
-        [[UIApplication sharedApplication] endBackgroundTask:self.bgTaskIdentifier];
+    UIBackgroundTaskIdentifier bgTaskIdentifier = self.bgTaskIdentifier;
+    if (bgTaskIdentifier != UIBackgroundTaskInvalid) {
+        [[UIApplication sharedApplication] endBackgroundTask:bgTaskIdentifier];
         self.bgTaskIdentifier = UIBackgroundTaskInvalid;
     }
 #endif
@@ -148,8 +149,9 @@
         if (!self.isStarted) {
             self.started = YES;
             [self startBackgroundTask];
-            if ([self.delegate respondsToSelector:@selector(serviceDidStart:)]) {
-                [self.delegate serviceDidStart:self];
+            id <BMServiceDelegate> delegate = self.delegate;
+            if ([delegate respondsToSelector:@selector(serviceDidStart:)]) {
+                [delegate serviceDidStart:self];
             }
         }
     }
@@ -157,32 +159,36 @@
 
 - (void)serviceWasCancelled {
     self.executing = NO;
-    if ([self.delegate respondsToSelector:@selector(serviceWasCancelled:)]) {
-        [self.delegate serviceWasCancelled:self];
+    id <BMServiceDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(serviceWasCancelled:)]) {
+        [delegate serviceWasCancelled:self];
     }
     [self endBackgroundTask];
 }
 
 - (void)serviceWasSentToBackground {
     if (!self.isCancelled) {
-        if ([self.delegate respondsToSelector:@selector(serviceWasSentToBackground:)]) {
-            [self.delegate serviceWasSentToBackground:self];
+        id <BMServiceDelegate> delegate = self.delegate;
+        if ([delegate respondsToSelector:@selector(serviceWasSentToBackground:)]) {
+            [delegate serviceWasSentToBackground:self];
         }
     }
 }
 
 - (void)serviceWasSentToForeground {
     if (!self.isCancelled) {
-        if ([self.delegate respondsToSelector:@selector(serviceWasSentToForeground:)]) {
-            [self.delegate serviceWasSentToForeground:self];
+        id <BMServiceDelegate> delegate = self.delegate;
+        if ([delegate respondsToSelector:@selector(serviceWasSentToForeground:)]) {
+            [delegate serviceWasSentToForeground:self];
         }
     }
 }
 
 - (void)serviceSucceededWithRawResult:(id)result {
     if (!self.isCancelled) {
-        if ([self.delegate respondsToSelector:@selector(service:succeededWithRawResult:)]) {
-            [self.delegate service:self succeededWithRawResult:result];
+        id <BMServiceDelegate> delegate = self.delegate;
+        if ([delegate respondsToSelector:@selector(service:succeededWithRawResult:)]) {
+            [delegate service:self succeededWithRawResult:result];
         }
         result = [self resultOrErrorByConvertingRawResult:result];
         if ([result isKindOfClass:[NSError class]]) {
@@ -208,8 +214,9 @@
 
 - (void)serviceFailedWithRawError:(NSError *)error {
     if (!self.isCancelled) {
-        if ([self.delegate respondsToSelector:@selector(service:failedWithRawError:)]) {
-            [self.delegate service:self failedWithRawError:error];
+        id <BMServiceDelegate> delegate = self.delegate;
+        if ([delegate respondsToSelector:@selector(service:failedWithRawError:)]) {
+            [delegate service:self failedWithRawError:error];
         }
         error = [self errorByConvertingRawError:error];
         [self serviceFailedWithError:error];
@@ -231,28 +238,32 @@
 
 - (NSInteger)delegatePriority {
     NSInteger priority = 0;
-	if ([self.delegate respondsToSelector:@selector(delegatePriorityForService:)]) {
-		priority = [self.delegate delegatePriorityForService:self];
+    id <BMServiceDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(delegatePriorityForService:)]) {
+		priority = [delegate delegatePriorityForService:self];
 	}
 	return priority;
 }
 
 - (void)updateProgress:(double)progressPercentage withMessage:(NSString *)message {
-	if ([self.delegate respondsToSelector:@selector(service:updatedProgress:withMessage:)]) {
-		[self.delegate service:self updatedProgress:progressPercentage withMessage:message];
+    id <BMServiceDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(service:updatedProgress:withMessage:)]) {
+		[delegate service:self updatedProgress:progressPercentage withMessage:message];
 	}
 }
 
 - (id)resultOrErrorByConvertingRawResult:(id)result {
-    if (self.resultTransformer) {
-        result = [self.resultTransformer transformedValue:result];
+    NSValueTransformer *resultTransformer = self.resultTransformer;
+    if (resultTransformer) {
+        result = [resultTransformer transformedValue:result];
     }
     return result;
 }
 
 - (NSError *)errorByConvertingRawError:(NSError *)error {
-    if (self.errorTransformer) {
-        error = [self.errorTransformer transformedValue:error];
+    NSValueTransformer *errorTransformer = self.errorTransformer;
+    if (errorTransformer) {
+        error = [errorTransformer transformedValue:error];
     }
     return error;
 }

@@ -32,7 +32,6 @@ static const NSUInteger kMaxRetryCount = 1;
 
 @property(strong)   NSMutableURLRequest *request;
 @property(strong)   NSURLResponse *response;
-@property(assign) 	BOOL requestDidSucceed;
 @property(strong) 	NSError* lastError;
 @property(strong) 	NSURL *url;
 @property(strong) 	NSMutableData *receivedData;
@@ -85,19 +84,27 @@ static NSURLRequestCachePolicy defaultCachePolicy = BM_HTTP_REQUEST_DEFAULT_CACH
 static NSTimeInterval defaultTimeoutInterval = BM_HTTP_REQUEST_DEFAULT_TIMEOUT;
 
 + (void)setDefaultCachePolicy:(NSURLRequestCachePolicy)policy {
-    defaultCachePolicy = policy;
+    @synchronized (BMHTTPRequest.class) {
+        defaultCachePolicy = policy;
+    }
 }
 
 + (NSURLRequestCachePolicy)defaultCachePolicy {
-    return defaultCachePolicy;
+    @synchronized (BMHTTPRequest.class) {
+        return defaultCachePolicy;
+    }
 }
 
 + (void)setDefaultTimeoutInterval:(NSTimeInterval)time {
-    defaultTimeoutInterval = time;
+    @synchronized (BMHTTPRequest.class) {
+        defaultTimeoutInterval = time;
+    }
 }
 
 + (NSTimeInterval)defaultTimeoutInterval {
-    return defaultTimeoutInterval;
+    @synchronized (BMHTTPRequest.class) {
+        return defaultTimeoutInterval;
+    }
 }
 
 - (id)initPostRequestWithUrl:(NSURL *)theUrl
@@ -109,10 +116,11 @@ static NSTimeInterval defaultTimeoutInterval = BM_HTTP_REQUEST_DEFAULT_TIMEOUT;
                     delegate:(id <BMHTTPRequestDelegate>)theDelegate {
     if ((self = [self initWithUrl:theUrl customHeaderFields:customHeaderFields userName:theUserName password:thePassword
                          delegate:theDelegate])) {
-        [self.request setHTTPMethod:BM_HTTP_METHOD_POST];
-        [self.request addValue:contentType forHTTPHeaderField:FIELD_CONTENT_TYPE];
-        [self.request addValue:[NSString stringWithFormat:@"%d", (int)content.length] forHTTPHeaderField:FIELD_CONTENT_LENGTH];
-        [self.request setHTTPBody:content];
+        NSMutableURLRequest *request = self.request;
+        [request setHTTPMethod:BM_HTTP_METHOD_POST];
+        [request addValue:contentType forHTTPHeaderField:FIELD_CONTENT_TYPE];
+        [request addValue:[NSString stringWithFormat:@"%d", (int) content.length] forHTTPHeaderField:FIELD_CONTENT_LENGTH];
+        [request setHTTPBody:content];
         LogDebug(@"Body: %@\n", [[NSString alloc] initWithData:content encoding:NSUTF8StringEncoding]);
     }
     return self;
@@ -138,15 +146,16 @@ static NSTimeInterval defaultTimeoutInterval = BM_HTTP_REQUEST_DEFAULT_TIMEOUT;
                              delegate:(id <BMHTTPRequestDelegate>)theDelegate {
     if ((self = [self initWithUrl:theUrl customHeaderFields:customHeaderFields userName:theUserName password:thePassword
                          delegate:theDelegate])) {
-        [self.request setHTTPMethod:BM_HTTP_METHOD_POST];
+        NSMutableURLRequest *request = self.request;
+        [request setHTTPMethod:BM_HTTP_METHOD_POST];
 
         NSString *stringBoundary = BOUNDARY_STRING;
         NSString *theContentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", stringBoundary];
         LogDebug(@"Creating MultiPart form request with boundary: %@", stringBoundary);
-        [self.request addValue:theContentType forHTTPHeaderField:FIELD_CONTENT_TYPE];
+        [request addValue:theContentType forHTTPHeaderField:FIELD_CONTENT_TYPE];
 
         BMHTTPMultiPartBodyInputStream *is = [[BMHTTPMultiPartBodyInputStream alloc] initWithContentParts:contentParts boundaryString:stringBoundary];
-        [self.request setHTTPBodyStream:is];
+        [request setHTTPBodyStream:is];
     }
     return self;
 }
@@ -290,27 +299,26 @@ customHeaderFields:(NSDictionary *)customHeaderFields
 }
 
 - (void)startConnection {
-    self.connection = [[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:NO];
-    if (!self.connection) {
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:NO];
+    self.connection = connection;
+    if (!connection) {
         self.lastError = [BMErrorHelper errorForDomain:BM_ERROR_DOMAIN_SERVER code:BM_ERROR_NO_CONNECTION description:BMLocalizedString(@"httprequest.error.noconnection", @"Could not get connection")];
         [self requestCompleted:NO];
     } else {
         if ([NSThread isMainThread]) {
-            [self.connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+            [connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
         } else {
-            NSOperationQueue *operationQueue = [NSOperationQueue currentQueue];
-            if (operationQueue == nil) {
-                operationQueue = [NSOperationQueue new];
-            }
-            [self.connection setDelegateQueue:operationQueue];
+            NSOperationQueue *operationQueue = [NSOperationQueue new];
+            [connection setDelegateQueue:operationQueue];
         }
-        [self.connection start];
+        [connection start];
     }
     // Now wait for the URL connection to call us back.
 }
 
 - (void)send {
-    LogInfo(@"Sending request with HTTP method: %@", [self.request HTTPMethod]);
+    NSMutableURLRequest *request = self.request;
+    LogInfo(@"Sending request with HTTP method: %@", [request HTTPMethod]);
 
     [self resetState];
 
@@ -320,7 +328,7 @@ customHeaderFields:(NSDictionary *)customHeaderFields
         [self setHttpCookies];
     }
 
-    [self prepareRequest:self.request];
+    [self prepareRequest:request];
     [self startConnection];
 }
 
@@ -334,7 +342,9 @@ customHeaderFields:(NSDictionary *)customHeaderFields
 }
 
 - (BMURLConnectionInputStream *)inputStreamForConnection {
-    LogInfo(@"Sending request with HTTP method: %@", [self.request HTTPMethod]);
+    NSMutableURLRequest *request = self.request;
+    
+    LogInfo(@"Sending request with HTTP method: %@", [request HTTPMethod]);
 
     [self resetState];
 
@@ -344,16 +354,17 @@ customHeaderFields:(NSDictionary *)customHeaderFields
         [self setHttpCookies];
     }
 
-    [self prepareRequest:self.request];
+    [self prepareRequest:request];
 
-    self.inputStream = [[BMURLConnectionInputStream alloc] initWithRequest:self.request urlConnectionDelegate:self];
-    if (self.inputStream == nil) {
+    BMURLConnectionInputStream *inputStream = [[BMURLConnectionInputStream alloc] initWithRequest:request urlConnectionDelegate:self];
+    self.inputStream = inputStream;
+    if (inputStream == nil) {
         self.lastError = [BMErrorHelper errorForDomain:BM_ERROR_DOMAIN_SERVER code:BM_ERROR_NO_CONNECTION description:BMLocalizedString(@"httprequest.error.noconnection", @"Could not get connection")];
         [self requestCompleted:NO];
     } else {
-        self.inputStream.delegate = self;
+        inputStream.delegate = self;
     }
-    return self.inputStream;
+    return inputStream;
 }
 
 - (void)cancel {
@@ -483,13 +494,14 @@ customHeaderFields:(NSDictionary *)customHeaderFields
 - (void)requestCompleted:(BOOL)success // IN
 {
     if (!self.eventSent) {
+        id <BMHTTPRequestDelegate> delegate = self.delegate;
         if (success) {
-            if ([self.delegate respondsToSelector:@selector(requestSucceeded:)]) {
-                [self.delegate requestSucceeded:self];
+            if ([delegate respondsToSelector:@selector(requestSucceeded:)]) {
+                [delegate requestSucceeded:self];
             }
         } else {
-            if ([self.delegate respondsToSelector:@selector(requestFailed:)]) {
-                [self.delegate requestFailed:self];
+            if ([delegate respondsToSelector:@selector(requestFailed:)]) {
+                [delegate requestFailed:self];
             }
         }
         self.eventSent = YES;
@@ -498,15 +510,17 @@ customHeaderFields:(NSDictionary *)customHeaderFields
 
 - (void)updateUploadProgress:(float)progress {
     LogDebug(@"Updated upload progress to: %f", progress);
-    if ([self.delegate respondsToSelector:@selector(request:updatedUploadProgress:)]) {
-        [self.delegate request:self updatedUploadProgress:progress];
+    id <BMHTTPRequestDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(request:updatedUploadProgress:)]) {
+        [delegate request:self updatedUploadProgress:progress];
     }
 }
 
 - (void)updateDownloadProgress:(float)progress {
     LogDebug(@"Updated download progress to: %f", progress);
-    if ([self.delegate respondsToSelector:@selector(request:updatedDownloadProgress:)]) {
-        [self.delegate request:self updatedDownloadProgress:progress];
+    id <BMHTTPRequestDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(request:updatedDownloadProgress:)]) {
+        [delegate request:self updatedDownloadProgress:progress];
     }
 }
 
@@ -515,8 +529,9 @@ customHeaderFields:(NSDictionary *)customHeaderFields
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)theConnection // IN
 {
-    if (self.receivedData) {
-        self.replyData = self.receivedData;
+    NSMutableData *receivedData = self.receivedData;
+    if (receivedData) {
+        self.replyData = receivedData;
     }
 
     LogInfo(@"Request completed");
@@ -584,8 +599,9 @@ customHeaderFields:(NSDictionary *)customHeaderFields
 totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
 
     //Try to determine from the body stream
-    if (totalBytesExpectedToWrite <= 0 && [self.request.HTTPBodyStream isKindOfClass:[BMHTTPMultiPartBodyInputStream class]]) {
-        BMHTTPMultiPartBodyInputStream *stream = (BMHTTPMultiPartBodyInputStream *)self.request.HTTPBodyStream;
+    NSMutableURLRequest *request = self.request;
+    if (totalBytesExpectedToWrite <= 0 && [request.HTTPBodyStream isKindOfClass:[BMHTTPMultiPartBodyInputStream class]]) {
+        BMHTTPMultiPartBodyInputStream *stream = (BMHTTPMultiPartBodyInputStream *) request.HTTPBodyStream;
         totalBytesExpectedToWrite = (NSInteger)[stream length];
     }
 
@@ -641,8 +657,9 @@ didReceiveResponse:(NSURLResponse *)theResponse     // IN
         self.httpResponseCode = HTTP_STATUS_OK;
     }
 
-    if ([self.delegate respondsToSelector:@selector(request:didReceiveResponse:)]) {
-        [self.delegate request:self didReceiveResponse:self.response];
+    id <BMHTTPRequestDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(request:didReceiveResponse:)]) {
+        [delegate request:self didReceiveResponse:self.response];
     }
 }
 
