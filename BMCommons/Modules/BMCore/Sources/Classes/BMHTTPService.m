@@ -187,12 +187,13 @@
 - (void)loadCachedResultAndNotifyForRequest:(BMHTTPRequest *)theRequest {
     if (!self.isCancelled) {
         id result = [self cachedResultForRequest:theRequest];
+        __typeof(self) __weak weakSelf = self;
         if (result) {
             self.cacheHit = YES;
 
             if (self.startedFromMainThread) {
                 [NSObject bmPerformBlockOnMainThread:^{
-                    [self serviceSucceededWithRawResult:result];
+                    [weakSelf serviceSucceededWithRawResult:result];
                 }];
             } else {
                 [self serviceSucceededWithRawResult:result];
@@ -201,7 +202,7 @@
             //Result is not valid: revert to loading the data remotely
             if (self.startedFromMainThread) {
                 [NSObject bmPerformBlockOnMainThread:^{
-                    [self.request send];
+                    [weakSelf.request send];
                 }];
             } else {
                 [self.request send];
@@ -269,11 +270,12 @@
             //Check if there is an error
             error = [self errorFromRequest:theRequest];
         }
-        
+
+        __typeof(self) __weak weakSelf = self;
         if (error) {
             if (self.startedFromMainThread) {
                 [NSObject bmPerformBlockOnMainThread:^{
-                    [self serviceFailedWithRawError:error];
+                    [weakSelf serviceFailedWithRawError:error];
                 }];
             } else {
                 [self serviceFailedWithRawError:error];
@@ -289,7 +291,7 @@
 
             if (self.startedFromMainThread) {
                 [NSObject bmPerformBlockOnMainThread:^{
-                    [self serviceSucceededWithRawResult:result];
+                    [weakSelf serviceSucceededWithRawResult:result];
                 }];
             } else {
                 [self serviceSucceededWithRawResult:result];
@@ -313,11 +315,12 @@
         if (self.loadCachedResultOnError) {
             result = [self cachedResultForRequest:theRequest];
         }
+        __typeof(self) __weak weakSelf = self;
         if (result) {
             self.cacheHit = YES;
             if (self.startedFromMainThread) {
                 [NSObject bmPerformBlockOnMainThread:^{
-                    [self serviceSucceededWithRawResult:result];
+                    [weakSelf serviceSucceededWithRawResult:result];
                 }];
             } else {
                 [self serviceSucceededWithRawResult:result];
@@ -327,7 +330,7 @@
             NSError *error = [self errorFromRequest:theRequest];
             if (self.startedFromMainThread) {
                 [NSObject bmPerformBlockOnMainThread:^{
-                    [self serviceFailedWithRawError:error];
+                    [weakSelf serviceFailedWithRawError:error];
                 }];
             } else {
                 [self serviceFailedWithRawError:error];

@@ -122,11 +122,11 @@
 - (void)startBackgroundTask {
 #if TARGET_OS_IPHONE
     if (self.bgTaskIdentifier == UIBackgroundTaskInvalid && (self.isBackgroundService || self.isSendToBackgroundSupported)) {
-        __weak __block BMAbstractService *bSelf = self;
+        __typeof(self) __weak weakSelf = self;
         self.bgTaskIdentifier = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^(void) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (bSelf.isExecuting) {
-                    [bSelf cancel];
+                if (weakSelf.isExecuting) {
+                    [weakSelf cancel];
                 }
             });
         }];
