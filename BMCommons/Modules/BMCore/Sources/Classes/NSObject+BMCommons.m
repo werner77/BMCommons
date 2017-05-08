@@ -75,6 +75,38 @@
     [NSObject bmPerformBlockOnMainThread:block waitUntilDone:waitUntilDone];
 }
 
+- (BOOL)bmPerformBlockOnCurrentRunloop:(void (^)(BOOL timeoutOccured))block whenPredicate:(BOOL (^)(void))predicatedBlock timeout:(NSTimeInterval)timeout {
+    BOOL waited = NO;
+    NSDate *startDate = nil;
+    if (timeout > 0) {
+        startDate = [NSDate date];
+    }
+    while (YES) {
+        BOOL predicate = NO;
+        if (predicatedBlock) {
+            predicate = predicatedBlock();
+        }
+        if (predicate) {
+            if (block) {
+                block(NO);
+            }
+            break;
+        } else {
+            waited = YES;
+            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+        }
+
+        BOOL timeoutOccured = (startDate != nil && (-[startDate timeIntervalSinceNow]) >= timeout);
+        if (timeoutOccured) {
+            if (block) {
+                block(YES);
+            }
+            break;
+        }
+    }
+    return !waited;
+}
+
 - (id)bmSafePerformSelector:(SEL)selector {
     void *args[0] = {};
     return [self performSelector:selector withArgs:args argCount:0 safe:YES];

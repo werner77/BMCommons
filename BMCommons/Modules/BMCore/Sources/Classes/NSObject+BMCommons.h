@@ -42,6 +42,17 @@
 - (void)bmPerformBlockOnMainThread:(void (^)(void))block waitUntilDone:(BOOL)waitUntilDone;
 
 /**
+ * Runs the current runloop until the specified predicate block returns true.
+ * If timeout > 0 this is the maximum number of seconds to wait for the predicate.
+ *
+ * @param block The block to execute. If timeoutOccured, the timeoutOccured boolean passed to the block while be true.
+ * @param predicatedBlock The boolean condition to wait for.
+ * @param timeout If > 0 an upper limit to the wait time.
+ * @return YES if the block was run immediately (predicate was true already), false if a wait has to occur.
+ */
+- (BOOL)bmPerformBlockOnCurrentRunloop:(void (^)(BOOL timeoutOccured))block whenPredicate:(BOOL (^)(void))predicatedBlock timeout:(NSTimeInterval)timeout;
+
+/**
  Class method equivalents to instance methods.
  */
 + (void)bmPerformBlock:(void (^)(void))block afterDelay:(NSTimeInterval)delay;
