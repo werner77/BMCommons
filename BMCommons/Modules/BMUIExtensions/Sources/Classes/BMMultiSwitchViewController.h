@@ -120,7 +120,4 @@ typedef enum BMSwitchTransitionType {
 
 - (void)waitForSwitchToFinishWithCompletion:(void (^)(void))completion;
 
-- (void)waitUntilSwitchIsAllowedWithCompletion:(void (^)(void))completion;
-
-
 @end

@@ -46,6 +46,7 @@
     BOOL _switching;
     UIViewAnimationTransition _currentFlipTransition;
     IBOutlet UIView *_containerView;
+    NSMutableArray *_switchBlocks;
 }
 
 @synthesize viewControllers = _viewControllers;
@@ -60,6 +61,7 @@
 
 - (id)initWithCoder:(NSCoder*)decoder {
     if ((self = [super initWithCoder:decoder])) {
+        _switchBlocks = [NSMutableArray new];
         _viewControllers = [NSMutableArray new];
         _currentFlipTransition = UIViewAnimationTransitionFlipFromLeft;
         self.selectedIndex = NSNotFound;
@@ -296,7 +298,8 @@
 
 - (void)switchToViewControllerAtIndex:(NSUInteger)index transitionType:(BMSwitchTransitionType)transitionType duration:(NSTimeInterval)theDuration completion:(void (^)(BOOL success))completion {
     __typeof(self) __weak weakSelf = self;
-    [self waitUntilSwitchIsAllowedWithCompletion:^{
+
+    void (^switchBlock)(void) = ^{
         NSTimeInterval duration = theDuration;
         if (weakSelf.viewState == BMViewStateInvisible) {
             //Force non animated:
@@ -309,6 +312,7 @@
         UIViewController *newSelectedViewController = nil;
         UIView *theView = [weakSelf setupSwitchToViewControllerAtIndex:index currentViewController:&currentSelectedViewController newViewController:&newSelectedViewController transitionType:transitionType duration:duration];
         if (theView == nil) {
+            self.switching = NO;
             if (completion) {
                 completion(NO);
             }
@@ -350,7 +354,7 @@
                     options = UIViewAnimationOptionTransitionFlipFromRight;
                 }
 
-                if (animated) {
+                if (animated && weakSelf.containerView) {
                     [UIView transitionWithView:weakSelf.containerView duration:duration options:options animations:^{
                         [currentSelectedViewController.view removeFromSuperview];
                     } completion:^(BOOL finished) {
@@ -364,7 +368,30 @@
                 [weakSelf finishTransition:vcArray completion:completion];
             }
         }
+    };
+
+    BOOL waiting = [self waitUntilSwitchIsAllowedWithCompletion:^(BOOL waited) {
+        if (waited) {
+            [weakSelf dequeueSwitchBlock];
+        } else {
+            switchBlock();
+        }
     }];
+    if (waiting) {
+        [self queueSwitchBlock:switchBlock];
+    }
+}
+
+- (void)queueSwitchBlock:(void (^)(void))block {
+    [_switchBlocks addObject:[block copy]];
+}
+
+- (void)dequeueSwitchBlock {
+    void (^block)(void) = [_switchBlocks firstObject];
+    if (block != nil) {
+        [_switchBlocks removeObjectAtIndex:0];
+        block();
+    }
 }
 
 - (void)switchToFirstViewControllerWithTransitionType:(BMSwitchTransitionType)transitionType duration:(NSTimeInterval)duration {
@@ -453,13 +480,13 @@
     }];
 }
 
-- (void)waitUntilSwitchIsAllowedWithCompletion:(void (^)(void))completion {
+- (BOOL)waitUntilSwitchIsAllowedWithCompletion:(void (^)(BOOL waited))completion {
     __typeof(self) __weak weakSelf = self;
-    [self.switchCondition bmWaitForPredicate:^BOOL {
+    return [self.switchCondition bmWaitForPredicate:^BOOL {
         return weakSelf.isSwitchingAllowed;
     } completion:^(BOOL waited) {
         if (completion) {
-            completion();
+            completion(waited);
         }
     }];
 }
