@@ -59,25 +59,13 @@
     return [self initWithViewControllers:@[]];
 }
 
-- (id)initWithCoder:(NSCoder*)decoder {
-    if ((self = [super initWithCoder:decoder])) {
-        _switchBlocks = [NSMutableArray new];
-        _viewControllers = [NSMutableArray new];
-        _currentFlipTransition = UIViewAnimationTransitionFlipFromLeft;
-        self.selectedIndex = NSNotFound;
-        self.switchCondition = [NSCondition new];
-    }
-    return self;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nil bundle:nil])) {
-        _viewControllers = [NSMutableArray new];
-        _currentFlipTransition = UIViewAnimationTransitionFlipFromLeft;
-        self.selectedIndex = NSNotFound;
-        self.switchCondition = [NSCondition new];
-    }
-    return self;
+- (void)commonInit {
+    [super commonInit];
+    _switchBlocks = [NSMutableArray new];
+    _viewControllers = [NSMutableArray new];
+    _currentFlipTransition = UIViewAnimationTransitionFlipFromLeft;
+    self.selectedIndex = NSNotFound;
+    self.switchCondition = [NSCondition new];
 }
 
 - (id)initWithViewController:(UIViewController *)firstViewController {
