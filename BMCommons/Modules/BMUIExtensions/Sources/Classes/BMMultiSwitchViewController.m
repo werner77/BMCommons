@@ -22,6 +22,7 @@
 
 @interface BMMultiSwitchViewController()
 
+@property (nonatomic, strong) NSMutableArray *switchBlocks;
 @property (nonatomic, strong) NSCondition *switchCondition;
 @property (nonatomic) NSUInteger selectedIndex;
 
@@ -46,7 +47,6 @@
     BOOL _switching;
     UIViewAnimationTransition _currentFlipTransition;
     IBOutlet UIView *_containerView;
-    NSMutableArray *_switchBlocks;
 }
 
 @synthesize viewControllers = _viewControllers;
@@ -362,7 +362,8 @@
         if (waited) {
             [weakSelf dequeueSwitchBlock];
         } else {
-            switchBlock();
+            [weakSelf queueSwitchBlock:switchBlock];
+            [weakSelf dequeueSwitchBlock];
         }
     }];
     if (waiting) {
@@ -379,6 +380,12 @@
     if (block != nil) {
         [_switchBlocks removeObjectAtIndex:0];
         block();
+        if (_switchBlocks.count > 0) {
+            __typeof(self) __weak weakSelf = self;
+            [self waitUntilSwitchIsAllowedWithCompletion:^(BOOL waited) {
+                [weakSelf dequeueSwitchBlock];
+            }];
+        }
     }
 }
 

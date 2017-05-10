@@ -50,8 +50,7 @@
             [weakSelf lock];
             while (weakSelf != nil && (predicateResult = predicate()) == NO && (expirationDate == nil || [expirationDate timeIntervalSinceNow] > 0.0)) {
                 if (expirationDate == nil) {
-                    //Wait for max 1 second to be able to check again if weakSelf != nil (object could be deallocated).
-                    [weakSelf waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
+                    [weakSelf wait];
                 } else {
                     [weakSelf waitUntilDate:expirationDate];
                 }
