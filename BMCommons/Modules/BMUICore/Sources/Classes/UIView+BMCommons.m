@@ -12,6 +12,22 @@
 
 @implementation UIView(BMCommons)
 
+static IMP originalSetAnimationsEnabledImpl = NULL;
+
+static void __BMSetAnimationsEnabled(Class self, SEL cmd, BOOL enabled) {
+    //Fix for race condition in original setAnimationsEnabled method. This method is only relevant for the main thread, not for background threads.
+    //This is necessary for BMNib background precaching to work, which instantiates views in a background thread (alloc/init is allowed in background thread according to UIKit documentation)
+    if ([NSThread isMainThread]) {
+        ((void (*)(id, SEL, BOOL))originalSetAnimationsEnabledImpl)(self, cmd, enabled);
+    }
+}
+
++ (void)load {
+    BM_DISPATCH_ONCE(^{
+        originalSetAnimationsEnabledImpl = BMReplaceClassMethodImplementation([UIView class], @selector(setAnimationsEnabled:), (IMP)__BMSetAnimationsEnabled);
+    });
+}
+
 - (UIView *)bmFirstResponder {
 	if (self.isFirstResponder) {
 		return self;

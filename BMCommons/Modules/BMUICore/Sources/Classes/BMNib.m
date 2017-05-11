@@ -19,6 +19,7 @@
 @property (nonatomic, assign) Class objectClass;
 @property (nonatomic, strong) NSMutableArray *cache;
 @property (assign) BOOL cacheWarmupScheduled;
+@property (nonatomic, strong) BMWeakTimer *cacheWarmupTimer;
 
 @end
 
@@ -201,7 +202,10 @@
                 return nil;
             } withCompletion:nil];
         } else {
-            [self bmPerformBlock:block afterDelay:0.01];
+            self.cacheWarmupTimer = [BMWeakTimer scheduledTimerWithTimeInterval:0.01 block:^(BMWeakTimer *t) {
+                block();
+                weakSelf.cacheWarmupTimer = nil;
+            } repeats:NO onRunloop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
         }
     }
 }
