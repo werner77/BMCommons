@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define BMReleaseSharedInstancesNotification @"com.behindmedia.BMReleaseSharedInstancesNotification"
-
 #define BM_SYNTHESIZE_SINGLETON_IMPL(getter, singletonKey) \
 + (NSMutableDictionary *)bmSharedInstanceDictionary { \
 static NSMutableDictionary *instances = nil; \
@@ -31,7 +29,7 @@ NSMutableDictionary *instances = [self bmSharedInstanceDictionary]; \
 @synchronized(instances) { \
 id key = (id <NSCopying>)(singletonKey); \
 instance = instances[key]; \
-if (instance == nil && createIfNotExists) { \
+if (instance == nil && createIfNotExists && [BMSingleton isSharedInstanceCreationAllowed]) { \
 id allocatedInstance = [self alloc]; \
 if (allocatedInstance != nil) { \
 instances[key] = allocatedInstance; \
@@ -73,11 +71,20 @@ if ([instances objectForKey:key] != nil) { \
 #define BM_SYNTHESIZE_SINGLETON(getter) BM_SYNTHESIZE_SINGLETON_IMPL(getter, BMSingleton.class)
 #define BM_SYNTHESIZE_DEFAULT_SINGLETON BM_SYNTHESIZE_SINGLETON(sharedInstance)
 
+extern NSString * const BMReleaseSharedInstancesNotification;
+
 @interface BMSingleton : NSObject
 
 BM_DECLARE_DEFAULT_SINGLETON
 
 + (void)releaseAllSharedInstances;
+
+/**
+ * Returns NO while releaseAllSharedInstances is busy to avoid creating shared instances while they are being released.
+ *
+ * @return
+ */
++ (BOOL)isSharedInstanceCreationAllowed;
 
 @end
 

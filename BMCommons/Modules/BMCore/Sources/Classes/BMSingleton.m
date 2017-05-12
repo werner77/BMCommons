@@ -11,8 +11,22 @@
 
 BM_SYNTHESIZE_DEFAULT_ABSTRACT_SINGLETON
 
+NSString * const BMReleaseSharedInstancesNotification = @"com.behindmedia.BMReleaseSharedInstancesNotification";
+
+static BOOL sharedInstanceCreationAllowed = YES;
+
 + (void)releaseAllSharedInstances {
-    [[NSNotificationCenter defaultCenter] postNotificationName:BMReleaseSharedInstancesNotification object:nil];
+    @synchronized (BMSingleton.class) {
+        sharedInstanceCreationAllowed = NO;
+        [[NSNotificationCenter defaultCenter] postNotificationName:BMReleaseSharedInstancesNotification object:nil];
+        sharedInstanceCreationAllowed = YES;
+    }
+}
+
++ (BOOL)isSharedInstanceCreationAllowed {
+    @synchronized (BMSingleton.class) {
+        return sharedInstanceCreationAllowed;
+    }
 }
 
 @end
