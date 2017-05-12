@@ -68,28 +68,41 @@
 - (void)notifyListeners:(void (^)(NSObject<protocol> *listener))notifyBlock;
 
 #define BM_LISTENER_METHODS_IMPLEMENTATION(protocol) \
-@synthesize listeners = _listeners; \
-- (NSArray *)listeners { \
-if (!_listeners) { \
-_listeners = [BMWeakMutableArray new]; \
-} \
-return [NSArray arrayWithArray:_listeners]; \
-} \
-\
-- (void)addListener:(NSObject <protocol>*)listener { \
-if (![self.listeners bmContainsObjectIdenticalTo:listener]) { \
-[(NSMutableArray *)_listeners addObject:listener]; \
-} \
-} \
-\
-- (void)removeListener:(NSObject <protocol>*)listener { \
-[(NSMutableArray *)_listeners removeObjectIdenticalTo:listener]; \
-} \
-\
-- (void)notifyListeners:(void (^)(NSObject<protocol> *listener))notifyBlock { \
-for (id listener in self.listeners) { \
-notifyBlock(listener); \
-} \
+- (BMWeakMutableArray *)__listeners { \
+    @synchronized (self) {\
+        static const char *key = "com.behindmedia.bmcommons.core.listenerpointers";\
+        BMWeakMutableArray *listeners = objc_getAssociatedObject(self, key);\
+        if (listeners == nil) {\
+            listeners = [BMWeakMutableArray new];\
+            objc_setAssociatedObject(self, key, listeners, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\
+        }\
+        return listeners;\
+    }\
+}\
+- (NSArray *)listeners {\
+    BMWeakMutableArray *listeners = self.__listeners;\
+    @synchronized (listeners) {\
+        return [NSArray arrayWithArray:listeners];\
+    }\
+}\
+- (void)addListener:(NSObject <protocol>*)listener {\
+    BMWeakMutableArray *listeners = self.__listeners;\
+    @synchronized (listeners) {\
+        if (![listeners bmContainsObjectIdenticalTo:listener]) {\
+            [listeners addObject:listener];\
+        }\
+    }\
+}\
+- (void)removeListener:(NSObject <protocol>*)listener {\
+    BMWeakMutableArray *listeners = self.__listeners;\
+    @synchronized (listeners) {\
+        [listeners removeObjectIdenticalTo:listener];\
+    }\
+}\
+- (void)notifyListeners:(void (^)(NSObject<protocol> *listener))notifyBlock {\
+    for (id listener in self.listeners) {\
+        notifyBlock(listener);\
+    }\
 }
 
 #define BM_PERFORM_IF_RESPONDS(x) { @try { (x); } @catch (NSException *e) { if (![e.name isEqual:NSInvalidArgumentException]) @throw e; }}

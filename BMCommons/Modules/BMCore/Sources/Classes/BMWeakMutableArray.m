@@ -125,4 +125,14 @@
     }
 }
 
+- (id)safelyPerformBlock:(id (^)(BMWeakMutableArray *))block {
+    id ret = nil;
+    @synchronized (self) {
+        if (block) {
+            ret = block(self);
+        }
+    }
+    return ret;
+}
+
 @end

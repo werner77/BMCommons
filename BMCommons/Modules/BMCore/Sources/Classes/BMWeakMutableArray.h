@@ -11,4 +11,12 @@
  */
 @interface BMWeakMutableArray : NSMutableArray
 
+/**
+ * Perform the specified block within a synchronization lock to protect the array from being modified by a background thread.
+ *
+ * @param block
+ * @return
+ */
+- (id)safelyPerformBlock:(id (^)(BMWeakMutableArray *))block;
+
 @end
