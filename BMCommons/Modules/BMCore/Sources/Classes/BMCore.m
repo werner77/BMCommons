@@ -213,44 +213,6 @@ static BMCore *instance = nil;
     return instance;
 }
 
-- (BMWeakMutableArray *)__listeners {
-    @synchronized (self) {
-        static const char *key = "com.behindmedia.bmcommons.core.listenerpointers";
-        BMWeakMutableArray *listeners = objc_getAssociatedObject(self, key);
-        if (listeners == nil) {
-            listeners = [BMWeakMutableArray new];
-            objc_setAssociatedObject(self, key, listeners, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        }
-        return listeners;
-    }
-}
-- (NSArray *)listeners {
-    BMWeakMutableArray *listeners = self.__listeners;
-    @synchronized (listeners) {
-        return [NSArray arrayWithArray:listeners];
-    }
-}
-- (void)addListener:(NSObject <protocol>*)listener {
-    BMWeakMutableArray *listeners = self.__listeners;
-    @synchronized (listeners) {
-        if (![listeners bmContainsObjectIdenticalTo:listener]) {
-            [listeners addObject:listener];
-        }
-    }
-}
-- (void)removeListener:(NSObject <protocol>*)listener {
-    BMWeakMutableArray *listeners = self.__listeners;
-    @synchronized (listeners) {
-        [listeners removeObjectIdenticalTo:listener];
-    }
-}
-- (void)notifyListeners:(void (^)(NSObject<protocol> *listener))notifyBlock {
-    for (id listener in self.listeners) {
-        notifyBlock(listener);
-    }
-}
-
-
 @end
 
 

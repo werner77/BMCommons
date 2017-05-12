@@ -27,6 +27,7 @@
 #import <BMCommons/BMURLCache.h>
 #import <BMCommons/BMSingleton.h>
 #import <BMCommons/NSArray+BMCommons.h>
+#import <objc/runtime.h>
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -88,7 +89,7 @@
 - (void)addListener:(NSObject <protocol>*)listener {\
     BMWeakMutableArray *listeners = self.__listeners;\
     @synchronized (listeners) {\
-        if (![listeners bmContainsObjectIdenticalTo:listener]) {\
+        if (![listeners containsObjectIdenticalTo:listener]) {\
             [listeners addObject:listener];\
         }\
     }\
@@ -101,7 +102,7 @@
 }\
 - (void)notifyListeners:(void (^)(NSObject<protocol> *listener))notifyBlock {\
     for (id listener in self.listeners) {\
-        notifyBlock(listener);\
+        if (listener) notifyBlock(listener);\
     }\
 }
 

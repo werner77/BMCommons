@@ -9,14 +9,24 @@
  *
  * It safely removes deallocated objects from the array automatically.
  */
-@interface BMWeakMutableArray : NSMutableArray
+@interface BMWeakMutableArray<__covariant ObjectType> : NSObject<NSFastEnumeration, NSCopying, NSCoding>
 
-/**
- * Perform the specified block within a synchronization lock to protect the array from being modified by a background thread.
- *
- * @param block
- * @return
- */
-- (id)safelyPerformBlock:(id (^)(BMWeakMutableArray *))block;
+- (id)init NS_DESIGNATED_INITIALIZER;
+- (id)initWithCapacity:(NSUInteger)numItems NS_DESIGNATED_INITIALIZER;
+- (id)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+
+@property (readonly, nonatomic, copy) NSArray<ObjectType> *allObjects;
+@property (readonly, nonatomic) NSUInteger count;
+
+- (nullable ObjectType)objectAtIndex:(NSUInteger)index;
+
+- (void)addObject:(nullable ObjectType)object;
+- (void)removeObjectAtIndex:(NSUInteger)index;
+- (void)insertObject:(nullable ObjectType)object atIndex:(NSUInteger)index;
+- (void)replaceObjectAtIndex:(NSUInteger)index withObject:(nullable ObjectType)object;
+- (void)compact;
+- (BOOL)containsObjectIdenticalTo:(nullable ObjectType)object;
+- (void)removeObjectIdenticalTo:(nullable ObjectType)object;
+- (NSUInteger)indexOfObjectIdenticalTo:(nullable ObjectType)object;
 
 @end
