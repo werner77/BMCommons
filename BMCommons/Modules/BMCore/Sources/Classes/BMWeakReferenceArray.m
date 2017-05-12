@@ -16,21 +16,21 @@
     NSMutableArray *_impl;
 }
 
-- (id)init {
+- (instancetype)init {
     if ((self = [super init])) {
         [self commonInitWithCapacity:0];
     }
     return self;
 }
 
-- (id)initWithCapacity:(NSUInteger)numItems {
+- (instancetype)initWithCapacity:(NSUInteger)numItems {
     if ((self = [super init])) {
         [self commonInitWithCapacity:numItems];
     }
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)coder {
+- (instancetype)initWithCoder:(NSCoder *)coder {
     if ((self = [super init])) {
         _impl = [coder decodeObjectForKey:@"impl"];
         if (_impl == nil) {
