@@ -48,8 +48,7 @@
 
 - (id)copyWithZone:(nullable NSZone *)zone {
     @synchronized (self) {
-        BMWeakMutableArray *copy = (BMWeakMutableArray *)[self.class alloc];
-        [copy initWithCapacity:self.count];
+        BMWeakMutableArray *copy = [(BMWeakMutableArray *)[self.class alloc] initWithCapacity:self.count];
         [copy addObjectsFromArray:self];
         return copy;
     }
