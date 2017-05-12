@@ -11,7 +11,7 @@
 //Should be imported first, because it redefines NSLocalizedString
 #import <BMCommons/BMCoreObject.h>
 #import <BMCommons/BMLocalization.h>
-#import <BMCommons/BMWeakMutableArray.h>
+#import "BMWeakReferenceArray.h"
 
 #import <Foundation/Foundation.h>
 
@@ -69,25 +69,25 @@
 - (void)notifyListeners:(void (^)(NSObject<protocol> *listener))notifyBlock;
 
 #define BM_LISTENER_METHODS_IMPLEMENTATION(protocol) \
-- (BMWeakMutableArray *)__listeners { \
+- (BMWeakReferenceArray *)__listeners { \
     @synchronized (self) {\
         static const char *key = "com.behindmedia.bmcommons.core.listenerpointers";\
-        BMWeakMutableArray *listeners = objc_getAssociatedObject(self, key);\
+        BMWeakReferenceArray *listeners = objc_getAssociatedObject(self, key);\
         if (listeners == nil) {\
-            listeners = [BMWeakMutableArray new];\
+            listeners = [BMWeakReferenceArray new];\
             objc_setAssociatedObject(self, key, listeners, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\
         }\
         return listeners;\
     }\
 }\
 - (NSArray *)listeners {\
-    BMWeakMutableArray *listeners = self.__listeners;\
+    BMWeakReferenceArray *listeners = self.__listeners;\
     @synchronized (listeners) {\
-        return [NSArray arrayWithArray:listeners];\
+        return [listeners allObjects];\
     }\
 }\
 - (void)addListener:(NSObject <protocol>*)listener {\
-    BMWeakMutableArray *listeners = self.__listeners;\
+    BMWeakReferenceArray *listeners = self.__listeners;\
     @synchronized (listeners) {\
         if (![listeners containsObjectIdenticalTo:listener]) {\
             [listeners addObject:listener];\
@@ -95,14 +95,14 @@
     }\
 }\
 - (void)removeListener:(NSObject <protocol>*)listener {\
-    BMWeakMutableArray *listeners = self.__listeners;\
+    BMWeakReferenceArray *listeners = self.__listeners;\
     @synchronized (listeners) {\
         [listeners removeObjectIdenticalTo:listener];\
     }\
 }\
 - (void)notifyListeners:(void (^)(NSObject<protocol> *listener))notifyBlock {\
     for (id listener in self.listeners) {\
-        if (listener) notifyBlock(listener);\
+        notifyBlock(listener);\
     }\
 }
 

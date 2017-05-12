@@ -2,18 +2,17 @@
 // Created by Werner Altewischer on 12/05/2017.
 //
 
-#import <Foundation/Foundation.h>
-#import "BMWeakMutableArray.h"
+#import "BMWeakReferenceArray.h"
 #import "BMWeakReference.h"
 #import "BMWeakReferenceRegistry.h"
 
-@interface BMWeakMutableArray()
+@interface BMWeakReferenceArray()
 
 @property (nonatomic, strong) NSMutableArray *impl;
 
 @end
 
-@implementation BMWeakMutableArray {
+@implementation BMWeakReferenceArray {
     NSMutableArray *_impl;
 }
 
@@ -56,43 +55,12 @@
 }
 
 - (id)copyWithZone:(nullable NSZone *)zone {
-    BMWeakMutableArray *copy = [(BMWeakMutableArray *)[self.class alloc] initWithCapacity:self.count];
+    BMWeakReferenceArray *copy = [(BMWeakReferenceArray *)[self.class alloc] initWithCapacity:self.count];
     [copy.impl setArray:self.impl];
     return copy;
 }
 
 - (void)dealloc {
-}
-
-- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
-                                  objects:(id __unsafe_unretained _Nullable[_Nonnull])buffer
-                                    count:(NSUInteger)len {
-    NSUInteger count = 0;
-
-    if (_impl.count > 0) {
-
-        if(state->state == 0) {
-            //Start
-            NSRange range = NSMakeRange(0, _impl.count);
-
-            __unsafe_unretained id *references = (__unsafe_unretained id *)malloc(sizeof(id) * range.length);
-            [_impl getObjects:references range:range];
-
-            for (NSUInteger i = 0; i < range.length; ++i) {
-                BMWeakReference *ref = references[i];
-                references[i] = ref.target;
-            }
-
-            state->mutationsPtr = (__bridge void *)self;
-            state->itemsPtr = references;
-            state->state = 1;
-            state->extra[0] = (unsigned long)references;
-        } else {
-            void * references = (void *)state->extra[0];
-            free(references);
-        }
-    }
-    return count;
 }
 
 - (void)addObject:(id)anObject {

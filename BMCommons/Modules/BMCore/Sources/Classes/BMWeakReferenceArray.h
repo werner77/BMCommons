@@ -9,7 +9,7 @@
  *
  * It safely removes deallocated objects from the array automatically.
  */
-@interface BMWeakMutableArray<__covariant ObjectType> : NSObject<NSFastEnumeration, NSCopying, NSCoding>
+@interface BMWeakReferenceArray<__covariant ObjectType> : NSObject<NSCopying, NSCoding>
 
 - (id)init NS_DESIGNATED_INITIALIZER;
 - (id)initWithCapacity:(NSUInteger)numItems NS_DESIGNATED_INITIALIZER;
