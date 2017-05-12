@@ -97,7 +97,7 @@
 - (void)removeAllObjects {
     @synchronized (self) {
         for (BMWeakReference *ref in _impl) {
-            [[BMWeakReferenceRegistry sharedInstance] deregisterReference:ref forOwner:self];
+            [[BMWeakReferenceRegistry sharedInstance] deregisterReference:ref.target forOwner:self];
         }
         [_impl removeAllObjects];
     }
@@ -107,7 +107,7 @@
     @synchronized (self) {
         BMWeakReference *ref = _impl[index];
         if (ref != nil) {
-            [[BMWeakReferenceRegistry sharedInstance] deregisterReference:ref forOwner:self];
+            [[BMWeakReferenceRegistry sharedInstance] deregisterReference:ref.target forOwner:self];
             [_impl removeObjectAtIndex:index];
         }
     }
