@@ -38,7 +38,7 @@ static inline uint32_t safeCast(uint64_t i) {
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    BMFileBackedMutableArrayCacheKey *copy = [[[self class] alloc] init];
+    BMFileBackedMutableArrayCacheKey *copy = (BMFileBackedMutableArrayCacheKey *)[[[self class] alloc] init];
     copy.instanceAddress = self.instanceAddress;
     copy.location = self.location;
     return copy;
@@ -95,6 +95,19 @@ static const NSUInteger kDefaultCacheMaxMemoryUsage = 20 * 1000 * 1000;
         [self commonInit];
     }
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)coder {
+    if ((self = [super initWithCoder:coder])) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (id)copyWithZone:(nullable NSZone *)zone {
+    BMFileBackedMutableArray *copy = (BMFileBackedMutableArray *)[[self.class alloc] init];
+    [copy addObjectsFromArray:self];
+    return copy;
 }
 
 - (void)commonInit {

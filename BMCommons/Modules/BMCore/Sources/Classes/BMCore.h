@@ -11,6 +11,7 @@
 //Should be imported first, because it redefines NSLocalizedString
 #import <BMCommons/BMCoreObject.h>
 #import <BMCommons/BMLocalization.h>
+#import <BMCommons/BMWeakMutableArray.h>
 
 #import <Foundation/Foundation.h>
 
@@ -70,7 +71,7 @@
 @synthesize listeners = _listeners; \
 - (NSArray *)listeners { \
 if (!_listeners) { \
-_listeners = BMCreateNonRetainingArray(); \
+_listeners = [BMWeakMutableArray new]; \
 } \
 return [NSArray arrayWithArray:_listeners]; \
 } \

@@ -12,7 +12,6 @@
 
 @interface BMWeakReferenceContext : NSObject
 
-@property (nonatomic, weak) id weakReference;
 @property (nonatomic, weak) id owner;
 @property (nonatomic, copy) BMWeakReferenceCleanupBlock cleanupBlock;
 
@@ -27,7 +26,7 @@
 }
 
 - (NSUInteger)hash {
-    NSUInteger hash = ((NSUInteger)self.weakReference) * 17 + ((NSUInteger)self.owner);
+    NSUInteger hash = ((NSUInteger)self.owner);
     return hash;
 }
 
@@ -35,7 +34,7 @@
     BOOL ret = NO;
     if ([object isKindOfClass:[BMWeakReferenceContext class]]) {
         BMWeakReferenceContext *other = object;
-        ret = other.weakReference == self.weakReference && other.owner == self.owner;
+        ret = other.owner == self.owner;
     }
     return ret;
 }
@@ -124,7 +123,6 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
             owner = self;
         }
         BMWeakReferenceContext *context = [BMWeakReferenceContext new];
-        context.weakReference = [BMWeakReference weakReferenceWithTarget:reference];
         context.owner = owner;
         context.cleanupBlock = cleanup;
         [reference bmAddWeakReferenceContext:context];
