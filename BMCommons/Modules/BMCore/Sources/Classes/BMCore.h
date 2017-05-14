@@ -11,7 +11,7 @@
 //Should be imported first, because it redefines NSLocalizedString
 #import <BMCommons/BMCoreObject.h>
 #import <BMCommons/BMLocalization.h>
-#import "BMWeakReferenceArray.h"
+#import "BMNullableArray.h"
 
 #import <Foundation/Foundation.h>
 
@@ -69,25 +69,25 @@
 - (void)notifyListeners:(void (^)(NSObject<protocol> *listener))notifyBlock;
 
 #define BM_LISTENER_METHODS_IMPLEMENTATION(protocol) \
-- (BMWeakReferenceArray *)__listeners { \
+- (BMNullableArray *)__listeners { \
     @synchronized (self) {\
         static const char *key = "com.behindmedia.bmcommons.core.listenerpointers";\
-        BMWeakReferenceArray *listeners = objc_getAssociatedObject(self, key);\
+        BMNullableArray *listeners = objc_getAssociatedObject(self, key);\
         if (listeners == nil) {\
-            listeners = [BMWeakReferenceArray new];\
+            listeners = [BMNullableArray weakReferenceArray];\
             objc_setAssociatedObject(self, key, listeners, OBJC_ASSOCIATION_RETAIN_NONATOMIC);\
         }\
         return listeners;\
     }\
 }\
 - (NSArray *)listeners {\
-    BMWeakReferenceArray *listeners = self.__listeners;\
+    BMNullableArray *listeners = self.__listeners;\
     @synchronized (listeners) {\
         return [listeners allObjects];\
     }\
 }\
 - (void)addListener:(NSObject <protocol>*)listener {\
-    BMWeakReferenceArray *listeners = self.__listeners;\
+    BMNullableArray *listeners = self.__listeners;\
     @synchronized (listeners) {\
         if (![listeners containsObjectIdenticalTo:listener]) {\
             [listeners addObject:listener];\
@@ -95,7 +95,7 @@
     }\
 }\
 - (void)removeListener:(NSObject <protocol>*)listener {\
-    BMWeakReferenceArray *listeners = self.__listeners;\
+    BMNullableArray *listeners = self.__listeners;\
     @synchronized (listeners) {\
         [listeners removeObjectIdenticalTo:listener];\
     }\

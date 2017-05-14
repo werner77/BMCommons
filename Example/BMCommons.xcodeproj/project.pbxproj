@@ -53,6 +53,7 @@
 		74DD2E561E28D90800C8581A /* BMTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2E551E28D90800C8581A /* BMTestCase.m */; };
 		74DD2E591E28D92200C8581A /* BMAsyncTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2E581E28D92200C8581A /* BMAsyncTestCase.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		A83DFE59BB311F320D740EFA /* BMNullableArrayTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DF5C011B1912B7F935590 /* BMNullableArrayTestCase.m */; };
 		D2FE7697D869FA1D0593B371 /* Pods_BMCommons_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3227906F686F2EDE1115FC /* Pods_BMCommons_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +140,8 @@
 		74DD2E571E28D92200C8581A /* BMAsyncTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMAsyncTestCase.h; sourceTree = "<group>"; };
 		74DD2E581E28D92200C8581A /* BMAsyncTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMAsyncTestCase.m; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		A83DF075003C193A11BBBBE8 /* BMNullableArrayTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMNullableArrayTestCase.h; sourceTree = "<group>"; };
+		A83DF5C011B1912B7F935590 /* BMNullableArrayTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMNullableArrayTestCase.m; sourceTree = "<group>"; };
 		B46C16886D43CE9A38A4843F /* Pods-BMCommons_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMCommons_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BMCommons_Example/Pods-BMCommons_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BAD7925F3218F36D1404227E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		DE3227906F686F2EDE1115FC /* Pods_BMCommons_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BMCommons_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -334,6 +337,8 @@
 				74DD2DF71E28D52C00C8581A /* BMDateHelperTestCase.m */,
 				74DD2DF81E28D52C00C8581A /* BMHTTPRequestTestCase.h */,
 				74DD2DF91E28D52C00C8581A /* BMHTTPRequestTestCase.m */,
+				A83DF5C011B1912B7F935590 /* BMNullableArrayTestCase.m */,
+				A83DF075003C193A11BBBBE8 /* BMNullableArrayTestCase.h */,
 			);
 			name = BMCore;
 			sourceTree = "<group>";
@@ -601,6 +606,7 @@
 				74DD2E2F1E28D52C00C8581A /* BMHTTPRequestTestCase.m in Sources */,
 				74DD2E321E28D52C00C8581A /* BMMiscTestCase.m in Sources */,
 				74DD2E381E28D52C00C8581A /* BMWeakTimerTestCase.m in Sources */,
+				A83DFE59BB311F320D740EFA /* BMNullableArrayTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
