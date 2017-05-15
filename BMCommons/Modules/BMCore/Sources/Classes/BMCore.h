@@ -71,7 +71,7 @@
 #define BM_LISTENER_METHODS_IMPLEMENTATION(protocol) \
 - (BMNullableArray *)__listeners { \
     @synchronized (self) {\
-        static const char *key = "com.behindmedia.bmcommons.core.listenerpointers";\
+        static const char *key = "com.behindmedia.bmcommons.core.listeners";\
         BMNullableArray *listeners = objc_getAssociatedObject(self, key);\
         if (listeners == nil) {\
             listeners = [BMNullableArray weakReferenceArray];\
@@ -87,18 +87,22 @@
     }\
 }\
 - (void)addListener:(NSObject <protocol>*)listener {\
-    BMNullableArray *listeners = self.__listeners;\
-    @synchronized (listeners) {\
-        if (![listeners containsObjectIdenticalTo:listener]) {\
-            [listeners addObject:listener];\
+    if (listener != nil) { \
+        BMNullableArray *listeners = self.__listeners;\
+        @synchronized (listeners) {\
+            if (![listeners containsObjectIdenticalTo:listener]) {\
+                [listeners addObject:listener];\
+            }\
         }\
-    }\
+    } \
 }\
 - (void)removeListener:(NSObject <protocol>*)listener {\
-    BMNullableArray *listeners = self.__listeners;\
-    @synchronized (listeners) {\
-        [listeners removeObjectIdenticalTo:listener];\
-    }\
+    if (listener != nil) { \
+        BMNullableArray *listeners = self.__listeners;\
+        @synchronized (listeners) {\
+            [listeners removeObjectIdenticalTo:listener];\
+        }\
+    } \
 }\
 - (void)notifyListeners:(void (^)(NSObject<protocol> *listener))notifyBlock {\
     for (id listener in self.listeners) {\
