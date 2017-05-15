@@ -83,7 +83,18 @@
 - (NSArray *)listeners {\
     BMNullableArray *listeners = self.__listeners;\
     @synchronized (listeners) {\
-        return [listeners allObjects];\
+        BOOL nilListenerFound = NO; \
+        NSMutableArray *ret = [[NSMutableArray alloc] initWithCapacity:listeners.count];\
+        for (id listener in listeners) {\
+            if (listener == nil) {\
+                NSLog(@"*** WARNING: listener of %@ was not properly cleaned up. Check for balanced addListener/removeListener calls ***", self);\
+                nilListenerFound = YES; \
+            } else {\
+                [ret addObject:listener];\
+            }\
+        }\
+        if (nilListenerFound) [listeners compact];\
+        return ret;\
     }\
 }\
 - (void)addListener:(NSObject <protocol>*)listener {\
