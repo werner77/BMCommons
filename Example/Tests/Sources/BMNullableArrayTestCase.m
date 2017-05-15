@@ -10,7 +10,6 @@
 @interface BMNullableArrayTestCase()
 
 @property (nonatomic, strong) BMNullableArray* array;
-@property (nonatomic, strong) BMURLCache *urlCache;
 
 @end
 

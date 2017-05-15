@@ -11,7 +11,7 @@
 //Should be imported first, because it redefines NSLocalizedString
 #import <BMCommons/BMCoreObject.h>
 #import <BMCommons/BMLocalization.h>
-#import "BMNullableArray.h"
+#import <BMCommons/BMNullableArray.h>
 
 #import <Foundation/Foundation.h>
 
@@ -83,17 +83,13 @@
 - (NSArray *)listeners {\
     BMNullableArray *listeners = self.__listeners;\
     @synchronized (listeners) {\
-        BOOL nilListenerFound = NO; \
-        NSMutableArray *ret = [[NSMutableArray alloc] initWithCapacity:listeners.count];\
-        for (id listener in listeners) {\
-            if (listener == nil) {\
-                BMAssertionFailure([NSString stringWithFormat:@"Listener of %@ was not properly cleaned up. Check for balanced addListener/removeListener calls!", self]); \
-                nilListenerFound = YES; \
-            } else {\
-                [ret addObject:listener];\
-            }\
-        }\
-        if (nilListenerFound) [listeners compact];\
+        BOOL canCompact = NO; \
+        NSMutableArray *ret = [listeners allObjects]; \
+        if (ret.count != listeners.count) {\
+            BMAssertionFailure([NSString stringWithFormat:@"Listener of %@ was not properly cleaned up. Check for balanced addListener/removeListener calls!", self]); \
+            canCompact = YES; \
+        } \
+        if (canCompact) [listeners compact];\
         return ret;\
     }\
 }\

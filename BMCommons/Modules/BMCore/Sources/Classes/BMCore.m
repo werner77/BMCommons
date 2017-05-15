@@ -225,7 +225,7 @@ void BMAssertionFailure(NSString *message) {
         BMThrowException(@"BMAssertionFailedException", message);
     } else {
         NSLog(@"*** WARNING: %@", message);
-        NSLog(@"*** Set a symbolic breakpoint on BMAssert to debug");
+        NSLog(@"*** Set a symbolic breakpoint on BMAssertionFailure to debug");
     }
 }
 

@@ -5,10 +5,12 @@
 #import <Foundation/Foundation.h>
 #import "BMNullableArray.h"
 #import "NSArray+BMCommons.h"
+#import "BMWeakReferenceRegistry.h"
 
 @interface BMReference : NSObject {
 @package
     id __weak _target;
+    NSUInteger __volatile _targetAddress;
 }
 
 + (instancetype)referenceWithTarget:(id)target;
@@ -33,6 +35,7 @@
 - (instancetype)initWithTarget:(id)target {
     if ((self = [super init])) {
         _target = target;
+        _targetAddress = (NSUInteger)target;
     }
     return self;
 }
@@ -56,6 +59,9 @@
 
 
 @interface BMNullableArray()
+
+#define SAME(ref, obj) (ref->_targetAddress == (NSUInteger)obj)
+#define EQUAL(ref, obj) (ref->_targetAddress == (NSUInteger)obj || [ref->_target isEqual:obj])
 
 @property (nonatomic, strong) NSMutableArray *impl;
 
@@ -206,15 +212,29 @@
     BMReference *ref = [BMReference referenceWithTarget:anObject];
     ref.retainsTarget = self.retainsObjects;
     [_impl insertObject:ref atIndex:index];
+
+    BMReference *__weak weakRef = ref;
+    __typeof(self) __weak weakSelf = self;
+    [[BMWeakReferenceRegistry sharedInstance] registerReference:ref->_target forOwner:self withCleanupBlock:^{
+        BMReference * __strong strongRef = weakRef;
+        if (strongRef) {
+            strongRef->_targetAddress = 0;
+        }
+    }];
 }
 
 - (void)removeAllObjects {
     if (_impl.count > 0) {
+        for (BMReference *ref in _impl) {
+            [[BMWeakReferenceRegistry sharedInstance] deregisterReference:ref->_target forOwner:self];
+        }
         [_impl removeAllObjects];
     }
 }
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
+    BMReference *ref = [_impl objectAtIndex:index];
+    [[BMWeakReferenceRegistry sharedInstance] deregisterReference:ref->_target forOwner:self];
     [_impl removeObjectAtIndex:index];
 }
 
@@ -235,26 +255,31 @@
 
 - (void)compact {
     [_impl bmRetainObjectsWithPredicate:^BOOL(BMReference *ref) {
-        return ref->_target != nil;
+        BOOL ret = ref->_target != nil;
+        return ret;
     }];
 }
 
 - (BOOL)containsObjectIdenticalTo:(id)object {
     return [_impl bmFirstObjectWithPredicate:^BOOL(BMReference *ref) {
-        return ref->_target == object;
+        return SAME(ref, object);
     }] != nil;
 }
 
 - (void)removeObjectIdenticalTo:(id)object {
     [_impl bmRemoveObjectsWithPredicate:^BOOL(BMReference *ref) {
-        return (ref->_target == object);
+        BOOL ret = SAME(ref, object);
+        if (ret) {
+            [[BMWeakReferenceRegistry sharedInstance] deregisterReference:ref->_target forOwner:self];
+        }
+        return ret;
     }];
 }
 
 - (NSUInteger)indexOfObjectIdenticalTo:(id)object {
     NSUInteger __block ret = NSNotFound;
     [_impl bmFirstObjectWithIndexPredicate:^BOOL(BMReference *ref, NSUInteger index) {
-        if (ref->_target == object) {
+        if (SAME(ref, object)) {
             ret = index;
             return YES;
         }
@@ -265,20 +290,24 @@
 
 - (BOOL)containsObject:(id)object {
     return [_impl bmFirstObjectWithPredicate:^BOOL(BMReference *ref) {
-        return (ref->_target == object || [ref->_target isEqual:object]);
+        return EQUAL(ref, object);
     }] != nil;
 }
 
 - (void)removeObject:(id)object {
     [_impl bmRemoveObjectsWithPredicate:^BOOL(BMReference *ref) {
-        return (ref->_target == object || [ref->_target isEqual:object]);
+        BOOL ret = EQUAL(ref, object);
+        if (ret) {
+            [[BMWeakReferenceRegistry sharedInstance] deregisterReference:ref->_target forOwner:self];
+        }
+        return ret;
     }];
 }
 
 - (NSUInteger)indexOfObject:(id)object {
     NSUInteger __block ret = NSNotFound;
     [_impl bmFirstObjectWithIndexPredicate:^BOOL(BMReference *ref, NSUInteger index) {
-        if (ref->_target == object || [ref->_target isEqual:object]) {
+        if (EQUAL(ref, object)) {
             ret = index;
             return YES;
         }
