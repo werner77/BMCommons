@@ -83,13 +83,13 @@
 - (NSArray *)listeners {\
     BMNullableArray *listeners = self.__listeners;\
     @synchronized (listeners) {\
-        BOOL canCompact = NO; \
-        NSMutableArray *ret = [listeners allObjects]; \
+        BOOL shouldCompact = NO; \
+        NSArray *ret = [listeners allObjects]; \
         if (ret.count != listeners.count) {\
             BMAssertionFailure([NSString stringWithFormat:@"Listener of %@ was not properly cleaned up. Check for balanced addListener/removeListener calls!", self]); \
-            canCompact = YES; \
+            shouldCompact = YES; \
         } \
-        if (canCompact) [listeners compact];\
+        if (shouldCompact) [listeners compact];\
         return ret;\
     }\
 }\
