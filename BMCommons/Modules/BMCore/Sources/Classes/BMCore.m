@@ -17,9 +17,9 @@ static void BMReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 const NSUInteger BMAnyEnumValueMask = ((NSUInteger)-1);
 
 #if DEBUG
-static BOOL fatalAssertionsEnabled = YES;
+static __volatile BOOL fatalAssertionsEnabled = YES;
 #else
-static BOOL fatalAssertionsEnabled = NO;
+static __volatile BOOL fatalAssertionsEnabled = NO;
 #endif
 
 NSMutableArray* BMCreateNonRetainingArray() {
@@ -209,15 +209,11 @@ void BMThrowIllegalArgumentException(NSString *reason) {
 }
 
 void BMSetFatalAssertionsEnabled(BOOL enabled) {
-    @synchronized (BMCore.class) {
-        fatalAssertionsEnabled = enabled;
-    }
+    fatalAssertionsEnabled = enabled;
 }
 
 BOOL BMIsFatalAssertionsEnabled() {
-    @synchronized (BMCore.class) {
-        return fatalAssertionsEnabled;
-    }
+    return fatalAssertionsEnabled;
 }
 
 void BMAssertionFailure(NSString *message) {
