@@ -546,7 +546,9 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 }
 
 - (void)recordResult:(id)result forService:(id <BMService>)service {
-    [self.recorder recordResult:result forRecordingClass:service.classIdentifier withDigest:service.digest];
+    if (self.recorder.isRecording) {
+        [self.recorder recordResult:result forRecordingClass:service.classIdentifier withDigest:service.digest];
+    }
 }
 
 - (void)executeService:(id <BMService>)theService {
