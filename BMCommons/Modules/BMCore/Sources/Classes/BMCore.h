@@ -260,7 +260,7 @@ extern "C" {
 
     /**
      * If fatalAssertionsEnabled this will throw an exception, else this will log a warning.
-     * /
+     */
     void BMAssertionFailure(NSString *message);
 
      /**
