@@ -14,7 +14,13 @@
 static const void* BMRetainNoOp(CFAllocatorRef allocator, const void *value) { return value; }
 static void BMReleaseNoOp(CFAllocatorRef allocator, const void *value) { }
 
-NSUInteger BMAnyEnumValueMask = ((NSUInteger)-1);
+const NSUInteger BMAnyEnumValueMask = ((NSUInteger)-1);
+
+#if DEBUG
+static BOOL fatalAssertionsEnabled = YES;
+#else
+static BOOL fatalAssertionsEnabled = NO;
+#endif
 
 NSMutableArray* BMCreateNonRetainingArray() {
   CFArrayCallBacks callbacks = kCFTypeArrayCallBacks;
@@ -200,6 +206,27 @@ void BMThrowException(NSString *exceptionName, NSString *reason) {
 
 void BMThrowIllegalArgumentException(NSString *reason) {
     BMThrowException(@"BMIllegalArgumentException", reason);
+}
+
+void BMSetFatalAssertionsEnabled(BOOL enabled) {
+    @synchronized (BMCore.class) {
+        fatalAssertionsEnabled = enabled;
+    }
+}
+
+BOOL BMIsFatalAssertionsEnabled() {
+    @synchronized (BMCore.class) {
+        return fatalAssertionsEnabled;
+    }
+}
+
+void BMAssertionFailure(NSString *message) {
+   if (BMIsFatalAssertionsEnabled()) {
+        BMThrowException(@"BMAssertionFailedException", message);
+    } else {
+        NSLog(@"*** WARNING: %@", message);
+        NSLog(@"*** Set a symbolic breakpoint on BMAssert to debug");
+    }
 }
 
 @implementation BMCore

@@ -87,7 +87,7 @@
         NSMutableArray *ret = [[NSMutableArray alloc] initWithCapacity:listeners.count];\
         for (id listener in listeners) {\
             if (listener == nil) {\
-                NSLog(@"*** WARNING: listener of %@ was not properly cleaned up. Check for balanced addListener/removeListener calls ***", self);\
+                BMAssertionFailure([NSString stringWithFormat:@"Listener of %@ was not properly cleaned up. Check for balanced addListener/removeListener calls!", self]); \
                 nilListenerFound = YES; \
             } else {\
                 [ret addObject:listener];\
@@ -144,7 +144,7 @@ va_end(args); argArray;})
 /**
  * NSUInteger with all bits set
  */
-extern NSUInteger BMAnyEnumValueMask;
+extern const NSUInteger BMAnyEnumValueMask;
 
 
 #if defined(__cplusplus)
@@ -257,6 +257,16 @@ extern "C" {
      * Throws a BMIllegalArgumentException with the specified reason.
      */
     void BMThrowIllegalArgumentException(NSString *reason);
+
+    /**
+     * If fatalAssertionsEnabled this will throw an exception, else this will log a warning.
+     * /
+    void BMAssertionFailure(NSString *message);
+
+     /**
+     Whether fatal assertions are enabled. Defaults to true for debug builds, false otherwise.
+     */
+     void BMSetFatalAssertionsEnabled(BOOL enabled);
 
 
 #if TARGET_OS_IPHONE
