@@ -1200,7 +1200,7 @@ static BOOL gImageCacheEnabled = YES;
     
     BMFileAttributes *attributes = [self fileAttributesForFile:filePath];
     if (attributes) {
-        ret = ![attributes isExpired];
+        ret = attributes.pinned || !attributes.isExpired;
     }
     return ret;
 }

@@ -49,6 +49,7 @@
 }
 
 - (void)commonInitWithCapacity:(NSUInteger)capacity {
+	[super commonInitWithCapacity:capacity];
 	_dictionary = [[NSMutableDictionary alloc] initWithCapacity:capacity];
 	_keys = [[NSMutableArray alloc] initWithCapacity:capacity];
 }

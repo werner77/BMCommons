@@ -8,6 +8,7 @@
 
 #import <BMCommons/BMDateHelper.h>
 #import "NSDateFormatter+BMCommons.h"
+#import "BMCore.h"
 #import <BMCommons/BMProxy.h>
 #import <BMCommons/BMImmutableProxy.h>
 
@@ -304,15 +305,24 @@ static NSDateFormatter *rfc1123DateFormatter = nil;
 		NSDateFormatter *df = [[NSDateFormatter alloc] init];
 		
 		[df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
-		[df setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-		
 		[df setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-		
-		NSString *dateString = [df stringFromDate:localDate];
-		
-		[df setTimeZone:timeZone];
-		
-		correctedDate = [df dateFromString:dateString];
+
+		NSInteger i = 0;
+		while (i++ < 2) {
+			[df setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
+			NSString *dateString = [df stringFromDate:localDate];
+
+			[df setTimeZone:timeZone];
+
+			correctedDate = [df dateFromString:dateString];
+
+			if (correctedDate == nil) {
+				//correctedDate lies within DST interval: add one hour and try again
+				localDate = [[NSDate alloc] initWithTimeInterval:BM_HOUR sinceDate:localDate];
+			} else {
+				break;
+			}
+		}
 	}
 	return correctedDate;
 }																																				

@@ -13,7 +13,7 @@
 @implementation BMJSONSchemaParserTestCase
 
 - (void)testParseJSONSchema {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"schema" ofType:@"json"];
+    NSString *path = [[self.class testBundle] pathForResource:@"schema" ofType:@"json"];
     
     NSData *data = [NSData dataWithContentsOfFile:path];
     
@@ -28,7 +28,7 @@
 }
     
 - (void)testParseJSONSchema1 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"schema1" ofType:@"json"];
+    NSString *path = [[self.class testBundle] pathForResource:@"schema1" ofType:@"json"];
     
     NSData *data = [NSData dataWithContentsOfFile:path];
     

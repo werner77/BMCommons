@@ -17,7 +17,8 @@
 
 - (void)testSaveAndLoadSettings {
     BMSettingsRegistry *settingsRegistry = [[BMSettingsRegistry alloc] initWithClasses:@[[BMTestSettingsObject class]]];
-    [settingsRegistry load];
+    [settingsRegistry restoreToDefaultsByForcingReset:YES];
+    [settingsRegistry finishedInitialization];
     
     BMTestSettingsObject *testSettingsObject = [BMTestSettingsObject sharedInstance];
     //Test whether defaults are set

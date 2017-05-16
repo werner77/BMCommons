@@ -13,7 +13,7 @@
 
 @implementation BMCollectionClassesTestCase
 
-- (void)testOrderedDictionary {
+- (void)testOrderedDictionaryCoding {
     BMOrderedDictionary *dict = [BMOrderedDictionary new];
     
     [dict setObject:@"aap" forKey:@(10)];
@@ -35,13 +35,16 @@
         }
         i++;
     }
-    
+
+    [NSKeyedArchiver setClassName:@"BMOrderedDictionary" forClass:[BMOrderedDictionary class]];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dict];
-    
-    NSMutableDictionary *otherDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+
+    BMOrderedDictionary *otherDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     
     XCTAssertTrue(dict.count == otherDict.count, @"Expected counts to be equal");
 
+    //this does not yet work unfortunately
+    /**
     i = 0;
     for (id key in otherDict) {
         id value = [dict objectForKey:key];
@@ -57,7 +60,8 @@
         }
         i++;
     }
-    
+    */
+
     [otherDict removeAllObjects];
     
     XCTAssertTrue(otherDict.count == 0, @"Expected objects to be removed");

@@ -20,7 +20,7 @@
 
 - (void)testParseJSON {
 	
-	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test1" ofType:@"json"];
+	NSString *filePath = [[self.class testBundle] pathForResource:@"test1" ofType:@"json"];
 	NSData *jsonData = [NSData dataWithContentsOfFile:filePath];
 	
 	
@@ -36,7 +36,7 @@
 
 - (void)testParseEmptyJSON {
     
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test_empty" ofType:@"json"];
+    NSString *filePath = [[self.class testBundle] pathForResource:@"test_empty" ofType:@"json"];
 	NSData *jsonData = [NSData dataWithContentsOfFile:filePath];
 	
 	

@@ -7,6 +7,7 @@
 //
 
 #import "BMTestSettingsObject.h"
+#import <BMCommons/BMSettingsPropertyDescriptor.h>
 
 #define AH_SETTINGS_MYLIST_SORT_ORDER_STATE	@"AHMyListStoreOrderState"
 #define AH_SETTINGS_SYNCHING_ENABLED			@"AHSynchingEnabled"
@@ -25,22 +26,15 @@
     return @[AH_SETTINGS_MIJNAH_EMAIL, AH_SETTINGS_MYLIST_SORT_ORDER_STATE, AH_SETTINGS_SYNCHING_ENABLED];
 }
 
-+ (NSArray *)valuePropertiesArray {
-    return @[@"mijnAHEmailAddress", @"myListSortOrderState", @"synchingEnabled"];
-}
-
-+ (NSArray *)defaultValuesArray {
-    return @[@"test@mail.com", @(AHShoppingListOrderModeSorted), @(YES)];
-}
-
-+ (BMValueType)valueTypeForProperty:(NSString *)propertyName {
-    BMValueType valueType = BMValueTypeObject;
-    if ([propertyName isEqual:@"myListSortOrderState"]) {
-        valueType = BMValueTypeInteger;
-    } else if ([propertyName isEqual:@"synchingEnabled"]) {
-        valueType = BMValueTypeBoolean;
-    }
-    return valueType;
++ (NSArray *)settingsPropertiesDescriptorsArray {
+    return @[
+             [BMSettingsPropertyDescriptor propertyDescriptorFromKeyPath:@"mijnAHEmailAddress" valueType:BMValueTypeObject defaultValue:@"test@mail.com" keyName:AH_SETTINGS_MIJNAH_EMAIL],
+             
+             [BMSettingsPropertyDescriptor propertyDescriptorFromKeyPath:@"myListSortOrderState" valueType:BMValueTypeUnsignedInteger defaultValue:@(AHShoppingListOrderModeSorted) keyName:	AH_SETTINGS_MYLIST_SORT_ORDER_STATE],
+             
+             [BMSettingsPropertyDescriptor propertyDescriptorFromKeyPath:@"synchingEnabled" valueType:BMValueTypeBoolean defaultValue:@(YES) keyName:AH_SETTINGS_SYNCHING_ENABLED]
+             
+              ];
 }
 
 - (BOOL)isLoggedIn {

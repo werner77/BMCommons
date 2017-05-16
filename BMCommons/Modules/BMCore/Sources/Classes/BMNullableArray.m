@@ -214,7 +214,6 @@
     [_impl insertObject:ref atIndex:index];
 
     BMReference *__weak weakRef = ref;
-    __typeof(self) __weak weakSelf = self;
     [[BMWeakReferenceRegistry sharedInstance] registerReference:ref->_target forOwner:self withCleanupBlock:^{
         BMReference * __strong strongRef = weakRef;
         if (strongRef) {

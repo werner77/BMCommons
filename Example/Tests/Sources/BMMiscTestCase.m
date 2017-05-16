@@ -17,7 +17,7 @@
 }
 
 - (void)testVersionAtLeast {
-    NSString *version = @"9.1.1";
+    NSString *version = @"20.1.1";
 
     XCTAssertFalse(BMOSVersionIsAtLeast(version), @"Expectation failed");
 
