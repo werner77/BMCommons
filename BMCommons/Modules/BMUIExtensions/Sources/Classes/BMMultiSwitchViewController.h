@@ -9,13 +9,22 @@
 #import <UIKit/UIKit.h>
 #import <BMCommons/BMViewController.h>
 
-// possible to use predefined viewTransition styles instead of custom enum?
-typedef enum BMSwitchTransitionType {
+typedef NS_ENUM(NSUInteger, BMSwitchTransitionType) {
     BMSwitchTransitionTypeNone,
     BMSwitchTransitionTypeCrossFade,
-    BMSwitchTransitionTypeFlip
-} BMSwitchTransitionType;
+    BMSwitchTransitionTypeFlip,
+    BMSwitchTransitionTypeCustom1,
+    BMSwitchTransitionTypeCustom2,
+    BMSwitchTransitionTypeCustom3,
+    BMSwitchTransitionTypeCustom4,
+    BMSwitchTransitionTypeCustom5,
+    BMSwitchTransitionTypeCustom6,
+    BMSwitchTransitionTypeCustom7,
+    BMSwitchTransitionTypeCustom8,
+    BMSwitchTransitionTypeCustom9
+};
 
+typedef void (^BMMultiSwitchTransitionBlock)(UIViewController *oldViewController, UIViewController *newViewController, UIView *containerView, BMSwitchTransitionType transitionType, NSTimeInterval duration, void (^completionBlock)(BOOL finished));
 
 @class BMMultiSwitchViewController;
 
@@ -69,6 +78,13 @@ typedef enum BMSwitchTransitionType {
  Returns the view that acts as a super view for the other view controller's views. It defaults to self.view.
  */
 @property (nonatomic, strong) IBOutlet UIView *containerView;
+
+/**
+ * Set this block to implement custom transitions (other than the stock transitions).
+ *
+ * The block should call the supplied completionblock when the animation finishes.
+ */
+@property (nonatomic, copy) BMMultiSwitchTransitionBlock customTransitionAnimationBlock;
 
 - (id)initWithViewController:(UIViewController *)firstViewController;
 - (id)initWithViewControllers:(NSArray *)theViewControllers;

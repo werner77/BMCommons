@@ -243,23 +243,23 @@
     return !self.isSwitching && !self.isTransitioning;
 }
 
-- (UIView *)setupSwitchToViewControllerAtIndex:(NSUInteger)index currentViewController:(UIViewController **)vc1 newViewController:(UIViewController **)vc2 transitionType:(BMSwitchTransitionType)transitionType duration:(NSTimeInterval)duration {
+- (BOOL)setupSwitchToViewControllerAtIndex:(NSUInteger)index currentViewController:(UIViewController **)vc1 newViewController:(UIViewController **)vc2 transitionType:(BMSwitchTransitionType)transitionType duration:(NSTimeInterval)duration {
     if (!self.isSwitchingAllowed) {
-        return nil;
+        return NO;
     }
 
     UIViewController *currentViewController = self.selectedViewController;
     UIViewController *otherViewController = index < self.viewControllers.count ? (self.viewControllers)[index] : nil;
 
     if (currentViewController == otherViewController || !otherViewController) {
-        return nil;
+        return NO;
     }
 
     //Will trigger viewDidLoad
     UIView *theView = otherViewController.view;
 
-    if (!theView) {
-        return nil;
+    if (!theView || !self.containerView) {
+        return NO;
     }
 
     self.switching = YES;
@@ -270,14 +270,16 @@
         [self.delegate multiSwitchViewController:self willSwitchFromController:currentViewController toController:otherViewController];
     }
 
-    theView.frame = self.containerView.bounds;
-    [self.containerView setNeedsLayout];
-    [self.containerView layoutIfNeeded];
+    if (transitionType <= BMSwitchTransitionTypeFlip ) {
+        theView.frame = self.containerView.bounds;
+        [self.containerView setNeedsLayout];
+        [self.containerView layoutIfNeeded];
+    }
 
     if (vc1) *vc1 = currentViewController;
     if (vc2) *vc2 = otherViewController;
 
-    return theView;
+    return YES;
 }
 
 - (void)switchToViewControllerAtIndex:(NSUInteger)index transitionType:(BMSwitchTransitionType)transitionType duration:(NSTimeInterval)duration {
@@ -296,15 +298,21 @@
 
         BOOL animated = duration > 0.0;
 
+        BMSwitchTransitionType effectiveTransitionType = transitionType;
+
+        if (!animated) {
+            effectiveTransitionType = BMSwitchTransitionTypeNone;
+        }
+
         UIViewController *currentSelectedViewController = nil;
         UIViewController *newSelectedViewController = nil;
-        UIView *theView = [weakSelf setupSwitchToViewControllerAtIndex:index currentViewController:&currentSelectedViewController newViewController:&newSelectedViewController transitionType:transitionType duration:duration];
-        if (theView == nil) {
-            self.switching = NO;
+        BOOL canSwitch = [weakSelf setupSwitchToViewControllerAtIndex:index currentViewController:&currentSelectedViewController newViewController:&newSelectedViewController transitionType:effectiveTransitionType duration:duration];
+        if (!canSwitch) {
             if (completion) {
                 completion(NO);
             }
         } else {
+            UIView *theView = [newSelectedViewController view];
             NSMutableArray *vcArray = [[NSMutableArray alloc] init];
             [vcArray addObject:newSelectedViewController];
             if (currentSelectedViewController) {
@@ -318,42 +326,35 @@
 
             [weakSelf.containerView addSubview:theView];
 
-            if (transitionType == BMSwitchTransitionTypeCrossFade) {
-                if (animated) {
-                    theView.alpha = 0.0f;
-                    [UIView animateWithDuration:duration animations:^{
-                        theView.alpha = 1.0f;
-                        currentSelectedViewController.view.alpha = 0.0f;
-                    } completion:^(BOOL finished) {
-                        currentSelectedViewController.view.alpha = 1.0f;
-                        [weakSelf animationDidStop:finished context:vcArray completion:completion];
-                    }];
-                } else {
+            if (effectiveTransitionType == BMSwitchTransitionTypeCrossFade && animated) {
+                currentSelectedViewController.view.alpha = 1.0f;
+                theView.alpha = 0.0f;
+                [UIView animateWithDuration:duration animations:^{
                     theView.alpha = 1.0f;
+                    currentSelectedViewController.view.alpha = 0.0f;
+                } completion:^(BOOL finished) {
                     currentSelectedViewController.view.alpha = 1.0f;
-                    [weakSelf animationDidStop:YES context:vcArray completion:completion];
-                }
-
-            } else if (transitionType == BMSwitchTransitionTypeFlip) {
+                    [weakSelf animationDidStop:finished context:vcArray completion:completion];
+                }];
+            } else if (effectiveTransitionType == BMSwitchTransitionTypeFlip) {
                 UIViewAnimationOptions options;
                 if (_currentFlipTransition == UIViewAnimationTransitionFlipFromLeft) {
                     options = UIViewAnimationOptionTransitionFlipFromLeft;
                 } else {
                     options = UIViewAnimationOptionTransitionFlipFromRight;
                 }
-
-                if (animated && weakSelf.containerView) {
-                    [UIView transitionWithView:weakSelf.containerView duration:duration options:options animations:^{
-                        [currentSelectedViewController.view removeFromSuperview];
-                    } completion:^(BOOL finished) {
-                        [weakSelf animationDidStop:finished context:vcArray completion:completion];
-                    }];
-                } else {
-                    [weakSelf animationDidStop:YES context:vcArray completion:completion];
-                }
+                [UIView transitionWithView:weakSelf.containerView duration:duration options:options animations:^{
+                    [currentSelectedViewController.view removeFromSuperview];
+                }               completion:^(BOOL finished) {
+                    [weakSelf animationDidStop:finished context:vcArray completion:completion];
+                }];
                 _currentFlipTransition = (_currentFlipTransition == UIViewAnimationTransitionFlipFromLeft) ? UIViewAnimationTransitionFlipFromRight : UIViewAnimationTransitionFlipFromLeft;
-            } else {
+            } else if (effectiveTransitionType == BMSwitchTransitionTypeNone || !self.customTransitionAnimationBlock) {
                 [weakSelf finishTransition:vcArray completion:completion];
+            } else {
+                weakSelf.customTransitionAnimationBlock(currentSelectedViewController, newSelectedViewController, weakSelf.containerView, effectiveTransitionType, duration, ^(BOOL finished) {
+                    [weakSelf animationDidStop:finished context:vcArray completion:completion];
+                });
             }
         }
     };
