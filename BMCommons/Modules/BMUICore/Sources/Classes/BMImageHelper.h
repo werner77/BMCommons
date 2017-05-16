@@ -77,8 +77,6 @@
 
 /**
  Adjusts the brightness of the supplied image with a factor such that r = r * (1 + factor), g = g * (1 + factor) and b = b * (1 + factor).
- 
- @param brightnessFactor
  */
 + (UIImage*)imageFromImage:(UIImage *)source withBrightness:(CGFloat)brightnessFactor;
 

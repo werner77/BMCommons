@@ -81,8 +81,6 @@ BM_DECLARE_DEFAULT_SINGLETON
 
 /**
  * Returns NO while releaseAllSharedInstances is busy to avoid creating shared instances while they are being released.
- *
- * @return
  */
 + (BOOL)isSharedInstanceCreationAllowed;
 

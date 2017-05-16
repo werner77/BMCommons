@@ -24,15 +24,11 @@
  * Returns a shallow copy of this object by only copying the direct properties.
  * This in contrast with copyWithZone: which will perform a deep copy of the object.
  *
- * @param zone
- * @return
  */
 - (id)shallowCopyWithZone:(NSZone *)zone;
 
 /**
  * Calls shallowCopyWithZone with zone set to nil.
- *
- * @return
  */
 - (id)shallowCopy;
 

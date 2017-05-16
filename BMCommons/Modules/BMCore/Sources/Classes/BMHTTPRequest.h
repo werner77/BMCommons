@@ -44,7 +44,6 @@
 
  @param request The request
  @param response The response
- @deprecated
  */
 - (void)request:(BMHTTPRequest *)request didReceiveResponse:(NSURLResponse *)response;
 
@@ -234,10 +233,10 @@
  */
 - (id)initPostRequestWithUrl:(NSURL *)url
 				  parameters:(NSDictionary *)parameters
-		  customHeaderFields:(NSDictionary *)theCustomHeaderFields
+		  customHeaderFields:(NSDictionary *)customHeaderFields
 					userName:(NSString *)username
 					password:(NSString *)password
-					delegate:(id <BMHTTPRequestDelegate>)theDelegate;
+					delegate:(id <BMHTTPRequestDelegate>)delegate;
 
 /**
  Initializes a multipart HTTP POST request with an array of BMHTTPContentPart objects.
@@ -257,7 +256,7 @@
 				   customHeaderFields:(NSDictionary *)customHeaderFields
 							 userName:(NSString *)username
 							 password:(NSString *)password
-							 delegate:(id <BMHTTPRequestDelegate>)theDelegate;
+							 delegate:(id <BMHTTPRequestDelegate>)delegate;
 
 /**
  Initializes a HTTP GET request with the specified url and parameters which are appended to the url.
@@ -291,7 +290,7 @@
 customHeaderFields:(NSDictionary *)customHeaderFields
 		 userName:(NSString *)username
 		 password:(NSString *)password
-		 delegate:(id <BMHTTPRequestDelegate>)theDelegate;
+		 delegate:(id <BMHTTPRequestDelegate>)delegate;
 
 
 /**

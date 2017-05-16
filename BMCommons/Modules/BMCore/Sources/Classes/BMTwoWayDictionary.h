@@ -47,7 +47,7 @@
 /**
  Gets an object for the specified key
  
- @param object
+ @param object The object
  @return the key for the object
  */
 - (id)keyForObject:(id)object;

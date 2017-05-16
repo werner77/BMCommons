@@ -8,7 +8,10 @@
 
 //Class is only available for iOS
 
+#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
+#endif
+
 #import <BMCommons/BMAsyncDataLoader.h>
 
 /**

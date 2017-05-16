@@ -29,7 +29,7 @@
 /**
  Retrieves and creates a new security identity using the specified persistent reference.
  
- @param NSData object containing a persistent reference to a keychain item.
+ @param ref object containing a persistent reference to a keychain item.
  @return A reference to the found security entity or nil if not found. The caller is responsible for releasing the returned reference using CFRelease.
  */
 + (SecIdentityRef)newIdentityForPersistentRef:(NSData *)ref;

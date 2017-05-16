@@ -71,8 +71,6 @@
 
 /**
  * Writes a message to the recording log.
- *
- * @param message
  */
 - (void)writeToRecordingLog:(NSString *)message;
 

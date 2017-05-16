@@ -31,7 +31,7 @@ typedef NS_ENUM(NSUInteger, BMXAMode) {
  @param follow Whether to follow links or not
  @param error On error filled with error info
  */
-- (NSArray*)bmExtendedAttributeNamesAtPath:(NSString *)path traverseLink:(BOOL)follow error:(NSError**)err;
+- (NSArray*)bmExtendedAttributeNamesAtPath:(NSString *)path traverseLink:(BOOL)follow error:(NSError**)error;
 
 /**
  Retrieves the value for the extended attribute with ths specified name as defined for the file at the specified path.
@@ -43,7 +43,7 @@ typedef NS_ENUM(NSUInteger, BMXAMode) {
  @param follow Whether to follow links or not
  @param error On error filled with error info
  */
-- (NSData*)bmExtendedAttribute:(NSString *)name atPath:(NSString *)path traverseLink:(BOOL)follow error:(NSError**)err;
+- (NSData*)bmExtendedAttribute:(NSString *)name atPath:(NSString *)path traverseLink:(BOOL)follow error:(NSError**)error;
 
 /**
  Returns a dictionary with all the extended attributes defined for the file at the specified path.
@@ -54,7 +54,7 @@ typedef NS_ENUM(NSUInteger, BMXAMode) {
  @param follow Whether to follow links or not
  @param error On error filled with error info
  */
-- (NSDictionary*)bmExtendedAttributesAtPath:(NSString *)path traverseLink:(BOOL)follow error:(NSError**)err;
+- (NSDictionary*)bmExtendedAttributesAtPath:(NSString *)path traverseLink:(BOOL)follow error:(NSError**)error;
 
 /**
  Sets the value for the extended attribute with ths specified name for the file at the specified path.
@@ -69,7 +69,7 @@ typedef NS_ENUM(NSUInteger, BMXAMode) {
  @param error On error filled with error info
  @see BMXAMode
  */
-- (BOOL)bmSetExtendedAttribute:(NSString *)name value:(NSData *)value atPath:(NSString *)path traverseLink:(BOOL)follow mode:(BMXAMode)mode error:(NSError**)err;
+- (BOOL)bmSetExtendedAttribute:(NSString *)name value:(NSData *)value atPath:(NSString *)path traverseLink:(BOOL)follow mode:(BMXAMode)mode error:(NSError**)error;
 
 /**
  Removes the extended attribute with the specified name as defined for the file at the specified path.
@@ -81,7 +81,7 @@ typedef NS_ENUM(NSUInteger, BMXAMode) {
  @param follow Whether to follow links or not
  @param error On error filled with error info
  */
-- (BOOL)bmRemoveExtendedAttribute:(NSString *)name atPath:(NSString *)path traverseLink:(BOOL)follow error:(NSError**)err;
+- (BOOL)bmRemoveExtendedAttribute:(NSString *)name atPath:(NSString *)path traverseLink:(BOOL)follow error:(NSError**)error;
 
 /**
  Sets the values for all extended attribute with the sepcified dictionary for the file at the specified path.
@@ -94,6 +94,6 @@ typedef NS_ENUM(NSUInteger, BMXAMode) {
  @param overwrite Whether to overwrite existing values or not
  @param error On error filled with error info
  */
-- (BOOL)bmSetExtendedAttributes:(NSDictionary *)attrs atPath:(NSString *)path traverseLink:(BOOL)follow overwrite:(BOOL)overwrite error:(NSError**)err;
+- (BOOL)bmSetExtendedAttributes:(NSDictionary *)attrs atPath:(NSString *)path traverseLink:(BOOL)follow overwrite:(BOOL)overwrite error:(NSError**)error;
 
 @end

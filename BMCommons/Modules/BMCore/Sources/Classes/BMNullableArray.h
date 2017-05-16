@@ -20,16 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  * Initializes with the objects from the specified array.
- *
- * @param objects
- * @return
  */
 - (instancetype)initWithArray:(NSArray *)objects;
 
 /**
  * Returns a BMNullableArray which does not retain its objects. Elements will become nil if the objects get deallocated.
- *
- * @return
  */
 + (instancetype)weakReferenceArray;
 

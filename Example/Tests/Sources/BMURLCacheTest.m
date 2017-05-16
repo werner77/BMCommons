@@ -8,6 +8,7 @@
 
 #import "BMURLCacheTest.h"
 #import <BMCommons/BMURLCache.h>
+#import <BMCommons/NSObject+BMCommons.h>
 
 @implementation BMURLCacheTest
 
@@ -29,24 +30,39 @@
 	
 	[cache pinDataForURL:url];
 	
-	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:2.0 * cache.invalidationAge]];
-	
-	XCTAssertNotNil([cache dataForURL:url]);
-	
-	[cache unpinDataForURL:url];
-	
-	XCTAssertNil([cache dataForURL:url]);
-	
+	//Expectation
+	XCTestExpectation *expectation = [self expectationWithDescription:@"Testing cache expiration"];
 
-	[cache storeData:data forURL:url];
-	[cache pinDataForURL:url];
-	
-	//Should be able to overwrite data, even when pinned
-	[cache storeData:data forURL:url];
-	
-	[cache removeAll:YES];
-	
-	XCTAssertNil([cache dataForURL:url]);
+	NSTimeInterval waitTime = 2.0 * cache.invalidationAge;
+
+	[self bmPerformBlock:^{
+
+		XCTAssertNotNil([cache dataForURL:url]);
+
+		[cache unpinDataForURL:url];
+
+		XCTAssertNil([cache dataForURL:url]);
+
+
+		[cache storeData:data forURL:url];
+		[cache pinDataForURL:url];
+
+		//Should be able to overwrite data, even when pinned
+		[cache storeData:data forURL:url];
+
+		[cache removeAll:YES];
+
+		XCTAssertNil([cache dataForURL:url]);
+
+		[expectation fulfill];
+	} afterDelay:waitTime];
+
+	[self waitForExpectationsWithTimeout:1000 handler:^(NSError *error) {
+		if(error) {
+			XCTFail(@"Expectation Failed with error: %@", error);
+		}
+	}];
+
 }
 
 @end

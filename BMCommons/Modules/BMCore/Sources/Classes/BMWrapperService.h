@@ -22,7 +22,6 @@
  * Initializes with the specified wrapped service.
  *
  * @param wrappedService The wrapped service
- * @return
  */
 - (instancetype)initWithWrappedService:(id<BMService>)wrappedService;
 

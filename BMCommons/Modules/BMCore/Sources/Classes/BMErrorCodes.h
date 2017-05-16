@@ -31,7 +31,7 @@
 //Other error
 #define BM_ERROR_DOMAIN_OTHER @"BM_ERROR_DOMAIN_OTHER"
 
-//<100 Are client error codes
+//Codes less than 100 Are client error codes
 #define BM_ERROR_UNKNOWN_ERROR 10
 #define BM_ERROR_INVALID_URL 11
 #define BM_ERROR_INVALID_DATA 12
@@ -46,10 +46,10 @@
 #define BM_ERROR_SECURITY 27
 #define BM_ERROR_NOT_IMPLEMENTED 28
 
-// > 100 are HTTP error codes
+//Code greater than 100 are HTTP error codes
 
 /**
- Helper class containing definitions for error codes/domains
+ * Helper class containing definitions for error codes/domains
  */
 @interface BMErrorCodes : BMCoreObject  {
 	

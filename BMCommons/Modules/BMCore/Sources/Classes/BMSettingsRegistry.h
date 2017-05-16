@@ -54,8 +54,6 @@
 
 /**
  * Restores all defaults and if forceReset is true will fully reset the settings objects (even for non restorable defaults).
- *
- * @param forceReset
  */
 - (void)restoreToDefaultsByForcingReset:(BOOL)forceReset;
 

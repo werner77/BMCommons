@@ -28,20 +28,10 @@
 
 - (NSString *)description;
 
-/*!
- @method response
- @abstract Returns the response wrapped by this instance.
- @result The response wrapped by this instance.
- */
 @property (nonatomic, strong) NSURLResponse *response;
 
 @property (nonatomic, assign) NSTimeInterval timeout;
 
-/*!
- @method data
- @abstract Returns the data of the receiver.
- @result The data of the receiver.
- */
 @property (nonatomic, strong) NSData *data;
 
 @end
