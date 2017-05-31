@@ -319,12 +319,12 @@
                 [vcArray addObject:currentSelectedViewController];
             }
 
+            [weakSelf.containerView addSubview:theView];
+
             if (weakSelf.viewState == BMViewStateVisible) {
                 [currentSelectedViewController beginAppearanceTransition:NO animated:animated];
                 [newSelectedViewController beginAppearanceTransition:YES animated:animated];
             }
-
-            [weakSelf.containerView addSubview:theView];
 
             if (effectiveTransitionType == BMSwitchTransitionTypeCrossFade && animated) {
                 currentSelectedViewController.view.alpha = 1.0f;
