@@ -8,6 +8,7 @@
 
 #import <BMCommons/BMMultiSwitchViewController.h>
 #import "UIViewController+BMCommons.h"
+#import "UIView+BMCommons.h"
 #import <BMCommons/BMStringHelper.h>
 #import <BMCommons/NSObject+BMCommons.h>
 #import <BMCommons/NSCondition+BMCommons.h>
@@ -171,10 +172,6 @@
         self.containerView = self.view;
     }
 
-    UIView *theView = self.selectedViewController.view;
-    theView.frame = self.containerView.bounds;
-    theView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-
     if (self.viewState == BMViewStateVisible) {
         [self.selectedViewController beginAppearanceTransition:YES animated:NO];
     }
@@ -182,6 +179,11 @@
     if (self.viewState == BMViewStateVisible) {
         [self.selectedViewController endAppearanceTransition];
     }
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    [self.selectedViewController.view bmSetFrameIgnoringTransform:self.containerView.bounds];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -270,11 +272,9 @@
         [self.delegate multiSwitchViewController:self willSwitchFromController:currentViewController toController:otherViewController];
     }
 
-    if (transitionType <= BMSwitchTransitionTypeFlip ) {
-        theView.frame = self.containerView.bounds;
-        [self.containerView setNeedsLayout];
-        [self.containerView layoutIfNeeded];
-    }
+    [theView bmSetFrameIgnoringTransform:self.containerView.bounds];
+    [self.containerView setNeedsLayout];
+    [self.containerView layoutIfNeeded];
 
     if (vc1) *vc1 = currentViewController;
     if (vc2) *vc2 = otherViewController;

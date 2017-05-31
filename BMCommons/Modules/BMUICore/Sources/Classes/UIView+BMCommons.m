@@ -70,6 +70,14 @@ static void __BMSetAnimationsEnabled(Class self, SEL cmd, BOOL enabled) {
     }
 }
 
+- (void)bmSetFrameIgnoringTransform:(CGRect)frame {
+    CGPoint center = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+    CGRect bounds = CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame));
+
+    [self setBounds:bounds];
+    [self setCenter:center];
+}
+
 - (void)bmRemoveMarginsAndInsets {
     [self setPreservesSuperviewLayoutMargins:NO];    
     [self setLayoutMargins:UIEdgeInsetsZero];

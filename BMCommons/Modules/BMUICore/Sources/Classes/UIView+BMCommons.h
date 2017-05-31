@@ -41,6 +41,11 @@
 - (void)bmRemoveMarginsAndInsets;
 
 /**
+ * Uses setBounds and setCenter instead of setFrame to avoid issues when a transform is applied to the receiver.
+ */
+- (void)bmSetFrameIgnoringTransform:(CGRect)frame;
+
+/**
  Calls bmLayoutWithBlock:animationDuration:applyPendingLayoutBeforeAnimation: with applyPendingLayout set to YES.
  */
 - (void)bmLayoutWithBlock:(void (^)(void))block animationDuration:(NSTimeInterval)duration;
