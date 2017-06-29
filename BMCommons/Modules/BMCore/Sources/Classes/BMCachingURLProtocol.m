@@ -347,6 +347,19 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
     [self.client URLProtocol:self didFailWithError:error];
 }
 
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [self.client URLProtocol:self didReceiveAuthenticationChallenge:challenge];
+}
+
+- (void)connection:(NSURLConnection *)connection didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [self.client URLProtocol:self didCancelAuthenticationChallenge:challenge];
+}
+
+- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
+    [self.client URLProtocol:self wasRedirectedToRequest:request redirectResponse:response];
+    return request;
+}
+
 #pragma mark - Private
 
 - (void)setConnection:(NSURLConnection *)connection {
