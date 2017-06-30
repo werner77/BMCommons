@@ -236,7 +236,7 @@
 
 - (void)bmMoveObjectFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
     id object = [self bmSafeObjectAtIndex:fromIndex];
-    if (object && toIndex <= self.count) {
+    if (object && toIndex < self.count) {
         [self removeObjectAtIndex:fromIndex];
         [self insertObject:object atIndex:toIndex];
     }
