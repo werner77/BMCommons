@@ -47,7 +47,7 @@ static void __BMSetAnimationsEnabled(Class self, SEL cmd, BOOL enabled) {
     else
         UIGraphicsBeginImageContext(self.bounds.size);
 
-    [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:NO];
+    [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:YES];
     
     // Get the snapshot
     UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
