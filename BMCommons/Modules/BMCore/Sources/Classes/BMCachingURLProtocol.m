@@ -356,8 +356,18 @@ NSString * const BMCachingURLProtocolURLResponseKey = @"BMCachingURLProtocolURLR
 }
 
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
-    [self.client URLProtocol:self wasRedirectedToRequest:request redirectResponse:response];
-    return request;
+    NSURLRequest *ret = request;
+
+    if (response != nil) {
+        NSMutableURLRequest *redirect = [request mutableCopy];
+        [NSURLProtocol removePropertyForKey:kBMURLProtocolHandledKey inRequest:redirect];
+
+        [self.client URLProtocol:self wasRedirectedToRequest:redirect redirectResponse:response];
+
+        ret = redirect;
+    }
+
+    return ret;
 }
 
 #pragma mark - Private
