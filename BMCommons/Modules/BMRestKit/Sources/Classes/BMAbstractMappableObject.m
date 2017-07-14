@@ -353,7 +353,7 @@ static inline int64_t hash(NSString *s) {
         [otherValueCopy mergeWithData:otherValueCopy ignoreNilValues:ignoreNilValues performClassCheck:performClassCheck deepMerge:YES];
         
         
-    } if ([otherValue isKindOfClass:[NSArray class]]) {
+    } else if ([otherValue isKindOfClass:[NSArray class]]) {
         
         otherValueCopy = [NSMutableArray new];
         
