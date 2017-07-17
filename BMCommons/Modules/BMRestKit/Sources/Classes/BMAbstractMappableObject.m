@@ -36,7 +36,7 @@
 + (BOOL)appendDataForValue:(id)value forKeyPath:(NSString *)keyPath toDigest:(BMDigest *)digest ignoredKeyPaths:(NSSet<NSString *> *)ignoredKeyPaths;
 
 - (NSString *)namespacePrefixForURI:(NSString *)childNamespaceURI withNamespaces:(NSMutableDictionary *)namespaces;
-- (id)deepCopyValue:(id)otherValue ignoreNilValues:(BOOL)ignoreNilValues performClassCheck:(BOOL)performClassCheck;
+- (id)deepCopyValue:(id)otherValue;
 - (id)shallowCopyValue:(id)otherValue;
 
 @end
@@ -321,7 +321,7 @@ static inline int64_t hash(NSString *s) {
                 id otherValue = [otherFieldMapping invokeRawGetterOnTarget:other];
                 
                 if (deepMerge) {
-                    otherValue = [self deepCopyValue:otherValue ignoreNilValues:ignoreNilValues performClassCheck:performClassCheck];
+                    otherValue = [self deepCopyValue:otherValue];
                 } else {
 					otherValue = [self shallowCopyValue:otherValue];
 				}
@@ -343,22 +343,14 @@ static inline int64_t hash(NSString *s) {
 
 @implementation BMAbstractMappableObject(Private)
 
-- (id)deepCopyValue:(id)otherValue ignoreNilValues:(BOOL)ignoreNilValues performClassCheck:(BOOL)performClassCheck {
+- (id)deepCopyValue:(id)otherValue {
     id otherValueCopy = otherValue;
-    if ([otherValue isKindOfClass:[BMAbstractMappableObject class]]) {
-        
-        //Create a copy of other value
-        
-        otherValueCopy = [[otherValue class] new];
-        [otherValueCopy mergeWithData:otherValueCopy ignoreNilValues:ignoreNilValues performClassCheck:performClassCheck deepMerge:YES];
-        
-        
-    } else if ([otherValue isKindOfClass:[NSArray class]]) {
+    if ([otherValue isKindOfClass:[NSArray class]]) {
         
         otherValueCopy = [NSMutableArray new];
         
         for (id otherValueItem in otherValue) {
-            id otherValueItemCopy = [self deepCopyValue:otherValueItem ignoreNilValues:ignoreNilValues performClassCheck:performClassCheck];
+            id otherValueItemCopy = [self deepCopyValue:otherValueItem];
             [otherValueCopy addObject:otherValueItemCopy];
         }
     } else if ([otherValue isKindOfClass:[NSDictionary class]]) {
@@ -369,7 +361,7 @@ static inline int64_t hash(NSString *s) {
             id value = [otherValue objectForKey:key];
             id <NSCopying> copiedKey = [key copy];
             
-            id copiedValue = [self deepCopyValue:value ignoreNilValues:ignoreNilValues performClassCheck:performClassCheck];
+            id copiedValue = [self deepCopyValue:value];
             [otherValueCopy setObject:copiedValue forKey:copiedKey];
         }
         
