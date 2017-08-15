@@ -260,7 +260,7 @@ void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth, fl
 			break;
 			
 		default:
-			[[NSException exceptionWithName:NSInternalInconsistencyException reason:BMUICoreLocalizedString(@"Invalid image orientation", nil) userInfo:nil] raise];
+			[[NSException exceptionWithName:NSInternalInconsistencyException reason:@"Invalid image orientation" userInfo:nil] raise];
 			
 	}
 	
