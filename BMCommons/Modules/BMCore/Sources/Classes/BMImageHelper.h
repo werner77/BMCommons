@@ -6,17 +6,22 @@
 //  Copyright 2008 BehindMedia. All rights reserved.
 //
 
+#import <BMCommons/BMCore.h>
+
+#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
-#import <BMCommons/BMUICore.h>
+#endif
 
 /**
  UIImage helper methods. 
  
  Methods that are not in the ThreadSafe category are only safe to call from the main thread.
  */
-@interface BMImageHelper : BMUICoreObject {
+@interface BMImageHelper : BMCoreObject {
 
 }
+
+#if TARGET_OS_IPHONE
 
 /**
  Scales an image to the specified size losing the aspect ratio (scales to fit) and an optional corner radius to produce a rounded image.
@@ -36,6 +41,7 @@
  */
 + (UIImage *)scaleImage:(UIImage *)image toSize:(CGSize)imageSize;
 
+#endif
 
 @end
 
@@ -43,6 +49,8 @@
  Thread safe methods which are callable from threads other than the main thread.
  */
 @interface BMImageHelper(ThreadSafe)
+
+#if TARGET_OS_IPHONE
 
 /**
  * Thread safe implementation for scaling an image with the supplied max resolution and keeping the aspect ratio.
@@ -96,5 +104,7 @@
  Extracts a thumbnail image to show for a video at the specified URL.
  */
 + (UIImage *)thumbnailFromVideoAtURL:(NSURL *)contentURL;
+
+#endif
 
 @end

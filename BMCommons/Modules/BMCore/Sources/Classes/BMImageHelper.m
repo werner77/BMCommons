@@ -8,6 +8,8 @@
 
 
 #import <BMCommons/BMImageHelper.h>
+
+#if TARGET_OS_IPHONE
 #import "UIImageToJPEGDataTransformer.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
@@ -23,9 +25,12 @@ void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth, fl
 
 @end
 
+#endif
+
 
 @implementation BMImageHelper
 
+#if TARGET_OS_IPHONE
 
 + (UIImage *)scaleImage:(UIImage *)theImage toSize:(CGSize)imageSize {
 	UIImage *newImage;
@@ -126,7 +131,11 @@ void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth, fl
 	return cropped;
 }
 
+#endif
+
 @end
+
+#if TARGET_OS_IPHONE
 
 @implementation BMImageHelper(Private)
 
@@ -153,8 +162,11 @@ void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth, fl
 
 @end
 
+#endif
 
 @implementation BMImageHelper(ThreadSafe)
+
+#if TARGET_OS_IPHONE
 
 + (UIImage *)scaleAndRotateImage:(UIImage *)image maxResolution:(NSInteger)maxResolution orientation:(UIImageOrientation)orient scale:(CGFloat)scale {
     
@@ -650,5 +662,6 @@ void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth, fl
     }
 }
 
+#endif
 
 @end

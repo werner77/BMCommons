@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.summary          = 'BehindMedia Commons Library'
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+                        BehindMedia Commons Library for iOS
                        DESC
 
   s.homepage         = 'https://github.com/werner77/BMCommons'
