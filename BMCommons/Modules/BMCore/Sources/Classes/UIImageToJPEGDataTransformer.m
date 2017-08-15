@@ -22,15 +22,24 @@
 
 - (id)transformedValue:(id)value {
 	if (value == nil) return nil;
+
+#if TARGET_OS_IPHONE
 	UIImage *image = value;
 	NSData *imageData = UIImageJPEGRepresentation(image, QUALITY_FACTOR);
 	return imageData;
+#else
+    return nil;
+#endif
 }
 
 - (id)reverseTransformedValue:(id)value {
+#if TARGET_OS_IPHONE
 	if (value == nil) return nil;
 	UIImage *image = [[UIImage alloc] initWithData:value];
 	return image;
+#else
+    return nil;
+#endif
 }
 
 @end

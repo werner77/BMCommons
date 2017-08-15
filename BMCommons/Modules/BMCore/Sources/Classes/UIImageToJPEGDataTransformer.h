@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
+#endif
 
 /**
  Value transformer for transforming a UIImage to NSData with JPEG encoding.
