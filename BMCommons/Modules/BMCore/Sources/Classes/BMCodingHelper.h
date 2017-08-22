@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMPropertyDescriptor.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Helper to encode/decode objects using NSCoding based on BMPropertyDescriptor.
  */
@@ -19,13 +21,15 @@
  
  If target is nil, the target set in the property descriptors is used if any.
  */
-+ (void)encodePropertiesFromDescriptors:(NSArray *)propertyDescriptors withCoder:(NSCoder *)coder forTarget:(id)target;
++ (void)encodePropertiesFromDescriptors:(NSArray *)propertyDescriptors withCoder:(NSCoder *)coder forTarget:(nullable id)target;
 
 /**
  Decodes the properties specified by the propertyDescriptors (instances of BMPropertyDescriptor) using the specified coder using keyed coding.
  
  If target is nil, the target set in the property descriptors is used if any.
  */
-+ (void)decodePropertiesFromDescriptors:(NSArray *)propertyDescriptors withCoder:(NSCoder *)coder forTarget:(id)target;
++ (void)decodePropertiesFromDescriptors:(NSArray *)propertyDescriptors withCoder:(NSCoder *)coder forTarget:(nullable id)target;
 
 @end
+
+NS_ASSUME_NONNULL_END

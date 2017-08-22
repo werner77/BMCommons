@@ -14,6 +14,8 @@
 
 #import <BMCommons/BMAsyncDataLoader.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Async data loader for loading images.
  
@@ -27,10 +29,24 @@
 /**
  The returned image after loading completes.
  */
-@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, readonly, nullable) UIImage *image;
 
 #endif
 
 @end
+
+@interface BMAsyncImageLoader(Protected)
+
+/**
+ * Sets the image to return.
+ *
+ * @param theImage The image
+ */
+- (void)setImage:(nullable UIImage *)theImage;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
 
 

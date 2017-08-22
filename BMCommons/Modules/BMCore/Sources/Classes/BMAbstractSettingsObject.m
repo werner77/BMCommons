@@ -39,13 +39,11 @@ static NSMutableDictionary *cachedDescriptors = nil;
 }
 
 + (NSArray *)defaultValuesArray {
-	[self doesNotRecognizeSelector:_cmd];
-	return nil;
+	return @[];
 }
 
 + (NSArray *)valuePropertiesArray {
-	[self doesNotRecognizeSelector:_cmd];
-	return nil;
+	return @[];
 }
 
 + (NSArray *)settingsPropertiesDescriptorsArray {

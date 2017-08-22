@@ -13,7 +13,7 @@
 @implementation BMCodeableObject
 
 + (NSArray *)descriptorsForCodeableProperties {
-    return nil;
+    return @[];
 }
 
 - (id)initWithCoder:(NSCoder *)coder {

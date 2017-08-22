@@ -152,7 +152,7 @@ static NSString *DescriptionForObject(NSObject *object, id locale, NSUInteger in
  */
 - (id)objectAtIndex:(NSUInteger)anIndex {
 	id key = [self keyAtIndex:anIndex];
-	return key == nil ? nil : [self objectForKey:key];
+	return [self objectForKey:key];
 }
 
 - (NSMutableArray *)keysInternal {

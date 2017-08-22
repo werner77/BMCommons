@@ -24,6 +24,11 @@
 
 @implementation BMCache {
     NSUInteger _cacheIndexCounter;
+    NSMutableDictionary *_dictionary;
+    NSMutableDictionary *_keys;
+    NSTimeInterval _timeout;
+    NSUInteger _maxCount;
+    NSUInteger _memoryUsed;
 }
 
 @synthesize timeout = _timeout, maxCount = _maxCount, memoryUsed = _memoryUsed;

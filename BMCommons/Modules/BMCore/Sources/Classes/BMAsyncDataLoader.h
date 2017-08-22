@@ -13,6 +13,8 @@
 #define BM_ASYNCDATALOADER_DEFAULT_MAX_CONNECTIONS 3
 #define BM_ASYNCDATALOADER_DEFAULT_CONNECTION_TIMEOUT 20.0
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSUInteger, BMAsyncLoadingStatus) {
     BMAsyncLoadingStatusIdle = 0,
     BMAsyncLoadingStatusQueued = 1,
@@ -39,7 +41,7 @@ typedef NS_ENUM(NSUInteger, BMAsyncDataLoaderCacheState) {
  
  If error == nil the loading was successful and the [BMAsyncDataLoader object] property contains the data (or converted data) loaded.
  */
-- (void)asyncDataLoader:(BMAsyncDataLoader *)dataLoader didFinishLoadingWithError:(NSError *)error;
+- (void)asyncDataLoader:(BMAsyncDataLoader *)dataLoader didFinishLoadingWithError:(nullable NSError *)error;
 
 @optional
 
@@ -88,12 +90,12 @@ typedef NS_ENUM(NSUInteger, BMAsyncDataLoaderCacheState) {
 /**
  Upon successful load this property contains the object loaded.
  */
-@property(strong) NSObject *object;
+@property(strong, nullable, readonly) NSObject *object;
 
 /**
  Optional object to attach to the loader which can be used to track the loader or to use upon successful load.
  */
-@property(strong) id context;
+@property(strong, nullable) id context;
 
 /**
  The url to load the data from.
@@ -105,7 +107,7 @@ typedef NS_ENUM(NSUInteger, BMAsyncDataLoaderCacheState) {
 /**
  The mime type of the returned data or nil if it could not be determined
  */
-@property (readonly) NSString *mimeType;
+@property (readonly, nullable) NSString *mimeType;
 
 /**
  The number of retries after an error. Default is DEFAULT_MAX_RETRY_COUNT.
@@ -142,7 +144,7 @@ typedef NS_ENUM(NSUInteger, BMAsyncDataLoaderCacheState) {
  
  @see BMAsyncDataLoaderDelegate
  */
-@property(weak) id <BMAsyncDataLoaderDelegate> delegate;
+@property(weak, nullable) id <BMAsyncDataLoaderDelegate> delegate;
 
 /**
  Whether the delegate is always notified asynchronously of a successful or failed load, even if the object is retrieved from the cache.
@@ -156,7 +158,7 @@ typedef NS_ENUM(NSUInteger, BMAsyncDataLoaderCacheState) {
  
  If this property is nil the defaultCache is used which is set on class level.
  */
-@property(strong) BMURLCache *cache;
+@property(strong, nullable) BMURLCache *cache;
 
 /**
  Returns the default cache that is used to cache images.
@@ -168,7 +170,7 @@ typedef NS_ENUM(NSUInteger, BMAsyncDataLoaderCacheState) {
 /**
  The default cache that should be used.
  */
-+ (void)setDefaultCache:(BMURLCache *)cache;
++ (void)setDefaultCache:(nullable BMURLCache *)cache;
 
 /**
  The max number of concurrent connections to use.
@@ -180,7 +182,7 @@ typedef NS_ENUM(NSUInteger, BMAsyncDataLoaderCacheState) {
  Init with URL
  */
 - (id)initWithURL:(NSURL *)theURL;
-- (id)initWithURLString:(NSString *)theURLString;
+- (nullable id)initWithURLString:(NSString *)theURLString;
 
 /**
  The plain data that was received.
@@ -209,7 +211,7 @@ typedef NS_ENUM(NSUInteger, BMAsyncDataLoaderCacheState) {
 /**
  Method that returns the cached object for the URL specified.
  */
-- (NSObject *)cachedObject;
+- (nullable NSObject *)cachedObject;
 
 /**
  Whether the object for the specified URL is on disk, in memory or not cached at all.
@@ -219,6 +221,13 @@ typedef NS_ENUM(NSUInteger, BMAsyncDataLoaderCacheState) {
 @end
 
 @interface BMAsyncDataLoader(Protected)
+
+/**
+ * Sets the object associated with the data loader.
+ *
+ * @param object
+ */
+- (void)setObject:(nullable id)object;
 
 /**
  Validates the url.
@@ -253,6 +262,8 @@ typedef NS_ENUM(NSUInteger, BMAsyncDataLoaderCacheState) {
  
  Should be thread safe.
  */
-- (NSObject *)objectFromData:(NSData *)data withCache:(BMURLCache *)cache cacheKey:(NSString *)cacheKey;
+- (NSObject *)objectFromData:(NSData *)data withCache:(nullable BMURLCache *)cache cacheKey:(nullable NSString *)cacheKey;
 
 @end
+
+NS_ASSUME_NONNULL_END

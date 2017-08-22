@@ -152,7 +152,8 @@ static NSOperationQueue *backgroundOperationQueue = nil;
 }
 
 - (id)initWithURLString:(NSString *)theURLString {
-    return [self initWithURL:[BMStringHelper urlFromString:theURLString]];
+    NSURL *url = [BMStringHelper urlFromString:theURLString];
+    return url == nil ? nil : [self initWithURL:url];
 }
 
 - (void)dealloc {
@@ -681,6 +682,10 @@ static NSOperationQueue *backgroundOperationQueue = nil;
 @end
 
 @implementation BMAsyncDataLoader(Protected)
+
+- (void)setObject:(nullable id)object {
+    _object = object;
+}
 
 - (BOOL)validateURL:(NSURL *)theUrl {
     return theUrl != nil;

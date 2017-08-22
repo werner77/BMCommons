@@ -12,6 +12,8 @@
 #import <BMCommons/BMSettingsRegistry.h>
 #import <BMCommons/BMOperationQueue.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMApplicationContext;
 
 /**
@@ -32,14 +34,7 @@
 /**
  Registry for application singletons and settings and coordinator for application life-cycle events.
  */
-@interface BMApplicationContext : BMCoreObject {
-	BMSettingsRegistry *settings;
-	NSMutableArray *delegates;
-	BOOL active;
-	BMServiceManager *serviceManager;
-	NSMutableDictionary *environment;
-    BMOperationQueue *operationQueue;
-}
+@interface BMApplicationContext : BMCoreObject
 
 BM_DECLARE_DEFAULT_SINGLETON
 
@@ -189,3 +184,5 @@ Returns the array of registered delegates, implementations of BMApplicationConte
 
 
 @end
+
+NS_ASSUME_NONNULL_END

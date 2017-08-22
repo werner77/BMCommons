@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface BMAbstractMutableDictionary<KeyType, ObjectType> : NSMutableDictionary<KeyType, ObjectType>
 
@@ -21,12 +22,12 @@
 /**
  Returns the key for the specified index or nil if the index is out of bounds.
  */
-- (KeyType)safeKeyAtIndex:(NSUInteger)anIndex;
+- (nullable KeyType)safeKeyAtIndex:(NSUInteger)anIndex;
 
 /**
  Returns the object for the specified index or nil if the index is out of bounds.
  */
-- (ObjectType)safeObjectAtIndex:(NSUInteger)anIndex;
+- (nullable ObjectType)safeObjectAtIndex:(NSUInteger)anIndex;
 
 /**
  * Enumerates objects in reverse order.
@@ -51,3 +52,4 @@
 
 @end
 
+NS_ASSUME_NONNULL_END

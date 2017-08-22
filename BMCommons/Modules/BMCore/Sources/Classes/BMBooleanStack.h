@@ -16,6 +16,8 @@ typedef NS_ENUM(NSUInteger, BMBooleanStackOperationType) {
     BMBooleanStackOperationTypeAND = 2 //AND of all booleans in the stack determines the outcome
 };
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class to implement a boolean state based on a push/pop mechanism.
  
@@ -43,7 +45,7 @@ typedef NS_ENUM(NSUInteger, BMBooleanStackOperationType) {
  
  This property is set every time the state property changes.
  */
-@property (strong) BMPropertyDescriptor *booleanPropertyDescriptor;
+@property (strong, nullable) BMPropertyDescriptor *booleanPropertyDescriptor;
 
 /**
  The default state if the stack is empty.
@@ -71,3 +73,5 @@ typedef NS_ENUM(NSUInteger, BMBooleanStackOperationType) {
 - (BOOL)state;
 
 @end
+
+NS_ASSUME_NONNULL_END

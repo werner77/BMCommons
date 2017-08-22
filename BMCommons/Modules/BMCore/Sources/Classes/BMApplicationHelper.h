@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Application utility methods.
  */
@@ -28,7 +30,7 @@
  @param bundle The bundle to load the file from or nil for the main bundle.
  @param alert Whether or not to play the sound in alert mode.
  */
-+ (void)playSoundFromFile:(NSString *)soundFileName fromBundle:(NSBundle *)bundle asAlert:(BOOL)alert;
++ (void)playSoundFromFile:(NSString *)soundFileName fromBundle:(nullable NSBundle *)bundle asAlert:(BOOL)alert;
 
 /**
  Plays a sound from the file with the specified URL.
@@ -44,3 +46,5 @@
 + (void)clearSoundCache;
 
 @end
+
+NS_ASSUME_NONNULL_END

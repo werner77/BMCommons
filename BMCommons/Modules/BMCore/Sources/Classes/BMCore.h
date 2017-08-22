@@ -142,6 +142,8 @@ va_end(args); argArray;})
  */
 extern const NSUInteger BMAnyEnumValueMask;
 
+NS_ASSUME_NONNULL_BEGIN
+
 
 #if defined(__cplusplus)
 extern "C" {
@@ -162,17 +164,17 @@ extern "C" {
     /**
      * Tests if an object is an array which is empty.
      */
-    BOOL BMIsEmptyArray(id object);
+    BOOL BMIsEmptyArray(id _Nullable object);
     
     /**
      * Tests if an object is a set which is empty.
      */
-    BOOL BMIsEmptyArray(id object);
+    BOOL BMIsEmptyArray(id _Nullable object);
     
     /**
      * Tests if an object is a string which is empty.
      */
-    BOOL BMIsEmptyString(id object);
+    BOOL BMIsEmptyString(id _Nullable object);
     
     /**
      * Returns a rectangle that is smaller or larger than the source rectangle.
@@ -232,32 +234,32 @@ extern "C" {
     /**
      Shortens a 64 bit unsigned int to a 32 bit int, throwing an exception if an overflow occurs.
      */
-    uint32_t BMShortenUIntSafely(uint64_t longInt, NSString *exceptionReason);
+    uint32_t BMShortenUIntSafely(uint64_t longInt, NSString * _Nullable exceptionReason);
     
     /**
      Shortens a 64 bit int to a 32 bit int, throwing an exception if an overflow occurs.
      */
-    int32_t BMShortenIntSafely(int64_t longInt, NSString *exceptionReason);
+    int32_t BMShortenIntSafely(int64_t longInt, NSString * _Nullable exceptionReason);
     
     /**
      Converts an unsigned int to a signed int, throwing an exception if the result overflows the max value for a signed int.
      */
-    int32_t BMShortenUIntToIntSafely(uint64_t longInt, NSString *exceptionReason);
+    int32_t BMShortenUIntToIntSafely(uint64_t longInt, NSString * _Nullable exceptionReason);
 
     /**
      * Throws an exception of the specified type, with the specified reason.
      */
-    void BMThrowException(NSString *exceptionName, NSString *reason);
+    void BMThrowException(NSString *exceptionName, NSString * _Nullable reason);
 
     /**
      * Throws a BMIllegalArgumentException with the specified reason.
      */
-    void BMThrowIllegalArgumentException(NSString *reason);
+    void BMThrowIllegalArgumentException(NSString * _Nullable reason);
 
     /**
      * If fatalAssertionsEnabled this will throw an exception, else this will log a warning.
      */
-    void BMAssertionFailure(NSString *message);
+    void BMAssertionFailure(NSString * _Nullable message);
 
      /**
      Whether fatal assertions are enabled. Defaults to true for debug builds, false otherwise.
@@ -282,6 +284,8 @@ extern "C" {
 #if defined(__cplusplus)
 }
 #endif
+
+NS_ASSUME_NONNULL_END
 
 /**
  BMCore Module

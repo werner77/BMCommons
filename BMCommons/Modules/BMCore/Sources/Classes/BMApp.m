@@ -23,11 +23,11 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 }
 
 - (NSString *)displayName {
-    return [[self.bundle infoDictionary] objectForKey:@"CFBundleDisplayName"];
+    return [BMStringHelper filterNilString:[[self.bundle infoDictionary] objectForKey:@"CFBundleDisplayName"]];
 }
 
 - (NSString *)name {
-    return [[self.bundle infoDictionary] objectForKey:@"CFBundleName"];
+    return [BMStringHelper filterNilString:[[self.bundle infoDictionary] objectForKey:@"CFBundleName"]];
 }
 
 - (NSString *)version {
@@ -43,7 +43,7 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 }
 
 - (NSString *)identifier {
-    return [[self.bundle infoDictionary] objectForKey:(NSString *)kCFBundleIdentifierKey];
+    return [BMStringHelper filterNilString:[[self.bundle infoDictionary] objectForKey:(NSString *)kCFBundleIdentifierKey]];
 }
 
 - (NSString *)fullVersion {

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Value transformer that chains other transformers for both forward and reverse transformation.
  */
@@ -21,3 +23,5 @@
 @property (nonatomic, strong) NSArray *transformerChain;
 
 @end
+
+NS_ASSUME_NONNULL_END

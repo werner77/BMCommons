@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BMBase64DataTransformer : NSValueTransformer
 
 @property (nonatomic, assign) BOOL urlFriendlyMode;
 
 @end
+
+NS_ASSUME_NONNULL_END

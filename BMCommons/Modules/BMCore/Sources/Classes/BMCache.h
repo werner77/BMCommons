@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMOrderedDictionary;
 
 /**
@@ -16,14 +18,7 @@
  
  The cache has a configurable timeout interval for the objects it retains and a maximum size.
  */
-@interface BMCache : BMCoreObject {
-@private
-    NSMutableDictionary *_dictionary;
-    NSMutableDictionary *_keys;
-    NSTimeInterval _timeout;
-    NSUInteger _maxCount;
-    NSUInteger _memoryUsed;
-}
+@interface BMCache : BMCoreObject
 
 /**
  Maximum time to live for any object in the cache. 0 (which is default) means indefinitely.
@@ -53,7 +48,7 @@
 /**
  Returns the object for the specified key or nil if it is non-existent or has timed out or has been evicted.
  */
-- (id)objectForKey:(id <NSCopying, NSObject>)key;
+- (nullable id)objectForKey:(id <NSCopying, NSObject>)key;
 
 - (BOOL)hasObjectForKey:(id<NSCopying, NSObject>)key;
 
@@ -68,3 +63,5 @@
 - (NSArray *)allObjects;
 
 @end
+
+NS_ASSUME_NONNULL_END

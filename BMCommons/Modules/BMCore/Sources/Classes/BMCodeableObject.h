@@ -8,6 +8,8 @@
 
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class that implements the NSCoding protocol in a dynamic way using BMPropertyDescriptors which properties to code for this class.
  */
@@ -25,7 +27,7 @@
  
  Returns nil if the data is not compatible.
  */
-+ (instancetype)objectFromArchivedData:(NSData *)data;
++ (nullable instancetype)objectFromArchivedData:(NSData *)data;
 
 /**
  Archived data by archiving this object using a keyed archiver.
@@ -33,3 +35,5 @@
 - (NSData *)archivedData;
 
 @end
+
+NS_ASSUME_NONNULL_END

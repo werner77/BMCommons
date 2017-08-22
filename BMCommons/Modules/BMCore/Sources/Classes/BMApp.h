@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMSingleton.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class with information about static identifiers of the app defined in the application plist (display name, identifier, version, etc).
  */
@@ -28,3 +30,5 @@ BM_DECLARE_DEFAULT_SINGLETON
 - (NSString *)fullVersion;
 
 @end
+
+NS_ASSUME_NONNULL_END

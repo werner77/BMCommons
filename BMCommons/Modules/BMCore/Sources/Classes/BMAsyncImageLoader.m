@@ -29,7 +29,6 @@
 	self.object = theImage;
 }
 
-
 - (NSObject *)cachedObject {
 	BMURLCache *cache = self.effectiveCache;
 	NSURL *theUrl = self.url;

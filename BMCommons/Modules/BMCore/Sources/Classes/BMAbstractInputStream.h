@@ -14,16 +14,10 @@
  */
 @interface BMAbstractInputStream : NSInputStream<NSStreamDelegate> {
     @protected
-    NSStreamStatus _streamStatus;
-    NSError* _streamError;
-    const void* _currentData;
-    long _currentDataLength;
-    
-    @private
-    CFReadStreamClientCallBack _copiedCallback;
-	CFStreamClientContext _copiedContext;
-    CFOptionFlags _requestedEvents;
-	id<NSStreamDelegate> __weak _delegate;
+        NSStreamStatus _streamStatus;
+        NSError* _Nullable _streamError;
+        const void* _Nullable _currentData;
+        long _currentDataLength;
 }
 
 /**
@@ -36,13 +30,13 @@
 /**
  The last stream error if any.
  */
-@property (copy, readonly) NSError* streamError;
+@property (nullable, copy, readonly) NSError* streamError;
 
 /**
  The delegate for this stream.
  
  @see NSStreamDelegate
  */
-@property (weak) id<NSStreamDelegate> delegate;
+@property (nullable, weak) id<NSStreamDelegate> delegate;
 
 @end

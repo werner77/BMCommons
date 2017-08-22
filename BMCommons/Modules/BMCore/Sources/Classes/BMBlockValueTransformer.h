@@ -8,16 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-typedef id(^BMValueTransformerBlock)(id value);
+NS_ASSUME_NONNULL_BEGIN
+
+typedef id _Nullable (^BMValueTransformerBlock)(id _Nullable value);
 
 @interface BMBlockValueTransformer : NSValueTransformer
 
-+ (instancetype)valueTransformerWithTransformationBlock:(BMValueTransformerBlock)transformBlock;
-+ (instancetype)valueTransformerWithTransformationBlock:(BMValueTransformerBlock)transformBlock reverseTransformationBlock:(BMValueTransformerBlock)reverseBlock;
++ (instancetype)valueTransformerWithTransformationBlock:(nullable BMValueTransformerBlock)transformBlock;
++ (instancetype)valueTransformerWithTransformationBlock:(nullable BMValueTransformerBlock)transformBlock reverseTransformationBlock:(nullable BMValueTransformerBlock)reverseBlock;
 
-- (instancetype)initWithTransformationBlock:(BMValueTransformerBlock)transformBlock reverseTransformationBlock:(BMValueTransformerBlock)reverseBlock;
+- (instancetype)initWithTransformationBlock:(nullable BMValueTransformerBlock)transformBlock reverseTransformationBlock:(nullable BMValueTransformerBlock)reverseBlock;
 
-@property (nonatomic, copy) BMValueTransformerBlock transformationBlock;
-@property (nonatomic, copy) BMValueTransformerBlock reverseTransformationBlock;
+@property (nonatomic, copy, nullable) BMValueTransformerBlock transformationBlock;
+@property (nonatomic, copy, nullable) BMValueTransformerBlock reverseTransformationBlock;
 
 @end
+
+NS_ASSUME_NONNULL_END

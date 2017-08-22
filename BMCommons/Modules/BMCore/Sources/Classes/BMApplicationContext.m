@@ -21,12 +21,10 @@
 
 @end
 
-@implementation BMApplicationContext 
-
-@synthesize settings;
-@synthesize active;
-@synthesize serviceManager;
-@synthesize operationQueue;
+@implementation BMApplicationContext  {
+	NSMutableArray *_delegates;
+	NSMutableDictionary *_environment;
+}
 
 BM_SYNTHESIZE_DEFAULT_SINGLETON
 
@@ -34,16 +32,13 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 	if ((self = [super init])) {
         
         NSArray *settingsClasses = [self settingsObjectClasses];
-        if (settingsClasses) {
-            settings = [[BMSettingsRegistry alloc] initWithClasses:settingsClasses];
-        }
-        
-        delegates = BMCreateNonRetainingArray();
+        _settings = [[BMSettingsRegistry alloc] initWithClasses:settingsClasses];
+        _delegates = BMCreateNonRetainingArray();
 
-        serviceManager = [BMServiceManager sharedInstance];
+        _serviceManager = [BMServiceManager sharedInstance];
 
-		environment = [NSMutableDictionary new];
-        operationQueue = [BMOperationQueue sharedInstance];
+		_environment = [NSMutableDictionary new];
+        _operationQueue = [BMOperationQueue sharedInstance];
 
 		[self loadSettings];
 	}
@@ -54,20 +49,19 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 	if (self.active) {
 		[self terminate];
 	}
-	BM_RELEASE_SAFELY(environment);
-	BM_RELEASE_SAFELY(serviceManager);
-	BM_RELEASE_SAFELY(delegates);
+	BM_RELEASE_SAFELY(_environment);
+	BM_RELEASE_SAFELY(_serviceManager);
+	BM_RELEASE_SAFELY(_delegates);
 	[self stopListeningForNotifications];
-	BM_RELEASE_SAFELY(settings);
-    
-    BM_RELEASE_SAFELY(operationQueue);
+	BM_RELEASE_SAFELY(_settings);
+    BM_RELEASE_SAFELY(_operationQueue);
 }
 
 #pragma mark -
 #pragma mark Abstract methods
 
 - (NSArray *)settingsObjectClasses {
-	return nil;
+	return @[];
 }
 
 #pragma mark -
@@ -75,18 +69,18 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 
 - (void)setObject:(id)object forEnvironmentVariable:(NSString *)variable {
 	if (object) {
-		[environment setObject:object forKey:variable];
+		[_environment setObject:object forKey:variable];
 	} else {
-		[environment removeObjectForKey:variable];
+		[_environment removeObjectForKey:variable];
 	}
 }
 
 - (id)objectForEnvironmentVariable:(NSString *)variable {
-	return [environment objectForKey:variable];
+	return [_environment objectForKey:variable];
 }
 
 - (NSDictionary *)environment {
-	return [NSDictionary dictionaryWithDictionary:environment];
+	return [NSDictionary dictionaryWithDictionary:_environment];
 }
 
 #pragma mark -
@@ -105,28 +99,28 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 }
 
 - (NSArray *)delegates {
-	return [NSArray arrayWithArray:delegates];
+	return [NSArray arrayWithArray:_delegates];
 }
 
 - (void)addDelegate:(id <BMApplicationContextDelegate>)delegate {
-	if (![delegates bmContainsObjectIdenticalTo:delegate]) {
-		[delegates addObject:delegate];
+	if (![_delegates bmContainsObjectIdenticalTo:delegate]) {
+		[_delegates addObject:delegate];
 	}
 }
 
 - (void)addPriorityDelegate:(id <BMApplicationContextDelegate>)delegate {
-	if (![delegates bmContainsObjectIdenticalTo:delegate]) {
-		[delegates insertObject:delegate atIndex:0];
+	if (![_delegates bmContainsObjectIdenticalTo:delegate]) {
+		[_delegates insertObject:delegate atIndex:0];
 	}
 }
 
 - (void)removeDelegate:(id <BMApplicationContextDelegate>)delegate {
-	[delegates removeObjectIdenticalTo:delegate];
+	[_delegates removeObjectIdenticalTo:delegate];
 }
 
 - (void)initialize {
     
-    if (!settings.isLoaded) {
+    if (!self.settings.isLoaded) {
         [self loadSettings];
     }
     
@@ -147,7 +141,7 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 	urlCache.diskCapacity = 10 * 1024 * 1024;
 	urlCache.memoryCapacity = 100 * 1024;
 	
-	[environment addEntriesFromDictionary:[[NSProcessInfo processInfo] environment]];
+	[_environment addEntriesFromDictionary:[[NSProcessInfo processInfo] environment]];
 	
 	[self startListeningForNotifications];
 	
@@ -177,16 +171,16 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 }
 
 - (void)saveSettings {
-	[settings save];
+	[self.settings save];
 }
 
 - (void)loadSettings {
-    [settings load];
+    [self.settings load];
 }
 
 - (void)activate {
 	//Call this here as well because otherwise the [settings load] call may call reset on the settings objects in case of first run
-	[settings finishedInitialization];
+	[self.settings finishedInitialization];
 	    
 	//Make sure that the settings are restored, since the user may have changed them via 'User Settings' of the iPhone/iPad device
 	[self loadSettings];
@@ -211,7 +205,7 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 }
 
 - (void)delayedInitialization {
-	[settings finishedInitialization];
+	[self.settings finishedInitialization];
 	for (id <BMApplicationContextDelegate> delegate in self.delegates) {
 		if ([(NSObject *)delegate respondsToSelector:@selector(applicationContextDidInitialize:)]) {
 			[delegate applicationContextDidInitialize:self];

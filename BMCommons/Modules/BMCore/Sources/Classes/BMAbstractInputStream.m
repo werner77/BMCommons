@@ -8,7 +8,12 @@
 #import <BMCommons/BMAbstractInputStream.h>
 #import <BMCommons/BMCore.h>
 
-@implementation BMAbstractInputStream
+@implementation BMAbstractInputStream {
+@private
+    CFReadStreamClientCallBack _copiedCallback;
+    CFStreamClientContext _copiedContext;
+    CFOptionFlags _requestedEvents;
+}
 
 
 @synthesize streamStatus = _streamStatus;

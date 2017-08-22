@@ -11,6 +11,8 @@
 
 @class BMDataRecorder;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Notification sent when any NSURLRequest will be sent.
  *
@@ -63,7 +65,7 @@ typedef BMCachingURLProtocolPredicateValue (^BMCachingURLProtocolPredicateBlock)
  *
  * Default is to handle all requests.
  */
-@property (class) BMCachingURLProtocolPredicateBlock protocolEnabledPredicateBlock;
+@property (class, nullable) BMCachingURLProtocolPredicateBlock protocolEnabledPredicateBlock;
 
 /**
  * If set, requests can selectively be allowed to be cached by this protocol or not.
@@ -71,7 +73,7 @@ typedef BMCachingURLProtocolPredicateValue (^BMCachingURLProtocolPredicateBlock)
  * Caching enabled or disabled on individual request level overrides the outcome of the block.
  * @see setCachingEnabled:forRequest:
  */
-@property (class) BMCachingURLProtocolPredicateBlock cachingEnabledPredicateBlock;
+@property (class, nullable) BMCachingURLProtocolPredicateBlock cachingEnabledPredicateBlock;
 
 /**
  The BMURLCache used to cache the responses.
@@ -81,14 +83,14 @@ typedef BMCachingURLProtocolPredicateValue (^BMCachingURLProtocolPredicateBlock)
 /**
  The header keys that should be included for cache equivalence, if nil (the default) the implementation will revert to exclude header keys mode.
  */
-+ (void)setIncludedHeaderKeysForCacheEquivalence:(NSArray *)headerKeys;
-+ (NSArray *)includedHeaderKeysForCacheEquivalence;
++ (void)setIncludedHeaderKeysForCacheEquivalence:(nullable NSArray *)headerKeys;
++ (nullable NSArray *)includedHeaderKeysForCacheEquivalence;
 
 /**
  The header keys that should be excluded for cache equivalence, if nil (the default) none will be excluded, so all headers are taken into account.
  */
-+ (void)setExcludedHeaderKeysForCacheEquivalence:(NSArray *)headerKeys;
-+ (NSArray *)excludedHeaderKeysForCacheEquivalence;
++ (void)setExcludedHeaderKeysForCacheEquivalence:(nullable NSArray *)headerKeys;
++ (nullable NSArray *)excludedHeaderKeysForCacheEquivalence;
 
 /**
  Whether the body of the request should be included to check cache equivalence. 
@@ -170,3 +172,5 @@ typedef BMCachingURLProtocolPredicateValue (^BMCachingURLProtocolPredicateBlock)
 + (void)waitUntilLoadingFinishedWithCompletion:(void (^)(BOOL loadingFinished, BOOL waited))completion timeout:(NSTimeInterval)timeout;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -9,16 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class that encapsulates a target/selector combination.
  */
-@interface BMAction : BMCoreObject {
-    @private
-	id __weak _target;
-	SEL _selector;
-}
+@interface BMAction : BMCoreObject
 
 @property (nonatomic, weak) id target;
 @property (nonatomic, assign) SEL selector;
 
 @end
+
+NS_ASSUME_NONNULL_END

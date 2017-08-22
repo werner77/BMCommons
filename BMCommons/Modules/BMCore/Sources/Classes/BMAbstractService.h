@@ -10,6 +10,8 @@
 #import <BMCommons/BMService.h>
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Abstract implementation of the BMService protocol.
  
@@ -96,7 +98,7 @@
  
  Sends [BMServiceDelegate service:updatedProgress:withMessage] to its delegate.
  */
-- (void)updateProgress:(double)progressPercentage withMessage:(NSString *)message;
+- (void)updateProgress:(double)progressPercentage withMessage:(nullable NSString *)message;
 
 /**
  Returns the delegate priority by asking the delegate for its priority using [BMServiceDelegate delegatePriorityForService:].
@@ -111,7 +113,7 @@
  Return YES in case the service started successfully with nil error, or NO in case of error in which case the error pointer should be filled with a meaningful error.
  Don't override the [BMService execute] method. This class implements it by calling this method.
  */
-- (BOOL)executeWithError:(NSError **)error;
+- (BOOL)executeWithError:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Override with custom converting logic to convert the raw result to the final result or error.
@@ -133,3 +135,6 @@
 - (void)reset;
 
 @end
+
+
+NS_ASSUME_NONNULL_END

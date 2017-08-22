@@ -12,6 +12,8 @@
 #import <BMCommons/BMSettingsPropertyDescriptor.h>
 #import <BMCommons/BMSingleton.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Base class for implementing application settings, stored in NSUserDefaults.
  */
@@ -65,3 +67,5 @@ BM_DECLARE_DEFAULT_SINGLETON
 + (NSString *)namespace;
 
 @end
+
+NS_ASSUME_NONNULL_END

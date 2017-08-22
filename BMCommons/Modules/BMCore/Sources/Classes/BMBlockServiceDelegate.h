@@ -11,6 +11,8 @@
 #import <BMCommons/BMService.h>
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Success block for service.
  */
@@ -44,16 +46,18 @@ typedef void (^BMServiceFailureBlock)(BOOL cancelled, NSError * error);
  
  If the owner is deallocated the service will automatically be cancelled.
  */
-@property (weak) id owner;
+@property (weak, nullable) id owner;
 
 /**
  The service for which this object is a delegate. 
  
  This property is only non-nil when the service is active.
  */
-@property (weak, readonly) id<BMService> service;
+@property (weak, readonly, nullable) id<BMService> service;
 
-- (id)initWithSuccess:(BMServiceSuccessBlock)success failure:(BMServiceFailureBlock)failure;
-- (id)initWithSuccess:(BMServiceSuccessBlock)success failure:(BMServiceFailureBlock)failure owner:(id)owner;
+- (id)initWithSuccess:(nullable BMServiceSuccessBlock)success failure:(nullable BMServiceFailureBlock)failure;
+- (id)initWithSuccess:(nullable BMServiceSuccessBlock)success failure:(nullable BMServiceFailureBlock)failure owner:(nullable id)owner;
 
 @end
+
+NS_ASSUME_NONNULL_END

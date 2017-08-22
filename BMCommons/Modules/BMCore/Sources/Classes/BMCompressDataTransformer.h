@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSUInteger, BMCompressionType) {
     BMCompressionTypeZLIB,
     BMCompressionTypeGZIP
@@ -21,3 +23,5 @@ typedef NS_ENUM(NSUInteger, BMCompressionType) {
 @property (nonatomic, assign) BMCompressionType compressionType;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMAbstractService.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Service that acts as a facade for 2 or more other services that are executed in succession.
  */
@@ -17,9 +19,9 @@
 /**
  Reference to the currently active underlying service.
  */
-@property(readonly) id <BMService> currentService;
+@property(nullable, readonly) id <BMService> currentService;
 
-- (id)initWithDelegate:(id <BMServiceDelegate>)theDelegate;
+- (id)initWithDelegate:(nullable id <BMServiceDelegate>)theDelegate;
 
 @end
 
@@ -36,3 +38,5 @@
 - (void)mockExecuteService:(id <BMService>)nextService withResult:(id)result isRaw:(BOOL)isRaw;
 
 @end
+
+NS_ASSUME_NONNULL_END
