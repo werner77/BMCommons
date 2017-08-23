@@ -39,7 +39,10 @@
 }
 
 - (void)dealloc {
-    if (_result) free(_result);
+    if (_result) {
+        free(_result);
+        _result = nil;
+    }
 }
 
 - (NSUInteger)lengthForDigest {
@@ -106,6 +109,20 @@
 - (NSString *)stringRepresentation {
     NSData *digestData = [self dataRepresentation];
     return digestData ? [BMEncodingHelper hexEncodedStringForData:digestData] : nil;
+}
+
+#pragma mark - Protected methods
+
+- (void)initDigest {
+
+}
+
+- (void)updateDigestWithBytes:(const void *)bytes length:(NSUInteger)length {
+
+}
+
+- (void)finalizeDigestWithResult:(unsigned char *)result {
+
 }
 
 @end

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Utility class for working with dates and date formatters. 
  
@@ -72,8 +74,10 @@
 
 /**
  Returns a Dateformatter with the specified date format and time zone.
+
+ Timezone is optional, if nil is supplied the UTC timezone is used.
  */
-+ (NSDateFormatter *)dateformatterWithFormat:(NSString *)format andTimeZone:(NSTimeZone *)timeZone;
++ (NSDateFormatter *)dateformatterWithFormat:(NSString *)format andTimeZone:(nullable NSTimeZone *)timeZone;
 
 /**
  Parses time from a string and adds it to the specified date using the specified time zone.
@@ -86,7 +90,7 @@
  @param timeZone The timeZone to use, or nil for UTC timezone.
  @return The resulting date.
  */
-+ (NSDate *)addTimeString:(NSString *)timeString withFormat:(NSString *)timeFormat toDate:(NSDate *)date withTimeZone:(NSTimeZone *)timeZone;
++ (NSDate *)addTimeString:(NSString *)timeString withFormat:(NSString *)timeFormat toDate:(NSDate *)date withTimeZone:(nullable NSTimeZone *)timeZone;
 
 /**
  Converts (shifts) a local date to the date it would be in UTC using the specified timezone.
@@ -112,6 +116,8 @@
 
 /**
  The default date formatter.
+
+ Defaults to rfc3339TimestampFractionalFormatterWithTimeZone.
  */
 + (NSDateFormatter *)defaultDateFormatter;
 
@@ -121,3 +127,5 @@
 + (void)setDefaultDateFormatter:(NSDateFormatter *)formatter;
 
 @end
+
+NS_ASSUME_NONNULL_END

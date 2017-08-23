@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Protocol defining an object containing an NSError.
  
@@ -21,6 +23,8 @@
 /**
  * The error contained by this object.
  */
-- (NSError *)error;
+- (nullable NSError *)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

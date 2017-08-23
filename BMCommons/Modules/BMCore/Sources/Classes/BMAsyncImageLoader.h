@@ -37,12 +37,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BMAsyncImageLoader(Protected)
 
+#if TARGET_OS_IPHONE
+
 /**
  * Sets the image to return.
  *
  * @param theImage The image
  */
 - (void)setImage:(nullable UIImage *)theImage;
+
+#endif
 
 @end
 

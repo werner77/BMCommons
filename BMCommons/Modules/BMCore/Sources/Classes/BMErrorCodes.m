@@ -2,7 +2,7 @@
 
 @implementation BMErrorCodes
 
-+ (NSString *)errorMessageForCodeAsString:(int)code {
++ (nullable NSString *)errorMessageForCodeAsString:(int)code {
 	return nil;
 }
 

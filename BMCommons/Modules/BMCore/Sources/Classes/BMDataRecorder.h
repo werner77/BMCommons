@@ -5,6 +5,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Class for performing data recording and playback.
  */
@@ -20,7 +22,7 @@
 /**
  * Path for the current recording identifier.
  */
-@property (nonatomic, readonly) NSString *currentRecordingIdentifier;
+@property (nullable, nonatomic, readonly) NSString *currentRecordingIdentifier;
 
 /**
  * Whether playback is currently active or not
@@ -61,13 +63,15 @@
 
 /**
  * Works only in recording mode: saves the specified result for the specified recording class and digest.
+ *
+ * The digest is used to uniquely identify the recorded result. If nil it will just be stored with incrementing count as identifier.
  */
-- (void)recordResult:(id)result forRecordingClass:(NSString *)recordingClassIdenfier withDigest:(NSString *)digest;
+- (void)recordResult:(id)result forRecordingClass:(NSString *)recordingClassIdenfier withDigest:(nullable NSString *)digest;
 
 /**
  * Works only in playback mode: loads the recorded result for the specified recording class and digest.
  */
-- (id)recordedResultForRecordingClass:(NSString *)recordingClassIdentier withDigest:(NSString *)digest;
+- (id)recordedResultForRecordingClass:(NSString *)recordingClassIdentier withDigest:(nullable NSString *)digest;
 
 /**
  * Writes a message to the recording log.
@@ -75,3 +79,5 @@
 - (void)writeToRecordingLog:(NSString *)message;
 
 @end
+
+NS_ASSUME_NONNULL_END

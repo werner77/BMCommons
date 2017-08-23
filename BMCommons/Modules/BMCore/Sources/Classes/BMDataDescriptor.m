@@ -8,7 +8,8 @@
 
 #import <BMCommons/BMDataDescriptor.h>
 
-@implementation BMDataDescriptor 
+@implementation BMDataDescriptor  {
+}
 
 @synthesize fileName = _fileName;
 @synthesize contentType = _contentType;

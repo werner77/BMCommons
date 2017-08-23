@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Encryption utility methods.
  
@@ -39,3 +41,5 @@
 + (NSString *)stringWithMD5DigestOfFileAtPath:(NSString *)filePath;
 
 @end
+
+NS_ASSUME_NONNULL_END

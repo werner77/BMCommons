@@ -17,19 +17,12 @@
 - (instancetype)init {
     if (self = [super init]) {
         _recordingDictionary = [NSMutableDictionary new];
+        self.recordingDirPath = [NSFileManager defaultManager].currentDirectoryPath;
     }
     return self;
 }
 
 #pragma mark - Recording/Playback
-
-- (NSString *)recordingDirPath {
-    NSString *ret = _recordingDirPath;
-    if (_recordingDirPath == nil) {
-        ret = [NSFileManager defaultManager].currentDirectoryPath;
-    }
-    return ret;
-}
 
 - (NSUInteger)incrementedRecordingCountForServiceOfClass:(NSString *)serviceClassName withDigest:(NSString *)digest {
     NSString *key = [NSString stringWithFormat:@"%@-%@", serviceClassName, [BMStringHelper filterNilString:digest]];

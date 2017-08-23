@@ -211,9 +211,10 @@ static NSDateFormatter *rfc1123DateFormatter = nil;
 	NSDateFormatter *df = [[NSDateFormatter alloc] init];
 	[df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
 	[df setDateFormat:format];
-    if (timeZone) {
-        [df setTimeZone:timeZone];
+    if (!timeZone) {
+        timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
     }
+	[df setTimeZone:timeZone];
 	return (NSDateFormatter *)[[BMProxy alloc] initWithObject:df threadSafe:YES];
 }
 

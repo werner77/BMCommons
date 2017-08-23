@@ -9,7 +9,11 @@
 #import <BMCommons/BMEnumeratorWrapper.h>
 
 
-@implementation BMEnumeratorWrapper 
+@implementation BMEnumeratorWrapper {
+@private
+	NSEnumerator *_enumerator;
+	id <BMEnumeratorDelegate> _delegate;
+}
 
 + (BMEnumeratorWrapper *)enumeratorWrapperWithEnumerator:(NSEnumerator *)enumerator delegate:(id <BMEnumeratorDelegate>)theDelegate {
 	return [[BMEnumeratorWrapper alloc] initWithEnumerator:enumerator delegate:theDelegate];

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Helper methods for converting data to NSString using various encoding methods.
  */
@@ -17,12 +19,12 @@
 /**
  Converts a BASE-64 encoded string to data. Standard (non-url friendly) encoding is assumed.
  */
-+ (NSData *)dataWithBase64EncodedString:(NSString *)string;
++ (nullable NSData *)dataWithBase64EncodedString:(NSString *)string;
 
 /**
  Converts a BASE-64 encoded string to data. If urlFriendly is set to true a modified base64 charset is used with only URL supported characters.
  */
-+ (NSData *)dataWithBase64EncodedString:(NSString *)string urlFriendly:(BOOL)urlFriendly;
++ (nullable NSData *)dataWithBase64EncodedString:(NSString *)string urlFriendly:(BOOL)urlFriendly;
 
 /**
  Decodes BASE-64 encoded data. Standard (non-url friendly) encoding is assumed.
@@ -75,3 +77,5 @@
 + (NSString *)hexEncodedStringForData:(NSData *)data;
 
 @end
+
+NS_ASSUME_NONNULL_END

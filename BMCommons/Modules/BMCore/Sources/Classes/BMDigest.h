@@ -14,6 +14,8 @@ typedef NS_ENUM(NSUInteger, BMDigestType) {
     BMDigestTypeSHA256,
 };
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Utility class for calculating digests.
  */
@@ -26,14 +28,14 @@ typedef NS_ENUM(NSUInteger, BMDigestType) {
  
  If last is set the digest is finalized and no further data can be appended.
  */
-- (void)updateWithData:(NSData *)data last:(BOOL)last;
+- (void)updateWithData:(nullable NSData *)data last:(BOOL)last;
 
 /**
  Updates the digest with the specified bytes and length.
  
  If last is set the digest is finalized and no further data can be appended.
  */
-- (void)updateWithBytes:(const void *)bytes length:(NSUInteger)length last:(BOOL)last;
+- (void)updateWithBytes:(const void * _Nullable)bytes length:(NSUInteger)length last:(BOOL)last;
 
 /**
  Updates the digest with the values as returned from the properties of the specified object.
@@ -54,14 +56,14 @@ typedef NS_ENUM(NSUInteger, BMDigestType) {
  
  Returns nil if not yet finalized.
  */
-- (NSData *)dataRepresentation;
+- (nullable NSData *)dataRepresentation;
 
 /**
  The resulting digest as Hex encoded string.
  
  Returns nil if not yet finalized.
  */
-- (NSString *)stringRepresentation;
+- (nullable NSString *)stringRepresentation;
 
 /**
  Finalizes the digest.
@@ -82,3 +84,5 @@ typedef NS_ENUM(NSUInteger, BMDigestType) {
 - (void)finalizeDigestWithResult:(unsigned char *)result;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -9,22 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  A descriptor for data containing a filename, contentType, data, whether it is or should be compressed and/or base64 encoded.
  */
-@interface BMDataDescriptor : BMCoreObject {
-    @private
-    NSString *_fileName;
-    NSString *_contentType;
-    NSData *_data;
-    BOOL _compress;
-    BOOL _encodeBase64;
-}
+@interface BMDataDescriptor : BMCoreObject
 
 /**
  The filename for the data.
  */
-@property (nonatomic, strong) NSString *fileName;
+@property (nullable, nonatomic, strong) NSString *fileName;
 
 /**
  The content type for the data.
@@ -51,3 +46,5 @@
 + (BMDataDescriptor *)dataDescriptorWithFileName:(NSString *)fileName contentType:(NSString *)contentType data:(NSData *)data;
 
 @end
+
+NS_ASSUME_NONNULL_END

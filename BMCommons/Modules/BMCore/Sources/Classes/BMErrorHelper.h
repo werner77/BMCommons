@@ -8,6 +8,8 @@
 
 #import <BMCommons/BMErrorCodes.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Utility methods for creating/manipulating NSError objects.
  */
@@ -23,7 +25,7 @@
 /**
  Returns an NSError object for the specified domain, code and localized description
  */
-+ (NSError *)errorForDomain:(NSString *)domain code:(NSInteger)code description:(NSString *)description;
++ (NSError *)errorForDomain:(NSString *)domain code:(NSInteger)code description:(nullable NSString *)description;
 
 /**
  Returns an error for the specified domain, code, localized description and underlying error.
@@ -34,12 +36,12 @@
  @param underlyingError The underlying NSError object.
  @return The error object
  */
-+ (NSError *)errorForDomain:(NSString *)domain code:(NSInteger)code description:(NSString *)description underlyingError:(NSError *)underlyingError;
++ (NSError *)errorForDomain:(NSString *)domain code:(NSInteger)code description:(nullable NSString *)description underlyingError:(nullable NSError *)underlyingError;
 
 /**
  Returns an NSError object with domain ERROR_DOMAIN_OTHER and code ERROR_CODE_UNKNOWN with the specified description.
  */
-+ (NSError *)genericErrorWithDescription:(NSString *)description;
++ (NSError *)genericErrorWithDescription:(nullable NSString *)description;
 
 /**
  Returns an NSError object with domain ERROR_DOMAIN_OTHER and code ERROR_CODE_UNKNOWN with the specified description.
@@ -48,7 +50,7 @@
  @param underlyingError The underlying NSError object.
  @return The error object
  */
-+ (NSError *)genericErrorWithDescription:(NSString *)description underlyingError:(NSError *)underlyingError;
++ (NSError *)genericErrorWithDescription:(nullable NSString *)description underlyingError:(nullable NSError *)underlyingError;
 
 @end
 
@@ -57,6 +59,8 @@
 /**
  Underlying error for this error.
  */
-- (NSError *)underlyingError;
+- (nullable NSError *)underlyingError;
 
 @end
+
+NS_ASSUME_NONNULL_END

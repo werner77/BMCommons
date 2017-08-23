@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Delegate protocol for BMEnumeratorWrapper to be notified when objects are enumerated.
  */
@@ -23,14 +25,12 @@
 /**
  Wrapper for an enumerator containing functionality to notify a delegate of the objects being enumerated.
  */
-@interface BMEnumeratorWrapper : NSEnumerator {
-@private
-	NSEnumerator *_enumerator;
-	id <BMEnumeratorDelegate> _delegate;
-}
+@interface BMEnumeratorWrapper : NSEnumerator
 
-+ (BMEnumeratorWrapper *)enumeratorWrapperWithEnumerator:(NSEnumerator *)enumerator delegate:(id <BMEnumeratorDelegate>)theDelegate;
++ (BMEnumeratorWrapper *)enumeratorWrapperWithEnumerator:(NSEnumerator *)enumerator delegate:(nullable id <BMEnumeratorDelegate>)theDelegate;
 
-- (id)initWithEnumerator:(NSEnumerator *)theEnumerator delegate:(id <BMEnumeratorDelegate>)theDelegate;
+- (id)initWithEnumerator:(NSEnumerator *)theEnumerator delegate:(nullable id <BMEnumeratorDelegate>)theDelegate;
 
 @end
+
+NS_ASSUME_NONNULL_END

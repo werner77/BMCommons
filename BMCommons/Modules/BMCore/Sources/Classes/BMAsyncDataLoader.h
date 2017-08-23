@@ -225,7 +225,7 @@ typedef NS_ENUM(NSUInteger, BMAsyncDataLoaderCacheState) {
 /**
  * Sets the object associated with the data loader.
  *
- * @param object
+ * @param object The object
  */
 - (void)setObject:(nullable id)object;
 

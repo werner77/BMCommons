@@ -48,6 +48,8 @@
 
 //Code greater than 100 are HTTP error codes
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Helper class containing definitions for error codes/domains
  */
@@ -55,6 +57,8 @@
 	
 }
 
-+ (NSString *)errorMessageForCodeAsString:(int)code;
++ (nullable NSString *)errorMessageForCodeAsString:(int)code;
 
 @end
+
+NS_ASSUME_NONNULL_END

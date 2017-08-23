@@ -137,12 +137,13 @@ id value; \
 while ((value = va_arg(args, id)) != nil) {[argArray addObject:value]; } \
 va_end(args); argArray;})
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * NSUInteger with all bits set
  */
 extern const NSUInteger BMAnyEnumValueMask;
-
-NS_ASSUME_NONNULL_BEGIN
 
 
 #if defined(__cplusplus)
@@ -285,8 +286,6 @@ extern "C" {
 }
 #endif
 
-NS_ASSUME_NONNULL_END
-
 /**
  BMCore Module
  */
@@ -295,3 +294,5 @@ NS_ASSUME_NONNULL_END
 + (id)instance;
 
 @end
+
+NS_ASSUME_NONNULL_END
