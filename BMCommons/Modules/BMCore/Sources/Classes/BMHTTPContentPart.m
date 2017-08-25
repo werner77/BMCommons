@@ -24,7 +24,12 @@
 
 @end
 
-@implementation BMHTTPContentPart 
+@implementation BMHTTPContentPart {
+@private
+    NSInputStream *_dataStream;
+    NSDictionary *_headers;
+    NSUInteger _dataLength;
+}
 
 @synthesize dataStream = _dataStream;
 @synthesize headers = _headers;

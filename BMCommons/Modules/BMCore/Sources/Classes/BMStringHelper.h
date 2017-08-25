@@ -143,4 +143,13 @@
  */
 + (NSString *)queryStringFromParameters:(NSDictionary *)parameters includeQuestionMark:(BOOL)includeQuestionMark useBase64Encoding:(BOOL)useBase64Encoding;
 
+/**
+ * Generates a random string of the specified length using the specified character set for the characters to source from.
+ *
+ * @param length The length of the string to generate
+ * @param characterSet The characterset to use or nil for the default alphanumericCharacterSet.
+ * @return The generated random string.
+ */
++ (NSString *)randomStringOfLength:(NSUInteger)length charSet:(nullable NSCharacterSet *)characterSet;
+
 @end

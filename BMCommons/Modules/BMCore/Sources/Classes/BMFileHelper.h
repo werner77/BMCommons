@@ -8,6 +8,8 @@
 
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class with file utility methods
  */
@@ -18,7 +20,7 @@
 /**
  Returns the application's documents directory.
  */
-+ (NSString *)documentsDirectory;
++ (nullable NSString *)documentsDirectory;
 
 /**
  Returns the temporary directory.
@@ -30,7 +32,7 @@
  
  @return The file path of the created file
  */
-+ (NSString *)createTempFile;
++ (nullable NSString *)createTempFile;
 
 /**
  Creates a unique file with specified extension in the specified dir
@@ -39,36 +41,36 @@
  @param extension The extension of the file to create. Extension should not include the "."
  @return The file path of the created file
  */
-+ (NSString *)createTempFileInDir:(NSString *)dir withExtension:(NSString *)extension;
++ (nullable NSString *)createTempFileInDir:(NSString *)dir withExtension:(nullable NSString *)extension;
 
 /**
  Prepends the document dir to the specified filename giving the full path to the file.
  */
-+ (NSString *)fullDocumentPath:(NSString *)fileName;
++ (nullable NSString *)fullDocumentPath:(NSString *)fileName;
 
 /**
  Prepends the document dir and specified subDir to the specified filename giving the full path to the file.
  */
-+ (NSString *)fullDocumentPath:(NSString *)fileName inSubDir:(NSString *)subDir;
++ (nullable NSString *)fullDocumentPath:(NSString *)fileName inSubDir:(nullable NSString *)subDir;
 
 /**
  Reads in the file with the specified filename from the documents dir and returns the data contained within it.
  */
-+ (NSData *)applicationDataFromFile:(NSString *)fileName;
++ (nullable NSData *)applicationDataFromFile:(NSString *)fileName;
 
 /**
  (Over)writes application data to the file with the specified filename in the documents dir.
  
- @returns true if successful, false otherwise. Error is logged.
+ @returns The path to the file written, or nil if unsuccessful.
  */
-+ (NSString *)writeApplicationData:(NSData *)data toFile:(NSString *)fileName;
++ (nullable NSString *)writeApplicationData:(NSData *)data toFile:(NSString *)fileName;
 
 /**
  (Over)writes application data to the file with the specified filename in the specified subDir of the documents dir.
  
- @returns true if successful, false otherwise. Error is logged.
+ @returns The path to the file written, or nil if unsuccessful.
  */
-+ (NSString *)writeApplicationData:(NSData *)data toFile:(NSString *)fileName inSubDir:(NSString *)subDir;
++ (nullable NSString *)writeApplicationData:(NSData *)data toFile:(NSString *)fileName inSubDir:(nullable NSString *)subDir;
 
 /**
  Removes the file with the specified filename from the documents dir.
@@ -80,32 +82,32 @@
 /**
  Returns an array of filenames of the the files in the specified directory.
  */
-+ (NSArray *)listDocumentsInDir:(NSString *)directory;
++ (nullable NSArray *)listDocumentsInDir:(NSString *)directory;
 
 /**
  Returns an array of filenames of the the files in the specified directory with the specified extension.
  */
-+ (NSArray *)listDocumentsInDir:(NSString *)directory withExtension:(NSString *)extension;
++ (nullable NSArray *)listDocumentsInDir:(NSString *)directory withExtension:(nullable NSString *)extension;
 
 /**
  Returns an array of file paths of the the files in the specified directory with the specified extension.
  */
-+ (NSArray *)listFilePathsInDir:(NSString *)directory withExtension:(NSString *)extension;
++ (nullable NSArray *)listFilePathsInDir:(NSString *)directory withExtension:(nullable NSString *)extension;
 
 /**
  Returns an array of filenames of the the files in the documents directory.
  */
-+ (NSArray *)listApplicationDocuments;
++ (nullable NSArray *)listApplicationDocuments;
 
 /**
  Returns an array of filenames of the the files in the documents directory with the specified extension.
  */
-+ (NSArray *)listApplicationDocumentsWithExtension:(NSString *)extension;
++ (nullable NSArray *)listApplicationDocumentsWithExtension:(nullable NSString *)extension;
 
 /**
  Returns an array of filenames of the the files in the subDir of the documents directory with the specified extension.
  */
-+ (NSArray *)listApplicationDocumentsWithExtension:(NSString *)extension inSubDir:(NSString *)subDir;
++ (nullable NSArray *)listApplicationDocumentsWithExtension:(nullable NSString *)extension inSubDir:(nullable NSString *)subDir;
 
 /**
  Removes all files from the specified directory.
@@ -117,23 +119,25 @@
  
  File is not created, only a path is returned.
  */
-+ (NSString *)uniqueTempFileWithExtension:(NSString *)extension;
++ (NSString *)uniqueTempFileWithExtension:(nullable NSString *)extension;
 
 /**
  Returns a unique file path to a file in the specified directory with the specified extension. 
  
  File is not created, only a path is returned.
  */
-+ (NSString *)uniqueFileInDir:(NSString *)dir withExtension:(NSString *)extension;
++ (NSString *)uniqueFileInDir:(NSString *)dir withExtension:(nullable NSString *)extension;
 
 /**
  Returns a unique file name with the specified extension.
  */
-+ (NSString *)uniqueFileNameWithExtension:(NSString *)extension;
++ (NSString *)uniqueFileNameWithExtension:(nullable NSString *)extension;
 
 /**
  Returns the creation date for the file at the specified path or nil if the file is not found.
  */
-+ (NSDate *)creationDateForFileAtPath:(NSString *)filePath;
++ (nullable NSDate *)creationDateForFileAtPath:(NSString *)filePath;
 
 @end
+
+NS_ASSUME_NONNULL_END

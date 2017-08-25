@@ -255,6 +255,19 @@
     return ret;
 }
 
++ (NSString *)randomStringOfLength:(NSUInteger)length charSet:(nullable NSCharacterSet *)characterSet {
+    if (characterSet == nil) {
+        characterSet = [NSCharacterSet alphanumericCharacterSet];
+    }
+    NSMutableString *ret = [[NSMutableString alloc] initWithCapacity:length];
+
+    for (NSUInteger i = 0; i < length; ++i) {
+
+    }
+    return ret;
+}
+
+
 + (NSString *)queryStringFromParameters:(NSDictionary *)parameters {
     return [self queryStringFromParameters:parameters includeQuestionMark:YES];
 }

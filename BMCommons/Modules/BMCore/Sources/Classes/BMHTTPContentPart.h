@@ -13,15 +13,12 @@
 #define BM_HTTP_CONTENT_DISPOSITION_HEADER @"Content-Disposition"
 #define BM_HTTP_CONTENT_TRANSFER_ENCODING_HEADER @"Content-Transfer-Encoding"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class representing a content part in a multi-part HTTP POST request.
  */
-@interface BMHTTPContentPart : BMCoreObject {
-    @private
-	NSInputStream *_dataStream;
-	NSDictionary *_headers;
-    NSUInteger _dataLength;
-}
+@interface BMHTTPContentPart : BMCoreObject
 
 /**
  The total data length in bytes.
@@ -36,7 +33,7 @@
 /**
  HTTP header dictionary.
  */
-@property (nonatomic, strong) NSDictionary *headers;
+@property (nonatomic, strong, nullable) NSDictionary *headers;
 
 /**
  Generic content part with supplied headers and data.
@@ -60,20 +57,23 @@
  ContentType is optional, defaults to application/octet-stream or application/x-gzip if compressed.
  
  @param name The name for the part which is encoded as "form-data; name=xxx" in the actual request
- @param filename The filename for this part which is encoded as form-data; filename=xxx" in the actual request.
+ @param filename The optional filename for this part which is encoded as form-data; filename=xxx" in the actual request.
  @param data The data for this content part
  @param encodeBase64 Whether the data should be BASE-64 encoded or not
  @param compress Whether the data should be compressed using gzip or not
  @param contentType The content type for this part. If compress == true this will be overridden with application/x-gzip.
+ If null is supplied contentType will default to application/octet-stream.
  */
-+ (BMHTTPContentPart *)contentPartWithName:(NSString *)name filename:(NSString *)filename data:(NSData *)data encodeBase64:(BOOL)encodeBase64 compress:(BOOL)compress contentType:(NSString *)contentType;
++ (BMHTTPContentPart *)contentPartWithName:(NSString *)name filename:(nullable NSString *)filename data:(NSData *)data encodeBase64:(BOOL)encodeBase64 compress:(BOOL)compress contentType:(nullable NSString *)contentType;
 
 /**
  Content part for a file with the supplied URL. 
  
  Filename is determined automatically from the last part of the URL path.
+ If null is supplied for the contentType, it will default to application/octet-stream.
+
  */
-+ (BMHTTPContentPart *)contentPartWithName:(NSString *)name fileURL:(NSURL *)fileURL contentType:(NSString *)contentType;
++ (BMHTTPContentPart *)contentPartWithName:(NSString *)name fileURL:(NSURL *)fileURL contentType:(nullable NSString *)contentType;
 
 /**
  Content part for a file with the supplied URL.
@@ -100,4 +100,7 @@
 + (NSArray *)contentPartsFromParameters:(NSDictionary *)parameters;
 
 @end
+
+NS_ASSUME_NONNULL_END
+
 

@@ -26,7 +26,7 @@
 }
 
 - (BOOL)isExpiredWithInterval:(NSTimeInterval)expirationInterval {
-    return [self.modificationDate timeIntervalSinceNow] < -expirationInterval;
+    return self.modificationDate == nil || [self.modificationDate timeIntervalSinceNow] < -expirationInterval;
 }
 
 - (BOOL)isExpired {

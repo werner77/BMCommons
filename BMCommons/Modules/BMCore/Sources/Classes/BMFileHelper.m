@@ -78,7 +78,7 @@
 	
     NSString *appFile = [BMFileHelper fullDocumentPath:fileName];
 	
-    NSData *myData = [[NSData alloc] initWithContentsOfFile:appFile];
+    NSData *myData = appFile ? [[NSData alloc] initWithContentsOfFile:appFile] : nil;
 	
     return myData;
 	
@@ -115,6 +115,8 @@
 
 
 + (NSArray *)listDocumentsInDir:(NSString *)directory {
+	if (!directory) return nil;
+
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	NSError *error;
 	NSArray *files = [fileManager contentsOfDirectoryAtPath:directory error:&error];
@@ -152,6 +154,9 @@
 
 + (NSArray *)listFilePathsInDir:(NSString *)directory withExtension:(NSString *)extension {
     NSArray *filenames = [self listDocumentsInDir:directory withExtension:extension];
+
+	if (!filenames) return nil;
+
     NSMutableArray *filePaths = [NSMutableArray array];
     for (NSString *filename in filenames) {
         NSString *filePath = [directory stringByAppendingPathComponent:filename];

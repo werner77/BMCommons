@@ -10,6 +10,8 @@
 
 @class BMCache;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Mutable array which is backed by a temporary file to avoid memory issues for a big number of objects.
  
@@ -28,3 +30,5 @@
 - (unsigned long long)fileSize;
 
 @end
+
+NS_ASSUME_NONNULL_END

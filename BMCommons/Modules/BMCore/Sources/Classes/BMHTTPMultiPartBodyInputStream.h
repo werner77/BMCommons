@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMAbstractInputStream.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Inputstream for doing a HTTP multipart post with specified content parts in a streaming fashion.
  
@@ -17,25 +19,18 @@
  @see BMHTTPContentPart
  @see BMHTTPRequest
  */
-@interface BMHTTPMultiPartBodyInputStream : BMAbstractInputStream {
-@private
-    NSArray *_contentParts;
-    NSString *_boundaryString;
-    
-    NSInputStream *_currentContentPartHeaderInputStream;
-    NSInputStream *_currentContentPartDataInputStream;
-    NSInteger _currentContentPartIndex;
-    NSUInteger _totalBytesRead;
-    NSUInteger _calculatedLength;
-}
+@interface BMHTTPMultiPartBodyInputStream : BMAbstractInputStream
+
+@property (nonatomic, readonly) NSString *boundaryString;
 
 /**
  Initializes with the specified array of BMHTTPContentPart instances and unique boundary string to separate the parts in the multipart body.
  
  @param contentParts Instances of BMHTTPContentPart.
  @param boundaryString A unique string to separate the content parts from each other. This string should not occur in the data of any of the content parts.
+ If nil is supplied a default boundary string will be generated.
  */
-- (id)initWithContentParts:(NSArray *)contentParts boundaryString:(NSString *)boundaryString;
+- (id)initWithContentParts:(NSArray *)contentParts boundaryString:(nullable NSString *)boundaryString;
 
 /**
  Resets the stream.
@@ -53,3 +48,5 @@
 - (NSUInteger)totalBytesRead;
 
 @end
+
+NS_ASSUME_NONNULL_END

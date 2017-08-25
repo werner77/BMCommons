@@ -27,14 +27,24 @@
 
 @end
 
-@implementation BMHTTPMultiPartBodyInputStream 
+@implementation BMHTTPMultiPartBodyInputStream {
+@private
+    NSArray *_contentParts;
+    NSString *_boundaryString;
+
+    NSInputStream *_currentContentPartHeaderInputStream;
+    NSInputStream *_currentContentPartDataInputStream;
+    NSInteger _currentContentPartIndex;
+    NSUInteger _totalBytesRead;
+    NSUInteger _calculatedLength;
+}
 
 @synthesize currentContentPartHeaderInputStream = _currentContentPartHeaderInputStream, currentContentPartDataInputStream = _currentContentPartDataInputStream;
 
 - (id)initWithContentParts:(NSArray *)theContentParts boundaryString:(NSString *)theBoundaryString {
     if ((self = [self init])) {
         _contentParts = theContentParts;
-        _boundaryString = theBoundaryString;
+        _boundaryString = theBoundaryString ?: [BMStringHelper stringWithUUID];
         _currentContentPartIndex = -1;
         _totalBytesRead = 0;
     }
@@ -43,8 +53,6 @@
 
 - (void)dealloc {
     [self close];
-    
-    
 }
 
 - (void)reset {

@@ -8,18 +8,22 @@
 
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BMFileAttributes : BMCoreObject
 
 @property (assign) BOOL pinned;
-@property (strong) NSDate *modificationDate;
+@property (nullable, strong) NSDate *modificationDate;
 @property (assign) long long fileSize;
 @property (strong) NSString *filePath;
 @property (assign) NSTimeInterval expirationTimeInterval;
 
-+ (instancetype)fileAttributesForFileAtPath:(NSString *)filePath fileSize:(long long)fileSize modificationDate:(NSDate *)modificationDate pinned:(BOOL)pinned expirationTimeInterval:(NSTimeInterval)expirationTimeInterval;
++ (instancetype)fileAttributesForFileAtPath:(NSString *)filePath fileSize:(long long)fileSize modificationDate:(nullable NSDate *)modificationDate pinned:(BOOL)pinned expirationTimeInterval:(NSTimeInterval)expirationTimeInterval;
 
 - (BOOL)isExpiredWithInterval:(NSTimeInterval)expirationInterval;
 
 - (BOOL)isExpired;
 
 @end
+
+NS_ASSUME_NONNULL_END
