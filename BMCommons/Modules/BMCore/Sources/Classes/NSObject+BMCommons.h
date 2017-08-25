@@ -148,7 +148,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  The return value is a pointer to an autoreleased buffer holding the return value of the invoked method. The size of the buffer is returned in the argument returnLength. Caller may copy the value from this buffer using memcopy for example.
  */
-- (nullable void *)bmInvokeSelector:(SEL)selector withArgs:(void **)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount returnLength:(NSUInteger *)returnLength;
+- (nullable void *)bmInvokeSelector:(SEL)selector withArgs:(void *_Nonnull *_Nonnull)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount returnLength:(NSUInteger *)returnLength;
 
 /**
  Safe invoke selector method.
@@ -184,7 +184,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @see invokeSelector:withArgs:argCount:returnLength:
  */
-- (nullable void *)bmSafeInvokeSelector:(SEL)selector withArgs:(void **)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount returnLength:(NSUInteger *)returnLength;
+- (nullable void *)bmSafeInvokeSelector:(SEL)selector withArgs:(void *_Nonnull *_Nonnull)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount returnLength:(NSUInteger *)returnLength;
 
 /**
  Performs a safe cast: checks whether this object is an instance of the supplied class, if not returns nil.
