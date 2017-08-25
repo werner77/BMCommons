@@ -9,7 +9,10 @@
 #import <BMCommons/BMProxy.h>
 #import <BMCommons/BMCore.h>
 
-@implementation BMProxy 
+@implementation BMProxy {
+@private
+    __strong NSObject *_retainedObject;
+}
 
 @synthesize threadSafe = _threadSafe;
 @synthesize object = _object;

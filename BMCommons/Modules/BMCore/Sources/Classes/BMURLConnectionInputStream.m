@@ -17,6 +17,7 @@
 
 @implementation BMURLConnectionInputStream {
     NSUInteger _retryCount;
+    NSURLConnection* _connection;
 }
 
 @dynamic delegate;
@@ -29,6 +30,10 @@
         self.request = request;
         [self initializeConnection];
 		_urlConnectionDelegate = theDelegate;
+
+        if (_connection == nil) {
+            return nil;
+        }
     }
     return self;
 }

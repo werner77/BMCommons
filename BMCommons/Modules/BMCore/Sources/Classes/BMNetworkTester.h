@@ -11,6 +11,8 @@
 
 #define BM_NETWORKTESTER_DEFAULT_TEST_HOSTNAME @"www.google.com"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMNetworkTester;
 
 /**
@@ -28,12 +30,7 @@
 /**
 Class for testing network availability asynchronously
 */
-@interface BMNetworkTester : BMCoreObject {
-    @private
-    NSString *_testHostName;
-    NSObject <BMNetworkTesterDelegate> *__weak _delegate;
-    BMNetworkStatus _networkStatus;
-}
+@interface BMNetworkTester : BMCoreObject
 
 /**
  The hostname to use for testing. 
@@ -45,7 +42,7 @@ Class for testing network availability asynchronously
 /**
  The delegate to receive response.
  */
-@property(weak) NSObject <BMNetworkTesterDelegate> *delegate;
+@property(nullable, weak) NSObject <BMNetworkTesterDelegate> *delegate;
 
 /**
  The tested network status.
@@ -63,3 +60,5 @@ Class for testing network availability asynchronously
 
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -10,12 +10,14 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIImage (BMCommons)
 
 /**
  Optimized and thread safe version to construct a UIImage from NSData.
  */
-+ (UIImage *)bmImageWithData:(NSData *)data;
++ (nullable UIImage *)bmImageWithData:(NSData *)data;
 
 /**
  If set to true (which is the default) JPEGs will be decoded and redrawn upon load which (if done in the background) will speed up image behavior during scrolling because the resulting image from bmImageWithData will be fully decoded already.
@@ -31,5 +33,7 @@
 
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 #endif

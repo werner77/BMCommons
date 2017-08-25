@@ -11,7 +11,8 @@
 #import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMCore.h>
 
-@implementation BMStringToDateValueTransformer 
+@implementation BMStringToDateValueTransformer  {
+}
 
 @synthesize dateFormatter = _dateFormatter;
 

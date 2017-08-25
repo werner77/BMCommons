@@ -16,6 +16,8 @@ typedef NS_ENUM(NSUInteger, BMURLCacheState) {
     BMURLCacheStateMemory = 2
 };
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Local Cache for storing remote images/files. 
  
@@ -54,7 +56,6 @@ typedef NS_ENUM(NSUInteger, BMURLCacheState) {
  * The path to the directory of the disk cache.
  */
 @property(copy, readonly) NSString* cachePath;
-
 
 /**
  * Gets the path to the directory of the disk cache for etags.
@@ -138,13 +139,13 @@ typedef NS_ENUM(NSUInteger, BMURLCacheState) {
  @param name The name of the cache
  @param persistent Whether or not the data should be persistent, i.e. should reside in the documents directory instead of in the caches directory.
  */
-- (id)initWithName:(NSString*)name persistent:(BOOL)persistent;
+- (nullable id)initWithName:(NSString*)name persistent:(BOOL)persistent;
 
 
 /**
  * Initializes a non-persistent cache with the specified name
  */
-- (id)initWithName:(NSString*)name;
+- (nullable id)initWithName:(NSString*)name;
 
 /**
  * Gets the key that would be used to cache a URL response.
@@ -206,26 +207,26 @@ typedef NS_ENUM(NSUInteger, BMURLCacheState) {
  *
  * @return nil if the URL is not cached.
  */
-- (NSData*)dataForURL:(NSString*)URL;
+- (nullable NSData*)dataForURL:(NSString*)URL;
 
 /**
  Returns the data for the specified key or nil if not found.
  */
-- (NSData *)dataForKey:(NSString *)key;
+- (nullable NSData *)dataForKey:(NSString *)key;
 
 /**
  Returns the file attributes for the cached entity for the specified URL.
  
  If not entry exists on disk for the specified URL, this method returns nil.
  */
-- (BMFileAttributes *)fileAttributesForURL:(NSString *)URL;
+- (nullable BMFileAttributes *)fileAttributesForURL:(NSString *)URL;
 
 /**
  Returns the file attributes for the cached entity for the specified key.
  
  If not entry exists on disk for the specified key, this method returns nil.
  */
-- (BMFileAttributes *)fileAttributesForKey:(NSString *)key;
+- (nullable BMFileAttributes *)fileAttributesForKey:(NSString *)key;
 
 
 #if TARGET_OS_IPHONE
@@ -237,7 +238,7 @@ typedef NS_ENUM(NSUInteger, BMURLCacheState) {
  *
  * @return nil if the URL is not cached.
  */
-- (id)imageForURL:(NSString*)URL;
+- (nullable id)imageForURL:(NSString*)URL;
 
 /**
  * Gets an image from the in-memory image cache.
@@ -246,21 +247,18 @@ typedef NS_ENUM(NSUInteger, BMURLCacheState) {
  *
  * @return nil if the URL is not cached.
  */
-- (id)imageForURL:(NSString*)URL fromDisk:(BOOL)fromDisk;
+- (nullable id)imageForURL:(NSString*)URL fromDisk:(BOOL)fromDisk;
 
-- (UIImage *)imageForKey:(NSString*)key;
+- (nullable UIImage *)imageForKey:(NSString*)key;
 
-- (UIImage *)imageForKey:(NSString*)key fromDisk:(BOOL)fromDisk;
-
+- (nullable UIImage *)imageForKey:(NSString*)key fromDisk:(BOOL)fromDisk;
 
 #endif
-
-
 
 /**
  * Get an etag value for a given cache key.
  */
-- (NSString*)etagForKey:(NSString*)key;
+- (nullable NSString*)etagForKey:(NSString*)key;
 
 /**
  * Stores data in the disk cache.
@@ -311,7 +309,6 @@ typedef NS_ENUM(NSUInteger, BMURLCacheState) {
 
 #endif
 
-
 /**
  * Convenient way to create a temporary URL for some data and cache in on disk.
  *
@@ -324,27 +321,31 @@ typedef NS_ENUM(NSUInteger, BMURLCacheState) {
  *
  * @return The temporary URL
  */
-- (NSString*)storeTemporaryFile:(NSURL*)fileURL;
+- (nullable NSString*)storeTemporaryFile:(NSURL*)fileURL;
 
 /**
  * Moves the data currently stored under one URL to another URL.
  *
  * This is handy when you are caching data at a temporary URL while the permanent URL is being
  * retrieved from a server.  Once you know the permanent URL you can use this to move the data.
+ *
+ * @return true if successful, false otherwise
  */
-- (void)moveDataForURL:(NSString*)oldURL toURL:(NSString*)newURL;
+- (BOOL)moveDataForURL:(NSString*)oldURL toURL:(NSString*)newURL;
 
 /**
  * Moves the data from the specified path to this cache with as key the specified URL.
+ *
+ * @return true if successful, false otherwise
  */
-- (void)moveDataFromPath:(NSString*)path toURL:(NSString*)newURL;
+- (BOOL)moveDataFromPath:(NSString*)path toURL:(NSString*)newURL;
 
 /**
  * Moves the data from the specified path to this cache and generates a new temporary URL for it.
  
  @return The newly generated temporary URL.
  */
-- (NSString*)moveDataFromPathToTemporaryURL:(NSString*)path;
+- (nullable NSString*)moveDataFromPathToTemporaryURL:(NSString*)path;
 
 /**
  * Removes the data for a URL from the memory cache and optionally from the disk cache.
@@ -478,7 +479,7 @@ typedef NS_ENUM(NSUInteger, BMURLCacheState) {
  @param copy Whether the source file should be copied or moved
  @return The url created for the file or nil in case the operation was not successful.
  */
-- (NSString*)storeTemporaryFile:(NSURL*)fileURL copy:(BOOL)copy;
+- (nullable NSString*)storeTemporaryFile:(NSURL*)fileURL copy:(BOOL)copy;
 
 /**
  Returns a unique local URL for this cache.
@@ -496,3 +497,5 @@ typedef NS_ENUM(NSUInteger, BMURLCacheState) {
 - (BOOL)isLocalURL:(NSString *)url;
 
 @end
+
+NS_ASSUME_NONNULL_END

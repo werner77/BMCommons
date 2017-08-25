@@ -8,6 +8,8 @@
 
 #import <BMCommons/BMAbstractMutableDictionary.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Dictionary which retains the insertion order and allows objects to be inserted at specified indexes.
  */
@@ -34,3 +36,5 @@
 - (void)moveObjectFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 
 @end
+
+NS_ASSUME_NONNULL_END

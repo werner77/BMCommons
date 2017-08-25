@@ -11,6 +11,8 @@
 #import <UIKit/UIKit.h>
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol BMServiceDelegate;
 
 @protocol BMService<NSObject>
@@ -18,7 +20,7 @@
 /**
  Delegate of the service
  */
-@property(weak) id<BMServiceDelegate> delegate;
+@property(nullable, weak) id<BMServiceDelegate> delegate;
 
 #if TARGET_OS_IPHONE
 /**
@@ -30,7 +32,7 @@
 /**
  A context object which can be used when the service completed or failed
  */
-@property(strong) id context;
+@property(nullable, strong) id context;
 
 /**
  * Whether the service is executing in the foreground (user views progress) or hidden in the background. 
@@ -82,17 +84,17 @@
  
  This is done after retrieving the original response value from the cache (if applicable). This can be used to perform local data processing, e.g. with core data.
  */
-@property(strong) NSValueTransformer *resultTransformer;
+@property(nullable, strong) NSValueTransformer *resultTransformer;
 
 /**
  If set this transformer is used to transform the NSError object returned by the service before supplying it to the delegates.
  */
-@property(strong) NSValueTransformer *errorTransformer;
+@property(nullable, strong) NSValueTransformer *errorTransformer;
 
 /**
  Default message to show when loading.
  */
-@property(strong) NSString *loadingMessage;
+@property(nullable, strong) NSString *loadingMessage;
 
 /**
  * Executes the service. 
@@ -141,7 +143,7 @@
 /**
  * Digest which uniquely identifies this service conveniently.
  */
-- (NSString *)digest;
+- (nullable NSString *)digest;
 
 @end
 
@@ -182,7 +184,7 @@
  
  @see BMURLCache
  */
-@property (readonly) NSString *cacheURLUsed;
+@property (nullable, readonly) NSString *cacheURLUsed;
 
 
 /**
@@ -195,7 +197,7 @@
 /**
  * Gets the result from the cache, if it exists.
  */
-- (id)resultFromCache;
+- (nullable id)resultFromCache;
 
 /**
  Convenience method to enable/disable the properties readCacheEnabled, writeCacheEnabled and loadCachedResultOnError. 
@@ -244,7 +246,7 @@
  
  Progress percentage is between 0.0 and 1.0.
  */
-- (void)service:(id <BMService>)service updatedProgress:(double)progressPercentage withMessage:(NSString *)message;
+- (void)service:(id <BMService>)service updatedProgress:(double)progressPercentage withMessage:(nullable NSString *)message;
 
 /**
 Callback that is called when the service is cancelled.
@@ -274,3 +276,5 @@ Callback that is called when the service is cancelled.
 - (void)service:(id <BMService>)service failedWithRawError:(NSError *)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

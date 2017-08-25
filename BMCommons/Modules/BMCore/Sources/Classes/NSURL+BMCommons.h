@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSURL (BMCommons)
 
 /**
@@ -16,30 +18,32 @@
  * Does not look at the existing parameters, will just append even if they already exist.
  * Also look at the improved version of this method: [NSURL bmURLByUpdatingQueryParams:]
  */
-- (NSURL *)bmURLByAppendingQueryParams:(NSDictionary *)queryParams;
+- (nullable NSURL *)bmURLByAppendingQueryParams:(NSDictionary *)queryParams;
 
 /**
  * Returns a new URL with the specified query parameters set.
  *
  * Any existing parameters are removed.
  */
-- (NSURL *)bmURLWithQueryParams:(NSDictionary *)parameterDict;
+- (nullable NSURL *)bmURLWithQueryParams:(NSDictionary *)parameterDict;
 
 /**
  * Returns a new URL where the specified query parameters are added or updated if already existent.
  * Existing query parameters that are not in the specified parameter dictionary are just copied.
  * If [NSNull null] is specified as value for a parameter, that parameter is removed.
  */
-- (NSURL *)bmURLByUpdatingQueryParams:(NSDictionary *)queryParams;
+- (nullable NSURL *)bmURLByUpdatingQueryParams:(NSDictionary *)queryParams;
 
 /**
  * Returns a new URL by removing the parameters with the specified names.
  */
-- (NSURL *)bmURLByRemovingQueryParams:(NSArray *)queryParamNames;
+- (nullable NSURL *)bmURLByRemovingQueryParams:(NSArray *)queryParamNames;
 
 /**
  * Returns a new URL by removing all query parameters.
  */
-- (NSURL *)bmURLByRemovingQuery;
+- (nullable NSURL *)bmURLByRemovingQuery;
 
 @end
+
+NS_ASSUME_NONNULL_END

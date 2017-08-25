@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMProxy.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Proxy that throws an exception when property setters are called, otherwise delegates all messages to the underlying object.
  */
@@ -16,3 +18,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

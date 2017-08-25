@@ -10,6 +10,8 @@
 #import <BMCommons/BMHTTPRequest.h>
 #import <BMCommons/BMAbstractService.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Plain HTTP service. 
  
@@ -29,35 +31,35 @@
  
  Sub classes should implement this method in a meaningful way.
  */
-- (BMHTTPRequest *)requestForServiceWithError:(NSError **)error;
+- (nullable BMHTTPRequest *)requestForServiceWithError:(NSError * _Nullable * _Nullable)error;
 
 /**
  Extracts a result object from the response (or null in case of error).
  
  Sub classes should implement this method in a meaningful way.
  */
-- (id)resultFromRequest:(BMHTTPRequest *)theRequest;
+- (nullable id)resultFromRequest:(BMHTTPRequest *)theRequest;
 
 /**
  Extracts/creates an error object from the response.
  
  Sub classes should implement this method in a meaningful way.
  */
-- (NSError *)errorFromRequest:(BMHTTPRequest *)theRequest;
+- (nullable NSError *)errorFromRequest:(BMHTTPRequest *)theRequest;
 
 /**
  The URL from the request which is used for caching.
  
  Normally this is just [BMHTTPRequest url] (which is the default implementation of this method), but if a HTTP POST is used the url may need to be extended with the post parameters to make it unique.
  */
-- (NSString *)URLFromRequest:(BMHTTPRequest *)theRequest;
+- (nullable NSString *)URLFromRequest:(BMHTTPRequest *)theRequest;
 
 /**
  The cached result (if present) for the specified HTTP request.
  
  Default returns the value from the BMURLCache for the URL in the HTTP request unless ignoreCacheForRequest: returns YES.
  */
-- (id)cachedResultForRequest:(BMHTTPRequest *)theRequest;
+- (nullable id)cachedResultForRequest:(BMHTTPRequest *)theRequest;
 
 /**
  If this method returns YES no cache info is stored or read for the specified request. 
@@ -67,3 +69,5 @@
 - (BOOL)ignoreCacheForRequest:(BMHTTPRequest *)theRequest;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,7 +8,11 @@
 
 #import <BMCommons/BMMIMEType.h>
 
-@implementation BMMIMEType 
+@implementation BMMIMEType {
+@private
+    NSString *contentType;
+    NSArray *fileExtensions;
+}
 
 @synthesize contentType, fileExtensions;
 

@@ -8,14 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Transformer for converting an NSNumber to a string and vice versa.
  
  For forward transformation the [NSNumber stringValue] is used. 
  For reverse transformation the class method [NSNumber numberFromString:] is used, which is declared in a BMCommons category.
  */
-@interface BMNumberToStringValueTransformer : NSValueTransformer {
-
-}
+@interface BMNumberToStringValueTransformer : NSValueTransformer
 
 @end
+
+NS_ASSUME_NONNULL_END

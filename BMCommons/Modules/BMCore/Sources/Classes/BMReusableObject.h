@@ -7,6 +7,8 @@
  *
  */
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Protocol to be implemented for objects that can be reused, such as views, compare with UITableViewCell
  */
@@ -39,6 +41,8 @@
  
  @see [BMReusableObject reuseIdentifier]
  */
-- (id <BMReusableObject>)dequeueReusableObjectWithIdentifier:(NSString *)identifier;
+- (nullable id <BMReusableObject>)dequeueReusableObjectWithIdentifier:(NSString *)identifier;
 
 @end
+
+NS_ASSUME_NONNULL_END

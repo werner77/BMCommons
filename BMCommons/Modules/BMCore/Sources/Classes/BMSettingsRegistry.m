@@ -9,6 +9,12 @@
 #import <BMCommons/BMSettingsRegistry.h>
 #import <BMCommons/BMApp.h>
 
+@interface BMSettingsRegistry()
+
+@property (nonatomic, strong) NSDictionary *settingsObjects;
+
+@end
+
 @interface BMSettingsRegistry(Private)
 
 - (NSDictionary *)allDefaultSettings:(BOOL)excludeNilValues excludedNonRestorable:(BOOL)excludeNonRestorable;
@@ -18,7 +24,11 @@
 @end
 
 
-@implementation BMSettingsRegistry
+@implementation BMSettingsRegistry {
+@private
+	NSDictionary *_settingsObjects;
+	BOOL _loaded;
+}
 
 @synthesize settingsObjects = _settingsObjects, loaded = _loaded;
 

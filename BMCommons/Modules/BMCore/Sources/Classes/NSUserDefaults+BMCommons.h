@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSUserDefaults (BMCommons)
 
-- (void)bmSafeSetObject:(id)object forKey:(NSString *)key;
+- (void)bmSafeSetObject:(nullable id)object forKey:(nullable NSString *)key;
 
 @end
+
+NS_ASSUME_NONNULL_END

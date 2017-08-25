@@ -7,6 +7,8 @@
 
 #import <BMCommons/BMMGTemplateEngine.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Example Matcher for BMMGTemplateEngine.
  
@@ -18,28 +20,14 @@
  Other matchers can easily be implemented using the BMMGTemplateEngineMatcher protocol,
  if you prefer to use another regex framework, or use another matching method entirely.
  */
-@interface BMICUTemplateMatcher : NSObject <BMMGTemplateEngineMatcher> {
-	BMMGTemplateEngine *__weak engine;
-	NSString *markerStart;
-	NSString *markerEnd;
-	NSString *exprStart;
-	NSString *exprEnd;
-	NSString *filterDelimiter;
-	NSString *templateString;
-	NSString *regex;
-}
+@interface BMICUTemplateMatcher : NSObject <BMMGTemplateEngineMatcher>
 
-@property(weak) BMMGTemplateEngine *engine; // weak ref
-@property(strong) NSString *markerStart;
-@property(strong) NSString *markerEnd;
-@property(strong) NSString *exprStart;
-@property(strong) NSString *exprEnd;
-@property(strong) NSString *filterDelimiter;
-@property(strong) NSString *templateString;
-@property(strong) NSString *regex;
+@property(weak, readonly) BMMGTemplateEngine *engine;
 
 + (BMICUTemplateMatcher *)matcherWithTemplateEngine:(BMMGTemplateEngine *)theEngine;
 
 - (NSArray *)argumentsFromString:(NSString *)argString;
 
 @end
+
+NS_ASSUME_NONNULL_END

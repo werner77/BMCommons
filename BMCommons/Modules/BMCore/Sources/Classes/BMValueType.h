@@ -17,6 +17,8 @@ typedef NS_ENUM(NSUInteger, BMValueType) {
     BMValueTypeDouble //double
 };
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Converter to convert between object type and their raw primitive representation, e.g. NSNumber to Boolean, NSInteger, NSUInteger, etc.
  */
@@ -29,14 +31,14 @@ typedef NS_ENUM(NSUInteger, BMValueType) {
  
  If the value type is BMValueTypeObject, nil is returned.
  */
-+ (BMValueTypeConverter *)converterForValueType:(BMValueType)valueType;
++ (nullable BMValueTypeConverter *)converterForValueType:(BMValueType)valueType;
 
 /**
  Initializes a converter for converting the specified value type.
  
  If the value type is BMValueTypeObject, nil is returned.
  */
-- (id)initWithValueType:(BMValueType)valueType;
+- (nullable id)initWithValueType:(BMValueType)valueType;
 
 /**
  Copies the raw primitive value corresponding to the supplied objectValue to the supplied value buffer (pointer to a primitive type).
@@ -52,7 +54,7 @@ typedef NS_ENUM(NSUInteger, BMValueType) {
  
  The primitive value type should be compatible with the valueType for this converter.
  */
-- (id)objectValueFromPrimitiveValue:(void *)value withLength:(NSUInteger)valueLength;
+- (nullable id)objectValueFromPrimitiveValue:(void *)value withLength:(NSUInteger)valueLength;
 
 /**
  Returns the size in bytes for a buffer to hold the primitive value as returned by getPrimitiveValue:fromObjectValue:
@@ -60,3 +62,5 @@ typedef NS_ENUM(NSUInteger, BMValueType) {
 - (NSUInteger)sizeOfPrimitiveValue;
 
 @end
+
+NS_ASSUME_NONNULL_END

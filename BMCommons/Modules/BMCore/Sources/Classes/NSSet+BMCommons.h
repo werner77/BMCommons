@@ -8,19 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSSet (BMCommons)
 
 @end
 
 @interface NSMutableSet(BMCommons)
 
-- (void)bmSafeAddObject:(id)object;
+- (void)bmSafeAddObject:(nullable id)object;
 
 @end
 
 @interface NSMutableOrderedSet(BMCommons)
 
-- (void)bmSafeAddObject:(id)object;
+- (void)bmSafeAddObject:(nullable id)object;
 
 @end
+
+NS_ASSUME_NONNULL_END
 

@@ -9,7 +9,8 @@
 #import <BMCommons/BMVersionAvailability.h>
 
 
-@implementation BMValueTransformer 
+@implementation BMValueTransformer {
+}
 
 @synthesize converterTarget = _converterTarget, converterSelector = _converterSelector, inverseConverterTarget = _inverseConverterTarget, inverseConverterSelector = _inverseConverterSelector;
 

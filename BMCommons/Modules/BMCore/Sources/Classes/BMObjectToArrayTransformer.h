@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Value transformer implementation which transforms an object to an array with one object.
  
@@ -17,3 +19,5 @@
 @interface BMObjectToArrayTransformer : NSValueTransformer
 
 @end
+
+NS_ASSUME_NONNULL_END

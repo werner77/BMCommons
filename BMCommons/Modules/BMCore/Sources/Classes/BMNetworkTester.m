@@ -7,7 +7,8 @@
 
 #import <BMCommons/BMNetworkTester.h>
 
-@implementation BMNetworkTester 
+@implementation BMNetworkTester {
+}
 
 @synthesize testHostName = _testHostName, delegate = _delegate, networkStatus = _networkStatus;
 

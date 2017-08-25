@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Handy additions to the NSArray class.
  */
@@ -17,16 +19,16 @@
  Performs the supplied selector on all objects in this array.
  */
 - (void)bmPerformSelectorOnAllObjects:(SEL)selector;
-- (void)bmPerformSelectorOnAllObjects:(SEL)selector withObject:(id)p1;
-- (void)bmPerformSelectorOnAllObjects:(SEL)selector withObject:(id)p1 withObject:(id)p2;
-- (void)bmPerformSelectorOnAllObjects:(SEL)selector withObject:(id)p1 withObject:(id)p2 withObject:(id)p3;
+- (void)bmPerformSelectorOnAllObjects:(SEL)selector withObject:(nullable id)p1;
+- (void)bmPerformSelectorOnAllObjects:(SEL)selector withObject:(nullable id)p1 withObject:(nullable id)p2;
+- (void)bmPerformSelectorOnAllObjects:(SEL)selector withObject:(nullable id)p1 withObject:(nullable id)p2 withObject:(nullable id)p3;
 
 /**
  First object in the array or nil if count == 0
  
  @return The object or nil if the array contains no objects.
  */
-- (id)bmFirstObject;
+- (nullable id)bmFirstObject;
 
 /**
  Returns true iff this object contains all objects in the supplied array using the equals method for each object.
@@ -38,14 +40,14 @@
  
  Returns nil if the object is no instance of the supplied class or if the index is out of bounds.
  */
-- (id)bmSafeObjectAtIndex:(NSUInteger)index ofClass:(Class)c;
+- (nullable id)bmSafeObjectAtIndex:(NSUInteger)index ofClass:(nullable Class)c;
 
 /**
  Safe version of [NSArray objectAtIndex:].
  
  Returns nil if the index is out of bounds.
  */
-- (id)bmSafeObjectAtIndex:(NSUInteger)index;
+- (nullable id)bmSafeObjectAtIndex:(NSUInteger)index;
 
 /**
  Returns true iff for any object o1 in this array o1 == otherObject.
@@ -74,27 +76,27 @@
  *
  * If the block code returns nil for an object, the object is removed from the array.
  */
-- (NSArray *)bmArrayByTransformingObjectsWithBlock:(id (^)(id object))block;
+- (NSArray *)bmArrayByTransformingObjectsWithBlock:(id _Nullable (^)(id object))block;
 
 /**
  * Returns the first object in the array for which the predicate block returns YES.
  */
-- (id)bmFirstObjectWithPredicate:(BOOL(^)(id object))predicate;
+- (nullable id)bmFirstObjectWithPredicate:(BOOL(^)(id object))predicate;
 
 /**
  * Returns the first object in the array for which the predicate block returns YES.
  */
-- (id)bmFirstObjectWithIndexPredicate:(BOOL(^)(id object, NSUInteger index))predicate;
+- (nullable id)bmFirstObjectWithIndexPredicate:(BOOL(^)(id object, NSUInteger index))predicate;
 
 /**
  * Returns a new array retaining only the objects for which the predicate block returns YES.
  */
-- (id)bmArrayFilteredWithPredicate:(BOOL(^)(id object))predicate;
+- (NSArray *)bmArrayFilteredWithPredicate:(BOOL(^)(id object))predicate;
 
 /**
  * Returns a new array retaining only the objects for which the predicate block returns YES.
  */
-- (id)bmArrayFilteredWithIndexPredicate:(BOOL(^)(id object, NSUInteger index))predicate;
+- (NSArray *)bmArrayFilteredWithIndexPredicate:(BOOL(^)(id object, NSUInteger index))predicate;
 
 /**
  * Splits the receiver up into multiple arrays be equally dividing the values.
@@ -115,7 +117,7 @@
 /**
  First checks if the object is not nil. If so it calls [NSMutableArray addObject].
  */
-- (void)bmSafeAddObject:(id)object;
+- (void)bmSafeAddObject:(nullable id)object;
 
 /**
  Removes all objects that are identical to the objects in the specified array.
@@ -137,21 +139,21 @@
  *
  * Returns nil otherwise.
  */
-- (id)bmPopObjectAtIndex:(NSUInteger)index;
+- (nullable id)bmPopObjectAtIndex:(NSUInteger)index;
 
 /**
  * Removes and returns the first object if existent.
  *
  * Returns nil otherwise.
  */
-- (id)bmPopFirstObject;
+- (nullable id)bmPopFirstObject;
 
 /**
  * Removes and returns the last object if existent.
  *
  * Returns nil otherwise.
  */
-- (id)bmPopLastObject;
+- (nullable id)bmPopLastObject;
 
 /**
  * Retains all objects passing the test with the specified predicate block. Removes all other objects.
@@ -174,3 +176,5 @@
 - (void)bmRemoveObjectsWithIndexPredicate:(BOOL(^)(id object, NSUInteger index))predicate;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -13,6 +13,8 @@
 
 #if TARGET_OS_IPHONE
 #import <CFNetwork/CFNetwork.h>
+#import "BMErrorHelper.h"
+
 #endif
 
 #define BUFFER_SIZE (100 * 1024)
@@ -107,7 +109,7 @@
 			case NSStreamEventOpenCompleted:
 				break;
 			case NSStreamEventErrorOccurred: {
-                self.parserError = [input streamError];
+                self.parserError = [input streamError] ?: [BMErrorHelper genericErrorWithDescription:@"Unknown error"];
 				if ( [self.delegate respondsToSelector: @selector(parser:parseErrorOccurred:)] ) {
 					[self.delegate parser:self parseErrorOccurred:self.parserError];
 				}

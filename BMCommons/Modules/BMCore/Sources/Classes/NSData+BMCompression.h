@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Compression helper methods as category on NSData.
  */
@@ -21,28 +23,28 @@
 /**
  COBS is an encoding that eliminates 0x00.
  */
-- (NSData *)bmEncodeCOBS;
-- (NSData *)bmDecodeCOBS;
+- (nullable NSData *)bmEncodeCOBS;
+- (nullable NSData *)bmDecodeCOBS;
 
 /**
  ZLIB decompression.
  */
-- (NSData *)bmZlibInflate;
+- (nullable NSData *)bmZlibInflate;
 
 /**
  ZLIB compression.
  */
-- (NSData *)bmZlibDeflate;
+- (nullable NSData *)bmZlibDeflate;
 
 /**
  GZIP decompression.
  */
-- (NSData *)bmGzipInflate;
+- (nullable NSData *)bmGzipInflate;
 
 /**
  GZIP compression.
  */
-- (NSData *)bmGzipDeflate;
+- (nullable NSData *)bmGzipDeflate;
 
 /**
  CRC32 checksum.
@@ -50,3 +52,5 @@
 - (uint32_t)bmCRC32;
 
 @end
+
+NS_ASSUME_NONNULL_END

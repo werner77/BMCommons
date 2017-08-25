@@ -44,7 +44,7 @@
 - (id)initWithContentParts:(NSArray *)theContentParts boundaryString:(NSString *)theBoundaryString {
     if ((self = [self init])) {
         _contentParts = theContentParts;
-        _boundaryString = theBoundaryString ?: [BMStringHelper stringWithUUID];
+        _boundaryString = theBoundaryString ?: [BMStringHelper randomStringOfLength:70 charSet:nil];
         _currentContentPartIndex = -1;
         _totalBytesRead = 0;
     }

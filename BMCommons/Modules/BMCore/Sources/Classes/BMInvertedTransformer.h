@@ -8,19 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Wraps a NSValueTranformer by inverting it.
  
  Basically the transformedValue: method and reverseTransformedValue: methods are swapped of the NSValueTransformer which is supplied as argument to initWithTransformer:
  This class returns nil as transformedValueClass and returns YES for allowsReverseTransformation.
  */
-@interface BMInvertedTransformer : NSValueTransformer {
-@private
-	NSValueTransformer *_transformer;
-}
+@interface BMInvertedTransformer : NSValueTransformer
 
 + (BMInvertedTransformer *)invertedTransformer:(NSValueTransformer *)transformer;
 - (id)initWithTransformer:(NSValueTransformer *)theTransformer;
 
-
 @end
+
+NS_ASSUME_NONNULL_END

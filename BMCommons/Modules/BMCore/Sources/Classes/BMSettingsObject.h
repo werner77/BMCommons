@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Protocol for objects the should map to NSUserDefaults for storing their state.
  */
@@ -16,7 +18,7 @@
 /**
  Returns a dictionary of key=<key in NSUserDefaults> and value=<default value> for the settings managed by the implementation of this protocol.
  */
-+ (NSDictionary *)defaultValues;
++ (nullable NSDictionary *)defaultValues;
 
 /**
  Returns the one and only instance of this settings object.
@@ -57,6 +59,8 @@ the keychain.
 @protocol BMSettingsInitializable
 
 + (id <BMSettingsObject, NSObject>)settings;
-- (id)initFromSettings:(id <BMSettingsObject, NSObject>)settings;
+- (nullable id)initFromSettings:(id <BMSettingsObject, NSObject>)settings;
 
 @end
+
+NS_ASSUME_NONNULL_END

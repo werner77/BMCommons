@@ -22,6 +22,8 @@
 
 @class BMHTTPRequest;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Delegate protocol for BMHTTPRequest.
  */
@@ -114,14 +116,14 @@
 /**
  Last error that occured if any.
  */
-@property(strong, readonly) NSError *lastError;
+@property(nullable, strong, readonly) NSError *lastError;
 
 /**
  The data that was received. 
  
  If you use the inputStreamForConnection method rather than the send method this property returns nil always, because the response data is not buffered in that case.
  */
-@property(strong, readonly) NSData *replyData;
+@property(nullable, strong, readonly) NSData *replyData;
 
 /**
  Optional numeric identifier to attach to the request to distinguish it from other requests.
@@ -131,29 +133,29 @@
 /**
  Username for HTTP basic authentication.
  */
-@property(strong) NSString *userName;
+@property(nullable, strong) NSString *userName;
 
 /**
  Password for HTTP basic authentication.
  */
-@property(strong) NSString *password;
+@property(nullable, strong) NSString *password;
 
 /**
  Delegate for this request.
  
  Implementation of BMHTTPRequestDelegate.
  */
-@property(weak) id<BMHTTPRequestDelegate> delegate;
+@property(nullable, weak) id<BMHTTPRequestDelegate> delegate;
 
 /**
  The headers of the HTTP response.
  */
-@property(strong, readonly) NSDictionary *responseHeaderFields;
+@property(nullable, strong, readonly) NSDictionary *responseHeaderFields;
 
 /**
  The inputstream that was returned by inputStreamForConnection if called.
  */
-@property(strong, readonly) BMURLConnectionInputStream *inputStream;
+@property(nullable, strong, readonly) BMURLConnectionInputStream *inputStream;
 
 /**
  The URL for the request.
@@ -170,7 +172,7 @@
 /**
  * The response received if any.
  */
-@property(readonly) NSURLResponse *response;
+@property(nullable, readonly) NSURLResponse *response;
 
 /**
  The HTTP response code returned by the server.
@@ -180,7 +182,7 @@
 /**
  Context object to attach to the request
  */
-@property(strong) id context;
+@property(nullable, strong) id context;
 
 /**
  Whether self-signed certificates are OK when using SSL. 
@@ -194,7 +196,7 @@
  
  Use when client certificate authentication is required by the server.
  */
-@property(strong) NSData *clientIdentityRef;
+@property(nullable, strong) NSData *clientIdentityRef;
 
 /**
  Whether cookies returned by the server should be stored or not.
@@ -213,12 +215,12 @@
  @param delegate The delegate
  */
 - (id)initPostRequestWithUrl:(NSURL *)url
-				 contentType:(NSString *)contentType
-					 content:(NSData *)content
-		  customHeaderFields:(NSDictionary *)customHeaderFields
-					userName:(NSString *)username
-					password:(NSString *)password
-					delegate:(id <BMHTTPRequestDelegate>)delegate;
+				 contentType:(nullable NSString *)contentType
+					 content:(nullable NSData *)content
+		  customHeaderFields:(nullable NSDictionary *)customHeaderFields
+					userName:(nullable NSString *)username
+					password:(nullable NSString *)password
+					delegate:(nullable id <BMHTTPRequestDelegate>)delegate;
 
 
 /**
@@ -232,11 +234,11 @@
  @param delegate The delegate
  */
 - (id)initPostRequestWithUrl:(NSURL *)url
-				  parameters:(NSDictionary *)parameters
-		  customHeaderFields:(NSDictionary *)customHeaderFields
-					userName:(NSString *)username
-					password:(NSString *)password
-					delegate:(id <BMHTTPRequestDelegate>)delegate;
+				  parameters:(nullable NSDictionary *)parameters
+		  customHeaderFields:(nullable NSDictionary *)customHeaderFields
+					userName:(nullable NSString *)username
+					password:(nullable NSString *)password
+					delegate:(nullable id <BMHTTPRequestDelegate>)delegate;
 
 /**
  Initializes a multipart HTTP POST request with an array of BMHTTPContentPart objects.
@@ -253,10 +255,10 @@
  */
 - (id)initMultiPartPostRequestWithUrl:(NSURL *)url
 						 contentParts:(NSArray *)contentParts
-				   customHeaderFields:(NSDictionary *)customHeaderFields
-							 userName:(NSString *)username
-							 password:(NSString *)password
-							 delegate:(id <BMHTTPRequestDelegate>)delegate;
+				   customHeaderFields:(nullable NSDictionary *)customHeaderFields
+							 userName:(nullable NSString *)username
+							 password:(nullable NSString *)password
+							 delegate:(nullable id <BMHTTPRequestDelegate>)delegate;
 
 /**
  Initializes a HTTP GET request with the specified url and parameters which are appended to the url.
@@ -269,11 +271,11 @@
  @param delegate The delegate
  */
 - (id)initGetRequestWithUrl:(NSURL *)url
-				 parameters:(NSDictionary *)parameters
-		 customHeaderFields:(NSDictionary *)customHeaderFields
-				   userName:(NSString *)username
-				   password:(NSString *)password
-				   delegate:(id <BMHTTPRequestDelegate>)delegate;
+				 parameters:(nullable NSDictionary *)parameters
+		 customHeaderFields:(nullable NSDictionary *)customHeaderFields
+				   userName:(nullable NSString *)username
+				   password:(nullable NSString *)password
+				   delegate:(nullable id <BMHTTPRequestDelegate>)delegate;
 
 /**
  Designated initializer. 
@@ -286,24 +288,24 @@
  @param password Basic authentication password
  @param delegate The delegate
  */
-- (id)initWithUrl:(NSURL *)url
-customHeaderFields:(NSDictionary *)customHeaderFields
-		 userName:(NSString *)username
-		 password:(NSString *)password
-		 delegate:(id <BMHTTPRequestDelegate>)delegate;
+- (nullable id)initWithUrl:(NSURL *)url
+customHeaderFields:(nullable NSDictionary *)customHeaderFields
+		 userName:(nullable NSString *)username
+		 password:(nullable NSString *)password
+		 delegate:(nullable id <BMHTTPRequestDelegate>)delegate;
 
 
 /**
  * MD5 Hash of the request body to uniquely identify the request together with the url (e.g. for caching)
  */
-- (NSString *)md5Hash;
+- (nullable NSString *)md5Hash;
 
 /**
  Reply data interpreted as a UTF-8 string. 
  
  Is only defined when the send method is used, rather than the inputStreamForConnection method.
  */
-- (NSString *)reply;
+- (nullable NSString *)reply;
 
 /**
  Cancels the request.
@@ -325,7 +327,7 @@ customHeaderFields:(NSDictionary *)customHeaderFields
  
  The input stream is the owner of the connection, i.e. connection is closed when inputstream is closed.
  */
-- (BMURLConnectionInputStream *)inputStreamForConnection;
+- (nullable BMURLConnectionInputStream *)inputStreamForConnection;
 
 /**
  Returns the result of [self isSuccessfulHTTPResponse:self.httpResponseCode]
@@ -361,3 +363,5 @@ customHeaderFields:(NSDictionary *)customHeaderFields
 - (BOOL)isRetriableError:(NSError *)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -71,6 +71,8 @@ if ([instances objectForKey:key] != nil) { \
 #define BM_SYNTHESIZE_SINGLETON(getter) BM_SYNTHESIZE_SINGLETON_IMPL(getter, BMSingleton.class)
 #define BM_SYNTHESIZE_DEFAULT_SINGLETON BM_SYNTHESIZE_SINGLETON(sharedInstance)
 
+NS_ASSUME_NONNULL_BEGIN
+
 extern NSString * const BMReleaseSharedInstancesNotification;
 
 @interface BMSingleton : NSObject
@@ -85,4 +87,6 @@ BM_DECLARE_DEFAULT_SINGLETON
 + (BOOL)isSharedInstanceCreationAllowed;
 
 @end
+
+NS_ASSUME_NONNULL_END
 

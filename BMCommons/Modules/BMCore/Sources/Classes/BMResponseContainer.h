@@ -7,6 +7,8 @@
  *
  */
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Protocol defining a response object containing a result.
  
@@ -20,6 +22,8 @@
 /**
  * Gets the result of the service request
  */
-- (id)result;
+- (nullable id)result;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -11,6 +11,8 @@
 
 @class BMWeakTimer;
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void(^BMWeakTimerBlock)(BMWeakTimer *timer);
 
 /**
@@ -20,11 +22,11 @@ typedef void(^BMWeakTimerBlock)(BMWeakTimer *timer);
  */
 @interface BMWeakTimer : BMCoreObject
 
-+ (BMWeakTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(id)userInfo repeats:(BOOL)yesOrNo;
++ (BMWeakTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)yesOrNo;
 
-+ (BMWeakTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(id)userInfo repeats:(BOOL)yesOrNo onRunloop:(NSRunLoop *)runloop forMode:(NSString *)mode;
++ (BMWeakTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)yesOrNo onRunloop:(NSRunLoop *)runloop forMode:(NSString *)mode;
 
-+ (BMWeakTimer *)timerWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(id)userInfo repeats:(BOOL)yesOrNo;
++ (BMWeakTimer *)timerWithTimeInterval:(NSTimeInterval)ti target:(id)aTarget selector:(SEL)aSelector userInfo:(nullable id)userInfo repeats:(BOOL)yesOrNo;
 
 + (BMWeakTimer *)timerWithTimeInterval:(NSTimeInterval)ti invocation:(NSInvocation *)invocation repeats:(BOOL)yesOrNo;
 
@@ -44,7 +46,7 @@ typedef void(^BMWeakTimerBlock)(BMWeakTimer *timer);
 /**
  Constructor of Timer with target/selector.
  */
-- (id)initWithFireDate:(NSDate *)date interval:(NSTimeInterval)ti target:(id)t selector:(SEL)s userInfo:(id)ui repeats:(BOOL)rep;
+- (id)initWithFireDate:(NSDate *)date interval:(NSTimeInterval)ti target:(id)t selector:(SEL)s userInfo:(nullable id)ui repeats:(BOOL)rep;
 
 /**
  Constructor of timer with block for execution.
@@ -75,6 +77,8 @@ typedef void(^BMWeakTimerBlock)(BMWeakTimer *timer);
 - (void)invalidate;
 - (BOOL)isValid;
 
-@property (nonatomic, strong) id userInfo;
+@property (nullable, nonatomic, strong) id userInfo;
 
 @end
+
+NS_ASSUME_NONNULL_END

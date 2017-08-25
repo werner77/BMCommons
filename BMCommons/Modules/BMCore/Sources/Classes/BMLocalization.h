@@ -10,6 +10,8 @@
 #import <BMCommons/BMCoreObject.h>
 #import <BMCommons/BMSingleton.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Protocol to be implemented by classes that want to be notified when the locale settings change.
  */
@@ -30,27 +32,19 @@
 /**
  Class with support for manually setting the current locale and switching string resources accordingly.
  */
-@interface BMLocalization : BMCoreObject {
-@private
-	NSBundle *_activeBundle;
-    NSBundle *_bundle;
-	NSMutableArray *_localizables;
-	NSLocale *_currentLocale;
-	NSString *_currentLocaleIdentifier;
-    NSMutableDictionary *_availableLocales;
-}
+@interface BMLocalization : BMCoreObject
 
 /**
  The currently active locale identifier.
  
  @see [NSLocale localeIdentifier]
  */
-@property(nonatomic, strong) NSString *currentLocaleIdentifier;
+@property(nullable, nonatomic, strong) NSString *currentLocaleIdentifier;
 
 /**
  The currently active NSLocale.
  */
-@property(nonatomic, readonly) NSLocale *currentLocale;
+@property(nullable, nonatomic, readonly) NSLocale *currentLocale;
 
 /**
  The bundle whith which this instance was initialized.
@@ -64,10 +58,29 @@
 
 BM_DECLARE_DEFAULT_SINGLETON
 
-- (id)initWithBundle:(NSBundle *)bundle;
+/**
+ * Initializes with the specified resource bundle. If bundle is not specified the mainBundle is used.
+ *
+ * @param bundle The bundle to use or nil for the main bundle.
+ * @return The instance
+ */
+- (id)initWithBundle:(nullable NSBundle *)bundle;
 
-- (NSString *)localizedStringForKey:(NSString *)key defaultValue:(NSString *)defaultValue table:(NSString *)table;
-- (NSString *)localizedStringForKey:(NSString *)key defaultValue:(NSString *)defaultValue;
+/**
+ * Returns a localized string for the specified key, with optional default value and table.
+ *
+ * @param key The key to lookup the localized string for
+ * @param defaultValue The optional default value
+ * @param table The optional custom table to use
+ * @return The localized string if found
+ * @see [NSBundle localizedStringForKey:value:table:]
+ */
+- (NSString *)localizedStringForKey:(NSString *)key defaultValue:(nullable NSString *)defaultValue table:(nullable NSString *)table;
+
+/**
+ * Calls localizedStringForKey:defaultValue:table: with nil table.
+ */
+- (NSString *)localizedStringForKey:(NSString *)key defaultValue:(nullable NSString *)defaultValue;
 
 /**
  Display name for the specified localeIdentifier. 
@@ -77,14 +90,14 @@ BM_DECLARE_DEFAULT_SINGLETON
  @see [NSLocale localeIdentifier]
  @see availableLocales
  */
-- (NSString *)localeDisplayNameForIdentifier:(NSString *)localeIdentifier;
+- (nullable NSString *)localeDisplayNameForIdentifier:(NSString *)localeIdentifier;
 
 /**
  Gets the localized string from the specified table with a fallback bundle in case the value could not be found.
  
  First tries to retrieve a localized version for the specified key in the bundle in this instance. If not found it searches the fallback bundle.
  */
-- (NSString *)localizedStringForKey:(NSString *)key defaultValue:(NSString *)defaultValue table:(NSString *)table fallbackBundle:(NSBundle *)fallbackBundle;
+- (NSString *)localizedStringForKey:(NSString *)key defaultValue:(nullable NSString *)defaultValue table:(nullable NSString *)table fallbackBundle:(nullable NSBundle *)fallbackBundle;
 
 /**
  Registers a listener for locale changes.
@@ -103,7 +116,7 @@ BM_DECLARE_DEFAULT_SINGLETON
  @see currentLocale
  @see localeDisplayNameForIdentifier:
  */
-- (NSString *)currentLocaleDisplayName;
+- (nullable NSString *)currentLocaleDisplayName;
 
 /**
  Sends the localize message to all registered localizables
@@ -113,3 +126,5 @@ BM_DECLARE_DEFAULT_SINGLETON
 - (void)localize;
 
 @end
+
+NS_ASSUME_NONNULL_END

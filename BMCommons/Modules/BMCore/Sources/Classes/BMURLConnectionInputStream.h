@@ -10,6 +10,8 @@
 
 @class BMURLConnectionInputStream;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Inputstream that reads from a NSURLConnection.
  */
@@ -21,32 +23,30 @@
 
 @end
 
-@interface BMURLConnectionInputStream  : BMAbstractInputStream {
-@private
-    NSURLConnection* _connection;
-    id __weak _urlConnectionDelegate;
-}
+@interface BMURLConnectionInputStream  : BMAbstractInputStream
 
 /**
  Delegate to forward the NSURLConnection delegate callbacks to.
  
  @see NSURLConnectionDelegate
  */
-@property (nonatomic, weak) id urlConnectionDelegate;
+@property (nullable, nonatomic, weak) id urlConnectionDelegate;
 
 /**
  Delegate for the input stream.
  */
-@property (weak) id <BMURLConnectionInputStreamDelegate> delegate;
+@property (nullable, weak) id <BMURLConnectionInputStreamDelegate> delegate;
 
 /**
 Initializes the stream with the specified request and NSURLConnectionDelegate.
 */
-- (id)initWithRequest:(NSURLRequest*)request urlConnectionDelegate:(id)urlConnectionDelegate;
+- (nullable id)initWithRequest:(NSURLRequest*)request urlConnectionDelegate:(nullable id)urlConnectionDelegate NS_DESIGNATED_INITIALIZER;
 
 /**
  Initializes the stream with the specified request and nil NSURLConnectionDelegate.
  */
-- (id)initWithRequest:(NSURLRequest*)request;
+- (nullable id)initWithRequest:(NSURLRequest*)request;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface BMHTTPMultiPartBodyInputStream : BMAbstractInputStream
 
+/**
+ * The boundary string that was set or generated (if nil was supplied).
+ */
 @property (nonatomic, readonly) NSString *boundaryString;
 
 /**
@@ -28,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param contentParts Instances of BMHTTPContentPart.
  @param boundaryString A unique string to separate the content parts from each other. This string should not occur in the data of any of the content parts.
- If nil is supplied a default boundary string will be generated.
+ If nil is supplied a default random boundary string will be generated.
  */
 - (id)initWithContentParts:(NSArray *)contentParts boundaryString:(nullable NSString *)boundaryString;
 

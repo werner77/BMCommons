@@ -18,30 +18,31 @@
 
 @end
 
-@implementation BMOperationQueue
-
-@synthesize processingQueue;
+@implementation BMOperationQueue {
+	NSInteger _busyThreshold;
+	NSMutableArray *_delegates;
+}
 
 BM_SYNTHESIZE_DEFAULT_SINGLETON
 
 - (id)init {
 	if (self = [super init]) {
-		processingQueue = [NSOperationQueue new];
-		processingQueue.maxConcurrentOperationCount = 3;
-		busyThreshold = 1;
-		delegates = BMCreateNonRetainingArray();
+		_processingQueue = [NSOperationQueue new];
+		_processingQueue.maxConcurrentOperationCount = 3;
+		_busyThreshold = 1;
+		_delegates = BMCreateNonRetainingArray();
 	}
 	return self;
 }
 
 - (void)addDelegate:(id <BMOperationQueueDelegate>)delegate {
-	if (![delegates bmContainsObjectIdenticalTo:delegate]) {
-		[delegates addObject:delegate];
+	if (![_delegates bmContainsObjectIdenticalTo:delegate]) {
+		[_delegates addObject:delegate];
 	}
 }
 
 - (void)removeDelegate:(id <BMOperationQueueDelegate>)delegate {
-	[delegates removeObjectIdenticalTo:delegate];
+	[_delegates removeObjectIdenticalTo:delegate];
 }
 
 - (void)scheduleOperation:(NSOperation *)operation {
@@ -61,17 +62,17 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 }
 
 - (BOOL)isBusy {
-	return processingQueue.operations.count > busyThreshold;
+	return _processingQueue.operations.count > _busyThreshold;
 }
 
 - (void)waitUntilReady {
-	while (processingQueue.operations.count > busyThreshold) {
+	while (_processingQueue.operations.count > _busyThreshold) {
 		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
 	}
 }
 
 - (void)terminate {
-	[processingQueue cancelAllOperations];
+	[_processingQueue cancelAllOperations];
 }
 
 
@@ -83,12 +84,12 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 	[operation addObserver:self forKeyPath:FINISHED_KEYPATH 
 				   options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
 				   context:NULL];
-	[processingQueue addOperation:operation];
+	[_processingQueue addOperation:operation];
 }
 
 - (void)finishOperation:(NSOperation *)operation {
 	[operation removeObserver:self forKeyPath:FINISHED_KEYPATH];
-	for (id <BMOperationQueueDelegate> delegate in [NSArray arrayWithArray:delegates]) {
+	for (id <BMOperationQueueDelegate> delegate in [NSArray arrayWithArray:_delegates]) {
 		[delegate operationQueue:self didFinishOperation:operation];
 	}
 }

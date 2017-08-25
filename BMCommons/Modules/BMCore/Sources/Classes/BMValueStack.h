@@ -9,6 +9,8 @@
 
 @class BMValueStack;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol BMValueStackListener<NSObject>
 
 /**
@@ -20,7 +22,7 @@
 
 @end
 
-typedef id (^BMValueComputationBlock)(NSArray *values);
+typedef id _Nullable (^BMValueComputationBlock)(NSArray *values);
 
 /**
  Class to implement a cumulative value based on a push/pop mechanism.
@@ -41,20 +43,20 @@ BM_LISTENER_METHODS_DECLARATION(BMValueStackListener)
 /**
  * The default value if no values are present on the stack, defaults to nil.
  */
-@property (strong) T defaultValue;
+@property (nullable, strong) T defaultValue;
 
 /**
  * The block to use to computate the resulting value from the stack values. If nil, the topmost value is returned.
  * If no value is present on the stack, the defaultValue is returned.
  */
-@property (copy) BMValueComputationBlock resultingValueComputationBlock;
+@property (nullable, copy) BMValueComputationBlock resultingValueComputationBlock;
 
 /**
  Optional property descriptor to synchronize the value with.
 
  This property is set every time the value property changes.
  */
-@property (strong) BMPropertyDescriptor *propertyDescriptor;
+@property (nullable, strong) BMPropertyDescriptor *propertyDescriptor;
 
 /**
  Pushes the specified value for the specified owner.
@@ -109,3 +111,5 @@ BM_LISTENER_METHODS_DECLARATION(BMValueStackListener)
 - (void)updateValue;
 
 @end
+
+NS_ASSUME_NONNULL_END

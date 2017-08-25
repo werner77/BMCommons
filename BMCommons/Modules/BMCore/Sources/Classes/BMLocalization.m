@@ -11,7 +11,15 @@
 #import <BMCommons/BMLogging.h>
 #import <BMCommons/BMCore.h>
 
-@implementation BMLocalization 
+@implementation BMLocalization {
+@private
+    NSBundle *_activeBundle;
+    NSBundle *_bundle;
+    NSMutableArray *_localizables;
+    NSLocale *_currentLocale;
+    NSString *_currentLocaleIdentifier;
+    NSMutableDictionary *_availableLocales;
+}
 
 @synthesize currentLocaleIdentifier = _currentLocaleIdentifier, currentLocale = _currentLocale, bundle = _bundle, availableLocales = _availableLocales;
 
@@ -35,7 +43,7 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
         NSArray *languages = [defs objectForKey:@"AppleLanguages"];
 
         //Initialize with the default language
-        NSString *current = [languages objectAtIndex:0];
+        NSString *current = [languages firstObject];
         [self setCurrentLocaleIdentifier:current];
         
         NSString *extension = @"lproj";
@@ -50,13 +58,10 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
             if (![handledLocales containsObject:localeIdentifier]) {
                 [handledLocales addObject:localeIdentifier];
                 NSLocale *theLocale = [[NSLocale alloc] initWithLocaleIdentifier:localeIdentifier];
-                
-                if (!theLocale) {
-                    theLocale = [NSLocale currentLocale];
+                if (theLocale) {
+                    NSString *displayNameString = [theLocale displayNameForKey:NSLocaleLanguageCode value:theLocale.localeIdentifier];
+                    [_availableLocales setObject:[BMStringHelper filterNilString:displayNameString] forKey:localeIdentifier];
                 }
-                
-                NSString *displayNameString = [theLocale displayNameForKey:NSLocaleLanguageCode value:theLocale.localeIdentifier];
-                [_availableLocales setObject:[BMStringHelper filterNilString:displayNameString] forKey:localeIdentifier];
             }
         }
 
@@ -114,7 +119,9 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 
             if (_activeBundle) {
                 _currentLocale = [[NSLocale alloc] initWithLocaleIdentifier:l];
-                _currentLocaleIdentifier = l;
+                if (_currentLocale != nil) {
+                    _currentLocaleIdentifier = l;
+                }
             } else {
                 //Use main bundle as default
                 _activeBundle = self.bundle;

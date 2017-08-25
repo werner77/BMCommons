@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMPropertyDescriptor.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Value transformer for converting an object to a string representation.
  
@@ -16,10 +18,7 @@
  If propertyDescriptor is set it calls the getter which the propertydescriptor references on the value supplied to transformedValue:.
  This value transformer does not allow reverse transformation.
  */
-@interface BMObjectToStringTransformer : NSValueTransformer {
-@private
-    BMPropertyDescriptor *_propertyDescriptor;
-}
+@interface BMObjectToStringTransformer : NSValueTransformer
 
 @property (nonatomic, strong) BMPropertyDescriptor *propertyDescriptor;
 
@@ -28,3 +27,5 @@
 + (BMObjectToStringTransformer *)transformerWithPropertyDescriptor:(BMPropertyDescriptor *)descriptor;
 
 @end
+
+NS_ASSUME_NONNULL_END

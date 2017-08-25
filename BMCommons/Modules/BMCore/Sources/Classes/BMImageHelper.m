@@ -622,44 +622,43 @@ void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth, fl
     NSError *err = NULL;
     CMTime time = CMTimeMake(1, 60);
     CGImageRef imgRef = [generator copyCGImageAtTime:time actualTime:NULL error:&err];
-    
-    theImage = [[UIImage alloc] initWithCGImage:imgRef];
-    
-    CGImageRelease(imgRef);
-    
-    return theImage;
+
+	if (imgRef != NULL) {
+		theImage = [[UIImage alloc] initWithCGImage:imgRef];
+		CGImageRelease(imgRef);
+	}
+	return theImage;
 }
 
-+ (void)saveAndScaleImage:(UIImage *)image withMaxResolution:(NSInteger)maxResolution target:(id)target selector:(SEL)selector {
-    [self saveAndScaleImage:image withMaxResolution:maxResolution target:target selector:selector targetSize:nil];
++ (NSData *)dataFromScaledImage:(UIImage *)image withMaxResolution:(NSInteger)maxResolution {
+    return [self dataFromScaledImage:image withMaxResolution:maxResolution targetSize:nil transformer:nil];
 }
 
-+ (void)saveAndScaleImage:(UIImage *)image withMaxResolution:(NSInteger)maxResolution target:(id)target selector:(SEL)selector targetSize:(CGSize *)targetSize {
++ (NSData *)dataFromScaledImage:(UIImage *)image withMaxResolution:(NSInteger)maxResolution targetSize:(CGSize *)targetSize transformer:(NSValueTransformer *)transformer {
 	@autoreleasepool {
-        NSData *data = nil;
-        if (image) {
-            UIImageToJPEGDataTransformer *transformer = [UIImageToJPEGDataTransformer new];
-            NSDate *start = [NSDate date];
-            UIImage *scaledImage = [self scaleAndRotateImage:image maxResolution:maxResolution];
-            LogTrace(@"Scaling time: %f", [[NSDate date] timeIntervalSinceDate:start]);
-            
-            start = [NSDate date];
-            
-            data = [transformer transformedValue:scaledImage];
-            
-            
-            LogTrace(@"Transformation time: %f", [[NSDate date] timeIntervalSinceDate:start]);
-            LogTrace(@"Image size: %f, %f", image.size.width, image.size.height);
-            LogTrace(@"Scaled image size: %f, %f", scaledImage.size.width, scaledImage.size.height);
-            if (targetSize) {
-                *targetSize = scaledImage.size;
-            }
-        }
-        
-        if (![target respondsToSelector:@selector(isDeleted)] || ![target performSelector:@selector(isDeleted)]) {
-            [target performSelectorOnMainThread:selector withObject:data waitUntilDone:YES];
-        }
-    }
+		NSData *data = nil;
+		if (image) {
+			if (transformer == nil) {
+				transformer = [UIImageToJPEGDataTransformer new];
+			}
+			NSDate *start = [NSDate date];
+			UIImage *scaledImage = [self scaleAndRotateImage:image maxResolution:maxResolution];
+			LogTrace(@"Scaling time: %f", [[NSDate date] timeIntervalSinceDate:start]);
+
+			start = [NSDate date];
+
+			data = [transformer transformedValue:scaledImage];
+
+
+			LogTrace(@"Transformation time: %f", [[NSDate date] timeIntervalSinceDate:start]);
+			LogTrace(@"Image size: %f, %f", image.size.width, image.size.height);
+			LogTrace(@"Scaled image size: %f, %f", scaledImage.size.width, scaledImage.size.height);
+			if (targetSize) {
+				*targetSize = scaledImage.size;
+			}
+		}
+		return data;
+	}
 }
 
 #endif

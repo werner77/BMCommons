@@ -74,6 +74,8 @@ typedef unsigned int   NSUInteger;
 
 #ifdef __OBJC__
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class NSError;
 
 // NSError error domains and user info keys.
@@ -103,22 +105,24 @@ typedef uint32_t RKLRegexOptions;
 + (void)clearStringCache;
 
 + (NSInteger)captureCountForRegex:(NSString *)regexString;
-+ (NSInteger)captureCountForRegex:(NSString *)regexString options:(RKLRegexOptions)options error:(NSError **)error;
++ (NSInteger)captureCountForRegex:(NSString *)regexString options:(RKLRegexOptions)options error:(NSError * _Nullable * _Nullable)error;
 
 - (BOOL)isMatchedByRegex:(NSString *)regexString;
-- (BOOL)isMatchedByRegex:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range error:(NSError **)error;
+- (BOOL)isMatchedByRegex:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range error:(NSError * _Nullable * _Nullable)error;
 
 - (NSRange)rangeOfRegex:(NSString *)regexString;
 - (NSRange)rangeOfRegex:(NSString *)regexString capture:(NSInteger)capture;
 - (NSRange)rangeOfRegex:(NSString *)regexString inRange:(NSRange)range;
-- (NSRange)rangeOfRegex:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError **)error;
+- (NSRange)rangeOfRegex:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError * _Nullable * _Nullable)error;
 
-- (NSString *)stringByMatching:(NSString *)regexString;
-- (NSString *)stringByMatching:(NSString *)regexString capture:(NSInteger)capture;
-- (NSString *)stringByMatching:(NSString *)regexString inRange:(NSRange)range;
-- (NSString *)stringByMatching:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError **)error;
+- (nullable NSString *)stringByMatching:(NSString *)regexString;
+- (nullable NSString *)stringByMatching:(NSString *)regexString capture:(NSInteger)capture;
+- (nullable NSString *)stringByMatching:(NSString *)regexString inRange:(NSRange)range;
+- (nullable NSString *)stringByMatching:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError * _Nullable * _Nullable)error;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 #endif // _REGEXKITLITE_H_
 

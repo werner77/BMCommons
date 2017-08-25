@@ -8,15 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Proxy that delegates all messages to the specified object
  */
-@interface BMProxy : NSProxy {
-@private
-    __weak NSObject *_object;
-    __strong NSObject *_retainedObject;
-    BOOL _threadSafe;
-}
+@interface BMProxy : NSProxy
 
 /**
  The target object of the proxy.
@@ -57,3 +54,5 @@
 + (BMProxy *)proxyWithObject:(NSObject *)object threadSafe:(BOOL)threadSafe retained:(BOOL)retained;
 
 @end
+
+NS_ASSUME_NONNULL_END

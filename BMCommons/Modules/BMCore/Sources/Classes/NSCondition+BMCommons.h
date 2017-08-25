@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSCondition (BMCommons)
 
 /**
@@ -19,7 +21,7 @@
  
  @see broadcastCondition:forPredicateModification:
  */
-- (BOOL)bmWaitForPredicate:(BOOL (^)(void))predicate completion:(void (^)(BOOL waited))completion;
+- (BOOL)bmWaitForPredicate:(BOOL (^)(void))predicate completion:(void (^ _Nullable)(BOOL waited))completion;
 
 /**
  Waits with a timeout, specify timeout <= 0.0 to wait indefinitely.
@@ -28,7 +30,7 @@
  
  Returns NO iff the predicate returned true without having to wait, YES if the wait actually had to occur.
  */
-- (BOOL)bmWaitForPredicate:(BOOL (^)(void))predicate timeout:(NSTimeInterval)timeout completion:(void (^)(BOOL predicateResult, BOOL waited))completion;
+- (BOOL)bmWaitForPredicate:(BOOL (^)(void))predicate timeout:(NSTimeInterval)timeout completion:(void (^  _Nullable)(BOOL predicateResult, BOOL waited))completion;
 
 /**
  Performs a thread safe predicate modification while broadcasting the condition which is paired to it.
@@ -36,3 +38,5 @@
 - (void)bmBroadcastForPredicateModification:(void (^)(void))modification;
 
 @end
+
+NS_ASSUME_NONNULL_END

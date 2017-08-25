@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Protocol declaring an object with has a name property.
  */
 @protocol BMNamedObject<NSObject>
 
-- (NSString *)name;
+- (nullable NSString *)name;
 
 @end
+
+NS_ASSUME_NONNULL_END

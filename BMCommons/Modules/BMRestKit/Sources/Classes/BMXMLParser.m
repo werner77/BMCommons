@@ -191,7 +191,10 @@ static void __characters( void * ctx, const xmlChar * ch, int len )
 	NSString * str = [[NSString allocWithZone: nil] initWithBytes: ch
 														   length: len
 														 encoding: NSUTF8StringEncoding];
-	[delegate parser: parser foundCharacters: str];
+
+	if (str) {
+		[delegate parser: parser foundCharacters: str];
+	}
 }
 
 static xmlEntityPtr __getParameterEntity( void * ctx, const xmlChar * name )
@@ -439,7 +442,9 @@ static void __comment( void * ctx, const xmlChar * value )
 		return;
 	
 	NSString * commentStr = NSStringFromXmlChar(value);
-	[delegate parser: parser foundComment: commentStr];
+	if (commentStr) {
+		[delegate parser: parser foundComment: commentStr];
+	}
 }
 
 static void __errorCallback( void * ctx, const char * msg, ... )
@@ -684,7 +689,10 @@ static void __ignorableWhitespace( void * ctx, const xmlChar * ch, int len )
 	NSString * str = [[NSString allocWithZone: nil] initWithBytes: ch
 														   length: len
 														 encoding: NSUTF8StringEncoding];
-	[delegate parser: parser foundCharacters: str];
+
+	if (str) {
+		[delegate parser: parser foundIgnorableWhitespace:str];
+	}
 }
 
 #pragma mark -

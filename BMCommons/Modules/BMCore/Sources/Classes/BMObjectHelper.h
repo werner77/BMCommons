@@ -10,32 +10,32 @@
 #import <BMCommons/BMCoreObject.h>
 #import <BMCommons/BMDigest.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Object helper methods
  */
-@interface BMObjectHelper : BMCoreObject {
-	
-}
+@interface BMObjectHelper : BMCoreObject
 
 /**
  Returns nil in case the object == [NSNull null], otherwise the object itself.
  */
-+ (id)filterNSNullObject:(id)object;
++ (nullable id)filterNSNullObject:(nullable id)object;
 
 /**
  Returns [NSNull null] in case nil is supplied, otherwise the object itself.
  */
-+ (id)filterNullObject:(id)object;
++ (id)filterNullObject:(nullable id)object;
 
 /**
  Returns the default value in case the object supplied is nil, other wise the object itself is returned.
  */
-+ (id)filterNullObject:(id)object withDefaultValue:(id)defaultValue;
++ (id)filterNullObject:(nullable id)object withDefaultValue:(id)defaultValue;
 
 /**
  Checks whether key and object or not nil before setting them in the specified dictionary.
  */
-+ (void)setObject:(id)object forKey:(id)aKey inDictionary:(NSMutableDictionary *)dict;
++ (void)setObject:(nullable id)object forKey:(nullable id)aKey inDictionary:(NSMutableDictionary *)dict;
 
 /**
  Calls the KVO validation methods for the specified array of attributes. 
@@ -50,12 +50,12 @@
 /**
  Returns true iff value1/value2 returned for the keypaths (instances of NSString) supplied for object1/object2 obey the condition: value1 == value2 || [value1 isEqual:value2].
  */
-+ (BOOL)isObject:(id)object1 equalToObject:(id)object2 forKeyPaths:(NSArray *)keyPaths;
++ (BOOL)isObject:(nullable id)object1 equalToObject:(nullable id)object2 forKeyPaths:(NSArray *)keyPaths;
 
 /**
  Returns true iff value1/value2 returned for the array of property descriptors supplied for object1/object2 obey the condition: value1 == value2 || [value1 isEqual:value2].
  */
-+ (BOOL)isObject:(id)object1 equalToObject:(id)object2 forPropertyDescriptors:(NSArray *)propertyDescriptors;
++ (BOOL)isObject:(nullable id)object1 equalToObject:(nullable id)object2 forPropertyDescriptors:(NSArray *)propertyDescriptors;
 
 /**
  Returns a hash code for the specified object using the specified keypaths. The order of the keypaths matters.
@@ -78,3 +78,5 @@
 + (NSString *)digestOfType:(BMDigestType)digestType forObject:(id)object withKeyPaths:(NSArray *)keyPaths;
 
 @end
+
+NS_ASSUME_NONNULL_END

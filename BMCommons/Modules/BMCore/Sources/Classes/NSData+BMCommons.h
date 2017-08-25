@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSData (BMCommons)
 
-- (NSString *)bmStringUsingEncoding:(NSStringEncoding)encoding;
+- (nullable NSString *)bmStringUsingEncoding:(NSStringEncoding)encoding;
 - (NSString *)bmHexEncodedString;
 - (NSString *)bmBase64EncodedString;
 
@@ -18,3 +20,5 @@
 - (BOOL)bmIsPNGData;
 
 @end
+
+NS_ASSUME_NONNULL_END

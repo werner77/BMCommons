@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface NSDateFormatter(BMCommons)
 
@@ -18,6 +19,8 @@
  
  This method is preferable over dateFromString, see: http://stackoverflow.com/questions/3094819/nsdateformatter-returning-nil-in-os-4-0
  */
-- (NSDate *)bmDateByParsingFromString:(NSString *)dateString;
+- (nullable NSDate *)bmDateByParsingFromString:(NSString *)dateString;
 
 @end
+
+NS_ASSUME_NONNULL_END

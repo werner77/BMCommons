@@ -9,16 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Registry of MIME types.
  
  A MIME type contains a contentType string such as "image/jpeg" and a list of extensions such as ["jpe", "jpg", jpeg"]
  */
-@interface BMMIMEType : BMCoreObject {
-@private
-    NSString *contentType;
-    NSArray *fileExtensions;
-}
+@interface BMMIMEType : BMCoreObject
 
 /**
  The content type for this MIME type, such as "image/jpeg" or "text/plain".
@@ -35,11 +33,13 @@
 /**
  Returns the known MIME type for the specified fileExtension or nil if not recognized.
  */
-+ (BMMIMEType *)mimeTypeForFileExtension:(NSString *)fileExtension;
++ (nullable BMMIMEType *)mimeTypeForFileExtension:(NSString *)fileExtension;
 
 /**
  Returns the known MIME type for the specified contentType or nil if not recognized.
  */
-+ (BMMIMEType *)mimeTypeForContentType:(NSString *)contentType;
++ (nullable BMMIMEType *)mimeTypeForContentType:(NSString *)contentType;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -10,6 +10,8 @@
 #import <BMCommons/NSString+BMCommons.h>
 #import <BMCommons/BMOrderedDictionary.h>
 #import <BMCommons/BMEncodingHelper.h>
+#import "NSCharacterSet+BMCommons.h"
+#import "BMCore.h"
 
 @implementation BMStringHelper
 
@@ -124,7 +126,7 @@
 }
 
 + (NSString *)currencyStringFromDouble:(double)d {
-	return [self currencyStringFromDouble:d withCurrencyCode:[[NSLocale currentLocale] objectForKey:NSLocaleCurrencyCode]];
+	return [self currencyStringFromDouble:d withCurrencyCode:nil];
 }
 
 + (NSString *)currencyStringFromDouble:(double)d withCurrencyCode:(NSString *)currencyCode {
@@ -134,7 +136,11 @@
 	// create a number formatter object
 	NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
 	[formatter setNumberStyle: NSNumberFormatterCurrencyStyle];
-	
+
+    if (currencyCode == nil) {
+        currencyCode = [[NSLocale currentLocale] objectForKey:NSLocaleCurrencyCode];
+    }
+
 	[formatter setCurrencyCode:currencyCode];
 	
 	// convert the number to a string
@@ -247,7 +253,10 @@
                     [ret appendString:@"&"];
                 }
                 NSString *escapedParameterValue = [parameterValueString bmStringWithPercentEscapes];
-                [ret appendFormat:@"%@=%@", parameterName, escapedParameterValue];
+
+                if (parameterName && escapedParameterValue) {
+                    [ret appendFormat:@"%@=%@", parameterName, escapedParameterValue];
+                }
             }
         }
         
@@ -257,16 +266,20 @@
 
 + (NSString *)randomStringOfLength:(NSUInteger)length charSet:(nullable NSCharacterSet *)characterSet {
     if (characterSet == nil) {
-        characterSet = [NSCharacterSet alphanumericCharacterSet];
+        static NSCharacterSet *sDefaultCharacterSet = nil;
+        BM_DISPATCH_ONCE((^{
+            sDefaultCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+        }));
+        characterSet = sDefaultCharacterSet;
     }
+    NSArray<NSString *> *characters = [characterSet bmArrayWithCharactersInSet];
     NSMutableString *ret = [[NSMutableString alloc] initWithCapacity:length];
-
     for (NSUInteger i = 0; i < length; ++i) {
-
+        NSUInteger index = arc4random_uniform(characters.count);
+        [ret appendString:characters[index]];
     }
     return ret;
 }
-
 
 + (NSString *)queryStringFromParameters:(NSDictionary *)parameters {
     return [self queryStringFromParameters:parameters includeQuestionMark:YES];

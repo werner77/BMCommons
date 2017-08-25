@@ -10,8 +10,6 @@
 
 @implementation BMStringToDataTransformer
 
-@synthesize encoding;
-
 + (Class)transformedValueClass {
 	return [NSData class];
 }

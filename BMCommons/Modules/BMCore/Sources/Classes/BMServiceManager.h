@@ -10,6 +10,8 @@
 #import <BMCommons/BMService.h>
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMServiceManager;
 @class BMDataRecorder;
 
@@ -43,7 +45,7 @@
  * @see [BMServiceManagerDelegate serviceManager:reverseTransformedServiceForService:]
  * @see BMServiceManager.serviceTransformer
  */
-- (id <BMService>)serviceManager:(BMServiceManager *)serviceManager transformedServiceForService:(id <BMService>)service;
+- (nullable id <BMService>)serviceManager:(BMServiceManager *)serviceManager transformedServiceForService:(id <BMService>)service;
 
 /**
  * Reverse transforms a service back that was previously transformed.
@@ -54,7 +56,7 @@
  * @see [BMServiceManagerDelegate serviceManager:transformedServiceForService:]
  * @see BMServiceManager.serviceTransformer
  */
-- (id <BMService>)serviceManager:(BMServiceManager *)serviceManager reverseTransformedServiceForService:(id <BMService>)service;
+- (nullable id <BMService>)serviceManager:(BMServiceManager *)serviceManager reverseTransformedServiceForService:(id <BMService>)service;
 
 @end
 
@@ -73,7 +75,7 @@
 
 BM_DECLARE_DEFAULT_SINGLETON
 
-@property (weak) id <BMServiceManagerDelegate> delegate;
+@property (nullable, weak) id <BMServiceManagerDelegate> delegate;
 
 /**
  * Access this object for recording/playback functionality.
@@ -92,7 +94,7 @@ BM_DECLARE_DEFAULT_SINGLETON
 
   @see [BMServiceManagerDelegate serviceManager:transformedServiceForService:]
  */
-@property (strong) NSValueTransformer *serviceTransformer;
+@property (nullable, strong) NSValueTransformer *serviceTransformer;
 
 /**
  * If set to true a transformed service is automatically reverse transformed before it is handed to the delegates.
@@ -105,7 +107,7 @@ BM_DECLARE_DEFAULT_SINGLETON
 /**
  * Set to use this queue to perform the delegate callbacks on. If not set the main thread (queue) is used.
  */
-@property (strong) NSOperationQueue *delegateQueue;
+@property (nullable, strong) NSOperationQueue *delegateQueue;
 
 /**
  Add/Remove delegate to receive all service events
@@ -118,8 +120,8 @@ BM_DECLARE_DEFAULT_SINGLETON
  
  @see [BMService classIdentifier]
  */
-- (void)addServiceDelegate:(id <BMServiceDelegate>)theDelegate forClassIdentifier:(NSString *)classIdentifier;
-- (void)removeServiceDelegate:(id <BMServiceDelegate>)theDelegate forClassIdentifier:(NSString *)classIdentifier;
+- (void)addServiceDelegate:(id <BMServiceDelegate>)theDelegate forClassIdentifier:(nullable NSString *)classIdentifier;
+- (void)removeServiceDelegate:(id <BMServiceDelegate>)theDelegate forClassIdentifier:(nullable NSString *)classIdentifier;
 
 /**
  Add/Remove delegate for service instance specific events
@@ -143,12 +145,12 @@ BM_DECLARE_DEFAULT_SINGLETON
  
  @see [BMService instanceIdentifier]
  */
-- (id <BMServiceDelegate>)primaryServiceDelegateForInstanceIdentifier:(NSString *)instanceIdentifier;
+- (nullable id <BMServiceDelegate>)primaryServiceDelegateForInstanceIdentifier:(NSString *)instanceIdentifier;
 
 /**
  * Returns the primary delegate or owner of the BMBlockServiceDelegate in case the primary delegate is a BMBlockServiceDelegate instance.
  */
-- (id <BMServiceDelegate>)ownerForServiceWithInstanceIdentifier:(NSString *)instanceIdentifier;
+- (nullable id <BMServiceDelegate>)ownerForServiceWithInstanceIdentifier:(NSString *)instanceIdentifier;
 
 /**
  Cancels the service instance and removes all delegates for that specific instance
@@ -172,7 +174,7 @@ BM_DECLARE_DEFAULT_SINGLETON
  @param delegate The primary delegate for which to cancel the service
  @see [BMService cancel]
  */
-- (void)cancelServiceInstancesForDelegate:(id)delegate;
+- (void)cancelServiceInstancesForDelegate:(nullable id)delegate;
 
 /**
  Cancels services of the specified class (does not affect delegates)
@@ -180,7 +182,7 @@ BM_DECLARE_DEFAULT_SINGLETON
  @see [BMService cancel]
  @see [BMService classIdentifier]
  */
-- (void)cancelServicesWithClassIdentifier:(NSString *)classIdentifier;
+- (void)cancelServicesWithClassIdentifier:(nullable NSString *)classIdentifier;
 
 /**
  Cancels services of the specified class that have the specified primary delegate.
@@ -188,7 +190,7 @@ BM_DECLARE_DEFAULT_SINGLETON
  @see [BMService cancel]
  @see [BMService classIdentifier]
  */
-- (void)cancelServicesWithClassIdentifier:(NSString *)classIdentifier forDelegate:(id)theDelegate;
+- (void)cancelServicesWithClassIdentifier:(nullable NSString *)classIdentifier forDelegate:(nullable id)theDelegate;
 
 /**
  Cancels all services (does not affect delegates)
@@ -202,7 +204,7 @@ BM_DECLARE_DEFAULT_SINGLETON
  @param delegate The primary delegate to register for this service
  @see [BMService execute]
  */
-- (NSString *)performService:(id <BMService>)service withDelegate:(id <BMServiceDelegate>)delegate;
+- (NSString *)performService:(id <BMService>)service withDelegate:(nullable id <BMServiceDelegate>)delegate;
 
 /**
  Checks whether a service is active with the specified instance identifier.
@@ -217,21 +219,21 @@ BM_DECLARE_DEFAULT_SINGLETON
  Also checks BMBlockServiceDelegates by matching the owner against the specified delegate.
  If one of the arguments (classIdentifier, delegate) is nil, that argument is ignored.
  */
-- (BOOL)isPerformingServiceWithClassIdentifier:(NSString *)classIdentifier forDelegate:(id)theDelegate;
+- (BOOL)isPerformingServiceWithClassIdentifier:(nullable NSString *)classIdentifier forDelegate:(nullable id)theDelegate;
 
 /**
  Checks whether a service is active for the specified primary delegate.
  
  Also checks BMBlockServiceDelegates by matching the owner against the specified delegate.
  */
-- (BOOL)isPerformingServiceForDelegate:(id)theDelegate;
+- (BOOL)isPerformingServiceForDelegate:(nullable id)theDelegate;
 
 /**
  Checks whether a service is active for the specified class.
  
  @see [BMService classIdentifier]
  */
-- (BOOL)isPerformingServiceWithClassIdentifier:(NSString *)classIdentifier;
+- (BOOL)isPerformingServiceWithClassIdentifier:(nullable NSString *)classIdentifier;
 
 /**
  Returns the active services for the specified class and primary delegate.
@@ -243,14 +245,14 @@ BM_DECLARE_DEFAULT_SINGLETON
  
  @see [BMService classIdentifier]
  */
-- (NSArray *)activeServicesWithClassIdentifier:(NSString *)classIdentifier forDelegate:(id)delegate performReverseTransformation:(BOOL)performReverseTransformation;
+- (NSArray *)activeServicesWithClassIdentifier:(nullable NSString *)classIdentifier forDelegate:(nullable id)delegate performReverseTransformation:(BOOL)performReverseTransformation;
 
 /**
  * Returns the active services for the specified class and delegate, defaulting performReverseTransformation with the value set in the property [BMServiceManager automaticallyReverseTransformServices].
  *
  * @see [BMServiceManager activeServicesWithClassIdentifier:forDelegate:performReverseTransformation:]
  */
-- (NSArray *)activeServicesWithClassIdentifier:(NSString *)classIdentifier forDelegate:(id)delegate;
+- (NSArray *)activeServicesWithClassIdentifier:(nullable NSString *)classIdentifier forDelegate:(nullable id)delegate;
 
 /**
  Returns the active service with the specified instance identifier or nil if not found.
@@ -292,3 +294,4 @@ BM_DECLARE_DEFAULT_SINGLETON
 
 @end
 
+NS_ASSUME_NONNULL_END

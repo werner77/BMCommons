@@ -49,6 +49,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
     The KeychainItemWrapper class is an abstraction layer for the iPhone Keychain communication. 
  
@@ -57,24 +59,23 @@
 */
 @interface BMKeychainItemWrapper : NSObject
 
-@property (nonatomic, strong) NSMutableDictionary *keychainItemData;
-@property (nonatomic, strong) NSMutableDictionary *genericPasswordQuery;
-
-/** 
+/**
  Value transformer for converting the value data.
  
  The forward transformation should be to NSData and the value transformer should support reverse transformation.
  By default the value is transformed to a NSString using UTF8 encoding.
+
+ If set to nil the NSData from the keychain is not transformed.
  */
-@property (nonatomic, readonly) NSValueTransformer *valueDataTransformer;
+@property (nullable, nonatomic, readonly) NSValueTransformer *valueDataTransformer;
 
 /**
  Designated initializer.
  
  Initializes with the supplied identifier and optional accessGroup (in case more than one application from the same company share the same keychain, see Apple documentation for more info).
  */
-- (id)initWithIdentifier: (NSString *)identifier accessGroup:(NSString *) accessGroup;
-- (id)initWithIdentifier: (NSString *)identifier accessGroup:(NSString *) accessGroup valueDataTransformer:(NSValueTransformer *)transformer;
+- (id)initWithIdentifier: (NSString *)identifier accessGroup:(nullable NSString *) accessGroup;
+- (id)initWithIdentifier: (NSString *)identifier accessGroup:(nullable NSString *) accessGroup valueDataTransformer:(nullable NSValueTransformer *)transformer;
 
 /**
  Sets the object for the specified key and flushes immediately.
@@ -95,7 +96,7 @@
 /**
  Returns the object for the specified key.
  */
-- (id)objectForKey:(id)key;
+- (nullable id)objectForKey:(id)key;
 
 /** 
  Initializes and resets the default generic keychain item data.
@@ -109,3 +110,5 @@
 - (void)flush;
 
 @end
+
+NS_ASSUME_NONNULL_END

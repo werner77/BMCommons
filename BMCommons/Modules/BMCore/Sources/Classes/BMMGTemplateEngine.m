@@ -41,17 +41,20 @@
 @end
 
 
-@implementation BMMGTemplateEngine
+@implementation BMMGTemplateEngine {
+@private
+	NSMutableArray *_openBlocksStack;
+	NSMutableDictionary *_globals;
+	NSInteger _outputDisabledCount;
+	NSUInteger _templateLength;
+	NSMutableDictionary *_filters;
+	NSMutableDictionary *_markers;
+	NSMutableDictionary *_templateVariables;
+	BOOL _literal;
+}
 
 
 #pragma mark Creation and destruction
-
-
-+ (NSString *)version
-{
-	// 1.0.0	20 May 2008
-	return @"1.0.0";
-}
 
 
 + (BMMGTemplateEngine *)templateEngine
@@ -163,18 +166,18 @@
 
 - (void)reportError:(NSString *)errorStr code:(int)code continuing:(BOOL)continuing
 {
-	if (delegate) {
+	if (_delegate) {
 		NSString *errStr = BMLocalizedString(errorStr, nil);
 		if (!continuing) {
 			errStr = [NSString stringWithFormat:@"%@: %@", BMLocalizedString(@"Fatal Error", nil), errStr];
 		}
 		SEL selector = @selector(templateEngine:encounteredError:isContinuing:);
-		if ([(NSObject *)delegate respondsToSelector:selector]) {
+		if ([(NSObject *)_delegate respondsToSelector:selector]) {
 			NSError *error = [NSError errorWithDomain:TEMPLATE_ENGINE_ERROR_DOMAIN 
 												 code:code 
 											 userInfo:[NSDictionary dictionaryWithObject:errStr 
 																				  forKey:NSLocalizedDescriptionKey]];
-			[(NSObject <BMMGTemplateEngineDelegate> *)delegate templateEngine:self
+			[(NSObject <BMMGTemplateEngineDelegate> *)_delegate templateEngine:self
 														   encounteredError:error 
 															   isContinuing:continuing];
 		}
@@ -184,11 +187,11 @@
 
 - (void)reportBlockBoundaryStarted:(BOOL)started
 {
-	if (delegate) {
+	if (_delegate) {
 		SEL selector = (started) ? @selector(templateEngine:blockStarted:) : @selector(templateEngine:blockEnded:);
-		if ([(NSObject *)delegate respondsToSelector:selector]) {
+		if ([(NSObject *)_delegate respondsToSelector:selector]) {
 			BM_IGNORE_SELECTOR_LEAK_WARNING(
-			[(NSObject *)delegate performSelector:selector withObject:self withObject:[_openBlocksStack lastObject]];
+			[(NSObject *)_delegate performSelector:selector withObject:self withObject:[_openBlocksStack lastObject]];
 			)
 		}
 	}
@@ -197,11 +200,11 @@
 
 - (void)reportTemplateProcessingFinished
 {
-	if (delegate) {
+	if (_delegate) {
 		SEL selector = @selector(templateEngineFinishedProcessingTemplate:);
-		if ([(NSObject *)delegate respondsToSelector:selector]) {
+		if ([(NSObject *)_delegate respondsToSelector:selector]) {
 			BM_IGNORE_SELECTOR_LEAK_WARNING(
-			[(NSObject *)delegate performSelector:selector withObject:self];
+			[(NSObject *)_delegate performSelector:selector withObject:self];
 			)
 		}
 	}
@@ -405,35 +408,35 @@
 	[_globals setObject:[NSNumber numberWithBool:YES] forKey:@"yes"];
 	[_globals setObject:[NSNumber numberWithBool:NO] forKey:@"no"];
 	_outputDisabledCount = 0;
-	templateContents = templateString;
+	_templateContents = templateString;
 	_templateLength = [templateString length];
 	_templateVariables = [variables bmDeepMutableCopy];
-	remainingRange = NSMakeRange(0, [templateString length]);
+	_remainingRange = NSMakeRange(0, [templateString length]);
 	_literal = NO;
 	
 	// Ensure we have a matcher.
-	if (!matcher) {
+	if (!_matcher) {
 		[self reportError:@"No matcher has been configured for the template engine" code:7 continuing:NO];
 		return nil;
 	}
 	
 	// Tell our matcher to take note of our settings.
-	[matcher engineSettingsChanged];
+	[_matcher engineSettingsChanged];
 	NSMutableString *output = [NSMutableString string];
 	
-	while (remainingRange.location != NSNotFound) {
-		NSDictionary *matchInfo = [matcher firstMarkerWithinRange:remainingRange];
+	while (_remainingRange.location != NSNotFound) {
+		NSDictionary *matchInfo = [_matcher firstMarkerWithinRange:_remainingRange];
 		if (matchInfo) {
 			// Append output before marker if appropriate.
 			NSRange matchRange = [[matchInfo objectForKey:MARKER_RANGE_KEY] rangeValue];
 			if (_outputDisabledCount == 0) {
-				NSRange preMarkerRange = NSMakeRange(remainingRange.location, matchRange.location - remainingRange.location);
-				[output appendFormat:@"%@", [templateContents substringWithRange:preMarkerRange]];
+				NSRange preMarkerRange = NSMakeRange(_remainingRange.location, matchRange.location - _remainingRange.location);
+				[output appendFormat:@"%@", [_templateContents substringWithRange:preMarkerRange]];
 			}
 			
 			// Adjust remainingRange.
-			remainingRange.location = NSMaxRange(matchRange);
-			remainingRange.length = _templateLength - remainingRange.location;
+			_remainingRange.location = NSMaxRange(matchRange);
+			_remainingRange.length = _templateLength - _remainingRange.location;
 			
 			// Process the marker we found.
 			//NSLog(@"Match: %@", matchInfo);
@@ -443,7 +446,7 @@
 			if ([matchMarker isEqualToString:self.literalStartMarker]) {
 				if (_literal && _outputDisabledCount == 0) {
 					// Output this tag literally.
-					[output appendFormat:@"%@", [templateContents substringWithRange:matchRange]];
+					[output appendFormat:@"%@", [_templateContents substringWithRange:matchRange]];
 				} else {
 					// Enable literal mode.
 					_literal = YES;
@@ -454,7 +457,7 @@
 				_literal = NO;
 				continue;
 			} else if (_literal && _outputDisabledCount == 0) {
-				[output appendFormat:@"%@", [templateContents substringWithRange:matchRange]];
+				[output appendFormat:@"%@", [_templateContents substringWithRange:matchRange]];
 				continue;
 			}
 			
@@ -462,7 +465,7 @@
 			BOOL isMarker = [[matchInfo objectForKey:MARKER_TYPE_KEY] isEqualToString:MARKER_TYPE_MARKER];
 			NSObject <BMMGTemplateMarker> *markerHandler = nil;
 			NSObject *val = nil;
-			if (isMarker) {
+			if (isMarker && matchMarker != nil) {
 				markerHandler = [_markers objectForKey:matchMarker];
 				
 				// Process marker with handler.
@@ -470,7 +473,7 @@
 				BOOL blockEnded = NO;
 				BOOL outputEnabled = (_outputDisabledCount == 0);
 				BOOL outputWasEnabled = outputEnabled;
-				NSRange nextRange = remainingRange;
+				NSRange nextRange = _remainingRange;
 				NSDictionary *newVariables = nil;
 				NSDictionary *blockInfo = nil;
 				
@@ -484,7 +487,7 @@
 				}
 				
 				// Call marker's handler.
-				val = [markerHandler markerEncountered:matchMarker 
+				val = [markerHandler markerEncountered:matchMarker
 										 withArguments:[matchInfo objectForKey:MARKER_ARGUMENTS_KEY] 
 											   inRange:matchRange 
 										  blockStarted:&blockStarted blockEnded:&blockEnded 
@@ -498,10 +501,10 @@
 						_outputDisabledCount++;
 					}
 				}
-				remainingRange = nextRange;
+				_remainingRange = nextRange;
 				
 				// Check to see if remainingRange is valid.
-				if (NSMaxRange(remainingRange) > [self.templateContents length]) {
+				if (NSMaxRange(_remainingRange) > [self.templateContents length]) {
 					[self reportError:[NSString stringWithFormat:@"Marker handler \"%@\" specified an invalid range to resume processing from", 
 									   matchMarker] 
 								 code:5 continuing:NO];
@@ -608,7 +611,7 @@ but current block was started by \"%@\" marker",
 		} else {
 			// Append output to end of template.
 			if (_outputDisabledCount == 0) {
-				[output appendFormat:@"%@", [templateContents substringWithRange:remainingRange]];
+				[output appendFormat:@"%@", [_templateContents substringWithRange:_remainingRange]];
 			}
 			
 			// Check to see if there are open blocks left over.
@@ -622,7 +625,7 @@ but current block was started by \"%@\" marker",
 			}
 			
 			// Ensure we terminate the loop.
-			remainingRange.location = NSNotFound;
+			_remainingRange.location = NSNotFound;
 		}
 	}
 	
@@ -646,22 +649,6 @@ but current block was started by \"%@\" marker",
 	}
 	return result;
 }
-
-
-#pragma mark Properties
-
-
-@synthesize markerStartDelimiter;
-@synthesize markerEndDelimiter;
-@synthesize expressionStartDelimiter;
-@synthesize expressionEndDelimiter;
-@synthesize filterDelimiter;
-@synthesize literalStartMarker;
-@synthesize literalEndMarker;
-@synthesize remainingRange;
-@synthesize delegate;
-@synthesize matcher;
-@synthesize templateContents;
 
 
 @end

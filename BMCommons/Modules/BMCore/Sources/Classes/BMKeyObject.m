@@ -14,7 +14,7 @@
 static NSMutableDictionary *propertyDescriptorsDict = nil;
 
 + (NSArray *)keyProperties {
-    return nil;
+    return @[];
 }
 
 + (NSArray *)propertyDescriptors {

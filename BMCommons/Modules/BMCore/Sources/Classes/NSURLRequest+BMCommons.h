@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSURLRequest (BMCommons)
 
 - (void)bmSetTimeoutInterval:(NSTimeInterval)timeoutInterval;
@@ -57,4 +59,6 @@
 - (void)setBMURLProtocolEnabled:(BOOL)enabled;
 
 @end
+
+NS_ASSUME_NONNULL_END
 

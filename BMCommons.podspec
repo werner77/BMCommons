@@ -39,7 +39,7 @@ Pod::Spec.new do |s|
     s_restkit.source_files = 'BMCommons/Modules/BMRestKit/Sources/**/*.{c,m,h}'
     s_restkit.exclude_files = 'BMCommons/Modules/BMRestKit/**/*_Private.*'
     s_restkit.dependency 'BMCommons/BMXML'
-    s_restkit.dependency 'yajl-objc', '0.3.0'
+    s_restkit.dependency 'eli-yajl-objc', '0.3.0'
   end
   
   s.subspec 'BMXML' do |s_xml|

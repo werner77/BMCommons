@@ -65,6 +65,8 @@ typedef NS_ENUM(NSUInteger, BMNetworkStatus) {
     BMNetworkStatusReachableViaWWAN
 };
 
+NS_ASSUME_NONNULL_BEGIN
+
 #define BMReachabilityChangedNotification @"BMNetworkReachabilityChangedNotification"
 
 typedef struct sockaddr_in BMSockAddressIn;
@@ -77,31 +79,29 @@ typedef struct sockaddr_in BMSockAddressIn;
  @see BMNetworkTester
  */
 @interface BMReachability: BMCoreObject
-{
-    @private
-    BOOL localWiFiRef;
-    SCNetworkReachabilityRef reachabilityRef;
-}
 
 //reachabilityWithHostName- Use to check the reachability of a particular host name. 
-+ (BMReachability*) reachabilityWithHostName: (NSString*) hostName;
++ (nullable BMReachability*) reachabilityWithHostName: (NSString*) hostName;
 
 //reachabilityWithAddress- Use to check the reachability of a particular IP address. 
-+ (BMReachability*) reachabilityWithAddress: (const BMSockAddressIn*) hostAddress;
++ (nullable BMReachability*) reachabilityWithAddress: (const BMSockAddressIn*) hostAddress;
 
 //reachabilityForInternetConnection- checks whether the default route is available.  
 //  Should be used by applications that do not connect to a particular host
-+ (BMReachability*) reachabilityForInternetConnection;
++ (nullable BMReachability*) reachabilityForInternetConnection;
 
 //reachabilityForLocalWiFi- checks whether a local wifi connection is available.
-+ (BMReachability*) reachabilityForLocalWiFi;
++ (nullable BMReachability*) reachabilityForLocalWiFi;
 
 //Start listening for reachability notifications on the current run loop
-- (BOOL) startNotifer;
-- (void) stopNotifer;
+- (BOOL)startNotifier;
+- (void)stopNotifier;
 
 - (BMNetworkStatus) currentReachabilityStatus;
 //WWAN may be available, but not active until a connection has been established.
 //WiFi may require a connection for VPN on Demand.
 - (BOOL) connectionRequired;
+
 @end
+
+NS_ASSUME_NONNULL_END

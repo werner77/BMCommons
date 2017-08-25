@@ -6,7 +6,9 @@
  *
  */
 
-#import <BMCommons/BMMGTemplateEngine.h>
+@class BMMGTemplateEngine;
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  Marker for BMMGTemplateEngine.
@@ -15,11 +17,11 @@
 @required
 - (id)initWithTemplateEngine:(BMMGTemplateEngine *)engine; // to avoid retain cycles, use a weak reference for engine.
 - (NSArray *)markers; // array of markers (each unique across all markers) this object handles.
-- (NSArray *)endMarkersForMarker:(NSString *)marker; // returns the possible corresponding end-markers for a marker which has just started a block.
-- (NSObject *)markerEncountered:(NSString *)marker withArguments:(NSArray *)args inRange:(NSRange)markerRange 
+- (nullable NSArray *)endMarkersForMarker:(NSString *)marker; // returns the possible corresponding end-markers for a marker which has just started a block.
+- (nullable NSObject *)markerEncountered:(NSString *)marker withArguments:(nullable NSArray *)args inRange:(NSRange)markerRange
 				   blockStarted:(BOOL *)blockStarted blockEnded:(BOOL *)blockEnded 
 				  outputEnabled:(BOOL *)outputEnabled nextRange:(NSRange *)nextRange 
-			   currentBlockInfo:(NSDictionary *)blockInfo newVariables:(NSDictionary **)newVariables;
+			   currentBlockInfo:(nullable NSDictionary *)blockInfo newVariables:(NSDictionary * _Nullable * _Nonnull)newVariables;
 /* Notes for -markerEncountered:... method
 	Arguments:
 		marker:				marker encountered by the template engine
@@ -42,3 +44,5 @@
 - (void)engineFinishedProcessingTemplate;
 
 @end
+
+NS_ASSUME_NONNULL_END

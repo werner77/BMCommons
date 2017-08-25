@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class with string utility methods
  */
@@ -19,14 +21,14 @@
 /**
  Returns true if and only if a string is nil or equal to the empty string.
  */
-+ (BOOL)isEmpty:(NSString *)string;
++ (BOOL)isEmpty:(nullable NSString *)string;
 
 /**
  Extracts a substring by looking for the specified begin and end markers.
  
  @return The first occurence of a string between the specified begin and end marker
  */
-+ (NSString *)getSubStringFromString:(NSString *)string beginMarker:(NSString *)beginMarker endMarker:(NSString *)endMarker;
++ (nullable NSString *)getSubStringFromString:(NSString *)string beginMarker:(NSString *)beginMarker endMarker:(NSString *)endMarker;
 
 /**
  Parses integers from strings by using the specified sscanf pattern and subsequently compares them. 
@@ -43,12 +45,12 @@
 /**
  Checks if the supplied string is nil and converts it to the empty string if so, otherwise the string is returned unmodified.
  */
-+ (NSString *)filterNilString:(NSString *)s;
++ (NSString *)filterNilString:(nullable NSString *)s;
 
 /**
  Checks if the supplied string is the empty string, if so it is converted to nil, otherwise the string is returned unmodified
  */
-+ (NSString *)filterEmptyString:(NSString *)s;
++ (nullable NSString *)filterEmptyString:(nullable NSString *)s;
 
 /**
  Returns a string containing a Universal Unique Identifier. 
@@ -62,24 +64,24 @@
  
  If the string already contains a '%'-character no percentage encoding is applied.
  */
-+ (NSURL *)urlFromString:(NSString *)s;
++ (nullable NSURL *)urlFromString:(NSString *)s;
 
 /**
  Returns a string where all special characters are replaced with percentage escapes.
  
  If the string already contains a '%'-character no percentage encoding is applied.
  */
-+ (NSString *)urlStringFromString:(NSString *)s;
++ (nullable NSString *)urlStringFromString:(NSString *)s;
 
 /**
  Returns the UTF8 string representation of the specified data.
  */
-+ (NSString *)stringRepresentationOfData:(NSData *)data;
++ (nullable NSString *)stringRepresentationOfData:(NSData *)data;
 
 /**
  Returns the UTF8 data representation of the specified string.
  */
-+ (NSData *)dataRepresentationOfString:(NSString *)string;
++ (nullable NSData *)dataRepresentationOfString:(NSString *)string;
 
 /**
  Returns a formatted string with the kCFNumberFormatterDecimalStyle by parsing the supplied double.
@@ -96,7 +98,7 @@
  
  @see [NSNumberFormatter setCurrencyCode:]
  */
-+ (NSString *)currencyStringFromDouble:(double)d withCurrencyCode:(NSString *)currencyCode;
++ (nullable NSString *)currencyStringFromDouble:(double)d withCurrencyCode:(nullable NSString *)currencyCode;
 
 /**
  Returns a copy of the string with the first char converted to lowercase.
@@ -112,7 +114,7 @@
 /**
  Converts a filePath to a file URL or returns nil if the path is nil.
  */
-+ (NSURL *)urlFromFilePath:(NSString *)filePath;
++ (nullable NSURL *)urlFromFilePath:(NSString *)filePath;
 
 /**
  A dictionary containing key/value pairs for a url query string. Plus signs are automatically converted to spaces.
@@ -147,9 +149,11 @@
  * Generates a random string of the specified length using the specified character set for the characters to source from.
  *
  * @param length The length of the string to generate
- * @param characterSet The characterset to use or nil for the default alphanumericCharacterSet.
+ * @param characterSet The characterset to use or nil for the default characterset containing all numbers (0-9) and the 26 letters of the latin alphabet in both lower and upper case.
  * @return The generated random string.
  */
 + (NSString *)randomStringOfLength:(NSUInteger)length charSet:(nullable NSCharacterSet *)characterSet;
 
 @end
+
+NS_ASSUME_NONNULL_END

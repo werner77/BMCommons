@@ -8,20 +8,17 @@
 #import <BMCommons/BMMGTemplateEngine.h>
 #import <BMCommons/BMMGTemplateMarker.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Standard markers for BMMGTemplateEngine.
  */
-@interface BMMGTemplateStandardMarkers : NSObject <BMMGTemplateMarker> {
-	BMMGTemplateEngine *engine; // weak ref
-	NSMutableArray *forStack;
-	NSMutableArray *sectionStack;
-	NSMutableArray *ifStack;
-	NSMutableArray *commentStack;
-	NSMutableDictionary *cycles;
-}
+@interface BMMGTemplateStandardMarkers : NSObject <BMMGTemplateMarker>
 
-- (BOOL)currentBlock:(NSDictionary *)blockInfo matchesTopOfStack:(NSMutableArray *)stack;
+- (BOOL)currentBlock:(nullable NSDictionary *)blockInfo matchesTopOfStack:(NSMutableArray *)stack;
 - (BOOL)argIsNumeric:(NSString *)arg intValue:(NSInteger *)val checkVariables:(BOOL)checkVars;
 - (BOOL)argIsTrue:(NSString *)arg;
 
 @end
+
+NS_ASSUME_NONNULL_END

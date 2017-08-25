@@ -220,6 +220,10 @@ static BOOL gImageCacheEnabled = YES;
         _persistent = persistent;
         _fileAttributesCache = [BMCache new];
         _fileAttributesCache.maxMemoryUsage = 1 * 1024 * 1024;
+
+        if (_cachePath == nil || _localURLPrefix == nil || _name == nil) {
+            return nil;
+        }
         
 #if TARGET_OS_IPHONE
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -709,9 +713,9 @@ static BOOL gImageCacheEnabled = YES;
 
 #endif
 
-- (void)moveDataForURL:(NSString*)oldURL toURL:(NSString*)newURL {
+- (BOOL)moveDataForURL:(NSString*)oldURL toURL:(NSString*)newURL {
     if ([oldURL isEqual:newURL]) {
-        return;
+        return YES;
     }
     NSString* oldKey = [self keyForURL:oldURL];
     NSString* newKey = [self keyForURL:newURL];
@@ -751,10 +755,12 @@ static BOOL gImageCacheEnabled = YES;
                 [self pinFile:oldPath];
             }
         }
+        return YES;
     }
+    return NO;
 }
 
-- (void)moveDataFromPath:(NSString*)path toURL:(NSString*)newURL {
+- (BOOL)moveDataFromPath:(NSString*)path toURL:(NSString*)newURL {
     NSString* newKey = [self keyForURL:newURL];
     NSFileManager* fm = [self fileManager];
     if ([fm fileExistsAtPath:path]) {
@@ -771,12 +777,16 @@ static BOOL gImageCacheEnabled = YES;
         if (pinned) {
             [self pinFile:newPath];
         }
+        return YES;
     }
+    return NO;
 }
 
 - (NSString*)moveDataFromPathToTemporaryURL:(NSString*)path {
     NSString* tempURL = [self createTemporaryURLForFile:path];
-    [self moveDataFromPath:path toURL:tempURL];
+    if (![self moveDataFromPath:path toURL:tempURL]) {
+        return nil;
+    }
     return tempURL;
 }
 
@@ -1347,7 +1357,7 @@ static BOOL gImageCacheEnabled = YES;
 - (NSString*)loadEtagFromCacheWithKey:(NSString*)key {
     NSString* path = [self etagCachePathForKey:key];
     NSData* data = [NSData dataWithContentsOfFile:path];
-    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return data ? [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] : nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

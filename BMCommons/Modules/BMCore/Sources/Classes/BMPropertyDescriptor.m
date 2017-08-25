@@ -18,7 +18,14 @@
 @end
 
 
-@implementation BMPropertyDescriptor
+@implementation BMPropertyDescriptor {
+@private
+    NSString *_propertyName;
+    NSString *_keyPath;
+    NSString *_setter;
+    NSArray *_getters;
+    NSValueTransformer *_valueTransformer;
+}
 
 @synthesize keyPath = _keyPath, target = _target;
 @synthesize getters = _getters;
@@ -55,12 +62,16 @@
         self.keyPath = theKeyPath;
         self.target = theTarget;
         self.valueType = valueType;
+
+        //Invalid key path, return nil
+        if (self.getters == nil || self.setter == nil || self.propertyName == nil) {
+            return nil;
+        }
     }
     return self;
 }
 
 - (void)dealloc {
-	self.keyPath = nil;
 }
 
 - (id)callGetter {

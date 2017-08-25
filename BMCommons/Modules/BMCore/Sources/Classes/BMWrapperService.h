@@ -5,6 +5,9 @@
 
 #import <BMCommons/BMCompositeService.h>
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Service which wraps another service to possibly add functionality to it such as retry, error handling, etc.
  *
@@ -64,3 +67,5 @@
 - (BOOL)handleError:(NSError *)error forService:(id <BMService>)service;
 
 @end
+
+NS_ASSUME_NONNULL_END

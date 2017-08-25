@@ -9,7 +9,10 @@
 #import <BMCommons/BMInvertedTransformer.h>
 #import <BMCommons/BMCore.h>
 
-@implementation BMInvertedTransformer 
+@implementation BMInvertedTransformer {
+@private
+	NSValueTransformer *_transformer;
+}
 
 + (BMInvertedTransformer *)invertedTransformer:(NSValueTransformer *)transformer {
 	return [[BMInvertedTransformer alloc] initWithTransformer:transformer];

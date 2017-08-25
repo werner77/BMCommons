@@ -7,6 +7,10 @@
 
 // Keys in blockInfo dictionaries passed to delegate methods.
 #import <Foundation/Foundation.h>
+#import <BMCommons/BMMGTemplateMarker.h>
+#import <BMCommons/BMMGTemplateFilter.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 #define	BLOCK_NAME_KEY					@"name"				// NSString containing block name (first word of marker)
 #define BLOCK_END_NAMES_KEY				@"endNames"			// NSArray containing names of possible ending-markers for block
@@ -46,41 +50,15 @@
 @required
 - (id)initWithTemplateEngine:(BMMGTemplateEngine *)engine;
 - (void)engineSettingsChanged; // always called at least once before beginning to process a template.
-- (NSDictionary *)firstMarkerWithinRange:(NSRange)range;
+- (nullable NSDictionary *)firstMarkerWithinRange:(NSRange)range;
 @end
-
-#import <BMCommons/BMMGTemplateMarker.h>
-#import <BMCommons/BMMGTemplateFilter.h>
 
 /**
  Fork of MGTemplateEngine part of Matt Gemmel's MGTemplateEngine project.
  
  @see http://mattgemmell.com/2008/05/20/mgtemplateengine-templates-with-cocoa/
  */
-@interface BMMGTemplateEngine : NSObject {
-@public
-	NSString *markerStartDelimiter;		// default: {%
-	NSString *markerEndDelimiter;		// default: %}
-	NSString *expressionStartDelimiter;	// default: {{
-	NSString *expressionEndDelimiter;	// default: }}
-	NSString *filterDelimiter;			// default: |	example: {{ myVar|uppercase }}
-	NSString *literalStartMarker;		// default: literal
-	NSString *literalEndMarker;			// default: /literal
-@private
-	NSMutableArray *_openBlocksStack;
-	NSMutableDictionary *_globals;
-	NSInteger _outputDisabledCount;
-	NSUInteger _templateLength;
-	NSMutableDictionary *_filters;
-	NSMutableDictionary *_markers;
-	NSMutableDictionary *_templateVariables;
-	BOOL _literal;
-@public
-	NSRange remainingRange;
-	id <BMMGTemplateEngineDelegate> __weak delegate;
-	id <BMMGTemplateEngineMatcher> matcher;
-	NSString *templateContents;
-}
+@interface BMMGTemplateEngine : NSObject
 
 @property(strong) NSString *markerStartDelimiter;
 @property(strong) NSString *markerEndDelimiter;
@@ -90,29 +68,31 @@
 @property(strong) NSString *literalStartMarker;
 @property(strong) NSString *literalEndMarker;
 @property(assign, readonly) NSRange remainingRange;
-@property(weak) id <BMMGTemplateEngineDelegate> delegate;	// weak ref
-@property(strong) id <BMMGTemplateEngineMatcher> matcher;
-@property(strong, readonly) NSString *templateContents;
+
+@property(nullable, weak) id <BMMGTemplateEngineDelegate> delegate;
+@property(nullable, strong) id <BMMGTemplateEngineMatcher> matcher;
+@property(nullable, strong, readonly) NSString *templateContents;
 
 // Creation.
-+ (NSString *)version;
 + (BMMGTemplateEngine *)templateEngine;
 
 // Managing persistent values.
 - (void)setObject:(id)anObject forKey:(id)aKey;
 - (void)addEntriesFromDictionary:(NSDictionary *)dict;
-- (id)objectForKey:(id)aKey;
+- (nullable id)objectForKey:(id)aKey;
 
 // Configuration and extensibility.
 - (void)loadMarker:(NSObject <BMMGTemplateMarker> *)marker;
 - (void)loadFilter:(NSObject <BMMGTemplateFilter> *)filter;
 
 // Utilities.
-- (NSObject *)resolveVariable:(NSString *)var;
+- (nullable NSObject *)resolveVariable:(NSString *)var;
 - (NSDictionary *)templateVariables;
 
 // Processing templates.
-- (NSString *)processTemplate:(NSString *)templateString withVariables:(NSDictionary *)variables;
-- (NSString *)processTemplateInFileAtPath:(NSString *)templatePath withVariables:(NSDictionary *)variables;
+- (nullable NSString *)processTemplate:(NSString *)templateString withVariables:(nullable NSDictionary *)variables;
+- (nullable NSString *)processTemplateInFileAtPath:(NSString *)templatePath withVariables:(nullable NSDictionary *)variables;
 
 @end
+
+NS_ASSUME_NONNULL_END

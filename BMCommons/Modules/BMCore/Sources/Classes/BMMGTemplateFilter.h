@@ -7,12 +7,16 @@
  */
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Filter for BMMGTemplateEngine.
  */
 @protocol BMMGTemplateFilter
 
 - (NSArray *)filters;
-- (NSObject *)filterInvoked:(NSString *)filter withArguments:(NSArray *)args onValue:(NSObject *)value;
+- (NSObject *)filterInvoked:(NSString *)filter withArguments:(nullable NSArray *)args onValue:(NSObject *)value;
 
 @end
+
+NS_ASSUME_NONNULL_END

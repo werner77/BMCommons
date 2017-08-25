@@ -97,11 +97,15 @@ BM_LISTENER_METHODS_IMPLEMENTATION(BMValueStackListener)
 
 - (void)updateValue {
     @synchronized(self) {
-        id resultingValue = self.defaultValue;
+        id resultingValue = nil;
         if (_stack.count > 0) {
             resultingValue = [self resultingValueFromStackValues:[_stack bmArrayByTransformingObjectsWithBlock:^id(BMValueStackObject *stackValue) {
                 return stackValue.value;
             }]];
+        }
+
+        if (resultingValue == nil) {
+            resultingValue = self.defaultValue;
         }
 
         BOOL changed = (_value != resultingValue && ![_value isEqual:resultingValue]);

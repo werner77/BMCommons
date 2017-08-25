@@ -170,11 +170,11 @@ static NSInteger prioritySort(id container1, id container2, void *service)
 BM_SYNTHESIZE_DEFAULT_SINGLETON
 
 - (BOOL)service:(id <BMService>)service matchesClassIdentifier:(NSString *)serviceClassIdentifier {
-    return service.classIdentifier == serviceClassIdentifier || [service.classIdentifier isEqual:serviceClassIdentifier];
+    return [self classIdentifier:serviceClassIdentifier matchesIdentifier:service.classIdentifier];
 }
 
 - (BOOL)service:(id <BMService>)service matchesInstanceIdentifier:(NSString *)instanceIdentifier {
-    return service.instanceIdentifier == instanceIdentifier || [service.instanceIdentifier isEqual:instanceIdentifier];
+    return [self instanceIdentifier:instanceIdentifier matchesIdentifier:service.instanceIdentifier];
 }
 
 - (BOOL)instanceIdentifier:(NSString *)identifier matchesIdentifier:(NSString *)otherIdentifier {
@@ -182,8 +182,16 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 }
 
 - (BOOL)classIdentifier:(NSString *)classIdentifier matchesIdentifier:(NSString *)otherClassIdentifier {
+    return [self classIdentifier:classIdentifier matchesIdentifier:otherClassIdentifier nilMatchesAll:NO];
+}
+
+- (BOOL)classIdentifier:(NSString *)classIdentifier matchesIdentifier:(NSString *)otherClassIdentifier nilMatchesAll:(BOOL)nilMatchesAll {
+    if (nilMatchesAll && (classIdentifier == nil || otherClassIdentifier == nil)) {
+        return YES;
+    }
     return classIdentifier == otherClassIdentifier || [classIdentifier isEqual:otherClassIdentifier];
 }
+
 
 - (id)init {
     if ((self = [super init])) {
@@ -228,7 +236,7 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 
 - (void)removeServiceDelegate:(id <BMServiceDelegate>)theDelegate forClassIdentifier:(NSString *)classIdentifier {
     for (BMServiceDelegateContainer *delegateContainer in self.serviceDelegates) {
-        if (delegateContainer.delegate == theDelegate && [self classIdentifier:delegateContainer.serviceClassIdentifier matchesIdentifier:classIdentifier]) {
+        if (delegateContainer.delegate == theDelegate && [self classIdentifier:delegateContainer.serviceClassIdentifier matchesIdentifier:classIdentifier nilMatchesAll:YES]) {
             [self removeDelegateContainer:delegateContainer];
         }
     }
@@ -273,7 +281,7 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 - (void)cancelServicesWithClassIdentifier:(NSString *)classIdentifier {
     NSArray *allServices = [self allServices];
     for (id <BMService> service in allServices) {
-        if ([self classIdentifier:service.classIdentifier matchesIdentifier:classIdentifier]) {
+        if ([self classIdentifier:service.classIdentifier matchesIdentifier:classIdentifier nilMatchesAll:YES]) {
             [service cancel];
         }
     }
@@ -284,7 +292,7 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
     for (id <BMService> service in allServices) {
         id primaryDelegate = [self primaryServiceDelegateForInstanceIdentifier:[service instanceIdentifier]];
         BMBlockServiceDelegate *blockDelegate = [primaryDelegate bmCastSafely:[BMBlockServiceDelegate class]];
-        if ([self classIdentifier:service.classIdentifier matchesIdentifier:classIdentifier] &&
+        if ([self classIdentifier:service.classIdentifier matchesIdentifier:classIdentifier nilMatchesAll:YES] &&
                 (primaryDelegate == theDelegate ||
                         blockDelegate.owner == theDelegate
                 )) {
@@ -343,7 +351,7 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
         BMBlockServiceDelegate *blockDelegate = [(NSObject *) primaryDelegate bmCastSafely:[BMBlockServiceDelegate class]];
 
         BOOL delegatesMatch = (theDelegate == nil || theDelegate == primaryDelegate || [theDelegate isEqual:blockDelegate.owner]);
-        BOOL classesMatch = (classIdentifier == nil || [self classIdentifier:classIdentifier matchesIdentifier:serviceClassIdentifier]);
+        BOOL classesMatch = [self classIdentifier:classIdentifier matchesIdentifier:serviceClassIdentifier nilMatchesAll:YES];
         if (delegatesMatch && classesMatch && !theService.isCancelled) {
             if (performReverseTransformation) {
                 theService = [self reverseTransformedService:theService];

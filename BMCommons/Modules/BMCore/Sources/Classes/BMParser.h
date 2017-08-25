@@ -10,6 +10,8 @@
 
 @class BMParser;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Delegate protocol for receiving parser events. 
  
@@ -46,9 +48,9 @@
  */
 - (void)parser:(BMParser *)parser
 didStartElement:(NSString *)elementName 
-	namespaceURI:(NSString *)namespaceURI 
-	qualifiedName:(NSString *)qName 
-	attributes:(NSDictionary *)attributeDict;
+	namespaceURI:(nullable NSString *)namespaceURI
+	qualifiedName:(nullable NSString *)qName
+	attributes:(nullable NSDictionary *)attributeDict;
 
 
 /**
@@ -56,7 +58,7 @@ didStartElement:(NSString *)elementName
  
  The various parameters are supplied as in parser:didStartElement:namespaceURI:qualifiedName:attributes:.
  */
-- (void)parser:(BMParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName;
+- (void)parser:(BMParser *)parser didEndElement:(NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName;
 
 /** 
  This returns the string of the characters encountered thus far. 
@@ -96,12 +98,12 @@ didStartElement:(NSString *)elementName
  Delegate protocol for parser progress messages. The parser reports progress as a value between 0.0 and 1.0.
  */
 @protocol BMParserProgressDelegate <NSObject>
-- (void) parser: (BMParser *) parser updateProgress: (float) progress;
+
+- (void) parser: (BMParser *) parser updateProgress: (CGFloat) progress;
+
 @end
 
-
 extern NSString * const BMParsingRunLoopMode;
-
 
 /**
  Base class for parsing XML/JSON documents.
@@ -111,17 +113,17 @@ extern NSString * const BMParsingRunLoopMode;
 /**
  The parser delegate
  */
-@property (nonatomic, weak) id<BMParserDelegate> delegate;
+@property (nullable, nonatomic, weak) id<BMParserDelegate> delegate;
 
 /**
  The progress delegate
  */
-@property (nonatomic, weak) id<BMParserProgressDelegate> progressDelegate;
+@property (nullable, nonatomic, weak) id<BMParserProgressDelegate> progressDelegate;
 
 /**
  Contains the error in case parsing was unsuccessful
  */
-@property (strong, nonatomic, readonly) NSError * parserError;
+@property (nullable, strong, nonatomic, readonly) NSError * parserError;
 
 /**
  The total length of the the data to parse in bytes
@@ -201,9 +203,9 @@ extern NSString * const BMParsingRunLoopMode;
  */
 - (BOOL) parseAsynchronouslyUsingRunLoop: (NSRunLoop *) runloop
                                     mode: (NSString *) mode
-                       notifyingDelegate: (id) asyncCompletionDelegate
-                                selector: (SEL) completionSelector
-                                 context: (id <NSObject>) contextPtr;
+                       notifyingDelegate: (nullable id) asyncCompletionDelegate
+                                selector: (nullable SEL) completionSelector
+                                 context: (nullable id <NSObject>) contextPtr;
 
 
 @end
@@ -243,6 +245,8 @@ extern NSString * const BMParsingRunLoopMode;
 /**
  Sets the parser error.
  */
-- (void)setParserError:(NSError *)error;
+- (void)setParserError:(NSError * _Nullable)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

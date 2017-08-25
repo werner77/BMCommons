@@ -16,11 +16,17 @@
     if (queryParams.count == 0) {
         return self;
     }
-    
-    NSString *queryString = [BMStringHelper queryStringFromParameters:queryParams includeQuestionMark:NO];
-    NSString *URLString = [[NSString alloc] initWithFormat:@"%@%@%@", [self absoluteString],
-                           [self query] ? @"&" : @"?", queryString];
-    return [NSURL URLWithString:URLString];
+
+    NSString *absoluteString = [self absoluteString];
+
+    if (absoluteString != nil) {
+        NSString *queryString = [BMStringHelper queryStringFromParameters:queryParams includeQuestionMark:NO];
+        NSString *URLString = [[NSString alloc] initWithFormat:@"%@%@%@", absoluteString,
+                                                               [self query] ? @"&" : @"?", queryString];
+        return [NSURL URLWithString:URLString];
+    } else {
+        return nil;
+    }
 }
 
 - (NSURL *)bmURLByUpdatingQueryParams:(NSDictionary *)queryParams {

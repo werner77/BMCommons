@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Helper methods which use the iOS Security framework.
  */
@@ -24,7 +26,7 @@
  @return An NSData object representing a persistent ref to the item that may be used subsequently to retrieve the security identity from the keychain.
  @see newIdentityForPersistentRef:
  */
-+ (NSData *)importP12DataFromFile:(NSString *)filePath usingPassword:(NSString *)password withError:(NSError **)error;
++ (nullable NSData *)importP12DataFromFile:(NSString *)filePath usingPassword:(NSString *)password withError:(NSError * _Nullable * _Nullable)error;
 
 /**
  Retrieves and creates a new security identity using the specified persistent reference.
@@ -32,7 +34,7 @@
  @param ref object containing a persistent reference to a keychain item.
  @return A reference to the found security entity or nil if not found. The caller is responsible for releasing the returned reference using CFRelease.
  */
-+ (SecIdentityRef)newIdentityForPersistentRef:(NSData *)ref;
++ (nullable SecIdentityRef)newIdentityForPersistentRef:(NSData *)ref;
 
 /**
  Creates a new certificate by importing the data from the specified file. 
@@ -43,7 +45,7 @@
  @param error Pointer to the an error object which will be filled in case an error occured.
  @return The reference to the certificate or nil if an error occured. The caller is responsible for releasing the returned reference using CFRelease.
  */
-+ (SecCertificateRef)newCertificateByImportingFromFile:(NSString *)filePath withError:(NSError **)error;
++ (nullable SecCertificateRef)newCertificateByImportingFromFile:(NSString *)filePath withError:(NSError * _Nullable * _Nullable)error;
 
 /**
  Copies the certificate from the supplied identity reference.
@@ -51,7 +53,7 @@
  @param identity Reference to a security identity.
  @return The reference to the certificate. The caller is responsible for releasing the returned reference using CFRelease.
  */
-+ (SecCertificateRef)copyCertificateFromIdentity:(SecIdentityRef)identity;
++ (nullable SecCertificateRef)copyCertificateFromIdentity:(SecIdentityRef)identity;
 
 /**
  Wipes all the data from the keychain for the current app.
@@ -71,7 +73,7 @@
  @return The OSStatus code which is noErr upon succes or an error code upon failure.
  */
 #if TARGET_OS_IPHONE
-+ (OSStatus)generateKeyPairWithKeySize:(NSUInteger)keySize publicKeyTag:(NSString *)publicKeyTag privateKeyTag:(NSString *)privateKeyTag newPublicKey:(SecKeyRef *)publicKey newPrivateKey:(SecKeyRef *)privateKey;
++ (OSStatus)generateKeyPairWithKeySize:(NSUInteger)keySize publicKeyTag:(NSString *)publicKeyTag privateKeyTag:(NSString *)privateKeyTag newPublicKey:(SecKeyRef _Nullable * _Nonnull)publicKey newPrivateKey:(SecKeyRef _Nullable * _Nonnull)privateKey;
 #endif
 
 /**
@@ -80,7 +82,7 @@
  @param data The certificate data
  @return A reference to the public key upon success. The caller is responsible for releasing the reference using CFRelease.
  */
-+ (SecKeyRef)newPublicKeyRefFromData:(NSData *)data;
++ (nullable SecKeyRef)newPublicKeyRefFromData:(NSData *)data;
 
 /**
  Reads private key data in p12 format using the supplied password and returns a reference to the key if successful.
@@ -89,6 +91,8 @@
  @param data The p12 data
  @return A reference to the private key if succesful. The caller is responsible for releasing the reference using CFRelease.
  */
-+ (SecKeyRef)newPrivateKeyRefWithPassword:(NSString *)password fromData:(NSData *)data;
++ (nullable SecKeyRef)newPrivateKeyRefWithPassword:(NSString *)password fromData:(NSData *)data;
 
 @end
+
+NS_ASSUME_NONNULL_END

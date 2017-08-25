@@ -165,9 +165,13 @@
     #undef LOGGING_LEVEL_FATAL
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
+
 extern void BMLog(BOOL threadSafe, NSString *format, ...);
 extern void BMLogSetEnabled(BOOL enabled);
 extern BOOL BMLogIsEnabled(void);
+
+NS_ASSUME_NONNULL_END
 
 #undef LOG
 #if LOGGING_THREAD_SAFE

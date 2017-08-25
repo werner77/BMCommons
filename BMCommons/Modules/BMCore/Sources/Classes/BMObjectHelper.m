@@ -79,7 +79,7 @@
 }
 
 + (NSUInteger)hashCodeForObject:(id)object withPropertyDescriptors:(NSArray *)propertyDescriptors {
-    NSUInteger hashCode = 17;
+    NSUInteger hashCode = 0;
     for (BMPropertyDescriptor *pd in propertyDescriptors) {
         id value1 = [pd callGetterOnTarget:object ignoreFailure:YES];
         BM_APPEND_HASH_ORDERED(hashCode, [value1 hash]);
@@ -98,7 +98,9 @@
 
 + (NSString *)digestOfType:(BMDigestType)digestType forObject:(id)object withPropertyDescriptors:(NSArray *)propertyDescriptors {
     BMDigest *digest = [BMDigest digestOfType:digestType];
-    [digest updateWithProperties:propertyDescriptors fromObject:object];
+    if (propertyDescriptors && object) {
+        [digest updateWithProperties:propertyDescriptors fromObject:object];
+    }
     [digest updateWithData:nil last:YES];
     return [digest stringRepresentation];
 }

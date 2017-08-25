@@ -12,6 +12,8 @@
 
 @class BMOperationQueue;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Delegate protocol for BMOperationQueue.
  */
@@ -27,11 +29,7 @@
 /**
  Extension of NSOperationQueue that adds delegate notifications upon completion of NSOperations.
  */
-@interface BMOperationQueue : BMCoreObject {
-	NSOperationQueue *processingQueue;
-	NSInteger busyThreshold;
-	NSMutableArray *delegates;
-}
+@interface BMOperationQueue : BMCoreObject
 
 BM_DECLARE_DEFAULT_SINGLETON
 
@@ -68,3 +66,5 @@ BM_DECLARE_DEFAULT_SINGLETON
 - (BOOL)isBusy;
 
 @end
+
+NS_ASSUME_NONNULL_END

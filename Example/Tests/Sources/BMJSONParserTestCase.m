@@ -111,7 +111,7 @@ didStartElement:(NSString *)elementName
 #pragma mark -
 #pragma mark BMParserProgressDelegate implementation
 
-- (void) parser: (BMParser *) parser updateProgress: (float) progress {
+- (void) parser: (BMParser *) parser updateProgress: (CGFloat) progress {
 	LogDebug(@"Update progress: %f", progress);
 }
 

@@ -86,6 +86,8 @@
 #define HTTP_STATUS_NETWORK_READ_TIMEOUT_ERROR 598
 #define HTTP_STATUS_NETWORK_CONNECTION_TIMEOUT 599
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Helper class for HTTP status codes
  */
@@ -94,6 +96,8 @@
 /**
  Returns the message corresponding to the specified HTTP code, such as "OK" for 200.
  */
-+ (NSString *)messageForCode:(NSInteger)code;
++ (nullable NSString *)messageForCode:(NSInteger)code;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  NSString additions.
  */
@@ -34,19 +36,27 @@
 + (instancetype)bmStringWithFormat:(NSString *)format arguments:(NSArray*) arguments;
 
 /**
+ * Returns a string containing the specified UTF32 char.
+ *
+ * @param c The character to add to the string.
+ * @return A string containing only the specified char.
+ */
++ (instancetype)bmStringWithUTF32Char:(UTF32Char)c;
+
+/**
  converts a string to make it suitable for a URL (encodes special characters to percentage values)
  */
-- (NSString*)bmStringWithPercentEscapes;
+- (nullable NSString*)bmStringWithPercentEscapes;
 
 /**
  Reverse encodes percentage encoding and replaces '+' characters with spaces.
  */
-- (NSString *)bmStringByDecodingURLFormat;
+- (nullable NSString *)bmStringByDecodingURLFormat;
 
 /**
  * Reverse encodes percentage encoding and optionally replaces '+' characters with spaces.
  */
-- (NSString *)bmStringByDecodingURLFormatIncludingPlusSigns:(BOOL)replacePlusSigns;
+- (nullable NSString *)bmStringByDecodingURLFormatIncludingPlusSigns:(BOOL)replacePlusSigns;
 
 /**
  Returns the string by making the first character lowercase
@@ -109,6 +119,8 @@
  */
 - (NSString *)bmStringByCroppingUptoLastOccurenceOfString:(NSString *)searchString;
 
+
+
 @end
 
 
@@ -125,3 +137,5 @@
 - (void)bmReplaceCharactersInSet:(NSCharacterSet *)charSet withString:(NSString *)aString;
 
 @end
+
+NS_ASSUME_NONNULL_END

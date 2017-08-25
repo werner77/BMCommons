@@ -12,6 +12,8 @@
 #import <UIKit/UIKit.h>
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  UIImage helper methods. 
  
@@ -89,22 +91,26 @@
 + (UIImage*)imageFromImage:(UIImage *)source withBrightness:(CGFloat)brightnessFactor;
 
 /**
- Method which calls scaleAndRotateImage:maxResolution: and calls the specified selector on the specified target upon completion.
+ Method which calls scaleAndRotateImage:maxResolution: and calls the specified selector on the specified target in the main thread upon completion.
  */
-+ (void)saveAndScaleImage:(UIImage *)image withMaxResolution:(NSInteger)maxResolution target:(id)target selector:(SEL)selector;
++ (nullable NSData *)dataFromScaledImage:(UIImage *)image withMaxResolution:(NSInteger)maxResolution;
 
 /**
- Method which calls scaleAndRotateImage:maxResolution: and calls the specified selector on the specified target upon completion.
+ Method which calls scaleAndRotateImage:maxResolution: and uses the specified transformer to convert the image to NSData.
+
+ If nil is supplied for the transformer the default UIImageToJPEGDataTransformer is used.
  
  @param targetSize The resulting size of the image after the scale/rotate operation completes.
  */
-+ (void)saveAndScaleImage:(UIImage *)image withMaxResolution:(NSInteger)maxResolution target:(id)target selector:(SEL)selector targetSize:(CGSize *)targetSize;
++ (nullable NSData *)dataFromScaledImage:(UIImage *)image withMaxResolution:(NSInteger)maxResolution targetSize:(nullable CGSize *)targetSize transformer:(nullable NSValueTransformer *)transformer;
 
 /**
  Extracts a thumbnail image to show for a video at the specified URL.
  */
-+ (UIImage *)thumbnailFromVideoAtURL:(NSURL *)contentURL;
++ (nullable UIImage *)thumbnailFromVideoAtURL:(NSURL *)contentURL;
 
 #endif
 
 @end
+
+NS_ASSUME_NONNULL_END

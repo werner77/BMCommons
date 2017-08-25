@@ -9,7 +9,11 @@
 #import <BMCommons/BMPropertyMethod.h>
 #import <BMCommons/BMStringHelper.h>
 
-@implementation BMPropertyMethod
+@implementation BMPropertyMethod {
+@private
+	BOOL _setter;
+	NSString *_propertyName;
+}
 
 @synthesize setter = _setter, propertyName = _propertyName;
 

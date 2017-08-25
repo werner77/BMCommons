@@ -9,16 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class that describes a property accessor method.
  
  This class represents either the getter or the setter, not both.
  */
-@interface BMPropertyMethod : BMCoreObject {
-    @private
-	BOOL _setter;
-	NSString *_propertyName;
-}
+@interface BMPropertyMethod : BMCoreObject
 
 /**
  Returns YES is the property method is a setter, NO otherwise.
@@ -33,7 +31,7 @@
 /**
  Returns an auto-released instance calling initWithSelector
  */
-+ (BMPropertyMethod *)propertyMethodFromSelector:(SEL)selector;
++ (nullable BMPropertyMethod *)propertyMethodFromSelector:(SEL)selector;
 
 /**
  Parses the specified selector and returns a PropertyMethod instance describing this selector iff the selector is a property accessor method.
@@ -43,7 +41,7 @@
  
  @param selector The selector for the property method
  */
-- (id)initWithSelector:(SEL)selector;
+- (nullable id)initWithSelector:(SEL)selector;
 
 /**
  Initializes with the supplied property name.
@@ -51,6 +49,8 @@
  @param propertyName The name of the property
  @param isSetter whether The setter or the getter method should be represented by the returned BMPropertyMethod
  */
-- (id)initWithPropertyName:(NSString *)propertyName setter:(BOOL)isSetter;
+- (nullable id)initWithPropertyName:(NSString *)propertyName setter:(BOOL)isSetter;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,7 +8,10 @@
 
 #import <BMCommons/BMObjectToStringTransformer.h>
 
-@implementation BMObjectToStringTransformer 
+@implementation BMObjectToStringTransformer {
+@private
+    BMPropertyDescriptor *_propertyDescriptor;
+}
 
 @synthesize propertyDescriptor = _propertyDescriptor;
 

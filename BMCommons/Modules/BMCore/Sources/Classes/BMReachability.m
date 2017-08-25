@@ -96,7 +96,12 @@ static void PrintReachabilityFlags(SCNetworkReachabilityFlags    flags, const ch
 }
 
 
-@implementation BMReachability
+@implementation BMReachability {
+@private
+    BOOL localWiFiRef;
+    SCNetworkReachabilityRef reachabilityRef;
+}
+
 static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReachabilityFlags flags, void* info)
 {
 #pragma unused (target, flags)
@@ -114,7 +119,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
     }
 }
 
-- (BOOL) startNotifer
+- (BOOL) startNotifier
 {
     BOOL retVal = NO;
     SCNetworkReachabilityContext    context = {0, (__bridge void *)(self), NULL, NULL, NULL};
@@ -128,7 +133,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
     return retVal;
 }
 
-- (void) stopNotifer
+- (void) stopNotifier
 {
     if(reachabilityRef!= NULL)
     {
@@ -138,7 +143,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 
 - (void) dealloc
 {
-    [self stopNotifer];
+    [self stopNotifier];
     if(reachabilityRef!= NULL)
     {
         CFRelease(reachabilityRef);

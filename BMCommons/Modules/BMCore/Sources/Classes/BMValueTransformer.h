@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  NSValueTransformer implementation that takes targets/selectors as converter methods for both forward and inverse tranformation.
  
@@ -22,20 +24,16 @@
     NSString *dateString = [vt reverseTransformedValue:date];
  
  */
-@interface BMValueTransformer : NSValueTransformer {
-@private
-	id _converterTarget;
-	id _inverseConverterTarget;
-	SEL _converterSelector;
-	SEL _inverseConverterSelector;
-}
+@interface BMValueTransformer : NSValueTransformer
 
-@property (nonatomic, strong) id converterTarget;
-@property (nonatomic, strong) id inverseConverterTarget;
-@property (nonatomic, assign) SEL converterSelector;
-@property (nonatomic, assign) SEL inverseConverterSelector;
+@property (nullable, nonatomic, strong) id converterTarget;
+@property (nullable, nonatomic, strong) id inverseConverterTarget;
+@property (nullable, nonatomic, assign) SEL converterSelector;
+@property (nullable, nonatomic, assign) SEL inverseConverterSelector;
 
 - (id)initWithConverterTarget:(id)target converterSelector:(SEL)converterSelector 
 				inverseTarget:(id)inverseTarget inverseSelector:(SEL)inverseSelector;
 
 @end
+
+NS_ASSUME_NONNULL_END

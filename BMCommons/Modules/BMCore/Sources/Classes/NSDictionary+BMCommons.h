@@ -10,6 +10,8 @@
 
 @class BMPropertyDescriptor;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  NSDictionary additions.
  */
@@ -20,7 +22,7 @@
  
  The object is only returned if it meets isKindOfClass: for the supplied class.
  */
-- (id)bmObjectForKey:(id)aKey ofClass:(Class)c;
+- (nullable id)bmObjectForKey:(id)aKey ofClass:(Class)c;
 
 /**
  Retrieves a value from this dictionary via an XPath-like expression.
@@ -37,21 +39,21 @@
  
  @param xpath The XPath expression.
  */
-- (id)bmValueForXPath:(NSString *)xpath;
+- (nullable id)bmValueForXPath:(NSString *)xpath;
 
 /**
  Type-safe version of bmValueForXPath:
  
  This method checks whether the return value is an instance of the specified class, otherwise nil is returned.
  */
-- (id)bmValueForXPath:(NSString *)xpath withClass:(Class)c;
+- (nullable id)bmValueForXPath:(NSString *)xpath withClass:(Class)c;
 
 /**
  Value transforming version of bmValueForXPath:
  
  This method supplies the return value to the specified valueTransformer for conversion. If the valueTransformer throws an exception, nil is returned, unless [NSObject isBMThrowAssertionExceptions] returns YES.
  */
-- (id)bmValueForXPath:(NSString *)xpath withValueTransformer:(NSValueTransformer *)valueTransformer;
+- (nullable id)bmValueForXPath:(NSString *)xpath withValueTransformer:(NSValueTransformer *)valueTransformer;
 
 /**
  Same as bmValueForXPath:withClass: but this method throws an exception instead of returning nil.
@@ -66,12 +68,12 @@
 /**
  Same as bmValueForXPath:withClass: but this method returns the default value instead of nil if the value could not be found.
  */
-- (id)bmValueForXPath:(NSString *)xpath withClass:(Class)c defaultValue:(id)defaultValue;
+- (nullable id)bmValueForXPath:(NSString *)xpath withClass:(Class)c defaultValue:(id)defaultValue;
 
 /**
  Same as bmValueForXPath:withValueTransformer: but this method returns the default value instead of nil if the value could not be found.
  */
-- (id)bmValueForXPath:(NSString *)xpath withValueTransformer:(NSValueTransformer *)valueTransformer defaultValue:(id)defaultValue;
+- (nullable id)bmValueForXPath:(NSString *)xpath withValueTransformer:(NSValueTransformer *)valueTransformer defaultValue:(nullable id)defaultValue;
 
 /**
  * Returns a dictionary containing the objects in the specified array as values and using the keyPropertyDescriptor for each object to construct the key for that object.
@@ -97,7 +99,7 @@
 /**
  Checks both object and key to be non-nil before calling setObject:forKey:
  */
-- (void)bmSafeSetObject:(id)object forKey:(id)key;
+- (void)bmSafeSetObject:(nullable id)object forKey:(nullable id)key;
 
 /**
  * Returns the object for the specified key if existent, else sets the object returned by the default constructer for this key and returns it.
@@ -107,3 +109,5 @@
 - (id)bmObjectForKey:(id)key withDefaultConstructor:(id (^)(void))constructor;
 
 @end
+
+NS_ASSUME_NONNULL_END

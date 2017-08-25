@@ -10,6 +10,8 @@
 #import <BMCommons/BMCore.h>
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Registry for monitoring the deallocation of objects of interest to perform cleanup logic once they are released.
  */
@@ -33,7 +35,7 @@ typedef void(^BMWeakReferenceCleanupBlock)(void);
  * @param owner An optional owner (may be specified to selectively deregister references)
  * @param cleanup The cleanup block
  */
-- (void)registerReference:(id)reference forOwner:(id)owner withCleanupBlock:(BMWeakReferenceCleanupBlock)cleanup;
+- (void)registerReference:(id)reference forOwner:(nullable id)owner withCleanupBlock:(nullable BMWeakReferenceCleanupBlock)cleanup;
 
 /**
  * Deregisters the specified reference for monitoring. If owner is not nil, only the monitor(s) for the specified owner is/are removed.
@@ -41,7 +43,7 @@ typedef void(^BMWeakReferenceCleanupBlock)(void);
  * @param reference The monitored reference
  * @param owner The optional owner of the reference
  */
-- (void)deregisterReference:(id)reference forOwner:(id)owner;
+- (void)deregisterReference:(id)reference forOwner:(nullable id)owner;
 
 /**
  * Checks whether a monitor already exists for the specified reference/owner. If the owner parameter is nil all owners are checked.
@@ -50,6 +52,8 @@ typedef void(^BMWeakReferenceCleanupBlock)(void);
  * @param owner The optional owner
  * @return True if registered, false otherwise.
  */
-- (BOOL)hasRegisteredReference:(id)reference forOwner:(id)owner;
+- (BOOL)hasRegisteredReference:(id)reference forOwner:(nullable id)owner;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -45,6 +45,11 @@ static const unichar hex_lowercase[] = {'0','1','2','3','4','5','6','7','8','9',
     return [self bmHexEncodedStringForBytes:(unsigned char *) [data bytes] length:data.length];
 }
 
++ (instancetype)bmStringWithUTF32Char:(UTF32Char)c {
+	uint32_t data = OSSwapHostToLittleInt32(c); // Convert to little-endian
+	return [[NSString alloc] initWithBytes:&data length:4 encoding:NSUTF32LittleEndianStringEncoding];
+}
+
 - (NSString*)bmStringWithPercentEscapes {
     return (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self, NULL, CFSTR("￼=,!$&'()[]*+;@?\n\"<>#\t :/"),kCFStringEncodingUTF8));
 }

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  NSNumber additions.
  */
@@ -18,7 +20,7 @@
  
  Depending on the string a boolean, float or int number may be returned.
  */
-+ (NSNumber *)bmNumberWithString:(NSString *)stringValue;
++ (nullable NSNumber *)bmNumberWithString:(NSString *)stringValue;
 
 /**
  Returns YES iff this is boolean number.
@@ -41,3 +43,5 @@
 - (NSString *)bmBoolStringValue;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -18,8 +18,6 @@
 #import <BMCommons/BMHTTPMultiPartBodyInputStream.h>
 #import <BMCommons/BMCore.h>
 
-#define BOUNDARY_STRING @"0xUn1quEKhTmLbOuNdArYx0"
-
 #define FIELD_CONTENT_TYPE @"Content-Type"
 #define FIELD_CONTENT_ENCODING @"Content-Encoding"
 #define FIELD_CONTENT_LENGTH @"Content-Length"
@@ -118,8 +116,10 @@ static NSTimeInterval defaultTimeoutInterval = BM_HTTP_REQUEST_DEFAULT_TIMEOUT;
                          delegate:theDelegate])) {
         NSMutableURLRequest *request = self.request;
         [request setHTTPMethod:BM_HTTP_METHOD_POST];
-        [request addValue:contentType forHTTPHeaderField:FIELD_CONTENT_TYPE];
-        [request addValue:[NSString stringWithFormat:@"%d", (int) content.length] forHTTPHeaderField:FIELD_CONTENT_LENGTH];
+        if (contentType != nil) {
+            [request addValue:contentType forHTTPHeaderField:FIELD_CONTENT_TYPE];
+        }
+        [request addValue:[NSString stringWithFormat:@"%tu", (content == nil ? 0 : content.length)] forHTTPHeaderField:FIELD_CONTENT_LENGTH];
         [request setHTTPBody:content];
         LogDebug(@"Body: %@\n", [[NSString alloc] initWithData:content encoding:NSUTF8StringEncoding]);
     }
@@ -149,12 +149,10 @@ static NSTimeInterval defaultTimeoutInterval = BM_HTTP_REQUEST_DEFAULT_TIMEOUT;
         NSMutableURLRequest *request = self.request;
         [request setHTTPMethod:BM_HTTP_METHOD_POST];
 
-        NSString *stringBoundary = BOUNDARY_STRING;
-        NSString *theContentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", stringBoundary];
+        BMHTTPMultiPartBodyInputStream *is = [[BMHTTPMultiPartBodyInputStream alloc] initWithContentParts:contentParts boundaryString:nil];
+        NSString *theContentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", is.boundaryString];
         LogDebug(@"Creating MultiPart form request with boundary: %@", stringBoundary);
         [request addValue:theContentType forHTTPHeaderField:FIELD_CONTENT_TYPE];
-
-        BMHTTPMultiPartBodyInputStream *is = [[BMHTTPMultiPartBodyInputStream alloc] initWithContentParts:contentParts boundaryString:stringBoundary];
         [request setHTTPBodyStream:is];
     }
     return self;
@@ -271,6 +269,11 @@ customHeaderFields:(NSDictionary *)customHeaderFields
         self.shouldAllowSelfSignedCert = [coder decodeBoolForKey:@"shouldAllowSelfSignedCert"];
         self.clientIdentityRef = [coder decodeObjectForKey:@"clientIdentityRef"];
         self.manageCookies = [coder decodeBoolForKey:@"manageCookies"];
+
+        if (self.request == nil || self.url == nil) {
+            //Required fields not filled
+            return nil;
+        }
     }
     return self;
 }

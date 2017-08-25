@@ -9,9 +9,11 @@
 #import <BMCommons/BMTwoWayDictionary.h>
 #import <BMCommons/BMCore.h>
 
-@implementation BMTwoWayDictionary
-
-@synthesize localizeValues, localizeKeys;
+@implementation BMTwoWayDictionary {
+@private
+	NSDictionary *_forwardDictionary;
+	NSDictionary *_reverseDictionary;
+}
 
 + (void)getObjects:(NSArray **)objects andKeys:(NSArray **)keys fromArgs:(NSArray *)args {
 	NSUInteger maxCount = (args.count / 2) * 2;
@@ -57,8 +59,8 @@
 
 - (id)initWithObjects:(NSArray *)objects forKeys:(NSArray *)keys {
 	if ((self = [super init])) {	
-		forwardDictionary = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
-		reverseDictionary = [[NSDictionary alloc] initWithObjects:keys forKeys:objects];
+		_forwardDictionary = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];
+		_reverseDictionary = [[NSDictionary alloc] initWithObjects:keys forKeys:objects];
 	}
 	return self;
 }
@@ -78,12 +80,12 @@
 }
 
 - (void)dealloc {
-	BM_RELEASE_SAFELY(forwardDictionary);
-	BM_RELEASE_SAFELY(reverseDictionary);
+	BM_RELEASE_SAFELY(_forwardDictionary);
+	BM_RELEASE_SAFELY(_reverseDictionary);
 }
 
 - (id)objectForKey:(id)aKey {
-	id object = [forwardDictionary objectForKey:aKey];
+	id object = [_forwardDictionary objectForKey:aKey];
 	if (self.localizeValues && [object isKindOfClass:[NSString class]]) {
 		object = BMLocalizedString(object, nil);
 	}
@@ -91,7 +93,7 @@
 }
 
 - (id)keyForObject:(id)object {
-	id key = [reverseDictionary objectForKey:object];
+	id key = [_reverseDictionary objectForKey:object];
 	if (self.localizeKeys && [key isKindOfClass:[NSString class]]) {
 		key = BMLocalizedString(key, nil);
 	}
@@ -99,11 +101,11 @@
 }
 
 - (NSArray *)allKeys {
-	return [forwardDictionary allKeys];
+	return [_forwardDictionary allKeys];
 }
 
 - (NSArray *)allValues {
-	return [forwardDictionary allValues];
+	return [_forwardDictionary allValues];
 }
 
 @end

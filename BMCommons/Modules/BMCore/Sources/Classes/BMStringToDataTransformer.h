@@ -8,15 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Converts an NSString to its data representation and vice versa.
  
  Uses the encoding specified.
  */
-@interface BMStringToDataTransformer : NSValueTransformer {
-    NSStringEncoding encoding;
-}
-
+@interface BMStringToDataTransformer : NSValueTransformer
 
 /**
  The string encoding to use.
@@ -26,3 +25,5 @@
 @property (nonatomic, assign) NSStringEncoding encoding;
 
 @end
+
+NS_ASSUME_NONNULL_END

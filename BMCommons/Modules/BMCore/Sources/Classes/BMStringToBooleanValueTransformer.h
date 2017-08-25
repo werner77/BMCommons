@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Transformer for converting a string to a boolean and vice versa.
  
@@ -20,3 +22,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

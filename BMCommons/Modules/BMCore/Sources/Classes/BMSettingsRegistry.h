@@ -9,16 +9,13 @@
 #import <BMCommons/BMSettingsObject.h>
 #import <BMCommons/BMCoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class that manages loading/saving settings objects (implementations of BMSettingsObject).
  */
-@interface BMSettingsRegistry : BMCoreObject {
-    @private
-	NSDictionary *_settingsObjects;
-    BOOL _loaded;
-}
+@interface BMSettingsRegistry : BMCoreObject
 
-@property (nonatomic, strong) NSDictionary *settingsObjects;
 @property (nonatomic, readonly, getter = isLoaded) BOOL loaded;
 
 /**
@@ -43,7 +40,7 @@
  Loads the state of all managed settings objects from NSUserDefaults.
  */
 - (void)load;
-- (NSObject <BMSettingsObject> *)settingsObjectForClass:(Class)clazz;
+- (nullable NSObject <BMSettingsObject> *)settingsObjectForClass:(Class)clazz;
 
 /**
  Restores the state of all managed settings objects to default (if they are allowed to be restored to defaults, see BMSettingsObject protocol).
@@ -83,3 +80,6 @@
 	
 
 @end
+
+NS_ASSUME_NONNULL_END
+

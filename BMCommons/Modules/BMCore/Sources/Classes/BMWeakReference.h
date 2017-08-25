@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BMWeakReference : NSObject
 
-@property (weak) id target;
+@property (nullable, weak) id target;
 
 + (BMWeakReference *)weakReferenceWithTarget:(id)target;
 
 @end
+
+NS_ASSUME_NONNULL_END

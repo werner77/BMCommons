@@ -24,4 +24,10 @@
     NSLog(@"Escaped string: %@", escapedString);
 }
 
+- (void)testRandomStringOfLength {
+    NSString *s = [BMStringHelper randomStringOfLength:10 charSet:nil];
+
+    XCTAssertEqual(10, s.length);
+}
+
 @end

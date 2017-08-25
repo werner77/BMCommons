@@ -12,6 +12,8 @@
 #import <UIKit/UIKit.h>
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Value transformer for transforming a UIImage to NSData with JPEG encoding.
  */
@@ -20,3 +22,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

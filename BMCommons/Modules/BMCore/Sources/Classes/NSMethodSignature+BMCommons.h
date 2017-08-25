@@ -5,6 +5,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSMethodSignature (BMCommons)
 
 /**
@@ -31,3 +33,5 @@
 - (NSUInteger)bmArgumentLengthAtIndex:(NSUInteger)argumentIndex;
 
 @end
+
+NS_ASSUME_NONNULL_END

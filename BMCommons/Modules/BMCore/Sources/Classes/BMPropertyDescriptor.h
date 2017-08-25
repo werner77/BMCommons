@@ -10,19 +10,12 @@
 #import <BMCommons/BMCoreObject.h>
 #import <BMCommons/BMValueType.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class to describe/access a property on a specified target object.
  */
-@interface BMPropertyDescriptor : BMCoreObject {
-@private
-	NSString *_propertyName;
-	NSString *_keyPath;
-	NSString *_setter;
-	NSArray *_getters;
-	NSObject __weak *_target;
-	NSValueTransformer *_valueTransformer;
-}
-
+@interface BMPropertyDescriptor : BMCoreObject
 
 /**
  The keyPath to the property.
@@ -51,14 +44,14 @@
 /**
  The target object to access the property from.
  */
-@property (nonatomic, weak) NSObject *target;
+@property (nullable, nonatomic, weak) NSObject *target;
 
 /**
  Optional value transformer for converting the value before setting it (forward transformation) or converting it back before getting it (reverse transformation).
  
  This only works for object type properties.
  */
-@property (nonatomic, strong) NSValueTransformer *valueTransformer;
+@property (nullable, nonatomic, strong) NSValueTransformer *valueTransformer;
 
 /**
  In the case the property corresponds with a primitive value, its value type may be set here.
@@ -71,92 +64,92 @@
 /**
  Constructs and returns a property descriptor with the specified key path.
  */
-+ (BMPropertyDescriptor *)propertyDescriptorFromKeyPath:(NSString *)theKeyPath;
++ (nullable BMPropertyDescriptor *)propertyDescriptorFromKeyPath:(NSString *)theKeyPath;
 
 /**
  Constructs and returns a property descriptor with the specified key path and valueType.
  */
-+ (BMPropertyDescriptor *)propertyDescriptorFromKeyPath:(NSString *)theKeyPath valueType:(BMValueType)valueType;
++ (nullable BMPropertyDescriptor *)propertyDescriptorFromKeyPath:(NSString *)theKeyPath valueType:(BMValueType)valueType;
 
 /**
  Constructs and returns a property descriptor with the specified key path and target
  */
-+ (BMPropertyDescriptor *)propertyDescriptorFromKeyPath:(NSString *)theKeyPath withTarget:(NSObject *)theTarget;
++ (nullable BMPropertyDescriptor *)propertyDescriptorFromKeyPath:(NSString *)theKeyPath withTarget:(nullable NSObject *)theTarget;
 
 /**
   Constructs and returns a property descriptor with the specified key path and target and primitive value type. Use BMValueTypeObject for object typed properties.
   */
-+ (BMPropertyDescriptor *)propertyDescriptorFromKeyPath:(NSString *)theKeyPath withTarget:(NSObject *)theTarget valueType:(BMValueType)valueType;
++ (nullable BMPropertyDescriptor *)propertyDescriptorFromKeyPath:(NSString *)theKeyPath withTarget:(nullable NSObject *)theTarget valueType:(BMValueType)valueType;
 
 /**
  Initializer
  */
-- (id)initWithKeyPath:(NSString *)theKeyPath target:(id)theTarget;
+- (nullable id)initWithKeyPath:(NSString *)theKeyPath target:(id)theTarget;
 
-- (id)initWithKeyPath:(NSString *)theKeyPath target:(id)theTarget valueType:(BMValueType)valueType;
+- (nullable id)initWithKeyPath:(NSString *)theKeyPath target:(id)theTarget valueType:(BMValueType)valueType;
 
 /**
  Calls the getter on the target and returns the value.
  */
-- (id)callGetter;
+- (nullable id)callGetter;
 
 /**
  Calls the setter on the target with the specified value.
  */
-- (void)callSetter:(id)value;
+- (void)callSetter:(nullable id)value;
 
 /**
  Calls the getter on the target set by optionally ignoring any failures.
  */
-- (id)callGetterWithIgnoreFailure:(BOOL)ignoreFailure;
+- (nullable id)callGetterWithIgnoreFailure:(BOOL)ignoreFailure;
 
 /**
  Calls the setter on the target set by optionally ignoring any failures.
  */
-- (void)callSetter:(id)value ignoreFailure:(BOOL)ignoreFailure;
+- (void)callSetter:(nullable id)value ignoreFailure:(BOOL)ignoreFailure;
 
 /**
  Calls the getter on a specified target. 
  
  Fails if the property could not be found or read.
  */
-- (id)callGetterOnTarget:(id)target;
+- (nullable id)callGetterOnTarget:(id)target;
 
 /**
  Calls the setter on a specified target with the specified value. 
  
  Fails if the property could not be found or written.
  */
-- (void)callSetterOnTarget:(id)target withValue:(id)value;
+- (void)callSetterOnTarget:(id)target withValue:(nullable id)value;
 
 /**
  Calls the getter on a specified target, optionally ignoring a failure if the property could not be found or read.
  */
-- (id)callGetterOnTarget:(id)target ignoreFailure:(BOOL)ignoreFailure;
+- (nullable id)callGetterOnTarget:(id)target ignoreFailure:(BOOL)ignoreFailure;
 
 /**
  Calls the setter on a specified target, optionally ignoring a failure if the property could not be found or written.
  */
-- (void)callSetterOnTarget:(id)target withValue:(id)value ignoreFailure:(BOOL)ignoreFailure;
+- (void)callSetterOnTarget:(id)target withValue:(nullable id)value ignoreFailure:(BOOL)ignoreFailure;
 
 /**
  Validates the value corresponding with the property using KVO validation methods. 
  
  Returns true if valid, false otherwise with the error object set.
  */
-- (BOOL)validateValue:(id*)value withError:(NSError **)error;
+- (BOOL)validateValue:(id _Nullable * _Nonnull)value withError:(NSError **)error;
 
 /**
  Validates the value corresponding with the property using KVO validation methods. 
  
  Returns true if valid, false otherwise with the error object set.
  */
-- (BOOL)validateValue:(id*)value onTarget:(id)target withError:(NSError **)error;
+- (BOOL)validateValue:(id _Nullable* _Nonnull)value onTarget:(nullable id)target withError:(NSError **)error;
 
 /**
  Returns the descriptor for the parent property in case the keypath contains more than 1 components or nil otherwise.
  */
-- (BMPropertyDescriptor *)parentDescriptor;
+- (nullable BMPropertyDescriptor *)parentDescriptor;
 
 /**
  Invokes getter for returning the raw value. 
@@ -167,7 +160,7 @@
  
  @see invokeGetterOnTarget:ignoreFailure:valueLength:
  */
-- (void *)invokeGetterWithValueLength:(NSUInteger *)valueLength;
+- (nullable void *)invokeGetterWithValueLength:(NSUInteger *)valueLength;
 
 /**
  Invokes setter.
@@ -182,7 +175,7 @@
  
  @see invokeGetterOnTarget:ignoreFailure:valueLength:
  */
-- (void *)invokeGetterOnTarget:(id)t valueLength:(NSUInteger *)valueLength;
+- (nullable void *)invokeGetterOnTarget:(id)t valueLength:(NSUInteger *)valueLength;
 
 /**
  
@@ -194,7 +187,7 @@
  
  @see invokeGetterOnTarget:ignoreFailure:valueLength:
  */
-- (void *)invokeGetterWithIgnoreFailure:(BOOL)ignoreFailure valueLength:(NSUInteger *)valueLength;
+- (nullable void *)invokeGetterWithIgnoreFailure:(BOOL)ignoreFailure valueLength:(NSUInteger *)valueLength;
 
 /**
  @see invokeSetterOnTarget:withValue:ignoreFailure:
@@ -213,6 +206,9 @@
  
  This method returns a pointer to an autoreleased buffer containing the return value. The length of the return value may be retrieved from the valueLength argument supplied to this method.
  */
-- (void *)invokeGetterOnTarget:(id)t ignoreFailure:(BOOL)ignoreFailure valueLength:(NSUInteger *)valueLength;
+- (void * _Nullable)invokeGetterOnTarget:(id)t ignoreFailure:(BOOL)ignoreFailure valueLength:(NSUInteger *)valueLength;
 
 @end
+
+NS_ASSUME_NONNULL_END
+
