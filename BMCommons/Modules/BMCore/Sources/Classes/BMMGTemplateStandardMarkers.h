@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface BMMGTemplateStandardMarkers : NSObject <BMMGTemplateMarker>
 
+@property (nullable, nonatomic, weak) BMMGTemplateEngine *engine;
+
 - (BOOL)currentBlock:(nullable NSDictionary *)blockInfo matchesTopOfStack:(NSMutableArray *)stack;
 - (BOOL)argIsNumeric:(NSString *)arg intValue:(NSInteger *)val checkVariables:(BOOL)checkVars;
 - (BOOL)argIsTrue:(NSString *)arg;

@@ -74,7 +74,6 @@
 
 
 @implementation BMMGTemplateStandardMarkers  {
-	__weak BMMGTemplateEngine *engine; // weak ref
 	NSMutableArray *forStack;
 	NSMutableArray *sectionStack;
 	NSMutableArray *ifStack;
@@ -82,19 +81,23 @@
 	NSMutableDictionary *cycles;
 }
 
--(id)init {
-	return [self initWithTemplateEngine:nil];
-}
+@synthesize engine;
 
-- (id)initWithTemplateEngine:(BMMGTemplateEngine *)theEngine
-{
-	if ((self = [super init])) {
-		engine = theEngine;
+-(id)init {
+	if (self = [super init]) {
 		forStack = [[NSMutableArray alloc] init];
 		sectionStack = [[NSMutableArray alloc] init];
 		ifStack = [[NSMutableArray alloc] init];
 		commentStack = [[NSMutableArray alloc] init];
 		cycles = [[NSMutableDictionary alloc] init];
+	}
+	return self;
+}
+
+- (id)initWithTemplateEngine:(BMMGTemplateEngine *)theEngine
+{
+	if ((self = [self init])) {
+		engine = theEngine;
 	}
 	return self;
 }

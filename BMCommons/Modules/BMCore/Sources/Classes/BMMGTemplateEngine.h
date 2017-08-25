@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @protocol BMMGTemplateEngineMatcher <NSObject>
 @required
-- (id)initWithTemplateEngine:(BMMGTemplateEngine *)engine NS_DESIGNATED_INITIALIZER;
+- (id)initWithTemplateEngine:(BMMGTemplateEngine *)engine;
 - (void)engineSettingsChanged; // always called at least once before beginning to process a template.
 - (nullable NSDictionary *)firstMarkerWithinRange:(NSRange)range;
 @end

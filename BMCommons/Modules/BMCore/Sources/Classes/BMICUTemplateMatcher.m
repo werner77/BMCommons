@@ -28,14 +28,13 @@
 }
 
 - (id)init {
-    return [self initWithTemplateEngine:nil];
+    return [super init];
 }
 
 - (id)initWithTemplateEngine:(BMMGTemplateEngine *)theEngine {
-    if ((self = [super init])) {
+    if ((self = [self init])) {
         self.engine = theEngine; // weak ref
     }
-
     return self;
 }
 

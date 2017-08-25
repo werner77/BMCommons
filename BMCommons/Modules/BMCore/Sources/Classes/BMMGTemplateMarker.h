@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @protocol BMMGTemplateMarker
 @required
-- (id)initWithTemplateEngine:(BMMGTemplateEngine *)engine NS_DESIGNATED_INITIALIZER; // to avoid retain cycles, use a weak reference for engine.
+- (id)initWithTemplateEngine:(BMMGTemplateEngine *)engine; // to avoid retain cycles, use a weak reference for engine.
 - (NSArray *)markers; // array of markers (each unique across all markers) this object handles.
 - (nullable NSArray *)endMarkersForMarker:(NSString *)marker; // returns the possible corresponding end-markers for a marker which has just started a block.
 - (nullable NSObject *)markerEncountered:(NSString *)marker withArguments:(nullable NSArray *)args inRange:(NSRange)markerRange
