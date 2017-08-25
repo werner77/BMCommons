@@ -139,7 +139,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param name The name of the cache
  @param persistent Whether or not the data should be persistent, i.e. should reside in the documents directory instead of in the caches directory.
  */
-- (nullable id)initWithName:(NSString*)name persistent:(BOOL)persistent;
+- (nullable id)initWithName:(NSString*)name persistent:(BOOL)persistent NS_DESIGNATED_INITIALIZER;
 
 
 /**

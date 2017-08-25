@@ -32,6 +32,10 @@
 
 @synthesize settingsObjects = _settingsObjects, loaded = _loaded;
 
+- (id)init {
+	return [self initWithClasses:@[]];
+}
+
 - (id)initWithClasses:(NSArray *)classes {
 	if ((self = [super init])) {
 		NSMutableArray *objects = [NSMutableArray array];

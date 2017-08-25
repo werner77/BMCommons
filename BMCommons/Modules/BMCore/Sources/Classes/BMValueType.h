@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  If the value type is BMValueTypeObject, nil is returned.
  */
-- (nullable id)initWithValueType:(BMValueType)valueType;
+- (nullable id)initWithValueType:(BMValueType)valueType NS_DESIGNATED_INITIALIZER;
 
 /**
  Copies the raw primitive value corresponding to the supplied objectValue to the supplied value buffer (pointer to a primitive type).

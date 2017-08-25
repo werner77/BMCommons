@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface BMICUTemplateMatcher : NSObject <BMMGTemplateEngineMatcher>
 
-@property(weak, readonly) BMMGTemplateEngine *engine;
+@property(nullable, weak) BMMGTemplateEngine *engine;
 
 + (BMICUTemplateMatcher *)matcherWithTemplateEngine:(BMMGTemplateEngine *)theEngine;
 

@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable id)initWithKeyPath:(NSString *)theKeyPath target:(id)theTarget;
 
-- (nullable id)initWithKeyPath:(NSString *)theKeyPath target:(id)theTarget valueType:(BMValueType)valueType;
+- (nullable id)initWithKeyPath:(NSString *)theKeyPath target:(id)theTarget valueType:(BMValueType)valueType NS_DESIGNATED_INITIALIZER;
 
 /**
  Calls the getter on the target and returns the value.

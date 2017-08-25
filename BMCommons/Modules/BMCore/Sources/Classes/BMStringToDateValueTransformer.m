@@ -32,9 +32,16 @@
     return [[BMStringToDateValueTransformer alloc] initWithDateFormatter:fm];
 }
 
+- (id)init {
+	return [self initWithDateFormatter:[NSDateFormatter new]];
+}
+
 - (id)initWithDateFormatter:(NSDateFormatter *)theDateFormatter {
 	if ((self = [super init])) {
 		_dateFormatter = theDateFormatter;
+		if (!theDateFormatter) {
+			return nil;
+		}
 	}
 	return self;
 }

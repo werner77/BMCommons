@@ -64,7 +64,7 @@ BM_DECLARE_DEFAULT_SINGLETON
  * @param bundle The bundle to use or nil for the main bundle.
  * @return The instance
  */
-- (id)initWithBundle:(nullable NSBundle *)bundle;
+- (id)initWithBundle:(nullable NSBundle *)bundle NS_DESIGNATED_INITIALIZER;
 
 /**
  * Returns a localized string for the specified key, with optional default value and table.

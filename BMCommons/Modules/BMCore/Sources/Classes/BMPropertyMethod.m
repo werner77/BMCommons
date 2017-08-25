@@ -25,6 +25,10 @@
     if ((self = [super init])) {
         _propertyName = thePropertyName;
         _setter = isSetter;
+
+		if (thePropertyName == nil) {
+			return nil;
+		}
     }
     return self;
 }

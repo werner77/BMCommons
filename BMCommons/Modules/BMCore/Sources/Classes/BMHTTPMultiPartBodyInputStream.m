@@ -41,8 +41,15 @@
 
 @synthesize currentContentPartHeaderInputStream = _currentContentPartHeaderInputStream, currentContentPartDataInputStream = _currentContentPartDataInputStream;
 
+- (id)init {
+    return [self initWithContentParts:@[] boundaryString:nil];
+}
+
 - (id)initWithContentParts:(NSArray *)theContentParts boundaryString:(NSString *)theBoundaryString {
-    if ((self = [self init])) {
+    if ((self = [super init])) {
+        if (theContentParts == nil) {
+            return nil;
+        }
         _contentParts = theContentParts;
         _boundaryString = theBoundaryString ?: [BMStringHelper randomStringOfLength:70 charSet:nil];
         _currentContentPartIndex = -1;

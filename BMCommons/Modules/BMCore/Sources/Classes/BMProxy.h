@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  The retained parameter determines whether the target object is retained or not.
  */
-- (id)initWithObject:(NSObject *)object threadSafe:(BOOL)threadSafe retained:(BOOL)retained;
+- (id)initWithObject:(NSObject *)object threadSafe:(BOOL)threadSafe retained:(BOOL)retained NS_DESIGNATED_INITIALIZER;
 
 + (BMProxy *)proxyWithObject:(NSObject *)object threadSafe:(BOOL)threadSafe retained:(BOOL)retained;
 

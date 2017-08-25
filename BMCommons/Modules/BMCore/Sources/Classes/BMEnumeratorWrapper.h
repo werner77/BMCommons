@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (BMEnumeratorWrapper *)enumeratorWrapperWithEnumerator:(NSEnumerator *)enumerator delegate:(nullable id <BMEnumeratorDelegate>)theDelegate;
 
-- (id)initWithEnumerator:(NSEnumerator *)theEnumerator delegate:(nullable id <BMEnumeratorDelegate>)theDelegate;
+- (id)initWithEnumerator:(NSEnumerator *)theEnumerator delegate:(nullable id <BMEnumeratorDelegate>)theDelegate NS_DESIGNATED_INITIALIZER;
 
 @end
 

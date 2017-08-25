@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BMStringToDateValueTransformer *)isoStringToDateValueTransformer;
 
-- (id)initWithDateFormatter:(NSDateFormatter *)theDateFormatter;
+- (id)initWithDateFormatter:(NSDateFormatter *)theDateFormatter NS_DESIGNATED_INITIALIZER;
 
 @end
 

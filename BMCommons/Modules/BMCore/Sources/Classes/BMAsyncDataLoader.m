@@ -132,21 +132,22 @@ static NSOperationQueue *backgroundOperationQueue = nil;
 }
 
 - (id)init {
-    if (self = [super init]) {
+    return [self initWithURL:nil];
+}
+
+- (id)initWithURL:(NSURL *)theURL {
+    if ((self = [super init])) {
+        if (!theURL) {
+            return nil;
+        }
         @synchronized(self) {
             _maxRetryCount = BM_ASYNCDATALOADER_DEFAULT_MAX_RETRY_COUNT;
             _connectionTimeOut = BM_ASYNCDATALOADER_DEFAULT_CONNECTION_TIMEOUT;
             _loadingStatus = BMAsyncLoadingStatusIdle;
             _storeToCache = YES;
             _alwaysNotifyAsynchronously = NO;
+            self.url = theURL;
         }
-    }
-    return self;
-}
-
-- (id)initWithURL:(NSURL *)theURL {
-    if ((self = [self init])) {
-        self.url = theURL;
     }
     return self;
 }

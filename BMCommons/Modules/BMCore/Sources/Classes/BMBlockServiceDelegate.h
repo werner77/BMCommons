@@ -56,7 +56,7 @@ typedef void (^BMServiceFailureBlock)(BOOL cancelled, NSError * error);
 @property (weak, readonly, nullable) id<BMService> service;
 
 - (id)initWithSuccess:(nullable BMServiceSuccessBlock)success failure:(nullable BMServiceFailureBlock)failure;
-- (id)initWithSuccess:(nullable BMServiceSuccessBlock)success failure:(nullable BMServiceFailureBlock)failure owner:(nullable id)owner;
+- (id)initWithSuccess:(nullable BMServiceSuccessBlock)success failure:(nullable BMServiceFailureBlock)failure owner:(nullable id)owner NS_DESIGNATED_INITIALIZER;
 
 @end
 

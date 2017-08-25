@@ -74,12 +74,16 @@
 
 
 @implementation BMMGTemplateStandardMarkers  {
-	BMMGTemplateEngine *engine; // weak ref
+	__weak BMMGTemplateEngine *engine; // weak ref
 	NSMutableArray *forStack;
 	NSMutableArray *sectionStack;
 	NSMutableArray *ifStack;
 	NSMutableArray *commentStack;
 	NSMutableDictionary *cycles;
+}
+
+-(id)init {
+	return [self initWithTemplateEngine:nil];
 }
 
 - (id)initWithTemplateEngine:(BMMGTemplateEngine *)theEngine

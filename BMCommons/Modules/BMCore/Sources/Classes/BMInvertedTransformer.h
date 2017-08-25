@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BMInvertedTransformer : NSValueTransformer
 
 + (BMInvertedTransformer *)invertedTransformer:(NSValueTransformer *)transformer;
-- (id)initWithTransformer:(NSValueTransformer *)theTransformer;
+- (id)initWithTransformer:(NSValueTransformer *)theTransformer NS_DESIGNATED_INITIALIZER;
 
 @end
 

@@ -46,11 +46,14 @@ static const char * kBlockDelegatesAssociationKey = "com.behindmedia.bmcommons.B
     return runningServices;
 }
 
+- (id)init {
+    return [self initWithSuccess:nil failure:nil owner:nil];
+}
+
 - (id)initWithSuccess:(BMServiceSuccessBlock)success failure:(BMServiceFailureBlock)failure owner:(id)owner {
-    if ((self = [self init])) {
+    if ((self = [super init])) {
         self.successBlock = success;
         self.failureBlock = failure;
-
         [self setOwner:owner];
     }
     return self;

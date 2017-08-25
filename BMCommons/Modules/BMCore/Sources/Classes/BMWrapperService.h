@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @param wrappedService The wrapped service
  */
-- (instancetype)initWithWrappedService:(id<BMService>)wrappedService;
+- (instancetype)initWithWrappedService:(id<BMService>)wrappedService NS_DESIGNATED_INITIALIZER;
 
 @end
 

@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param boundaryString A unique string to separate the content parts from each other. This string should not occur in the data of any of the content parts.
  If nil is supplied a default random boundary string will be generated.
  */
-- (id)initWithContentParts:(NSArray *)contentParts boundaryString:(nullable NSString *)boundaryString;
+- (id)initWithContentParts:(NSArray *)contentParts boundaryString:(nullable NSString *)boundaryString NS_DESIGNATED_INITIALIZER;
 
 /**
  Resets the stream.

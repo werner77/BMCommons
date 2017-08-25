@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (id)initWithObjectsAndKeys:(id)firstObject, ... NS_REQUIRES_NIL_TERMINATION;
 
 + (id)dictionaryWithObjects:(NSArray *)objects forKeys:(NSArray *)keys;
-- (id)initWithObjects:(NSArray *)objects forKeys:(NSArray *)keys;
+- (id)initWithObjects:(NSArray *)objects forKeys:(NSArray *)keys NS_DESIGNATED_INITIALIZER;
 
 + (id)dictionaryWithDictionary:(NSDictionary *)dictionary;
 - (id)initWithDictionary:(NSDictionary *)dictionary;

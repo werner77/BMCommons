@@ -159,23 +159,25 @@ static NSTimeInterval defaultTimeoutInterval = BM_HTTP_REQUEST_DEFAULT_TIMEOUT;
 }
 
 - (id)init {
+    return [self initWithRequest:nil delegate:nil];
+}
+
+- (id)initWithRequest:(NSURLRequest *)theRequest
+             delegate:(id <BMHTTPRequestDelegate>)theDelegate {
     if ((self = [super init])) {
+
+        if (theRequest == nil) {
+            return nil;
+        }
+
         self.httpResponseCode = 0;
         self.response = nil;
         self.lastError = nil;
         self.replyData = nil;
         self.responseHeaderFields = nil;
         self.eventSent = NO;
-    }
-    return self;
-}
-
-- (id) initWithRequest:(NSURLRequest *)theRequest
-              delegate:(id <BMHTTPRequestDelegate>)theDelegate {
-    if ((self = [self init])) {
         self.delegate = theDelegate;
         self.url = [theRequest URL];
-
         if ([theRequest isKindOfClass:[NSMutableURLRequest class]]) {
             self.request = (NSMutableURLRequest *)theRequest;
         } else {

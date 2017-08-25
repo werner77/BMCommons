@@ -46,19 +46,19 @@ typedef void(^BMWeakTimerBlock)(BMWeakTimer *timer);
 /**
  Constructor of Timer with target/selector.
  */
-- (id)initWithFireDate:(NSDate *)date interval:(NSTimeInterval)ti target:(id)t selector:(SEL)s userInfo:(nullable id)ui repeats:(BOOL)rep;
+- (id)initWithFireDate:(NSDate *)date interval:(NSTimeInterval)ti target:(id)t selector:(SEL)s userInfo:(nullable id)ui repeats:(BOOL)rep  NS_DESIGNATED_INITIALIZER;
 
 /**
  Constructor of timer with block for execution.
  */
-- (id)initWithFireDate:(NSDate *)date interval:(NSTimeInterval)ti block:(BMWeakTimerBlock)block repeats:(BOOL)rep;
+- (id)initWithFireDate:(NSDate *)date interval:(NSTimeInterval)ti block:(BMWeakTimerBlock)block repeats:(BOOL)rep NS_DESIGNATED_INITIALIZER;
 
 /**
  Constructor of Timer with an invocation.
  
  The invocation is instructed to retain its arguments but not the target: target of the invocation is set to nil and a weak reference to the target is maintained separately.
  */
-- (id)initWithFireDate:(NSDate *)date interval:(NSTimeInterval)ti invocation:(NSInvocation *)invocation repeats:(BOOL)rep;
+- (id)initWithFireDate:(NSDate *)date interval:(NSTimeInterval)ti invocation:(NSInvocation *)invocation repeats:(BOOL)rep NS_DESIGNATED_INITIALIZER;
 
 - (void)scheduleOnRunloop:(NSRunLoop *)runloop forMode:(NSString *)mode;
 

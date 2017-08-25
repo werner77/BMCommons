@@ -17,7 +17,6 @@
 @property(strong) NSString *filterDelimiter;
 @property(strong) NSString *templateString;
 @property(strong) NSString *regex;
-@property(weak) BMMGTemplateEngine *engine;
 
 @end
 
@@ -26,6 +25,10 @@
 
 + (BMICUTemplateMatcher *)matcherWithTemplateEngine:(BMMGTemplateEngine *)theEngine {
     return [[BMICUTemplateMatcher alloc] initWithTemplateEngine:theEngine];
+}
+
+- (id)init {
+    return [self initWithTemplateEngine:nil];
 }
 
 - (id)initWithTemplateEngine:(BMMGTemplateEngine *)theEngine {

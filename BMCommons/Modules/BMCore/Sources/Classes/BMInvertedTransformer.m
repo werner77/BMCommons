@@ -27,9 +27,13 @@
 	return nil;
 }
 
+- (id)init {
+	return [self initWithTransformer:nil];
+}
+
 - (id)initWithTransformer:(NSValueTransformer *)theTransformer {
 	if ((self = [super init])) {
-		if (![[theTransformer class] allowsReverseTransformation]) {
+		if (theTransformer == nil || ![[theTransformer class] allowsReverseTransformation]) {
 			return nil;
 		}
 		_transformer = theTransformer;

@@ -22,9 +22,18 @@
 - (id)initWithEnumerator:(NSEnumerator *)theEnumerator delegate:(id <BMEnumeratorDelegate>)theDelegate {
 	if ((self = [super init])) {
 		_enumerator = theEnumerator;
+
+		if (!_enumerator) {
+			return nil;
+		}
+
 		_delegate = theDelegate;
 	}
 	return self;
+}
+
+- (id)init {
+	return [self initWithEnumerator:nil delegate:nil];
 }
 
 - (id)nextObject {

@@ -33,7 +33,7 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
     return [self initWithBundle:nil];
 }
 
-- (id)initWithBundle:(NSBundle *)theBundle {
+- (id)initWithBundle:(NSBundle *)theBundle NS_DESIGNATED_INITIALIZER {
     if ((self = [super init])) {
         if (theBundle == nil) {
             theBundle = [NSBundle mainBundle];

@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  It registers the objects by calling [BMSettingsObject sharedInstance] on the classes supplied.
  */
-- (id)initWithClasses:(NSArray *)classes;
+- (id)initWithClasses:(NSArray *)classes NS_DESIGNATED_INITIALIZER;
 
 /**
  Saves the state of all managed settings objects to NSUserDefaults.

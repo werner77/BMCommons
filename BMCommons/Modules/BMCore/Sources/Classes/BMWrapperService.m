@@ -25,8 +25,15 @@
     return ret;
 }
 
+- (instancetype)init {
+    return [self initWithWrappedService:nil];
+}
+
 - (instancetype)initWithWrappedService:(id<BMService>)wrappedService {
     if ((self = [super init])) {
+        if (!wrappedService) {
+            return nil;
+        }
         self.wrappedService = wrappedService;
 
         for (NSString *keyPath in self.class.keyPathsToObserve) {

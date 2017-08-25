@@ -160,7 +160,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The URL for the request.
  */
-@property(readonly) NSURL *url;
+@property(nullable, readonly) NSURL *url;
 
 /**
  The NSURLRequest that is used internally by this class. 
@@ -202,6 +202,16 @@ NS_ASSUME_NONNULL_BEGIN
  Whether cookies returned by the server should be stored or not.
  */
 @property(assign) BOOL manageCookies;
+
+/**
+ * The designated initializer
+ *
+ * @param theRequest The request to use
+ * @param theDelegate Optional delegate
+ * @return The http request.
+ */
+- (id) initWithRequest:(NSURLRequest *)theRequest
+			  delegate:(id <BMHTTPRequestDelegate>)theDelegate NS_DESIGNATED_INITIALIZER;
 
 /**
  Initializes a HTTP POST request with the specified contentType and binary content.

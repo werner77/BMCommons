@@ -27,6 +27,9 @@
 - (id)initWithRequest:(NSURLRequest*)request urlConnectionDelegate:(id)theDelegate
 {
     if ((self = [super init])) {
+        if (!request) {
+            return nil;
+        }
         self.request = request;
         [self initializeConnection];
 		_urlConnectionDelegate = theDelegate;
@@ -40,6 +43,10 @@
 
 - (id)initWithRequest:(NSURLRequest*)request {
 	return [self initWithRequest:request urlConnectionDelegate:nil];
+}
+
+- (id)init {
+    return [self initWithRequest:nil];
 }
 
 - (void)initializeConnection {

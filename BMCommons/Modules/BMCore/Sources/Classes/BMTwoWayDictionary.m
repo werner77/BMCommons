@@ -57,6 +57,10 @@
 	return ret;
 }
 
+- (id)init {
+	return [self initWithObjects:@[] forKeys:@[]];
+}
+
 - (id)initWithObjects:(NSArray *)objects forKeys:(NSArray *)keys {
 	if ((self = [super init])) {	
 		_forwardDictionary = [[NSDictionary alloc] initWithObjects:objects forKeys:keys];

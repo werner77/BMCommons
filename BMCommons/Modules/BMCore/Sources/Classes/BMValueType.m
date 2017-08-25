@@ -20,12 +20,16 @@
     return converter;
 }
 
+- (id)init {
+    return [self initWithValueType:BMValueTypeObject];
+}
+
 - (id)initWithValueType:(BMValueType)valueType {
     if (![self isValidValueType:valueType]) {
         return nil;
     }
     
-    if ((self = [self init])) {
+    if ((self = [super init])) {
         _valueType = valueType;
     }
     return self;

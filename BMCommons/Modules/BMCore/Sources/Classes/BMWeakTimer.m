@@ -82,8 +82,12 @@
     return timer;
 }
 
+- (id)init {
+    return [self initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:0.1] interval:0.1 block:^(BMWeakTimer *timer) {
+    } repeats:NO];
+}
 
-- (id)initWithFireDate:(NSDate *)date interval:(NSTimeInterval)ti target:(id)t selector:(SEL)s userInfo:(id)ui repeats:(BOOL)rep {
+- (id)initWithFireDate:(NSDate *)date interval:(NSTimeInterval)ti target:(id)t selector:(SEL)s userInfo:(id)ui repeats:(BOOL)rep  {
     if ((self = [super init])) {
         
         BMTimerUserInfo *userInfo = [BMTimerUserInfo new];

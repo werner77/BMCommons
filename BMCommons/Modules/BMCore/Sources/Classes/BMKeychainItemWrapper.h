@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
  Initializes with the supplied identifier and optional accessGroup (in case more than one application from the same company share the same keychain, see Apple documentation for more info).
  */
 - (id)initWithIdentifier: (NSString *)identifier accessGroup:(nullable NSString *) accessGroup;
-- (id)initWithIdentifier: (NSString *)identifier accessGroup:(nullable NSString *) accessGroup valueDataTransformer:(nullable NSValueTransformer *)transformer;
+- (id)initWithIdentifier: (NSString *)identifier accessGroup:(nullable NSString *) accessGroup valueDataTransformer:(nullable NSValueTransformer *)transformer NS_DESIGNATED_INITIALIZER;
 
 /**
  Sets the object for the specified key and flushes immediately.

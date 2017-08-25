@@ -99,6 +99,10 @@
 
 @implementation BMKeychainItemWrapper
 
+- (id)init {
+    return [self initWithIdentifier:nil accessGroup:nil];
+}
+
 - (id)initWithIdentifier: (NSString *)identifier accessGroup:(NSString *) accessGroup;
 {
 	return [self initWithIdentifier:identifier accessGroup:accessGroup valueDataTransformer:[BMStringToDataTransformer new]];
@@ -107,6 +111,9 @@
 - (id)initWithIdentifier: (NSString *)identifier accessGroup:(NSString *) accessGroup valueDataTransformer:(NSValueTransformer *)transformer {
 	if ((self = [super init]))
     {
+        if (identifier == nil) {
+            return nil;
+        }
 		_valueDataTransformer = transformer;
 		
         // Begin Keychain search setup. The genericPasswordQuery leverages the special user

@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Creates a new decorator with the given stream, chunk size, and encoding
  */
-- (id)initWithInputStream:(NSInputStream *)stream bufferSize:(NSUInteger)bufSize encoding:(NSStringEncoding)encoding;
+- (id)initWithInputStream:(NSInputStream *)stream bufferSize:(NSUInteger)bufSize encoding:(NSStringEncoding)encoding NS_DESIGNATED_INITIALIZER;
 
 /**
  Read a new line of text from the underlying stream

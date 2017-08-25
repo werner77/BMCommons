@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param propertyName The name of the property
  @param isSetter whether The setter or the getter method should be represented by the returned BMPropertyMethod
  */
-- (nullable id)initWithPropertyName:(NSString *)propertyName setter:(BOOL)isSetter;
+- (nullable id)initWithPropertyName:(NSString *)propertyName setter:(BOOL)isSetter NS_DESIGNATED_INITIALIZER;
 
 @end
 

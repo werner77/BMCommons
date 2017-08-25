@@ -47,10 +47,7 @@
 }
 
 - (id)init {
-    if ((self = [super init])) {
-        self.valueType = BMValueTypeObject;
-    }
-    return self;
+    return [self initWithKeyPath:nil target:nil valueType:BMValueTypeObject];
 }
 
 - (id)initWithKeyPath:(NSString *)theKeyPath target:(id)theTarget {
@@ -58,7 +55,7 @@
 }
 
 - (id)initWithKeyPath:(NSString *)theKeyPath target:(id)theTarget valueType:(BMValueType)valueType {
-    if ((self = [self init])) {
+    if ((self = [super init])) {
         self.keyPath = theKeyPath;
         self.target = theTarget;
         self.valueType = valueType;

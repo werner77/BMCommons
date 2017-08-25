@@ -181,7 +181,8 @@ typedef NS_ENUM(NSUInteger, BMAsyncDataLoaderCacheState) {
 /**
  Init with URL
  */
-- (id)initWithURL:(NSURL *)theURL;
+- (id)initWithURL:(NSURL *)theURL NS_DESIGNATED_INITIALIZER;
+
 - (nullable id)initWithURLString:(NSString *)theURLString;
 
 /**
