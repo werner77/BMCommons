@@ -159,7 +159,7 @@ static NSTimeInterval defaultTimeoutInterval = BM_HTTP_REQUEST_DEFAULT_TIMEOUT;
 }
 
 - (id)init {
-    return [self initWithRequest:nil delegate:nil];
+    return [self initWithRequest:[NSMutableURLRequest new] delegate:nil];
 }
 
 - (id)initWithRequest:(NSURLRequest *)theRequest

@@ -132,7 +132,7 @@ static NSOperationQueue *backgroundOperationQueue = nil;
 }
 
 - (id)init {
-    return [self initWithURL:nil];
+    return [self initWithURL:[NSURL new]];
 }
 
 - (id)initWithURL:(NSURL *)theURL {

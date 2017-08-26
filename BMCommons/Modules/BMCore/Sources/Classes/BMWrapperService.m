@@ -26,7 +26,7 @@
 }
 
 - (instancetype)init {
-    return [self initWithWrappedService:nil];
+    return [self initWithWrappedService:[BMAbstractService new]];
 }
 
 - (instancetype)initWithWrappedService:(id<BMService>)wrappedService {

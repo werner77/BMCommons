@@ -21,6 +21,10 @@
 	return [[self alloc] initWithSelector:selector];
 }
 
+- (id)init {
+	return [self initWithPropertyName:@"" setter:NO];
+}
+
 - (id)initWithPropertyName:(NSString *)thePropertyName setter:(BOOL)isSetter {
     if ((self = [super init])) {
         _propertyName = thePropertyName;

@@ -28,7 +28,7 @@
 }
 
 - (id)init {
-	return [self initWithTransformer:nil];
+	return [self initWithTransformer:[NSValueTransformer new]];
 }
 
 - (id)initWithTransformer:(NSValueTransformer *)theTransformer {

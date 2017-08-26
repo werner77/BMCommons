@@ -100,7 +100,7 @@
 @implementation BMKeychainItemWrapper
 
 - (id)init {
-    return [self initWithIdentifier:nil accessGroup:nil];
+    return [self initWithIdentifier:@"" accessGroup:nil];
 }
 
 - (id)initWithIdentifier: (NSString *)identifier accessGroup:(NSString *) accessGroup;

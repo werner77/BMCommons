@@ -21,7 +21,7 @@
 @end
 
 @implementation BMBlockServiceDelegate {
-    id __weak _owner;
+    __weak id _owner;
 }
 
 @synthesize successBlock = _successBlock;

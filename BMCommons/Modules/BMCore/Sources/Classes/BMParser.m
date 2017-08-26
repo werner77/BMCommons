@@ -10,11 +10,10 @@
 #import <BMCommons/BMURLConnectionInputStream.h>
 #import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMCore.h>
+#import <BMCommons/BMErrorHelper.h>
 
 #if TARGET_OS_IPHONE
 #import <CFNetwork/CFNetwork.h>
-#import "BMErrorHelper.h"
-
 #endif
 
 #define BUFFER_SIZE (100 * 1024)

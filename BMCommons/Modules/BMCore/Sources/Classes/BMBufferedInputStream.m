@@ -40,11 +40,11 @@
 #pragma mark Initialisation
 
 - (instancetype)initWithData:(NSData *)data {
-	return [self initWithInputStream:nil bufferSize:0 encoding:NSUTF8StringEncoding];
+	return [self initWithInputStream:[NSInputStream inputStreamWithData:data] bufferSize:1024 encoding:NSUTF8StringEncoding];
 }
 
 - (nullable instancetype)initWithURL:(NSURL *)url {
-	return [self initWithInputStream:nil bufferSize:0 encoding:NSUTF8StringEncoding];
+	return [self initWithInputStream:[NSInputStream inputStreamWithURL:url] bufferSize:1024 encoding:NSUTF8StringEncoding];
 }
 
 - (id) initWithInputStream:(NSInputStream *)_stream bufferSize:(NSUInteger)_bufSize encoding:(NSStringEncoding)_encoding {

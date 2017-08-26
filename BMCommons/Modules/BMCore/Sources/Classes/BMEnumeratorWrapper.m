@@ -33,7 +33,7 @@
 }
 
 - (id)init {
-	return [self initWithEnumerator:nil delegate:nil];
+	return [self initWithEnumerator:[NSEnumerator new] delegate:nil];
 }
 
 - (id)nextObject {

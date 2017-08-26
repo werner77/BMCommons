@@ -46,7 +46,7 @@
 }
 
 - (id)init {
-    return [self initWithRequest:nil];
+    return [self initWithRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://www.apple.com"]]];
 }
 
 - (void)initializeConnection {

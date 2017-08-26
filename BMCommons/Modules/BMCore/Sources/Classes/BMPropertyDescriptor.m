@@ -46,24 +46,15 @@
 	}
 }
 
-- (id)init {
-    return [self initWithKeyPath:nil target:nil valueType:BMValueTypeObject];
-}
-
 - (id)initWithKeyPath:(NSString *)theKeyPath target:(id)theTarget {
     return [self initWithKeyPath:theKeyPath target:theTarget valueType:BMValueTypeObject];
 }
 
 - (id)initWithKeyPath:(NSString *)theKeyPath target:(id)theTarget valueType:(BMValueType)valueType {
-    if ((self = [super init])) {
+    if ((self = [self init])) {
         self.keyPath = theKeyPath;
         self.target = theTarget;
         self.valueType = valueType;
-
-        //Invalid key path, return nil
-        if (self.getters == nil || self.setter == nil || self.propertyName == nil) {
-            return nil;
-        }
     }
     return self;
 }

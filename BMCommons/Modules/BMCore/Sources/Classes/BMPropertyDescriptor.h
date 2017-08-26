@@ -20,26 +20,26 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The keyPath to the property.
  */
-@property (nonatomic, strong) NSString *keyPath;
+@property (nullable, nonatomic, strong) NSString *keyPath;
 
 /**
  Ordered array of selector names for the getters for the specified property.
  
  If keyPath is multiple levels deep more than one getter may be present, one for each level.
  */
-@property (nonatomic, readonly) NSArray *getters;
+@property (nullable, nonatomic, readonly) NSArray *getters;
 
 /**
  Selector name of the setter for the property.
  */
-@property (nonatomic, readonly) NSString *setter;
+@property (nullable, nonatomic, readonly) NSString *setter;
 
 /**
  The name of the leaf property. 
  
  This is the last part of the keypath or equal to the key path if the keypath is single level (contains no dots).
  */
-@property (nonatomic, readonly) NSString *propertyName;
+@property (nullable, nonatomic, readonly) NSString *propertyName;
 
 /**
  The target object to access the property from.
@@ -64,29 +64,29 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Constructs and returns a property descriptor with the specified key path.
  */
-+ (nullable BMPropertyDescriptor *)propertyDescriptorFromKeyPath:(NSString *)theKeyPath;
++ (nullable BMPropertyDescriptor *)propertyDescriptorFromKeyPath:(nullable NSString *)theKeyPath;
 
 /**
  Constructs and returns a property descriptor with the specified key path and valueType.
  */
-+ (nullable BMPropertyDescriptor *)propertyDescriptorFromKeyPath:(NSString *)theKeyPath valueType:(BMValueType)valueType;
++ (nullable BMPropertyDescriptor *)propertyDescriptorFromKeyPath:(nullable NSString *)theKeyPath valueType:(BMValueType)valueType;
 
 /**
  Constructs and returns a property descriptor with the specified key path and target
  */
-+ (nullable BMPropertyDescriptor *)propertyDescriptorFromKeyPath:(NSString *)theKeyPath withTarget:(nullable NSObject *)theTarget;
++ (nullable BMPropertyDescriptor *)propertyDescriptorFromKeyPath:(nullable NSString *)theKeyPath withTarget:(nullable NSObject *)theTarget;
 
 /**
   Constructs and returns a property descriptor with the specified key path and target and primitive value type. Use BMValueTypeObject for object typed properties.
   */
-+ (nullable BMPropertyDescriptor *)propertyDescriptorFromKeyPath:(NSString *)theKeyPath withTarget:(nullable NSObject *)theTarget valueType:(BMValueType)valueType;
++ (nullable BMPropertyDescriptor *)propertyDescriptorFromKeyPath:(nullable NSString *)theKeyPath withTarget:(nullable NSObject *)theTarget valueType:(BMValueType)valueType;
 
 /**
  Initializer
  */
-- (nullable id)initWithKeyPath:(NSString *)theKeyPath target:(id)theTarget;
+- (id)initWithKeyPath:(nullable NSString *)theKeyPath target:(nullable id)theTarget;
 
-- (nullable id)initWithKeyPath:(NSString *)theKeyPath target:(id)theTarget valueType:(BMValueType)valueType NS_DESIGNATED_INITIALIZER;
+- (id)initWithKeyPath:(nullable NSString *)theKeyPath target:(nullable id)theTarget valueType:(BMValueType)valueType;
 
 /**
  Calls the getter on the target and returns the value.
