@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMMappableObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Serializer for serializing a BMMappableObject to JSON and back.
  */
@@ -17,31 +19,32 @@
 /**
  Parsed object from the supplied JSON data.
  */
-- (id <BMMappableObject>)parsedObjectFromJSONData:(NSData *)data
-                                    withRootXPath:(NSString *)xPath
+- (nullable id <BMMappableObject>)parsedObjectFromJSONData:(NSData *)data
+                                    withRootXPath:(nullable NSString *)xPath
                                          forClass:(Class <BMMappableObject>)mappableObjectClass
-                                            error:(NSError **)error;
+                                            error:(NSError *_Nullable *_Nullable)error;
 
-- (NSArray *)parsedArrayFromJSONData:(NSData *)data
-                        withRootXPath:(NSString *)xPath
+- (nullable NSArray *)parsedArrayFromJSONData:(NSData *)data
+                        withRootXPath:(nullable NSString *)xPath
                              forClass:(Class <BMMappableObject>)mappableObjectClass
-                                error:(NSError **)error;
+                                error:(NSError * _Nullable *_Nullable)error;
 
 /**
  The json string with name equal to the supplied element name.
  */
-- (NSString *)jsonElementWithName:(NSString *)elementName fromObject:(id <BMMappableObject>)mappableObject;
+- (nullable NSString *)jsonElementWithName:(NSString *)elementName fromObject:(id <BMMappableObject>)mappableObject;
 
 /**
  The json string with name equal to the supplied element name, using the specified attributePrefix and textContentIdentifier.
  */
-- (NSString *)jsonElementWithName:(NSString *)elementName attributePrefix:(NSString *)attributePrefix
+- (nullable NSString *)jsonElementWithName:(NSString *)elementName attributePrefix:(NSString *)attributePrefix
             textContentIdentifier:(NSString *)textContentIdentifier fromObject:(id <BMMappableObject>)mappableObject;
 
 /**
  The json string with name equal to the root element or nil if the rootElementName is not defined.
  */
-- (NSString *)rootJsonElementFromObject:(id <BMMappableObject>)mappableObject;
-
+- (nullable NSString *)rootJsonElementFromObject:(id <BMMappableObject>)mappableObject;
 
 @end
+
+NS_ASSUME_NONNULL_END

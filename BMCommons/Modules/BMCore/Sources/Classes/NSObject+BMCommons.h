@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Performs the specified block in a background thread and once completed calls the completion block in the main thread with the result from the background block.
  */
-- (void)bmPerformBlockInBackground:(id (^)(void))block withCompletion:(void (^)(id _Nullable resultFromBlock))completion;
+- (void)bmPerformBlockInBackground:(id _Nullable (^)(void))block withCompletion:(void (^ _Nullable)(id _Nullable resultFromBlock))completion;
 
 /**
  Performs the specified block asynchronously on the specified queue. Calls the completion block on the main thread when done.
@@ -125,7 +125,7 @@ NS_ASSUME_NONNULL_BEGIN
  Compared to performSelector this also allows for primitive types.
  @see invokeSelector:withArgs:argCount:returnLength:
  */
-- (nullable void *)bmInvokeSelector:(SEL)selector returnLength:(NSUInteger *)returnLength;
+- (nullable void *)bmInvokeSelector:(SEL)selector returnLength:(nullable NSUInteger *)returnLength;
 
 /**
  Invoke selector.
@@ -133,7 +133,7 @@ NS_ASSUME_NONNULL_BEGIN
  Compared to performSelector this also allows for primitive types.
  @see invokeSelector:withArgs:argCount:returnLength:
  */
-- (nullable void *)bmInvokeSelector:(SEL)selector withArg:(void *)p1 argSize:(NSUInteger)argSize returnLength:(NSUInteger *)returnLength;
+- (nullable void *)bmInvokeSelector:(SEL)selector withArg:(void *)p1 argSize:(NSUInteger)argSize returnLength:(nullable NSUInteger *)returnLength;
 
 /**
  Invoke selector with multiple args.
@@ -141,14 +141,14 @@ NS_ASSUME_NONNULL_BEGIN
  Compared to performSelector this also allows for primitive types.
  @see invokeSelector:withArgs:argCount:returnLength:
  */
-- (nullable void *)bmInvokeSelector:(SEL)selector withArg:(void *)p1 argSize:(NSUInteger)argSize1 withArg:(void *)p2 argSize:(NSUInteger)argSize2 returnLength:(NSUInteger *)returnLength;
+- (nullable void *)bmInvokeSelector:(SEL)selector withArg:(void *)p1 argSize:(NSUInteger)argSize1 withArg:(void *)p2 argSize:(NSUInteger)argSize2 returnLength:(nullable NSUInteger *)returnLength;
 
 /**
  Invoke selector with multiple args. Compared to performSelector this also allows for primitive types. The void* arguments specified by the array args are supplied as is to NSInvocation as method arguments. For supplying id arguments you have to supply the address of the id (that is &id) for primitives the address of the primitive argument.
  
  The return value is a pointer to an autoreleased buffer holding the return value of the invoked method. The size of the buffer is returned in the argument returnLength. Caller may copy the value from this buffer using memcopy for example.
  */
-- (nullable void *)bmInvokeSelector:(SEL)selector withArgs:(void *_Nonnull *_Nonnull)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount returnLength:(NSUInteger *)returnLength;
+- (nullable void *)bmInvokeSelector:(SEL)selector withArgs:(void *_Nonnull *_Nonnull)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount returnLength:(nullable NSUInteger *)returnLength;
 
 /**
  Safe invoke selector method.
@@ -157,7 +157,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @see invokeSelector:withArgs:argCount:returnLength:
  */
-- (nullable void *)bmSafeInvokeSelector:(SEL)selector returnLength:(NSUInteger *)returnLength;
+- (nullable void *)bmSafeInvokeSelector:(SEL)selector returnLength:(nullable NSUInteger *)returnLength;
 
 /**
  Safe invoke selector method.
@@ -166,7 +166,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @see invokeSelector:withArgs:argCount:returnLength:
  */
-- (nullable void *)bmSafeInvokeSelector:(SEL)selector withArg:(void *)p1 argSize:(NSUInteger)argSize returnLength:(NSUInteger *)returnLength;
+- (nullable void *)bmSafeInvokeSelector:(SEL)selector withArg:(void *)p1 argSize:(NSUInteger)argSize returnLength:(nullable NSUInteger *)returnLength;
 
 /**
  Safe invoke selector method.
@@ -175,7 +175,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @see invokeSelector:withArgs:argCount:returnLength:
  */
-- (nullable void *)bmSafeInvokeSelector:(SEL)selector withArg:(void *)p1 argSize:(NSUInteger)argSize1 withArg:(void *)p2 argSize:(NSUInteger)argSize2 returnLength:(NSUInteger *)returnLength;
+- (nullable void *)bmSafeInvokeSelector:(SEL)selector withArg:(void *)p1 argSize:(NSUInteger)argSize1 withArg:(void *)p2 argSize:(NSUInteger)argSize2 returnLength:(nullable NSUInteger *)returnLength;
 
 /**
  Safe invoke selector method.
@@ -184,7 +184,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @see invokeSelector:withArgs:argCount:returnLength:
  */
-- (nullable void *)bmSafeInvokeSelector:(SEL)selector withArgs:(void *_Nonnull *_Nonnull)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount returnLength:(NSUInteger *)returnLength;
+- (nullable void *)bmSafeInvokeSelector:(SEL)selector withArgs:(void *_Nonnull *_Nonnull)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount returnLength:(nullable NSUInteger *)returnLength;
 
 /**
  Performs a safe cast: checks whether this object is an instance of the supplied class, if not returns nil.

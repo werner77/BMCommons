@@ -10,7 +10,10 @@
 #import "NSNumber+BMCommons.h"
 #import <BMCommons/BMRestKit.h>
 
-@implementation BMEnumerationValue 
+@implementation BMEnumerationValue {
+@private
+	id _value;
+}
 
 @synthesize value = _value;
 
@@ -47,7 +50,7 @@
 	if ([_value isKindOfClass:[NSNumber class]]) {
 		NSNumber *n = _value;
         ret = [NSString stringWithFormat:@"@(%@)", [n stringValue]];
-	} else {
+	} else if (_value) {
 		ret = [NSString stringWithFormat:@"@\"%@\"", [_value description]];
 	}
 	return ret;
@@ -58,7 +61,7 @@
     if ([_value isKindOfClass:[NSNumber class]]) {
         NSNumber *n = _value;
         ret = [n stringValue];
-    } else {
+    } else if (_value) {
         ret = [NSString stringWithFormat:@"\"%@\"", [_value description]];
     }
     return ret;

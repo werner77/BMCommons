@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMAbstractMappableObjectClassResolver.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BMJavaBasedMappableObjectClassResolver : BMAbstractMappableObjectClassResolver
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 

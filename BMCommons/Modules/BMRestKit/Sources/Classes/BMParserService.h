@@ -17,6 +17,8 @@
 @class CacheLoadingContext;
 @class BMParserService;
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSUInteger, BMParserType) {
     BMParserTypeXML,
     BMParserTypeJSON
@@ -71,41 +73,41 @@ typedef NS_ENUM(NSUInteger, BMParserType) {
 /**
  The request that is being executed.
  */
-@property (strong, readonly) BMHTTPRequest *request;
+@property (nullable, strong, readonly) BMHTTPRequest *request;
 
 /**
  The parser handler that is used to parse the result.
  */
-@property (strong, readonly) BMParserHandler *handler;
+@property (nullable, strong, readonly) BMParserHandler *handler;
 
 /**
  The key that was used to load the result from the cache. 
  
  Can be supplied to [BMURLCache dataForURL:]
  */
-@property (strong, readonly) NSString *cacheURLUsed;
+@property (nullable, strong, readonly) NSString *cacheURLUsed;
 
 /**
  * Initialize with a BMServiceDelegate
  */
-- (id)initWithDelegate:(id <BMServiceDelegate>)theDelegate;
+- (id)initWithDelegate:(nullable id <BMServiceDelegate>)theDelegate;
 
 /**
  * Executes the specified request and used the specified handler to parse the data.
  */
-- (BOOL)executeRequest:(BMHTTPRequest *)theRequest withHandler:(BMParserHandler *)handler error:(NSError **)error;
+- (BOOL)executeRequest:(BMHTTPRequest *)theRequest withHandler:(BMParserHandler *)handler error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Executes the specified request and used the specified handler to parse the data. 
  
  Uses a special error handler to parse the error result.
  */
-- (BOOL)executeRequest:(BMHTTPRequest *)theRequest withHandler:(BMParserHandler *)theHandler errorHandler:(BMParserHandler *)theErrorHandler error:(NSError **)error;
+- (BOOL)executeRequest:(BMHTTPRequest *)theRequest withHandler:(BMParserHandler *)theHandler errorHandler:(nullable BMParserHandler *)theErrorHandler error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Parse from local data instead of starting a URL request.
  */
-- (BOOL)parseData:(NSData *)theData withHandler:(BMParserHandler *)handler error:(NSError **)error;
+- (BOOL)parseData:(NSData *)theData withHandler:(BMParserHandler *)handler error:(NSError *_Nullable * _Nullable)error;
 
 /**
  * Returns true if the value for the request can be retrieved from the cache
@@ -144,12 +146,12 @@ typedef NS_ENUM(NSUInteger, BMParserType) {
 /**
  Optional separate error handler in case a non successful http code is returned.
  */
-- (BMParserHandler *)errorHandlerForService;
+- (nullable BMParserHandler *)errorHandlerForService;
 
 /**
  Returns the request to execute.
  */
-- (BMHTTPRequest *)requestForServiceWithError:(NSError **)error;
+- (nullable BMHTTPRequest *)requestForServiceWithError:(NSError * _Nullable * _Nullable)error;
 
 /**
  Override hook to initialize the parser with any custom configuration before the request takes place
@@ -162,3 +164,5 @@ typedef NS_ENUM(NSUInteger, BMParserType) {
 - (void)prepare;
 
 @end
+
+NS_ASSUME_NONNULL_END

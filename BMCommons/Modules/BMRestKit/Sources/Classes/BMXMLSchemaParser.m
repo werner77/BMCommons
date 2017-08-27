@@ -19,7 +19,18 @@
 
 @end
 
-@implementation BMXMLSchemaParser
+@implementation BMXMLSchemaParser {
+@private
+	NSMutableDictionary *_objectMappings;
+	NSMutableArray *mappingStack;
+	BMObjectMapping *currentMapping;
+	NSString *lastElementName;
+	Class restrictedBaseType;
+	BMFieldMapping *restrictedFieldMapping;
+	NSMutableDictionary *namespaceDict;
+	NSMutableDictionary *rootElementNamesDict;
+	BOOL qualifiedSchema;
+}
 
 static NSDictionary *xsdTypeDictionary = nil;
 static NSArray *w3cNamespaces = nil;
@@ -63,9 +74,8 @@ static NSArray *w3cNamespaces = nil;
     return xsdTypeDictionary;
 }
 
-- (id)init {
-	if ((self = [super init])) {
-
+- (id)initWithMappableObjectClassResolver:(id <BMMappableObjectClassResolver>)mappableObjectClassResolver {
+	if ((self = [super initWithMappableObjectClassResolver:mappableObjectClassResolver])) {
 		mappingStack = [NSMutableArray new];
 		namespaceDict = [NSMutableDictionary new];
         rootElementNamesDict = [NSMutableDictionary new];
@@ -109,10 +119,10 @@ static NSArray *w3cNamespaces = nil;
 		self.targetNamespace = [attributeDict objectForKey:@"targetNamespace"];
 		qualifiedSchema = [[attributeDict objectForKey:@"elementFormDefault"] isEqual:@"qualified"];
         
-        BMMAppableObjectNameSpaceType namespaceType = [self.mappableObjectClassResolver typeForNamespace:self.targetNamespace];
-        if (namespaceType == BMMAppableObjectNameSpaceTypeQualified) {
+        BMMappableObjectNameSpaceType namespaceType = [self.mappableObjectClassResolver typeForNamespace:self.targetNamespace];
+        if (namespaceType == BMMappableObjectNameSpaceTypeQualified) {
             qualifiedSchema = YES;
-        } else if (namespaceType == BMMAppableObjectNameSpaceTypeUnqualified) {
+        } else if (namespaceType == BMMappableObjectNameSpaceTypeUnqualified) {
             qualifiedSchema = NO;
         }
         
@@ -174,21 +184,20 @@ static NSArray *w3cNamespaces = nil;
 		
 	} else if ([elementName isEqual:@"complexType"] || [elementName isEqual:@"simpleType"]) {
 		
-		currentMapping = [BMObjectMapping new];
-		currentMapping.namespaceURI = (mappingStack.count == 0 || qualifiedSchema) ? self.targetNamespace : nil;
-		
-        NSString *theName = [attributeDict objectForKey:@"name"];
+		NSString *theName = [attributeDict objectForKey:@"name"];
         BOOL isRootElement = NO;
         	
 		if (!theName) {
 			theName = lastElementName;
             isRootElement = (mappingStack.count == 0);
 		}
-        
-        [mappingStack addObject:currentMapping];
-		
+
+		NSString *mappingName = [self mappingNameForObjectType:theName forNamespace:self.targetNamespace];
+		currentMapping = [[BMObjectMapping alloc] initWithName:mappingName];
+		currentMapping.namespaceURI = (mappingStack.count == 0 || qualifiedSchema) ? self.targetNamespace : nil;
 		currentMapping.elementName = theName;
-		currentMapping.name = [self mappingNameForObjectType:theName forNamespace:self.targetNamespace];
+
+        [mappingStack addObject:currentMapping];
         
         if (isRootElement) {
             [rootElementNamesDict setObject:theName forKey:currentMapping.name];

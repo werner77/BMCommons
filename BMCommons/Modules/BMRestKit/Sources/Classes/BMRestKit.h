@@ -10,6 +10,8 @@
 #import <BMCommons/BMCore.h>
 #import <BMCommons/BMXML.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BMRestKit module
  */
@@ -22,3 +24,5 @@
 extern NSString * const BMParserDocumentTypeXML;
 extern NSString * const BMParserDocumentTypeJSONArray;
 extern NSString * const BMParserDocumentTypeJSONDictionary;
+
+NS_ASSUME_NONNULL_END

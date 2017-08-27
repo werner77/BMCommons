@@ -9,35 +9,24 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMFieldMapping.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class that is used when parsing XML/JSON documents
  */
-@interface BMParserElement : NSObject {
-    @private
-	NSString *elementName;
-	NSDictionary *attributes;
-	BMParserElement *parentElement;
-	NSDictionary *fieldMappings;
-	NSObject<BMMappableObject> *modelObject; 
-	BMFieldMapping *textFieldMapping;
-	NSObject<BMMappableObject> *textModelObject;
-	id context;
-    BOOL treatAttributesAsElements;
-    BOOL nilElement;
-    NSMutableString *buffer;
-}
+@interface BMParserElement : NSObject
 
-- (id)initWithName:(NSString *)elementName attributes:(NSDictionary *)attributes parent:(BMParserElement *)parentElement;
+- (id)initWithName:(NSString *)elementName attributes:(nullable NSDictionary *)attributes parent:(nullable BMParserElement *)parentElement NS_DESIGNATED_INITIALIZER;
 
 @property(nonatomic, readonly) NSString *elementName;
-@property(nonatomic, readonly) NSDictionary *attributes;
-@property(nonatomic, readonly) BMParserElement *parentElement;
-@property(nonatomic, readonly) NSDictionary *fieldMappings;
+@property(nullable, nonatomic, readonly) NSDictionary *attributes;
+@property(nullable, nonatomic, readonly) BMParserElement *parentElement;
+@property(nullable, nonatomic, readonly) NSDictionary *fieldMappings;
 @property(nonatomic, assign) BOOL treatAttributesAsElements;
 @property(nonatomic, assign) BOOL nilElement;
-@property(nonatomic, strong) NSObject<BMMappableObject> *modelObject;
-@property(nonatomic, strong) id context;
-@property(strong, nonatomic, readonly) NSString *elementText;
+@property(nullable, nonatomic, strong) NSObject<BMMappableObject> *modelObject;
+@property(nullable, nonatomic, strong) id context;
+@property(nullable, strong, nonatomic, readonly) NSString *elementText;
 
 - (void)fillModelObject;
 
@@ -50,3 +39,5 @@
 - (void)appendText:(NSString *)text;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -31,7 +31,7 @@
     BOOL showActivity;
 }
 
-@synthesize activityIndicator, url, placeHolderImage, imageView, enabled, highlighted, context, adjustsImageWhenDisabled, adjustsImageWhenHighlighted, showActivity;
+@synthesize activityIndicator, placeHolderImage, imageView, enabled, highlighted, context, adjustsImageWhenDisabled, adjustsImageWhenHighlighted, showActivity;
 
 - (id)initWithURL:(NSURL *)theURL {
     if ((self = [self initWithFrame:CGRectZero])) {
@@ -76,7 +76,6 @@
     BM_RELEASE_SAFELY(placeHolderImage);
     BM_RELEASE_SAFELY(imageLoader);
     BM_RELEASE_SAFELY(activityIndicator);
-    BM_RELEASE_SAFELY(url);
     BM_RELEASE_SAFELY(imageView);
     BM_RELEASE_SAFELY(overlayView);
     BM_RELEASE_SAFELY(context);

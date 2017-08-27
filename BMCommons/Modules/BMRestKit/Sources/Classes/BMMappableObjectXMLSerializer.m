@@ -34,7 +34,7 @@
  The xmlElement with name equal to the root element or nil if rootElementName is not defined.
  */
 - (BMXMLElement *)rootXmlElementFromObject:(id <BMMappableObject>)mappableObject {
-    return [self xmlElementWithName:[[mappableObject class] rootElementName] fromObject:mappableObject];
+    return [self xmlElementWithName:[(id)[mappableObject class] rootElementName] fromObject:mappableObject];
 }
 
 /**

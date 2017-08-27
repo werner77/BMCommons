@@ -9,9 +9,11 @@
 #import <BMCommons/BMAbstractSchemaParserHandler.h>
 #import <BMCommons/BMMappableObjectClassResolver.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BMJSONSchemaParser : BMAbstractSchemaParserHandler {
 }
 
-@property (nonatomic, strong) id <BMMappableObjectClassResolver> classResolver;
-
 @end
+
+NS_ASSUME_NONNULL_END

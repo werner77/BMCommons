@@ -325,11 +325,6 @@ static NSDictionary *jsonDataTypeDict = nil;
 
 - (BMObjectMapping *)objectMappingForProperties:(NSDictionary *)jsonProperties withElementName:(NSString *)elementName title:(NSString *)title
                                       mappingId:(NSString *)mappingId objectMappingDict:(NSMutableDictionary *)objectMappingDict error:(NSError **)error {
-    BMObjectMapping *currentMapping = [BMObjectMapping new];
-    
-    currentMapping.elementName = elementName;
-    currentMapping.mappingId = mappingId;
-    
     NSString *mappingName = nil;
     NSString *parentMappingName = nil;
     
@@ -345,7 +340,9 @@ static NSDictionary *jsonDataTypeDict = nil;
         return nil;
     }
 
-    currentMapping.name = mappingName;
+    BMObjectMapping *currentMapping = [[BMObjectMapping alloc] initWithName:mappingName];
+    currentMapping.elementName = elementName;
+    currentMapping.mappingId = mappingId;
     currentMapping.parentName = parentMappingName;
     
     for (NSString *propertyName in jsonProperties) {

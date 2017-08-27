@@ -489,7 +489,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Returns a unique local URL for this cache with the specified file extension.
  */
-- (NSString *)uniqueLocalURLWithExtension:(NSString *)extension;
+- (NSString *)uniqueLocalURLWithExtension:(nullable NSString *)extension;
 
 /**
  Checks whether the supplied url is a url local to this cache.

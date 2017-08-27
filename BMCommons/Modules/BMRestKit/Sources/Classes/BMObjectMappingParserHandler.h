@@ -10,6 +10,8 @@
 #import <BMCommons/BMParserHandler.h>
 #import <BMCommons/BMMappableObjectClassResolver.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMXMLElement;
 @class BMXMLDocument;
 
@@ -23,12 +25,12 @@ typedef void(^BMObjectMappingParserHandlerInitBlock)(BMObjectMappingParserHandle
 /**
  Set a block to apply default configuration for every instance that is created.
  */
-+ (void)setDefaultInitBlock:(BMObjectMappingParserHandlerInitBlock)block;
++ (void)setDefaultInitBlock:(nullable BMObjectMappingParserHandlerInitBlock)block;
 
 /**
  The element that is parsed currently.
  */
-@property(strong, nonatomic, readonly) BMParserElement *currentElement;
+@property(nullable, strong, nonatomic, readonly) BMParserElement *currentElement;
 
 /**
  Returns true if the parsed response is an error response, false otherwise.
@@ -47,30 +49,32 @@ typedef void(^BMObjectMappingParserHandlerInitBlock)(BMObjectMappingParserHandle
  
  @see customTypeDescriptorAttributeName
  */
-@property (nonatomic, strong) id <BMMappableObjectClassResolver> mappableObjectClassResolver;
+@property (nullable, nonatomic, strong) id <BMMappableObjectClassResolver> mappableObjectClassResolver;
 
 /**
  The name of the attribute that contains a type descriptor in case of polymorphic mappings.
  */
-@property (nonatomic, strong) NSString *customTypeDescriptorAttributeName;
+@property (nullable, nonatomic, strong) NSString *customTypeDescriptorAttributeName;
 
 /**
  The root model object that has been parsed.
  */
-- (id <BMMappableObject>)rootModelObject;
+- (nullable id <BMMappableObject>)rootModelObject;
 
 /**
  Intitializes with the specified xpath which designates the XML Node from which parsing should commence and the class which implements BMMappableObject to which the parser should map the message.
  */
-- (id)initWithXPath:(NSString *)rootXPath 
-			 rootElementClass:(Class <BMMappableObject>)elementClass 
-					 delegate:(id <BMParserHandlerDelegate>)theDelegate;
+- (id)initWithXPath:(nullable NSString *)rootXPath
+			 rootElementClass:(nullable Class <BMMappableObject>)elementClass
+					 delegate:(nullable id <BMParserHandlerDelegate>)theDelegate;
 
 /**
  Initializes with a separate error xpath for an error response.
  */
-- (id)initWithXPath:(NSString *)rootXPath rootElementClass:(Class <BMMappableObject>)elementClass 
-		 errorXPath:(NSString *)errorXPath errorRootElementClass:(Class <BMMappableObject>)errorElementClass	
-					 delegate:(id <BMParserHandlerDelegate>)theDelegate;
+- (id)initWithXPath:(nullable NSString *)rootXPath rootElementClass:(nullable Class <BMMappableObject>)elementClass
+		 errorXPath:(nullable NSString *)errorXPath errorRootElementClass:(nullable Class <BMMappableObject>)errorElementClass
+					 delegate:(nullable id <BMParserHandlerDelegate>)theDelegate;
 
 @end
+
+NS_ASSUME_NONNULL_END

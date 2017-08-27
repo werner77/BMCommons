@@ -12,19 +12,31 @@
 #import <BMCommons/BMRestKit.h>
 #import "NSString+BMCommons.h"
 
-@implementation BMObjectMapping
+@implementation BMObjectMapping {
+@private
+    NSMutableArray *fieldMappings;
+    NSMutableArray *enumerationValues;
+    NSString *name;
+    NSString *elementName;
+    NSString *parentName;
+    NSString *namespaceURI;
+    BOOL rootElement;
+}
 
 @synthesize name, namespaceURI, parentName, elementName, rootElement, enumerationValues;
 
 - (id)init {
-	if ((self = [super init])) {
-
-		fieldMappings = [NSMutableArray new];
-		enumerationValues = [NSMutableArray new];
-	}
-	return self;
+	return [self initWithName:@""];
 }
 
+- (id)initWithName:(NSString *)theName {
+    if ((self = [super init])) {
+        name = theName;
+        fieldMappings = [NSMutableArray new];
+        enumerationValues = [NSMutableArray new];
+    }
+    return self;
+}
 
 - (void)addFieldMapping:(BMFieldMapping *)fm {
 	[fieldMappings addObject:fm];

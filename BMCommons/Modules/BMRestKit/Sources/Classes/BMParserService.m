@@ -115,8 +115,7 @@
 
 static volatile int threadCount = 0;
 
-@synthesize readCacheEnabled = _readCacheEnabled, writeCacheEnabled = _writeCacheEnabled, request = _request, handler = _handler, cacheURLUsed = _cacheURLUsed, loadCachedResultOnError = _loadCachedResultOnError,
-parserClass = _parserClass, successHandler = _successHandler, errorHandler = _errorHandler, lastRequestError = _lastRequestError, parserType = _parserType, cacheHit = _cacheHit;
+@synthesize readCacheEnabled = _readCacheEnabled, writeCacheEnabled = _writeCacheEnabled, request = _request, handler = _handler, cacheURLUsed = _cacheURLUsed, loadCachedResultOnError = _loadCachedResultOnError, successHandler = _successHandler, errorHandler = _errorHandler, lastRequestError = _lastRequestError, parserType = _parserType, cacheHit = _cacheHit;
 
 #pragma mark -
 #pragma mark Initialization and Deallocation

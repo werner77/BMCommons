@@ -22,12 +22,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Calculates a digest by including the specified header fields and optionally also includes the request body. 
  */
-- (NSString *)bmDigestByIncludingHeaders:(NSArray *)includeHeaders includeBody:(BOOL)includeBody;
+- (NSString *)bmDigestByIncludingHeaders:(nullable NSArray *)includeHeaders includeBody:(BOOL)includeBody;
 
 /**
  Calculates a digest by using all the header fields exluding the specified headers and optionally also including the request body.
  */
-- (NSString *)bmDigestByExcludingHeaders:(NSArray *)excludeHeaders includeBody:(BOOL)includeBody;
+- (NSString *)bmDigestByExcludingHeaders:(nullable NSArray *)excludeHeaders includeBody:(BOOL)includeBody;
 
 /**
  Whether or not BMURLCaching based on the BMURLCachingProtocol is enabled for this request.

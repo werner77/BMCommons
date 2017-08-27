@@ -10,7 +10,11 @@
 #import <BMCommons/BMErrorHelper.h>
 #import <BMCommons/BMRestKit.h>
 
-@implementation BMSOAPFault
+@implementation BMSOAPFault {
+@private
+    NSString *faultCode;
+    NSString *faultString;
+}
 
 @synthesize faultCode;
 @synthesize faultString;

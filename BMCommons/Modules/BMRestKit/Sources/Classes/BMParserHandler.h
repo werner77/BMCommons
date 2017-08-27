@@ -12,6 +12,8 @@
 #import <BMCommons/BMResponseContainer.h>
 #import <BMCommons/BMErrorContainer.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMParserHandler;
 @protocol BMMappableObject;
 
@@ -51,16 +53,15 @@
  
  Handler for SAX style parsing.
  */
-@interface BMParserHandler : NSObject<BMParserDelegate, BMResponseContainer, BMErrorContainer> {
-    @private
-	id <BMParserHandlerDelegate> __weak delegate;
-}
+@interface BMParserHandler : NSObject<BMParserDelegate, BMResponseContainer, BMErrorContainer>
 
 /**
  The handler delegate.
  
  @see BMParserHandlerDelegate
  */
-@property (nonatomic, weak) id <BMParserHandlerDelegate> delegate;
+@property (nullable, nonatomic, weak) id <BMParserHandlerDelegate> delegate;
 
 @end
+
+NS_ASSUME_NONNULL_END

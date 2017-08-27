@@ -24,9 +24,17 @@
 
 @synthesize urlConnectionDelegate = _urlConnectionDelegate;
 
+- (instancetype)initWithData:(NSData *)data {
+    return [self init];
+}
+
+- (instancetype)initWithURL:(NSURL *)url {
+    return [self initWithRequest:[[NSURLRequest alloc] initWithURL:url]];
+}
+
 - (id)initWithRequest:(NSURLRequest*)request urlConnectionDelegate:(id)theDelegate
 {
-    if ((self = [super init])) {
+    if ((self = [super initWithData:[NSData dataWithBytes:NULL length:0]])) {
         if (request == nil) {
             return nil;
         }
@@ -46,7 +54,7 @@
 }
 
 - (id)init {
-    return [self initWithRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://www.apple.com"]]];
+    return [self initWithURL:[NSURL URLWithString:@"https://www.apple.com"]];
 }
 
 - (void)initializeConnection {

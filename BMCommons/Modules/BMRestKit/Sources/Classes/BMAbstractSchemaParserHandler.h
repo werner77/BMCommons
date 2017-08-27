@@ -10,32 +10,39 @@
 #import <BMCommons/BMSchemaFieldType.h>
 #import <BMCommons/BMMappableObjectClassResolver.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BMAbstractSchemaParserHandler : NSObject 
 
 //Namespace to return if targetNamespace == nil
-@property (nonatomic, strong) NSString *defaultNamespace;
-@property (nonatomic, strong) NSString *targetNamespace;
-@property (nonatomic, strong) id <BMMappableObjectClassResolver> mappableObjectClassResolver;
+@property (nullable, nonatomic, strong) NSString *defaultNamespace;
+@property (nullable, nonatomic, strong) NSString *targetNamespace;
+@property (nullable, nonatomic, strong) id <BMMappableObjectClassResolver> mappableObjectClassResolver;
 
-@property (nonatomic, readonly) NSSet *reservedKeywords;
-@property (nonatomic, readonly) NSSet *reservedPrefixes;
-@property (nonatomic, readonly) NSDictionary *primitiveTypeDictionary;
+@property (nullable, nonatomic, readonly) NSSet *reservedKeywords;
+@property (nullable, nonatomic, readonly) NSSet *reservedPrefixes;
+@property (nullable, nonatomic, readonly) NSDictionary *primitiveTypeDictionary;
 
-- (NSArray *)parseSchema:(NSData *)schemaData withError:(NSError **)error;
-- (NSArray *)parseSchemaPaths:(NSArray *)schemaPaths withError:(NSError **)error;
-- (NSArray *)parseSchemaURLs:(NSArray *)schemaURLs withError:(NSError **)error;
+- (nullable NSArray *)parseSchema:(NSData *)schemaData withError:(NSError *_Nullable*_Nullable)error;
+- (nullable NSArray *)parseSchemaPaths:(NSArray *)schemaPaths withError:(NSError *_Nullable*_Nullable)error;
+- (nullable NSArray *)parseSchemaURLs:(NSArray *)schemaURLs withError:(NSError * _Nullable * _Nullable)error;
+
+- (instancetype)initWithMappableObjectClassResolver:(id <BMMappableObjectClassResolver>)mappableObjectClassResolver NS_DESIGNATED_INITIALIZER;
 
 @end
 
 @interface BMAbstractSchemaParserHandler(Protected)
 
-- (NSString *)mappingNameForObjectType:(NSString *)theName forNamespace:(NSString *)theNamespace;
+- (nullable NSString *)mappingNameForObjectType:(NSString *)theName forNamespace:(nullable NSString *)theNamespace;
 - (NSString *)fieldDescriptorForField:(NSString *)field type:(NSString *)type fieldType:(BMSchemaFieldType)fieldType;
 - (void)eliminateDuplicateFieldMappingsFromObjectMappings:(NSDictionary *)objectMappings;
 - (NSArray *)processObjectMappings:(NSDictionary *)objectMappings;
 - (void)resolveUninitializedFieldMappingsFromObjectMappings:(NSDictionary *)objectMappings;
 
 //Main method to be implemented by sub classes
-- (NSDictionary *)parseSchemaImpl:(NSData *)schemaData objectMappings:(NSMutableDictionary *)objectMappings withError:(NSError *__autoreleasing *)error;
+- (nullable NSDictionary *)parseSchemaImpl:(NSData *)schemaData objectMappings:(NSMutableDictionary *)objectMappings withError:(NSError *_Nullable __autoreleasing * _Nullable)error;
 
 @end
+
+NS_ASSUME_NONNULL_END
+

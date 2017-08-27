@@ -8,21 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Data object which is used to substitute in a SOAP request.
  */
-@interface BMSOAPData : NSObject {
-    @private
-	NSString *username;
-	NSString *password;
-	NSString *body;
-	NSDate *date;
-	NSString *uuid;
-}
+@interface BMSOAPData : NSObject
 
-@property (nonatomic, strong) NSString *username;
-@property (nonatomic, strong) NSString *password;
-@property (nonatomic, strong) NSString *body;
+@property (nullable, nonatomic, strong) NSString *username;
+@property (nullable, nonatomic, strong) NSString *password;
+@property (nullable, nonatomic, strong) NSString *body;
 
 - (NSString *)dateString;
 - (NSString *)uuid;
@@ -30,3 +25,5 @@
 + (BMSOAPData *)soapDataWithUsername:(NSString *)theUsername password:(NSString *)thePassword body:(NSString *)theBody;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Whether the proxy should be thread-safe (make all methods synchronized) or not.
  */
-@property(atomic, assign) BOOL threadSafe;
+@property(assign, getter=isThreadSafe) BOOL threadSafe;
 
 /**
  Initializer with the designated target object.
@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  The retained parameter determines whether the target object is retained or not.
  */
-- (id)initWithObject:(NSObject *)object threadSafe:(BOOL)threadSafe retained:(BOOL)retained NS_DESIGNATED_INITIALIZER;
+- (id)initWithObject:(NSObject *)object threadSafe:(BOOL)threadSafe retained:(BOOL)retained;
 
 + (BMProxy *)proxyWithObject:(NSObject *)object threadSafe:(BOOL)threadSafe retained:(BOOL)retained;
 

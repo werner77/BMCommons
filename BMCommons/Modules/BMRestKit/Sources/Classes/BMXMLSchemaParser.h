@@ -12,20 +12,13 @@
 #import <BMCommons/BMParser.h>
 #import <BMCommons/BMAbstractSchemaParserHandler.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BMParserHandler implementation that parses an XSD schema file and returns an array of BMObjectMappings.
  */
-@interface BMXMLSchemaParser : BMAbstractSchemaParserHandler<BMXMLParserDelegate> {
-    @private
-	NSMutableDictionary *_objectMappings;
-	NSMutableArray *mappingStack;
-	BMObjectMapping *currentMapping;
-	NSString *lastElementName;
-	Class restrictedBaseType;
-	BMFieldMapping *restrictedFieldMapping;
-	NSMutableDictionary *namespaceDict;
-    NSMutableDictionary *rootElementNamesDict;
-	BOOL qualifiedSchema;
-}
+@interface BMXMLSchemaParser : BMAbstractSchemaParserHandler<BMXMLParserDelegate>
 
 @end
+
+NS_ASSUME_NONNULL_END

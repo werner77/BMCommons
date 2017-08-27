@@ -63,6 +63,10 @@
     if (textContentIdentifier == nil) textContentIdentifier = @"#text";
     
     NSString *string = [element JSONStringWithAttributePrefix:attributePrefix textContentIdentifier:textContentIdentifier];
+
+    if (!string) {
+        return nil;
+    }
     
     if (emptyElement) {
         int i;

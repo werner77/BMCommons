@@ -74,15 +74,15 @@
     return theName;
 }
 
-- (BMMAppableObjectNameSpaceType)typeForNamespace:(NSString *)theNamespace {
-    BMMAppableObjectNameSpaceType namespaceType = BMMAppableObjectNameSpaceTypeDefault;
+- (BMMappableObjectNameSpaceType)typeForNamespace:(NSString *)theNamespace {
+    BMMappableObjectNameSpaceType namespaceType = BMMappableObjectNameSpaceTypeDefault;
     NSNumber *qualifiedOverride = [self qualifiedOverrideForNamespace:theNamespace];
     
     if (qualifiedOverride) {
         if (qualifiedOverride.boolValue) {
-            namespaceType = BMMAppableObjectNameSpaceTypeQualified;
+            namespaceType = BMMappableObjectNameSpaceTypeQualified;
         } else {
-            namespaceType = BMMAppableObjectNameSpaceTypeUnqualified;
+            namespaceType = BMMappableObjectNameSpaceTypeUnqualified;
         }
     }
     return namespaceType;

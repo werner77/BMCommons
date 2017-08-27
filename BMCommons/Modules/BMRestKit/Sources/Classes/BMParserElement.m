@@ -20,7 +20,20 @@
 
 @end
 
-@implementation BMParserElement
+@implementation BMParserElement {
+@private
+	NSString *elementName;
+	NSDictionary *attributes;
+	BMParserElement *parentElement;
+	NSDictionary *fieldMappings;
+	NSObject<BMMappableObject> *modelObject;
+	BMFieldMapping *textFieldMapping;
+	NSObject<BMMappableObject> *textModelObject;
+	id context;
+	BOOL treatAttributesAsElements;
+	BOOL nilElement;
+	NSMutableString *buffer;
+}
 
 @synthesize elementName;
 @synthesize attributes;
@@ -32,10 +45,7 @@
 @synthesize treatAttributesAsElements;
 
 - (id)init {
-    if ((self = [super init])) {
-
-    }
-    return self;
+    return [self initWithName:@"" attributes:nil parent:nil];
 }
 
 - (id)initWithName:(NSString *)theElementName attributes:(NSDictionary *)theAttributes parent:(BMParserElement *)theParent {

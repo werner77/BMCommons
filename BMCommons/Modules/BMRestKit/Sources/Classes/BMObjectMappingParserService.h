@@ -10,6 +10,8 @@
 #import <BMCommons/BMParserService.h>
 #import <BMCommons/BMMappableObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Implementation of parser service that uses BMObjectMappingParserHandler to automatically map XML/JSON responses to objects.
  */
@@ -19,12 +21,12 @@
 /**
  XPath to the root element which acts as the starting point for the mapping.
  */
-@property (strong) NSString *rootXPath;
+@property (nullable, strong) NSString *rootXPath;
 
 /**
  XPath that is the root element of an error response (in case the error response is different from the normal response)
  */
-@property (strong) NSString *errorXPath;
+@property (nullable, strong) NSString *errorXPath;
 
 /**
  The class of the mappable object (implementation of BMMappableObject) that maps to the xml under rootXPath.
@@ -34,6 +36,11 @@
 /**
  The class of the mappable object (implementation of BMMappableObject) that maps to the xml under errorXPath.
  */
-@property (strong) Class<BMMappableObject> errorElementClass;
+@property (strong, nullable) Class<BMMappableObject> errorElementClass;
+
+- (instancetype)initWithRootXPath:(nullable NSString *)rootXPath rootElementClass:(Class<BMMappableObject>)rootElementClass
+                       errorXPath:(nullable NSString *)errorXPath errorElementClass:(nullable Class<BMMappableObject>)errorElementClass NS_DESIGNATED_INITIALIZER;
 
 @end
+
+NS_ASSUME_NONNULL_END

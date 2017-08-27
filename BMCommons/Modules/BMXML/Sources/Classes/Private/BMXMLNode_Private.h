@@ -10,6 +10,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable instancetype)instanceWithXMLNode:(xmlNode *)nodeWithXMLNode;
 - (nullable instancetype)initWithXMLNode:(xmlNode *)node NS_DESIGNATED_INITIALIZER;
 
++ (BOOL)isSupportedNodeType:(xmlElementType)type;
+
 @end
 
 NS_ASSUME_NONNULL_END

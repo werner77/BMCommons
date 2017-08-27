@@ -10,6 +10,8 @@
 #import <BMCommons/BMMappableObject.h>
 #import <BMCommons/BMXMLElement.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Serializer for serializing a BMMappableObject to XML and back.
  */
@@ -19,22 +21,22 @@
 /**
  The xmlElement with name equal to the root element or nil if rootElementName is not defined.
  */
-- (BMXMLElement *)rootXmlElementFromObject:(id <BMMappableObject>)object;
+- (nullable BMXMLElement *)rootXmlElementFromObject:(nullable id <BMMappableObject>)object;
 
 /**
  Returns this object as XML Element (inverse coversion from object to XML)
  */
-- (BMXMLElement *)xmlElementWithName:(NSString *)elementName fromObject:(id <BMMappableObject>)object;
+- (nullable BMXMLElement *)xmlElementWithName:(NSString *)elementName fromObject:(id <BMMappableObject>)object;
 
 /**
  Returns this object as XML Element (inverse coversion from object to XML) by using the specified namespace prefixes for the namespaces encountered (key=namespaceURI, value=prefix)
  */
-- (BMXMLElement *)xmlElementWithName:(NSString *)elementName namespaceURI:(NSString *)namespaceURI namespacePrefixes:(NSMutableDictionary *)namespacePrefixes fromObject:(id <BMMappableObject>)object;
+- (nullable BMXMLElement *)xmlElementWithName:(NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI namespacePrefixes:(nullable NSMutableDictionary *)namespacePrefixes fromObject:(nullable id <BMMappableObject>)object;
 
 /**
  Same as xmlElementWithName:namespaceURI:namespacePrefixes:fromObject: but optionally sets jsonMode to preserve empty arrays/dictionaries for array/dictionary mapping types.
  */
-- (BMXMLElement *)xmlElementWithName:(NSString *)elementName namespaceURI:(NSString *)namespaceURI namespacePrefixes:(NSMutableDictionary *)namespacePrefixes fromObject:(id <BMMappableObject>)object jsonMode:(BOOL)jsonMode;
+- (nullable BMXMLElement *)xmlElementWithName:(NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI namespacePrefixes:(nullable NSMutableDictionary *)namespacePrefixes fromObject:(nullable id <BMMappableObject>)object jsonMode:(BOOL)jsonMode;
 
 
 /**
@@ -43,9 +45,11 @@
  The rootXPath (which is looked for by the parser) should map to an object of the class this method is called upon.
  Returns nil if an error occured (error will be filled in that case) or the parsed object if successful;.
  */
-- (id <BMMappableObject>)parsedObjectFromXMLData:(NSData *)data
+- (nullable id <BMMappableObject>)parsedObjectFromXMLData:(NSData *)data
                                    withRootXPath:(NSString *)xPath
                                         forClass:(Class<BMMappableObject>)mappableObjectClass
                                            error:(NSError **)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

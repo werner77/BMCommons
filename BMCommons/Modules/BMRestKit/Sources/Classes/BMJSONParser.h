@@ -12,6 +12,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMParser.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMJSONParser;
 
 //Extra delegate methods for BMJSONParser
@@ -53,7 +55,7 @@
  Needed for XML compatibility, because XML requires a single root element and JSON does not.
  By default no element is inserted (which means the mapping cannot start from the root).
  */
-@property (nonatomic, strong) NSString *jsonRootElementName;
+@property (nullable, nonatomic, strong) NSString *jsonRootElementName;
 
 /**
  Returns true iff the parsed json document starts with an array instead of a dictionary.
@@ -71,3 +73,5 @@
 + (void)setDefaultDecodeEntities:(BOOL)decodeEntities;
 
 @end
+
+NS_ASSUME_NONNULL_END

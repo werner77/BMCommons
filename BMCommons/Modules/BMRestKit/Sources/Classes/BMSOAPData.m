@@ -11,7 +11,14 @@
 #import <BMCommons/BMDateHelper.h>
 #import <BMCommons/BMRestKit.h>
 
-@implementation BMSOAPData
+@implementation BMSOAPData {
+@private
+	NSString *username;
+	NSString *password;
+	NSString *body;
+	NSDate *date;
+	NSString *uuid;
+}
 
 @synthesize username;
 @synthesize password;

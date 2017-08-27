@@ -45,8 +45,16 @@
     return [self initWithContentParts:@[] boundaryString:nil];
 }
 
+- (id)initWithData:(NSData *)data {
+    return [self init];
+}
+
+- (instancetype)initWithURL:(NSURL *)url {
+    return [self init];
+}
+
 - (id)initWithContentParts:(NSArray *)theContentParts boundaryString:(NSString *)theBoundaryString {
-    if ((self = [super init])) {
+    if ((self = [super initWithData:[NSData dataWithBytes:NULL length:0]])) {
         if (theContentParts == nil) {
             return nil;
         }

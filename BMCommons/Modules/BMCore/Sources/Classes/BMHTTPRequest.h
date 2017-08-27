@@ -211,7 +211,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @return The http request.
  */
 - (id) initWithRequest:(NSURLRequest *)theRequest
-			  delegate:(id <BMHTTPRequestDelegate>)theDelegate NS_DESIGNATED_INITIALIZER;
+			  delegate:(nullable id <BMHTTPRequestDelegate>)theDelegate NS_DESIGNATED_INITIALIZER;
 
 /**
  Initializes a HTTP POST request with the specified contentType and binary content.

@@ -87,6 +87,10 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
     return [[self alloc] initWithString:string];
 }
 
++ (BOOL)isSupportedNodeType:(xmlElementType)type {
+    return type == XML_TEXT_NODE;
+}
+
 - (id)init {
     return [self initWithString:@""];
 }
@@ -99,17 +103,16 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 - (id)initWithXMLNode:(xmlNode *)node
 {
     self = [super init];
-    
     if (self) {
-        if (!node) {
+        if (node == NULL) {
             return nil;
         }
-        if (node->type != XML_TEXT_NODE) {
+        if (![self.class isSupportedNodeType:node->type]) {
             return nil;
         }
         self.libXMLNode = node;
+        self.libXMLDocument = node->doc;
     }
-    
     return self;
 }
 

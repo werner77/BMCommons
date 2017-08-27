@@ -96,30 +96,12 @@ typedef NS_ENUM(NSUInteger, JSONElementType) {
 static NSArray * childElementsOf(xmlNodePtr a_node, BMXMLElement *contextElement);
 static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode);
 
-- (id)init {
-    return [self initWithName:@""];
++ (BOOL)isSupportedNodeType:(xmlElementType)type {
+    return type == XML_ELEMENT_NODE;
 }
 
-- (BMXMLElement *)initWithXMLNode:(xmlNode *)node
-{
-    self = [super init];
-
-    if (node == nil) {
-        return nil;
-    }
-	if (node->type != XML_ELEMENT_NODE) {
-        return nil;
-    }
-    
-    // Everything about an element is computed on demand, including its name,
-    // children, and attributes. That saves precious memory. By storing references
-    // to the original libxml document and node, we can determine everything else
-    // about the node.
-    
-    self.libXMLNode = node;
-    self.libXMLDocument = node->doc;
-    
-    return self;
+- (id)init {
+    return [self initWithName:@""];
 }
 
 - (BMXMLElement *)initWithName:(NSString *)name {
@@ -374,7 +356,7 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode);
 
 - (NSArray *)elementsForXPath:(NSString *)XPath error:(NSError **)outError
 {
-	return [self elementsForXPath:XPath prepareNamespaces:nil error:nil];
+	return [self elementsForXPath:XPath prepareNamespaces:nil error:outError];
 }
 
 - (NSArray *)elementsForXPath:(NSString *)XPath namespaces:(NSDictionary *)namespaces error:(NSError **)outError
@@ -689,7 +671,7 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode)
 // Add to the receiver an element named 'childName'.
 - (BMXMLElement *)addChildNamed:(NSString *)childName
 {
-    return [self addChildNamed:childName withTextContent:nil];
+    return [self addChildNamed:childName withTextContent:@""];
 }
 
 - (BMXMLElement *)addChildNamed:(NSString *)childName withTextContent:(NSString *)nodeContent {

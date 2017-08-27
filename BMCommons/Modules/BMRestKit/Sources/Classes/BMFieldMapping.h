@@ -13,6 +13,8 @@
 #define MAPPING_ELEMENT_SEPARATOR @"/"
 #define MAPPING_ATTRIBUTE_SEPARATOR @"@"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class that describes a field mapping between object and XML/JSON.
  */
@@ -32,28 +34,28 @@
  
  Defaults to @"RFC3339".
  */
-+ (void)setDefaultDateFormat:(NSString *)dateFormat;
-+ (NSString *)defaultDateFormat;
++ (void)setDefaultDateFormat:(nullable NSString *)dateFormat;
++ (nullable NSString *)defaultDateFormat;
 
 /**
  The default time zone to use for custom date formats. 
  
  Defaults to UTC, set to nil to use the local timezone.
  */
-+ (void)setDefaultTimeZone:(NSTimeZone *)tz;
-+ (NSTimeZone *)defaultTimeZone;
++ (void)setDefaultTimeZone:(nullable NSTimeZone *)tz;
++ (nullable NSTimeZone *)defaultTimeZone;
 
 /**
  Parses a field descriptor dictionary as returned by [BMMappableObject fieldMappings]. 
  
  Uses [BMFieldMapping initWithFieldDescriptor:mappingPath:] for each entry in the dictionary (key=mapping path, value=fieldDescriptor)
  */
-+ (NSDictionary *)parseFieldDescriptorDictionary:(NSDictionary *)dict;
++ (nullable NSDictionary *)parseFieldDescriptorDictionary:(NSDictionary *)dict;
 
 /**
  Parses a field descriptor dictionary with a dictionary of namespaces for each mapping path (key=mappingPath, value=namespaceURI).
  */
-+ (NSDictionary *)parseFieldDescriptorDictionary:(NSDictionary *)dict withNamespaces:(NSDictionary *)namespaceDict;
++ (nullable NSDictionary *)parseFieldDescriptorDictionary:(NSDictionary *)dict withNamespaces:(nullable NSDictionary *)namespaceDict error:(NSError * _Nullable *_Nullable )error;
 
 /**
  Initializes the field mapping with a field descriptor and mapping path.
@@ -67,36 +69,36 @@
     fieldDescriptor=<propertyName>[:<type>[(<subType>)][:<format>]]
  
  */
-- (id)initWithFieldDescriptor:(NSString *)fieldDescriptor mappingPath:(NSString *)theMappingPath;
+- (nullable id)initWithFieldDescriptor:(NSString *)fieldDescriptor mappingPath:(nullable NSString *)theMappingPath;
 
 /**
  Method to set the value of this field. 
  
  Uses converter selectors to convert to the proper type if necessary
  */
-- (void)invokeSetterOnTarget:(NSObject <BMMappableObject> *)target withValue:(NSObject *)value;
+- (void)invokeSetterOnTarget:(NSObject <BMMappableObject> *)target withValue:(nullable NSObject *)value;
 
 /**
  Method to get the value of this field. 
  
  Uses inverse converter selectors to convert back to the proper type.
  */
-- (NSObject *)invokeGetterOnTarget:(NSObject <BMMappableObject> *)target;
+- (nullable NSObject *)invokeGetterOnTarget:(NSObject <BMMappableObject> *)target;
 
 /**
  Method to get the value of this field without performing conversion.
  */
-- (NSObject *)invokeRawGetterOnTarget:(NSObject <BMMappableObject> *)target;
+- (nullable NSObject *)invokeRawGetterOnTarget:(NSObject <BMMappableObject> *)target;
 
 /**
  Method to set the value of this field without performing conversion.
  */
-- (void)invokeRawSetterOnTarget:(NSObject <BMMappableObject> *)target withValue:(NSObject *)value;
+- (void)invokeRawSetterOnTarget:(NSObject <BMMappableObject> *)target withValue:(nullable NSObject *)value;
 
 /**
  Optional namespace for the mapping
  */
-@property(nonatomic, strong) NSString *namespaceURI;
+@property(nullable, nonatomic, strong) NSString *namespaceURI;
 
 /**
  The name of the field, corresponds to the property name of the property to map to
@@ -108,19 +110,19 @@
  
  @see mappingPath
  */
-@property(strong, nonatomic, readonly) NSArray *elementNameComponents;
+@property(nullable, strong, nonatomic, readonly) NSArray *elementNameComponents;
 
 /**
  Mapped attribute name, e.g. "someAttribute"
  
  @see mappingPath
  */
-@property(strong, nonatomic, readonly) NSString *attributeName;
+@property(nullable, strong, nonatomic, readonly) NSString *attributeName;
 
 /**
  Full mapping path such as "element1/element2@someAttribute"
  */
-@property(strong, nonatomic) NSString *mappingPath;
+@property(nullable, strong, nonatomic) NSString *mappingPath;
 
 /**
  Selector to set the value for the field
@@ -135,34 +137,36 @@
 /**
  The converter selector to convert the xml string to an object of class <fieldObjectClass>
  */
-@property(nonatomic, readonly) SEL converterSelector;
+@property(nullable, nonatomic, readonly) SEL converterSelector;
 
 /**
  The target for the converter selector to convert the xml string to an object of class <fieldObjectClass>. 
  
  If this property is nil the target is the object being converted.
  */
-@property(strong, nonatomic, readonly) id converterTarget;
+@property(nullable, strong, nonatomic, readonly) id converterTarget;
 
 /**
  The converter selector to convert the object back to xml string
  */
-@property(nonatomic, readonly) SEL inverseConverterSelector;
+@property(nullable, nonatomic, readonly) SEL inverseConverterSelector;
 
 /**
  Target for the inverseConverterSelector. If nil it is the object itself.
  */
-@property(strong, nonatomic, readonly) id inverseConverterTarget;
+@property(nullable, strong, nonatomic, readonly) id inverseConverterTarget;
 
 /**
   Returns the converters set (forward and reverse) bundled as a value transformer
 */
-@property(strong, nonatomic, readonly) NSValueTransformer *valueTransformer;
+@property(nullable, strong, nonatomic, readonly) NSValueTransformer *valueTransformer;
 
 /**
  Class corresponding to fieldObjectClassName
+
+ Can be nil if the class corresponding to fieldObjectClassName could not be resolved.
  */
-@property(nonatomic, readonly) Class fieldObjectClass;
+@property(nullable, nonatomic, readonly) Class fieldObjectClass;
 
 /**
  Class name of the field
@@ -238,7 +242,7 @@
 /**
  Optional reference identifier to an associated object mapping.
  */
-@property (nonatomic, strong) NSString *objectMappingRefId;
+@property (nullable, nonatomic, strong) NSString *objectMappingRefId;
 
 /**
  For use by a parser to keep track of the associated schema field type.
@@ -255,7 +259,7 @@
 /**
  Initializes with the specified field descriptor.
  */
-- (BOOL)setFieldDescriptor:(NSString *)fieldDescriptor withError:(NSError **)error;
+- (BOOL)setFieldDescriptor:(NSString *)fieldDescriptor withError:(NSError * _Nullable *_Nullable )error;
 
 /**
  * Returns the class name without any module info (part after the last dot)
@@ -263,4 +267,6 @@
 - (NSString *)unqualifiedFieldObjectClassName;
 
 @end
+
+NS_ASSUME_NONNULL_END
 

@@ -9,18 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMAbstractMappableObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Object which is mapped from a SOAP fault response.
  */
-@interface BMSOAPFault : BMAbstractMappableObject {
-    @private
-	NSString *faultCode;
-	NSString *faultString;
-}
+@interface BMSOAPFault : BMAbstractMappableObject
 
-@property (nonatomic, strong) NSString *faultCode;
-@property (nonatomic, strong) NSString *faultString;
+@property (nullable, nonatomic, strong) NSString *faultCode;
+@property (nullable, nonatomic, strong) NSString *faultString;
 
 - (NSError *)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

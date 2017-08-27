@@ -24,7 +24,7 @@
 @interface BMFieldMapping(Private)
 
 - (void)initSelectorFromFieldName:(NSString *)fieldName andType:(NSString *)type andFormat:(NSString *)format;
-- (void)initConverterWithType:(NSString *)type subType:(NSString *)subType andFormat:(NSString *)format;
+- (BOOL)initConverterWithType:(NSString *)type subType:(NSString *)subType andFormat:(NSString *)format error:(NSError **)error;
 - (void)setConverterTarget:(id)target;
 - (void)setInverseConverterTarget:(id)target;
 
@@ -97,7 +97,7 @@ static NSTimeZone *defaultTimeZone = nil;
 }
 
 + (NSDictionary *)parseFieldDescriptorDictionary:(NSDictionary *)dict {
-	return [self parseFieldDescriptorDictionary:dict withNamespaces:nil];
+	return [self parseFieldDescriptorDictionary:dict withNamespaces:nil error:nil];
 }
 
 + (void)initialize {
@@ -110,7 +110,7 @@ static NSTimeZone *defaultTimeZone = nil;
 
 }
 
-+ (NSDictionary *)parseFieldDescriptorDictionary:(NSDictionary *)dict withNamespaces:(NSDictionary *)namespaceDict {
++ (NSDictionary *)parseFieldDescriptorDictionary:(NSDictionary *)dict withNamespaces:(NSDictionary *)namespaceDict error:(NSError **)error {
 	NSMutableDictionary *ret = [[BMOrderedDictionary alloc] initWithCapacity:dict.count];
 	for (NSString *key in dict) {
 		NSString *fieldDescriptor = [dict objectForKey:key];
@@ -119,10 +119,10 @@ static NSTimeZone *defaultTimeZone = nil;
 			fieldMapping.namespaceURI = [namespaceDict objectForKey:key];
 			[ret setObject:fieldMapping forKey:key];
 		} else {
-			NSException *ex = [NSException exceptionWithName:@"InvalidFieldMappingException" 
-													  reason:[NSString stringWithFormat:@"Warning: Could not parse field descriptor '%@' for key '%@'", fieldDescriptor, key]
-													userInfo:nil];
-			@throw ex;
+            if (error) {
+                *error = [BMErrorHelper errorForDomain:BM_ERROR_DOMAIN_DATA code:BM_ERROR_INVALID_DATA description:[NSString stringWithFormat:@"Could not parse field descriptor '%@' for key '%@'", fieldDescriptor, key]];
+            }
+            return nil;
 		}
 	}
 	return ret;
@@ -206,9 +206,9 @@ static NSTimeZone *defaultTimeZone = nil;
     }
 
     [self initSelectorFromFieldName:fieldName andType:type andFormat:format];
-    if (!self.setterSelector) {
+    if (!self.setterSelector || !self.getterSelector) {
         if (error) {
-            *error = [BMErrorHelper genericErrorWithDescription:@"Could not determine setter selector"];
+            *error = [BMErrorHelper genericErrorWithDescription:@"Could not determine getter and/or setter selector"];
         }
         return NO;
     }
@@ -217,7 +217,9 @@ static NSTimeZone *defaultTimeZone = nil;
     fieldObjectClass = [NSString class];
     BM_RELEASE_SAFELY(fieldObjectClassName);
     if (type && subType) {
-        [self initConverterWithType:type subType:subType andFormat:format];
+        if (![self initConverterWithType:type subType:subType andFormat:format error:error]) {
+            return NO;
+        }
     }
     _initialized = YES;
     return YES;
@@ -522,7 +524,7 @@ static NSTimeZone *defaultTimeZone = nil;
 	}
 }
 
-- (void)initConverterWithType:(NSString *)type subType:(NSString *)subType andFormat:(NSString *)format {
+- (BOOL)initConverterWithType:(NSString *)type subType:(NSString *)subType andFormat:(NSString *)format error:(NSError **)error {
     if ([subType isEqualToString:@"string"]) {
         //Do nothing
     } else if ([subType isEqualToString:@"int"]) {
@@ -569,8 +571,10 @@ static NSTimeZone *defaultTimeZone = nil;
             self.converterTarget = [BMDateHelper defaultDateFormatter];
         }
         if (!converterTarget) {
-            NSException *ex = [NSException exceptionWithName:@"InvalidFieldMappingException" reason:[NSString stringWithFormat:@"Invalid date format specified: %@", format] userInfo:nil];
-            @throw ex;
+            if (error) {
+                *error = [BMErrorHelper errorForDomain:BM_ERROR_DOMAIN_DATA code:BM_ERROR_INVALID_DATA description:[NSString stringWithFormat:@"Invalid date format specified: %@", format]];
+            }
+            return NO;
         }
         
 		self.inverseConverterTarget = converterTarget;
@@ -585,21 +589,22 @@ static NSTimeZone *defaultTimeZone = nil;
             fieldObjectClassName = subType;
             fieldObjectClass = NSClassFromString(subType);
             if (classChecksEnabled && !self.fieldObjectClassIsMappable) {
-                NSException *ex = [NSException exceptionWithName:@"InvalidFieldMappingException" 
-                                                          reason:[NSString stringWithFormat:@"Invalid class specified: '%@'. Could not be found or is no mappable class. Failed fieldName: %@, mappingPath: %@",
-                                                                  subType, self.fieldName, self.mappingPath]
-                                                        userInfo:nil];
-                @throw ex;
+                if (error) {
+                    *error = [BMErrorHelper errorForDomain:BM_ERROR_DOMAIN_DATA code:BM_ERROR_INVALID_DATA description:[NSString stringWithFormat:@"Invalid class specified: '%@'. Could not be found or is no mappable class. Failed fieldName: %@, mappingPath: %@",
+                                                                                                                                                  subType, self.fieldName, self.mappingPath]];
+                }
+                return NO;
             }
 		}
         
 	} else {
-		NSException *ex = [NSException exceptionWithName:@"InvalidFieldMappingException" 
-												  reason:[NSString stringWithFormat:@"Unrecognized subtype specified: '%@' for type %@ in fieldName: %@, mappingPath: %@",
-														  subType, type, self.fieldName, self.mappingPath]
-												userInfo:nil];
-		@throw ex;
+        if (error) {
+            *error = [BMErrorHelper errorForDomain:BM_ERROR_DOMAIN_DATA code:BM_ERROR_INVALID_DATA description:[NSString stringWithFormat:@"Unrecognized subtype specified: '%@' for type %@ in fieldName: %@, mappingPath: %@",
+                                                                                                                                          subType, type, self.fieldName, self.mappingPath]];
+        }
+        return NO;
 	}
+    return YES;
 }
 
 @end

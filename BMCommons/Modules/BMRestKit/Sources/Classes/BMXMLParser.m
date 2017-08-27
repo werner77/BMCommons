@@ -697,7 +697,11 @@ static void __ignorableWhitespace( void * ctx, const xmlChar * ch, int len )
 
 #pragma mark -
 
-@implementation BMXMLParser
+@implementation BMXMLParser {
+@private
+	void * _parser;
+	_BMXMLParserInternal * _internal;
+}
 
 - (id) initWithStream: (NSInputStream *)theStream
 {

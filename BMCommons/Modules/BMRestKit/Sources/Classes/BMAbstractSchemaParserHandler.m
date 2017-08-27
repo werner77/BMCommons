@@ -10,6 +10,7 @@
 #import <BMCommons/NSString+BMCommons.h>
 #import <BMCommons/BMObjectMapping.h>
 #import <BMCommons/BMLogging.h>
+#import "BMJavaBasedMappableObjectClassResolver.h"
 
 @implementation BMAbstractSchemaParserHandler
 
@@ -64,6 +65,18 @@ static NSSet *reservedPrefixes = nil;
     }
 }
 
+- (id)init {
+    return [self initWithMappableObjectClassResolver:[BMJavaBasedMappableObjectClassResolver new]];
+}
+
+- (instancetype)initWithMappableObjectClassResolver:(id <BMMappableObjectClassResolver>)mappableObjectClassResolver {
+    self = [super init];
+    if (self) {
+        self.mappableObjectClassResolver = mappableObjectClassResolver;
+    }
+    return self;
+}
+
 - (NSSet *)reservedKeywords {
     return reservedKeywords;
 }
@@ -78,7 +91,11 @@ static NSSet *reservedPrefixes = nil;
 
 - (NSArray *)parseSchema:(NSData *)schemaData withError:(NSError **)error {
     NSDictionary *objectMappings = [self parseSchemaImpl:schemaData objectMappings:[NSMutableDictionary new] withError:error];
-    return [self processObjectMappings:objectMappings];
+    if (objectMappings != nil) {
+        return [self processObjectMappings:objectMappings];
+    } else {
+        return nil;
+    }
 }
 
 - (NSArray *)parseSchemaPaths:(NSArray *)schemaPaths withError:(NSError **)error {
@@ -118,14 +135,6 @@ static NSSet *reservedPrefixes = nil;
         }
     }
     return [self processObjectMappings:objectMappings];
-}
-
-
-- (id)init {
-    if ((self = [super init])) {
-        
-    }
-    return self;
 }
 
 - (NSString *)targetNamespace {

@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BMDynamicObject : NSObject {
-	//Dictionary for storing all the fields
-	NSMutableDictionary *_fieldDictionary;
-}
+NS_ASSUME_NONNULL_BEGIN
+
+@interface BMDynamicObject : NSObject
 
 @property (nonatomic, strong, readonly) NSDictionary *fieldDictionary;
 
 @end
+
+NS_ASSUME_NONNULL_END

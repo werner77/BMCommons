@@ -23,7 +23,7 @@ typedef void (^BMServiceSuccessBlock)(id result);
  
  In case of error the error is non-nil, in case of cancel the error is nil and the boolean cancelled is true.
  */
-typedef void (^BMServiceFailureBlock)(BOOL cancelled, NSError * error);
+typedef void (^BMServiceFailureBlock)(BOOL cancelled, NSError * _Nullable error);
 
 /**
  Implementation of BMServiceDelegate that allows the use of blocks for the callbacks

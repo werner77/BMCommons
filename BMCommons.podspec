@@ -34,7 +34,6 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'BMRestKit' do |s_restkit|
-    s_restkit.frameworks   = 'CoreData'
     s_restkit.requires_arc = true
     s_restkit.source_files = 'BMCommons/Modules/BMRestKit/Sources/**/*.{c,m,h}'
     s_restkit.exclude_files = 'BMCommons/Modules/BMRestKit/**/*_Private.*'
@@ -73,7 +72,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'BMCoreData' do |s_coredata|
     s_coredata.platform = :ios
-    s_coredata.frameworks   = 'CoreMedia','AVFoundation','QuartzCore'
+    s_coredata.frameworks   = 'CoreData', 'CoreMedia','AVFoundation','QuartzCore'
     s_coredata.requires_arc = true
     s_coredata.source_files = 'BMCommons/Modules/BMCoreData/Sources/**/*.{c,m,h}'
     s_coredata.exclude_files = 'BMCommons/Modules/BMCoreData/**/*_Private.*'

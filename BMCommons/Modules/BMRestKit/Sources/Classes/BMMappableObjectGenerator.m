@@ -31,7 +31,19 @@ typedef NS_ENUM(NSUInteger, BMFileType) {
 
 @end
 
-@implementation BMMappableObjectGenerator
+@implementation BMMappableObjectGenerator {
+@private
+    NSString *outputDir;
+    NSString *classNameSuffix;
+    NSString *headerTemplatePath;
+    NSString *implementationTemplatePath;
+    NSString *mappingVariableName;
+    NSString *customHeaderTemplatePath;
+    NSString *customImplementationTemplatePath;
+    NSDictionary *namespacePrefixMappings;
+    BOOL removeOldFiles;
+    BMMappableObjectSchemaType schemaType;
+}
 
 @synthesize outputDir, classNameSuffix, classNamePrefix;
 @synthesize headerTemplatePath, implementationTemplatePath;
@@ -62,14 +74,6 @@ typedef NS_ENUM(NSUInteger, BMFileType) {
     NSArray *objectMappings = nil;
     NSError *error = nil;
     
-    BMAbstractSchemaParserHandler *parser = nil;
-    
-    if (self.schemaType == BMMappableObjectSchemaTypeXSD) {
-        parser = [BMXMLSchemaParser new];
-    } else if (self.schemaType == BMMappableObjectSchemaTypeJSON){
-        parser = [BMJSONSchemaParser new];
-    }
-    
     BMAbstractMappableObjectClassResolver *classResolver = [BMJavaBasedMappableObjectClassResolver new];
     classResolver.swiftMode = self.swiftMode;
     classResolver.namespacePrefixMappings = self.namespacePrefixMappings;
@@ -77,9 +81,15 @@ typedef NS_ENUM(NSUInteger, BMFileType) {
     classResolver.classNamePrefix = self.classNamePrefix;
     classResolver.classNameSuffix = self.classNameSuffix;
 
+    BMAbstractSchemaParserHandler *parser = nil;
+
+    if (self.schemaType == BMMappableObjectSchemaTypeXSD) {
+        parser = [[BMXMLSchemaParser alloc] initWithMappableObjectClassResolver:classResolver];
+    } else if (self.schemaType == BMMappableObjectSchemaTypeJSON){
+        parser = [[BMJSONSchemaParser alloc] initWithMappableObjectClassResolver:classResolver];
+    }
+
     parser.defaultNamespace = self.defaultNamespace;
-    parser.mappableObjectClassResolver = classResolver;
-    
     objectMappings = [parser parseSchemaPaths:schemaPaths withError:&error];
     
     NSDate *referenceDate = nil;

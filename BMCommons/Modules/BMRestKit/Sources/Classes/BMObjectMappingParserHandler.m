@@ -17,6 +17,7 @@
 #import <BMCommons/BMJSONParser.h>
 #import <BMCommons/BMDynamicObject.h>
 #import <BMCommons/BMRestKit.h>
+#import "BMAbstractMappableObject.h"
 
 @interface BMObjectMappingParserHandler(Private)
 
@@ -90,7 +91,7 @@ static BMObjectMappingParserHandlerInitBlock defaultInitBlock = nil;
 - (id)initWithXPath:(NSString *)rootElementName rootElementClass:(Class <BMMappableObject>)elementClass 
 		 errorXPath:(NSString *)errorRootElementName errorRootElementClass:(Class <BMMappableObject>)errorElementClass	
 					 delegate:(id <BMParserHandlerDelegate>)theDelegate {
-	if ((self = [self init])) {
+	if ((self = [super init])) {
 
 		_topElement = rootElementName;
         if (elementClass) {
@@ -102,18 +103,16 @@ static BMObjectMappingParserHandlerInitBlock defaultInitBlock = nil;
 		}
 		self.delegate = theDelegate;
 		_xmlElementStack = [NSMutableArray new];
+
+		if (defaultInitBlock) {
+			defaultInitBlock(self);
+		}
 	}
 	return self;
 }
 
 - (id)init {
-    if ((self = [super init])) {
-
-        if (defaultInitBlock) {
-            defaultInitBlock(self);
-        }
-    }
-    return self;
+    return [self initWithXPath:nil rootElementClass:[BMAbstractMappableObject class] delegate:nil];
 }
 
 
@@ -135,7 +134,7 @@ static BMObjectMappingParserHandlerInitBlock defaultInitBlock = nil;
 }
 
 - (void)parserDidEndDocument:(BMParser *)parser {
-	if (!_started && _topElement) {
+	if (!_started && (_topElement || _topErrorElement)) {
 		//Couldn't find the root element or root error element
 		//Error: unparseable document
 		[self abortParsing:parser withErrorMessage:[NSString stringWithFormat:@"Could not find root element/root error element"]];
@@ -197,11 +196,11 @@ static BMObjectMappingParserHandlerInitBlock defaultInitBlock = nil;
 		[_xmlElementStack addObject:currentXMLElement];
 		
 		BMXMLElement *rootXMLElement = [_xmlElementStack objectAtIndex:0];
-		if (!self.forceErrorResponse && _topElement && [rootXMLElement elementsForXPath:_topElement error:nil].count > 0) {
+		if (!self.forceErrorResponse && ((_topElement && [rootXMLElement elementsForXPath:_topElement error:nil].count > 0) || _topElement == nil)) {
 			_currentModelDictionary = _modelDictionary;
 			_errorResponse = NO;
 			_started = YES;
-		} else if (_topErrorElement && [rootXMLElement elementsForXPath:_topErrorElement error:nil].count > 0) {
+		} else if ((_topErrorElement && [rootXMLElement elementsForXPath:_topErrorElement error:nil].count > 0) || _topErrorElement == nil) {
 			_currentModelDictionary = _errorModelDictionary;
 			_errorResponse = YES;
 			_started = YES;

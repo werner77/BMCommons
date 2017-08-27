@@ -9,16 +9,24 @@
 #import <BMCommons/BMObjectMappingParserService.h>
 #import <BMCommons/BMObjectMappingParserHandler.h>
 #import <BMCommons/BMRestKit.h>
+#import "BMAbstractMappableObject.h"
 
 @implementation BMObjectMappingParserService
 
-- (id)init {
-    if ((self = [super init])) {
-
-    }
-    return self;
+- (instancetype)initWithRootXPath:(NSString *)rootXPath rootElementClass:(Class<BMMappableObject>)rootElementClass
+					   errorXPath:(NSString *)errorXPath errorElementClass:(Class<BMMappableObject>)errorElementClass {
+	if ((self = [super init])) {
+		self.rootXPath = rootXPath;
+		self.errorXPath = errorXPath;
+		self.rootElementClass = rootElementClass;
+		self.errorElementClass = errorElementClass;
+	}
+	return self;
 }
 
+- (id)init {
+	return [self initWithRootXPath:nil rootElementClass:[BMAbstractMappableObject class] errorXPath:nil errorElementClass:nil];
+}
 
 - (BMParserHandler *)handlerForService {
 	BMObjectMappingParserHandler *theHandler = [[BMObjectMappingParserHandler alloc] initWithXPath:self.rootXPath

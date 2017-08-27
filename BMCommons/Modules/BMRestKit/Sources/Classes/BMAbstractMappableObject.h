@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMFieldMapping.h>
 #import <BMCommons/BMXMLElement.h>
-#import <CoreData/CoreData.h>
 
 #define SET_IF_DEFINED(x, y) {id z = y;  if (z) {x = z;}}
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  Base class for BMMappableObject implementations.
@@ -25,7 +26,7 @@
  * This in contrast with copyWithZone: which will perform a deep copy of the object.
  *
  */
-- (id)shallowCopyWithZone:(NSZone *)zone;
+- (id)shallowCopyWithZone:(nullable NSZone *)zone;
 
 /**
  * Calls shallowCopyWithZone with zone set to nil.
@@ -121,7 +122,7 @@
  
  @warning NSArray properties should be of kind NSMutableArray to allow read/write access to the array.
  */
-+ (NSArray *)fieldMappingFormatArray;
++ (nullable NSArray *)fieldMappingFormatArray;
 
 /**
  Integer which is compared upon deserialization to determine if the version stored is compatible with the current class.
@@ -151,70 +152,36 @@
 /**
  Validates the state of this object.
  */
-- (BOOL)validateWithError:(NSError **)error;
+- (BOOL)validateWithError:(NSError * _Nullable *_Nullable)error;
 
 /**
  Returns a sha1 digest using the values of all field mappings recursively.
  */
-- (NSString *)sha1Digest;
+- (nullable NSString *)sha1Digest;
 
 /**
  * The keypaths that should not be included in the digest calculation.
  */
-+ (NSSet<NSString *> *)keyPathsToIgnoreForDigest;
++ (nullable NSSet<NSString *> *)keyPathsToIgnoreForDigest;
 
 @end
-
-@interface BMAbstractMappableObject(CoreData)
-
-/**
- Method for merging data objects with model objects: the primary keys of the model and data objects are compared. 
- 
- All Model objects
- for which no corresponding data object exists are removed. If no model object exists for a corresponding data object it is inserted
- in the context.
- The merge selector is called on each data object with argument the corresponding model object.
- */
-+ (void)mergeDataObjects:(NSArray *)dataObjects
-		withModelObjects:(NSArray *)modelObjects
-				 ofClass:(Class)modelClass
-  dataPrimaryKeyProperty:(NSString *)dataPrimaryKeyProperty
- modelPrimaryKeyProperty:(NSString *)modelPrimaryKeyProperty
-		   mergeSelector:(SEL)mergeSelector
-			   inContext:(NSManagedObjectContext *)context;
-
-/**
- Merges the toManyRelationship of the specified model object. 
- 
- For all objects in the toManyRelationship the merge method above is called.
- */
-+ (void)mergeDataObjects:(NSArray *)dataObjects
-		 withModelObject:(NSManagedObject *)modelObject
- usingToManyRelationship:(NSString *)relationShip
-  dataPrimaryKeyProperty:(NSString *)dataPrimaryKeyProperty
- modelPrimaryKeyProperty:(NSString *)modelPrimaryKeyProperty
-		   mergeSelector:(SEL)mergeSelector;
-
-
-@end
-
 
 @interface BMAbstractMappableObject(XMLSerialization)
 
 /**
  The xmlElement with name equal to the root element or nil if rootElementName is not defined.
  */
-- (BMXMLElement *)rootXmlElement;
+- (nullable BMXMLElement *)rootXmlElement;
 
 /**
  Returns this object as XML Element (inverse coversion from object to XML)
  */
-- (BMXMLElement *)xmlElementWithName:(NSString *)elementName;
+- (nullable BMXMLElement *)xmlElementWithName:(NSString *)elementName;
 
 /**
  Returns this object as XML Element (inverse coversion from object to XML) by using the specified namespace prefixes for the namespaces encountered (key=namespaceURI, value=prefix)
  */
-- (BMXMLElement *)xmlElementWithName:(NSString *)elementName namespaceURI:(NSString *)namespaceURI namespacePrefixes:(NSMutableDictionary *)namespacePrefixes;
+- (nullable BMXMLElement *)xmlElementWithName:(NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI namespacePrefixes:(nullable NSMutableDictionary *)namespacePrefixes;
 
 /**
  Returns a parsed object from the supplied XML Data. 
@@ -222,9 +189,9 @@
  The rootXPath (which is looked for by the parser) should map to an object of the class this method is called upon.
  Returns nil if an error occured (error will be filled in that case) or the parsed object if successful;.
  */
-+ (instancetype)parsedObjectFromXMLData:(NSData *)data
-                                   withRootXPath:(NSString *)xPath
-                                           error:(NSError **)error;
++ (nullable instancetype)parsedObjectFromXMLData:(NSData *)data
+                                   withRootXPath:(nullable NSString *)xPath
+                                           error:(NSError * _Nullable * _Nullable)error;
 
 
 @end
@@ -235,17 +202,17 @@
 /**
  The json string with name equal to the root element or nil if the rootElementName is not defined.
  */
-- (NSString *)rootJsonElement;
+- (nullable NSString *)rootJsonElement;
 
 /**
  Returns this object as JSON Element
  */
-- (NSString *)jsonElementWithName:(NSString *)elementName;
+- (nullable NSString *)jsonElementWithName:(NSString *)elementName;
 
 /**
  Returns this object as JSON Element by using the specified attributePrefix and textContentIdentifier.
  */
-- (NSString *)jsonElementWithName:(NSString *)elementName attributePrefix:(NSString *)attributePrefix
+- (nullable NSString *)jsonElementWithName:(NSString *)elementName attributePrefix:(NSString *)attributePrefix
             textContentIdentifier:(NSString *)textContentIdentifier;
 
 
@@ -255,12 +222,14 @@
  The rootXPath (which is looked for by the parser) should map to an object of the class this method is called upon.
  Returns nil if an error occured (error will be filled in that case) or the parsed object if successful;.
  */
-+ (instancetype)parsedObjectFromJSONData:(NSData *)data
-                                    withRootXPath:(NSString *)xPath
-                                            error:(NSError **)error;
++ (nullable instancetype)parsedObjectFromJSONData:(NSData *)data
+                                    withRootXPath:(nullable NSString *)xPath
+                                            error:(NSError *_Nullable *_Nullable)error;
 
-+ (NSArray *)parsedArrayFromJSONData:(NSData *)data
-                       withRootXPath:(NSString *)xPath
-                               error:(NSError **)error;
++ (nullable NSArray *)parsedArrayFromJSONData:(NSData *)data
+                       withRootXPath:(nullable NSString *)xPath
+                               error:(NSError *_Nullable *_Nullable)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

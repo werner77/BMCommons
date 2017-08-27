@@ -8,9 +8,13 @@
 
 #import <BMCommons/BMObjectMappingParserService.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Parser service which maps an XML/JSON response to a root BMMappableObject sub class.
  */
 @interface BMRootObjectMappingParserService : BMObjectMappingParserService
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -26,22 +26,22 @@
 /**
  * Returns a map of key=mappingPath and value=BMFieldMapping
  */
-+ (NSDictionary *)fieldMappings;
++ (nullable NSDictionary *)fieldMappings;
 
 /**
  * Returns a map of key=mappingPath and value=String with namespaceURI
  */
-+ (NSDictionary *)fieldMappingNamespaces;
++ (nullable NSDictionary *)fieldMappingNamespaces;
 
 /** 
  The namespace URI for this object (used when the object is converted back to XML)
  */
-+ (NSString *)namespaceURI;
++ (nullable NSString *)namespaceURI;
 
 /**
  The name of the root element or nil if this object is not mapped to a root XML element.
  */
-+ (NSString *)rootElementName;
++ (nullable NSString *)rootElementName;
 
 /**
  To perform any conversion of the state of the object after all properties have been set by mapping from JSON/XML
@@ -54,7 +54,7 @@
 /**
  Return an error if the parsed content corresponds with an error
  */
-- (NSError *)error;
+- (nullable NSError *)error;
 
 @end
 

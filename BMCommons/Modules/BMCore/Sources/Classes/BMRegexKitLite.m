@@ -344,9 +344,7 @@ static NSError *RKLNSErrorForRegex(NSString *regexString, RKLRegexOptions regexO
   if(NSRangeInsideRange(cacheSlot->lastMatchRange, range) == NO) { goto exitNow; } // If the regex matched outside the requested range, exit.
   if(capture == 0) { captureRange = cacheSlot->lastMatchRange; } else {
       int32_t groupNum = BMShortenIntSafely(capture, nil);
-      int32_t result = BMShortenIntSafely(RKLGetRangeForCapture(cacheSlot->icu_regex, status, groupNum, captureRange), nil);
-      //Fixes compiler warning
-      result = result;
+      RKLGetRangeForCapture(cacheSlot->icu_regex, status, groupNum, captureRange);
   }
 
  exitNow: // A bit of advice...

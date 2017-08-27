@@ -8,13 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class used to map an xsd enumation value.
  */
-@interface BMEnumerationValue : NSObject {
-    @private
-	id _value;
-}
+@interface BMEnumerationValue : NSObject
 
 + (BMEnumerationValue *)enumerationValueWithValue:(id)theValue;
 
@@ -39,3 +38,5 @@
 - (NSString *)swiftValueDeclaration;
 
 @end
+
+NS_ASSUME_NONNULL_END

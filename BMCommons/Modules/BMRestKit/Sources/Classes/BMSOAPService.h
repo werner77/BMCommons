@@ -10,6 +10,8 @@
 
 @class BMSOAPData;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Base class for SOAP Web Services.
  */
@@ -22,17 +24,17 @@
  
  Default is the string which is returned from [BMSOAPService defaultSOAPRequestTemplate]
  */
-@property (strong) NSString *soapRequestTemplate;
+@property (nullable, strong) NSString *soapRequestTemplate;
 
 /**
  The endpoint URL for the service.
  */
-@property (strong) NSURL *endpointURL;
+@property (nullable, strong) NSURL *endpointURL;
 
 /**
  The soap action for the service.
  */
-@property (strong) NSString *soapAction;
+@property (nullable, strong) NSString *soapAction;
 
 /**
  The username for the service. 
@@ -41,7 +43,7 @@
  The default template does not contain a SOAP security header. If you wish to include the security header you have to supply a template manually.
  The username and password are part of the BMSOAPData which is fed to the protected method configureSOAPData:.
  */
-@property (strong) NSString *soapUsername;
+@property (nullable, strong) NSString *soapUsername;
 
 /**
  The password for the service.
@@ -50,7 +52,7 @@
  The default template does not contain a SOAP security header. If you wish to include the security header you have to supply a template manually.
  The username and password are part of the BMSOAPData which is fed to the protected method configureSOAPData:.
  */
-@property (strong) NSString *soapPassword;
+@property (nullable, strong) NSString *soapPassword;
 
 /**
  The default SOAP request template.
@@ -80,12 +82,12 @@
  @see [BMSOAPData body]
  @see [BMMappableObject rootXmlElement]
  */
-- (id <BMMappableObject>)requestObject;
+- (nullable id <BMMappableObject>)requestObject;
 
 /**
  The class to use to map the response to.
  */
-- (Class<BMMappableObject>)responseObjectClass;
+- (nullable Class<BMMappableObject>)responseObjectClass;
 
 /**
  The XPath to use as starting point for mapping the response.
@@ -97,3 +99,5 @@
 - (NSString *)xpathForMappingResponseWithElementName:(NSString *)elementName;
 
 @end
+
+NS_ASSUME_NONNULL_END

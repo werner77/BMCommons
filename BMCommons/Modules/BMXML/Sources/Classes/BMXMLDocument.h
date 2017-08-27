@@ -81,7 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable BMXMLDocument *)documentWithContentsOfURL:(NSURL *)URL error:(NSError * _Nullable * _Nonnull)error;
 + (nullable BMXMLDocument *)documentWithRootElement:(BMXMLElement *)theRootElement;
 
-- (nullable instancetype)initWithRootElement:(BMXMLElement *)theRootElement NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithRootElement:(BMXMLElement *)theRootElement;
 
 @end
 

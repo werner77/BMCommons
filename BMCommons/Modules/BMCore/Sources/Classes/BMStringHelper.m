@@ -275,7 +275,7 @@
     NSArray<NSString *> *characters = [characterSet bmArrayWithCharactersInSet];
     NSMutableString *ret = [[NSMutableString alloc] initWithCapacity:length];
     for (NSUInteger i = 0; i < length; ++i) {
-        NSUInteger index = arc4random_uniform(characters.count);
+        NSUInteger index = arc4random_uniform((uint32_t)characters.count);
         [ret appendString:characters[index]];
     }
     return ret;

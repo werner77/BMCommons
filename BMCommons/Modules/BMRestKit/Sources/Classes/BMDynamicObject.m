@@ -10,7 +10,10 @@
 #import <BMCommons/BMPropertyDescriptor.h>
 #import <BMCommons/BMPropertyMethod.h>
 
-@implementation BMDynamicObject
+@implementation BMDynamicObject {
+	//Dictionary for storing all the fields
+	NSMutableDictionary *_fieldDictionary;
+}
 
 @synthesize fieldDictionary = _fieldDictionary;
 

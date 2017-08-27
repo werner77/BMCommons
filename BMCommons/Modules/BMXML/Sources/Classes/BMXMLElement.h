@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BMXMLElement : BMXMLNode
 
 + (instancetype)elementWithName:(NSString *)name;
-- (instancetype)initWithName:(NSString *)name NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithName:(NSString *)name;
 
 - (void)setArrayElement:(BOOL)arrayElement;
 - (BOOL)isArrayElement;
@@ -102,9 +102,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray *)elementsWithAttributeNamed:(NSString *)attributeName;
 - (NSArray *)elementsWithAttributeNamed:(NSString *)attributeName attributeValue:(NSString *)attributeValue;
 
-- (nullable NSArray *)elementsForXPath:(NSString *)XPath error:(NSError **)outError;
-- (nullable NSArray *)elementsForXPath:(NSString *)XPath prepareNamespaces:(NSArray *)namespaces error:(NSError **)outError;
-- (nullable NSArray *)elementsForXPath:(NSString *)XPath namespaces:(NSDictionary *)namespaces error:(NSError **)outError;
+- (nullable NSArray *)elementsForXPath:(NSString *)XPath error:(NSError *_Nullable *_Nullable )outError;
+- (nullable NSArray *)elementsForXPath:(NSString *)XPath prepareNamespaces:(nullable NSArray *)namespaces error:(NSError *_Nullable *_Nullable )outError;
+- (nullable NSArray *)elementsForXPath:(NSString *)XPath namespaces:(nullable NSDictionary *)namespaces error:(NSError * _Nullable *_Nullable )outError;
 
 - (void)insertChild:(BMXMLNode *)node atIndex:(NSUInteger)index;
 - (BMXMLNode *)addChild:(BMXMLNode *)node;

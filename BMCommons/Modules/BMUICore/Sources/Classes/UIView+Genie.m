@@ -303,7 +303,7 @@ static const int BCTrapezoidWinding[4][4] = {
 {
     CGFloat totalSize = axis == BCAxisY ? image.size.height : image.size.width;
     
-    BCPoint origin = {0.0, 0.0};
+    BCPoint origin = {.x = 0.0, .y = 0.0};
     origin.v[axis] = kSliceSize;
     
     CGFloat scale = image.scale;
@@ -313,7 +313,7 @@ static const int BCTrapezoidWinding[4][4] = {
     NSMutableArray *slices = [NSMutableArray arrayWithCapacity:count];
     
     for (int i = 0; i < count; i++) {
-        CGRect rect = {i*origin.x*scale, i*origin.y*scale, sliceSize.width*scale, sliceSize.height*scale};
+        CGRect rect = CGRectMake((CGFloat)(i*origin.x*scale), (CGFloat)(i*origin.y*scale), sliceSize.width*scale, sliceSize.height*scale) ;
         CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, rect);
         UIImage *sliceImage = [UIImage imageWithCGImage:imageRef
                                                   scale:image.scale
@@ -349,7 +349,7 @@ static const int BCTrapezoidWinding[4][4] = {
     assert(sign*(startPosition - rectPartStart) <= 0.0);
     
     __block CGFloat position = startPosition;
-    __block BCTrapezoid trapezoid = {0};
+    __block BCTrapezoid trapezoid = {.a = {.x = 0.0, .y = 0.0}, .b = {.x = 0.0, .y = 0.0}, .c = {.x = 0.0, .y = 0.0}, .d = {.x = 0.0, .y = 0.0}};
     trapezoid.v[BCTrapezoidWinding[edge][0]] = bezierAxisIntersection(first, axis, position);
     trapezoid.v[BCTrapezoidWinding[edge][1]] = bezierAxisIntersection(second, axis, position);
     

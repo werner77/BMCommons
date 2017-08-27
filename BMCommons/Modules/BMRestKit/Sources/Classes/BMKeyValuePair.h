@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BMKeyValuePair : NSObject
 
-@property (nonatomic, strong) NSString *key;
-@property (nonatomic, strong) id value;
+@property (nullable, nonatomic, strong) NSString *key;
+@property (nullable, nonatomic, strong) id value;
 
 @end
+
+NS_ASSUME_NONNULL_END
