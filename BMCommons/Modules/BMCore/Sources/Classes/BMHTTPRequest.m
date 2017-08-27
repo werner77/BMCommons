@@ -31,7 +31,6 @@ static const NSUInteger kMaxRetryCount = 1;
 @property(strong)   NSMutableURLRequest *request;
 @property(strong)   NSURLResponse *response;
 @property(strong) 	NSError* lastError;
-@property(strong) 	NSURL *url;
 @property(strong) 	NSMutableData *receivedData;
 @property(assign) 	BOOL eventSent;
 @property(strong) 	NSData* replyData;
@@ -69,7 +68,6 @@ static const NSUInteger kMaxRetryCount = 1;
 @synthesize identifier = _identifier;
 @synthesize userName = _userName;
 @synthesize password = _password;
-@synthesize url = _url;
 @synthesize delegate = _delegate;
 @synthesize responseHeaderFields = _responseHeaderFields;
 @synthesize inputStream = _inputStream;
@@ -177,7 +175,6 @@ static NSTimeInterval defaultTimeoutInterval = BM_HTTP_REQUEST_DEFAULT_TIMEOUT;
         self.responseHeaderFields = nil;
         self.eventSent = NO;
         self.delegate = theDelegate;
-        self.url = [theRequest URL];
         if ([theRequest isKindOfClass:[NSMutableURLRequest class]]) {
             self.request = (NSMutableURLRequest *)theRequest;
         } else {
@@ -267,12 +264,11 @@ customHeaderFields:(NSDictionary *)customHeaderFields
         self.identifier = (NSInteger)[coder decodeInt64ForKey:@"identifier"];
         self.userName = [coder decodeObjectForKey:@"username"];
         self.password = [coder decodeObjectForKey:@"password"];
-        self.url = [coder decodeObjectForKey:@"url"];
         self.shouldAllowSelfSignedCert = [coder decodeBoolForKey:@"shouldAllowSelfSignedCert"];
         self.clientIdentityRef = [coder decodeObjectForKey:@"clientIdentityRef"];
         self.manageCookies = [coder decodeBoolForKey:@"manageCookies"];
 
-        if (self.request == nil || self.url == nil) {
+        if (self.request == nil) {
             //Required fields not filled
             return nil;
         }
@@ -285,10 +281,13 @@ customHeaderFields:(NSDictionary *)customHeaderFields
     [coder encodeInt64:self.identifier forKey:@"identifier"];
     [coder encodeObject:self.userName forKey:@"username"];
     [coder encodeObject:self.password forKey:@"password"];
-    [coder encodeObject:self.url forKey:@"url"];
     [coder encodeBool:self.shouldAllowSelfSignedCert forKey:@"shouldAllowSelfSignedCert"];
     [coder encodeObject:self.clientIdentityRef forKey:@"clientIdentityRef"];
     [coder encodeBool:self.manageCookies forKey:@"manageCookies"];
+}
+
+- (NSURL *)url {
+    return self.request.URL;
 }
 
 - (void)resetState {

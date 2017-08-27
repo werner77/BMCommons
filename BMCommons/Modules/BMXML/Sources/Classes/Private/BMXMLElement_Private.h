@@ -1,8 +1,11 @@
 #import "BMXMLNode_Private.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BMXMLElement()
 
-+ (BMXMLElement *)elementWithXMLNode:(xmlNode *)node;
-- (BMXMLElement *)initWithXMLNode:(xmlNode *)node;
++ (nullable instancetype)instanceWithXMLNode:(xmlNode *)node;
 
 @end
+
+NS_ASSUME_NONNULL_END

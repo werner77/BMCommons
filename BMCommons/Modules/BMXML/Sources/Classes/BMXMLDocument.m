@@ -67,7 +67,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #import <BMCommons/BMXMLReader.h>
 #import <libxml/xmlmemory.h>
 #import "BMXMLDocument_Private.h"
-#import "BMXMLElement_Private.h"
+#import "BMXMLNode_Private.h"
 
 @implementation BMXMLDocument {
 @private
@@ -78,16 +78,41 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 @synthesize xmlDocument = _xmlDocument;
 @synthesize rootElement = _rootElement;
 
+- (instancetype)initWithXMLDocument:(xmlDocPtr)doc {
+    self = [super init];
+
+    if (self) {
+        if (doc == nil) {
+            return nil;
+        }
+        self.xmlDocument = doc;
+        xmlNode *root_element = xmlDocGetRootElement(doc);
+
+        if (root_element == nil) {
+            return nil;
+        }
+        BMXMLElement *element = [BMXMLElement instanceWithXMLNode:root_element];
+        self.rootElement = element;
+    }
+    return self;
+}
+
+- (instancetype)initWithRootElement:(BMXMLElement *)theRootElement {
+    xmlChar * version = (xmlChar *)"1.0";
+    xmlDocPtr theDoc = xmlNewDoc(version);
+    xmlDocSetRootElement(theDoc, theRootElement.libXMLNode);
+    theRootElement.libXMLDocument = theDoc;
+    return [self initWithXMLDocument:theDoc];
+}
+
+- (id)init {
+    BMXMLElement *rootElement = [BMXMLElement elementWithName:@""];
+    return [self initWithRootElement:rootElement];
+}
+
 + (BMXMLDocument *)documentWithXMLDocument:(xmlDocPtr)doc
 {
-    BMXMLDocument *newDocument = [[[self class] alloc] init];
-    newDocument.xmlDocument = doc;
-    
-    xmlNode *root_element = xmlDocGetRootElement(doc);
-    BMXMLElement *element = [BMXMLElement elementWithXMLNode:root_element];
-    newDocument.rootElement = element;
-	
-    return newDocument;
+    return [[self alloc] initWithXMLDocument:doc];
 }
 
 + (BMXMLDocument *)documentWithData:(NSData *)data error:(NSError **)error
@@ -106,11 +131,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 }
 
 + (BMXMLDocument *)documentWithRootElement:(BMXMLElement *)theRootElement {
-	xmlChar * version = (xmlChar *)"1.0";
-	xmlDocPtr theDoc = xmlNewDoc(version);
-	xmlDocSetRootElement(theDoc, theRootElement.libXMLNode);
-	theRootElement.libXMLDocument = theDoc;
-	return [self documentWithXMLDocument:theDoc];
+	return [[self alloc] initWithRootElement:theRootElement];
 }
 
 - (NSString *)XMLString

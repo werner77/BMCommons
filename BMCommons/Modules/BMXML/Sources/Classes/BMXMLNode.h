@@ -78,23 +78,26 @@ typedef NS_ENUM(NSUInteger, XMLExtraInfoFlags) {
     XMLExtraInfoEmptyElement = 4
 };
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BMXMLNode : NSObject <NSCopying>
 
 + (BMXMLNode *)nodeWithString:(NSString *)string;
+- (id)initWithString:(NSString *)string;
 
 - (XMLNodeKind) kind;
 - (BOOL) isTextNode;
 - (BOOL) isElementNode;
 - (NSInteger) index;
-- (BMXMLElement *)parent;
-- (BMXMLNode *)nextNode;
-- (BMXMLNode *)nextSibling;
-- (BMXMLNode *)previousNode;
-- (BMXMLNode *)previousSibling;
-- (NSString *)XMLString;
-- (NSString *)stringValue;
+- (nullable BMXMLElement *)parent;
+- (nullable BMXMLNode *)nextNode;
+- (nullable BMXMLNode *)nextSibling;
+- (nullable BMXMLNode *)previousNode;
+- (nullable BMXMLNode *)previousSibling;
+- (nullable NSString *)XMLString;
+- (nullable NSString *)stringValue;
 //String value with json escapes
-- (NSString *)jsonStringValue;
+- (nullable NSString *)jsonStringValue;
 - (BOOL)isJsonQuotedValueType;
 - (void)setJsonQuotedValueType:(BOOL)quoted;
 
@@ -106,3 +109,6 @@ typedef NS_ENUM(NSUInteger, XMLExtraInfoFlags) {
 - (void)addNodeAsPreviousSibling:(BMXMLNode *)node;
 
 @end
+
+NS_ASSUME_NONNULL_END
+

@@ -74,7 +74,7 @@
 #import <libxml/xpathInternals.h>
 #import "BMXMLUtilities.h"
 #import <BMCommons/BMOrderedDictionary.h>
-#import "BMXMLElement_Private.h"
+#import "BMXMLNode_Private.h"
 
 typedef NS_ENUM(NSUInteger, JSONElementType) {
     JSONElementTypeSingle = 0,
@@ -86,7 +86,7 @@ typedef NS_ENUM(NSUInteger, JSONElementType) {
 
 @interface BMXMLElement()
 - (NSArray *)_nodesForXPath:(NSString *)XPath error:(NSError **)outError;
-- (void)appendJSONString:(NSMutableString *)descriptionString withAttributePrefix:(NSString *)attributePrefix textContentIdentifier:(NSString *)textContentIdentifier elementType:(JSONElementType)elementType;
+- (BOOL)appendJSONString:(NSMutableString *)descriptionString withAttributePrefix:(NSString *)attributePrefix textContentIdentifier:(NSString *)textContentIdentifier elementType:(JSONElementType)elementType;
 @end
 
 @implementation BMXMLElement  {
@@ -96,10 +96,17 @@ typedef NS_ENUM(NSUInteger, JSONElementType) {
 static NSArray * childElementsOf(xmlNodePtr a_node, BMXMLElement *contextElement);
 static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode);
 
+- (id)init {
+    return [self initWithName:@""];
+}
+
 - (BMXMLElement *)initWithXMLNode:(xmlNode *)node
 {
     self = [super init];
-	
+
+    if (node == nil) {
+        return nil;
+    }
 	if (node->type != XML_ELEMENT_NODE) {
         return nil;
     }
@@ -124,16 +131,16 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode);
 	return [self initWithXMLNode:newElement];
 }
 
-+ (BMXMLElement *)elementWithXMLNode:(xmlNode *)node
++ (BMXMLElement *)instanceWithXMLNode:(xmlNode *)node
 {
-    BMXMLElement *element = [[[self class] alloc] initWithXMLNode:node];
+    BMXMLElement *element = [[self alloc] initWithXMLNode:node];
     return element;
 }
 
 // Creates and returns an XMLElement with 'name'.
 + (BMXMLElement *)elementWithName:(NSString *)name
 {
-    BMXMLElement *element = [[[self class] alloc] initWithName:name];
+    BMXMLElement *element = [[self alloc] initWithName:name];
     return element;
 }
 
@@ -213,7 +220,9 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode);
     
     [buffer appendString:@"{\n"];
     
-    [self appendJSONString:buffer withAttributePrefix:attributePrefix textContentIdentifier:textContentIdentifier elementType:JSONElementTypeSingle];
+    if (![self appendJSONString:buffer withAttributePrefix:attributePrefix textContentIdentifier:textContentIdentifier elementType:JSONElementTypeSingle]) {
+        return nil;
+    }
     
     [buffer appendString:@"\n}"];
     
@@ -228,18 +237,24 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode);
 
 - (NSString *)qualifiedName
 {
-    return self.namespacePrefix ? [NSString stringWithFormat:@"%@:%@", self.namespacePrefix, self.name] : self.name;
+    NSString *name = self.name;
+    if (name == nil) {
+        return nil;
+    }
+    return self.namespacePrefix ? [NSString stringWithFormat:@"%@:%@", self.namespacePrefix, name] : name;
 }
 
 - (NSString *)name
 {
-    return [BMXMLUtilities stringWithXMLChar:self.libXMLNode->name];
+    NSString *name = [BMXMLUtilities stringWithXMLChar:self.libXMLNode->name];
+    return name.length > 0 ? name : nil;
 }
 
 - (NSString *)namespacePrefix
 {
     if (self.libXMLNode->ns && self.libXMLNode->ns->prefix) {
-        return [BMXMLUtilities stringWithXMLChar:self.libXMLNode->ns->prefix];
+        NSString *prefix = [BMXMLUtilities stringWithXMLChar:self.libXMLNode->ns->prefix];
+        return prefix.length > 0 ? prefix : nil;
     }
     return nil;
 }
@@ -299,7 +314,7 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode);
 
 - (BMXMLNode *)lastChild
 {
-    return [BMXMLNode nodeWithXMLNode:xmlGetLastChild(self.libXMLNode)];
+    return [BMXMLNode instanceWithXMLNode:xmlGetLastChild(self.libXMLNode)];
 }
 
 - (BMXMLNode *)childAtIndex:(NSUInteger)index
@@ -421,12 +436,12 @@ static NSArray * childElementsOf(xmlNodePtr a_node, BMXMLElement *contextElement
     while (currentNode) {
         
         if (currentNode->type == XML_ELEMENT_NODE) {
-            BMXMLElement *childElement = [BMXMLElement elementWithXMLNode:currentNode];
+            BMXMLElement *childElement = [BMXMLElement instanceWithXMLNode:currentNode];
             if (childElement) {
                 [childElements addObject:childElement];
             }
         } else if (currentNode->type == XML_TEXT_NODE) {
-            BMXMLNode *childNode = [BMXMLNode nodeWithXMLNode:currentNode];
+            BMXMLNode *childNode = [BMXMLNode instanceWithXMLNode:currentNode];
             [childElements addObject:childNode];
         }
         
@@ -460,7 +475,7 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode)
         }
         
         xmlFree(attValue);
-        if (attributeName && attributeValue) {
+        if (attributeName.length > 0 && attributeValue) {
             [elementAttributes setValue:attributeValue forKey:attributeName];
         }
         
@@ -526,7 +541,7 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode)
         if (!nextNode || nextNode->type != XML_ELEMENT_NODE) {
             continue;
         }
-        BMXMLElement *nextResult = [BMXMLElement elementWithXMLNode:nextNode];
+        BMXMLElement *nextResult = [BMXMLElement instanceWithXMLNode:nextNode];
         [resultElements addObject:nextResult];
     }
     
@@ -570,7 +585,7 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode)
     xmlAttr *newAttribute = xmlNewProp(self.libXMLNode, [attributeName xmlChar], [attributeValue xmlChar]);
     
     if (newAttribute) {
-        return [BMXMLNode nodeWithXMLNode:(xmlNode *)newAttribute];
+        return [BMXMLNode instanceWithXMLNode:(xmlNode *) newAttribute];
     }
     
     return nil;
@@ -625,7 +640,7 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode)
             xmlNode *mergedTextNode = xmlTextMerge(child.libXMLNode, nextSibling.libXMLNode);
             
             /*XMLNode *merged = */
-			[BMXMLNode nodeWithXMLNode:mergedTextNode];
+            [BMXMLNode instanceWithXMLNode:mergedTextNode];
             [self consolidateConsecutiveTextNodes];
             return;
         }
@@ -638,7 +653,7 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode)
     //   NSAssert1(node.parent == nil, @"Cannot add a child that already has a parent.", node);
     
     xmlNode *newNode = xmlAddChild(self.libXMLNode, node.libXMLNode);
-    return [BMXMLNode nodeWithXMLNode:newNode];
+    return [BMXMLNode instanceWithXMLNode:newNode];
 }
 
 // Insert a child node at the specified index in the receiver.
@@ -656,7 +671,7 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode)
     NSAssert1(node->parent == NULL, @"Cannot add a child that already has a parent.", node);
     
     xmlNode *newNode = xmlAddChild(self.libXMLNode, node);
-    return [BMXMLNode nodeWithXMLNode:newNode];
+    return [BMXMLNode instanceWithXMLNode:newNode];
 }
 
 // Add the string as a text node of the receiver.
@@ -692,7 +707,7 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode)
     
     xmlNode *newNode = xmlNewTextChild(self.libXMLNode, NULL, [childName xmlChar], [nodeContent xmlChar]);
     
-    return [BMXMLElement elementWithXMLNode:newNode];
+    return [BMXMLElement instanceWithXMLNode:newNode];
 }
 
 - (NSString *)attributeNamed:(NSString *)attributeName ofFirstChildNodeNamed:(NSString *)childName {
@@ -716,25 +731,36 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode)
 	return value;
 }
 
-- (void)appendJSONString:(NSMutableString *)descriptionString withAttributePrefix:(NSString *)attributePrefix textContentIdentifier:(NSString *)textContentIdentifier elementType:(JSONElementType)elementType {
+- (BOOL)appendJSONString:(NSMutableString *)descriptionString withAttributePrefix:(NSString *)attributePrefix textContentIdentifier:(NSString *)textContentIdentifier elementType:(JSONElementType)elementType {
     
     NSDictionary *theAttributes = self.jsonAttributes;
+    NSString *name = self.name;
+
+    if (name == nil) {
+        return NO;
+    }
+
     if (self.childCount == 1 && theAttributes.count == 0) {
         BMXMLNode *child = [self firstChild];
         if ([child isTextNode]) {
-            
             if ((elementType & JSONElementTypeArray)) {
                 if ((elementType & JSONElementTypeFirst)) {
-                    [descriptionString appendFormat:@"\"%@\":[", self.name];
+                    [descriptionString appendFormat:@"\"%@\":[", name];
                 }
             } else {
-                [descriptionString appendFormat:@"\"%@\":", self.name];
+                [descriptionString appendFormat:@"\"%@\":", name];
             }
-            
+
+            NSString *jsonStringValue = [child jsonStringValue];
+
+            if (jsonStringValue == nil) {
+                return NO;
+            }
+
             if ([child isJsonQuotedValueType]) {
-                [descriptionString appendFormat:@"\"%@\"", [child jsonStringValue]];
+                [descriptionString appendFormat:@"\"%@\"", jsonStringValue];
             } else {
-                [descriptionString appendString:[child jsonStringValue]];
+                [descriptionString appendString:jsonStringValue];
             }
             
             if ((elementType & JSONElementTypeArray)) {
@@ -742,7 +768,7 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode)
                     [descriptionString appendString:@"]"];
                 }
             }
-            return;
+            return YES;
         }
     }
     
@@ -751,17 +777,17 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode)
     
     if ((elementType & JSONElementTypeArray)) {
         if (isEmpty) {
-            [descriptionString appendFormat:@"\"%@\":[]", self.name];
+            [descriptionString appendFormat:@"\"%@\":[]", name];
         } else if ((elementType & JSONElementTypeFirst)) {
-            [descriptionString appendFormat:@"\"%@\":[{", self.name];
+            [descriptionString appendFormat:@"\"%@\":[{", name];
         } else {
             [descriptionString appendString:@"{"];
         }
     } else {
         if (isEmpty) {
-            [descriptionString appendFormat:@"\"%@\":{}", self.name];
+            [descriptionString appendFormat:@"\"%@\":{}", name];
         } else {
-            [descriptionString appendFormat:@"\"%@\":{", self.name];
+            [descriptionString appendFormat:@"\"%@\":{", name];
         }
     }
     
@@ -828,7 +854,9 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode)
                     elementType |= JSONElementTypeLast;
                 }
                 
-                [element appendJSONString:descriptionString withAttributePrefix:attributePrefix textContentIdentifier:textContentIdentifier elementType:elementType];
+                if (![element appendJSONString:descriptionString withAttributePrefix:attributePrefix textContentIdentifier:textContentIdentifier elementType:elementType]) {
+                    return NO;
+                }
             }
             count++;
         }
@@ -836,6 +864,11 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode)
         
         if (textNode) {
             NSString *textString = [textNode jsonStringValue];
+
+            if (textString == nil) {
+                return NO;
+            }
+
             if (count > 1) {
                 textString = [textString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             }
@@ -859,6 +892,7 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode)
             [descriptionString appendString:@"}"];
         }
     }
+    return YES;
 }
 
 @end

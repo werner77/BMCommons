@@ -22,7 +22,7 @@
 #import <BMCommons/BMCore.h>
 #import <BMCommons/BMXMLElement.h>
 #import "BMXPathQuery_Private.h"
-#import "BMXMLElement_Private.h"
+#import "BMXMLNode_Private.h"
 
 @implementation BMXPathQuery {
 	xmlDocPtr doc;
@@ -32,43 +32,28 @@
 @synthesize doc;
 
 - (id)initWithXMLDocument:(NSData *)document {
-	if (self == [super init]) {  //TODO: should be only one = ?
-		
-		/* Load XML document */
-		self.doc = xmlReadMemory([document bytes], BMShortenUIntToIntSafely([document length], nil), "", NULL,
-								 XML_PARSE_RECOVER | XML_PARSE_NOENT | XML_PARSE_DTDATTR | XML_PARSE_NOCDATA);
-		if (self.doc == NULL) {
-			LogError(@"Unable to parse document");
-			return nil;
-		}
-		shouldFreeDoc = YES;
-	}
-	return self;
+	return [self initWithDoc:xmlReadMemory([document bytes], BMShortenUIntToIntSafely([document length], nil), "", NULL,
+			XML_PARSE_RECOVER | XML_PARSE_NOENT | XML_PARSE_DTDATTR | XML_PARSE_NOCDATA) freeWhenDone:YES];
 }
 
 - (id)initWithHTMLDocument:(NSData *)document {
-	if (self == [super init]) {  //TODO: should be only one = ?
-		
-		/* Load XML document */
-		self.doc = htmlReadMemory([document bytes], BMShortenUIntToIntSafely([document length], nil), "", NULL, HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
-		
-		if (self.doc == NULL) {
-			LogError(@"Unable to parse document");
-			return nil;
-		}
-		shouldFreeDoc = YES;
-	}
-	return self;
+	return [self initWithDoc:htmlReadMemory([document bytes], BMShortenUIntToIntSafely([document length], nil), "", NULL,
+			HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR) freeWhenDone:YES];
 }
 
-- (id)initWithDoc:(xmlDocPtr)theDoc {
+- (id)init {
+	xmlChar * version = (xmlChar *)"1.0";
+	xmlDocPtr theDoc = xmlNewDoc(version);
+	return [self initWithDoc:theDoc freeWhenDone:YES];
+}
+
+- (id)initWithDoc:(xmlDocPtr)theDoc freeWhenDone:(BOOL)freeWhenDone {
 	if ((self = [super init])) {
 		self.doc = theDoc;
-		shouldFreeDoc = NO;
+		shouldFreeDoc = freeWhenDone;
 	}
 	return self;
 }
-
 
 - (void)dealloc {
 	if (shouldFreeDoc) {
@@ -103,9 +88,9 @@
 					xmlNode *nodePtr = nodes->nodeTab[i];
 					BMXMLNode *node = nil;
 					if (nodePtr->type == XML_TEXT_NODE) {
-						node = [BMXMLNode nodeWithXMLNode:nodePtr];
+						node = [BMXMLNode instanceWithXMLNode:nodePtr];
 					} else if (nodePtr->type == XML_ELEMENT_NODE) {
-						node = [BMXMLElement elementWithXMLNode:nodePtr];
+						node = [BMXMLElement instanceWithXMLNode:nodePtr];
 					} 		
 					if (node) {
 						[resultNodes addObject:node];

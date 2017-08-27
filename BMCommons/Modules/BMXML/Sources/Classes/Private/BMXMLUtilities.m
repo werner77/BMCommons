@@ -71,10 +71,7 @@ NSString *XMLParsingErrorDomainString = @"XMLParsingErrorDomain";
 
 + (NSString *)stringWithXMLChar:(const xmlChar *)XMLString
 {
-    if (strlen((const char *)XMLString)) {
-        return [NSString stringWithCString:(const char *)XMLString encoding:NSUTF8StringEncoding];
-    }
-    return nil;
+    return [NSString stringWithCString:(const char *)XMLString encoding:NSUTF8StringEncoding];
 }
 
 /**

@@ -1,11 +1,15 @@
 #import <libxml/xmlmemory.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BMXMLNode()
 
 @property (assign) xmlNode *libXMLNode;
-@property (assign) xmlDoc *libXMLDocument;
+@property (nullable, assign) xmlDoc *libXMLDocument;
 
-+ (BMXMLNode *)nodeWithXMLNode:(xmlNode *)nodeWithXMLNode;
-- (id)initWithXMLNode:(xmlNode *)node;
++ (nullable instancetype)instanceWithXMLNode:(xmlNode *)nodeWithXMLNode;
+- (nullable instancetype)initWithXMLNode:(xmlNode *)node NS_DESIGNATED_INITIALIZER;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -66,14 +66,15 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMXMLNode.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class describing an XML element.
  */
 @interface BMXMLElement : BMXMLNode
 
-+ (BMXMLElement *)elementWithName:(NSString *)name;
-
-- (BMXMLElement *)initWithName:(NSString *)name;
++ (instancetype)elementWithName:(NSString *)name;
+- (instancetype)initWithName:(NSString *)name NS_DESIGNATED_INITIALIZER;
 
 - (void)setArrayElement:(BOOL)arrayElement;
 - (BOOL)isArrayElement;
@@ -81,29 +82,29 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 - (void)setEmptyElement:(BOOL)empty;
 - (BOOL)isEmptyElement;
 
-- (NSString *)name;
-- (NSString *)namespacePrefix;
+- (nullable NSString *)name;
+- (nullable NSString *)namespacePrefix;
 - (NSArray *)children;
 - (NSArray *)descendants;
 - (NSUInteger)childCount;
-- (BMXMLNode *)firstChild;
-- (BMXMLNode *)lastChild;
-- (NSString *)qualifiedName;
-- (NSDictionary *)attributes;
+- (nullable BMXMLNode *)firstChild;
+- (nullable BMXMLNode *)lastChild;
+- (nullable NSString *)qualifiedName;
+- (nullable NSDictionary *)attributes;
 - (NSString *)attributesString;
 
 - (BMXMLNode *)childAtIndex:(NSUInteger)index;
-- (BMXMLElement *)firstChildNamed:(NSString *)matchName;
-- (BMXMLElement *)lastChildNamed:(NSString *)matchName;
-- (BMXMLElement *)firstDescendantNamed:(NSString *)matchName;
+- (nullable BMXMLElement *)firstChildNamed:(NSString *)matchName;
+- (nullable BMXMLElement *)lastChildNamed:(NSString *)matchName;
+- (nullable BMXMLElement *)firstDescendantNamed:(NSString *)matchName;
 - (NSArray *)childrenNamed:(NSString *)matchName;
 - (NSArray *)descendantsNamed:(NSString *)matchName;
 - (NSArray *)elementsWithAttributeNamed:(NSString *)attributeName;
 - (NSArray *)elementsWithAttributeNamed:(NSString *)attributeName attributeValue:(NSString *)attributeValue;
 
-- (NSArray *)elementsForXPath:(NSString *)XPath error:(NSError **)outError;
-- (NSArray *)elementsForXPath:(NSString *)XPath prepareNamespaces:(NSArray *)namespaces error:(NSError **)outError;
-- (NSArray *)elementsForXPath:(NSString *)XPath namespaces:(NSDictionary *)namespaces error:(NSError **)outError;
+- (nullable NSArray *)elementsForXPath:(NSString *)XPath error:(NSError **)outError;
+- (nullable NSArray *)elementsForXPath:(NSString *)XPath prepareNamespaces:(NSArray *)namespaces error:(NSError **)outError;
+- (nullable NSArray *)elementsForXPath:(NSString *)XPath namespaces:(NSDictionary *)namespaces error:(NSError **)outError;
 
 - (void)insertChild:(BMXMLNode *)node atIndex:(NSUInteger)index;
 - (BMXMLNode *)addChild:(BMXMLNode *)node;
@@ -114,14 +115,16 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 - (void)consolidateConsecutiveTextNodes;
 
-- (NSString *)attributeNamed:(NSString *)name;
+- (nullable NSString *)attributeNamed:(NSString *)name;
 - (BMXMLNode *)addAttribute:(NSString *)attributeName value:(NSString *)attributeValue;
 - (void)deleteAttributeNamed:(NSString *)attributeName;
 
 //Added methods for convenience
-- (NSString *)attributeNamed:(NSString *)name ofFirstChildNodeNamed:(NSString *)childName;
-- (NSString *)nodeTextOfFirstChildNodeNamed:(NSString *)childName;
+- (nullable NSString *)attributeNamed:(NSString *)name ofFirstChildNodeNamed:(NSString *)childName;
+- (nullable NSString *)nodeTextOfFirstChildNodeNamed:(NSString *)childName;
 
-- (NSString *)JSONStringWithAttributePrefix:(NSString *)attributePrefix textContentIdentifier:(NSString *)textContentIdentifier;
+- (nullable NSString *)JSONStringWithAttributePrefix:(NSString *)attributePrefix textContentIdentifier:(NSString *)textContentIdentifier;
 
 @end
+
+NS_ASSUME_NONNULL_END

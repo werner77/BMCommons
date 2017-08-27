@@ -115,20 +115,24 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 */
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class for reading and parsing XML data using SAX parsing.
  */
 @interface BMXMLReaderSAX : BMXMLReader
 
-@property (nonatomic, strong) id currentModelObject;
-@property (nonatomic, strong) NSDictionary *modelObjectDictionary;
-@property (nonatomic, strong) NSMutableArray *parsedModelObjects;
-@property (nonatomic, strong) NSMutableString *currentElementContent;
-@property (nonatomic, strong) NSString *childElementSetterSelectorName;
+@property (nullable, nonatomic, strong) id currentModelObject;
+@property (nullable, nonatomic, strong) NSDictionary *modelObjectDictionary;
+@property (nullable, nonatomic, strong) NSMutableArray *parsedModelObjects;
+@property (nullable, nonatomic, strong) NSMutableString *currentElementContent;
+@property (nullable, nonatomic, strong) NSString *childElementSetterSelectorName;
 
-- (BOOL)parseXML:(const char *)XMLString parseError:(NSError **)parseError;
-- (BOOL)parseXMLFileAtURL:(NSURL *)URL parseError:(NSError **)error;
+- (BOOL)parseXML:(const char *)XMLString parseError:(NSError * _Nullable *_Nullable )parseError;
+- (BOOL)parseXMLFileAtURL:(NSURL *)URL parseError:(NSError *_Nullable *_Nullable )error;
 
 - (void)releaseModelObjects;
 
 @end
+
+NS_ASSUME_NONNULL_END

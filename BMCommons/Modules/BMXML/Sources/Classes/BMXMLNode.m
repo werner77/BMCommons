@@ -67,7 +67,6 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #import <BMCommons/BMXMLElement.h>
 #import "BMXMLUtilities.h"
 #import "BMXMLNode_Private.h"
-#import "BMXMLElement_Private.h"
 
 @implementation BMXMLNode  {
 @private
@@ -78,21 +77,23 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 @synthesize libXMLNode = _libXMLNode;
 @synthesize libXMLDocument = _libXMLDocument;
 
-+ (BMXMLNode *)nodeWithXMLNode:(xmlNode *)nodeWithXMLNode
++ (BMXMLNode *)instanceWithXMLNode:(xmlNode *)nodeWithXMLNode
 {
-    if (nodeWithXMLNode->type != XML_TEXT_NODE) {
-        return nil;
-    }
-
-    BMXMLNode *node = [[[self class] alloc] initWithXMLNode:nodeWithXMLNode];
-    
-    return node;
+    return [[self alloc] initWithXMLNode:nodeWithXMLNode];
 }
 
 + (BMXMLNode *)nodeWithString:(NSString *)string
 {
-    xmlNode *newNode = xmlNewText([string xmlChar]);    
-    return [[self class] nodeWithXMLNode:newNode];
+    return [[self alloc] initWithString:string];
+}
+
+- (id)init {
+    return [self initWithString:@""];
+}
+
+- (id)initWithString:(NSString *)string {
+    xmlNode *newNode = xmlNewText([string xmlChar]);
+    return [self initWithXMLNode:newNode];
 }
 
 - (id)initWithXMLNode:(xmlNode *)node
@@ -100,6 +101,12 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
     self = [super init];
     
     if (self) {
+        if (!node) {
+            return nil;
+        }
+        if (node->type != XML_TEXT_NODE) {
+            return nil;
+        }
         self.libXMLNode = node;
     }
     
@@ -203,7 +210,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
     // If the node doesn't have a nextNode, its next node is its parent's nextSibling.
     xmlNode *next = self.libXMLNode->parent->next;
     
-    return [BMXMLElement elementWithXMLNode:next];
+    return [BMXMLElement instanceWithXMLNode:next];
 }
     
 - (BMXMLNode *)nextSibling
@@ -215,9 +222,9 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
     }
     
     if (nextSibling->type == XML_ELEMENT_NODE) {
-        return [BMXMLElement elementWithXMLNode:nextSibling];
+        return [BMXMLElement instanceWithXMLNode:nextSibling];
     }
-    return [BMXMLNode nodeWithXMLNode:nextSibling];
+    return [BMXMLNode instanceWithXMLNode:nextSibling];
 }
 
 - (BMXMLNode *)previousNode
@@ -241,14 +248,14 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
     }
     
     if (previousSibling->type == XML_ELEMENT_NODE) {
-        return [BMXMLElement elementWithXMLNode:previousSibling];
+        return [BMXMLElement instanceWithXMLNode:previousSibling];
     }
-    return [BMXMLNode nodeWithXMLNode:previousSibling];
+    return [BMXMLNode instanceWithXMLNode:previousSibling];
 }
 
 - (BMXMLElement *)parent
 {
-    return [BMXMLElement elementWithXMLNode:self.libXMLNode->parent];
+    return [BMXMLElement instanceWithXMLNode:self.libXMLNode->parent];
 }
 
 - (NSInteger)index

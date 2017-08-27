@@ -65,15 +65,20 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class describing an XML model object.
  */
 @protocol BMXMLModelObject
 
-- (NSMutableDictionary *)XMLAttributes;
-- (void)setXMLAttributes:(NSMutableDictionary *)attributes;
+- (nullable NSMutableDictionary *)XMLAttributes;
+- (void)setXMLAttributes:(nullable NSMutableDictionary *)attributes;
 
 + (NSDictionary *)childElements;
 + (NSDictionary *)setterMethodsAndChildElementNames;
 
 @end
+
+NS_ASSUME_NONNULL_END
+

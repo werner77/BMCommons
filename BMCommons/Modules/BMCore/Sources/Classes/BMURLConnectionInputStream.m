@@ -27,16 +27,16 @@
 - (id)initWithRequest:(NSURLRequest*)request urlConnectionDelegate:(id)theDelegate
 {
     if ((self = [super init])) {
-        if (!request) {
+        if (request == nil) {
             return nil;
         }
         self.request = request;
         [self initializeConnection];
-		_urlConnectionDelegate = theDelegate;
 
         if (_connection == nil) {
             return nil;
         }
+		_urlConnectionDelegate = theDelegate;
     }
     return self;
 }

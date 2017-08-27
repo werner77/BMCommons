@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMCore.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BMXML Module.
  */
 @interface BMXML : NSObject
 
 @end
+
+NS_ASSUME_NONNULL_END

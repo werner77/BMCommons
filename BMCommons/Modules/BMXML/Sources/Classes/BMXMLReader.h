@@ -65,6 +65,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMXMLDocument;
 
 /**
@@ -72,9 +74,11 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
  */
 @interface BMXMLReader : NSObject
 
-+ (BMXMLDocument *)parseXMLFileAtURL:(NSURL *)URL parseError:(NSError **)error;
-+ (BMXMLDocument *)parseXMLString:(NSString *)XMLString parseError:(NSError **)error;
-+ (BMXMLDocument *)parseXMLData:(NSData *)XMLData parseError:(NSError **)error;
-+ (BMXMLDocument *)parseXML:(const char *)XMLString parseError:(NSError **)parseError;
++ (nullable BMXMLDocument *)parseXMLFileAtURL:(NSURL *)URL parseError:(NSError * _Nullable * _Nonnull)error;
++ (nullable BMXMLDocument *)parseXMLString:(NSString *)XMLString parseError:(NSError * _Nullable * _Nonnull)error;
++ (nullable BMXMLDocument *)parseXMLData:(NSData *)XMLData parseError:(NSError * _Nullable * _Nonnull)error;
++ (nullable BMXMLDocument *)parseXML:(const char *)XMLString parseError:(NSError * _Nullable * _Nonnull)parseError;
 
 @end
+
+NS_ASSUME_NONNULL_END

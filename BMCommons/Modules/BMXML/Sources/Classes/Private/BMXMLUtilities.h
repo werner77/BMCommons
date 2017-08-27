@@ -66,6 +66,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #import <Foundation/Foundation.h>
 #import <libxml/xmlmemory.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 extern NSString *XMLParsingErrorDomainString;
 
 /**
@@ -75,14 +77,16 @@ extern NSString *XMLParsingErrorDomainString;
 {
 }
 
-+ (NSString *)stringWithXMLChar:(const xmlChar *)XMLString;
-+ (NSString *)jsonStringWithXMLChar:(const xmlChar *)XMLString;
++ (nullable NSString *)stringWithXMLChar:(const xmlChar *)XMLString;
++ (nullable NSString *)jsonStringWithXMLChar:(const xmlChar *)XMLString;
 + (NSError *)errorWithXMLError:(xmlError *)errorWithXMLError;
 
 @end
 
 @interface NSString (XMLExtensions)
 
-- (const xmlChar *)xmlChar;
+- (nullable const xmlChar *)xmlChar;
 
 @end
+
+NS_ASSUME_NONNULL_END

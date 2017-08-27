@@ -66,17 +66,23 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMXMLElement.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class describing an XML document.
  */
 @interface BMXMLDocument : NSObject
 
 @property (strong) BMXMLElement *rootElement;
-@property (strong, readonly) NSString *XMLString;
+@property (nullable, strong, readonly) NSString *XMLString;
 
-+ (BMXMLDocument *)documentWithData:(NSData *)data error:(NSError **)error;
-+ (BMXMLDocument *)documentWithXMLString:(NSString *)string error:(NSError **)error;
-+ (BMXMLDocument *)documentWithContentsOfURL:(NSURL *)URL error:(NSError **)error;
-+ (BMXMLDocument *)documentWithRootElement:(BMXMLElement *)theRootElement;
++ (nullable BMXMLDocument *)documentWithData:(NSData *)data error:(NSError * _Nullable * _Nonnull)error;
++ (nullable BMXMLDocument *)documentWithXMLString:(NSString *)string error:(NSError * _Nullable * _Nonnull)error;
++ (nullable BMXMLDocument *)documentWithContentsOfURL:(NSURL *)URL error:(NSError * _Nullable * _Nonnull)error;
++ (nullable BMXMLDocument *)documentWithRootElement:(BMXMLElement *)theRootElement;
+
+- (nullable instancetype)initWithRootElement:(BMXMLElement *)theRootElement NS_DESIGNATED_INITIALIZER;
 
 @end
+
+NS_ASSUME_NONNULL_END

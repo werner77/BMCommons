@@ -14,6 +14,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Class for performing XPath queries.
  *
@@ -23,8 +25,10 @@
  */
 @interface BMXPathQuery : NSObject
 
-- (id)initWithXMLDocument:(NSData *)document;
-- (id)initWithHTMLDocument:(NSData *)document;
-- (NSArray *)performXPathQuery:(NSString *)query;
+- (nullable id)initWithXMLDocument:(NSData *)document;
+- (nullable id)initWithHTMLDocument:(NSData *)document;
+- (nullable NSArray *)performXPathQuery:(NSString *)query;
 
 @end
+
+NS_ASSUME_NONNULL_END
