@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @protocol BMNamedObject<NSObject>
 
+/**
+ * The name for the object or null if not defined.
+ */
 - (nullable NSString *)name;
 
 @end

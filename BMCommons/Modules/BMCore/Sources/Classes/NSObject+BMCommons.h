@@ -55,18 +55,29 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)bmPerformBlockOnCurrentRunloop:(void (^)(BOOL timeoutOccured))block whenPredicate:(BOOL (^)(void))predicatedBlock timeout:(NSTimeInterval)timeout;
 
 /**
- Class method equivalents to instance methods.
+ Class method equivalent to instance methods.
  */
 + (void)bmPerformBlock:(void (^)(void))block afterDelay:(NSTimeInterval)delay;
 
+/**
+ Class method equivalent to instance methods.
+ */
 + (void)bmPerformBlockInBackground:(id _Nullable (^)(void))block withCompletion:(void (^)(id _Nullable resultFromBlock))completion;
 
+/**
+ Class method equivalent to instance methods.
+ */
 + (void)bmPerformBlock:(id _Nullable (^)(void))block onQueue:(dispatch_queue_t)queue withCompletion:(void (^)(id _Nullable resultFromBlock))completion;
 
+/**
+ Class method equivalent to instance methods.
+ */
 + (void)bmPerformBlockOnMainThread:(void (^)(void))block;
 
+/**
+ Class method equivalent to instance methods.
+ */
 + (void)bmPerformBlockOnMainThread:(void (^)(void))block waitUntilDone:(BOOL)waitUntilDone;
-
 
 /**
  Perform selector method with multiple args.

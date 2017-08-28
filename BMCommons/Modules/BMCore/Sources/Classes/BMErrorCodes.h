@@ -57,6 +57,9 @@ NS_ASSUME_NONNULL_BEGIN
 	
 }
 
+/**
+ * Returns an applicable error message for the specified error code.
+ */
 + (nullable NSString *)errorMessageForCodeAsString:(int)code;
 
 @end

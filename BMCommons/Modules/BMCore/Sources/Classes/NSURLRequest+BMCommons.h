@@ -12,11 +12,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSURLRequest (BMCommons)
 
+/**
+ * Setter for the timeout interval for a request.
+ */
 - (void)bmSetTimeoutInterval:(NSTimeInterval)timeoutInterval;
+
+/**
+ * Setter for the cache policy of a request.
+ */
 - (void)bmSetCachePolicy:(NSURLRequestCachePolicy)cachePolicy;
 
-//Use this in combination with the URL to determine uniqueness of a request.
-//The digest is calculated from the HTTP method, URL, header fields and body.
+/**
+ * String containing a digest uniquely identifying the request.
+ *
+ * The digest is calculated from the HTTP method, URL, header fields and body.
+ */
 - (NSString *)bmDigest;
 
 /**

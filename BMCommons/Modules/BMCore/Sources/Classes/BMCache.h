@@ -11,8 +11,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class BMOrderedDictionary;
-
 /**
  Thread safe cache implementation with a LRU eviction policy.
  
@@ -50,16 +48,34 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable id)objectForKey:(id <NSCopying, NSObject>)key;
 
+/**
+ * Returns true iff the cache contains an object for the specified key.
+ */
 - (BOOL)hasObjectForKey:(id<NSCopying, NSObject>)key;
 
+/**
+ * Sets the specified object for the specified key.
+ */
 - (void)setObject:(id)object forKey:(id<NSCopying, NSObject>)key;
 
+/**
+ * Removes the object for the specified key if it exists.
+ */
 - (void)removeObjectForKey:(id<NSCopying, NSObject>)key;
 
+/**
+ * Clears the entire cache.
+ */
 - (void)clear;
 
+/**
+ * Copied array containing all the keys of the cache.
+ */
 - (NSArray *)allKeys;
 
+/**
+ * Copied array containing all the objects in the cache.
+ */
 - (NSArray *)allObjects;
 
 @end

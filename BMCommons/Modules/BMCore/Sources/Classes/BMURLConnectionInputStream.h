@@ -15,10 +15,17 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Inputstream that reads from a NSURLConnection.
  */
-
 @protocol BMURLConnectionInputStreamDelegate <NSStreamDelegate>
 
 @optional
+/**
+ * Return true if the specified error is a retriable error.
+ *
+ * @param inputStream The input strea,
+ * @param error The error encountered
+ * @param retryCount The current retry count
+ * @return true if a retry can be done, false otherwise.
+ */
 - (BOOL)stream:(BMURLConnectionInputStream *)inputStream isRetriableError:(NSError *)error withRetryCount:(NSUInteger)retryCount;
 
 @end

@@ -89,35 +89,96 @@ extern NSString * const RKLICURegexPostContextErrorKey;
 extern NSString * const RKLICURegexRegexErrorKey;
 extern NSString * const RKLICURegexRegexOptionsErrorKey;
 
-// These must be idential to their ICU regex counterparts. See http://www.icu-project.org/userguide/regexp.html
-enum {
-  RKLNoOptions             = 0,
-  RKLCaseless              = 2,
-  RKLComments              = 4,
-  RKLDotAll                = 32,
-  RKLMultiline             = 8,
-  RKLUnicodeWordBoundaries = 256
+/**
+ * Regular expression options, identical to their icu counterparts.
+ */
+typedef NS_OPTIONS(NSUInteger, RKLRegexOptions) {
+    RKLNoOptions             = 0,
+    RKLCaseless              = 2,
+    RKLComments              = 4,
+    RKLDotAll                = 32,
+    RKLMultiline             = 8,
+    RKLUnicodeWordBoundaries = 256
 };
-typedef uint32_t RKLRegexOptions;
 
+/**
+ * Extensions for performing regex operation on NSString
+ */
 @interface NSString (RegexKitLiteAdditions)
 
+/**
+ * Clears the cache.
+ */
 + (void)clearStringCache;
 
+/**
+ * Returns the capture count for the specified regex expression.
+ *
+ * Returns -1 in case of error.
+ */
 + (NSInteger)captureCountForRegex:(NSString *)regexString;
+
+/**
+ * Returns the capture count for the specified regex expression, with options and error in case something went wrong.
+ *
+ * Returns -1 in case of error.
+ *
+ * @param regexString The regular expression
+ * @param options The options to use for matching
+ * @param error Optional error to inspect the error in case something went wrong
+ * @return The capture count or -1 in case of error.
+ */
 + (NSInteger)captureCountForRegex:(NSString *)regexString options:(RKLRegexOptions)options error:(NSError * _Nullable * _Nullable)error;
 
+/**
+ * Whether or not the receiver is matches by the specified regex expression.
+ *
+ * @param regexString The regular expression
+ * @return true if matched, false otherwise.
+ */
 - (BOOL)isMatchedByRegex:(NSString *)regexString;
+
+/**
+ * Whether or not the receiver is matches by the specified regex expression.
+ *
+ * @param regexString The regular expression
+ * @param options The options to use for matching
+ * @param range The range to use
+ * @param error Optional error to inspect the error in case something went wrong
+ * @return The capture count or -1 in case of error.
+ */
 - (BOOL)isMatchedByRegex:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range error:(NSError * _Nullable * _Nullable)error;
 
 - (NSRange)rangeOfRegex:(NSString *)regexString;
 - (NSRange)rangeOfRegex:(NSString *)regexString capture:(NSInteger)capture;
 - (NSRange)rangeOfRegex:(NSString *)regexString inRange:(NSRange)range;
+
+/**
+ * The range of the regular expression if matched.
+ *
+ * @param regexString The regular expression to match
+ * @param options The options to use
+ * @param range the range to search in
+ * @param capture The index of the capture group
+ * @param error The optional error to inspect the error in case something went wrong.
+ * @return The matched range. Returns NSNotFound as location in case no match was found.
+ */
 - (NSRange)rangeOfRegex:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError * _Nullable * _Nullable)error;
 
 - (nullable NSString *)stringByMatching:(NSString *)regexString;
 - (nullable NSString *)stringByMatching:(NSString *)regexString capture:(NSInteger)capture;
 - (nullable NSString *)stringByMatching:(NSString *)regexString inRange:(NSRange)range;
+
+/**
+ * Returns the matches string for the specified regex.
+ *
+ * @param regexString the regular expression
+ * @param options the options to use
+ * @param range the range to search in
+ * @param capture the index of the capture group
+ * @param error The optional error to inspect the error in case something went wrong.
+ * @return The matched string or nil if no match was found.
+ */
 - (nullable NSString *)stringByMatching:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError * _Nullable * _Nullable)error;
 
 @end

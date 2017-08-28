@@ -289,14 +289,16 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
     xmlUnlinkNode(self.libXMLNode);
 }
 
-- (void)addNodeAsNextSibling:(BMXMLNode *)node
+- (BMXMLNode *)addNodeAsNextSibling:(BMXMLNode *)node
 {
-    xmlAddNextSibling(self.libXMLNode, node.libXMLNode);
+    xmlNodePtr n = xmlAddNextSibling(self.libXMLNode, node.libXMLNode);
+    return [[BMXMLNode alloc] initWithXMLNode:n];
 }
 
-- (void)addNodeAsPreviousSibling:(BMXMLNode *)node
+- (BMXMLNode *)addNodeAsPreviousSibling:(BMXMLNode *)node
 {
-    xmlAddPrevSibling(self.libXMLNode, node.libXMLNode);
+    xmlNodePtr n = xmlAddPrevSibling(self.libXMLNode, node.libXMLNode);
+    return [[BMXMLNode alloc] initWithXMLNode:n];
 }
 
 #pragma mark -

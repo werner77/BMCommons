@@ -82,31 +82,119 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BMXMLNode : NSObject <NSCopying>
 
+/**
+ * Used for json compatibility, whether the value is quoted or not.
+ */
+@property (nonatomic, getter=isJsonQuotedValueType) BOOL jsonQuotedValueType;
+
 + (BMXMLNode *)nodeWithString:(NSString *)string;
+
+/**
+ * Initializes this node with the specified text.
+ */
 - (id)initWithString:(NSString *)string;
 
+/**
+ * The kind of node.
+ */
 - (XMLNodeKind) kind;
+
+/**
+ * Returns true iff this node is a text node.
+ */
 - (BOOL) isTextNode;
+
+/**
+ * Returns true iff this node is an element node.
+ */
 - (BOOL) isElementNode;
+
+/**
+ * The index of this node within its parent.
+ *
+ * Returns NSNotFound if not within a parent context.
+ */
 - (NSInteger) index;
+
+/**
+ * The parent of this node.
+ */
 - (nullable BMXMLElement *)parent;
+
+/**
+ * Returns the next sibling if present, otherwise delegates to parent.
+ *
+ * @return The next node if present, nil otherwise.
+ */
 - (nullable BMXMLNode *)nextNode;
+
+/**
+ * Returns the next sibling if present.
+ *
+ * @return The next node if present, nil otherwise.
+ */
 - (nullable BMXMLNode *)nextSibling;
+
+/**
+ * Returns the previous sibling if present, otherwise delegates to parent.
+ *
+ * @return The previous node if present, nil otherwise.
+ */
 - (nullable BMXMLNode *)previousNode;
+
+/**
+ * Returns the previous sibling if present.
+ *
+ * @return The previous node if present, nil otherwise.
+ */
 - (nullable BMXMLNode *)previousSibling;
+
+/**
+ * Returns this node serialized as XMLString.
+ *
+ * @return The string or nil if serialization failed.
+ */
 - (nullable NSString *)XMLString;
+
+/**
+ * Returns the node content as string.
+ *
+ * @return The string or nil if serialization failed.
+ */
 - (nullable NSString *)stringValue;
-//String value with json escapes
+
+/**
+ * Returns this node serialized as json string value which is properly escaped to be valid JSON.
+ *
+ * @return The string value or nil if unsucceful.
+ */
 - (nullable NSString *)jsonStringValue;
-- (BOOL)isJsonQuotedValueType;
-- (void)setJsonQuotedValueType:(BOOL)quoted;
 
-- (BMXMLElement *)rootElement;
+/**
+ * The root element by recursively traversing the parents for this node.
+ *
+ * @return The root element if found, nil otherwise.
+ */
+- (nullable BMXMLElement *)rootElement;
 
+/**
+ * Detaches this node from the XML tree.
+ */
 - (void)detach;
 
-- (void)addNodeAsNextSibling:(BMXMLNode *)node;
-- (void)addNodeAsPreviousSibling:(BMXMLNode *)node;
+/**
+ * Adds a node as next sibling.
+ *
+ * @param node The node
+ */
+- (BMXMLNode *)addNodeAsNextSibling:(BMXMLNode *)node;
+
+/**
+ * Adds a node as previous sibling.
+ *
+ * @param node The node
+ */
+- (BMXMLNode *)addNodeAsPreviousSibling:(BMXMLNode *)node;
 
 @end
 

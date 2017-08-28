@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSUserDefaults (BMCommons)
 
+/**
+ * Safely sets the object for the specified key, ignoring nil key and/or value.
+ */
 - (void)bmSafeSetObject:(nullable id)object forKey:(nullable NSString *)key;
 
 @end

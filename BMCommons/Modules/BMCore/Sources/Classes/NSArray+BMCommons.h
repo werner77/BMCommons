@@ -19,8 +19,20 @@ NS_ASSUME_NONNULL_BEGIN
  Performs the supplied selector on all objects in this array.
  */
 - (void)bmPerformSelectorOnAllObjects:(SEL)selector;
+
+/**
+ Performs the supplied selector on all objects in this array.
+ */
 - (void)bmPerformSelectorOnAllObjects:(SEL)selector withObject:(nullable id)p1;
+
+/**
+ Performs the supplied selector on all objects in this array.
+ */
 - (void)bmPerformSelectorOnAllObjects:(SEL)selector withObject:(nullable id)p1 withObject:(nullable id)p2;
+
+/**
+ Performs the supplied selector on all objects in this array.
+ */
 - (void)bmPerformSelectorOnAllObjects:(SEL)selector withObject:(nullable id)p1 withObject:(nullable id)p2 withObject:(nullable id)p3;
 
 /**

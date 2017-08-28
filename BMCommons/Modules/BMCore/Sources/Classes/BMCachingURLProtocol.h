@@ -58,6 +58,9 @@ typedef NS_ENUM(NSUInteger, BMCachingURLProtocolPredicateValue) {
  */
 typedef BMCachingURLProtocolPredicateValue (^BMCachingURLProtocolPredicateBlock)(NSURLRequest *request);
 
+/**
+ * Custom URL protocol which implements caching based on BMURLCache for NSURLRequests.
+ */
 @interface BMCachingURLProtocol : NSURLProtocol
 
 /**
@@ -154,9 +157,8 @@ typedef BMCachingURLProtocolPredicateValue (^BMCachingURLProtocolPredicateBlock)
 + (BOOL)mockConnectionFailureIfPlaybackFails;
 + (void)setMockConnectionFailureIfPlaybackFails:(BOOL)b;
 
-
 /**
- * Returns true if any connection is active managed by this protocol.
+ * Returns true if any connection is actively managed by this protocol.
  *
  * @return true if loading, false otherwise.
  */

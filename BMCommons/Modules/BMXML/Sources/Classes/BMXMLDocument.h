@@ -73,15 +73,52 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface BMXMLDocument : NSObject
 
+/**
+ * The root element for the document.
+ */
 @property (strong) BMXMLElement *rootElement;
+
+/**
+ * String resulting from serialization of the receiver.
+ */
 @property (nullable, strong, readonly) NSString *XMLString;
 
+/**
+ * Parses the specified data to an XML document.
+ *
+ * @param data The data to parse
+ * @param error Error buffer in case error occurs.
+ * @return The document or nil if unsuccessful
+ */
 + (nullable BMXMLDocument *)documentWithData:(NSData *)data error:(NSError * _Nullable * _Nonnull)error;
-+ (nullable BMXMLDocument *)documentWithXMLString:(NSString *)string error:(NSError * _Nullable * _Nonnull)error;
-+ (nullable BMXMLDocument *)documentWithContentsOfURL:(NSURL *)URL error:(NSError * _Nullable * _Nonnull)error;
-+ (nullable BMXMLDocument *)documentWithRootElement:(BMXMLElement *)theRootElement;
 
-- (nullable instancetype)initWithRootElement:(BMXMLElement *)theRootElement;
+/**
+ * Parses the specified string to an XML document.
+ *
+ * @param string The string to parse
+ * @param error Error buffer in case error occurs.
+ * @return The document or nil if unsuccessful
+ */
++ (nullable BMXMLDocument *)documentWithXMLString:(NSString *)string error:(NSError * _Nullable * _Nonnull)error;
+
+/**
+ * Parses data from the specified URL as an XML document.
+ *
+ * @param URL URL to the data to parse.
+ * @param error Error buffer in case error occurs.
+ * @return The document or nil if unsuccessful
+ */
++ (nullable BMXMLDocument *)documentWithContentsOfURL:(NSURL *)URL error:(NSError * _Nullable * _Nonnull)error;
+
+/**
+ * Document from the specified root element.
+ *
+ * @param theRootElement The root element
+ * @return The document
+ */
++ (BMXMLDocument *)documentWithRootElement:(BMXMLElement *)theRootElement;
+
+- (instancetype)initWithRootElement:(BMXMLElement *)theRootElement;
 
 @end
 

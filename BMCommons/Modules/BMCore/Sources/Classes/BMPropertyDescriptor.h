@@ -86,6 +86,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (id)initWithKeyPath:(nullable NSString *)theKeyPath target:(nullable id)theTarget;
 
+/**
+ Initializer
+ */
 - (id)initWithKeyPath:(nullable NSString *)theKeyPath target:(nullable id)theTarget valueType:(BMValueType)valueType;
 
 /**

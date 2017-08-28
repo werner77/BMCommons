@@ -26,8 +26,12 @@ static NSMutableDictionary *soundDictionary = nil;
     [soundDictionary removeAllObjects];
 }
 
++ (void)doEventsUntilDate:(NSDate *)date {
+	[[NSRunLoop currentRunLoop] runUntilDate:date];
+}
+
 + (void)doEvents {
-	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
+    [self doEventsUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
 }
 
 + (void)playSoundFromURL:(NSURL *)soundFileURL asAlert:(BOOL)alert {

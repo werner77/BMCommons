@@ -19,9 +19,16 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 /**
- Run the runloop for a short time interval to allow views to be updated or other events to be processed.
+ Run the current runloop for a short time interval to allow views to be updated or other events to be processed.
+
+ Default interval is 0.1 seconds.
  */
 + (void)doEvents;
+
+/**
+ Run the current runloop until the specified date.
+ */
++ (void)doEventsUntilDate:(NSDate *)date;
 
 /**
  Plays a sound from the specified sound file.

@@ -15,6 +15,9 @@ typedef NS_ENUM(NSUInteger, BMCompressionType) {
     BMCompressionTypeGZIP
 };
 
+/**
+ * Value transformer which compresses NSData upon forward transformation and decompresses upon reverse transformation.
+ */
 @interface BMCompressDataTransformer : NSValueTransformer
 
 /**

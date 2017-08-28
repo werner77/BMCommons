@@ -80,26 +80,49 @@ typedef struct sockaddr_in BMSockAddressIn;
  */
 @interface BMReachability: BMCoreObject
 
-//reachabilityWithHostName- Use to check the reachability of a particular host name. 
+/**
+ * Checks the reachability of a particular host name.
+ * @param hostName The host name to check for.
+ */
 + (nullable BMReachability*) reachabilityWithHostName: (NSString*) hostName;
 
-//reachabilityWithAddress- Use to check the reachability of a particular IP address. 
+/**
+ * Checks the reachability of a particular IP address.
+ * @param hostAddress the ip address
+ */
 + (nullable BMReachability*) reachabilityWithAddress: (const BMSockAddressIn*) hostAddress;
 
-//reachabilityForInternetConnection- checks whether the default route is available.  
-//  Should be used by applications that do not connect to a particular host
+/**
+ * Checks whether the default internet route is available.
+ * Should be used by applications that do not connect to a particular host
+ */
 + (nullable BMReachability*) reachabilityForInternetConnection;
 
-//reachabilityForLocalWiFi- checks whether a local wifi connection is available.
+/**
+ * Checks whether a local wifi connection is available.
+ */
 + (nullable BMReachability*) reachabilityForLocalWiFi;
 
-//Start listening for reachability notifications on the current run loop
+/**
+ * Starts listening for reachability notifications on the current run loop
+ *
+ * @return true if successful, false otherwise
+ */
 - (BOOL)startNotifier;
+
+/**
+ * Stops listening for reachability notifications.
+ */
 - (void)stopNotifier;
 
+/**
+ * The current reachability status.
+ */
 - (BMNetworkStatus) currentReachabilityStatus;
-//WWAN may be available, but not active until a connection has been established.
-//WiFi may require a connection for VPN on Demand.
+
+/**
+ * Whether or not a connection is required.
+ */
 - (BOOL) connectionRequired;
 
 @end

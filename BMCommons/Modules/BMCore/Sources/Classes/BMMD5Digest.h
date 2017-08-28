@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * Digest implementation using MD5
+ */
 @interface BMMD5Digest : BMDigest
 
 @end

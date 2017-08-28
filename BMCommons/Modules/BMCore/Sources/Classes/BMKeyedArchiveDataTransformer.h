@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * Value transformer which transforms an object implementing the NSCoding protocol to NSData (forward) and back (reverse) using a NSKeyedArchiver.
+ */
 @interface BMKeyedArchiveDataTransformer : NSValueTransformer
 
 @end

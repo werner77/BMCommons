@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nullable, readonly) id <BMService> currentService;
 
+/**
+ * Initializes with the specified delegate
+ */
 - (id)initWithDelegate:(nullable id <BMServiceDelegate>)theDelegate;
 
 @end

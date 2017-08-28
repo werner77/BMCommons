@@ -101,16 +101,19 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode);
 }
 
 - (id)init {
-    return [self initWithName:@""];
+    return [self initWithName:@"xml"];
 }
 
 - (BMXMLElement *)initWithName:(NSString *)name {
 	NSAssert(name != nil, @"-[XMLElement elementWithName:] argument is nil.");
-	if (name == nil) {
-		return nil;
-	}
 	xmlNode *newElement = xmlNewNode(NULL, [name xmlChar]);
-	return [self initWithXMLNode:newElement];
+	self = [self initWithXMLNode:newElement];
+    if (self) {
+        if (self.name == nil) {
+            return nil;
+        }
+    }
+    return self;
 }
 
 + (BMXMLElement *)instanceWithXMLNode:(xmlNode *)node
@@ -639,12 +642,12 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode)
 }
 
 // Insert a child node at the specified index in the receiver.
-- (void)insertChild:(BMXMLNode *)node atIndex:(NSUInteger)index
+- (BMXMLNode *)insertChild:(BMXMLNode *)node atIndex:(NSUInteger)index
 {
     NSAssert1(index <= [self childCount], @"-[XMLElement insertChild:atIndex:] index beyond bounds.", [NSNumber numberWithUnsignedInteger:index]);
     
     BMXMLNode *nodeAtIndex = [self childAtIndex:index];
-    [nodeAtIndex addNodeAsPreviousSibling:node];
+    return [nodeAtIndex addNodeAsPreviousSibling:node];
 }
 
 // Private method that adds the libxml node to the receiver's children list.

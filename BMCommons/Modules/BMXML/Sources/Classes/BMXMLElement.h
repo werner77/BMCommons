@@ -73,56 +73,219 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface BMXMLElement : BMXMLNode
 
-+ (instancetype)elementWithName:(NSString *)name;
-- (instancetype)initWithName:(NSString *)name;
++ (nullable instancetype)elementWithName:(NSString *)name;
+- (nullable instancetype)initWithName:(NSString *)name;
 
-- (void)setArrayElement:(BOOL)arrayElement;
-- (BOOL)isArrayElement;
+/**
+ * Whether this element is part of an array
+ *
+ * Used for JSON compatibility
+ */
+@property (nonatomic, assign, getter=isArrayElement) BOOL arrayElement;
 
-- (void)setEmptyElement:(BOOL)empty;
-- (BOOL)isEmptyElement;
+/**
+ * Whether or not this element represents an empty element
+ *
+ * Used for JSON compatibility
+ */
+@property (nonatomic, assign, getter=isEmptyElement) BOOL emptyElement;
 
-- (nullable NSString *)name;
+/**
+ * The name of this element.
+ */
+- (NSString *)name;
+
+/**
+ * The optional namespace prefix for this element.
+ */
 - (nullable NSString *)namespacePrefix;
+
+/**
+ * Array of BMXMLNodes comprising the children of the receiver.
+ */
 - (NSArray *)children;
+
+/**
+ * Array of BMXMLNodes comprising the descendants of the receiver.
+ */
 - (NSArray *)descendants;
+
+/**
+ * Number of children of the receiver.
+ */
 - (NSUInteger)childCount;
+
+/**
+ * Returns the first child or nil if no children are present.
+ */
 - (nullable BMXMLNode *)firstChild;
+
+/**
+ * Returns the last child or nil if no children are present.
+ */
 - (nullable BMXMLNode *)lastChild;
-- (nullable NSString *)qualifiedName;
+
+/**
+ * Returns the fully qualified name.
+ */
+- (NSString *)qualifiedName;
+
+/**
+ * Optional dictionary containing the attributes as key-value pairs for this element.
+ */
 - (nullable NSDictionary *)attributes;
+
+/**
+ * Attributes encoded as string.
+ */
 - (NSString *)attributesString;
 
+/**
+ * Returns the child at the specified index.
+ */
 - (BMXMLNode *)childAtIndex:(NSUInteger)index;
+
+/**
+ * Returns the first child corresponding with the supplied name or nil if not found.
+ */
 - (nullable BMXMLElement *)firstChildNamed:(NSString *)matchName;
+
+/**
+ * Returns the last child corresponding with the supplied name or nil if not found.
+ */
 - (nullable BMXMLElement *)lastChildNamed:(NSString *)matchName;
+
+/**
+ * Returns the first descendant corresponding with the supplied name or nil if not found.
+ */
 - (nullable BMXMLElement *)firstDescendantNamed:(NSString *)matchName;
+
+/**
+ * Returns the children corresponding with the supplied match name.
+ */
 - (NSArray *)childrenNamed:(NSString *)matchName;
+
+/**
+ * Returns the descendants corresponding with the supplied match name.
+ */
 - (NSArray *)descendantsNamed:(NSString *)matchName;
+
+/**
+ * Returns all elements that contain an attribute with the specified name.
+ */
 - (NSArray *)elementsWithAttributeNamed:(NSString *)attributeName;
+
+/**
+ * Returns all elements that contain an attribute with the specified name and value.
+ */
 - (NSArray *)elementsWithAttributeNamed:(NSString *)attributeName attributeValue:(NSString *)attributeValue;
 
+/**
+ * Returns an array of elements corresponding with the specified XPath expression.
+ *
+ * @param XPath The XPath expression
+ * @param outError The error
+ * @return The array of elements found or nil in case of error.
+ */
 - (nullable NSArray *)elementsForXPath:(NSString *)XPath error:(NSError *_Nullable *_Nullable )outError;
 - (nullable NSArray *)elementsForXPath:(NSString *)XPath prepareNamespaces:(nullable NSArray *)namespaces error:(NSError *_Nullable *_Nullable )outError;
 - (nullable NSArray *)elementsForXPath:(NSString *)XPath namespaces:(nullable NSDictionary *)namespaces error:(NSError * _Nullable *_Nullable )outError;
 
-- (void)insertChild:(BMXMLNode *)node atIndex:(NSUInteger)index;
+/**
+ * Inserts a child node at the specified index.
+ *
+ * @param node The node to insert.
+ * @param index The index to insert the node at.
+ * @return Copy of the added node.
+ */
+- (BMXMLNode *)insertChild:(BMXMLNode *)node atIndex:(NSUInteger)index;
+
+/**
+ * Adds a child node.
+ *
+ * @param node The child node to add.
+ * @return Copy of the added child node
+ */
 - (BMXMLNode *)addChild:(BMXMLNode *)node;
+
+/**
+ * Adds a text child node.
+ *
+ * @param text The text content for the node to add
+ * @return The added node
+ */
 - (BMXMLNode *)addTextChild:(NSString *)text;
+
+/**
+ * Adds a child node with the specified name.
+ *
+ * @param childName The name for the node to add
+ * @return The added node
+ */
 - (BMXMLElement *)addChildNamed:(NSString *)childName;
+
+/**
+ * Adds a child node with the specified name and text content.
+ *
+ * @param childName The name for the node to add
+ * @param nodeContent The text content for the node to add.
+ * @return The added node
+ */
 - (BMXMLElement *)addChildNamed:(NSString *)childName withTextContent:(NSString *)nodeContent;
 - (BMXMLElement *)addChildNamed:(NSString *)childName withTextContent:(NSString *)nodeContent cdata:(BOOL)cdata;
 
+/**
+ * Merges consecutive child text nodes into one if encountered.
+ */
 - (void)consolidateConsecutiveTextNodes;
 
+/**
+ * The value of the attribute with the specified name.
+ * @param name The attribute name
+ * @return The value or nil if not found.
+ */
 - (nullable NSString *)attributeNamed:(NSString *)name;
+
+/**
+ * Adds an attribute with the specified name and value.
+ *
+ * @param attributeName The attribute name
+ * @param attributeValue The attibute value.
+ * @return The BMXMLNode representing the new attribute.
+ */
 - (BMXMLNode *)addAttribute:(NSString *)attributeName value:(NSString *)attributeValue;
+
+/**
+ * Deletes the attribute with the specified name if found.
+ *
+ * @param attributeName The name of the attribute.
+ */
 - (void)deleteAttributeNamed:(NSString *)attributeName;
 
-//Added methods for convenience
+/**
+ * Returns the value of the attribute with the specified name of the first child node with the specified child name.
+ *
+ * @param name The name of the attribute.
+ * @param childName The name of the child node.
+ * @return The value of the attribute or nil if not found.
+ */
 - (nullable NSString *)attributeNamed:(NSString *)name ofFirstChildNodeNamed:(NSString *)childName;
+
+/**
+ * The text of the first text node corresponding with the specified child name.
+ *
+ * @param childName The child name
+ * @return The text content if found, nil otherwise.
+ */
 - (nullable NSString *)nodeTextOfFirstChildNodeNamed:(NSString *)childName;
 
+/**
+ * Returns the receiver serialized as a string in JSON format.
+ *
+ * @param attributePrefix The prefix to use for key names to translate XML attributes to JSON
+ * @param textContentIdentifier The key name to use for XML text content for translation to JSON
+ * @return The JSON string if successful, nil otherwise.
+ */
 - (nullable NSString *)JSONStringWithAttributePrefix:(NSString *)attributePrefix textContentIdentifier:(NSString *)textContentIdentifier;
 
 @end

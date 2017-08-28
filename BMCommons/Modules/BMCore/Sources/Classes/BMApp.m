@@ -9,7 +9,9 @@
 #import <BMCommons/BMApp.h>
 #import <BMCommons/BMStringHelper.h>
 
-@implementation BMApp
+@implementation BMApp {
+    NSBundle * _bundle;
+}
 
 @synthesize bundle = _bundle;
 
@@ -23,11 +25,11 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
 }
 
 - (NSString *)displayName {
-    return [BMStringHelper filterNilString:[[self.bundle infoDictionary] objectForKey:@"CFBundleDisplayName"]];
+    return [[self.bundle infoDictionary] objectForKey:@"CFBundleDisplayName"];
 }
 
 - (NSString *)name {
-    return [BMStringHelper filterNilString:[[self.bundle infoDictionary] objectForKey:@"CFBundleName"]];
+    return [[self.bundle infoDictionary] objectForKey:@"CFBundleName"];
 }
 
 - (NSString *)version {
@@ -35,24 +37,26 @@ BM_SYNTHESIZE_DEFAULT_SINGLETON
     if (version == nil) {
         version = self.build;
     }
-    return [BMStringHelper filterNilString:version];
+    return version;
 }
 
 - (NSString *)build {
-    return [BMStringHelper filterNilString:[[self.bundle infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]];
+    return [[self.bundle infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
 }
 
 - (NSString *)identifier {
-    return [BMStringHelper filterNilString:[[self.bundle infoDictionary] objectForKey:(NSString *)kCFBundleIdentifierKey]];
+    return [[self.bundle infoDictionary] objectForKey:(NSString *)kCFBundleIdentifierKey];
 }
 
 - (NSString *)fullVersion {
     NSString *version = self.version;
     NSString *build = self.build;
-    if ([version isEqualToString:build]) {
+    if ([version isEqualToString:build] || build == nil) {
         return version;
-    } else {
+    } else if (version != nil){
         return [NSString stringWithFormat:@"%@ build %@", self.version, self.build];
+    } else {
+        return nil;
     }
 }
 

@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * Wrapper around a weak reference to a target object.
+ */
 @interface BMWeakReference : NSObject
 
 @property (nullable, weak) id target;

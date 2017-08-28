@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @protocol BMLocalizable
 
+/**
+ * Localize method to implement update for the current locale.
+ */
 - (void)localize;
 
 @end

@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BOOL)moveObjectForKey:(KeyType)aKey toIndex:(NSUInteger)toIndex;
 
+/**
+ * Moves an object from the specified index to the specified index.
+ */
 - (void)moveObjectFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 
 @end

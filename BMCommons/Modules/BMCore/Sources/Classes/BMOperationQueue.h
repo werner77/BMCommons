@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 BM_DECLARE_DEFAULT_SINGLETON
 
+/**
+ * The underlying operation queue.
+ */
 @property (nonatomic, readonly) NSOperationQueue *processingQueue;
 
 /**

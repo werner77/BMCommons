@@ -7,6 +7,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * Abstract class to be extended for implementing custom ordered mutable dictionaries.
+ */
 @interface BMAbstractMutableDictionary<KeyType, ObjectType> : NSMutableDictionary<KeyType, ObjectType>
 
 /**
@@ -44,10 +47,18 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BMAbstractMutableDictionary<KeyType, ObjectType>(Protected)
 
 /**
- * To be implemented by sub classes
+ * Internal arrays of ordered keys
  */
 - (NSMutableArray<KeyType> *)keysInternal;
+
+/**
+ * Internal dictionary used
+ */
 - (NSMutableDictionary<KeyType, ObjectType> *)dictionaryInternal;
+
+/**
+ * Common initializer
+ */
 - (void)commonInitWithCapacity:(NSUInteger)capacity;
 
 @end

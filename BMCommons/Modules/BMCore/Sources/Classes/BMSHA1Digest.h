@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * Digest implementation using SHA-1
+ */
 @interface BMSHA1Digest : BMDigest
 
 @end

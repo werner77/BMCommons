@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- Base class for input streams.
+ Abstract base class for input streams.
  
  Contains a buffer for the data received and a counter for the number of bytes received. Also keeps track of the stream status (open, closed, etc).
  */

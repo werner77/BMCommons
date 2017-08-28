@@ -7,9 +7,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * A thread safe mutable array that maintains weak references to the objects being stored.
- *
- * It safely removes deallocated objects from the array automatically.
+ * A thread safe mutable array that allows nil objects in the array.
  */
 @interface BMNullableArray<__covariant ObjectType> : NSObject<NSCopying, NSCoding, NSFastEnumeration>
 
@@ -45,10 +43,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (assign, nonatomic) BOOL retainsObjects;
 
-//Standard array functions
+/**
+ * Returns the object at the specified index. Can return nil.
+ */
 - (nullable ObjectType)objectAtIndex:(NSUInteger)index;
 
+/**
+ * Adds an object to the array. Allows nil to be stored.
+ */
 - (void)addObject:(nullable ObjectType)object;
+
 - (void)removeObjectAtIndex:(NSUInteger)index;
 - (void)insertObject:(nullable ObjectType)object atIndex:(NSUInteger)index;
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(nullable ObjectType)object;

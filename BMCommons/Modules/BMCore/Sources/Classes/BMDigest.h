@@ -77,10 +77,28 @@ NS_ASSUME_NONNULL_BEGIN
 //To be implemented by sub classes
 @interface BMDigest(Protected)
 
+/**
+ * Length of the digest implementation in bytes.
+ */
 - (NSUInteger)lengthForDigest;
 
+/**
+ * Initializer method
+ */
 - (void)initDigest;
+
+/**
+ * Update method for the digest.
+ * @param bytes Array containing the bytes to update the digest with
+ * @param length The length of the byte array.
+ */
 - (void)updateDigestWithBytes:(const void *)bytes length:(NSUInteger)length;
+
+/**
+ * Finalize method
+ *
+ * @param result The result of the digest.
+ */
 - (void)finalizeDigestWithResult:(unsigned char *)result;
 
 @end

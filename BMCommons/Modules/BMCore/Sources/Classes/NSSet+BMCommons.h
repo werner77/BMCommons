@@ -16,12 +16,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSMutableSet(BMCommons)
 
+/**
+ * Safely adds an object to the set, ignoring null objects without throwing an exception.
+ */
 - (void)bmSafeAddObject:(nullable id)object;
 
 @end
 
 @interface NSMutableOrderedSet(BMCommons)
 
+/**
+ * Safely adds an object to the set, ignoring null objects without throwing an exception.
+ */
 - (void)bmSafeAddObject:(nullable id)object;
 
 @end

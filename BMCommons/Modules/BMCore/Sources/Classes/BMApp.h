@@ -14,20 +14,41 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Class with information about static identifiers of the app defined in the application plist (display name, identifier, version, etc).
  */
-@interface BMApp : NSObject {
-    NSBundle * _bundle;
-}
+@interface BMApp : NSObject
 
 BM_DECLARE_DEFAULT_SINGLETON
 
 @property (strong, nonatomic, readonly) NSBundle *bundle;
 
-- (NSString *)displayName;
-- (NSString *)name;
-- (NSString *)version;
-- (NSString *)build;
-- (NSString *)identifier;
-- (NSString *)fullVersion;
+/**
+ * The display name for the app
+ */
+- (nullable NSString *)displayName;
+
+/**
+ * The name for the app
+ */
+- (nullable NSString *)name;
+
+/**
+ * The version for the app
+ */
+- (nullable NSString *)version;
+
+/**
+ * The build number for the app
+ */
+- (nullable NSString *)build;
+
+/**
+ * The bundle identifier for the app
+ */
+- (nullable NSString *)identifier;
+
+/**
+ * The full version containing version and build (if defined).
+ */
+- (nullable NSString *)fullVersion;
 
 @end
 

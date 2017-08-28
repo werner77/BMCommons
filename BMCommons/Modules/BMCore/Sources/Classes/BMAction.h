@@ -16,7 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface BMAction : BMCoreObject
 
+/**
+ * The target to execute the selector on.
+ */
 @property (nonatomic, weak) id target;
+
+/**
+ * The selector to execute.
+ */
 @property (nonatomic, assign) SEL selector;
 
 @end

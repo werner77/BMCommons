@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface BMObjectToStringTransformer : NSValueTransformer
 
+/**
+ * The property descriptor to use for transforming to string.
+ */
 @property (nonatomic, strong) BMPropertyDescriptor *propertyDescriptor;
 
 - (id)initWithPropertyDescriptor:(BMPropertyDescriptor *)thePropertyDescriptor;

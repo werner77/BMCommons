@@ -7,6 +7,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * Digest implementation using SHA256
+ */
 @interface BMSHA256Digest : BMDigest
 @end
 

@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Abstract implementation of the BMService protocol.
  
- This class implements common functionality needed for all services. Normally all concrete services extend from this class.
+ This class implements common functionality needed for all services. Normally concrete services extend from this class.
  */
 @interface BMAbstractService : BMCoreObject<BMService>
 
