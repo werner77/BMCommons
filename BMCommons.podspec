@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/werner77/BMCommons'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = 'Werner Altewischer'
-  s.source           = { :git => 'https://github.com/werner77/BMCommons.git', :branch => 'master' }
+  s.source           = { :git => 'https://github.com/werner77/BMCommons.git', :tag => '#{s.version}' }
   
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.9'
