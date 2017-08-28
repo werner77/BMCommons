@@ -74,7 +74,7 @@
             }
         }
     }
-    return [NSManagedObjectModel modelByMergingModels:models];
+    return models.count > 0 ? [NSManagedObjectModel modelByMergingModels:models] : nil;
 }
 
 

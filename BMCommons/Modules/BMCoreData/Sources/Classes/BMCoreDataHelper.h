@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void(^BMCoreDataSaveCompletionBlock)(id result, NSError *error);
 typedef id(^BMCoreDataBlock)(NSManagedObjectContext *context);
 
@@ -28,42 +30,42 @@ typedef NS_ENUM(NSUInteger, BMCoreDataSaveMode) {
 /**
  * Fetches an object with the specified entity name and objectURI. Returns nil if it doesn't exist.
  */
-+ (id)fetchObjectWithObjectURI:(NSURL *)objectURI inContext:(NSManagedObjectContext *)context;
++ (nullable id)fetchObjectWithObjectURI:(NSURL *)objectURI inContext:(NSManagedObjectContext *)context;
 
 /**
  * Fetches an object with the specified object URI. Returns nil if it doesn't exist.
  */
-+ (id)fetchObjectWithEntityName:(NSString *)name objectURI:(NSURL *)objectURI inContext:(NSManagedObjectContext *)context;
++ (nullable id)fetchObjectWithEntityName:(NSString *)name objectURI:(NSURL *)objectURI inContext:(NSManagedObjectContext *)context;
 
 /**
  * Executes the supplied fetch request and returns the first entity if a result is found or nil if none was found or in case of an error (error is logged)
  */
-+ (id)executeFetchRequestForSingleEntity:(NSFetchRequest *)request inContext:(NSManagedObjectContext *)context;
++ (nullable id)executeFetchRequestForSingleEntity:(NSFetchRequest *)request inContext:(NSManagedObjectContext *)context;
 
 /**
  * Executes the supplied fetch request by sorting on the supplied key and order and returns the first entity if a result is found or nil if none was found or in
  case of an error (error is logged)
  */
-+ (id)executeFetchRequestForSingleEntity:(NSFetchRequest *)request withSortKey:(NSString *)sortKey ascending:(BOOL)ascending
++ (nullable id)executeFetchRequestForSingleEntity:(NSFetchRequest *)request withSortKey:(nullable NSString *)sortKey ascending:(BOOL)ascending
                                inContext:(NSManagedObjectContext *)context;
 
 /**
  * Executes a fetch request while optionally sorting on the specified key and order.
  */
-+ (NSArray *)executeFetchRequest:(NSFetchRequest *)request withSortKey:(NSString *)sortKey ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context;
++ (nullable NSArray *)executeFetchRequest:(NSFetchRequest *)request withSortKey:(nullable NSString *)sortKey ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context;
 
 /**
  Executes a fetch request for a single entity from the specified template using the specified substition variables.
  The optional array of prefetchPaths is for performance tuning. It will prefetch the relationships specified by the keypaths.
  */
-+ (id)executeFetchRequestForSingleEntityFromTemplate:(NSString *)templateName withSubstitutionVariables:(NSDictionary *)substitutionVariables
-                                         withSortKey:(NSString *)sortKey ascending:(BOOL)ascending prefetchPaths:(NSArray *)prefetchPaths
++ (nullable id)executeFetchRequestForSingleEntityFromTemplate:(NSString *)templateName withSubstitutionVariables:(NSDictionary *)substitutionVariables
+                                         withSortKey:(nullable NSString *)sortKey ascending:(BOOL)ascending prefetchPaths:(nullable NSArray *)prefetchPaths
                                            inContext:(NSManagedObjectContext *)context;
 
 /**
  * Convenience method, bypassing the need to do the NSFetchRequest lookup yourself.
  */
-+ (id)executeFetchRequestForSingleEntityFromTemplate:(NSString *)templateName withSubstitutionVariables:(NSDictionary *)substitutionVariables
++ (nullable id)executeFetchRequestForSingleEntityFromTemplate:(NSString *)templateName withSubstitutionVariables:(NSDictionary *)substitutionVariables
                                            inContext:(NSManagedObjectContext *)context;
 
 /**
@@ -76,14 +78,14 @@ typedef NS_ENUM(NSUInteger, BMCoreDataSaveMode) {
 /**
  Adds prefetchpaths for performance tuning.
  */
-+ (NSEnumerator *)enumerateObjectsInObjectContext:(NSManagedObjectContext *)context withRequestTemplateName:(NSString *)requestTemplateName
-                        withSubstitutionVariables:(NSDictionary *)substitutionVariables withSortKey:(NSString *)sortKey ascending:(BOOL)ascending
-                                    prefetchPaths:(NSArray *)prefetchPaths;
++ (nullable NSEnumerator *)enumerateObjectsInObjectContext:(NSManagedObjectContext *)context withRequestTemplateName:(NSString *)requestTemplateName
+                        withSubstitutionVariables:(NSDictionary *)substitutionVariables withSortKey:(nullable NSString *)sortKey ascending:(BOOL)ascending
+                                    prefetchPaths:(nullable NSArray *)prefetchPaths;
 
-+ (NSFetchRequest *)fetchRequestFromTemplate:(NSString *)templateName withSubstitutionVariables:(NSDictionary *)substitutionVariables
-                                 withSortKey:(NSString *)sortKey
++ (nullable NSFetchRequest *)fetchRequestFromTemplate:(NSString *)templateName withSubstitutionVariables:(NSDictionary *)substitutionVariables
+                                 withSortKey:(nullable NSString *)sortKey
                                    ascending:(BOOL)ascending
-                               prefetchPaths:(NSArray *)prefetchPaths
+                               prefetchPaths:(nullable NSArray *)prefetchPaths
                                    inContext:(NSManagedObjectContext *)context;
 
 + (NSUInteger)countForFetchRequest:(NSFetchRequest *)fr inContext:(NSManagedObjectContext *)context;
@@ -91,11 +93,11 @@ typedef NS_ENUM(NSUInteger, BMCoreDataSaveMode) {
 /**
  Executes a fetch request for multiple entities from a template.
  */
-+ (NSArray *)executeFetchRequestFromTemplate:(NSString *)templateName withSubstitutionVariables:(NSDictionary *)substitutionVariables
-                                 withSortKey:(NSString *)sortKey ascending:(BOOL)ascending prefetchPaths:(NSArray *)prefetchPaths
++ (nullable NSArray *)executeFetchRequestFromTemplate:(NSString *)templateName withSubstitutionVariables:(NSDictionary *)substitutionVariables
+                                 withSortKey:(nullable NSString *)sortKey ascending:(BOOL)ascending prefetchPaths:(nullable NSArray *)prefetchPaths
                                    inContext:(NSManagedObjectContext *)context;
 
-+ (NSArray *)executeFetchRequestFromTemplate:(NSString *)templateName withSubstitutionVariables:(NSDictionary *)substitutionVariables
++ (nullable NSArray *)executeFetchRequestFromTemplate:(NSString *)templateName withSubstitutionVariables:(NSDictionary *)substitutionVariables
                                    inContext:(NSManagedObjectContext *)context;
 
 
@@ -107,9 +109,9 @@ typedef NS_ENUM(NSUInteger, BMCoreDataSaveMode) {
  */
 + (NSFetchedResultsController *) fetchedResultsControllerFromTemplate:(NSString *)templateName
                                             withSubstitutionVariables:(NSDictionary *)substitutionVariables
-                                                  withSortDescriptors:(NSArray *)sortDescriptors
-                                               withSectionNameKeyPath:(NSString *)sectionNameKeyPath
-                                                        withCacheName:(NSString *)cacheName
+                                                  withSortDescriptors:(nullable NSArray *)sortDescriptors
+                                               withSectionNameKeyPath:(nullable NSString *)sectionNameKeyPath
+                                                        withCacheName:(nullable NSString *)cacheName
                                                             inContext:(NSManagedObjectContext *)context;
 #endif
 
@@ -119,7 +121,7 @@ typedef NS_ENUM(NSUInteger, BMCoreDataSaveMode) {
  * Returns all objects of the specified type, optionally sorting them with the supplied parameters.
  * Be careful when using this method if there is a large number of the specified entity in the database since it may be heavy on mem usage.
  */
-+ (NSArray *)allEntitiesOfName:(NSString *)name withSortKey:(NSString *)sortKey ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context;
++ (nullable NSArray *)allEntitiesOfName:(NSString *)name withSortKey:(nullable NSString *)sortKey ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context;
 
 /**
  Prefetches the specified relationship for the entity with the specified name. If the objects array is supplied, only those objects are prefetched (they should be
@@ -160,7 +162,7 @@ typedef NS_ENUM(NSUInteger, BMCoreDataSaveMode) {
 /**
  * Convenience method to retrieve the managed object model from a context
  */
-+ (NSManagedObjectModel *)managedObjectModelFromContext:(NSManagedObjectContext *)context;
++ (nullable NSManagedObjectModel *)managedObjectModelFromContext:(NSManagedObjectContext *)context;
 
 /**
  * Removes (deletes) the specified object from its managed object context
@@ -174,14 +176,14 @@ typedef NS_ENUM(NSUInteger, BMCoreDataSaveMode) {
 
 + (BOOL)saveContext:(NSManagedObjectContext *)context;
 
-+ (BOOL)saveContext:(NSManagedObjectContext *)context withError:(NSError **)error;
++ (BOOL)saveContext:(NSManagedObjectContext *)context withError:(NSError * _Nullable * _Nullable)error;
 
 /**
  Saves the specified object context using it's own queue with performBlock: and optionally recurses into it's parent contexts also saving those.
  
  The completion block is performed on the main thread when done. If there was an error it is available as a parameter to the completion block.
  */
-+ (void)saveContext:(NSManagedObjectContext *)context recursively:(BOOL)recursively completionContext:(NSManagedObjectContext *)completionContext completion:(BMCoreDataSaveCompletionBlock)completion;
++ (void)saveContext:(NSManagedObjectContext *)context recursively:(BOOL)recursively completionContext:(nullable NSManagedObjectContext *)completionContext completion:(nullable BMCoreDataSaveCompletionBlock)completion;
 
 /**
  Performs the specified core data block using performBlock: on the specified managed object context.
@@ -193,11 +195,11 @@ typedef NS_ENUM(NSUInteger, BMCoreDataSaveMode) {
  
  The completion block is called after save has completed or if an error occured during saving. The error is specified as argument to the completion block.
  */
-+ (void)performCoreDataBlock:(BMCoreDataBlock)block onContext:(NSManagedObjectContext *)context saveMode:(BMCoreDataSaveMode)saveMode completionContext:(NSManagedObjectContext *)completionContext completion:(BMCoreDataSaveCompletionBlock)completion;
++ (void)performCoreDataBlock:(BMCoreDataBlock)block onContext:(NSManagedObjectContext *)context saveMode:(BMCoreDataSaveMode)saveMode completionContext:(nullable NSManagedObjectContext *)completionContext completion:(nullable BMCoreDataSaveCompletionBlock)completion;
 
 + (BOOL)saveObject:(NSManagedObject *)object;
 
-+ (BOOL)saveObject:(NSManagedObject *)object withError:(NSError **)error;
++ (BOOL)saveObject:(NSManagedObject *)object withError:(NSError *_Nullable *_Nullable)error;
 
 + (BOOL)isObject:(id)object kindOfEntity:(NSString *)entityName;
 
@@ -222,7 +224,7 @@ typedef NS_ENUM(NSUInteger, BMCoreDataSaveMode) {
 /**
  Checks for validation errors in the supplied object. Returns true upon success. Optionally specific entities may be excluded from the check.
  */
-+ (BOOL)confirmObjectValidity:(NSManagedObject *)managedObject excludeEntities:(NSArray *)excludeEntities;
++ (BOOL)confirmObjectValidity:(NSManagedObject *)managedObject excludeEntities:(nullable NSArray *)excludeEntities;
 
 /**
  * Copies the attributes and relationships of the source object to the destination object. This method works recursively and makes a deep copy,
@@ -249,7 +251,9 @@ typedef NS_ENUM(NSUInteger, BMCoreDataSaveMode) {
  If the block returns NO the entity is not handled and skipped from recursion.
  */
 + (void)traverseObjectGraphForEntity:(NSManagedObject *)theEntity
-                    handledObjects:(NSMutableSet *)handledObjects
-                        withBlock:(BOOL (^)(NSManagedObject *theEntity, NSManagedObject *parentEntity, NSRelationshipDescription *parentRelationship))block;
+                    handledObjects:(nullable NSMutableSet *)handledObjects
+                        withBlock:(BOOL (^)(NSManagedObject *entity, NSManagedObject * _Nullable parentEntity, NSRelationshipDescription * _Nullable parentRelationship))block;
 
 @end
+
+NS_ASSUME_NONNULL_END

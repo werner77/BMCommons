@@ -10,6 +10,8 @@
 #import <CoreData/CoreData.h>
 #import <BMCommons/BMTableViewController.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  TableViewController with support for showing core data objects and reloading automatically upon changes.
  */
@@ -45,9 +47,9 @@
 
 //Methods that map UITableView indexpaths to the fetched results indexpaths. Default they do no conversion (return the same as input variable).
 
-- (id)objectAtIndexPath:(NSIndexPath *)indexPath forTableView:(UITableView *)theTableView;
+- (nullable id)objectAtIndexPath:(NSIndexPath *)indexPath forTableView:(UITableView *)theTableView;
 
-- (NSIndexPath *)indexPathForObject:(id)object forTableView:(UITableView *)theTableView;
+- (nullable NSIndexPath *)indexPathForObject:(id)object forTableView:(UITableView *)theTableView;
 
 /**
  Converts the tableview indexpath to an indexpath suitable for the fetched results controller.
@@ -75,3 +77,5 @@
 - (BOOL)shouldInvalidatedResultsForTableView:(UITableView *)theTableView;
 
 @end
+
+NS_ASSUME_NONNULL_END

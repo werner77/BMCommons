@@ -41,6 +41,14 @@
 
 @synthesize currentContentPartHeaderInputStream = _currentContentPartHeaderInputStream, currentContentPartDataInputStream = _currentContentPartDataInputStream;
 
++ (NSString *)defaultBoundaryString {
+    static NSString *ret = nil;
+    BM_DISPATCH_ONCE((^{
+        ret = [BMStringHelper randomStringOfLength:70 charSet:nil];
+    }));
+    return ret;
+}
+
 - (id)init {
     return [self initWithContentParts:@[] boundaryString:nil];
 }
@@ -59,7 +67,7 @@
             return nil;
         }
         _contentParts = theContentParts;
-        _boundaryString = theBoundaryString ?: [BMStringHelper randomStringOfLength:70 charSet:nil];
+        _boundaryString = theBoundaryString ?: [self.class defaultBoundaryString];
         _currentContentPartIndex = -1;
         _totalBytesRead = 0;
     }

@@ -34,6 +34,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'BMRestKit' do |s_restkit|
+    s_restkit.frameworks   = 'CoreData'
     s_restkit.requires_arc = true
     s_restkit.source_files = 'BMCommons/Modules/BMRestKit/Sources/**/*.{c,m,h}'
     s_restkit.exclude_files = 'BMCommons/Modules/BMRestKit/**/*_Private.*'

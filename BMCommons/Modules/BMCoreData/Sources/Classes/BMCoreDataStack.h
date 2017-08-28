@@ -11,20 +11,22 @@
 #import <BMCommons/BMManagedObjectContext.h>
 #import <BMCommons/BMCoreDataStoreCollectionDescriptor.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BMCoreDataStack : NSObject 
 
 /**
  Initializes with a model name and version. The store URL is deducted from these two as "$ModelName$ModelVersion.sqlite". The file resides in the
  documents directory.
  */
-- (id)initWithModelName:(NSString *)modelName modelVersion:(NSInteger)version;
+- (nullable id)initWithModelName:(NSString *)modelName modelVersion:(NSInteger)version;
 
 /**
  Initializes with an array of BMCoreDataStoreDescriptor (one for each separate store, a store may contain multiple models/configurations).
  
  This is the designated initializer.
  */
-- (id)initWithStoreCollectionDescriptor:(BMCoreDataStoreCollectionDescriptor *)theStoreCollectionDescriptor;
+- (nullable id)initWithStoreCollectionDescriptor:(BMCoreDataStoreCollectionDescriptor *)theStoreCollectionDescriptor NS_DESIGNATED_INITIALIZER;
 
 /**
  Gets the existing coredata managed object context for the main thread.
@@ -66,7 +68,7 @@
 /**
  Flushes changes to the datastore with the specified completion block.
  */
-- (void)flushWithCompletion:(BMCoreDataSaveCompletionBlock)completion;
+- (void)flushWithCompletion:(nullable BMCoreDataSaveCompletionBlock)completion;
 
 /**
  Looks in the documents directory for an existing version of the store. The version number is deducted from the filename.
@@ -101,7 +103,7 @@
 /**
  Convenience method to perform a core data block with optional background processing and save upon completion.
  */
-- (void)performCoreDataBlock:(BMCoreDataBlock)block inBackground:(BOOL)background saveMode:(BMCoreDataSaveMode)saveMode completion:(BMCoreDataSaveCompletionBlock)completion;
+- (void)performCoreDataBlock:(BMCoreDataBlock)block inBackground:(BOOL)background saveMode:(BMCoreDataSaveMode)saveMode completion:(nullable BMCoreDataSaveCompletionBlock)completion;
 
 /**
  Resets the entire internal state, optionally also removing the underlying store.
@@ -109,3 +111,5 @@
 - (void)resetByRemovingStore:(BOOL)removeStore;
 
 @end
+
+NS_ASSUME_NONNULL_END

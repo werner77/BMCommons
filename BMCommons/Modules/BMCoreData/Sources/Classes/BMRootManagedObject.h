@@ -9,6 +9,8 @@
 
 #import <CoreData/CoreData.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol BMRootManagedObject<NSObject>
 
 /**
@@ -19,17 +21,17 @@
 /**
  The property that returns the primary key for this class. Can be nil if no application key is required or applicable for this class.
  */
-+ (NSString *)primaryKeyProperty;
++ (nullable NSString *)primaryKeyProperty;
 
 /**
  The property that returns the secundary key for this class. This key acts as a unique identifier within a to-many contains relationship (defined as cascade delete).
  */
-+ (NSString *)secundaryKeyProperty;
++ (nullable NSString *)secundaryKeyProperty;
 
 /**
  Returns the entity description for the specified context.
  */
-+ (NSEntityDescription *)entityInContext:(NSManagedObjectContext *)context;
++ (nullable NSEntityDescription *)entityInContext:(NSManagedObjectContext *)context;
 
 /**
  * Inserts a new object in the specified context and ensures that it is properly initialized (should give no validation errors on subsequent save)
@@ -40,7 +42,7 @@
  * Inserts an object using the specified object as reference. Implementations may not actually insert a new object but return an already existing
  * object as suitable for the reference.
  */
-+ (id)insertObjectInContext:(NSManagedObjectContext *)context withReference:(NSManagedObject *)object;
++ (id)insertObjectInContext:(NSManagedObjectContext *)context withReference:(nullable NSManagedObject *)object;
 
 /**
  * Releases the memory by faulting the object graph recursively
@@ -60,7 +62,7 @@
 /**
  * Saves the context the object is part of. Returns true if succeful, false otherwise.
  */
-- (BOOL)saveWithError:(NSError **)error;
+- (BOOL)saveWithError:(NSError * _Nullable *_Nullable)error;
 
 /**
  * Checks whether the object is internally consistent (TRUE if valid, FALSE otherwise)
@@ -83,13 +85,15 @@
  */
 - (void)rollback;
 
-- (id)primaryKey;
+- (nullable id)primaryKey;
 
 @optional
 
 /**
  optional method which returns all the objects that have been enumerated. Can be used to release memory for the underlying enumerated objects.
  */
-- (NSArray *)enumeratedObjects;
+- (nullable NSArray *)enumeratedObjects;
 
 @end
+
+NS_ASSUME_NONNULL_END

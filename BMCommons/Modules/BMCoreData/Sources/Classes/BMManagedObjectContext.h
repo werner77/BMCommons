@@ -10,6 +10,8 @@
 #import <CoreData/CoreData.h>
 #import <BMCommons/BMRootManagedObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMManagedObjectContext;
 
 @protocol BMManagedObjectContextDelegate<NSObject>
@@ -31,3 +33,5 @@
 - (void)removeDelegate:(id <BMManagedObjectContextDelegate>)delegate;
 
 @end
+
+NS_ASSUME_NONNULL_END

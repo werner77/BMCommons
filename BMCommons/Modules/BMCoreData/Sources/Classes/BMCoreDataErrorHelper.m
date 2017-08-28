@@ -13,7 +13,7 @@
 
 + (NSError *)validationErrorFromOriginalError:(NSError *)originalError error:(NSError *)secondError {
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
-    NSMutableArray *errors = [NSMutableArray arrayWithObject:secondError];
+    NSMutableArray *errors = secondError ? [NSMutableArray arrayWithObject:secondError] : [NSMutableArray arrayWithCapacity:1];
     
     if ([originalError code] == NSValidationMultipleErrorsError) {
         

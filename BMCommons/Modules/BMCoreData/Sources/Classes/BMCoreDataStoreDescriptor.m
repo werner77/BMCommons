@@ -59,6 +59,9 @@
 
 
 - (NSString *)versionString {
+    if (self.modelDescriptors.count == 0) {
+        return nil;
+    }
     NSMutableString *string = [NSMutableString string];
     
     for (BMCoreDataModelDescriptor *modelDescriptor in self.modelDescriptors) {
@@ -84,7 +87,6 @@
 }
 
 - (NSManagedObjectModel *)managedObjectModel {
-    
     NSMutableArray *models = [NSMutableArray array];
     NSMutableArray *handledModelURLs = [NSMutableArray new];
     
@@ -99,7 +101,8 @@
             [handledModelURLs addObject:modelURL];
         }
     }
-    return [NSManagedObjectModel modelByMergingModels:models];
+
+    return models.count == 0 ? nil : [NSManagedObjectModel modelByMergingModels:models];
 }
 
 + (NSInteger)existingVersionForModelName:(NSString *)modelName configuration:(NSString *)configuration {

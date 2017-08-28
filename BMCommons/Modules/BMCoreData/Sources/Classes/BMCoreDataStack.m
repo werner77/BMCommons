@@ -51,15 +51,21 @@
     if ((self = [super init])) {
         _storeCollectionDescriptor = theStoreCollectionDescriptor;
         self.defaultMergePolicy = NSMergeByPropertyStoreTrumpMergePolicy;
+        if (self.managedObjectModel == nil) {
+            return nil;
+        }
     }
     return self;
+}
+
+- (id)init {
+    return [self initWithModelName:@"CoreData" modelVersion:1];
 }
 
 - (void)dealloc {
 }
 
 - (void)resetByRemovingStore:(BOOL)removeStore {
-    _managedObjectModel = nil;
     _persistentObjectContext = nil;
     _persistentStoreCoordinator = nil;
     _mainObjectContext = nil;
@@ -193,7 +199,6 @@
             _managedObjectModel = models[0];
         }
         
-        
         return _managedObjectModel;
     }
 }
@@ -253,14 +258,17 @@
         if (_persistentStoreCoordinator != nil && ![theStoreType isEqualToString:NSInMemoryStoreType]) {
             return _persistentStoreCoordinator;
         }
-        _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-        
-        for (BMCoreDataStoreDescriptor *storeDescriptor in self.storeCollectionDescriptor.storeDescriptors) {
-            if (![self addPersistentStoreWithConfiguration:storeDescriptor.modelConfiguration storeURL:storeDescriptor.storeURL storeType:theStoreType]) {
-                break;
+        NSManagedObjectModel *model = [self managedObjectModel];
+
+        if (model != nil) {
+            _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+
+            for (BMCoreDataStoreDescriptor *storeDescriptor in self.storeCollectionDescriptor.storeDescriptors) {
+                if (![self addPersistentStoreWithConfiguration:storeDescriptor.modelConfiguration storeURL:storeDescriptor.storeURL storeType:theStoreType]) {
+                    break;
+                }
             }
         }
-        
         return _persistentStoreCoordinator;
     }
 }

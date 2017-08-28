@@ -9,6 +9,8 @@
 #import <CoreData/CoreData.h>
 #import <BMCommons/BMCoreDataHelper.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSManagedObjectContext (BMCommons)
 
 /**
@@ -16,7 +18,7 @@
  
  The completion block is performed on the main thread when done. If there was an error it is available as a parameter to the completion block.
  */
-- (void)bmSaveRecursively:(BOOL)recursively completionContext:(NSManagedObjectContext *)completionContext completion:(BMCoreDataSaveCompletionBlock)completion;
+- (void)bmSaveRecursively:(BOOL)recursively completionContext:(nullable NSManagedObjectContext *)completionContext completion:(nullable BMCoreDataSaveCompletionBlock)completion;
 
 /**
  Performs the specified core data block using performBlock: on this managedObjectContext.
@@ -26,7 +28,7 @@
  
  The completion block is called after all saves have completed or if an error occured during saving. The error is specified as argument to the completion block.
  */
-- (void)bmPerformCoreDataBlock:(BMCoreDataBlock)block saveMode:(BMCoreDataSaveMode)saveMode completionContext:(NSManagedObjectContext *)completionContext completion:(BMCoreDataSaveCompletionBlock)completion;
+- (void)bmPerformCoreDataBlock:(BMCoreDataBlock)block saveMode:(BMCoreDataSaveMode)saveMode completionContext:(nullable NSManagedObjectContext *)completionContext completion:(nullable BMCoreDataSaveCompletionBlock)completion;
 
 /**
  Returns array of NSManagedObjects that correspond to the specified NSManagedObjectIDs.
@@ -45,12 +47,12 @@
 /**
  Returns the associated cached object for this context.
  */
-- (id)bmCachedObjectForKey:(id <NSCopying>)key;
+- (nullable id)bmCachedObjectForKey:(id <NSCopying>)key;
 
 /**
  Attaches a cached object to this context.
  */
-- (void)bmSetCachedObject:(id)object forKey:(id <NSCopying>)key;
+- (void)bmSetCachedObject:(nullable id)object forKey:(id <NSCopying>)key;
 
 /**
  Removes all cached objects.
@@ -58,3 +60,5 @@
 - (void)bmClearCache;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -9,16 +9,20 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BMCoreDataModelDescriptor : NSObject<NSCoding> 
 
-@property (strong, nonatomic, readonly) NSURL *modelURL;
+@property (nullable, strong, nonatomic, readonly) NSURL *modelURL;
 
-@property (nonatomic, strong) NSString *modelName;
-@property (nonatomic, assign) NSInteger modelVersion;
+@property (nullable, nonatomic, strong) NSString *modelName;
+@property (nullable, nonatomic, assign) NSInteger modelVersion;
 
-+ (NSURL *)modelURLForModelName:(NSString *)modelName version:(NSInteger)version;
++ (nullable NSURL *)modelURLForModelName:(NSString *)modelName version:(NSInteger)version;
 + (BMCoreDataModelDescriptor *)modelDescriptorWithModelName:(NSString *)modelName version:(NSInteger)version;
 
-- (NSManagedObjectModel *)managedObjectModel;
+- (nullable NSManagedObjectModel *)managedObjectModel;
 
 @end
+
+NS_ASSUME_NONNULL_END

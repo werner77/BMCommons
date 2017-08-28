@@ -8,7 +8,11 @@
 
 #import <BMCommons/BMFetchedResultsEnumerator.h>
 
-@implementation BMFetchedResultsEnumerator
+@implementation BMFetchedResultsEnumerator {
+	NSFetchedResultsController *resultsController;
+	NSUInteger counter;
+	NSUInteger count;
+}
 
 - (id)initWithResultsController:(NSFetchedResultsController *)rc {
 	if ((self = [super init])) {

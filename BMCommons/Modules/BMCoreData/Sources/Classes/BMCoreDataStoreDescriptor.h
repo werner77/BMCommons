@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMCoreDataModelDescriptor.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BMCoreDataStoreDescriptor : NSObject<NSCoding> 
 
-@property (nonatomic, strong) NSString *storeName;
-@property (nonatomic, strong) NSString *modelConfiguration;
-@property (strong, nonatomic, readonly) NSURL *storeURL;
-@property (nonatomic, strong) NSArray *modelDescriptors;
+@property (nullable, nonatomic, strong) NSString *storeName;
+@property (nullable, nonatomic, strong) NSString *modelConfiguration;
+@property (nullable, strong, nonatomic, readonly) NSURL *storeURL;
+@property (nullable, nonatomic, strong) NSArray *modelDescriptors;
 
 + (BMCoreDataStoreDescriptor *)storeDescriptorWithName:(NSString *)storeName configuration:(NSString *)theModelConfiguration modelDescriptors:(NSArray *)modelDescriptors;
 
@@ -23,10 +25,12 @@
  */
 + (BMCoreDataStoreDescriptor *)storeDescriptorWithModelName:(NSString *)modelName version:(NSInteger)version configuration:(NSString *)configuration;
 
-+ (NSInteger)existingVersionForModelName:(NSString *)modelName configuration:(NSString *)configuration;
++ (NSInteger)existingVersionForModelName:(NSString *)modelName configuration:(nullable NSString *)configuration;
 
-- (NSManagedObjectModel *)managedObjectModel;
+- (nullable NSManagedObjectModel *)managedObjectModel;
 
-- (NSString *)versionString;
+- (nullable NSString *)versionString;
 
 @end
+
+NS_ASSUME_NONNULL_END

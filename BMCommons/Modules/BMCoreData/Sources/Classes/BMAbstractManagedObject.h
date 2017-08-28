@@ -9,13 +9,15 @@
 #import <CoreData/CoreData.h>
 #import <BMCommons/BMRootManagedObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BMAbstractManagedObjectID : NSManagedObjectID
 
 @end
 
 @interface BMAbstractManagedObject : NSManagedObject<BMRootManagedObject>
 
-+ (NSArray *)allInstancesOrderedBy:(NSString *)sortField ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context;
++ (NSArray *)allInstancesOrderedBy:(nullable NSString *)sortField ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context;
 + (NSUInteger)numberOfInstancesInContext:(NSManagedObjectContext *)context;
 + (void)removeAllInstancesFromContext:(NSManagedObjectContext *)context;
 
@@ -31,7 +33,7 @@
           withDataObjects:(NSArray *)dataObjects
   modelPrimaryKeyProperty:(NSString *)modelPrimaryKeyProperty
    dataPrimaryKeyProperty:(NSString *)dataPrimaryKeyProperty
-           handledObjects:(NSMutableArray *)handledObjects
+           handledObjects:(nullable NSMutableArray *)handledObjects
             mergeSelector:(SEL)mergeSelector
  removeNonExistentObjects:(BOOL)removeNonExistentObjects
                 inContext:(NSManagedObjectContext *)context;
@@ -43,7 +45,7 @@
  */
 + (void)mergeModelObjects:(NSArray *)modelObjects
           withDataObjects:(NSArray *)dataObjects
-           handledObjects:(NSMutableArray *)handledObjects
+           handledObjects:(nullable NSMutableArray *)handledObjects
  removeNonExistentObjects:(BOOL)removeNonExistentObjects
                 inContext:(NSManagedObjectContext *)context;
 
@@ -59,10 +61,10 @@
  - Copies all similar attributes from other to self
  - For relationships the method mergeRelationShip:withObject:handledObjects: is called.
  */
-- (void)mergeWith:(BMAbstractManagedObject *)other handledObjects:(NSMutableArray *)handledObjects;
+- (void)mergeWith:(BMAbstractManagedObject *)other handledObjects:(nullable NSMutableArray *)handledObjects;
 
-- (NSArray *)relationshipsToMerge;
-- (NSArray *)attributesToMerge;
+- (nullable NSArray *)relationshipsToMerge;
+- (nullable NSArray *)attributesToMerge;
 
 - (BOOL)shouldMergeAttribute:(NSString *)attributeName fromObject:(BMAbstractManagedObject *)other;
 - (BOOL)shouldMergeRelationship:(NSString *)relationshipName fromObject:(BMAbstractManagedObject *)other;
@@ -83,7 +85,7 @@
  mergeSelector=@selector(mergeWith:)
  
  */
-- (void)mergeRelationship:(NSString *)relationShip withObject:(BMAbstractManagedObject *)other handledObjects:(NSMutableArray *)handledObjects;
+- (void)mergeRelationship:(NSString *)relationShip withObject:(BMAbstractManagedObject *)other handledObjects:(nullable NSMutableArray *)handledObjects;
 
 /**
  Calls the class method:
@@ -104,7 +106,7 @@
            usingRelationship:(NSString *)relationShip
      modelPrimaryKeyProperty:(NSString *)modelPrimaryKeyProperty
       dataPrimaryKeyProperty:(NSString *)dataPrimaryKeyProperty
-              handledObjects:(NSMutableArray *)handledObjects
+              handledObjects:(nullable NSMutableArray *)handledObjects
                mergeSelector:(SEL)mergeSelector;
 
 /**
@@ -122,6 +124,8 @@
 /**
  Imports objects from the specified dictionary in the specified context.
  */
-+ (BMAbstractManagedObject *)importFromDictionary:(NSDictionary *)dictionary inContext:(NSManagedObjectContext *)context handledObjects:(NSMutableSet *)handledObjects;
++ (BMAbstractManagedObject *)importFromDictionary:(NSDictionary *)dictionary inContext:(NSManagedObjectContext *)context handledObjects:(nullable NSMutableSet *)handledObjects;
 
 @end
+
+NS_ASSUME_NONNULL_END

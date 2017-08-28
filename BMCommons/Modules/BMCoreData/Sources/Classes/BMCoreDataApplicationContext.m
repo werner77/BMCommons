@@ -23,7 +23,9 @@
 
 @end
 
-@implementation BMCoreDataApplicationContext
+@implementation BMCoreDataApplicationContext {
+    BMCoreDataStack *coreDataStack;
+}
 
 @synthesize coreDataStack;
 

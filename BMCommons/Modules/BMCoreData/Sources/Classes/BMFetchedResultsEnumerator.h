@@ -9,16 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Enumerator to enumerate over the results of a fetched results controller.
  */
-@interface BMFetchedResultsEnumerator : NSEnumerator {
-	NSFetchedResultsController *resultsController;
-	NSUInteger counter;
-	NSUInteger count;
-}
+@interface BMFetchedResultsEnumerator : NSEnumerator
 
 - (id)initWithResultsController:(NSFetchedResultsController *)resultsController;
 - (NSUInteger)count;
 
 @end
+
+NS_ASSUME_NONNULL_END
