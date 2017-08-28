@@ -12,7 +12,9 @@
 #import <BMCommons/BMEnumeratedValueToStringTransformer.h>
 #import <BMCommons/BMUICore.h>
 
-@implementation BMValuePickerCell
+@implementation BMValuePickerCell {
+    NSString *valueSelectionControllerNibName;
+}
 
 @synthesize valueSelectionControllerNibName;
 
@@ -24,7 +26,7 @@
 #pragma mark Public methods
 
 - (id <BMEditViewController>)selectionViewController {
-    if (possibleValues.count > 0) {
+    if (self.possibleValues.count > 0) {
         NSString *nibName = self.valueSelectionControllerNibName;
         BMEnumeratedValueSelectionViewController *vc;
         if (nibName) {
@@ -32,7 +34,7 @@
         } else {
             vc = [[BMEnumeratedValueSelectionViewController alloc] init];
         }
-        vc.possibleValues = possibleValues;
+        vc.possibleValues = self.possibleValues;
         vc.valueTransformer = self.displayValueTransformer;
         vc.propertyDescriptor = [BMPropertyDescriptor propertyDescriptorFromKeyPath:@"selectedValue" 
                                                                          withTarget:self];

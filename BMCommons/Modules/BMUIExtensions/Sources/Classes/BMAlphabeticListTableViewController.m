@@ -26,7 +26,14 @@
 
 @end
 
-@implementation BMAlphabeticListTableViewController
+@implementation BMAlphabeticListTableViewController {
+	NSDictionary *allObjects;
+	NSMutableDictionary *searchedObjects;
+	BOOL searching;
+	NSString *searchString;
+	NSMutableArray *indexTitles;
+	BOOL summaryCellEnabled;
+}
 
 @synthesize allObjects, searchedObjects, summaryCellEnabled;
 
@@ -39,7 +46,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     searchedObjects = [NSMutableDictionary new];
     searching = NO;
 	
@@ -212,7 +219,7 @@ BM_POP_IGNORE_WARNING
 #pragma mark - Implementation of super class methods
 
 - (IBAction)reset {
-    [self.searchedObjects removeAllObjects];
+    [searchedObjects removeAllObjects];
     self.allObjects = nil;
     [super reset];
 }
@@ -325,7 +332,7 @@ BM_POP_IGNORE_WARNING
 - (void)filterObjectsByName:(NSString *)searchText {
 	
 	//Remove all objects first.
-	[self.searchedObjects removeAllObjects];
+	[searchedObjects removeAllObjects];
 	
 	if (searchText.length > 0) {
 		
@@ -347,7 +354,7 @@ BM_POP_IGNORE_WARNING
 		}
 		
 		[matchingObjects sortUsingDescriptors:@[[[self class] sortDescriptor]]];		
-		(self.searchedObjects)[@""] = matchingObjects;
+		searchedObjects[@""] = matchingObjects;
 	}
 }
 

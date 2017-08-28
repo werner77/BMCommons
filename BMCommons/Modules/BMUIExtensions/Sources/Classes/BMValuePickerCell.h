@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMEnumeratedValueCell.h>
 
-@interface BMValuePickerCell : BMEnumeratedValueCell {
-    NSString *valueSelectionControllerNibName;
-}
+NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, strong) NSString *valueSelectionControllerNibName;
+@interface BMValuePickerCell : BMEnumeratedValueCell
+
+@property (nullable, nonatomic, strong) NSString *valueSelectionControllerNibName;
 
 @end
+
+NS_ASSUME_NONNULL_END

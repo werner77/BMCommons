@@ -10,6 +10,8 @@
 #import <BMCommons/BMTextCell.h>
 #import <BMCommons/BMValidatingTextField.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMTextFieldCell;
 
 @protocol BMTextFieldCellDelegate<BMTextCellDelegate>
@@ -19,18 +21,17 @@
 
 @end
 
-@interface BMTextFieldCell : BMTextCell <UITextFieldDelegate> {
-	IBOutlet BMValidatingTextField *valueTextField;
-}
+@interface BMTextFieldCell : BMTextCell <UITextFieldDelegate>
 
-@property (nonatomic, strong) IBOutlet BMValidatingTextField *valueTextField;
+@property (nullable, nonatomic, strong) IBOutlet BMValidatingTextField *valueTextField;
 
-- (void)constructCellWithObject:(NSObject *)theObject 
-						   propertyName:(NSString *)thePropertyName
-					  titleText:(NSString *)titleText
-				placeHolderText:(NSString *)placeHolderText;
+- (void)constructCellWithObject:(nullable NSObject *)theObject
+						   propertyName:(nullable NSString *)thePropertyName
+					  titleText:(nullable NSString *)titleText
+				placeHolderText:(nullable NSString *)placeHolderText;
 
 - (void)textFieldWasChanged:(UITextField *)textField;
 	
-
 @end
+
+NS_ASSUME_NONNULL_END

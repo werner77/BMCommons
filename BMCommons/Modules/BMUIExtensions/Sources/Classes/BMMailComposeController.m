@@ -6,13 +6,18 @@
 //  Copyright 2010 BehindMedia. All rights reserved.
 //
 
-#if BM_MAIL_ENABLED
-
 #import <BMCommons/BMMailComposeController.h>
 #import <BMCommons/BMDialogHelper.h>
 #import <BMCommons/BMBusyView.h>
 #import <BMCommons/BMCore.h>
 #import <BMCommons/BMStringHelper.h>
+
+@interface BMMailComposeController()<MFMailComposeViewControllerDelegate, UIImagePickerControllerDelegate,
+        UINavigationControllerDelegate, UIActionSheetDelegate>
+
+@property (nonatomic, strong) MFMailComposeViewController *mailComposer;
+
+@end
 
 @interface BMMailComposeController(Private)
 
@@ -23,7 +28,17 @@
 @end
 
 
-@implementation BMMailComposeController
+@implementation BMMailComposeController {
+    NSString *subject;
+    NSArray *toRecipients;
+    NSArray *ccRecipients;
+    NSArray *bccRecipients;
+    NSString *messageBody;
+    BOOL htmlMessage;
+    UIImagePickerController *imagePicker;
+    MFMailComposeViewController *mailComposer;
+    UIColor *navigationBarColor;
+}
 
 @synthesize subject, toRecipients, ccRecipients, bccRecipients, messageBody, viewController, htmlMessage, mailComposer;
 @synthesize navigationBarColor;
@@ -176,7 +191,7 @@
 	UIView *v = tc ? tc.view : self.viewController.view;
 	[BMDialogHelper dialogYesNoWithTitle:BMLocalizedString(@"txtExitToMail", nil) 
 							   withDelegate:self 
-								   withView:v];
+								   inView:v];
 }
 
 // Launches the Mail application on the device.
@@ -190,4 +205,3 @@
 
 @end
 
-#endif

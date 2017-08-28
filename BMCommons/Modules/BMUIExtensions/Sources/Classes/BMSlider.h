@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMSlider;
 
 @protocol BMSliderDelegate<NSObject>
@@ -23,15 +25,11 @@ typedef enum BMSliderScale {
 	BMSliderScaleEvenlySpaced
 } BMSliderScale;
 
-@interface BMSlider : UISlider {
-	BMSliderScale _scale;
-	NSArray *_discreteValues;
-	id <BMSliderDelegate> __weak delegate;
-}
+@interface BMSlider : UISlider
 
 @property (nonatomic, assign) BMSliderScale scale;
-@property (nonatomic, strong) NSArray *discreteValues;
-@property (nonatomic, weak) id <BMSliderDelegate> delegate;
+@property (nullable, nonatomic, strong) NSArray *discreteValues;
+@property (nullable, nonatomic, weak) id <BMSliderDelegate> delegate;
 
 - (void)setRealValue:(float)value animated:(BOOL)animated;
 - (void)setRealValue:(float)value;
@@ -42,3 +40,5 @@ typedef enum BMSliderScale {
 - (float)realMaximumValue;
 
 @end
+
+NS_ASSUME_NONNULL_END

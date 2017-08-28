@@ -15,7 +15,13 @@
 #import <BMCommons/BMEnumeratedValueToStringTransformer.h>
 #import <BMCommons/BMUICore.h>
 
-@implementation BMValueSelectionCell
+@implementation BMValueSelectionCell {
+	IBOutlet UIButton *button;
+	UIPopoverController *popoverController;
+	id selectedValue;
+	NSValueTransformer *displayValueTransformer;
+	NSString *placeHolder;
+}
 
 static NSString *defaultButtonImageName = @"BMUICore.bundle/selection_box.png";
 

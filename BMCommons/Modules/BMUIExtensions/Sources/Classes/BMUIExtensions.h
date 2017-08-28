@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMUICore.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BMUIExtensions : NSObject
 
 @end
+
+NS_ASSUME_NONNULL_END

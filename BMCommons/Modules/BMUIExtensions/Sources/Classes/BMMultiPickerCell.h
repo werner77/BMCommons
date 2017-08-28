@@ -10,10 +10,12 @@
 #import <BMCommons/BMValueSelectionCell.h>
 #import <BMCommons/BMPickerDataSource.h>
 
-@interface BMMultiPickerCell : BMValueSelectionCell {
-	id <BMPickerDataSource> dataSource;
-}
+NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, strong) id <BMPickerDataSource> dataSource;
+@interface BMMultiPickerCell : BMValueSelectionCell
+
+@property (nullable, nonatomic, strong) id <BMPickerDataSource> dataSource;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,7 +8,10 @@
 
 #import <BMCommons/BMSliderCell.h>
 
-@implementation BMSliderCell
+@implementation BMSliderCell {
+	IBOutlet BMSlider *slider;
+	IBOutlet UILabel *currentValueLabel;
+}
 
 @synthesize slider;
 @synthesize currentValueLabel;

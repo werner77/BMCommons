@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMTextualAlertView;
 
 /**
@@ -23,7 +25,7 @@
 /**
  Sent to delegate when the text input changes for the alert view.
  */
-- (void)textualAlertView:(BMTextualAlertView *)alertView textDidChange:(NSString *)text;
+- (void)textualAlertView:(BMTextualAlertView *)alertView textDidChange:(nullable NSString *)text;
 
 @end
 
@@ -40,7 +42,7 @@
 /**
  Default text to display.
  */
-@property (nonatomic, strong) NSString *defaultText;
+@property (nullable, nonatomic, strong) NSString *defaultText;
 
 /**
  Whether a value is required or not. 
@@ -52,6 +54,8 @@
 /**
  The text that was input.
  */
-- (NSString *)text;
+- (nullable NSString *)text;
 
 @end
+
+NS_ASSUME_NONNULL_END

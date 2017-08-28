@@ -16,7 +16,14 @@
 #define CELL_MARGIN 20.0
 #define DEFAULT_FONT [UIFont boldSystemFontOfSize:17.0]
 
-@implementation BMEnumeratedValueSelectionViewController
+@implementation BMEnumeratedValueSelectionViewController {
+	NSArray *possibleValues;
+	BMPropertyDescriptor *propertyDescriptor;
+	CGFloat widthForViewInPopover;
+	NSIndexPath *selectedIndexPath;
+	BOOL saveWhenValueIsSelected;
+	NSValueTransformer *valueTransformer;
+}
 
 @synthesize possibleValues, propertyDescriptor, delegate, saveWhenValueIsSelected, widthForViewInPopover, valueTransformer;
 

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Custom UIPageControl with support for custom dot color.
  */
@@ -48,7 +50,7 @@
  
  Defaults to [UIColor whiteColor].
  */
-@property(nonatomic, strong) UIColor *dotColor;
+@property(nullable, nonatomic, strong) UIColor *dotColor;
 
 /**
  Updates the page display (highlighted dot) to match the current page.
@@ -69,3 +71,5 @@
 - (CGSize)sizeForNumberOfPages:(NSInteger)pageCount;
 
 @end
+
+NS_ASSUME_NONNULL_END

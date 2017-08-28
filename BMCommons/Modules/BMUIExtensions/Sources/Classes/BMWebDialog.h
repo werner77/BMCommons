@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol BMWebDialogDelegate;
 
 //The following 'magic' URLs can be used to dismiss the web dialog with success or failure (cancel). Use these as redirect urls and the WebDialog will automatically dismiss and send the
@@ -30,17 +32,17 @@
 /**
  * Delegate which implements BMWebDialogDelegate
  */
-@property(nonatomic,weak) id<BMWebDialogDelegate> delegate;
+@property(nullable, nonatomic,weak) id<BMWebDialogDelegate> delegate;
 
 /**
  * The title that is shown in the header at the top of the view;
  */
-@property(nonatomic,copy) NSString* title;
+@property(nullable, nonatomic,copy) NSString* title;
 
 /**
  * Creates the view but does not display it.
  */
-- (id)initWithTitle:(NSString *)theTitle;
+- (id)initWithTitle:(nullable NSString *)theTitle;
 
 /**
  * Displays the view with an animation.
@@ -86,7 +88,7 @@
  *
  * Implementations must call dismissWithSuccess:YES at some point to hide the dialog.
  */
-- (void)dialogDidSucceed:(NSURL*)url;
+- (void)dialogDidSucceedWithUrl:(NSURL*)url;
 
 @end
 
@@ -127,3 +129,5 @@
 - (BOOL)dialog:(BMWebDialog*)dialog shouldOpenURLInExternalBrowser:(NSURL*)url;
 
 @end
+
+NS_ASSUME_NONNULL_END

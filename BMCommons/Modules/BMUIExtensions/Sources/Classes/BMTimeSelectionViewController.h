@@ -10,21 +10,19 @@
 #import <BMCommons/BMViewController.h>
 #import <BMCommons/BMEditViewController.h>
 
-@interface BMTimeSelectionViewController : BMViewController<BMEditViewController> {
-	BMPropertyDescriptor *propertyDescriptor;
-	__weak id <BMEditViewControllerDelegate> delegate;
-	IBOutlet UIDatePicker *datePicker;
-	IBOutlet UIButton *submitButton;
-    NSString *buttonImageName;
-}
+NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, strong) BMPropertyDescriptor *propertyDescriptor;
-@property (nonatomic, strong) IBOutlet UIDatePicker *datePicker;
-@property (nonatomic, strong) NSString *buttonImageName;
+@interface BMTimeSelectionViewController : BMViewController<BMEditViewController>
+
+@property (nullable, nonatomic, strong) BMPropertyDescriptor *propertyDescriptor;
+@property (nullable, nonatomic, strong) IBOutlet UIDatePicker *datePicker;
+@property (nullable, nonatomic, strong) NSString *buttonImageName;
 
 - (IBAction)onCancel;
 - (IBAction)onSelectDate;	
 
-- (UIImage *)buttonImage;
+- (nullable UIImage *)buttonImage;
 
 @end
+
+NS_ASSUME_NONNULL_END

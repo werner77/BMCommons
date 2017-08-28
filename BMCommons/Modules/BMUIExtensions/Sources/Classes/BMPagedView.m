@@ -38,8 +38,6 @@
     BMPageControl *_pageControl;
     NSMutableDictionary *_pageViewDictionary;
     NSMutableDictionary *_reuseViewDictionary;
-
-    id <BMPagedViewDelegate> __weak _delegate;
     NSInteger _indexForSelectedPage;
     NSInteger _oldPageIndex;
     NSTimer *_updateViewsTimer;

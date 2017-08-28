@@ -11,7 +11,9 @@
 #import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMRegexKitLite.h>
 
-@implementation BMTextFieldCell
+@implementation BMTextFieldCell {
+	IBOutlet BMValidatingTextField *valueTextField;
+}
 
 @synthesize valueTextField;
 

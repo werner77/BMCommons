@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <BMCommons/BMTextField.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMInputValueType;
 
 /**
@@ -21,7 +23,7 @@
  
  @see BMValueType
  */
-@property (nonatomic, strong) BMInputValueType *valueType;
+@property (nullable, nonatomic, strong) BMInputValueType *valueType;
 
 /**
  The min length in characters of allowed text for this text field.
@@ -47,7 +49,7 @@
  Default implementation is to check the valueType if set and to disallow the change if the [BMValueType allowedCharacterSet] does not contain all the characters. The text field won't update.
  If you want to act differently (e.g. by marking the text red) you should override this method and return YES if you want to allow the change.
  */
-- (BOOL)allowCharactersInString:(NSString *)string;
+- (BOOL)allowCharactersInString:(nullable NSString *)string;
 
 /**
  Decides whether to allow updating the text field with a string of the nex length.
@@ -62,6 +64,8 @@
  Default implementation returns the value returned by [BMValueType validateValue:] for the valueType set.
  If you want to act differently (e.g. by marking the text red) you should override this method and return YES if you want to allow the change.
  */
-- (BOOL)allowNewString:(NSString *)newString;
+- (BOOL)allowNewString:(nullable NSString *)newString;
 
 @end
+
+NS_ASSUME_NONNULL_END

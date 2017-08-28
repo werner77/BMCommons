@@ -16,7 +16,15 @@
 
 @end
 
-@implementation BMTextViewCell
+@implementation BMTextViewCell {
+	IBOutlet UITextView *textView;
+	BOOL sizeToFit;
+	CGFloat minHeight;
+	CGFloat yMargin;
+	NSString *placeHolder;
+	BOOL placeHolderPresent;
+	UIColor *originalTextColor;
+}
 
 @synthesize textView, sizeToFit, minHeight, yMargin, placeHolder;
 

@@ -10,7 +10,13 @@
 #import <BMCommons/BMStringHelper.h>
 #import <BMCommons/BMRegexKitLite.h>
 
-@implementation BMTextCell
+@implementation BMTextCell {
+	NSCharacterSet *allowedCharacterSet;
+	NSInteger maxLength;
+	NSInteger minLength;
+	NSString *validPattern;
+	BOOL allowEndEditingWithInvalidValue;
+}
 
 @synthesize maxLength, minLength, allowedCharacterSet, validPattern, allowEndEditingWithInvalidValue;
 

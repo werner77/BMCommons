@@ -8,10 +8,12 @@
 
 #import <BMCommons/BMObjectPropertyTableViewCell.h>
 
-@interface BMButtonCell : BMObjectPropertyTableViewCell {
-    IBOutlet UIButton *button;
-}
+NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, strong) IBOutlet UIButton *button;
+@interface BMButtonCell : BMObjectPropertyTableViewCell
+
+@property (nullable, nonatomic, strong) IBOutlet UIButton *button;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BMCommons'
-  s.version          = '1.0.0'
+  s.version          = '0.1.0'
   s.summary          = 'BehindMedia Commons Library'
 
   s.description      = <<-DESC

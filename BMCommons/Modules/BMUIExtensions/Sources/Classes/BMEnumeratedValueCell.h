@@ -10,10 +10,12 @@
 #import <BMCommons/BMValueSelectionCell.h>
 #import <BMCommons/BMEnumeratedValue.h>
 
-@interface BMEnumeratedValueCell : BMValueSelectionCell {
-	NSArray *possibleValues;
-}
+NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, strong) NSArray *possibleValues;
+@interface BMEnumeratedValueCell : BMValueSelectionCell
+
+@property (nullable, nonatomic, strong) NSArray *possibleValues;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -17,7 +17,10 @@
 
 @end
 
-@implementation BMSlider
+@implementation BMSlider {
+	BMSliderScale _scale;
+	NSArray *_discreteValues;
+}
 
 @synthesize scale = _scale, discreteValues = _discreteValues, delegate;
 

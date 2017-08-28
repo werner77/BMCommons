@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMAbstractDatePickerCell.h>
 
-@interface BMTimePickerCell : BMAbstractDatePickerCell {
+NS_ASSUME_NONNULL_BEGIN
 
-}
+@interface BMTimePickerCell : BMAbstractDatePickerCell
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -33,7 +33,17 @@
 @end
 
 
-@implementation BMSwitch
+@implementation BMSwitch {
+	BOOL _on;
+
+	UILabel *_offLabel;
+	UILabel *_onLabel;
+
+	NSInteger _hitCount;
+	UIImageView* _backgroundImage;
+	UIImageView* _switchImage;
+}
+
 @synthesize backgroundImage = _backgroundImage;
 @synthesize switchImage = _switchImage;
 @synthesize offLabel = _offLabel;

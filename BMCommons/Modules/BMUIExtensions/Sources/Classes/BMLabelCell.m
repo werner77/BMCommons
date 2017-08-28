@@ -9,7 +9,13 @@
 #import <BMCommons/BMLabelCell.h>
 #import <BMCommons/BMCore.h>
 
-@implementation BMLabelCell
+@implementation BMLabelCell {
+	IBOutlet UILabel *valueLabel;
+	NSString *valueFormat;
+
+	id valueFormatterTarget;
+	SEL valueFormatterSelector;
+}
 
 @synthesize valueLabel, valueFormat, valueFormatterTarget, valueFormatterSelector;
 

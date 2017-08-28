@@ -8,10 +8,12 @@
 
 #import <BMCommons/BMObjectPropertyTableViewCell.h>
 
-@interface BMImageViewCell : BMObjectPropertyTableViewCell {
-    
-}
+NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, strong) IBOutlet UIImageView *cellImageView;
+@interface BMImageViewCell : BMObjectPropertyTableViewCell
+
+@property (nullable, nonatomic, strong) IBOutlet UIImageView *cellImageView;
 
 @end
+
+NS_ASSUME_NONNULL_END

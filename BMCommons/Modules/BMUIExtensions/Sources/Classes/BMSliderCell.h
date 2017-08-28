@@ -9,12 +9,13 @@
 #import <BMCommons/BMObjectPropertyTableViewCell.h>
 #import <BMCommons/BMSlider.h>
 
-@interface BMSliderCell : BMObjectPropertyTableViewCell<BMSliderDelegate> {
-	IBOutlet BMSlider *slider;
-    IBOutlet UILabel *currentValueLabel;
-}
+NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, strong) IBOutlet BMSlider *slider;
-@property (nonatomic, strong) IBOutlet UILabel *currentValueLabel;
+@interface BMSliderCell : BMObjectPropertyTableViewCell<BMSliderDelegate>
+
+@property (nullable, nonatomic, strong) IBOutlet BMSlider *slider;
+@property (nullable, nonatomic, strong) IBOutlet UILabel *currentValueLabel;
 
 @end
+
+NS_ASSUME_NONNULL_END

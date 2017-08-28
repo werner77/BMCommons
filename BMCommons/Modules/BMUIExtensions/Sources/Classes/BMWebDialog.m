@@ -17,15 +17,15 @@
 #import <BMCommons/BMWebDialog.h>
 #import <BMCommons/UIScreen+BMCommons.h>
 
-@interface BMWebDialog()<UIWebViewDelegate> 
+@interface BMWebDialog () <UIWebViewDelegate>
 
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
 
-static NSString* kDialogIconImage = @"dialogIcon.png";
-static NSString* kDialogCloseImage = @"dialogClose.png";
+static NSString *kDialogIconImage = @"dialogIcon.png";
+static NSString *kDialogCloseImage = @"dialogClose.png";
 
 static CGFloat kFillColor[4] = {0.42578125, 0.515625, 0.703125, 1.0};
 static CGFloat kBorderGray[4] = {0.3, 0.3, 0.3, 0.8};
@@ -42,13 +42,12 @@ static CGFloat kBorderWidth = 10;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation BMWebDialog {
-    id<BMWebDialogDelegate> __weak _delegate;
-    NSURL* _loadingURL;
-    UIWebView* _webView;
-    UIActivityIndicatorView* _spinner;
-    UIImageView* _iconView;
-    UILabel* _titleLabel;
-    UIButton* _closeButton;
+    NSURL *_loadingURL;
+    UIWebView *_webView;
+    UIActivityIndicatorView *_spinner;
+    UIImageView *_iconView;
+    UILabel *_titleLabel;
+    UIButton *_closeButton;
     UIDeviceOrientation _orientation;
     BOOL _showingKeyboard;
 }
@@ -59,480 +58,486 @@ static CGFloat kBorderWidth = 10;
 // private
 
 - (void)addRoundedRectToPath:(CGContextRef)context rect:(CGRect)rect radius:(float)radius {
-  CGContextBeginPath(context);
-  CGContextSaveGState(context);
+    CGContextBeginPath(context);
+    CGContextSaveGState(context);
 
-  if (radius == 0) {
-    CGContextTranslateCTM(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
-    CGContextAddRect(context, rect);
-  } else {
-    rect = CGRectOffset(CGRectInset(rect, 0.5, 0.5), 0.5, 0.5);
-    CGContextTranslateCTM(context, CGRectGetMinX(rect)-0.5, CGRectGetMinY(rect)-0.5);
-    CGContextScaleCTM(context, radius, radius);
-    float fw = CGRectGetWidth(rect) / radius;
-    float fh = CGRectGetHeight(rect) / radius;
-    
-    CGContextMoveToPoint(context, fw, fh/2);
-    CGContextAddArcToPoint(context, fw, fh, fw/2, fh, 1);
-    CGContextAddArcToPoint(context, 0, fh, 0, fh/2, 1);
-    CGContextAddArcToPoint(context, 0, 0, fw/2, 0, 1);
-    CGContextAddArcToPoint(context, fw, 0, fw, fh/2, 1);
-  }
+    if (radius == 0) {
+        CGContextTranslateCTM(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
+        CGContextAddRect(context, rect);
+    } else {
+        rect = CGRectOffset(CGRectInset(rect, 0.5, 0.5), 0.5, 0.5);
+        CGContextTranslateCTM(context, CGRectGetMinX(rect) - 0.5, CGRectGetMinY(rect) - 0.5);
+        CGContextScaleCTM(context, radius, radius);
+        float fw = CGRectGetWidth(rect) / radius;
+        float fh = CGRectGetHeight(rect) / radius;
 
-  CGContextClosePath(context);
-  CGContextRestoreGState(context);
+        CGContextMoveToPoint(context, fw, fh / 2);
+        CGContextAddArcToPoint(context, fw, fh, fw / 2, fh, 1);
+        CGContextAddArcToPoint(context, 0, fh, 0, fh / 2, 1);
+        CGContextAddArcToPoint(context, 0, 0, fw / 2, 0, 1);
+        CGContextAddArcToPoint(context, fw, 0, fw, fh / 2, 1);
+    }
+
+    CGContextClosePath(context);
+    CGContextRestoreGState(context);
 }
 
 - (void)drawRect:(CGRect)rect fillColor:(UIColor *)color radius:(CGFloat)radius {
-  CGContextRef context = UIGraphicsGetCurrentContext();
-  CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
 
-  if (color) {
-    CGContextSaveGState(context);	  
-	CGContextSetFillColorWithColor(context, [color CGColor]);  
-    if (radius) {
-      [self addRoundedRectToPath:context rect:rect radius:radius];
-      CGContextFillPath(context);
-    } else {
-      CGContextFillRect(context, rect);
+    if (color) {
+        CGContextSaveGState(context);
+        CGContextSetFillColorWithColor(context, [color CGColor]);
+        if (radius) {
+            [self addRoundedRectToPath:context rect:rect radius:radius];
+            CGContextFillPath(context);
+        } else {
+            CGContextFillRect(context, rect);
+        }
+        CGContextRestoreGState(context);
     }
-    CGContextRestoreGState(context);
-  }
-  
-  CGColorSpaceRelease(space);
+
+    CGColorSpaceRelease(space);
 }
 
 - (void)strokeLines:(CGRect)rect strokeColor:(UIColor *)color {
-  CGContextRef context = UIGraphicsGetCurrentContext();
-  CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
 
-  CGContextSaveGState(context);
-  CGContextSetStrokeColorSpace(context, space);
-  CGContextSetStrokeColorWithColor(context, [color CGColor]);
-  CGContextSetLineWidth(context, 1.0);
-    
-  {
-    CGPoint points[] = {{(CGFloat) (rect.origin.x+0.5), (CGFloat) (rect.origin.y-0.5)},
-            {rect.origin.x+rect.size.width, (CGFloat) (rect.origin.y-0.5)}};
-    CGContextStrokeLineSegments(context, points, 2);
-  }
-  {
-    CGPoint points[] = {{(CGFloat) (rect.origin.x+0.5), (CGFloat) (rect.origin.y+rect.size.height-0.5)},
-            {(CGFloat) (rect.origin.x+rect.size.width-0.5), (CGFloat) (rect.origin.y+rect.size.height-0.5)}};
-    CGContextStrokeLineSegments(context, points, 2);
-  }
-  {
-    CGPoint points[] = {{(CGFloat) (rect.origin.x+rect.size.width-0.5), rect.origin.y},
-            {(CGFloat) (rect.origin.x+rect.size.width-0.5), rect.origin.y+rect.size.height}};
-    CGContextStrokeLineSegments(context, points, 2);
-  }
-  {
-    CGPoint points[] = {{(CGFloat) (rect.origin.x+0.5), rect.origin.y},
-            {(CGFloat) (rect.origin.x+0.5), rect.origin.y+rect.size.height}};
-    CGContextStrokeLineSegments(context, points, 2);
-  }
-  
-  CGContextRestoreGState(context);
+    CGContextSaveGState(context);
+    CGContextSetStrokeColorSpace(context, space);
+    CGContextSetStrokeColorWithColor(context, [color CGColor]);
+    CGContextSetLineWidth(context, 1.0);
 
-  CGColorSpaceRelease(space);
+    {
+        CGPoint points[] = {{(CGFloat) (rect.origin.x + 0.5), (CGFloat) (rect.origin.y - 0.5)},
+                {rect.origin.x + rect.size.width, (CGFloat) (rect.origin.y - 0.5)}};
+        CGContextStrokeLineSegments(context, points, 2);
+    }
+    {
+        CGPoint points[] = {{(CGFloat) (rect.origin.x + 0.5), (CGFloat) (rect.origin.y + rect.size.height - 0.5)},
+                {(CGFloat) (rect.origin.x + rect.size.width - 0.5), (CGFloat) (rect.origin.y + rect.size.height - 0.5)}};
+        CGContextStrokeLineSegments(context, points, 2);
+    }
+    {
+        CGPoint points[] = {{(CGFloat) (rect.origin.x + rect.size.width - 0.5), rect.origin.y},
+                {(CGFloat) (rect.origin.x + rect.size.width - 0.5), rect.origin.y + rect.size.height}};
+        CGContextStrokeLineSegments(context, points, 2);
+    }
+    {
+        CGPoint points[] = {{(CGFloat) (rect.origin.x + 0.5), rect.origin.y},
+                {(CGFloat) (rect.origin.x + 0.5), rect.origin.y + rect.size.height}};
+        CGContextStrokeLineSegments(context, points, 2);
+    }
+
+    CGContextRestoreGState(context);
+
+    CGColorSpaceRelease(space);
 }
 
 - (BOOL)shouldRotateToOrientation:(UIDeviceOrientation)orientation {
-  if (orientation == _orientation) {
-    return NO;
-  } else {
-    return orientation == UIDeviceOrientationLandscapeLeft
-      || orientation == UIDeviceOrientationLandscapeRight
-      || orientation == UIDeviceOrientationPortrait
-      || orientation == UIDeviceOrientationPortraitUpsideDown;
-  }
+    if (orientation == _orientation) {
+        return NO;
+    } else {
+        return orientation == UIDeviceOrientationLandscapeLeft
+                || orientation == UIDeviceOrientationLandscapeRight
+                || orientation == UIDeviceOrientationPortrait
+                || orientation == UIDeviceOrientationPortraitUpsideDown;
+    }
 }
 
 - (CGAffineTransform)transformForOrientation {
-  UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-  if (orientation == UIInterfaceOrientationLandscapeLeft) {
-    return CGAffineTransformMakeRotation(M_PI*1.5);
-  } else if (orientation == UIInterfaceOrientationLandscapeRight) {
-    return CGAffineTransformMakeRotation(M_PI/2);
-  } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
-    return CGAffineTransformMakeRotation(-M_PI);
-  } else {
-    return CGAffineTransformIdentity;
-  }
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (orientation == UIInterfaceOrientationLandscapeLeft) {
+        return CGAffineTransformMakeRotation(M_PI * 1.5);
+    } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+        return CGAffineTransformMakeRotation(M_PI / 2);
+    } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+        return CGAffineTransformMakeRotation(-M_PI);
+    } else {
+        return CGAffineTransformIdentity;
+    }
 }
 
 - (void)sizeToFitOrientation:(BOOL)transform {
-  if (transform) {
-    self.transform = CGAffineTransformIdentity;
-  }
+    if (transform) {
+        self.transform = CGAffineTransformIdentity;
+    }
 
-  CGRect frame = [UIScreen mainScreen].bmPortraitApplicationFrame;
-  CGPoint center = CGPointMake(
-    frame.origin.x + ceil(frame.size.width/2),
-    frame.origin.y + ceil(frame.size.height/2));
-  
-  CGFloat width = frame.size.width - kPadding * 2;
-  CGFloat height = frame.size.height - kPadding * 2;
-  
-  UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
-  _orientation = (UIDeviceOrientation)interfaceOrientation;
-  if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-    self.frame = CGRectMake(kPadding, kPadding, height, width);
-  } else {
-    self.frame = CGRectMake(kPadding, kPadding, width, height);
-  }
-  self.center = center;
+    CGRect frame = [UIScreen mainScreen].bmPortraitApplicationFrame;
+    CGPoint center = CGPointMake(
+            frame.origin.x + ceil(frame.size.width / 2),
+            frame.origin.y + ceil(frame.size.height / 2));
 
-  if (transform) {
-    self.transform = [self transformForOrientation];
-  }
+    CGFloat width = frame.size.width - kPadding * 2;
+    CGFloat height = frame.size.height - kPadding * 2;
+
+    UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+    _orientation = (UIDeviceOrientation) interfaceOrientation;
+    if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+        self.frame = CGRectMake(kPadding, kPadding, height, width);
+    } else {
+        self.frame = CGRectMake(kPadding, kPadding, width, height);
+    }
+    self.center = center;
+
+    if (transform) {
+        self.transform = [self transformForOrientation];
+    }
 }
 
 - (void)updateWebOrientation {
-  UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-  if (UIInterfaceOrientationIsLandscape(orientation)) {
-    [_webView stringByEvaluatingJavaScriptFromString:
-      @"document.body.setAttribute('orientation', 90);"];
-  } else {
-    [_webView stringByEvaluatingJavaScriptFromString:
-      @"document.body.removeAttribute('orientation');"];
-  }
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        [_webView stringByEvaluatingJavaScriptFromString:
+                @"document.body.setAttribute('orientation', 90);"];
+    } else {
+        [_webView stringByEvaluatingJavaScriptFromString:
+                @"document.body.removeAttribute('orientation');"];
+    }
 }
 
 - (void)bounce1AnimationStopped {
-  [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDuration:kTransitionDuration/2];
-  [UIView setAnimationDelegate:self];
-  [UIView setAnimationDidStopSelector:@selector(bounce2AnimationStopped)];
-  self.transform = CGAffineTransformScale([self transformForOrientation], 0.9, 0.9);
-  [UIView commitAnimations];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:kTransitionDuration / 2];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(bounce2AnimationStopped)];
+    self.transform = CGAffineTransformScale([self transformForOrientation], 0.9, 0.9);
+    [UIView commitAnimations];
 }
 
 - (void)bounce2AnimationStopped {
-  [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDuration:kTransitionDuration/2];
-  self.transform = [self transformForOrientation];
-  [UIView commitAnimations];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:kTransitionDuration / 2];
+    self.transform = [self transformForOrientation];
+    [UIView commitAnimations];
 }
 
 - (void)addObservers {
-  [[NSNotificationCenter defaultCenter] addObserver:self
-    selector:@selector(deviceOrientationDidChange:)
-    name:@"UIDeviceOrientationDidChangeNotification" object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-    selector:@selector(keyboardWillShow:) name:@"UIKeyboardWillShowNotification" object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-    selector:@selector(keyboardWillHide:) name:@"UIKeyboardWillHideNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(deviceOrientationDidChange:)
+                                                 name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:) name:@"UIKeyboardWillShowNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:) name:@"UIKeyboardWillHideNotification" object:nil];
 }
 
 - (void)removeObservers {
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-    name:@"UIDeviceOrientationDidChangeNotification" object:nil];
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-    name:@"UIKeyboardWillShowNotification" object:nil];
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-    name:@"UIKeyboardWillHideNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"UIKeyboardWillShowNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"UIKeyboardWillHideNotification" object:nil];
 }
 
 - (void)postDismissCleanup {
-  [self removeObservers];
-  [self removeFromSuperview];
+    [self removeObservers];
+    [self removeFromSuperview];
 }
 
 - (void)dismiss:(BOOL)animated {
-  [self dialogWillDisappear];
+    [self dialogWillDisappear];
 
-  _loadingURL = nil;
-  
-  if (animated) {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:kTransitionDuration];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(postDismissCleanup)];
-    self.alpha = 0;
-    [UIView commitAnimations];
-  } else {
-    [self postDismissCleanup];
-  }
+    _loadingURL = nil;
+
+    if (animated) {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:kTransitionDuration];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDidStopSelector:@selector(postDismissCleanup)];
+        self.alpha = 0;
+        [UIView commitAnimations];
+    } else {
+        [self postDismissCleanup];
+    }
 }
 
 - (void)cancel {
-  [self dismissWithSuccess:NO animated:YES];
+    [self dismissWithSuccess:NO animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithTitle:(NSString *)theTitle {
-  if (self = [super initWithFrame:CGRectZero]) {
-    _delegate = nil;
-    _loadingURL = nil;
-    _orientation = UIDeviceOrientationUnknown;
-    _showingKeyboard = NO;
-    
-    self.backgroundColor = [UIColor clearColor];
-    self.autoresizesSubviews = YES;
-    self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.contentMode = UIViewContentModeRedraw;
-    
-    UIImage* iconImage = [UIImage imageNamed:kDialogIconImage];
-    UIImage* closeImage = [UIImage imageNamed:kDialogCloseImage];
-    
-    _iconView = [[UIImageView alloc] initWithImage:iconImage];
-    [self addSubview:_iconView];
-    
-    UIColor* color = [UIColor colorWithRed:167.0/255 green:184.0/255 blue:216.0/255 alpha:1];
-    _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_closeButton setImage:closeImage forState:UIControlStateNormal];
-    [_closeButton setTitleColor:color forState:UIControlStateNormal];
-    [_closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    [_closeButton addTarget:self action:@selector(cancel)
-      forControlEvents:UIControlEventTouchUpInside];
-    _closeButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
-    _closeButton.showsTouchWhenHighlighted = YES;
-    _closeButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin
-      | UIViewAutoresizingFlexibleBottomMargin;
-    [self addSubview:_closeButton];
-    
-    _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    _titleLabel.text = theTitle;
-    _titleLabel.backgroundColor = [UIColor clearColor];
-    _titleLabel.textColor = [UIColor whiteColor];
-    _titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    _titleLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin
-      | UIViewAutoresizingFlexibleBottomMargin;
-    [self addSubview:_titleLabel];
-        
-    _webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    _webView.delegate = self;
-    _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self addSubview:_webView];
+- (id)initWithFrame:(CGRect)frame {
+    if ((self = [super initWithFrame:frame])) {
+        _delegate = nil;
+        _loadingURL = nil;
+        _orientation = UIDeviceOrientationUnknown;
+        _showingKeyboard = NO;
 
-    _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
-      UIActivityIndicatorViewStyleWhiteLarge];
-    _spinner.autoresizingMask =
-      UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin
-      | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [self addSubview:_spinner];
-  }
-  return self;
+        self.backgroundColor = [UIColor clearColor];
+        self.autoresizesSubviews = YES;
+        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        self.contentMode = UIViewContentModeRedraw;
+
+        UIImage *iconImage = [UIImage imageNamed:kDialogIconImage];
+        UIImage *closeImage = [UIImage imageNamed:kDialogCloseImage];
+
+        _iconView = [[UIImageView alloc] initWithImage:iconImage];
+        [self addSubview:_iconView];
+
+        UIColor *color = [UIColor colorWithRed:167.0 / 255 green:184.0 / 255 blue:216.0 / 255 alpha:1];
+        _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_closeButton setImage:closeImage forState:UIControlStateNormal];
+        [_closeButton setTitleColor:color forState:UIControlStateNormal];
+        [_closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [_closeButton addTarget:self action:@selector(cancel)
+               forControlEvents:UIControlEventTouchUpInside];
+        _closeButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+        _closeButton.showsTouchWhenHighlighted = YES;
+        _closeButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin
+                | UIViewAutoresizingFlexibleBottomMargin;
+        [self addSubview:_closeButton];
+
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _titleLabel.backgroundColor = [UIColor clearColor];
+        _titleLabel.textColor = [UIColor whiteColor];
+        _titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        _titleLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin
+                | UIViewAutoresizingFlexibleBottomMargin;
+        [self addSubview:_titleLabel];
+
+        _webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+        _webView.delegate = self;
+        _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [self addSubview:_webView];
+
+        _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
+                UIActivityIndicatorViewStyleWhiteLarge];
+        _spinner.autoresizingMask =
+                UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin
+                        | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        [self addSubview:_spinner];
+    }
+    return self;
+}
+
+- (id)initWithTitle:(NSString *)theTitle {
+    if (self = [self initWithFrame:CGRectZero]) {
+        self.title = theTitle;
+    }
+    return self;
 }
 
 - (void)dealloc {
-  _webView.delegate = nil;
+    _webView.delegate = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIView
 
 - (void)drawRect:(CGRect)rect {
-  CGRect grayRect = CGRectOffset(rect, -0.5, -0.5);
-	
-	UIColor *color = [UIColor colorWithRed:kBorderGray[0] green:kBorderGray[1] blue:kBorderGray[2] alpha:kBorderGray[3]];
-	
-  [self drawRect:grayRect fillColor:color radius:10];
+    CGRect grayRect = CGRectOffset(rect, -0.5, -0.5);
 
-  CGRect headerRect = CGRectMake(
-    ceil(rect.origin.x + kBorderWidth), ceil(rect.origin.y + kBorderWidth),
-    rect.size.width - kBorderWidth*2, _titleLabel.frame.size.height);
-	
-	color = [UIColor colorWithRed:kFillColor[0] green:kFillColor[1] blue:kFillColor[2] alpha:kFillColor[3]];
-	
-  [self drawRect:headerRect fillColor:color radius:0];
-	
-	color = [UIColor colorWithRed:kBorderBlue[0] green:kBorderBlue[1] blue:kBorderBlue[2] alpha:kBorderBlue[3]];
-	
-  [self strokeLines:headerRect strokeColor:color];
+    UIColor *color = [UIColor colorWithRed:kBorderGray[0] green:kBorderGray[1] blue:kBorderGray[2] alpha:kBorderGray[3]];
 
-  CGRect webRect = CGRectMake(
-    ceil(rect.origin.x + kBorderWidth), headerRect.origin.y + headerRect.size.height,
-    rect.size.width - kBorderWidth*2, _webView.frame.size.height+1);
-	
-	color = [UIColor colorWithRed:kBorderBlack[0] green:kBorderBlack[1] blue:kBorderBlack[2] alpha:kBorderBlack[3]];
-	
-  [self strokeLines:webRect strokeColor:color];
+    [self drawRect:grayRect fillColor:color radius:10];
+
+    CGRect headerRect = CGRectMake(
+            ceil(rect.origin.x + kBorderWidth), ceil(rect.origin.y + kBorderWidth),
+            rect.size.width - kBorderWidth * 2, _titleLabel.frame.size.height);
+
+    color = [UIColor colorWithRed:kFillColor[0] green:kFillColor[1] blue:kFillColor[2] alpha:kFillColor[3]];
+
+    [self drawRect:headerRect fillColor:color radius:0];
+
+    color = [UIColor colorWithRed:kBorderBlue[0] green:kBorderBlue[1] blue:kBorderBlue[2] alpha:kBorderBlue[3]];
+
+    [self strokeLines:headerRect strokeColor:color];
+
+    CGRect webRect = CGRectMake(
+            ceil(rect.origin.x + kBorderWidth), headerRect.origin.y + headerRect.size.height,
+            rect.size.width - kBorderWidth * 2, _webView.frame.size.height + 1);
+
+    color = [UIColor colorWithRed:kBorderBlack[0] green:kBorderBlack[1] blue:kBorderBlack[2] alpha:kBorderBlack[3]];
+
+    [self strokeLines:webRect strokeColor:color];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
-    navigationType:(UIWebViewNavigationType)navigationType {
-  NSURL* url = request.URL;
-  if ([url.scheme isEqualToString:BM_WEBDIALOG_SCHEME]) {
-    if ([url.resourceSpecifier isEqualToString:BM_WEBDIALOG_CANCEL_RESOURCE_IDENTIFIER]) {
-      [self dismissWithSuccess:NO animated:YES];
-    } else {
-      [self dialogDidSucceed:url];
-    }
-    return NO;
-  } else if ([_loadingURL isEqual:url]) {
-    return YES;
-  } else if (navigationType == UIWebViewNavigationTypeLinkClicked) {
-    if ([_delegate respondsToSelector:@selector(dialog:shouldOpenURLInExternalBrowser:)]) {
-      if (![_delegate dialog:self shouldOpenURLInExternalBrowser:url]) {
+ navigationType:(UIWebViewNavigationType)navigationType {
+    NSURL *url = request.URL;
+    if ([url.scheme isEqualToString:BM_WEBDIALOG_SCHEME]) {
+        if ([url.resourceSpecifier isEqualToString:BM_WEBDIALOG_CANCEL_RESOURCE_IDENTIFIER]) {
+            [self dismissWithSuccess:NO animated:YES];
+        } else {
+            [self dialogDidSucceedWithUrl:url];
+        }
         return NO;
-      }
+    } else if ([_loadingURL isEqual:url]) {
+        return YES;
+    } else if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        if ([_delegate respondsToSelector:@selector(dialog:shouldOpenURLInExternalBrowser:)]) {
+            if (![_delegate dialog:self shouldOpenURLInExternalBrowser:url]) {
+                return NO;
+            }
+        }
+
+        [[UIApplication sharedApplication] openURL:request.URL];
+        return NO;
+    } else {
+        return YES;
     }
-    
-    [[UIApplication sharedApplication] openURL:request.URL];
-    return NO;
-  } else {
-    return YES;
-  }
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-  [_spinner stopAnimating];
-  _spinner.hidden = YES;
-  
-  self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-  [self updateWebOrientation];
+    [_spinner stopAnimating];
+    _spinner.hidden = YES;
+
+    self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    [self updateWebOrientation];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-  // 102 == WebKitErrorFrameLoadInterruptedByPolicyChange
-  if (!([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102)) {
-    [self dismissWithError:error animated:YES];
-  }
+    // 102 == WebKitErrorFrameLoadInterruptedByPolicyChange
+    if (!([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102)) {
+        [self dismissWithError:error animated:YES];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIDeviceOrientationDidChangeNotification
 
-- (void)deviceOrientationDidChange:(void*)object {
-  UIDeviceOrientation orientation = (UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation;
-  if (!_showingKeyboard && [self shouldRotateToOrientation:orientation]) {
-    [self updateWebOrientation];
+- (void)deviceOrientationDidChange:(void *)object {
+    UIDeviceOrientation orientation = (UIDeviceOrientation) [UIApplication sharedApplication].statusBarOrientation;
+    if (!_showingKeyboard && [self shouldRotateToOrientation:orientation]) {
+        [self updateWebOrientation];
 
-    CGFloat duration = [UIApplication sharedApplication].statusBarOrientationAnimationDuration;
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:duration];
-    [self sizeToFitOrientation:YES];
-    [UIView commitAnimations];
-  }
+        CGFloat duration = [UIApplication sharedApplication].statusBarOrientationAnimationDuration;
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:duration];
+        [self sizeToFitOrientation:YES];
+        [UIView commitAnimations];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // UIKeyboardNotifications
 
-- (void)keyboardWillShow:(NSNotification*)notification {
-  UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-  if (UIInterfaceOrientationIsLandscape(orientation)) {
-    _webView.frame = CGRectInset(_webView.frame,
-      -(kPadding + kBorderWidth),
-      -(kPadding + kBorderWidth) - _titleLabel.frame.size.height);
-  }
+- (void)keyboardWillShow:(NSNotification *)notification {
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        _webView.frame = CGRectInset(_webView.frame,
+                -(kPadding + kBorderWidth),
+                -(kPadding + kBorderWidth) - _titleLabel.frame.size.height);
+    }
 
-  _showingKeyboard = YES;
+    _showingKeyboard = YES;
 }
 
-- (void)keyboardWillHide:(NSNotification*)notification {
-  UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-  if (UIInterfaceOrientationIsLandscape(orientation)) {
-    _webView.frame = CGRectInset(_webView.frame,
-      kPadding + kBorderWidth,
-      kPadding + kBorderWidth + _titleLabel.frame.size.height);
-  }
+- (void)keyboardWillHide:(NSNotification *)notification {
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        _webView.frame = CGRectInset(_webView.frame,
+                kPadding + kBorderWidth,
+                kPadding + kBorderWidth + _titleLabel.frame.size.height);
+    }
 
-  _showingKeyboard = NO;
+    _showingKeyboard = NO;
 }
- 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // public
 
-- (NSString*)title {
-  return _titleLabel.text;
+- (NSString *)title {
+    return _titleLabel.text;
 }
 
-- (void)setTitle:(NSString*)title {
-  _titleLabel.text = title;
+- (void)setTitle:(NSString *)title {
+    _titleLabel.text = title;
 }
 
 - (void)show {
-  [self load];
-  [self sizeToFitOrientation:NO];
+    [self load];
+    [self sizeToFitOrientation:NO];
 
-  CGFloat innerWidth = self.frame.size.width - (kBorderWidth+1)*2;  
-  [_iconView sizeToFit];
-  [_titleLabel sizeToFit];
-  [_closeButton sizeToFit];
+    CGFloat innerWidth = self.frame.size.width - (kBorderWidth + 1) * 2;
+    [_iconView sizeToFit];
+    [_titleLabel sizeToFit];
+    [_closeButton sizeToFit];
 
-  _titleLabel.frame = CGRectMake(
-    kBorderWidth + kTitleMarginX + _iconView.frame.size.width + kTitleMarginX,
-    kBorderWidth,
-    innerWidth - (_titleLabel.frame.size.height + _iconView.frame.size.width + kTitleMarginX*2),
-    _titleLabel.frame.size.height + kTitleMarginY*2);
-  
-  _iconView.frame = CGRectMake(
-    kBorderWidth + kTitleMarginX,
-    kBorderWidth + floor(_titleLabel.frame.size.height/2 - _iconView.frame.size.height/2),
-    _iconView.frame.size.width,
-    _iconView.frame.size.height);
+    _titleLabel.frame = CGRectMake(
+            kBorderWidth + kTitleMarginX + _iconView.frame.size.width + kTitleMarginX,
+            kBorderWidth,
+            innerWidth - (_titleLabel.frame.size.height + _iconView.frame.size.width + kTitleMarginX * 2),
+            _titleLabel.frame.size.height + kTitleMarginY * 2);
 
-  _closeButton.frame = CGRectMake(
-    self.frame.size.width - (_titleLabel.frame.size.height + kBorderWidth),
-    kBorderWidth,
-    _titleLabel.frame.size.height,
-    _titleLabel.frame.size.height);
-  
-  _webView.frame = CGRectMake(
-    kBorderWidth+1,
-    kBorderWidth + _titleLabel.frame.size.height,
-    innerWidth,
-    self.frame.size.height - (_titleLabel.frame.size.height + 1 + kBorderWidth*2));
+    _iconView.frame = CGRectMake(
+            kBorderWidth + kTitleMarginX,
+            kBorderWidth + floor(_titleLabel.frame.size.height / 2 - _iconView.frame.size.height / 2),
+            _iconView.frame.size.width,
+            _iconView.frame.size.height);
 
-  [_spinner sizeToFit];
-  [_spinner startAnimating];
-  _spinner.center = _webView.center;
+    _closeButton.frame = CGRectMake(
+            self.frame.size.width - (_titleLabel.frame.size.height + kBorderWidth),
+            kBorderWidth,
+            _titleLabel.frame.size.height,
+            _titleLabel.frame.size.height);
 
-  UIWindow* window = [UIApplication sharedApplication].keyWindow;
-  if (!window) {
-    window = ([UIApplication sharedApplication].windows)[0];
-  }
-  [window addSubview:self];
+    _webView.frame = CGRectMake(
+            kBorderWidth + 1,
+            kBorderWidth + _titleLabel.frame.size.height,
+            innerWidth,
+            self.frame.size.height - (_titleLabel.frame.size.height + 1 + kBorderWidth * 2));
 
-  [self dialogWillAppear];
-    
-  self.transform = CGAffineTransformScale([self transformForOrientation], 0.001, 0.001);
-  [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDuration:kTransitionDuration/1.5];
-  [UIView setAnimationDelegate:self];
-  [UIView setAnimationDidStopSelector:@selector(bounce1AnimationStopped)];
-  self.transform = CGAffineTransformScale([self transformForOrientation], 1.1, 1.1);
-  [UIView commitAnimations];
+    [_spinner sizeToFit];
+    [_spinner startAnimating];
+    _spinner.center = _webView.center;
 
-  [self addObservers];
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    if (!window) {
+        window = ([UIApplication sharedApplication].windows)[0];
+    }
+    [window addSubview:self];
+
+    [self dialogWillAppear];
+
+    self.transform = CGAffineTransformScale([self transformForOrientation], 0.001, 0.001);
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:kTransitionDuration / 1.5];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(bounce1AnimationStopped)];
+    self.transform = CGAffineTransformScale([self transformForOrientation], 1.1, 1.1);
+    [UIView commitAnimations];
+
+    [self addObservers];
 }
 
 - (void)dismissWithSuccess:(BOOL)success animated:(BOOL)animated {
-  if (success) {
-    if ([_delegate respondsToSelector:@selector(dialogDidSucceed:)]) {
-      [_delegate dialogDidSucceed:self];
+    if (success) {
+        if ([_delegate respondsToSelector:@selector(dialogDidSucceed:)]) {
+            [_delegate dialogDidSucceed:self];
+        }
+    } else {
+        if ([_delegate respondsToSelector:@selector(dialogDidCancel:)]) {
+            [_delegate dialogDidCancel:self];
+        }
     }
-  } else {
-    if ([_delegate respondsToSelector:@selector(dialogDidCancel:)]) {
-      [_delegate dialogDidCancel:self];
-    }
-  }
 
-  [self dismiss:animated];
+    [self dismiss:animated];
 }
 
-- (void)dismissWithError:(NSError*)error animated:(BOOL)animated {
-  if ([_delegate respondsToSelector:@selector(dialog:didFailWithError:)]) {
-    [_delegate dialog:self didFailWithError:error];
-  }
+- (void)dismissWithError:(NSError *)error animated:(BOOL)animated {
+    if ([_delegate respondsToSelector:@selector(dialog:didFailWithError:)]) {
+        [_delegate dialog:self didFailWithError:error];
+    }
 
-  [self dismiss:animated];
+    [self dismiss:animated];
 }
 
 - (void)load {
-  // Intended for subclasses to override
+    // Intended for subclasses to override
 }
 
 - (void)loadRequest:(NSURLRequest *)request {
-	[_webView loadRequest:request];
+    [_webView loadRequest:request];
 }
 
 - (void)dialogWillAppear {
@@ -541,8 +546,8 @@ static CGFloat kBorderWidth = 10;
 - (void)dialogWillDisappear {
 }
 
-- (void)dialogDidSucceed:(NSURL*)url {
-  [self dismissWithSuccess:YES animated:YES];
+- (void)dialogDidSucceedWithUrl:(NSURL *)url {
+    [self dismissWithSuccess:YES animated:YES];
 }
 
 @end

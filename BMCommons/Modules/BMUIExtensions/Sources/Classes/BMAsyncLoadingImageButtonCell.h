@@ -9,8 +9,12 @@
 #import <BMCommons/BMObjectPropertyTableViewCell.h>
 #import <BMCommons/BMAsyncLoadingImageButton.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BMAsyncLoadingImageButtonCell : BMObjectPropertyTableViewCell
 
-@property (nonatomic, strong) IBOutlet BMAsyncLoadingImageButton *imageButton;
+@property (nullable, nonatomic, strong) IBOutlet BMAsyncLoadingImageButton *imageButton;
 
 @end
+
+NS_ASSUME_NONNULL_END

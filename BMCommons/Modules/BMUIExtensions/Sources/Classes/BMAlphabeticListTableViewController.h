@@ -10,17 +10,12 @@
 #import <BMCommons/BMEntityServiceModelTableViewController.h>
 #import <BMCommons/BMNamedObject.h>
 
-@interface BMAlphabeticListTableViewController : BMEntityServiceModelTableViewController {
-	NSDictionary *allObjects;
-	NSMutableDictionary *searchedObjects;
-	BOOL searching;
-	NSString *searchString;
-	NSMutableArray *indexTitles;
-	BOOL summaryCellEnabled;
-}
+NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, readonly) NSDictionary *allObjects;
-@property (nonatomic, readonly) NSMutableDictionary *searchedObjects;
+@interface BMAlphabeticListTableViewController : BMEntityServiceModelTableViewController
+
+@property (nullable, nonatomic, readonly) NSDictionary *allObjects;
+@property (nullable, nonatomic, readonly) NSDictionary *searchedObjects;
 @property (nonatomic, assign, getter=isSummaryCellEnabled) BOOL summaryCellEnabled;
 
 //Methods to be implemented by sub classes
@@ -33,7 +28,7 @@
 /**
   * The summary cell (to be displayed at the bottom of the table)
   */
-- (UITableViewCell *)summaryCellForCount:(NSUInteger)count;
+- (nullable UITableViewCell *)summaryCellForCount:(NSUInteger)count;
 
 /**
   * Cell for the specified object
@@ -41,3 +36,5 @@
 - (UITableViewCell *)cellForObject:(id<BMNamedObject>)object;
 
 @end
+
+NS_ASSUME_NONNULL_END

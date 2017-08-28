@@ -10,21 +10,16 @@
 #import <BMCommons/BMTextCell.h>
 #import <BMCommons/BMAutoResizable.h>
 
-@interface BMTextViewCell : BMTextCell <UITextViewDelegate, BMAutoResizable> {
-	IBOutlet UITextView *textView;
-	BOOL sizeToFit;
-	CGFloat minHeight;
-	CGFloat yMargin;
-    NSString *placeHolder;
-    BOOL placeHolderPresent;
-    UIColor *originalTextColor;
-}
+NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, strong) IBOutlet UITextView *textView;
+@interface BMTextViewCell : BMTextCell <UITextViewDelegate, BMAutoResizable>
+
+@property (nullable, nonatomic, strong) IBOutlet UITextView *textView;
 @property (nonatomic, assign) BOOL sizeToFit;
 @property (nonatomic, assign) CGFloat minHeight;
 @property (nonatomic, assign) CGFloat yMargin;
-@property (nonatomic, strong) NSString *placeHolder;
-
+@property (nullable, nonatomic, strong) NSString *placeHolder;
 
 @end
+
+NS_ASSUME_NONNULL_END

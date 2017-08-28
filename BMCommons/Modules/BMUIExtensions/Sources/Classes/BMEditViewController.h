@@ -7,6 +7,8 @@
  *
  */
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMPropertyDescriptor;
 
 @protocol BMEditViewControllerDelegate;
@@ -19,7 +21,7 @@
 /**
  * Delegate for receiving cancel and commit events.
  */
-@property (nonatomic, weak) id <BMEditViewControllerDelegate> delegate;
+@property (nullable, nonatomic, weak) id <BMEditViewControllerDelegate> delegate;
 
 @end
 
@@ -28,7 +30,9 @@
  */
 @protocol BMEditViewControllerDelegate<NSObject>
 
-- (void)editViewController:(id <BMEditViewController>)vc didSelectValue:(id)value;
+- (void)editViewController:(id <BMEditViewController>)vc didSelectValue:(nullable id)value;
 - (void)editViewControllerWasCancelled:(id <BMEditViewController>)vc;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -10,7 +10,13 @@
 #import <BMCommons/BMPropertyDescriptor.h>
 #import <BMCommons/BMUICore.h>
 
-@implementation BMTimeSelectionViewController
+@implementation BMTimeSelectionViewController {
+	BMPropertyDescriptor *propertyDescriptor;
+	__weak id <BMEditViewControllerDelegate> delegate;
+	IBOutlet UIDatePicker *datePicker;
+	IBOutlet UIButton *submitButton;
+	NSString *buttonImageName;
+}
 
 @synthesize propertyDescriptor, delegate, datePicker, buttonImageName;
 

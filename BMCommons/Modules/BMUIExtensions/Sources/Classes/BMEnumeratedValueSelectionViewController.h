@@ -11,31 +11,25 @@
 #import <BMCommons/BMTableViewController.h>
 #import <BMCommons/BMEditViewController.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMPropertyDescriptor;
 
 /**
  * Table view controller for selecting a value from a list (sort of a picker style TableViewController).
  */
-@interface BMEnumeratedValueSelectionViewController : BMTableViewController<BMEditViewController> {
-	NSArray *possibleValues;
-	BMPropertyDescriptor *propertyDescriptor;
-	id <BMEditViewControllerDelegate> __weak delegate;
-	CGFloat widthForViewInPopover;
-	NSIndexPath *selectedIndexPath;
-	BOOL saveWhenValueIsSelected;
-	NSValueTransformer *valueTransformer;
-}
+@interface BMEnumeratedValueSelectionViewController : BMTableViewController<BMEditViewController>
 
 /**
  * The array of possible values to choose from.
  */
-@property (nonatomic, strong) NSArray *possibleValues;
+@property (nullable, nonatomic, strong) NSArray *possibleValues;
 
 /**
  Value transformer for converting the possible values to a string for display. If not set, the description method is used to
  generate a string for each value.
  */
-@property (nonatomic, strong) NSValueTransformer *valueTransformer;
+@property (nullable, nonatomic, strong) NSValueTransformer *valueTransformer;
 
 /**
  * If true the save method will be called automatically when a new value is selected. Default is false.
@@ -45,12 +39,12 @@
 /**
  * Property descriptor to use for setting the value when value is chosen and to initialize the view with the currently chosen value.
  */
-@property (nonatomic, strong) BMPropertyDescriptor *propertyDescriptor;
+@property (nullable, nonatomic, strong) BMPropertyDescriptor *propertyDescriptor;
 
 /**
  * Delegate to receive BMEditViewController events.
  */
-@property (nonatomic, weak) id <BMEditViewControllerDelegate> delegate;
+@property (nullable, nonatomic, weak) id <BMEditViewControllerDelegate> delegate;
 
 /**
  The width for the view in popover. If not set the default is chosen.
@@ -70,7 +64,7 @@
  * Override this method to provide a proper cell instead of the normal method from the UITableViewDatasource protocol.
  * Default is to provide a UITableViewCell with Default style with the textLabel set with the description of the object corresponding to that row.
  */
-- (UITableViewCell *)cellForTableView:(UITableView *)theTableView forRowAtIndexPath:(NSIndexPath *)indexPath withObject:(id)object;
+- (UITableViewCell *)cellForTableView:(UITableView *)theTableView forRowAtIndexPath:(NSIndexPath *)indexPath withObject:(nullable id)object;
 
 /**
  * Cancel button action
@@ -99,7 +93,7 @@
 /**
  Returns the font to use for the labels of the cells. By default returns a bold system font of size 17.0
  */
-- (UIFont *)fontForCellLabel;
+- (nullable UIFont *)fontForCellLabel;
 
 /**
  Applies the style applicable for the specified selection state to the specified cell.
@@ -113,26 +107,26 @@
  
  Default is the value at indexPath.row index in the possibleValues array.
  */
-- (id)valueForIndexPath:(NSIndexPath *)indexPath;
+- (nullable id)valueForIndexPath:(NSIndexPath *)indexPath;
 
 /**
  Returns the indexPath corresponding to the specified object or nil if not found.
  
  By default returns the index path where section=0 and row=the index of the object in the possibleValues array.
  */
-- (NSIndexPath *)indexPathForValue:(id)object;
+- (nullable NSIndexPath *)indexPathForValue:(nullable id)object;
 
 /**
  Called when the controller has selected and saved a value.
  
  Default implementation is to notify the delegate.
  */
-- (void)didSelectValue:(id)value;
+- (void)didSelectValue:(nullable id)value;
 
 /**
  Returns the label for the specified value. By default returns [value description] if no valueTransformer is set. Otherwise the valueTransformer is used and the description of the transformed value is returned.
  */
-- (NSString *)labelFromValue:(id)value;
+- (nullable NSString *)labelFromValue:(nullable id)value;
 
 /**
  Returns the rowheight used by the table view which is used to calculate the defaultHeightForViewInPopover in viewDidLoad.
@@ -140,3 +134,5 @@
 - (CGFloat)tableViewRowHeight;
 
 @end
+
+NS_ASSUME_NONNULL_END

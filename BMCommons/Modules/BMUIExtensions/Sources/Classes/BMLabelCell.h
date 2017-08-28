@@ -9,32 +9,30 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMObjectPropertyTableViewCell.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Commons tableviewcell that contains a label (read-only string property).
  */
-@interface BMLabelCell : BMObjectPropertyTableViewCell {
-	IBOutlet UILabel *valueLabel;
-	NSString *valueFormat;
-	
-	id valueFormatterTarget;
-	SEL valueFormatterSelector;
-}
+@interface BMLabelCell : BMObjectPropertyTableViewCell
 
-@property (nonatomic, strong) IBOutlet UILabel *valueLabel;
+@property (nullable, nonatomic, strong) IBOutlet UILabel *valueLabel;
 
 /**
  A format to use for the label text. The value is fed to the format using [NSString stringWithFormat:format, value]
  */
-@property (nonatomic, strong) NSString *valueFormat;
+@property (nullable, nonatomic, strong) NSString *valueFormat;
 
 /**
  Target to use for converting the value for display in a more generic way than the above valueFormat property.
  */
-@property (nonatomic, strong) id valueFormatterTarget;
+@property (nullable, nonatomic, strong) id valueFormatterTarget;
 
 /**
  The value formatter selector to use to convert the value for display in a more generic way than the above valueFormat property.
  */
-@property (nonatomic, assign) SEL valueFormatterSelector;
+@property (nullable, nonatomic, assign) SEL valueFormatterSelector;
 
 @end
+
+NS_ASSUME_NONNULL_END

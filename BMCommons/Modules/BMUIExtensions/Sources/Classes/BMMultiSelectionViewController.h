@@ -11,22 +11,20 @@
 #import <BMCommons/BMEditViewController.h>
 #import <BMCommons/BMPickerDataSource.h>
 
-@interface BMMultiSelectionViewController : BMViewController<BMEditViewController> {
-	BMPropertyDescriptor *propertyDescriptor;
-	__weak id <BMEditViewControllerDelegate> delegate;
-	IBOutlet UIPickerView *picker;
-	IBOutlet UIButton *submitButton;
-	id <BMPickerDataSource> dataSource;
-}
+NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, strong) BMPropertyDescriptor *propertyDescriptor;
-@property (nonatomic, readonly) id <BMPickerDataSource> dataSource;
+@interface BMMultiSelectionViewController : BMViewController<BMEditViewController>
 
-- (id)initWithDataSource:(id <BMPickerDataSource>)theDataSource;
+@property (nullable, nonatomic, strong) BMPropertyDescriptor *propertyDescriptor;
+@property (nullable, nonatomic, readonly) id <BMPickerDataSource> dataSource;
+
+- (id)initWithDataSource:(nullable id <BMPickerDataSource>)theDataSource;
 
 - (IBAction)onCancel;
 - (IBAction)onSelectValue;
 
-- (UIImage *)buttonImage;
+- (nullable UIImage *)buttonImage;
 
 @end
+
+NS_ASSUME_NONNULL_END

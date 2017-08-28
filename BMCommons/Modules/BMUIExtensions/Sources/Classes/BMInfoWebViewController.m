@@ -13,7 +13,16 @@
 #define X_MARGIN 10
 #define Y_MARGIN 0
 
-@implementation BMInfoWebViewController
+@implementation BMInfoWebViewController {
+	IBOutlet UITableViewCell *tableCell;
+	IBOutlet UIWebView *webView;
+	IBOutlet UIView *headerView;
+	IBOutlet UIView *footerView;
+	IBOutlet UIActivityIndicatorView *activityIndicator;
+	CGFloat rowHeight;
+	BOOL webViewLoaded;
+	NSString *htmlResourceName;
+}
 
 @synthesize htmlResourceName;
 

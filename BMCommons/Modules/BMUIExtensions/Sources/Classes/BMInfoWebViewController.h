@@ -9,21 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMTableViewController.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  View controller to load a rich text HTML resource in a table view (single cell).
  */
-@interface BMInfoWebViewController : BMTableViewController<UIWebViewDelegate> {
-	IBOutlet UITableViewCell *tableCell;
-	IBOutlet UIWebView *webView;
-	IBOutlet UIView *headerView;
-	IBOutlet UIView *footerView;
-	IBOutlet UIActivityIndicatorView *activityIndicator;
-	CGFloat rowHeight;
-	BOOL webViewLoaded;
-    NSString *htmlResourceName;
-}
+@interface BMInfoWebViewController : BMTableViewController<UIWebViewDelegate>
 
-@property (nonatomic, strong) NSString *htmlResourceName;
+@property (nullable, nonatomic, strong) NSString *htmlResourceName;
 
 @property (nonatomic, assign) NSURLRequestCachePolicy cachePolicy;
 @property (nonatomic, assign) NSTimeInterval timeoutInterval;
@@ -39,3 +32,5 @@
 - (CGFloat)determineRowHeight;
 
 @end
+
+NS_ASSUME_NONNULL_END

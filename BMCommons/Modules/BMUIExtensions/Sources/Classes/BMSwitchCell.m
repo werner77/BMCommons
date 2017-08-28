@@ -9,7 +9,9 @@
 #import <BMCommons/BMSwitchCell.h>
 
 
-@implementation BMSwitchCell
+@implementation BMSwitchCell {
+	IBOutlet UISwitch *valueSwitch;
+}
 
 @synthesize valueSwitch;
 

@@ -9,7 +9,9 @@
 #import <BMCommons/BMButtonCell.h>
 #import <BMCommons/BMUICore.h>
 
-@implementation BMButtonCell
+@implementation BMButtonCell {
+    IBOutlet UIButton *button;
+}
 
 @synthesize button;
 

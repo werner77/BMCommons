@@ -11,7 +11,9 @@
 #import <BMCommons/BMPropertyDescriptor.h>
 #import <BMCommons/BMUICore.h>
 
-@implementation BMMultiPickerCell
+@implementation BMMultiPickerCell {
+	id <BMPickerDataSource> dataSource;
+}
 
 @synthesize dataSource;
 

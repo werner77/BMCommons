@@ -12,7 +12,13 @@
 
 #define MARGIN 10.0f
 
-@implementation BMMultiSelectionViewController
+@implementation BMMultiSelectionViewController {
+	BMPropertyDescriptor *propertyDescriptor;
+	__weak id <BMEditViewControllerDelegate> delegate;
+	IBOutlet UIPickerView *picker;
+	IBOutlet UIButton *submitButton;
+	id <BMPickerDataSource> dataSource;
+}
 
 @synthesize propertyDescriptor, delegate, dataSource;
 

@@ -10,6 +10,8 @@
 #import <BMCommons/BMReusableObject.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMPagedView;
 @class BMPageControl;
 
@@ -71,7 +73,7 @@
  
  @see BMPagedViewDelegate.
  */
-@property (nonatomic, weak) IBOutlet id <BMPagedViewDelegate> delegate;
+@property (nullable, nonatomic, weak) IBOutlet id <BMPagedViewDelegate> delegate;
 
 /**
  Underlying scrollview.
@@ -83,7 +85,7 @@
 /**
  Optional page control to use for displaying dots showing the selected index and total number of pages.
  */
-@property (nonatomic, strong) IBOutlet BMPageControl *pageControl;
+@property (nullable, nonatomic, strong) IBOutlet BMPageControl *pageControl;
 
 /**
  The frame to position the pages relative to the scrollview. 
@@ -106,17 +108,17 @@
  
  Returns nil if none is available. Compare this method with [UITableView dequeueReusableCellWithIdentifier:]
  */
-- (UIView<BMReusableObject> *)dequeueReusableViewWithIdentifier:(NSString *)identifier;
+- (nullable UIView<BMReusableObject> *)dequeueReusableViewWithIdentifier:(NSString *)identifier;
 
 /**
  Returns The view for the page at the specified index.
  */
-- (UIView *)viewForPageAtIndex:(NSUInteger)pageIndex;
+- (nullable UIView *)viewForPageAtIndex:(NSUInteger)pageIndex;
 
 /**
  Returns The view for the selected page.
  */
-- (UIView *)viewForSelectedPage;
+- (nullable UIView *)viewForSelectedPage;
 
 /**
  Scrolls to the page at the specified index, optionally animating the scroll.
@@ -143,3 +145,5 @@
 - (void)reloadDataForSelectedPage;
 
 @end
+
+NS_ASSUME_NONNULL_END

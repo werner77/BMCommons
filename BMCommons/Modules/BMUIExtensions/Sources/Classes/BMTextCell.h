@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <BMCommons/BMObjectPropertyTableViewCell.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMTextCell;
 
 @protocol BMTextCellDelegate<BMObjectPropertyTableViewCellDelegate>
@@ -21,23 +23,17 @@
 
 @end
 
-@interface BMTextCell : BMObjectPropertyTableViewCell <UITextFieldDelegate> {
-	NSCharacterSet *allowedCharacterSet;
-	NSInteger maxLength;
-	NSInteger minLength;
-	NSString *validPattern;
-	BOOL allowEndEditingWithInvalidValue;
-}
+@interface BMTextCell : BMObjectPropertyTableViewCell <UITextFieldDelegate>
 
 /**
  Character set containing the only values that can be input in the text field. If nil all values are allowed. Values that are not in the set are blocked.
  */
-@property (nonatomic, strong) NSCharacterSet *allowedCharacterSet;
+@property (nullable, nonatomic, strong) NSCharacterSet *allowedCharacterSet;
 
 /**
  An optional regex pattern that is used for validation of the field.
  */
-@property (nonatomic, strong) NSString *validPattern;
+@property (nullable, nonatomic, strong) NSString *validPattern;
 
 /**
  Max length of the input.
@@ -57,12 +53,13 @@
 
 //Protected methods
 
-- (id <UITextInputTraits>)textInputObject;
-
+- (nullable id <UITextInputTraits>)textInputObject;
 
 /**
  Checks whether a range in the specified text can be replaced according to validity rules with the supplied string
  */
-- (BOOL)shouldChangeText:(NSString *)theText inRange:(NSRange)range withReplacementText:(NSString *)string;
+- (BOOL)shouldChangeText:(nullable NSString *)theText inRange:(NSRange)range withReplacementText:(nullable NSString *)string;
 
 @end
+
+NS_ASSUME_NONNULL_END

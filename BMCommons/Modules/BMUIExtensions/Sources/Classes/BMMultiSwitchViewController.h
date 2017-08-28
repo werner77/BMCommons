@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <BMCommons/BMViewController.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSUInteger, BMSwitchTransitionType) {
     BMSwitchTransitionTypeNone,
     BMSwitchTransitionTypeCrossFade,
@@ -24,7 +26,7 @@ typedef NS_ENUM(NSUInteger, BMSwitchTransitionType) {
     BMSwitchTransitionTypeCustom9
 };
 
-typedef void (^BMMultiSwitchTransitionBlock)(UIViewController *oldViewController, UIViewController *newViewController, UIView *containerView, BMSwitchTransitionType transitionType, NSTimeInterval duration, void (^completionBlock)(BOOL finished));
+typedef void (^BMMultiSwitchTransitionBlock)(UIViewController *oldViewController, UIViewController *newViewController, UIView *containerView, BMSwitchTransitionType transitionType, NSTimeInterval duration, void (^ _Nullable completionBlock)(BOOL finished));
 
 @class BMMultiSwitchViewController;
 
@@ -47,12 +49,12 @@ typedef void (^BMMultiSwitchTransitionBlock)(UIViewController *oldViewController
 /**
  The delegate
  */
-@property (nonatomic, weak) id <BMMultiSwitchViewControllerDelegate> delegate;
+@property (nullable, nonatomic, weak) id <BMMultiSwitchViewControllerDelegate> delegate;
 
 /**
  The array of view controllers maintained by this instance.
  */
-@property (nonatomic, strong, readonly) NSMutableArray *viewControllers;
+@property (nonatomic, strong, readonly) NSArray *viewControllers;
 
 /**
  The index of the currently selected view controller.
@@ -62,12 +64,12 @@ typedef void (^BMMultiSwitchTransitionBlock)(UIViewController *oldViewController
 /**
  The first view controller in the array.
  */
-@property (strong, nonatomic, readonly) UIViewController *firstViewController;
+@property (nullable, strong, nonatomic, readonly) UIViewController *firstViewController;
 
 /**
  The last view controller in the array.
  */
-@property (strong, nonatomic, readonly) UIViewController *lastViewController;
+@property (nullable, strong, nonatomic, readonly) UIViewController *lastViewController;
 
 /**
  Whether a switch is currently going on or not.
@@ -77,14 +79,14 @@ typedef void (^BMMultiSwitchTransitionBlock)(UIViewController *oldViewController
 /**
  Returns the view that acts as a super view for the other view controller's views. It defaults to self.view.
  */
-@property (nonatomic, strong) IBOutlet UIView *containerView;
+@property (nullable, nonatomic, strong) IBOutlet UIView *containerView;
 
 /**
  * Set this block to implement custom transitions (other than the stock transitions).
  *
  * The block should call the supplied completionblock when the animation finishes.
  */
-@property (nonatomic, copy) BMMultiSwitchTransitionBlock customTransitionAnimationBlock;
+@property (nullable, nonatomic, copy) BMMultiSwitchTransitionBlock customTransitionAnimationBlock;
 
 - (id)initWithViewController:(UIViewController *)firstViewController;
 - (id)initWithViewControllers:(NSArray *)theViewControllers;
@@ -97,13 +99,13 @@ typedef void (^BMMultiSwitchTransitionBlock)(UIViewController *oldViewController
 - (void)removeLastViewController;
 
 - (void)replaceSelectedViewControllerWithViewController:(UIViewController *)viewController transitionType:(BMSwitchTransitionType)transitionType duration:(NSTimeInterval)duration;
-- (void)replaceSelectedViewControllerWithViewController:(UIViewController *)viewController transitionType:(BMSwitchTransitionType)transitionType duration:(NSTimeInterval)duration completion:(void (^)(BOOL success))completion;
+- (void)replaceSelectedViewControllerWithViewController:(UIViewController *)viewController transitionType:(BMSwitchTransitionType)transitionType duration:(NSTimeInterval)duration completion:(void (^ _Nullable)(BOOL success))completion;
 
 - (void)switchToViewControllerAtIndex:(NSUInteger)index transitionType:(BMSwitchTransitionType)transitionType duration:(NSTimeInterval)duration;
-- (void)switchToViewControllerAtIndex:(NSUInteger)index transitionType:(BMSwitchTransitionType)transitionType duration:(NSTimeInterval)duration completion:(void (^)(BOOL success))completion;
+- (void)switchToViewControllerAtIndex:(NSUInteger)index transitionType:(BMSwitchTransitionType)transitionType duration:(NSTimeInterval)duration completion:(void (^ _Nullable)(BOOL success))completion;
 
 - (void)switchToViewController:(UIViewController *)theViewController transitionType:(BMSwitchTransitionType)transitionType duration:(NSTimeInterval)duration;
-- (void)switchToViewController:(UIViewController *)theViewController transitionType:(BMSwitchTransitionType)transitionType duration:(NSTimeInterval)duration completion:(void (^)(BOOL success))completion;
+- (void)switchToViewController:(UIViewController *)theViewController transitionType:(BMSwitchTransitionType)transitionType duration:(NSTimeInterval)duration completion:(void (^ _Nullable)(BOOL success))completion;
 
 - (void)switchToFirstViewControllerWithTransitionType:(BMSwitchTransitionType)transitionType duration:(NSTimeInterval)duration;
 - (void)switchToLastViewControllerWithTransitionType:(BMSwitchTransitionType)transitionType duration:(NSTimeInterval)duration;
@@ -111,12 +113,12 @@ typedef void (^BMMultiSwitchTransitionBlock)(UIViewController *oldViewController
 /**
  Returns the currently selected view controller.
  */
-- (UIViewController *)selectedViewController;
+- (nullable UIViewController *)selectedViewController;
 
 /**
  Returns the first view controller in the array that is an instance of the specified class.
  */
-- (UIViewController	*)firstViewControllerOfKind:(Class)viewControllerClass;
+- (nullable UIViewController	*)firstViewControllerOfKind:(Class)viewControllerClass;
 
 //Protected methods
 
@@ -137,3 +139,5 @@ typedef void (^BMMultiSwitchTransitionBlock)(UIViewController *oldViewController
 - (void)waitForSwitchToFinishWithCompletion:(void (^)(void))completion;
 
 @end
+
+NS_ASSUME_NONNULL_END

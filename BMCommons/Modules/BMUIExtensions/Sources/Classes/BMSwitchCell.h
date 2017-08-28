@@ -9,13 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMObjectPropertyTableViewCell.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Commons tableviewcell that contains a switch (represents a boolean value)
  */
-@interface BMSwitchCell : BMObjectPropertyTableViewCell {
-	IBOutlet UISwitch *valueSwitch;
-}
+@interface BMSwitchCell : BMObjectPropertyTableViewCell
 
-@property(nonatomic, strong) IBOutlet UISwitch *valueSwitch;
+@property(nullable, nonatomic, strong) IBOutlet UISwitch *valueSwitch;
 
 @end
+
+NS_ASSUME_NONNULL_END

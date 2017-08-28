@@ -8,25 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BMSwitch : UIControl 
-{
-	BOOL _on;
-	
-	UILabel *_offLabel;
-	UILabel *_onLabel;
+NS_ASSUME_NONNULL_BEGIN
 
-	NSInteger _hitCount;
-	UIImageView* _backgroundImage;
-	UIImageView* _switchImage;
-}
+@interface BMSwitch : UIControl
 
 @property (nonatomic, assign, getter=isOn) BOOL on;
 
-@property (nonatomic, readonly) UILabel *offLabel;
-@property (nonatomic, readonly) UILabel *onLabel;
+@property (nullable, nonatomic, readonly) UILabel *offLabel;
+@property (nullable, nonatomic, readonly) UILabel *onLabel;
 
 - (id)initWithFrame:(CGRect)frame;              // This class enforces a size appropriate for the control. The frame size is ignored.
 
 - (void)setOn:(BOOL)on animated:(BOOL)animated; // does not send action
 
 @end
+
+NS_ASSUME_NONNULL_END

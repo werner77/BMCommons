@@ -11,7 +11,9 @@
 #import <BMCommons/BMEnumeratedValueTransformer.h>
 #import <BMCommons/BMUICore.h>
 
-@implementation BMEnumeratedValueCell
+@implementation BMEnumeratedValueCell {
+	NSArray *possibleValues;
+}
 
 @synthesize possibleValues;
 

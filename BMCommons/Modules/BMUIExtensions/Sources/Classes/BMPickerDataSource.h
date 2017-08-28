@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol BMPickerDataSource<UIPickerViewDelegate, UIPickerViewDataSource>
 
-- (void)selectValue:(id)theValue forPickerView:(UIPickerView *)picker;
-- (id)selectedValueForPickerView:(UIPickerView *)picker;
+- (void)selectValue:(nullable id)theValue forPickerView:(UIPickerView *)picker;
+- (nullable id)selectedValueForPickerView:(UIPickerView *)picker;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
