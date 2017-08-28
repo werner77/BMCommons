@@ -52,24 +52,29 @@ static NSMutableArray *_activeWindowViews;
     return self;
 }
 
-- (id)initAndAddToWindow:(UIWindow *)window
+- (id)initWithWindow:(UIWindow *)window
 {
     self = [self initWithFrame:CGRectZero];
     if(self)
     {
-        [window addSubview:self];
+        [self addToWindow:window];
     }
     return self;
 }
 
-- (id)initAndAddToKeyWindow
+- (id)initWithKeyWindow
 {
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-    self = [self initAndAddToWindow:window];
-    if(self)
-    {
+    return [self initWithWindow:window];
+}
+
+- (void)addToWindow:(nullable UIWindow *)window {
+    if (window != self.window) {
+        [self removeFromSuperview];
+        if (window) {
+            [window addSubview:self];
+        }
     }
-    return self;
 }
 
 - (void)setup

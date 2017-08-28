@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSUInteger, BCRectEdge) {
     BCRectEdgeTop    = 0,
     BCRectEdgeLeft   = 1,
@@ -26,7 +28,7 @@ typedef NS_ENUM(NSUInteger, BCRectEdge) {
 - (void)bmGenieInTransitionWithDuration:(NSTimeInterval)duration
                         destinationRect:(CGRect)destRect
                         destinationEdge:(BCRectEdge)destEdge
-                             completion:(void (^)())completion;
+                             completion:(void (^ _Nullable)())completion;
 
 /**
  Performs a genie out tranition.
@@ -36,6 +38,8 @@ typedef NS_ENUM(NSUInteger, BCRectEdge) {
 - (void)bmGenieOutTransitionWithDuration:(NSTimeInterval)duration
                                startRect:(CGRect)startRect
                                startEdge:(BCRectEdge)startEdge
-                              completion:(void (^)())completion;
+                              completion:(void (^ _Nullable)())completion;
 
 @end
+
+NS_ASSUME_NONNULL_END

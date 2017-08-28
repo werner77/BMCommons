@@ -13,7 +13,7 @@
 
 @implementation BMDialogHelper
 
-+ (UIActionSheet *)dialogOKCancelWithTitle:(NSString *)title withDelegate:(id <UIActionSheetDelegate>)delegate withView:(UIView *)view
++ (UIActionSheet *)dialogOKCancelWithTitle:(nullable NSString *)title withDelegate:(nullable id <UIActionSheetDelegate>)delegate inView:(UIView *)view
 {
 	// open a dialog with an OK and cancel button
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
@@ -23,7 +23,7 @@
 	return actionSheet;
 }
 
-+ (UIActionSheet *)dialogYesNoWithTitle:(NSString *)title withDelegate:(id <UIActionSheetDelegate>)delegate withView:(UIView *)view
++ (UIActionSheet *)dialogYesNoWithTitle:(nullable NSString *)title withDelegate:(nullable id <UIActionSheetDelegate>)delegate inView:(UIView *)view
 {
 	// open a dialog with an OK and cancel button
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
@@ -33,13 +33,13 @@
 	return actionSheet;
 }
 
-+ (UIActionSheet *)dialogWithTitle:(NSString *)title 
-			   delegate:(id <UIActionSheetDelegate>)delegate 
-	  cancelButtonTitle:(NSString *)cancelTitle
- destructiveButtonTitle:(NSString *)destructiveTitle
-	  otherButtonTitles:(NSArray *)otherTitles 
-				forView:(UIView *)theView 
-				withTag:(NSUInteger)tag {
++ (UIActionSheet *)dialogWithTitle:(nullable NSString *)title
+						  delegate:(nullable id <UIActionSheetDelegate>)delegate
+				 cancelButtonTitle:(nullable NSString *)cancelTitle
+			destructiveButtonTitle:(nullable NSString *)destructiveTitle
+				 otherButtonTitles:(nullable NSArray *)otherTitles
+							inView:(UIView *)theView
+						   withTag:(NSUInteger)tag {
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
 															 delegate:delegate cancelButtonTitle:cancelTitle destructiveButtonTitle:destructiveTitle otherButtonTitles:nil];
 	for (NSString *title in otherTitles) {

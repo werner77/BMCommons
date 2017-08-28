@@ -12,6 +12,8 @@
 #import <BMCommons/BMReusableObject.h>
 #import <BMCommons/BMVersionAvailability.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 //Kinds for use by [BMViewFactory registerOnceReusableViewOfType:ofKind:forView:]
 extern NSString * const BMCollectionViewCellKind;
 extern NSString * const BMTableViewCellKind;
@@ -34,14 +36,14 @@ extern NSString * const BMTableViewHeaderFooterViewKind;
  
  If bundle is nil the [NSBundle mainBundle] is used.
  */
-- (id)initWithBundle:(NSBundle *)bundle;
+- (id)initWithBundle:(nullable NSBundle *)bundle NS_DESIGNATED_INITIALIZER;
 
 /**
  Loads a view from a nib with the specified name (type).
  
  Also checks whether the reuse identifier of the view corresponds to the kind.
  */
-- (UIView<BMReusableObject> *)viewOfType:(NSString *)type;
+- (nullable UIView<BMReusableObject> *)viewOfType:(NSString *)type;
 
 /**
  Loads a reusable view from the container or from the nib if not available for dequeueing.
@@ -49,19 +51,19 @@ extern NSString * const BMTableViewHeaderFooterViewKind;
  @see viewOfType:
  @see [BMReusableObjectContainer dequeueReusableObjectWithIdentifier:]
  */
-- (UIView<BMReusableObject> *)viewOfType:(NSString *)type forContainer:(id <BMReusableObjectContainer>)container;
+- (nullable UIView<BMReusableObject> *)viewOfType:(NSString *)type forContainer:(nullable id <BMReusableObjectContainer>)container;
 
 /**
  Loads the first view in the specified nib using the specified owner as owner.
  
  @see [NSBundle loadNibNamed:owner:options]
  */
-- (UIView *)viewFromNib:(NSString *)theNibName withOwner:(id)owner;
+- (nullable UIView *)viewFromNib:(NSString *)theNibName withOwner:(nullable id)owner;
 
 /**
  Calls viewFromNib:withOwner: with nil owner.
  */
-- (UIView *)viewFromNib:(NSString *)theNibName;
+- (nullable UIView *)viewFromNib:(NSString *)theNibName;
 
 /**
  Releases memory held by caches.
@@ -78,7 +80,7 @@ extern NSString * const BMTableViewHeaderFooterViewKind;
  
  @see [UINib nibWithObjectClass:]
  */
-- (UITableViewCell*)cellOfType:(NSString*)type forTableView:(UITableView*)aTableView atIndexPath:(NSIndexPath *)indexPath;
+- (nullable UITableViewCell*)cellOfType:(NSString*)type forTableView:(UITableView*)aTableView atIndexPath:(NSIndexPath *)indexPath;
 
 /**
  Returns a view of the specified type for the specified tableview at the specified indexpath.
@@ -88,7 +90,7 @@ extern NSString * const BMTableViewHeaderFooterViewKind;
  
  @see [UINib nibWithObjectClass:]
  */
-- (UIView*)headerFooterViewOfType:(NSString*)type forTableView:(UITableView*)aTableView;
+- (nullable UIView*)headerFooterViewOfType:(NSString*)type forTableView:(UITableView*)aTableView;
 
 /**
  Returns a cell with the specified reuse identifier loaded from a nib with a similar name from the bundle set.
@@ -98,7 +100,7 @@ extern NSString * const BMTableViewHeaderFooterViewKind;
  
  @see [UINib nibWithObjectClass:]
  */
-- (UICollectionViewCell *)cellOfType:(NSString *)type forCollectionView:(UICollectionView *)collectionView atIndexPath:(NSIndexPath *)indexPath;
+- (nullable UICollectionViewCell *)cellOfType:(NSString *)type forCollectionView:(UICollectionView *)collectionView atIndexPath:(NSIndexPath *)indexPath;
 
 /**
  Returns a reusable view with the specified reuse identifier loaded from a nib with a similar name from the bundle set.
@@ -108,7 +110,7 @@ extern NSString * const BMTableViewHeaderFooterViewKind;
  
  @see [UINib nibWithObjectClass:]
  */
-- (UICollectionReusableView *)reusableViewOfType:(NSString *)type ofKind:(NSString *)kind forCollectionView:(UICollectionView *)collectionView atIndexPath:(NSIndexPath *)indexPath;
+- (nullable UICollectionReusableView *)reusableViewOfType:(NSString *)type ofKind:(NSString *)kind forCollectionView:(UICollectionView *)collectionView atIndexPath:(NSIndexPath *)indexPath;
 
 /**
  This method registers the specified reusable view with type (reuseIdentifier/nib name/class name) of the specified kind (BMCollectionViewCellKind, BMTableViewCellKind, BMTableViewHeaderFooterViewKind or kinds defined by UICollectionView) for the specified view (an instance of UICollectionView or UITableView).
@@ -120,3 +122,5 @@ extern NSString * const BMTableViewHeaderFooterViewKind;
 - (BOOL)registerOnceReusableViewOfType:(NSString *)type ofKind:(NSString *)kind forView:(UIView *)view;
 
 @end
+
+NS_ASSUME_NONNULL_END

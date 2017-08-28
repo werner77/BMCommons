@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIWebView(BMCommons)
 
 /**
@@ -29,6 +31,8 @@
  
  @see [NSBundle pathForResource:ofType:inDirectory:forLocalization:]
  */
-- (void)bmLoadHTMLResourceWithName:(NSString *)htmlResourceName forLocalization:(NSString *)localizationName;
+- (void)bmLoadHTMLResourceWithName:(NSString *)htmlResourceName forLocalization:(nullable NSString *)localizationName;
 
 @end
+
+NS_ASSUME_NONNULL_END

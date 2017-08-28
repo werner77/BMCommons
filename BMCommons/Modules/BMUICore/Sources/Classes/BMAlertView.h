@@ -5,6 +5,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMAlertView;
 
 /**
@@ -20,7 +22,7 @@ typedef void(^BMAlertDismissBlock)(BMAlertView *alertView, NSInteger buttonIndex
 /**
  * Titles for the buttons to display
  */
-@property (nonatomic, strong) NSArray *buttonTitles;
+@property (nullable, nonatomic, strong) NSArray *buttonTitles;
 
 /**
  * The index for the cancel button
@@ -30,12 +32,12 @@ typedef void(^BMAlertDismissBlock)(BMAlertView *alertView, NSInteger buttonIndex
 /**
  * The attributed title for the alert
  */
-@property (nonatomic, strong) NSAttributedString *title;
+@property (nullable, nonatomic, strong) NSAttributedString *title;
 
 /**
  * The attributed message for the alert
  */
-@property (nonatomic, strong) NSAttributedString *message;
+@property (nullable, nonatomic, strong) NSAttributedString *message;
 
 /**
  * If set to a positive interval the alert will call dismiss automatically after the specified interval.
@@ -45,17 +47,17 @@ typedef void(^BMAlertDismissBlock)(BMAlertView *alertView, NSInteger buttonIndex
 /**
  * The block to be called upon dismiss
  */
-@property (copy) BMAlertDismissBlock dismissBlock;
+@property (nullable, copy) BMAlertDismissBlock dismissBlock;
 
-- (instancetype)initWithTitle:(NSAttributedString *)title
-                      message:(NSAttributedString *)message
-            cancelButtonTitle:(NSString *)cancelButtonTitle
-            otherButtonTitles:(NSArray *)otherButtonTitles;
+- (instancetype)initWithTitle:(nullable NSAttributedString *)title
+                      message:(nullable NSAttributedString *)message
+            cancelButtonTitle:(nullable NSString *)cancelButtonTitle
+            otherButtonTitles:(nullable NSArray *)otherButtonTitles;
 
-- (instancetype)initWithTitle:(NSAttributedString *)title
-                      message:(NSAttributedString *)message
-            cancelButtonTitle:(NSString *)cancelButtonTitle
-            otherButtonTitles:(NSArray *)otherButtonTitles
+- (instancetype)initWithTitle:(nullable NSAttributedString *)title
+                      message:(nullable NSAttributedString *)message
+            cancelButtonTitle:(nullable NSString *)cancelButtonTitle
+            otherButtonTitles:(nullable NSArray *)otherButtonTitles
             cancelButtonIndex:(NSInteger)cancelButtonIndex;
 
 /**
@@ -94,3 +96,5 @@ typedef void(^BMAlertDismissBlock)(BMAlertView *alertView, NSInteger buttonIndex
 - (void)configureView;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Custom UIBarButtonItem which has the capability to display both an image and a title simultaneously.
  */
@@ -23,23 +25,23 @@
 /**
  Creates a bar button item with the specified image, title, target and action.
  */
-+ (BMBarButtonItem *) barButtonItemWithImage:(UIImage *)image title:(NSString *)title target:(id)target action:(SEL)action;
++ (BMBarButtonItem *) barButtonItemWithImage:(nullable UIImage *)image title:(nullable NSString *)title target:(nullable id)target action:(nullable SEL)action;
 
-- (id)initWithImage:(UIImage *)image title:(NSString *)title target:(id)target action:(SEL)action;
-- (id)initWithImage:(UIImage *)image backgroundImage:(UIImage *)bgImage highlightedBackgroundImage:(UIImage *)highlightedBgImage title:(NSString *)title target:(id)target action:(SEL)action;
-- (id)initWithTitle:(NSString *)title backgroundImage:(UIImage *)bgImage highlightedBackgroundImage:(UIImage *)highlightedBgImage target:(id)target action:(SEL)action;
-- (id)initWithTitle:(NSString *)title backgroundImage:(UIImage *)bgImage target:(id)target action:(SEL)action;
-- (id)initWithImage:(UIImage *)image backgroundImage:(UIImage *)bgImage title:(NSString *)title target:(id)target action:(SEL)action;
+- (id)initWithImage:(nullable UIImage *)image title:(nullable NSString *)title target:(nullable id)target action:(nullable SEL)action;
+- (id)initWithImage:(nullable UIImage *)image backgroundImage:(nullable UIImage *)bgImage highlightedBackgroundImage:(nullable UIImage *)highlightedBgImage title:(nullable NSString *)title target:(nullable id)target action:(nullable SEL)action;
+- (id)initWithTitle:(nullable NSString *)title backgroundImage:(nullable UIImage *)bgImage highlightedBackgroundImage:(nullable UIImage *)highlightedBgImage target:(nullable id)target action:(nullable SEL)action;
+- (id)initWithTitle:(nullable NSString *)title backgroundImage:(nullable UIImage *)bgImage target:(nullable id)target action:(nullable SEL)action;
+- (id)initWithImage:(nullable UIImage *)image backgroundImage:(nullable UIImage *)bgImage title:(nullable NSString *)title target:(nullable id)target action:(nullable SEL)action;
 
 /**
  The underlying button used by this bar button item.
  */
-- (UIButton *)button;
+- (nullable UIButton *)button;
 
 /**
  Sets the title for the bar button item.
  */
-- (void)setTitle:(NSString *)title;
+- (void)setTitle:(nullable NSString *)title;
 
 /**
  Sets the orientation, to adjust the layout for different height.
@@ -48,3 +50,5 @@
 - (UIInterfaceOrientation)orientation;
 
 @end
+
+NS_ASSUME_NONNULL_END

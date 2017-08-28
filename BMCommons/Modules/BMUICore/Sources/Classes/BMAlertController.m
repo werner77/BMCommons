@@ -167,7 +167,7 @@ static const CGFloat kHorizontalPadding = 30.0f;
 
 - (UIView *)parentView {
     if (_parentView == nil) {
-        _parentView = [[BMWindowView alloc] initAndAddToKeyWindow];
+        _parentView = [[BMWindowView alloc] initWithKeyWindow];
     }
     return _parentView;
 }

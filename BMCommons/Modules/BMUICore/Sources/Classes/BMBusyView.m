@@ -34,7 +34,6 @@
 	BOOL observeDeviceOrientation;
 	UIProgressView *progressView;
 	BOOL cancelEnabled;
-	id <BMBusyViewDelegate> __weak delegate;
     BOOL animateProgressBar;
     BOOL sendToBackgroundEnabled;
     UIButton *sendToBackgroundButton;

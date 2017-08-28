@@ -8,14 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMNib;
 
 typedef void (^BMNibConfigurationBlock)(BMNib *nib);
 
 @interface BMNib : UINib
 
-+ (BMNib *)nibWithNibName:(NSString *)name bundle:(NSBundle *)bundleOrNil;
-+ (BMNib *)nibWithData:(NSData *)data bundle:(NSBundle *)bundleOrNil;
++ (BMNib *)nibWithNibName:(NSString *)name bundle:(nullable NSBundle *)bundleOrNil;
++ (BMNib *)nibWithData:(NSData *)data bundle:(nullable NSBundle *)bundleOrNil;
 
 /**
  Constructs a nib with the specified class of objects.
@@ -33,7 +35,7 @@ typedef void (^BMNibConfigurationBlock)(BMNib *nib);
  * @param nibName The name of the nib
  * @see [BMNib nibWithNibName:bundle:]
  */
-+ (void)setConfigurationBlock:(BMNibConfigurationBlock)block forNibWithName:(NSString *)nibName;
++ (void)setConfigurationBlock:(nullable BMNibConfigurationBlock)block forNibWithName:(nullable NSString *)nibName;
 
 /**
  * If set to true the cache warmup is performed in a background thread. For this to work the init/dealloc methods should be thread safe.
@@ -63,3 +65,5 @@ typedef void (^BMNibConfigurationBlock)(BMNib *nib);
 - (void)clearCache;
 
 @end
+
+NS_ASSUME_NONNULL_END

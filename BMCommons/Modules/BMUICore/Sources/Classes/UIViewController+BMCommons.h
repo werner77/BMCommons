@@ -9,6 +9,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIViewController(BMCommons) 
 
 /**
@@ -16,9 +18,9 @@
  */
 + (UIViewAnimationTransition)bmInvertedTransition:(UIViewAnimationTransition)transition;
 
-- (UINavigationController *)bmParentNavigationController;
+- (nullable UINavigationController *)bmParentNavigationController;
 
-- (UITabBarController *)bmParentTabController;
+- (nullable UITabBarController *)bmParentTabController;
 
 - (BOOL)bmIsModal;
 
@@ -27,9 +29,11 @@
  */
 - (CGAffineTransform)bmTransformForOrientation;
 
-- (void)bmPresentChildViewController:(UIViewController *)vc inView:(UIView *)parentView aboveView:(UIView *)view;
-- (void)bmPresentChildViewController:(UIViewController *)vc aboveView:(UIView *)view;
+- (void)bmPresentChildViewController:(UIViewController *)vc inView:(nullable UIView *)parentView aboveView:(nullable UIView *)view;
+- (void)bmPresentChildViewController:(UIViewController *)vc aboveView:(nullable UIView *)view;
 - (void)bmPresentChildViewController:(UIViewController *)vc;
 - (void)bmDismissChildViewController:(UIViewController *)vc;
 
 @end
+
+NS_ASSUME_NONNULL_END

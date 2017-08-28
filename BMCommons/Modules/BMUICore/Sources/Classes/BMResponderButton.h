@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Button that can become a first responder when the user touches it.
  
@@ -17,3 +19,5 @@
 @interface BMResponderButton : UIButton
 
 @end
+
+NS_ASSUME_NONNULL_END

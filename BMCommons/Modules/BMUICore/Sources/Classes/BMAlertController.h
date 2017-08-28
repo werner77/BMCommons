@@ -7,6 +7,8 @@
 #import <BMCommons/BMCore.h>
 #import <BMCommons/BMAlertView.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Notifications posted upon showing/dismissing an alert.
  */
@@ -36,14 +38,14 @@ BM_DECLARE_DEFAULT_SINGLETON
  *
  * Defaults to a BMAttributedStringTransformer with bold system font and black text color.
  */
-@property (nonatomic, strong) NSValueTransformer *attributedTitleTransformer;
+@property (nullable, nonatomic, strong) NSValueTransformer *attributedTitleTransformer;
 
 /**
  * If set this value transformer is used to convert a NSString message to a NSAttributedString version to provide rich text.
  *
  * * Defaults to a BMAttributedStringTransformer with normal system font and black text color.
  */
-@property (nonatomic, strong) NSValueTransformer *attributedMessageTransformer;
+@property (nullable, nonatomic, strong) NSValueTransformer *attributedMessageTransformer;
 
 /**
  * Show an alert with the specified title, message, cancelButtonTitle and other button titles.
@@ -52,35 +54,35 @@ BM_DECLARE_DEFAULT_SINGLETON
  *
  * Alert will be queued if another alert is already visible at the moment.
  */
-- (BMAlertView *)showAlertWithAttributedTitle:(NSAttributedString *)title attributedMessage:(NSAttributedString *)message cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles cancelButtonIndex:(NSInteger)cancelButtonIndex duration:(CGFloat)duration dismissBlock:(BMAlertDismissBlock)dismissBlock;
+- (BMAlertView *)showAlertWithAttributedTitle:(nullable NSAttributedString *)title attributedMessage:(nullable NSAttributedString *)message cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSArray *)otherButtonTitles cancelButtonIndex:(NSInteger)cancelButtonIndex duration:(CGFloat)duration dismissBlock:(nullable BMAlertDismissBlock)dismissBlock;
 
 /**
  * Overloaded version: uses the attributedTitleTransformer and attributedMessageTransformer to convert NSString to NSAttributedString.
  *
  * @see showAlertWithAttributedTitle:attributedMessage:cancelButtonTitle:otherButtonTitles:cancelButtonIndex:duration:dismissBlock:
  */
-- (BMAlertView *)showAlertWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles cancelButtonIndex:(NSInteger)cancelButtonIndex duration:(CGFloat)duration dismissBlock:(BMAlertDismissBlock)dismissBlock;
+- (BMAlertView *)showAlertWithTitle:(nullable NSString *)title message:(nullable NSString *)message cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSArray *)otherButtonTitles cancelButtonIndex:(NSInteger)cancelButtonIndex duration:(CGFloat)duration dismissBlock:(nullable BMAlertDismissBlock)dismissBlock;
 
 /**
  * Overloaded version: uses the attributedTitleTransformer and attributedMessageTransformer to convert NSString to NSAttributedString. Uses infinite duration (no automatic dismissal). cancelButtonIndex is defaulted to first button.
  *
  * @see showAlertWithAttributedTitle:attributedMessage:cancelButtonTitle:otherButtonTitles:cancelButtonIndex:duration:dismissBlock:
  */
-- (BMAlertView *)showAlertWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles dismissBlock:(BMAlertDismissBlock)dismissBlock;
+- (BMAlertView *)showAlertWithTitle:(nullable NSString *)title message:(nullable NSString *)message cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSArray *)otherButtonTitles dismissBlock:(nullable BMAlertDismissBlock)dismissBlock;
 
 /**
  * Overloaded version: uses the attributedTitleTransformer and attributedMessageTransformer to convert NSString to NSAttributedString. No buttons version.
  *
  * @see showAlertWithAttributedTitle:attributedMessage:cancelButtonTitle:otherButtonTitles:cancelButtonIndex:duration:dismissBlock:
  */
-- (BMAlertView *)showAlertWithTitle:(NSString *)title message:(NSString *)message duration:(NSTimeInterval)duration dismissBlock:(BMAlertDismissBlock)dismissBlock;
+- (BMAlertView *)showAlertWithTitle:(nullable NSString *)title message:(nullable NSString *)message duration:(NSTimeInterval)duration dismissBlock:(nullable BMAlertDismissBlock)dismissBlock;
 
 /**
  * Overloaded version: uses the attributedTitleTransformer and attributedMessageTransformer to convert NSString to NSAttributedString. Uses infinite duration (no automatic dismissal).
  *
  * @see showAlertWithAttributedTitle:attributedMessage:cancelButtonTitle:otherButtonTitles:cancelButtonIndex:duration:dismissBlock:
  */
-- (BMAlertView *)showAlertWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles cancelButtonIndex:(NSInteger)cancelButtonIndex dismissBlock:(BMAlertDismissBlock)dismissBlock;
+- (BMAlertView *)showAlertWithTitle:(nullable NSString *)title message:(nullable NSString *)message cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSArray *)otherButtonTitles cancelButtonIndex:(NSInteger)cancelButtonIndex dismissBlock:(nullable BMAlertDismissBlock)dismissBlock;
 
 /**
  * Returns true iff an alert is currently visible.
@@ -113,11 +115,13 @@ BM_DECLARE_DEFAULT_SINGLETON
 /**
  * Override for custom presentation animation logic
  */
-- (void)presentDialog:(BMAlertView *)dialogView inView:(UIView *)parentView withCompletion:(void (^)(BOOL finished))completion;
+- (void)presentDialog:(BMAlertView *)dialogView inView:(UIView *)parentView withCompletion:(void (^ _Nullable)(BOOL finished))completion;
 
 /**
  * Override for custom animation hiding logic
  */
-- (void)hideDialog:(BMAlertView *)dialogView withCompletion:(void (^)(BOOL finished))completion;
+- (void)hideDialog:(BMAlertView *)dialogView withCompletion:(void (^ _Nullable)(BOOL finished))completion;
 
 @end
+
+NS_ASSUME_NONNULL_END

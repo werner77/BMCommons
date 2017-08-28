@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Image view with support for crossfade between animationImages.
  */
@@ -18,6 +20,8 @@
 /**
  Cross fades to the specified image with the set transitionDuration.
  */
-- (void)crossfadeToImage:(UIImage *)newImage;
+- (void)crossfadeToImage:(nullable UIImage *)newImage;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Methods for getting the labels for the on and off text of a UISwitch.
  */
@@ -16,11 +18,13 @@
 /**
  The label containing the 'off' text for the switch.
  */
-- (UILabel *)bmOffLabel;
+- (nullable UILabel *)bmOffLabel;
 
 /**
  The label containing the 'on' text for the switch.
  */
-- (UILabel *)bmOnLabel;
+- (nullable UILabel *)bmOnLabel;
 
 @end
+
+NS_ASSUME_NONNULL_END

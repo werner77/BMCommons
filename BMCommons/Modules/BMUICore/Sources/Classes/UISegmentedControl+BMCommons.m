@@ -15,8 +15,9 @@
 	for (id theTarget in allTargets) {
 		[self removeTarget:theTarget action:NULL forControlEvents:UIControlEventValueChanged];
 	}
-	[self addTarget:target action:action forControlEvents:UIControlEventValueChanged];
-
+	if (target && action) {
+		[self addTarget:target action:action forControlEvents:UIControlEventValueChanged];
+	}
 }
 
 @end

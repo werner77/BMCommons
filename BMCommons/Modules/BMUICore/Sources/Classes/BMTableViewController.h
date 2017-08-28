@@ -13,6 +13,8 @@
 @class BMTableFooterDragLoadMoreView;
 @class BMCache;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Base class for table view controllers that replaces UITableViewController. 
  
@@ -24,12 +26,12 @@
 /**
  The table view.
  */
-@property(nonatomic, strong) IBOutlet UITableView *tableView;
+@property(nullable, nonatomic, strong) IBOutlet UITableView *tableView;
 
 /**
  Background image view to display.
  */
-@property(nonatomic, strong) IBOutlet UIImageView *backgroundImageView;
+@property(nullable, nonatomic, strong) IBOutlet UIImageView *backgroundImageView;
 
 /**
  Whether the table view should scroll to the active table view cell when it becomes active. Default = NO.
@@ -79,17 +81,17 @@
 /**
  View to show when there is an error loading the model for the table view.
  */
-@property(nonatomic, strong) IBOutlet UIView *errorView;
+@property(nullable, nonatomic, strong) IBOutlet UIView *errorView;
 
 /**
  View to show when there are no rows to display currently.
  */
-@property(nonatomic, strong) IBOutlet UIView *emptyView;
+@property(nullable, nonatomic, strong) IBOutlet UIView *emptyView;
 
 /**
  Sound file to use for playing a sound when the user drags to refresh the view.
  */
-@property(nonatomic, strong) NSURL *dragRefreshSoundFileURL;
+@property(nullable, nonatomic, strong) NSURL *dragRefreshSoundFileURL;
 
 /**
  Cache to use for static cells, e.g. in form-like tableviews.
@@ -99,17 +101,17 @@
 /**
  Reference to the dragRefreshView.
  */
-@property (nonatomic, readonly) BMTableHeaderDragRefreshView *dragRefreshView;
+@property (nullable, nonatomic, readonly) BMTableHeaderDragRefreshView *dragRefreshView;
 
 /**
  Reference to the dragLoadMoreView.
  */
-@property (nonatomic, readonly) BMTableFooterDragLoadMoreView *dragLoadMoreView;
+@property (nullable, nonatomic, readonly) BMTableFooterDragLoadMoreView *dragLoadMoreView;
 
 /**
  Returns the tableview cell that is or contains the current first responder view or nil if none is selected.
  */
-@property (nonatomic, readonly) UITableViewCell *firstResponderCell;
+@property (nullable, nonatomic, readonly) UITableViewCell *firstResponderCell;
 
 
 - (id)initWithStyle:(UITableViewStyle)style;
@@ -119,7 +121,7 @@
  
  By default returns self.tableView
   */
-- (UIScrollView *)scrollView;
+- (nullable UIScrollView *)scrollView;
 
 /**
  Reloads the table view from the data.
@@ -282,12 +284,14 @@
 /**
  Name of an item.
  */
-- (NSString *)itemName;
+- (nullable NSString *)itemName;
 
 @end
 
 @interface BMTableViewController(Protected)
 
-- (void)firstResponderDidChange:(UIView *)firstResponderView;
+- (void)firstResponderDidChange:(nullable UIView *)firstResponderView;
 
 @end
+
+NS_ASSUME_NONNULL_END

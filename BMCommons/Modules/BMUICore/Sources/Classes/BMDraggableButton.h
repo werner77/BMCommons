@@ -9,6 +9,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef enum BMDraggableButtonState {
     BMDraggableButtonStateMin = 0,
     BMDraggableButtonStateMax = 1
@@ -38,4 +40,6 @@ typedef enum BMDraggableButtonState {
 - (void)setButtonState:(BMDraggableButtonState)state animated:(BOOL)animated;
 
 @end
+
+NS_ASSUME_NONNULL_END
 

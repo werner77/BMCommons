@@ -9,6 +9,8 @@
 #import <BMCommons/BMTableViewController.h>
 #import <BMCommons/BMService.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BMTableViewController sub-class which implements loading using the BMService framework.
  
@@ -33,3 +35,5 @@
 - (void)handleResult:(id)result forService:(id<BMService>)service;
 
 @end
+
+NS_ASSUME_NONNULL_END

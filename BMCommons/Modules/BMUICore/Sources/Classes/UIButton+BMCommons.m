@@ -15,7 +15,11 @@ static char * const kButtonTargetBlockKey = "com.behindmedia.bmcommons.UIButton.
 
 - (void)bmSetTargetBlock:(BMButtonTargetBlock)block {
     objc_setAssociatedObject(self, kButtonTargetBlockKey, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    [self bmSetTarget:self action:@selector(bmTouchUpInsideBlockHandler)];
+    if (block) {
+        [self bmSetTarget:self action:@selector(bmTouchUpInsideBlockHandler)];
+    } else {
+        [self bmSetTarget:nil action:nil];
+    }
 }
 
 - (BMButtonTargetBlock)bmButtonTargetBlock {
@@ -34,7 +38,9 @@ static char * const kButtonTargetBlockKey = "com.behindmedia.bmcommons.UIButton.
 	for (id theTarget in allTargets) {
 		[self removeTarget:theTarget action:NULL forControlEvents:UIControlEventTouchUpInside];
 	}
-	[self addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    if (target && action) {
+        [self addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    }
 }
 
 + (UIButton *)bmButtonForBarButtonItemWithTarget:(id)target action:(SEL)action {

@@ -9,6 +9,8 @@
 #import <BMCommons/BMServiceModelTableViewController.h>
 #import <BMCommons/BMService.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  BMTableViewController which loads entities using a BMService and represents the entities with a cell for each entity.
  
@@ -33,7 +35,7 @@
 /**
  The array of currently loaded entities.
  */
-@property(nonatomic, readonly) NSArray *entities;
+@property(nullable, nonatomic, readonly) NSArray *entities;
 
 
 @end
@@ -45,7 +47,7 @@
  
  This method is automatically called by the concrete implementation of [BMServiceModelTableViewController handleResult:forService:] which this class implements.
  */
-- (void)updateEntitiesWithArray:(NSArray *)entityArray totalCount:(NSUInteger)theTotalCount;
+- (void)updateEntitiesWithArray:(nullable NSArray *)entityArray totalCount:(NSUInteger)theTotalCount;
 
 /**
  Inserts an entity to the internal entities array.
@@ -76,7 +78,7 @@
 /**
  Sub-classes should override this method to convert the result from the service to an NSArray containing entity objects which are represented by the tableview cells which this controller displays.
  */
-- (NSArray *)entitiesFromServiceResult:(id)result;
+- (nullable NSArray *)entitiesFromServiceResult:(id)result;
 
 /**
  Sub-classes should override this method to extract the total entity count (for all results over all batches, including the ones that are not yet loaded).
@@ -98,18 +100,20 @@
  Typically sub classes should instantiate a BMService implementation and call [BMServiceModelTableViewController performService:].
  The service should load an array of entities with the specified 0-based index for the first result to return and the specified batch size.
  */
-- (NSArray *)loadEntitiesWithFirstResult:(NSUInteger)firstResult maxResults:(NSUInteger)maxResults;
+- (nullable NSArray *)loadEntitiesWithFirstResult:(NSUInteger)firstResult maxResults:(NSUInteger)maxResults;
 
 /**
  If the table view contains a cell for the user to touch to load more results, this method should be implemented and return the indexpath for that cell. 
  
  The actual loading of more results is then automatically handled.
  */
-- (NSIndexPath *)indexPathForMoreResultsCell;
+- (nullable NSIndexPath *)indexPathForMoreResultsCell;
 
 /**
  Returns the entity at the specified indexpath which is by default the object at indexPath.row in the entities array.
  */
-- (id)entityAtIndexPath:(NSIndexPath *)indexPath;
+- (nullable id)entityAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
+
+NS_ASSUME_NONNULL_END

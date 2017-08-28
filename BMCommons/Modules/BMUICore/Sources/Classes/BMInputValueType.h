@@ -28,6 +28,8 @@
 #define VALUE_TYPE_EMAIL @"email"
 #define VALUE_TYPE_PHONE @"phone"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Class describing the type/format of a value.
  
@@ -40,31 +42,31 @@
 /**
  Value transformer that converts a string to the value type (e.g. an NSDate, NSNumber, etc).
  */
-@property (nonatomic, readonly) NSValueTransformer *valueTransformer;
+@property (nullable, nonatomic, readonly) NSValueTransformer *valueTransformer;
 
 /**
  A regex describing the valid string input for this value (if nil anything is valid) 
  */
-@property (nonatomic, readonly) NSString *validPattern;
+@property (nullable, nonatomic, readonly) NSString *validPattern;
 
 /**
  The allowed character set for string input of this value
  */
-@property (nonatomic, readonly) NSCharacterSet *allowedCharacterSet;
+@property (nullable, nonatomic, readonly) NSCharacterSet *allowedCharacterSet;
 
 /**
  The keyboard type to use for input.
  */
 @property (nonatomic, readonly) UIKeyboardType keyboardType;
 
-- (id)initWithTypeKey:(NSString *)theTypeKey transformer:(NSValueTransformer *)transformer 
-		 validPattern:(NSString *)validPattern allowedCharacterSet:(NSCharacterSet *)charSet
-		 keyboardType:(UIKeyboardType)type;
+- (id)initWithTypeKey:(NSString *)theTypeKey transformer:(nullable NSValueTransformer *)transformer
+		 validPattern:(nullable NSString *)validPattern allowedCharacterSet:(nullable NSCharacterSet *)charSet
+		 keyboardType:(UIKeyboardType)type NS_DESIGNATED_INITIALIZER;
 
 /**
  Validates the supplied string value for this value type.
  */
-- (BOOL)validateValue:(NSString *)value;
+- (BOOL)validateValue:(nullable NSString *)value;
 
 /**
  Whether to allow the specified change for this value type. 
@@ -80,11 +82,13 @@
  
  See the definitions of predefined value types in this header file above.
  */
-+ (BMInputValueType *)registeredValueTypeForKey:(NSString *)typeKey;
++ (nullable BMInputValueType *)registeredValueTypeForKey:(NSString *)typeKey;
 
 /**
  Constructs a value type with only the keyboard type set.
  */
-+ (BMInputValueType *)valueTypeWithKeyboardType:(UIKeyboardType)keyboardType;
++ (nullable BMInputValueType *)valueTypeWithKeyboardType:(UIKeyboardType)keyboardType;
 
 @end
+
+NS_ASSUME_NONNULL_END

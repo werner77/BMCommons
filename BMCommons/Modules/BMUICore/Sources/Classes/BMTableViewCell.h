@@ -11,6 +11,8 @@
 #import <BMCommons/BMClickable.h>
 #import <BMCommons/BMReusableObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Tableview cell that works together with BMTableViewController. 
  
@@ -21,12 +23,12 @@
 /**
  Target to call when the cell is clicked.
  */
-@property(nonatomic, weak) NSObject *target;
+@property(nullable, nonatomic, weak) NSObject *target;
 
 /**
  Selector to call when the cell is clicked.
  */
-@property(nonatomic, assign) SEL selector;
+@property(nullable, nonatomic, assign) SEL selector;
 @property(nonatomic, assign) UITableViewCellSelectionStyle enabledSelectionStyle;
 @property(nonatomic, assign) UITableViewCellSelectionStyle disabledSelectionStyle;
 
@@ -36,3 +38,5 @@
 - (void)setReuseIdentifier:(NSString *)identifier;
 
 @end
+
+NS_ASSUME_NONNULL_END

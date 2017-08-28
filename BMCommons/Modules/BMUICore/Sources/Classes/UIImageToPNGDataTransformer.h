@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Value transformer for transforming a UIImage to NSData with PNG encoding.
  */
-@interface UIImageToPNGDataTransformer : NSValueTransformer {
-
-}
+@interface UIImageToPNGDataTransformer : NSValueTransformer
 
 @end
+
+NS_ASSUME_NONNULL_END

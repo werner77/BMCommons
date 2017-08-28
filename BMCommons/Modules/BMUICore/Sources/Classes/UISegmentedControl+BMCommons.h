@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  UISegmentedControl additions.
  */
@@ -17,6 +19,8 @@
 /**
  Convenience method to set a target and action for value changed events.
  */
-- (void)bmSetTarget:(id)target action:(SEL)action;
+- (void)bmSetTarget:(nullable id)target action:(nullable SEL)action;
 
 @end
+
+NS_ASSUME_NONNULL_END

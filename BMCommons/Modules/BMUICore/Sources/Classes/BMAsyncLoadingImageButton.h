@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Button capable of loading its image from a remote source
  */
@@ -29,12 +31,12 @@
  
  If changed stopLoading is called. You have to manually call startLoading or startLoading: for loading the new image.
  */
-@property (nonatomic, strong) NSURL *url;
+@property (nullable, nonatomic, strong) NSURL *url;
 
 /**
  Optional placeholder image to show while loading is underway.
  */
-@property (nonatomic, strong) UIImage *placeHolderImage;
+@property (nullable, nonatomic, strong) UIImage *placeHolderImage;
 
 /**
  The image view used by the button for showing the image.
@@ -44,12 +46,12 @@
 /**
  The activity indicator used by the button while loading if showActivity is set to YES.
  */
-@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nullable, nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 /**
  Optional context object to attach to the button.
  */
-@property (nonatomic, strong) id context;
+@property (nullable, nonatomic, strong) id context;
 
 /**
  If set to YES the activityIndicator will spin while loading.
@@ -73,7 +75,7 @@
 /**
  Initializes the button with the specified URL for loading the image.
  */
-- (id)initWithURL:(NSURL *)theURL;
+- (id)initWithURL:(nullable NSURL *)theURL;
 
 /**
  Calls startLoadingByShowingPlaceHolder: with argument YES.
@@ -95,14 +97,16 @@
 /**
  Sets the button image directly.
  */
-- (void)setImage:(UIImage *)theImage;
-- (UIImage *)image;
+- (void)setImage:(nullable UIImage *)theImage;
+- (nullable UIImage *)image;
 
 /**
  Sets a target and action for receiving button press events.
  
  The action selector may have one argument which will be a reference to self when the button press event is fired.
  */
-- (void)setTarget:(id)target action:(SEL)action;
+- (void)setTarget:(nullable id)target action:(nullable SEL)action;
 
 @end
+
+NS_ASSUME_NONNULL_END

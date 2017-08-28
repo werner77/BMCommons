@@ -66,8 +66,11 @@
 
 + (void)setConfigurationBlock:(BMNibConfigurationBlock)block forNibWithName:(NSString *)nibName {
     @synchronized (BMNib.class) {
+        id key = [BMObjectHelper filterNullObject:nibName];
         if (block) {
-            self.configurationBlocks[[BMObjectHelper filterNullObject:nibName]] = [block copy];
+            self.configurationBlocks[key] = [block copy];
+        } else {
+            [self.configurationBlocks removeObjectForKey:key];
         }
     }
 }

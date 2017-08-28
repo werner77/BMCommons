@@ -9,16 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMUICoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  UIDevice utility methods.
  */
-@interface BMDeviceHelper : BMUICoreObject {
-    
-}
+@interface BMDeviceHelper : BMUICoreObject
 
 /**
  Returns the network mac address as a string in format xx:xx:xx:xx:xx:xx
  */
-+ (NSString *)macAddress;
++ (nullable NSString *)macAddress;
 
 @end
+
+NS_ASSUME_NONNULL_END

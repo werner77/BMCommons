@@ -5,13 +5,17 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Value transformer for transforming a NSString to an NSAttributedString using the specified font, text color and paragraphstyle.
  */
 @interface BMAttributedStringTransformer : NSValueTransformer
 
-@property (nonatomic, strong) UIFont *font;
-@property (nonatomic, strong) UIColor *textColor;
-@property (nonatomic, strong) NSParagraphStyle *paragraphStyle;
+@property (nullable, nonatomic, strong) UIFont *font;
+@property (nullable, nonatomic, strong) UIColor *textColor;
+@property (nullable, nonatomic, strong) NSParagraphStyle *paragraphStyle;
 
 @end
+
+NS_ASSUME_NONNULL_END

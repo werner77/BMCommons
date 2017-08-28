@@ -7,6 +7,8 @@
  *
  */
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Protocol defining a property for the capability to size to fit the contents.
  */
@@ -15,3 +17,5 @@
 @property (nonatomic, assign) BOOL sizeToFit;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -13,6 +13,8 @@
 #import <UIKit/UIKit.h>
 #import <BMCommons/BMViewState.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMViewController;
 
 extern NSString *const BMViewControllerWillAppearNotification;
@@ -67,7 +69,7 @@ typedef void(^BMViewControllerDismissBlock)(BMViewController *vc, id result);
  
  Will be pushed on first view load and popped on dealloc. Should be set before view load other wise it is ignored.
  */
-@property(nonatomic, strong) BMStyleSheet *styleSheet;
+@property(nullable, nonatomic, strong) BMStyleSheet *styleSheet;
 
 /**
  Property adjust the edge insets on for full screen layout or not
@@ -84,7 +86,7 @@ typedef void(^BMViewControllerDismissBlock)(BMViewController *vc, id result);
  
  @see [BMViewController dismiss:]
  */
-@property(nonatomic, copy) BMViewControllerDismissBlock dismissBlock;
+@property(nullable, nonatomic, copy) BMViewControllerDismissBlock dismissBlock;
 
 /**
  Returns true iff the view state == BMViewStateVisible.
@@ -141,7 +143,7 @@ typedef void(^BMViewControllerDismissBlock)(BMViewController *vc, id result);
 /**
  Call to execute the dismiss block (if set) with the specified result object.
  */
-- (void)dismissWithResult:(id)result;
+- (void)dismissWithResult:(nullable id)result;
 
 /**
  Even though the viewDidUnload/viewWillUnload methods are deprecated in iOS 6, we define them manually here to make view loading/unloading symmetrical.
@@ -158,3 +160,5 @@ typedef void(^BMViewControllerDismissBlock)(BMViewController *vc, id result);
 - (void)viewDidUnload;
 
 @end
+
+NS_ASSUME_NONNULL_END

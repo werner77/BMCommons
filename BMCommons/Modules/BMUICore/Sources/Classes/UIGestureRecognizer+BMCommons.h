@@ -6,6 +6,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void (^BMGestureRecognizerTargetBlock)(UIGestureRecognizer *gr);
 
 @interface UIGestureRecognizer (BMCommons)
@@ -13,6 +15,8 @@ typedef void (^BMGestureRecognizerTargetBlock)(UIGestureRecognizer *gr);
 /**
  * Sets the specified block as target for the gesture recognizer event.
  */
-- (void)bmSetTargetBlock:(BMGestureRecognizerTargetBlock)block;
+- (void)bmSetTargetBlock:(nullable BMGestureRecognizerTargetBlock)block;
 
 @end
+
+NS_ASSUME_NONNULL_END

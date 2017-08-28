@@ -6,30 +6,36 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BMWindowView : UIView
 
 @property (nonatomic, assign) UIInterfaceOrientationMask supportedInterfaceOrientations;
 
-@property (nonatomic, copy) void (^onDidMoveToWindow)(void);
-@property (nonatomic, copy) void (^onDidMoveOutOfWindow)(void);
+@property (nullable, nonatomic, copy) void (^onDidMoveToWindow)(void);
+@property (nullable, nonatomic, copy) void (^onDidMoveOutOfWindow)(void);
 @property (nonatomic, assign) BOOL onlySubviewsCapturesTouch;
 
-- (id)initAndAddToWindow:(UIWindow *)window;
-- (id)initAndAddToKeyWindow;
+- (id)initWithWindow:(nullable UIWindow *)window;
+- (id)initWithKeyWindow;
+
+- (void)addToWindow:(nullable UIWindow *)window;
 
 - (void)addSubViewAndKeepSamePosition:(UIView *)view;
 - (void)addSubviewAndFillBounds:(UIView *)view;
-- (void)addSubviewAndFillBounds:(UIView *)view withSlideUpAnimationOnDone:(void(^)(void))onDone;
-- (void)fadeOutAndRemoveFromSuperview:(void(^)(void))onDone;
-- (void)slideDownSubviewsAndRemoveFromSuperview:(void(^)(void))onDone;
+- (void)addSubviewAndFillBounds:(UIView *)view withSlideUpAnimationOnDone:(void(^ _Nullable)(void))onDone;
+- (void)fadeOutAndRemoveFromSuperview:(void(^ _Nullable)(void))onDone;
+- (void)slideDownSubviewsAndRemoveFromSuperview:(void(^ _Nullable)(void))onDone;
 
 - (void)bringToFront;
 - (BOOL)isInFront;
 
 + (NSArray *)allActiveWindowViews;
-+ (BMWindowView *)firstActiveWindowViewPassingTest:(BOOL (^)(BMWindowView *windowView, BOOL *stop))test;
-+ (BMWindowView *)activeWindowViewContainingView:(UIView *)view;
++ (nullable BMWindowView *)firstActiveWindowViewPassingTest:(BOOL (^)(BMWindowView *windowView, BOOL *stop))test;
++ (nullable BMWindowView *)activeWindowViewContainingView:(UIView *)view;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 

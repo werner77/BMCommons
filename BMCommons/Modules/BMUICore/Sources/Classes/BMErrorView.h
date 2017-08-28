@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  View to display on error for example in conjunction with BMTableViewController.
  
@@ -18,26 +20,28 @@
 /**
  Image view for an image to display.
  */
-@property (nonatomic, strong) IBOutlet UIImageView*  imageView;
+@property (nullable, nonatomic, strong) IBOutlet UIImageView*  imageView;
 
 /**
  Label for title text.
  */
-@property (nonatomic, strong) IBOutlet UILabel* titleLabel;
+@property (nullable, nonatomic, strong) IBOutlet UILabel* titleLabel;
 
  /**
   Label for sub title text.
   */
-@property (nonatomic, strong) IBOutlet UILabel* subtitleLabel;
+@property (nullable, nonatomic, strong) IBOutlet UILabel* subtitleLabel;
 
 /**
  Button for refresh.
  */
-@property (nonatomic, strong) IBOutlet UIButton *refreshButton;
+@property (nullable, nonatomic, strong) IBOutlet UIButton *refreshButton;
 
 /**
  Label for description text.
  */
-@property (nonatomic, strong) IBOutlet UILabel *descriptionLabel;
+@property (nullable, nonatomic, strong) IBOutlet UILabel *descriptionLabel;
 
 @end
+
+NS_ASSUME_NONNULL_END

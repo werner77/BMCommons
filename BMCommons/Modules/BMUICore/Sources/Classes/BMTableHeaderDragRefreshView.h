@@ -10,6 +10,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMStyleSheet.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSUInteger, BMTableHeaderDragRefreshStatus) {
     BMTableHeaderDragRefreshReleaseToReload,
     BMTableHeaderDragRefreshPullToReload,
@@ -26,7 +28,7 @@ typedef NS_ENUM(NSUInteger, BMTableHeaderDragRefreshStatus) {
 /**
  Sets the update date which is shown.
  */
-- (void)setUpdateDate:(NSDate*)date;
+- (void)setUpdateDate:(nullable NSDate*)date;
 
 /**
  Sets the status.
@@ -40,3 +42,5 @@ typedef NS_ENUM(NSUInteger, BMTableHeaderDragRefreshStatus) {
 - (void)applyStyleSheet:(BMStyleSheet*)styleSheet;
 
 @end
+
+NS_ASSUME_NONNULL_END

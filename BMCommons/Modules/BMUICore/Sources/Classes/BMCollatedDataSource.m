@@ -19,9 +19,12 @@
 
 }
 
+- (instancetype)init {
+    return [self initWithCollation:[UILocalizedIndexedCollation currentCollation] stringSelector:@selector(description)];
+}
 
 - (instancetype)initWithCollation:(UILocalizedIndexedCollation *)collation stringSelector:(SEL)stringSelector {
-    if ((self = [self init])) {
+    if ((self = [super init])) {
         self.collation = collation;
         self.stringSelector = stringSelector;
     }

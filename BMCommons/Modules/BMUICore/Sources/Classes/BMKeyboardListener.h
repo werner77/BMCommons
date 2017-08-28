@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMUICoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Listener for UIKeyboard notifications.
  
@@ -27,3 +29,5 @@
 + (BMKeyboardListener *) sharedInstance;
 
 @end
+
+NS_ASSUME_NONNULL_END

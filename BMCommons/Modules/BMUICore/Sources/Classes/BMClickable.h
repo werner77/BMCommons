@@ -7,6 +7,8 @@
  *
  */
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Protocol describing a clickable or tappable object/view.
  */
@@ -28,3 +30,5 @@
 - (void)setClickEnabled:(BOOL)enabled;
 
 @end
+
+NS_ASSUME_NONNULL_END

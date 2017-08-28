@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 BehindMedia. All rights reserved.
 //
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Enum that describes the visibility state of the view.
  
@@ -22,3 +24,4 @@ typedef enum BMViewState {
     BMViewStateToBecomeInvisible = 3,
 } BMViewState;
 
+NS_ASSUME_NONNULL_END

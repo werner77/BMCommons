@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <BMCommons/BMStyleSheet.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSUInteger, BMTableFooterDragLoadMoreStatus) {
     BMTableFooterDragLoadMoreNone = 0,
     BMTableFooterDragLoadMoreReleaseToLoad = 1,
@@ -29,7 +31,7 @@ typedef NS_ENUM(NSUInteger, BMTableFooterDragLoadMoreStatus) {
  
  The default is loaded from the strings resources under key dragloadmoreview.text.item.
  */
-@property (nonatomic, strong) NSString *itemName;
+@property (nullable, nonatomic, strong) NSString *itemName;
 
 /**
  Set to override the default name displayed for multiple items as 'photos' in:
@@ -38,7 +40,7 @@ typedef NS_ENUM(NSUInteger, BMTableFooterDragLoadMoreStatus) {
  
  The default is loaded from the strings resources under key dragloadmoreview.text.items.
  */
-@property (nonatomic, strong) NSString *itemsName;
+@property (nullable, nonatomic, strong) NSString *itemsName;
 
 /**
  Sets the loaded and total count to be displayed.
@@ -53,3 +55,5 @@ typedef NS_ENUM(NSUInteger, BMTableFooterDragLoadMoreStatus) {
 - (void)applyStyleSheet:(BMStyleSheet*)styleSheet;
 
 @end
+
+NS_ASSUME_NONNULL_END

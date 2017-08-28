@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMMaskView.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMBusyView;
 
 /**
@@ -72,7 +74,7 @@ typedef void (^BMBusyViewInitBlock)(BMBusyView *);
 /**
  The delegate.
  */
-@property(nonatomic, weak) id <BMBusyViewDelegate> delegate;
+@property(nullable, nonatomic, weak) id <BMBusyViewDelegate> delegate;
 
 /**
  Whether or not cancellation is enabled.
@@ -108,7 +110,7 @@ typedef void (^BMBusyViewInitBlock)(BMBusyView *);
  
  This is the designated initializer. init calls this method with as argument a new modal window with windowLevel of UIWindowLevelStatusBar.
  */
-- (id)initWithSuperView:(UIView *)view;
+- (id)initWithSuperView:(UIView *)view NS_DESIGNATED_INITIALIZER;
 
 /**
  Sets the progress with a value between 0.0 and 1.0.
@@ -122,14 +124,14 @@ typedef void (^BMBusyViewInitBlock)(BMBusyView *);
  
  Default is "Loading..."
  */
-- (void)setMessage:(NSString *)message;
+- (void)setMessage:(nullable NSString *)message;
 
 /**
  The text to display for tap to cancel.
  
  Default is "Tap to cancel"
  */
-- (void)setCancelMessage:(NSString *)message;
+- (void)setCancelMessage:(nullable NSString *)message;
 
 /**
  Shows the busy view with optional fade in animation.
@@ -154,10 +156,10 @@ typedef void (^BMBusyViewInitBlock)(BMBusyView *);
 + (BMBusyView *)showBusyViewAnimated:(BOOL)animated cancelEnabled:(BOOL)cancelEnabled;
 + (BMBusyView *)showBusyView;
 + (BMBusyView *)showBusyViewAnimated:(BOOL)animated;
-+ (BMBusyView *)showBusyViewWithMessage:(NSString *)message;
-+ (BMBusyView *)showBusyViewWithMessage:(NSString *)message animated:(BOOL)animated progress:(CGFloat)progress initBlock:(BMBusyViewInitBlock)initBlock;
-+ (BMBusyView *)showBusyViewWithMessage:(NSString *)message animated:(BOOL)animated;
-+ (BMBusyView *)showBusyViewWithMessage:(NSString *)message andProgress:(CGFloat)progress;
++ (BMBusyView *)showBusyViewWithMessage:(nullable NSString *)message;
++ (BMBusyView *)showBusyViewWithMessage:(nullable NSString *)message animated:(BOOL)animated progress:(CGFloat)progress initBlock:(nullable BMBusyViewInitBlock)initBlock;
++ (BMBusyView *)showBusyViewWithMessage:(nullable NSString *)message animated:(BOOL)animated;
++ (BMBusyView *)showBusyViewWithMessage:(nullable NSString *)message andProgress:(CGFloat)progress;
 
 /**
  A reference to the shared busy view.
@@ -169,7 +171,7 @@ typedef void (^BMBusyViewInitBlock)(BMBusyView *);
 /**
  Default initializer block which is called just before the sharedBusyView is shown.
  */
-+ (void)setDefaultInitBlock:(BMBusyViewInitBlock)block;
++ (void)setDefaultInitBlock:(nullable BMBusyViewInitBlock)block;
 
 /**
  Hides the sharedBusyView with animation.
@@ -178,3 +180,5 @@ typedef void (^BMBusyViewInitBlock)(BMBusyView *);
 + (void)hideBusyViewAnimated:(BOOL)animated;
 
 @end
+
+NS_ASSUME_NONNULL_END

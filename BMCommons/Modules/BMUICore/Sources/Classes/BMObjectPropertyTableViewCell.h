@@ -10,6 +10,8 @@
 #import <BMCommons/BMTableViewCell.h>
 #import <BMCommons/BMPropertyDescriptor.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMObjectPropertyTableViewCell;
 
 /**
@@ -22,7 +24,7 @@
 /**
  Sent when the value for this cell has been updated.
  */
-- (void)objectPropertyTableViewCell:(BMObjectPropertyTableViewCell *)cell didUpdateObjectWithValue:(id)newValue;
+- (void)objectPropertyTableViewCell:(BMObjectPropertyTableViewCell *)cell didUpdateObjectWithValue:(nullable id)newValue;
 
 /**
  Sent when the user requests deletion of the specified cell.
@@ -41,17 +43,17 @@
 /**
  Delegate for receiving updates when value changes.
  */
-@property (nonatomic, weak) id<BMObjectPropertyTableViewCellDelegate> delegate;
+@property (nullable, nonatomic, weak) id<BMObjectPropertyTableViewCellDelegate> delegate;
 
 /**
  Title label
  */
-@property (nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property (nullable, nonatomic, strong) IBOutlet UILabel *titleLabel;
 
 /**
  Optional label
  */
-@property (nonatomic, strong) IBOutlet UILabel *commentLabel;
+@property (nullable, nonatomic, strong) IBOutlet UILabel *commentLabel;
 
 /**
  If set to true validation fails if no value has been supplied for the input field
@@ -76,14 +78,14 @@
  An optional value transformer to transform the value returned by the property descriptor before supplying it to the cell (transformedValue) 
  and back from view to object (reverseTransformedValue)
  */
-@property (nonatomic, strong) NSValueTransformer *valueTransformer;
+@property (nullable, nonatomic, strong) NSValueTransformer *valueTransformer;
 
 /**
  The class of values this cell supports, that is after possible conversion by the value transformer.
  
  If you supply a valueTransformerthis class would normally equal the transformedValueClass of the valueTransformer.
  */
-+ (Class)supportedValueClass;
++ (nullable Class)supportedValueClass;
 
 /**
  Checks whether the specified value is supported by this cell class.
@@ -91,34 +93,34 @@
  By default checks whether the value is an instance of the supported value class.
  Excepts any value if supportedClass == nil. Also accepts nil values. Override for an other implementation.
  */
-+ (BOOL)isSupportedValue:(id)value;
++ (BOOL)isSupportedValue:(nullable id)value;
 
 /**
  Returns the row height for the specified value.
  */
-+ (CGFloat)heightForValue:(id)value;
++ (CGFloat)heightForValue:(nullable id)value;
 
 /**
  Method to be called from the UITableViewDataSource method tableView:cellForRowAtIndexPath:.
  
  This method ensures that the value corresponding with the specified property from the supplied object is forwarded to the setViewWithData: method. Override the latter method instead of this one to do something with the data in sub classes.
  */
-- (void)constructCellWithObject:(NSObject *)theObject 
-				   propertyName:(NSString *)theProperty;
+- (void)constructCellWithObject:(nullable NSObject *)theObject
+				   propertyName:(nullable NSString *)theProperty;
 
 /**
  Same as above but also supplies a title text for display in the title label.
  */
-- (void)constructCellWithObject:(NSObject *)theObject 
-				   propertyName:(NSString *)theProperty
-					  titleText:(NSString *)titleText;
+- (void)constructCellWithObject:(nullable NSObject *)theObject
+				   propertyName:(nullable NSString *)theProperty
+					  titleText:(nullable NSString *)titleText;
 
 /**
  The property descriptor used by this cell 
  
  Results from calling constructCellWithObject:propertyName.
  */
-- (BMPropertyDescriptor *)propertyDescriptor;
+- (nullable BMPropertyDescriptor *)propertyDescriptor;
 
 @end
 
@@ -141,13 +143,13 @@
  and set its value accordingly).
  If a value transformer is set, the data is transformed inversely after this method returned it.
  */
-- (id)dataFromView;
+- (nullable id)dataFromView;
 
 /**
  Sets the view with the data from the value returned from the property of the object as supplied by - constructCellWithObject:propertyName.
  If a value transformer is set, the data is first transformed before it is supplied to this method.
  */
-- (void)setViewWithData:(id)value;
+- (void)setViewWithData:(nullable id)value;
 
 /**
  Called when constructCell is called the first time (override to perform any initialization when all IBOutlets are set)
@@ -157,7 +159,7 @@
 /**
  Returns the data attached to this cell by calling [self.propertyDescriptor callGetter]
  */
-- (id)data;
+- (nullable id)data;
 
 /**
  Updates the view for an invalid value. Override this to do something meaningful (like making text red).
@@ -168,6 +170,8 @@
  Validates the value set: by default uses KVO validation on using the object/property set. Both the original and the transformed value are supplied (in case of a
  value transformer)
  */
-- (BOOL)validateValue:(id *)value transformedValue:(id *)transformedValue;
+- (BOOL)validateValue:(id _Nullable * _Nonnull)value transformedValue:(id _Nullable * _Nonnull)transformedValue;
 
 @end
+
+NS_ASSUME_NONNULL_END

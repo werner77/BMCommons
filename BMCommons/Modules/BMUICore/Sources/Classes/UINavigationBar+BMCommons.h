@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Custom CALayer for a UINavigationBar, allowing for adding custom background layers.
  */
@@ -29,3 +31,5 @@
 - (void)bmSetBackgroundView:(UIView *)v;
 
 @end
+
+NS_ASSUME_NONNULL_END

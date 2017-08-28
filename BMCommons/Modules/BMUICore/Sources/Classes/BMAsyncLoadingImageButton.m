@@ -196,7 +196,7 @@
 }
 
 - (void)onTap {
-    if (self.isEnabled) {
+    if (self.isEnabled && target && action) {
         BM_IGNORE_SELECTOR_LEAK_WARNING(
         [target performSelector:action withObject:self];
         )

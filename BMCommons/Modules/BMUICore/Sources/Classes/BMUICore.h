@@ -57,6 +57,8 @@
 
 #define BMRectMakeIntegral(a,b,c,d) CGRectIntegral(CGRectMake(a,b,c,d))
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Returns a rectangle whose edges have been added to the insets.
  */
@@ -171,6 +173,8 @@ void BMNetworkRequestStopped(void);
 }
 
 + (id)instance;
-+ (NSBundle *)bundle;
++ (nullable NSBundle *)bundle;
 
 @end
+
+NS_ASSUME_NONNULL_END

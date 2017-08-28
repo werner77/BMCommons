@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <BMCommons/BMUICoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Helper methods to create and show common alerts/actionsheets.
  */
@@ -19,31 +21,34 @@
 /**
  Creates and shows an OK/Cancel actionsheet.
  */
-+ (UIActionSheet *)dialogOKCancelWithTitle:(NSString *)title withDelegate:(id <UIActionSheetDelegate>)delegate withView:(UIView *)view;
++ (UIActionSheet *)dialogOKCancelWithTitle:(nullable NSString *)title withDelegate:(nullable id <UIActionSheetDelegate>)delegate inView:(UIView *)view;
 
 /**
  Creates and shows a YES/NO actionsheet.
  */
-+ (UIActionSheet *)dialogYesNoWithTitle:(NSString *)title withDelegate:(id <UIActionSheetDelegate>)delegate withView:(UIView *)view;
++ (UIActionSheet *)dialogYesNoWithTitle:(nullable NSString *)title withDelegate:(nullable id <UIActionSheetDelegate>)delegate inView:(UIView *)view;
 
 /**
  Creates and shows an actionsheet with the supplied parameters.
  */
-+ (UIActionSheet *)dialogWithTitle:(NSString *)title 
-						  delegate:(id <UIActionSheetDelegate>)delegate 
-				 cancelButtonTitle:(NSString *)cancelTitle
-			destructiveButtonTitle:(NSString *)destructiveTitle
-				 otherButtonTitles:(NSArray *)otherTitles 
-						   forView:(UIView *)theView
++ (UIActionSheet *)dialogWithTitle:(nullable NSString *)title
+						  delegate:(nullable id <UIActionSheetDelegate>)delegate
+				 cancelButtonTitle:(nullable NSString *)cancelTitle
+			destructiveButtonTitle:(nullable NSString *)destructiveTitle
+				 otherButtonTitles:(nullable NSArray *)otherTitles
+							inView:(UIView *)theView
 						   withTag:(NSUInteger)tag;
 
 /**
  Creates and shows an alert with the supplied parameters.
  */
-+ (UIAlertView *)alertWithTitle:(NSString *)title message:(NSString *)message delegate:(id)delegate;
++ (UIAlertView *)alertWithTitle:(nullable NSString *)title message:(nullable NSString *)message delegate:(nullable id)delegate;
 
 /**
  Creates and shows an alert with the supplied parameters.
  */
-+ (UIAlertView *)alertWithTitle:(NSString *)title message:(NSString *)message delegate:(id)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...;
++ (UIAlertView *)alertWithTitle:(nullable NSString *)title message:(nullable NSString *)message delegate:(nullable id)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSString *)otherButtonTitles, ...;
+
 @end
+
+NS_ASSUME_NONNULL_END

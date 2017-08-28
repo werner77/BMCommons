@@ -6,9 +6,13 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMAlertView.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Default implementation of alert view which matches the style of an iOS 7 UIAlertView.
  */
 @interface BMDefaultAlertView : BMAlertView
 
 @end
+
+NS_ASSUME_NONNULL_END

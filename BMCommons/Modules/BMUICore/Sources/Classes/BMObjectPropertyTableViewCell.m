@@ -22,7 +22,6 @@
 	IBOutlet UILabel *titleLabel;
 	IBOutlet UILabel *commentLabel;
 	BOOL initialized;
-	id<BMObjectPropertyTableViewCellDelegate> __weak delegate;
 	NSValueTransformer *valueTransformer;
 	BOOL valueRequired;
     CGFloat rowHeight;

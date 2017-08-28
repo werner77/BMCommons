@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  UIView additions.
  */
@@ -16,12 +18,12 @@
 /**
   * Searches this view's hierarchy for the first responder
  */
-- (UIView *)bmFirstResponder;
+- (nullable UIView *)bmFirstResponder;
 
 /**
  Gets the views content as a UIImage.
  */
-- (UIImage *)bmContentsAsImage;
+- (nullable UIImage *)bmContentsAsImage;
 
 /**
  Returns YES if and only if the view is visible i.e. self.window is defined.
@@ -72,7 +74,7 @@
  */
 - (void)bmLayoutWithBlock:(void (^)(void))block animationDuration:(NSTimeInterval)duration animationOptions:(UIViewAnimationOptions)animationOptions  applyPendingLayoutBeforeAnimation:(BOOL)applyPendingLayout;
 
-- (void)bmLayoutWithBlock:(void (^)(void))block animationDuration:(NSTimeInterval)duration animationOptions:(UIViewAnimationOptions)animationOptions  applyPendingLayoutBeforeAnimation:(BOOL)applyPendingLayout completion:(void (^)(BOOL finished))completion;
+- (void)bmLayoutWithBlock:(void (^)(void))block animationDuration:(NSTimeInterval)duration animationOptions:(UIViewAnimationOptions)animationOptions  applyPendingLayoutBeforeAnimation:(BOOL)applyPendingLayout completion:(void (^ _Nullable)(BOOL finished))completion;
 
 /**
  Transitions the view using the operations from the specified block.
@@ -88,7 +90,9 @@
  */
 - (void)bmTransitionWithBlock:(void (^)(void))block animationDuration:(NSTimeInterval)duration animationOptions:(UIViewAnimationOptions)animationOptions;
 
-- (void)bmTransitionWithBlock:(void (^)(void))block animationDuration:(NSTimeInterval)duration animationOptions:(UIViewAnimationOptions)animationOptions completion:(void (^)(BOOL finished))completion;
+- (void)bmTransitionWithBlock:(void (^)(void))block animationDuration:(NSTimeInterval)duration animationOptions:(UIViewAnimationOptions)animationOptions completion:(void (^ _Nullable)(BOOL finished))completion;
 
 
 @end
+
+NS_ASSUME_NONNULL_END

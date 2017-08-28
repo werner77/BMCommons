@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef void (^BMButtonTargetBlock)(UIButton *button);
 
 @interface UIButton(BMCommons)
@@ -15,16 +17,18 @@ typedef void (^BMButtonTargetBlock)(UIButton *button);
 /**
  * Sets the specified block as target for the touch up inside event.
  */
-- (void)bmSetTargetBlock:(BMButtonTargetBlock)block;
+- (void)bmSetTargetBlock:(nullable BMButtonTargetBlock)block;
 
 /**
  Convenience method to receive touch up inside events.
  */
-- (void)bmSetTarget:(id)target action:(SEL)action;
+- (void)bmSetTarget:(nullable id)target action:(nullable SEL)action;
 
 /**
  Utility method to construct a button for use in a barbutton item on a toolbar/navigation bar.
  */
-+ (UIButton *)bmButtonForBarButtonItemWithTarget:(id)target action:(SEL)action;
++ (UIButton *)bmButtonForBarButtonItemWithTarget:(nullable id)target action:(nullable SEL)action;
 
 @end
+
+NS_ASSUME_NONNULL_END

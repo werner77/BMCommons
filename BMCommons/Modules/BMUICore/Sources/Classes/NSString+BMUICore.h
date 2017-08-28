@@ -5,6 +5,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSString (BMUICore)
 
 /**
@@ -16,30 +18,32 @@
 
 - (CGSize)bmSizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
 
-- (CGSize)bmSizeWithAttributes:(NSDictionary *)attributes constrainedToSize:(CGSize)size;
+- (CGSize)bmSizeWithAttributes:(nullable NSDictionary *)attributes constrainedToSize:(CGSize)size;
 
 - (void)bmDrawInRect:(CGRect)rect
             withFont:(UIFont *)font
        lineBreakMode:(NSLineBreakMode)lineBreakMode
-           textColor:(UIColor *)textColor
-              shadow:(NSShadow *)shadow
-          actualSize:(CGSize *)actualSize;
-
-- (void)bmDrawInRect:(CGRect)rect
-            withFont:(UIFont *)font
-       lineBreakMode:(NSLineBreakMode)lineBreakMode
-           alignment:(NSTextAlignment)textAlignment
-          actualSize:(CGSize *)actualSize;
+           textColor:(nullable UIColor *)textColor
+              shadow:(nullable NSShadow *)shadow
+          actualSize:(CGSize * _Nullable)actualSize;
 
 - (void)bmDrawInRect:(CGRect)rect
             withFont:(UIFont *)font
        lineBreakMode:(NSLineBreakMode)lineBreakMode
            alignment:(NSTextAlignment)textAlignment
-           textColor:(UIColor *)textColor
-              shadow:(NSShadow *)shadow
-          actualSize:(CGSize *)actualSize;
+          actualSize:(CGSize *_Nullable)actualSize;
 
-- (void)bmDrawAtPoint:(CGPoint)point withFont:(UIFont *)font textColor:(UIColor *)textColor shadow:(NSShadow *)shadow actualSize:(CGSize *)actualSize;
-- (void)bmDrawAtPoint:(CGPoint)point forWidth:(CGFloat)width withFont:(UIFont *)font lineBreakMode:(NSLineBreakMode)lineBreakMode actualSize:(CGSize *)actualSize;
+- (void)bmDrawInRect:(CGRect)rect
+            withFont:(UIFont *)font
+       lineBreakMode:(NSLineBreakMode)lineBreakMode
+           alignment:(NSTextAlignment)textAlignment
+           textColor:(nullable UIColor *)textColor
+              shadow:(nullable NSShadow *)shadow
+          actualSize:(CGSize *_Nullable)actualSize;
+
+- (void)bmDrawAtPoint:(CGPoint)point withFont:(UIFont *)font textColor:(nullable UIColor *)textColor shadow:(nullable NSShadow *)shadow actualSize:(CGSize *_Nullable)actualSize;
+- (void)bmDrawAtPoint:(CGPoint)point forWidth:(CGFloat)width withFont:(UIFont *)font lineBreakMode:(NSLineBreakMode)lineBreakMode actualSize:(CGSize *_Nullable)actualSize;
 
 @end
+
+NS_ASSUME_NONNULL_END

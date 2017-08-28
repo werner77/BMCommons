@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  UIToolbar with adjustable height.
  */
@@ -16,3 +18,5 @@
 @property (nonatomic, assign) CGFloat height;
 
 @end
+
+NS_ASSUME_NONNULL_END

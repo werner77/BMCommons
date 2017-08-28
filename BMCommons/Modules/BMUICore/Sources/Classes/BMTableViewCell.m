@@ -11,7 +11,6 @@
 
 @implementation BMTableViewCell {
 	BOOL clickEnabled;
-	NSObject *__weak target;
 	SEL selector;
 	UITableViewCellSelectionStyle enabledSelectionStyle;
 	UITableViewCellSelectionStyle disabledSelectionStyle;

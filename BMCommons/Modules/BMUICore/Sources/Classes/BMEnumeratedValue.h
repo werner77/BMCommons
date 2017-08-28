@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMUICoreObject.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class BMInputValueType;
 
 /**
@@ -21,38 +23,38 @@
  
  Uses the [BMValueType valueTransformer] of the valueType set to convert from and to value.
  */
-@property (nonatomic, strong) NSString *valueString;
+@property (nullable, nonatomic, strong) NSString *valueString;
 
 /**
  The display label for this value.
  */
-@property (nonatomic, strong) NSString *label;
+@property (nullable, nonatomic, strong) NSString *label;
 
 /**
  The corresponding value type.
  */
-@property (nonatomic, strong) BMInputValueType *valueType;
+@property (nullable, nonatomic, strong) BMInputValueType *valueType;
 
 /**
  The underlying value.
  */
-@property (nonatomic, strong) id value;
+@property (nullable, nonatomic, strong) id value;
 
 /**
  Sets sub values for multi level navigation. The sub values should be instances of BMEnumeratedValue.
  
  This instance then represents a group of sub values or labelled category.
  */
-@property (nonatomic, copy) NSArray *subValues;
+@property (nullable, nonatomic, copy) NSArray *subValues;
 
-+ (BMEnumeratedValue *)enumeratedValueWithValue:(id)theValue;
-+ (BMEnumeratedValue *)enumeratedValueWithValue:(id)theValue label:(NSString *)theLabel;
++ (BMEnumeratedValue *)enumeratedValueWithValue:(nullable id)theValue;
++ (BMEnumeratedValue *)enumeratedValueWithValue:(nullable id)theValue label:(nullable NSString *)theLabel;
 
 /**
  sets the value type from one of the strings: "bool", "int", "float" or "string" (default if none matched)
  */
-- (void)setValueTypeString:(NSString *)typeString;
-- (NSString *)valueTypeString;
+- (void)setValueTypeString:(nullable NSString *)typeString;
+- (nullable NSString *)valueTypeString;
 
 /**
  Adds a sub value.
@@ -62,3 +64,5 @@
 - (void)addSubValue:(BMEnumeratedValue *)subValue;
 
 @end
+
+NS_ASSUME_NONNULL_END

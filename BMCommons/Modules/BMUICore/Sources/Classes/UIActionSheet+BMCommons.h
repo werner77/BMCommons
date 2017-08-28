@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Adds a context to an actionsheet.
  */
@@ -18,6 +20,8 @@
  
  Set it to nil when done with the actionsheet to avoid a memory leak.
  */
-@property (nonatomic, strong) id bmContext;
+@property (nullable, nonatomic, strong) id bmContext;
 
 @end
+
+NS_ASSUME_NONNULL_END

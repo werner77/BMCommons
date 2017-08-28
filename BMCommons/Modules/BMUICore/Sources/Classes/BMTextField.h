@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSUInteger, BMTextFieldKind) {
 	BMTextFieldKindDefault,
 	BMTextFieldKindLitteral,	
@@ -30,3 +32,5 @@ Default text field kinds that set parameters to support common input functionali
 - (void)setKind:(BMTextFieldKind)kind;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -11,6 +11,8 @@
 #import <BMCommons/BMStyleSheet.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Localizable navigation controller
  */
@@ -25,7 +27,7 @@
 /**
  * Pops a view controller with a transition other than the standard sliding animation.
  */
-- (UIViewController*)popViewControllerAnimatedWithTransition:(UIViewAnimationTransition)transition;
+- (nullable UIViewController*)popViewControllerAnimatedWithTransition:(UIViewAnimationTransition)transition;
 
 /**
  Stylesheet to attach to the view controller.
@@ -49,3 +51,5 @@
 - (void)viewDidUnload;
 
 @end
+
+NS_ASSUME_NONNULL_END

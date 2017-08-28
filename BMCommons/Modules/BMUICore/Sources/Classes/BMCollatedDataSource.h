@@ -5,6 +5,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Datasource for use with an index.
  *
@@ -20,17 +22,17 @@
  *
  * @see UILocalizedIndexedCollation
  */
-- (instancetype)initWithCollation:(UILocalizedIndexedCollation *)collation stringSelector:(SEL)stringSelector;
+- (instancetype)initWithCollation:(UILocalizedIndexedCollation *)collation stringSelector:(SEL)stringSelector NS_DESIGNATED_INITIALIZER;
 
 /**
  * Sets data which will be sorted and ordered into sections using the set collation and stringSelector which will be called on every object.
  */
-- (void)setData:(NSArray *)data;
+- (void)setData:(nullable NSArray *)data;
 
 /**
  * Returns the sorted data for the supplied section.
  */
-- (NSArray *)sortedDataForSection:(NSInteger)section;
+- (nullable NSArray *)sortedDataForSection:(NSInteger)section;
 
 /**
  * Returns the number of sections.
@@ -50,6 +52,8 @@
 /**
  * Returns the data corresponding to the specified indices.
  */
-- (id)objectForItem:(NSInteger)item inSection:(NSInteger)section;
+- (nullable id)objectForItem:(NSInteger)item inSection:(NSInteger)section;
 
 @end
+
+NS_ASSUME_NONNULL_END

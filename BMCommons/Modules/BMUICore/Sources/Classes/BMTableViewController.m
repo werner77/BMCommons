@@ -149,19 +149,15 @@ static const float kAnimationDuration = 0.3f;
 - (void)setTableView:(UITableView *)tableView {
     if (tableView != _tableView) {
         [_tableView removeFromSuperview];
-        BM_RELEASE_SAFELY(_tableView);
-        if (tableView != nil) {
-            _tableView = tableView;
-            if ([self isViewLoaded]) {
-                if (_tableView != self.view) {
-                    if (_tableView.superview != self.view) {
-                        if (_tableView.superview != nil) {
-                            [_tableView removeFromSuperview];
-                        }
-                        [self.view addSubview:_tableView];
-                    }
-                }
-            }
+        _tableView = tableView;
+        [self addTableViewAsSubviewIfNeeded];
+    }
+}
+
+- (void)addTableViewAsSubviewIfNeeded {
+    if ([self isViewLoaded]) {
+        if (_tableView != nil && _tableView != self.view && _tableView.superview == nil) {
+            [self.view addSubview:_tableView];
         }
     }
 }
@@ -176,10 +172,7 @@ static const float kAnimationDuration = 0.3f;
     
     _cellCache = [BMCache new];
     
-    if (!self.view) {
-        //Create a table view and set it as the view
-        self.view = [[BMTableView alloc] initWithFrame:[[UIScreen mainScreen] bmPortraitApplicationFrame] style:_tableViewStyle];
-    } else if (!self.tableView) {
+    if (!self.tableView) {
         self.tableView = [[BMTableView alloc] initWithFrame:self.view.bounds style:_tableViewStyle];
         self.tableView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
         
@@ -200,6 +193,8 @@ static const float kAnimationDuration = 0.3f;
         
         self.tableView.separatorStyle = BMSTYLEVAR(tableViewSeparatorStyle);
         self.tableView.rowHeight = BMSTYLEVAR(tableViewRowHeight);
+    } else {
+        [self addTableViewAsSubviewIfNeeded];
     }
     
     if (!self.backgroundImageView) {
@@ -229,10 +224,7 @@ static const float kAnimationDuration = 0.3f;
         self.tableView.dataSource = self;
     }
     
-    if (self.tableView) {
-        _tableViewStyle = self.tableView.style;
-    }
-    
+    _tableViewStyle = self.tableView.style;
     if (self.isDragToRefreshEnabled) {
         _dragRefreshView = [[BMTableHeaderDragRefreshView alloc]
                             initWithFrame:CGRectMake(0,
