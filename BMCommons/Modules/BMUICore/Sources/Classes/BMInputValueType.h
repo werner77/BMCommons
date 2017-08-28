@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface BMInputValueType : BMUICoreObject
 
-@property (nonatomic, readonly) NSString *typeKey;
+@property (nullable, nonatomic, readonly) NSString *typeKey;
 
 /**
  Value transformer that converts a string to the value type (e.g. an NSDate, NSNumber, etc).
@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, readonly) UIKeyboardType keyboardType;
 
-- (id)initWithTypeKey:(NSString *)theTypeKey transformer:(nullable NSValueTransformer *)transformer
+- (id)initWithTypeKey:(nullable NSString *)theTypeKey transformer:(nullable NSValueTransformer *)transformer
 		 validPattern:(nullable NSString *)validPattern allowedCharacterSet:(nullable NSCharacterSet *)charSet
 		 keyboardType:(UIKeyboardType)type NS_DESIGNATED_INITIALIZER;
 
@@ -87,7 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Constructs a value type with only the keyboard type set.
  */
-+ (nullable BMInputValueType *)valueTypeWithKeyboardType:(UIKeyboardType)keyboardType;
++ (BMInputValueType *)valueTypeWithKeyboardType:(UIKeyboardType)keyboardType;
 
 @end
 

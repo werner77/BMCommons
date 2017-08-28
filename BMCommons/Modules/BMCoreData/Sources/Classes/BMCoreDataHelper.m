@@ -466,7 +466,9 @@ handledDestinationObjects:(NSMutableArray *)handledDestinationObjects;
 }
 
 + (void)saveContext:(NSManagedObjectContext *)context recursively:(BOOL)recursively completionContext:(NSManagedObjectContext *)completionContext completion:(BMCoreDataSaveCompletionBlock)completion {
-    [self performCoreDataBlock:nil onContext:context saveMode:(recursively ? BMCoreDataSaveModeRecursive : BMCoreDataSaveModeSingle) completionContext:completionContext completion:completion];
+    [self performCoreDataBlock:^id(NSManagedObjectContext *c) {
+        return nil;
+    } onContext:context saveMode:(recursively ? BMCoreDataSaveModeRecursive : BMCoreDataSaveModeSingle) completionContext:completionContext completion:completion];
 }
 
 + (BOOL)saveObject:(NSManagedObject *)object {

@@ -106,13 +106,6 @@ typedef void (^BMBusyViewInitBlock)(BMBusyView *);
 @property(nonatomic, assign) NSTimeInterval fadeDuration;
 
 /**
- Initializer with the specified super view.
- 
- This is the designated initializer. init calls this method with as argument a new modal window with windowLevel of UIWindowLevelStatusBar.
- */
-- (id)initWithSuperView:(UIView *)view NS_DESIGNATED_INITIALIZER;
-
-/**
  Sets the progress with a value between 0.0 and 1.0.
  
  If not shown, calling this method will show the progress indicator.
@@ -136,7 +129,7 @@ typedef void (^BMBusyViewInitBlock)(BMBusyView *);
 /**
  Shows the busy view with optional fade in animation.
  */
-- (void)showAnimated:(BOOL)animated;
+- (void)showAnimated:(BOOL)animated inView:(UIView *)superView;
 
 /**
  Hides the busy view with optional fade out animation.
@@ -147,7 +140,6 @@ typedef void (^BMBusyViewInitBlock)(BMBusyView *);
  Whether the busy view is currently shown or not.
  */
 - (BOOL)isShown;
-
 
 /**
  @name Static utility methods for a shared busy view.
@@ -178,6 +170,11 @@ typedef void (^BMBusyViewInitBlock)(BMBusyView *);
  */
 + (void)hideBusyView;
 + (void)hideBusyViewAnimated:(BOOL)animated;
+
+/**
+ * If set to nil, defaults to UIApplication.sharedApplication.keyWindow
+ */
+@property (class, weak, nonatomic, null_resettable) UIView *defaultSuperview;
 
 @end
 

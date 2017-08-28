@@ -97,7 +97,7 @@ static NSDictionary *registeredTypes = nil;
 }
 
 - (id)init {
-	return [self initWithTypeKey:VALUE_TYPE_DEFAULT transformer:nil validPattern:nil allowedCharacterSet:nil keyboardType:UIKeyboardTypeDefault];
+	return [self initWithTypeKey:nil transformer:nil validPattern:nil allowedCharacterSet:nil keyboardType:UIKeyboardTypeDefault];
 }
 
 - (id)initWithTypeKey:(NSString *)theTypeString 

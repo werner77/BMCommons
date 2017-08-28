@@ -11,8 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^BMCoreDataSaveCompletionBlock)(id result, NSError *error);
-typedef id(^BMCoreDataBlock)(NSManagedObjectContext *context);
+typedef void(^BMCoreDataSaveCompletionBlock)(id _Nullable result, NSError * _Nullable error);
+typedef id _Nullable (^BMCoreDataBlock)(NSManagedObjectContext * _Nonnull context);
 
 typedef NS_ENUM(NSUInteger, BMCoreDataSaveMode) {
     BMCoreDataSaveModeNone = 0,

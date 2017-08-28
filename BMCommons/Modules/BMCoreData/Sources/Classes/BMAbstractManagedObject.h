@@ -66,8 +66,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSArray *)relationshipsToMerge;
 - (nullable NSArray *)attributesToMerge;
 
-- (BOOL)shouldMergeAttribute:(NSString *)attributeName fromObject:(BMAbstractManagedObject *)other;
-- (BOOL)shouldMergeRelationship:(NSString *)relationshipName fromObject:(BMAbstractManagedObject *)other;
+- (BOOL)shouldMergeAttribute:(NSString *)attributeName fromObject:(nullable BMAbstractManagedObject *)other;
+- (BOOL)shouldMergeRelationship:(NSString *)relationshipName fromObject:(nullable BMAbstractManagedObject *)other;
 
 /**
  Merges the specified relationship. Calls 

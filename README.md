@@ -6,10 +6,11 @@
 [![Platform](https://img.shields.io/cocoapods/p/BMCommons.svg?style=flat)](http://cocoapods.org/pods/BMCommons)
 
 The BMCommons framework is a framework for developing iOS applications as developed by Werner Altewischer for Behind Media.
-It is a general purpose framework consisting of multiple sub modules:
+It is a general purpose framework consisting of multiple sub modules.
 
-BMCore
-----------
+## Modules
+
+### BMCore
 
 A module with core functionality that can be used for both MacOSX and iOS applications. It contains:
 
@@ -26,8 +27,7 @@ A module with core functionality that can be used for both MacOSX and iOS applic
 - BMApplicationContext class acting as a registry for singleton objects and initialization point for the application.
 - BMSettingsRegistry, BMSettingsObject and BMAbstractSettingsObject for managing application settings.
 
-BMUICore
-----------
+### BMUICore
 
 A module with core functionality for iOS applications, dependent on BMCore. It contains:
 
@@ -42,8 +42,7 @@ A module with core functionality for iOS applications, dependent on BMCore. It c
 - Categories on commons classes such as UIWebView(BMCommons)), UIView(BMCommons)), UINavigationBar(BMCommons)) and more;
 - BMAppDelegate base class which implements common application delegate methods and add supports for a loading indicator bound to BMService invocations through BMServiceManager
 
-BMUIExtensions
-----------
+### BMUIExtensions
 
 Module with custom UIViews, UIViewControllers and related classes:
 
@@ -61,13 +60,11 @@ Here is a full list of all classes with a short description of their purpose.
 
 This module depends on BMUICore.
 
-BMXML
-----------
+### BMXML
 
 Module with classes for interacting with XML Documents like: BMXMLDocument, BMXMLElement, BMXMLNode, BMXMLReader, BMXMLReaderSAX and BMXPathQuery.
 
-BMRestKit
-----------
+### BMRestKit
 
 Module with a full fledged framework for parsing either XML or JSON data in a streaming fashion and a framework for mapping this data to objects.
 It also features automatic generation of client-side classes for REST/SOAP web service using a XSD or WSDL as source and is transparent to the transport used (either XML or JSON).
@@ -86,8 +83,7 @@ This module depends on BMCore and BMXML. Additionally it has dependencies on:
 
 - YAJL
 
-BMCoreData
-----------
+### BMCoreData
 
 Module with helper classes for use of CoreData as persistent storage:
 
@@ -103,7 +99,11 @@ This module depends on BMCore and BMUICore.
 
 ## API version
 
-Be advised that not all APIs can be considered final and may be subject to change. That's why the frameworks is still in the 0.x version territory.
+Be advised that not all APIs can be considered final and may be subject to change.
+That's why the BMCommons framework is still in the 0.x version territory. 
+This is not to say that the software is instable as it is and has been used by many production apps in the app store by the author.
+ 
+The most mature sub modules in terms of API and documentation are BMCore, BMXML and BMRestKit. 
 
 ## Example
 

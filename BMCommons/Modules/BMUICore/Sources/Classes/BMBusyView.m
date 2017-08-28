@@ -28,10 +28,8 @@
 
 @implementation BMBusyView {
 	UIActivityIndicatorView *activityIndicator;
-	UIView *superView;
-    UILabel *cancelLabel;
+	UILabel *cancelLabel;
 	UILabel *label;
-	BOOL observeDeviceOrientation;
 	UIProgressView *progressView;
 	BOOL cancelEnabled;
     BOOL animateProgressBar;
@@ -44,52 +42,26 @@
 
 static BMBusyView *sharedBusyView = nil;
 static BMBusyViewInitBlock defaultInitBlock = nil;
+static __weak UIView *defaultSuperview;
 
-- (void)updateLayoutForOrientation {
-    CGFloat angle = 0.0;
-    
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    
-    if (orientation == UIInterfaceOrientationPortrait) {
-        self.bounds = self.superview.bounds;
-    } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
-        angle = M_PI;
-        self.bounds = self.superview.bounds;
-    } else if (orientation == UIInterfaceOrientationLandscapeLeft) {
-        angle = 3.0 * M_PI/2.0;
-        self.bounds = CGRectMake(0, 0, self.superview.bounds.size.height, self.superview.bounds.size.width);
-    } else if (orientation == UIInterfaceOrientationLandscapeRight) {
-        angle = M_PI/2.0;
-        self.bounds = CGRectMake(0, 0, self.superview.bounds.size.height, self.superview.bounds.size.width);
-    }
-    
-    self.transform = CGAffineTransformMakeRotation(angle);    
-    self.center = CGPointMake(self.superview.bounds.size.width/2, self.superview.bounds.size.height/2);
++ (UIView *)defaultSuperview {
+    return defaultSuperview ?: [UIApplication sharedApplication].keyWindow;
+}
+
++ (void)setDefaultSuperview:(UIView *)view {
+    defaultSuperview = view;
 }
 
 - (void)dealloc {
-    if (observeDeviceOrientation) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification 
-													   object:nil];
-    }
     BM_RELEASE_SAFELY(activityIndicator);
     BM_RELEASE_SAFELY(label);
     BM_RELEASE_SAFELY(cancelLabel);
     BM_RELEASE_SAFELY(progressView);
     BM_RELEASE_SAFELY(sendToBackgroundButton);
-    BM_RELEASE_SAFELY(superView);
 }
 
-- (id)init {
-    UIWindow *modalWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bmPortraitBounds];
-	modalWindow.windowLevel = UIWindowLevelStatusBar;
-    modalWindow.rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-	return [self initWithSuperView:modalWindow];
-}
-
-- (id)initWithSuperView:(UIView *)view {
-	if ((self = [super initWithFrame:view.bounds])) {
-        superView = view;
+- (id)initWithFrame:(CGRect)frame {
+    if ((self = [super initWithFrame:frame])) {
 		self.alpha = 0.0;
         self.fadeDuration = FADE_DURATION;
 		self.contentMode = UIViewContentModeScaleToFill;
@@ -165,13 +137,6 @@ static BMBusyViewInitBlock defaultInitBlock = nil;
         self.sendToBackgroundEnabled = NO;
 		
 		[bgView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewWasTapped:)]];
-		
-		observeDeviceOrientation = [superView isKindOfClass:[UIWindow class]];
-		if (observeDeviceOrientation) {
-		    [[NSNotificationCenter defaultCenter] addObserver:self
-		                                             selector:@selector(didRotate:)
-		                                                 name:UIDeviceOrientationDidChangeNotification object:nil];
-		}
 	}
 	return self;
 }
@@ -194,7 +159,7 @@ static BMBusyViewInitBlock defaultInitBlock = nil;
     }
 }
 
-- (void)showAnimated:(BOOL)animated {
+- (void)showAnimated:(BOOL)animated inView:(UIView *)superView {
     if (![self isShown]) {
         BM_RELEASE_SAFELY(oldKeyWindow);
         if ([superView isKindOfClass:[UIWindow class]]) {
@@ -207,11 +172,6 @@ static BMBusyViewInitBlock defaultInitBlock = nil;
         }
         
         [superView addSubview:self];
-        
-        if (observeDeviceOrientation) {
-            [self updateLayoutForOrientation];
-        }
-        
         [activityIndicator startAnimating];
         if (animated) {
             self.alpha = 0.0f;
@@ -273,16 +233,6 @@ static BMBusyViewInitBlock defaultInitBlock = nil;
     }
 }
 
-- (void)didRotate:(NSNotification *)notification {
-    
-    [UIView beginAnimations:@"Rotate" context:nil];
-    [UIView setAnimationDuration:0.4];
-    
-    [self updateLayoutForOrientation];
-    
-    [UIView commitAnimations];
-}
-
 - (void)setCancelEnabled:(BOOL)enabled {
     self.cancelLabel.hidden = !enabled;
     cancelEnabled = enabled;
@@ -335,7 +285,7 @@ static BMBusyViewInitBlock defaultInitBlock = nil;
         if (initBlock) {
             initBlock(sharedBusyView);
         }
-		[sharedBusyView showAnimated:animated];
+		[sharedBusyView showAnimated:animated inView:[self defaultSuperview]];
 	}
     [sharedBusyView setMessage:message];
     [sharedBusyView setProgress:progress];

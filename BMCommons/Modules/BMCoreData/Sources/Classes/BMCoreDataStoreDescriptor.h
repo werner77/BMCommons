@@ -18,12 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, strong, nonatomic, readonly) NSURL *storeURL;
 @property (nullable, nonatomic, strong) NSArray *modelDescriptors;
 
-+ (BMCoreDataStoreDescriptor *)storeDescriptorWithName:(NSString *)storeName configuration:(NSString *)theModelConfiguration modelDescriptors:(NSArray *)modelDescriptors;
++ (BMCoreDataStoreDescriptor *)storeDescriptorWithName:(NSString *)storeName configuration:(nullable NSString *)theModelConfiguration modelDescriptors:(NSArray *)modelDescriptors;
 
 /** 
  Convenience method to return a descriptor for the default case in which there is one model within a store.
  */
-+ (BMCoreDataStoreDescriptor *)storeDescriptorWithModelName:(NSString *)modelName version:(NSInteger)version configuration:(NSString *)configuration;
++ (BMCoreDataStoreDescriptor *)storeDescriptorWithModelName:(NSString *)modelName version:(NSInteger)version configuration:(nullable NSString *)configuration;
 
 + (NSInteger)existingVersionForModelName:(NSString *)modelName configuration:(nullable NSString *)configuration;
 
