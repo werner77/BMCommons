@@ -36,9 +36,6 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-
-//!!!THIS FILE IS NON-ARC!!!!
-
 #import <CoreFoundation/CFBase.h>
 #import <CoreFoundation/CFString.h>
 #import <Foundation/NSDictionary.h>
@@ -76,15 +73,15 @@
 #define RKLInternalException [NSException exceptionWithName:NSInternalInconsistencyException reason:[NSString stringWithFormat:@"An internal error occured at %@:%d", [NSString stringWithUTF8String:__FILE__], __LINE__] userInfo:NULL]
 
 // Exported symbols.  Error domains, keys, etc.
-NSString * const RKLICURegexErrorDomain          = @"RKLICURegexErrorDomain";
+NSString * const BMRegexErrorDomain          = @"BMRegexErrorDomain";
 
-NSString * const RKLICURegexErrorNameErrorKey    = @"RKLICURegexErrorName";
-NSString * const RKLICURegexLineErrorKey         = @"RKLICURegexLine";
-NSString * const RKLICURegexOffsetErrorKey       = @"RKLICURegexOffset";
-NSString * const RKLICURegexPreContextErrorKey   = @"RKLICURegexPreContext";
-NSString * const RKLICURegexPostContextErrorKey  = @"RKLICURegexPostContext";
-NSString * const RKLICURegexRegexErrorKey        = @"RKLICURegexRegex";
-NSString * const RKLICURegexRegexOptionsErrorKey = @"RKLICURegexRegexOptions";
+NSString * const BMRegexErrorNameErrorKey    = @"BMRegexErrorName";
+NSString * const BMRegexLineErrorKey         = @"BMRegexLine";
+NSString * const BMRegexOffsetErrorKey       = @"BMRegexOffset";
+NSString * const BMRegexPreContextErrorKey   = @"BMRegexPreContext";
+NSString * const BMRegexPostContextErrorKey  = @"BMRegexPostContext";
+NSString * const BMRegexRegexErrorKey        = @"BMRegexError";
+NSString * const BMRegexOptionsErrorKey      = @"BMRegexOptions";
 
 // Type / struct definitions
 
@@ -108,7 +105,7 @@ typedef struct {
 
 typedef struct {
   CFTypeRef        regexString;
-  RKLRegexOptions  regexOptions;
+  BMRegexOptions  regexOptions;
   uregex          *icu_regex;
   NSInteger        captureCount;
 
@@ -125,12 +122,12 @@ int32_t      uregex_end        (uregex *regexp, int32_t groupNum, int32_t *statu
 BOOL         uregex_find       (uregex *regexp, int32_t location, int32_t *status);
 BOOL         uregex_findNext   (uregex *regexp, int32_t *status);
 int32_t      uregex_groupCount (uregex *regexp, int32_t *status);
-uregex     * uregex_open       (const UniChar *pattern, int32_t patternLength, RKLRegexOptions flags, UParseError *parseError, int32_t *status);
+uregex     * uregex_open       (const UniChar *pattern, int32_t patternLength, BMRegexOptions flags, UParseError *parseError, int32_t *status);
 void         uregex_setText    (uregex *regexp, const UniChar *text, int32_t textLength, int32_t *status);
 int32_t      uregex_start      (uregex *regexp, int32_t groupNum, int32_t *status);
 
-static RKLCacheSlot *getCachedRegex     (NSString *regexString, RKLRegexOptions regexOptions, NSError **error);
-static NSError      *RKLNSErrorForRegex (NSString *regexString, RKLRegexOptions regexOptions, UParseError *parseError, int status);
+static RKLCacheSlot *getCachedRegex     (NSString *regexString, BMRegexOptions regexOptions, NSError **error);
+static NSError      *RKLNSErrorForRegex (NSString *regexString, BMRegexOptions regexOptions, UParseError *parseError, int status);
 
 // Compile unit local global variables
 static OSSpinLock    cacheSpinLock = OS_SPINLOCK_INIT;
@@ -145,7 +142,7 @@ static RKLString     dynamicString;
 //  IMPORTANT!   Should only be called with cacheSpinLock already locked!
 //  ----------
 
-static RKLCacheSlot *getCachedRegex(NSString *regexString, RKLRegexOptions regexOptions, NSError **error) {
+static RKLCacheSlot *getCachedRegex(NSString *regexString, BMRegexOptions regexOptions, NSError **error) {
   CFHashCode    regexHash    = CFHash((__bridge CFTypeRef)regexString);
   RKLCacheSlot *cacheSlot    = &RKLCache[regexHash % RKL_CACHE_SIZE]; // Retrieve the cache slot for this regex.
   UParseError   parseError   = (UParseError){-1, -1, {0}, {0}};
@@ -160,14 +157,14 @@ static RKLCacheSlot *getCachedRegex(NSString *regexString, RKLRegexOptions regex
   if(cacheSlot->regexString != NULL) { CFRelease(cacheSlot->regexString);  cacheSlot->regexString = NULL; cacheSlot->regexOptions =  0; }
   if(cacheSlot->icu_regex   != NULL) { uregex_close(cacheSlot->icu_regex); cacheSlot->icu_regex   = NULL; cacheSlot->captureCount = -1; }
 
-  cacheSlot->regexString  = CFStringCreateCopy(NULL, (CFStringRef)regexString); // Get a cheap immutable copy.
+  cacheSlot->regexString  = CFStringCreateCopy(NULL, (__bridge CFStringRef)regexString); // Get a cheap immutable copy.
   cacheSlot->regexOptions = regexOptions;
-  regexLength             = CFStringGetLength((CFStringRef)regexString); // In UTF16 code pairs.
+  regexLength             = CFStringGetLength((__bridge CFStringRef)regexString); // In UTF16 code pairs.
 
   // Try to quickly obtain the regex string in UTF16 format. Otherwise allocate enough space on the stack and convert to UTF16 using the stack buffer.
-  if((regexUniChar = (UniChar *)CFStringGetCharactersPtr((CFStringRef)regexString)) == NULL) {
+  if((regexUniChar = (UniChar *)CFStringGetCharactersPtr((__bridge CFStringRef)regexString)) == NULL) {
     if((regexUniChar = alloca(regexLength * sizeof(UniChar))) == NULL) { return(NULL); }
-    CFStringGetCharacters((CFStringRef)regexString, CFRangeMake(0, regexLength), regexUniChar);
+    CFStringGetCharacters((__bridge CFStringRef)regexString, CFRangeMake(0, regexLength), regexUniChar);
   }
 
   // Create the ICU regex. If there is a problem, create a NSError if requested.
@@ -183,7 +180,7 @@ static RKLCacheSlot *getCachedRegex(NSString *regexString, RKLRegexOptions regex
   return(cacheSlot);
 }
 
-static NSError *RKLNSErrorForRegex(NSString *regexString, RKLRegexOptions regexOptions, UParseError *parseError, int status) {
+static NSError *RKLNSErrorForRegex(NSString *regexString, BMRegexOptions regexOptions, UParseError *parseError, int status) {
   NSNumber *regexOptionsNumber = [NSNumber numberWithInt:regexOptions];
   NSNumber *lineNumber         = [NSNumber numberWithInt:parseError->line];
   NSNumber *offsetNumber       = [NSNumber numberWithInt:parseError->offset];
@@ -196,10 +193,10 @@ static NSError *RKLNSErrorForRegex(NSString *regexString, RKLRegexOptions regexO
   // which will stop adding objects to the dictionary at that point, ignoring everything after.
   if(parseError->line == -1) { reasonString = [NSString stringWithFormat:@"The error %@ occured.", errorNameString]; lineNumber = NULL; }
 
-  return([NSError errorWithDomain:RKLICURegexErrorDomain code:(NSInteger)status userInfo:[NSDictionary dictionaryWithObjectsAndKeys: @"There was an error compiling the regular expression.", @"NSLocalizedDescription", reasonString, @"NSLocalizedFailureReason", regexString, RKLICURegexRegexErrorKey, regexOptionsNumber, RKLICURegexRegexOptionsErrorKey, lineNumber, RKLICURegexLineErrorKey, offsetNumber, RKLICURegexOffsetErrorKey, preContextString, RKLICURegexPreContextErrorKey, postContextString, RKLICURegexPostContextErrorKey, errorNameString, RKLICURegexErrorNameErrorKey, NULL]]);
+  return([NSError errorWithDomain:BMRegexErrorDomain code:(NSInteger)status userInfo:[NSDictionary dictionaryWithObjectsAndKeys: @"There was an error compiling the regular expression.", @"NSLocalizedDescription", reasonString, @"NSLocalizedFailureReason", regexString, BMRegexRegexErrorKey, regexOptionsNumber, BMRegexOptionsErrorKey, lineNumber, BMRegexLineErrorKey, offsetNumber, BMRegexOffsetErrorKey, preContextString, BMRegexPreContextErrorKey, postContextString, BMRegexPostContextErrorKey, errorNameString, BMRegexErrorNameErrorKey, NULL]]);
 }
 
-@implementation NSString (RegexKitLiteAdditions)
+@implementation NSString (BMRegex)
 
 + (void)clearStringCache
 {
@@ -213,10 +210,10 @@ static NSError *RKLNSErrorForRegex(NSString *regexString, RKLRegexOptions regexO
 
 + (NSInteger)captureCountForRegex:(NSString *)regexString
 {
-  return([self captureCountForRegex:regexString options:RKLNoOptions error:NULL]);
+  return([self captureCountForRegex:regexString options:BMRegexNoOptions error:NULL]);
 }
 
-+ (NSInteger)captureCountForRegex:(NSString *)regexString options:(RKLRegexOptions)options error:(NSError **)error
++ (NSInteger)captureCountForRegex:(NSString *)regexString options:(BMRegexOptions)options error:(NSError **)error
 {
   if(error       != NULL) { *error = NULL; }
   if(regexString == NULL) { [NSException raise:NSInvalidArgumentException format:@"The regular expression argument is NULL."]; }
@@ -233,61 +230,61 @@ static NSError *RKLNSErrorForRegex(NSString *regexString, RKLRegexOptions regexO
 
 - (BOOL)isMatchedByRegex:(NSString *)regexString
 {
-  return([self isMatchedByRegex:regexString options:RKLNoOptions inRange:NSMaxiumRange error:NULL]);
+  return([self isMatchedByRegex:regexString options:BMRegexNoOptions inRange:NSMaxiumRange error:NULL]);
 }
 
-- (BOOL)isMatchedByRegex:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range error:(NSError **)error
+- (BOOL)isMatchedByRegex:(NSString *)regexString options:(BMRegexOptions)options inRange:(NSRange)range error:(NSError **)error
 {
   return(([self rangeOfRegex:regexString options:options inRange:range capture:0 error:error].location == NSNotFound) ? NO : YES);
 }
 
 - (NSString *)stringByMatching:(NSString *)regexString
 {
-  return([self stringByMatching:regexString options:RKLNoOptions inRange:NSMaxiumRange capture:0 error:NULL]);
+  return([self stringByMatching:regexString options:BMRegexNoOptions inRange:NSMaxiumRange capture:0 error:NULL]);
 }
 
 - (NSString *)stringByMatching:(NSString *)regexString capture:(NSInteger)capture
 {
-  return([self stringByMatching:regexString options:RKLNoOptions inRange:NSMaxiumRange capture:capture error:NULL]);
+  return([self stringByMatching:regexString options:BMRegexNoOptions inRange:NSMaxiumRange capture:capture error:NULL]);
 }
 
 - (NSString *)stringByMatching:(NSString *)regexString inRange:(NSRange)range
 {
-  return([self stringByMatching:regexString options:RKLNoOptions inRange:range capture:0 error:NULL]);
+  return([self stringByMatching:regexString options:BMRegexNoOptions inRange:range capture:0 error:NULL]);
 }
 
-- (NSString *)stringByMatching:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError **)error
+- (NSString *)stringByMatching:(NSString *)regexString options:(BMRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError **)error
 {
   NSRange matchedRange = [self rangeOfRegex:regexString options:options inRange:range capture:capture error:error];
-  return((matchedRange.location == NSNotFound) ? NULL : CFAutorelease(CFStringCreateWithSubstring(NULL, (CFStringRef)self, CFMakeRange(matchedRange.location, matchedRange.length))));
+  return((matchedRange.location == NSNotFound) ? NULL : CFAutorelease(CFStringCreateWithSubstring(NULL, (__bridge CFStringRef)self, CFMakeRange(matchedRange.location, matchedRange.length))));
 }
 
 - (NSRange)rangeOfRegex:(NSString *)regexString
 {
-  return([self rangeOfRegex:regexString options:RKLNoOptions inRange:NSMaxiumRange capture:0 error:NULL]);
+  return([self rangeOfRegex:regexString options:BMRegexNoOptions inRange:NSMaxiumRange capture:0 error:NULL]);
 }
 
 - (NSRange)rangeOfRegex:(NSString *)regexString capture:(NSInteger)capture
 {
-  return([self rangeOfRegex:regexString options:RKLNoOptions inRange:NSMaxiumRange capture:capture error:NULL]);
+  return([self rangeOfRegex:regexString options:BMRegexNoOptions inRange:NSMaxiumRange capture:capture error:NULL]);
 }
 
 - (NSRange)rangeOfRegex:(NSString *)regexString inRange:(NSRange)range
 {
-  return([self rangeOfRegex:regexString options:RKLNoOptions inRange:range capture:0 error:NULL]);
+  return([self rangeOfRegex:regexString options:BMRegexNoOptions inRange:range capture:0 error:NULL]);
 }
 
 
 //  IMPORTANT!   This code is critical path code.  Because of this, it has been written for speed, not clarity.
 //  ----------
 
-- (NSRange)rangeOfRegex:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError **)error
+- (NSRange)rangeOfRegex:(NSString *)regexString options:(BMRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError **)error
 {
   if(error       != NULL) { *error = NULL; }
   if(regexString == NULL) { [NSException raise:NSInvalidArgumentException format:@"The regular expression argument is NULL."]; }
 
   NSRange       captureRange = NSNotFoundRange;
-  CFIndex       stringLength = CFStringGetLength((CFStringRef)self); // In UTF16 code pairs.
+  CFIndex       stringLength = CFStringGetLength((__bridge CFStringRef)self); // In UTF16 code pairs.
   RKLCacheSlot *cacheSlot    = NULL;
   NSException  *exception    = NULL;
   int32_t       status       = 0;
@@ -319,7 +316,7 @@ static NSError *RKLNSErrorForRegex(NSString *regexString, RKLRegexOptions regexO
     *string = RKLMakeString((__bridge void *)self, selfString.hash, selfString.length, string->uniChar);
     // If this is the dynamically sized buffer, resize the allocation to the correct size.
     if((stringLength >= RKL_FIXED_LENGTH) && ((string->uniChar = reallocf(string->uniChar, (selfString.length * sizeof(UniChar)))) == NULL)) { goto exitNow; }
-    CFStringGetCharacters((CFStringRef)self, CFRangeMake(0, string->length), string->uniChar); // Convert to a UTF16 string.
+    CFStringGetCharacters((__bridge CFStringRef)self, CFRangeMake(0, string->length), string->uniChar); // Convert to a UTF16 string.
   }
 
   RKLClearCacheSlotLastString(cacheSlot); // Clear the cached state for this regex.

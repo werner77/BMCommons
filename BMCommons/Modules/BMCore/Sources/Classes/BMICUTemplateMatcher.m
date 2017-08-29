@@ -63,7 +63,7 @@
 }
 
 - (NSDictionary *)firstMarkerWithinRange:(NSRange)range {
-    NSRange matchRange = [self.templateString rangeOfRegex:self.regex options:RKLNoOptions inRange:range capture:0 error:NULL];
+    NSRange matchRange = [self.templateString rangeOfRegex:self.regex options:BMRegexNoOptions inRange:range capture:0 error:NULL];
     NSMutableDictionary *markerInfo = nil;
     if (matchRange.length > 0) {
         markerInfo = [NSMutableDictionary dictionary];
@@ -76,7 +76,7 @@
 
         // Find type of match
         NSString *matchType = nil;
-        NSRange mrkrSubRange = [matchString rangeOfRegex:self.regex options:RKLNoOptions inRange:localRange capture:1 error:NULL];
+        NSRange mrkrSubRange = [matchString rangeOfRegex:self.regex options:BMRegexNoOptions inRange:localRange capture:1 error:NULL];
         BOOL isMarker = (mrkrSubRange.length > 0); // only matches if match has marker-delimiters
         int offset = 0;
         if (isMarker) {
@@ -88,7 +88,7 @@
         [markerInfo setObject:matchType forKey:MARKER_TYPE_KEY];
 
         // Split marker string into marker-name and arguments.
-        NSRange markerRange = [matchString rangeOfRegex:self.regex options:RKLNoOptions inRange:localRange capture:2 + offset error:NULL];
+        NSRange markerRange = [matchString rangeOfRegex:self.regex options:BMRegexNoOptions inRange:localRange capture:2 + offset error:NULL];
 
         if (markerRange.length > 0) {
             NSString *markerString = [matchString substringWithRange:markerRange];
@@ -103,7 +103,7 @@
             }
 
             // Check for filter.
-            NSRange filterRange = [matchString rangeOfRegex:self.regex options:RKLNoOptions inRange:localRange capture:3 + offset error:NULL];
+            NSRange filterRange = [matchString rangeOfRegex:self.regex options:BMRegexNoOptions inRange:localRange capture:3 + offset error:NULL];
             if (filterRange.length > 0) {
                 // Found a filter. Obtain filter string.
                 NSString *filterString = [matchString substringWithRange:filterRange];
@@ -111,7 +111,7 @@
                 // Convert first : plus any immediately-following whitespace into a space.
                 localRange = NSMakeRange(0, [filterString length]);
                 NSString *space = @" ";
-                NSRange filterArgDelimRange = [filterString rangeOfRegex:@":(?:\\s+)?" options:RKLNoOptions inRange:localRange
+                NSRange filterArgDelimRange = [filterString rangeOfRegex:@":(?:\\s+)?" options:BMRegexNoOptions inRange:localRange
                                                                  capture:0 error:NULL];
                 if (filterArgDelimRange.length > 0) {
                     // Replace found text with space.

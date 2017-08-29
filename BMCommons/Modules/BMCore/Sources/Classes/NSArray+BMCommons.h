@@ -122,6 +122,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSArray *)bmArrayWithConstantValue:(id)value count:(NSUInteger)count;
 
+/**
+ * Returns a mutable copy of the receiver by copying all the values as well.
+ *
+ * @return The mutable copy.
+ */
+- (NSMutableArray *)bmDeepMutableCopy;
+
+
 @end
 
 @interface NSMutableArray(BMCommons)

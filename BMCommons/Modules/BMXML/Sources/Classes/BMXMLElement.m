@@ -131,26 +131,26 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode);
 
 - (void)setArrayElement:(BOOL)arrayElement {
     if (arrayElement) {
-        self.libXMLNode->extra |= XMLExtraInfoArrayElement;
+        self.libXMLNode->extra |= BMXMLExtraInfoArrayElement;
     } else {
-        self.libXMLNode->extra &= ~XMLExtraInfoArrayElement;
+        self.libXMLNode->extra &= ~BMXMLExtraInfoArrayElement;
     }
 }
 
 - (BOOL)isArrayElement {
-    return (self.libXMLNode->extra & XMLExtraInfoArrayElement) == XMLExtraInfoArrayElement;
+    return (self.libXMLNode->extra & BMXMLExtraInfoArrayElement) == BMXMLExtraInfoArrayElement;
 }
 
 - (void)setEmptyElement:(BOOL)emptyElement {
     if (emptyElement) {
-        self.libXMLNode->extra |= XMLExtraInfoEmptyElement;
+        self.libXMLNode->extra |= BMXMLExtraInfoEmptyElement;
     } else {
-        self.libXMLNode->extra &= ~XMLExtraInfoEmptyElement;
+        self.libXMLNode->extra &= ~BMXMLExtraInfoEmptyElement;
     }
 }
 
 - (BOOL)isEmptyElement {
-    return (self.libXMLNode->extra & XMLExtraInfoEmptyElement) == XMLExtraInfoEmptyElement;
+    return (self.libXMLNode->extra & BMXMLExtraInfoEmptyElement) == BMXMLExtraInfoEmptyElement;
 }
 
 - (NSString *)description
@@ -244,9 +244,9 @@ static NSDictionary *getElementAttributes(xmlNode *node, BOOL jsonMode);
     return nil;
 }
 
-- (XMLNodeKind)kind
+- (BMXMLNodeKind)kind
 {
-    return XMLNodeElementKind;
+    return BMXMLNodeElementKind;
 }
 
 #pragma mark -

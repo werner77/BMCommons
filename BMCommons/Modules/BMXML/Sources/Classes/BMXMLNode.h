@@ -67,15 +67,15 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 @class BMXMLElement;
 
-typedef NS_ENUM(NSUInteger, XMLNodeKind) {
-    XMLNodeTextKind,
-    XMLNodeElementKind
+typedef NS_ENUM(NSUInteger, BMXMLNodeKind) {
+    BMXMLNodeTextKind,
+    BMXMLNodeElementKind
 };
 
-typedef NS_ENUM(NSUInteger, XMLExtraInfoFlags) {
-    XMLExtraInfoArrayElement = 1,
-    XMLExtraInfoIsJSONQuoted = 2,
-    XMLExtraInfoEmptyElement = 4
+typedef NS_ENUM(NSUInteger, BMXMLExtraInfoFlags) {
+    BMXMLExtraInfoArrayElement = 1,
+    BMXMLExtraInfoIsJSONQuoted = 2,
+    BMXMLExtraInfoEmptyElement = 4
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -97,7 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The kind of node.
  */
-- (XMLNodeKind) kind;
+- (BMXMLNodeKind) kind;
 
 /**
  * Returns true iff this node is a text node.

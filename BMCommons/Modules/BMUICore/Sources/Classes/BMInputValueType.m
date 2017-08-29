@@ -138,7 +138,7 @@ static NSDictionary *registeredTypes = nil;
 	NSString *format = nil;
 	
 	if (typeString) {
-		NSRange range = [typeString rangeOfRegex:regex options:RKLNoOptions inRange:NSMakeRange(0, typeString.length) capture:2L error:&error];
+		NSRange range = [typeString rangeOfRegex:regex options:BMRegexNoOptions inRange:NSMakeRange(0, typeString.length) capture:2L error:&error];
 		
 		if (range.location != NSNotFound) {
 			typeKey = [typeString substringWithRange:NSMakeRange(0, range.location - 1)];

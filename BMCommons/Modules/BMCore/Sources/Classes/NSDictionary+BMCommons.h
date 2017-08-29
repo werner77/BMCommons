@@ -89,6 +89,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)bmDictionaryFromArray:(NSArray *)array withKeySelectorBlock:(id<NSCopying>(^)(id object))keySelectorBlock;
 
+/**
+ * Returns a deep mutable copy of the receiver by copying all the objects and keys in the receiver.
+ */
+- (NSMutableDictionary *)bmDeepMutableCopy;
+
 @end
 
 /**

@@ -79,32 +79,32 @@ NS_ASSUME_NONNULL_BEGIN
 @class NSError;
 
 // NSError error domains and user info keys.
-extern NSString * const RKLICURegexErrorDomain;
+extern NSString * const BMRegexErrorDomain;
 
-extern NSString * const RKLICURegexErrorNameErrorKey;
-extern NSString * const RKLICURegexLineErrorKey;
-extern NSString * const RKLICURegexOffsetErrorKey;
-extern NSString * const RKLICURegexPreContextErrorKey;
-extern NSString * const RKLICURegexPostContextErrorKey;
-extern NSString * const RKLICURegexRegexErrorKey;
-extern NSString * const RKLICURegexRegexOptionsErrorKey;
+extern NSString * const BMRegexErrorNameErrorKey;
+extern NSString * const BMRegexLineErrorKey;
+extern NSString * const BMRegexOffsetErrorKey;
+extern NSString * const BMRegexPreContextErrorKey;
+extern NSString * const BMRegexPostContextErrorKey;
+extern NSString * const BMRegexRegexErrorKey;
+extern NSString * const BMRegexOptionsErrorKey;
 
 /**
  * Regular expression options, identical to their icu counterparts.
  */
-typedef NS_OPTIONS(NSUInteger, RKLRegexOptions) {
-    RKLNoOptions             = 0,
-    RKLCaseless              = 2,
-    RKLComments              = 4,
-    RKLDotAll                = 32,
-    RKLMultiline             = 8,
-    RKLUnicodeWordBoundaries = 256
+typedef NS_OPTIONS(NSUInteger, BMRegexOptions) {
+    BMRegexNoOptions             = 0,
+    BMRegexCaseless              = 2,
+    BMRegexComments              = 4,
+    BMRegexDotAll                = 32,
+    BMRegexMultiline             = 8,
+    BMRegexUnicodeWordBoundaries = 256
 };
 
 /**
  * Extensions for performing regex operation on NSString
  */
-@interface NSString (RegexKitLiteAdditions)
+@interface NSString (BMRegex)
 
 /**
  * Clears the cache.
@@ -128,7 +128,7 @@ typedef NS_OPTIONS(NSUInteger, RKLRegexOptions) {
  * @param error Optional error to inspect the error in case something went wrong
  * @return The capture count or -1 in case of error.
  */
-+ (NSInteger)captureCountForRegex:(NSString *)regexString options:(RKLRegexOptions)options error:(NSError * _Nullable * _Nullable)error;
++ (NSInteger)captureCountForRegex:(NSString *)regexString options:(BMRegexOptions)options error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * Whether or not the receiver is matches by the specified regex expression.
@@ -147,7 +147,7 @@ typedef NS_OPTIONS(NSUInteger, RKLRegexOptions) {
  * @param error Optional error to inspect the error in case something went wrong
  * @return The capture count or -1 in case of error.
  */
-- (BOOL)isMatchedByRegex:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)isMatchedByRegex:(NSString *)regexString options:(BMRegexOptions)options inRange:(NSRange)range error:(NSError * _Nullable * _Nullable)error;
 
 - (NSRange)rangeOfRegex:(NSString *)regexString;
 - (NSRange)rangeOfRegex:(NSString *)regexString capture:(NSInteger)capture;
@@ -163,7 +163,7 @@ typedef NS_OPTIONS(NSUInteger, RKLRegexOptions) {
  * @param error The optional error to inspect the error in case something went wrong.
  * @return The matched range. Returns NSNotFound as location in case no match was found.
  */
-- (NSRange)rangeOfRegex:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError * _Nullable * _Nullable)error;
+- (NSRange)rangeOfRegex:(NSString *)regexString options:(BMRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError * _Nullable * _Nullable)error;
 
 - (nullable NSString *)stringByMatching:(NSString *)regexString;
 - (nullable NSString *)stringByMatching:(NSString *)regexString capture:(NSInteger)capture;
@@ -179,7 +179,7 @@ typedef NS_OPTIONS(NSUInteger, RKLRegexOptions) {
  * @param error The optional error to inspect the error in case something went wrong.
  * @return The matched string or nil if no match was found.
  */
-- (nullable NSString *)stringByMatching:(NSString *)regexString options:(RKLRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError * _Nullable * _Nullable)error;
+- (nullable NSString *)stringByMatching:(NSString *)regexString options:(BMRegexOptions)options inRange:(NSRange)range capture:(NSInteger)capture error:(NSError * _Nullable * _Nullable)error;
 
 @end
 

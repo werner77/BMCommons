@@ -149,30 +149,30 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 }
 
 - (BOOL)isJsonQuotedValueType {
-    return (self.libXMLNode->extra & XMLExtraInfoIsJSONQuoted) == XMLExtraInfoIsJSONQuoted;
+    return (self.libXMLNode->extra & BMXMLExtraInfoIsJSONQuoted) == BMXMLExtraInfoIsJSONQuoted;
 }
 
 - (void)setJsonQuotedValueType:(BOOL)quoted {
     if (quoted) {
-        self.libXMLNode->extra |= XMLExtraInfoIsJSONQuoted;
+        self.libXMLNode->extra |= BMXMLExtraInfoIsJSONQuoted;
     } else {
-        self.libXMLNode->extra &= ~XMLExtraInfoIsJSONQuoted;
+        self.libXMLNode->extra &= ~BMXMLExtraInfoIsJSONQuoted;
     }
 }
 
-- (XMLNodeKind)kind
+- (BMXMLNodeKind)kind
 {
-    return XMLNodeTextKind;
+    return BMXMLNodeTextKind;
 }
 
 - (BOOL)isTextNode
 {
-    return self.kind == XMLNodeTextKind;
+    return self.kind == BMXMLNodeTextKind;
 }
 
 - (BOOL)isElementNode
 {
-    return self.kind == XMLNodeElementKind;
+    return self.kind == BMXMLNodeElementKind;
 }
 
 #pragma mark -
