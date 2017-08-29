@@ -8,8 +8,8 @@
 #import <BMCommons/BMMGTemplateEngine.h>
 #import <BMCommons/BMMGTemplateStandardMarkers.h>
 #import <BMCommons/BMMGTemplateStandardFilters.h>
-#import "NSArray+DeepMutableCopy.h"
-#import "NSDictionary+DeepMutableCopy.h"
+#import <BMCommons/NSArray+BMCommons.h>
+#import <BMCommons/NSDictionary+BMCommons.h>
 #import <BMCommons/BMLocalization.h>
 #import <BMCommons/BMVersionAvailability.h>
 
