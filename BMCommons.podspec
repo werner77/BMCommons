@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BMCommons'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'BehindMedia Commons Library'
 
   s.description      = <<-DESC
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/werner77/BMCommons'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = 'Werner Altewischer'
-  s.source           = { :git => 'https://github.com/werner77/BMCommons.git', :tag => '0.1.0' }
+  s.source           = { :git => 'https://github.com/werner77/BMCommons.git', :tag => '0.2.0' }
   
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.9'
