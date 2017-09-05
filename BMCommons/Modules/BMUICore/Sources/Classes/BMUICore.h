@@ -8,6 +8,7 @@
 #import <BMCommons/BMCore.h>
 #import <BMCommons/BMUICoreObject.h>
 #import <BMCommons/BMStyleSheet.h>
+#import <BMCommons/BMViewLayout.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Dimensions of common iPhone OS Views
@@ -55,14 +56,77 @@
 
 #define BM_FLIP_TRANSITION_DURATION 0.7
 
-#define BMRectMakeIntegral(a,b,c,d) CGRectIntegral(CGRectMake(a,b,c,d))
-
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  * Returns a rectangle whose edges have been added to the insets.
  */
 CGRect BMRectInset(CGRect rect, UIEdgeInsets insets);
+
+/**
+ * Returns a point aligned to the specified rect with the specified alignment.
+ */
+CGPoint BMPointAlignedToRect(BMViewLayoutAlignment alignment, CGRect rect);
+
+/**
+ * Returns a point aligned to the specified rect with the specified insets and alignment.
+ */
+CGPoint BMPointAlignedToRectWithInsets(BMViewLayoutAlignment alignment, CGRect rect, UIEdgeInsets insets);
+
+/**
+ * Returns a point aligned to the specified edges of the specified size object, assuming a rectangle with origin at (0, 0, size.width, size.height)
+ */
+CGPoint BMPointAlignedToSize(BMViewLayoutAlignment alignment, CGSize size);
+
+/**
+ * Returns a point aligned to the specified edges of the specified size object, assuming a rectangle (insets.left, inset.right, size.width - insets.left - insets.right, size.height - insets.top - insets.bottom)
+ */
+CGPoint BMPointAlignedToSizeWithInsets(BMViewLayoutAlignment alignment, CGSize size, UIEdgeInsets insets);
+
+/**
+ * Returns the result of CGRectIntegral(CGRectMake(top, left, bottom, right))
+ */
+CGRect BMRectMakeIntegral(CGFloat x, CGFloat y, CGFloat width, CGFloat height);
+
+/**
+ * Returns an integral point by rounding x and y.
+ */
+CGPoint BMPointMakeIntegral(CGFloat x, CGFloat y);
+
+/**
+ * Returns an integral size by taking the ceiling of both width and height.
+ */
+CGSize BMSizeMakeIntegral(CGFloat width, CGFloat height);
+
+/**
+ * Returns a CGSize struct by insetting the supplied size with the specified insets.
+ */
+CGSize BMSizeInset(CGSize size, UIEdgeInsets edgeInsets);
+
+/**
+ * Returns the inverted edge insets (minus of top, left, bottom, right).
+ */
+UIEdgeInsets BMEdgeInsetsInvert(UIEdgeInsets edgeInsets);
+
+/**
+ * Returns an integral edge insets by rounding top, left, bottom and right.
+ */
+UIEdgeInsets BMEdgeInsetsMakeIntegral(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right);
+
+/**
+ * Returns the resulting edge insets by adding insets2 to insets1.
+ */
+UIEdgeInsets BMEdgeInsetsAdd(UIEdgeInsets insets1, UIEdgeInsets insets2);
+
+/**
+ * Returns the resulting edge insets by subtracting insets2 from insets1.
+ */
+UIEdgeInsets BMEdgeInsetsSubtract(UIEdgeInsets insets1, UIEdgeInsets insets2);
+
+/**
+ * Returns a UIEdgeInsets struct with the difference when subtracting rect2 from rect1
+ */
+UIEdgeInsets BMEdgeInsetsWithDiffFromRects(CGRect rect1, CGRect rect2);
 
 /**
  * Tests if the device has phone capabilities.

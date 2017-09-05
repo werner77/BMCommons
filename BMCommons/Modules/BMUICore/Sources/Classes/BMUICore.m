@@ -14,6 +14,77 @@ CGRect BMRectInset(CGRect rect, UIEdgeInsets insets) {
 					  rect.size.height - (insets.top + insets.bottom));
 }
 
+CGPoint BMPointAlignedToRect(BMViewLayoutAlignment alignment, CGRect rect) {
+	return BMPointAlignedToRectWithInsets(alignment, rect, UIEdgeInsetsZero);
+}
+
+CGPoint BMPointAlignedToRectWithInsets(BMViewLayoutAlignment alignment, CGRect rect, UIEdgeInsets insets) {
+	CGRect effectiveRect = BMRectInset(rect, insets);
+	CGPoint point = CGPointZero;
+
+	if (BM_CONTAINS_BIT(alignment, BMViewLayoutAlignmentCenterHorizontally)) {
+		point.x = (CGRectGetMaxX(effectiveRect) - CGRectGetMinX(effectiveRect))/2.0f;
+	} else if (BM_CONTAINS_BIT(alignment, BMViewLayoutAlignmentRight)) {
+		point.x = CGRectGetMaxX(effectiveRect);
+	} else {
+		point.x = CGRectGetMinX(effectiveRect);
+	}
+
+	if (BM_CONTAINS_BIT(alignment, BMViewLayoutAlignmentCenterVertically)) {
+		point.y = (CGRectGetMaxY(effectiveRect) - CGRectGetMinY(effectiveRect))/2.0f;
+	} else if (BM_CONTAINS_BIT(alignment, BMViewLayoutAlignmentBottom)) {
+		point.y = CGRectGetMaxY(effectiveRect);
+	} else {
+		point.y = CGRectGetMinY(effectiveRect);
+	}
+	return point;
+}
+
+CGPoint BMPointAlignedToSize(BMViewLayoutAlignment alignment, CGSize size) {
+	return BMPointAlignedToSizeWithInsets(alignment, size, UIEdgeInsetsZero);
+}
+
+CGPoint BMPointAlignedToSizeWithInsets(BMViewLayoutAlignment alignment, CGSize size, UIEdgeInsets insets) {
+	return BMPointAlignedToRectWithInsets(alignment, CGRectMake(0, 0, size.width, size.height), insets);
+}
+
+
+CGRect BMRectMakeIntegral(CGFloat x, CGFloat y, CGFloat width, CGFloat height) {
+	return CGRectIntegral(CGRectMake(x, y, width, height));
+}
+
+CGPoint BMPointMakeIntegral(CGFloat x, CGFloat y) {
+	return CGPointMake(roundf(x), roundf(y));
+}
+
+CGSize BMSizeMakeIntegral(CGFloat width, CGFloat height) {
+	return CGSizeMake(ceilf(width), ceilf(height));
+}
+
+CGSize BMSizeInset(CGSize size, UIEdgeInsets edgeInsets) {
+	return CGSizeMake(size.width - edgeInsets.left - edgeInsets.right, size.height - edgeInsets.top - edgeInsets.bottom);
+}
+
+UIEdgeInsets BMEdgeInsetsInvert(UIEdgeInsets edgeInsets) {
+	return UIEdgeInsetsMake(-edgeInsets.top, -edgeInsets.left, -edgeInsets.bottom, -edgeInsets.right);
+}
+
+UIEdgeInsets BMEdgeInsetsMakeIntegral(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right) {
+	return UIEdgeInsetsMake(roundf(top), roundf(left), roundf(bottom), roundf(right));
+}
+
+UIEdgeInsets BMEdgeInsetsAdd(UIEdgeInsets insets1, UIEdgeInsets insets2) {
+	return UIEdgeInsetsMake(insets1.top + insets2.top, insets1.left + insets2.left, insets1.bottom + insets2.bottom, insets1.right + insets2.right);
+}
+
+UIEdgeInsets BMEdgeInsetsSubtract(UIEdgeInsets insets1, UIEdgeInsets insets2) {
+	return UIEdgeInsetsMake(insets1.top - insets2.top, insets1.left - insets2.left, insets1.bottom - insets2.bottom, insets1.right - insets2.right);
+}
+
+UIEdgeInsets BMEdgeInsetsWithDiffFromRects(CGRect rect1, CGRect rect2) {
+	return UIEdgeInsetsMake(CGRectGetMinY(rect1) - CGRectGetMinY(rect2), CGRectGetMinX(rect1) - CGRectGetMinX(rect2), CGRectGetMaxY(rect2) - CGRectGetMaxY(rect1), CGRectGetMaxX(rect2) - CGRectGetMaxX(rect1));
+}
+
 BOOL BMIsPhoneSupported() {
 	NSString *deviceType = [UIDevice currentDevice].model;
 	return [deviceType isEqualToString:@"iPhone"];

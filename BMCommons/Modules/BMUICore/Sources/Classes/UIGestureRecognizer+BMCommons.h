@@ -17,6 +17,11 @@ typedef void (^BMGestureRecognizerTargetBlock)(UIGestureRecognizer *gr);
  */
 - (void)bmSetTargetBlock:(nullable BMGestureRecognizerTargetBlock)block;
 
+/**
+ * Cancels any currently recognized gesture
+ */
+- (void)bmCancel;
+
 @end
 
 NS_ASSUME_NONNULL_END

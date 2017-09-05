@@ -28,6 +28,14 @@ static char * const kGestureRecognizerTargetBlockKey = "com.behindmedia.bmcommon
     }
 }
 
+- (void)bmCancel {
+    if (self.isEnabled) {
+        self.enabled = NO;
+        self.enabled = YES;
+    }
+}
+
+
 - (void)bmBlockTargetHandler {
     BMGestureRecognizerTargetBlock block = self.bmTargetBlock;
     if (block) {
