@@ -208,13 +208,13 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Returns this object as JSON Element
  */
-- (nullable NSString *)jsonElementWithName:(NSString *)elementName;
+- (nullable NSString *)jsonElementWithName:(nullable NSString *)elementName;
 
 /**
  Returns this object as JSON Element by using the specified attributePrefix and textContentIdentifier.
  */
-- (nullable NSString *)jsonElementWithName:(NSString *)elementName attributePrefix:(NSString *)attributePrefix
-            textContentIdentifier:(NSString *)textContentIdentifier;
+- (nullable NSString *)jsonElementWithName:(nullable NSString *)elementName attributePrefix:(nullable NSString *)attributePrefix
+            textContentIdentifier:(nullable NSString *)textContentIdentifier;
 
 
 /**

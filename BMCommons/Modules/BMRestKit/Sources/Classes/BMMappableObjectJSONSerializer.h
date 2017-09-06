@@ -32,13 +32,17 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The json string with name equal to the supplied element name.
  */
-- (nullable NSString *)jsonElementWithName:(NSString *)elementName fromObject:(id <BMMappableObject>)mappableObject;
+- (nullable NSString *)jsonElementWithName:(nullable NSString *)elementName fromObject:(id <BMMappableObject>)mappableObject;
 
 /**
  The json string with name equal to the supplied element name, using the specified attributePrefix and textContentIdentifier.
+
+ If attributePrefix is nil, the empty string is assumed.
+ If textContentIdentifier is nil, #text is used.
+ If elementName is nil, the json will have no root element
  */
-- (nullable NSString *)jsonElementWithName:(NSString *)elementName attributePrefix:(NSString *)attributePrefix
-            textContentIdentifier:(NSString *)textContentIdentifier fromObject:(id <BMMappableObject>)mappableObject;
+- (nullable NSString *)jsonElementWithName:(nullable NSString *)elementName attributePrefix:(nullable NSString *)attributePrefix
+            textContentIdentifier:(nullable NSString *)textContentIdentifier fromObject:(id <BMMappableObject>)mappableObject;
 
 /**
  The json string with name equal to the root element or nil if the rootElementName is not defined.
