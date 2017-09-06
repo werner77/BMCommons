@@ -94,13 +94,14 @@ static BMObjectMappingParserHandlerInitBlock defaultInitBlock = nil;
 	if ((self = [super init])) {
 
 		_topElement = rootElementName;
-        if (elementClass) {
-            [self initModelDictionaryFromRootClass:elementClass];    
-        }
-		if (errorRootElementName) {
-			_topErrorElement = errorRootElementName;
+		if (elementClass) {
+			[self initModelDictionaryFromRootClass:elementClass];
+		}
+		_topErrorElement = errorRootElementName;
+		if (errorElementClass) {
 			[self initErrorModelDictionaryFromRootClass:errorElementClass];
 		}
+
 		self.delegate = theDelegate;
 		_xmlElementStack = [NSMutableArray new];
 
@@ -196,15 +197,15 @@ static BMObjectMappingParserHandlerInitBlock defaultInitBlock = nil;
 		[_xmlElementStack addObject:currentXMLElement];
 		
 		BMXMLElement *rootXMLElement = [_xmlElementStack objectAtIndex:0];
-		if (!self.forceErrorResponse && ((_topElement && [rootXMLElement elementsForXPath:_topElement error:nil].count > 0) || _topElement == nil)) {
-			_currentModelDictionary = _modelDictionary;
-			_errorResponse = NO;
-			_started = YES;
-		} else if ((_topErrorElement && [rootXMLElement elementsForXPath:_topErrorElement error:nil].count > 0) || _topErrorElement == nil) {
-			_currentModelDictionary = _errorModelDictionary;
-			_errorResponse = YES;
-			_started = YES;
-		}
+		if (!self.forceErrorResponse && _rootClass != nil && ((_topElement && [rootXMLElement elementsForXPath:_topElement error:nil].count > 0) || _topElement == nil)) {
+            _currentModelDictionary = _modelDictionary;
+            _errorResponse = NO;
+            _started = YES;
+        } else if (_rootErrorClass != nil && ((_topErrorElement && [rootXMLElement elementsForXPath:_topErrorElement error:nil].count > 0) || _topErrorElement == nil)) {
+            _currentModelDictionary = _errorModelDictionary;
+            _errorResponse = YES;
+            _started = YES;
+        }
 		
 		if (_started) {
 			//Release the XMLElement stack and document: we don't need it anymore

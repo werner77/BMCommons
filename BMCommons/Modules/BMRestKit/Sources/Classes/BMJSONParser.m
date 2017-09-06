@@ -242,13 +242,17 @@ static BOOL defaultDecodeEntities = NO;
 	NSData *data = [NSData dataWithBytes:bytes length:length];
 	
 	YAJLParserStatus status = [_parser parse:data];
+    NSInteger endLevel = 0;
+    if (![BMStringHelper isEmpty:self.jsonRootElementName]) {
+        endLevel++;
+    }
 	switch (status) {
 		case YAJLParserStatusNone:
 			//Don't do anything
 			break;
 		case YAJLParserStatusOK:
 			//Finished
-            if (_parserLevel <= 0) {
+            if (_parserLevel <= endLevel) {
                 [self endDocument];
             }
 			break;

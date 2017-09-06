@@ -304,11 +304,16 @@ static volatile int threadCount = 0;
     
 	NSError *error = nil;
 	if (parsedOK) {
-        if (self.lastRequestError) {
-            error = self.lastRequestError;
-        } else {
-            error = [self.handler error];
-        }
+		NSError *detailedError = [self.handler error];
+		error = self.lastRequestError;
+		if (error == nil) {
+			error = detailedError;
+		} else {
+			//set last detailed error as underlying error
+			NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:error.userInfo];
+			userInfo[NSUnderlyingErrorKey] = detailedError;
+			error = [NSError errorWithDomain:error.domain code:error.code userInfo:userInfo];
+		}
 	} else {
 		if (self.parser.parserError) {
 			LogError(@"Error returned by parser: %@", self.parser.parserError);

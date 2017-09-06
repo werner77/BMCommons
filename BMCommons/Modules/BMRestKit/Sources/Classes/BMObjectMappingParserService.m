@@ -10,8 +10,11 @@
 #import <BMCommons/BMObjectMappingParserHandler.h>
 #import <BMCommons/BMRestKit.h>
 #import "BMAbstractMappableObject.h"
+#import "BMJSONParser.h"
 
 @implementation BMObjectMappingParserService
+
+static NSString * const kJSONPrefix = @"json";
 
 - (instancetype)initWithRootXPath:(NSString *)rootXPath rootElementClass:(Class<BMMappableObject>)rootElementClass
 					   errorXPath:(NSString *)errorXPath errorElementClass:(Class<BMMappableObject>)errorElementClass {
@@ -29,9 +32,9 @@
 }
 
 - (BMParserHandler *)handlerForService {
-	BMObjectMappingParserHandler *theHandler = [[BMObjectMappingParserHandler alloc] initWithXPath:self.rootXPath
+	BMObjectMappingParserHandler *theHandler = [[BMObjectMappingParserHandler alloc] initWithXPath:[self modifiedXPathForXPath:self.rootXPath]
 																							   rootElementClass:self.rootElementClass 
-													 												 errorXPath:self.errorXPath 
+													 												 errorXPath:[self modifiedXPathForXPath:self.errorXPath]
 																						  errorRootElementClass:self.errorElementClass
 																									   delegate:nil];
 	return theHandler;
@@ -40,7 +43,7 @@
 - (BMParserHandler *)errorHandlerForService {
     BMObjectMappingParserHandler *theHandler = [[BMObjectMappingParserHandler alloc] initWithXPath:nil
                                                                                   rootElementClass:nil
-                                                                                        errorXPath:self.errorXPath
+                                                                                        errorXPath:[self modifiedXPathForXPath:self.errorXPath]
                                                                              errorRootElementClass:self.errorElementClass
                                                                                           delegate:nil];
 	return theHandler;
@@ -51,8 +54,19 @@
 	return nil;
 }
 
+- (NSString *)modifiedXPathForXPath:(NSString *)xPath {
+	if ([self.parserClass isKindOfClass:BMJSONParser.class]) {
+		return [NSString stringWithFormat:@"/%@%@%@", kJSONPrefix, [xPath hasPrefix:@"/"] ? @"" : @"/", xPath];
+	} else {
+		return xPath;
+	}
+}
+
 - (void)configureParser:(BMParser *)theParser {
-	//Default don't do anything
+	if ([theParser isKindOfClass:[BMJSONParser class]]) {
+		BMJSONParser *jsonParser = (BMJSONParser *)theParser;
+		jsonParser.jsonRootElementName = kJSONPrefix;
+	}
 }
 
 

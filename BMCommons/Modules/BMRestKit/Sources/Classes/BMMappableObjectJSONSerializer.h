@@ -37,8 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The json string with name equal to the supplied element name, using the specified attributePrefix and textContentIdentifier.
 
- If attributePrefix is nil, the empty string is assumed.
- If textContentIdentifier is nil, #text is used.
+ If attributePrefix is nil, '@' assumed.
+ If textContentIdentifier is nil, '#text' is used.
  If elementName is nil, the json will have no root element
  */
 - (nullable NSString *)jsonElementWithName:(nullable NSString *)elementName attributePrefix:(nullable NSString *)attributePrefix

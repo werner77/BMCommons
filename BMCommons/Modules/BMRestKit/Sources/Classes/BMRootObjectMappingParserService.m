@@ -18,13 +18,6 @@
 
 @implementation BMRootObjectMappingParserService
 
-- (void)configureParser:(BMParser *)theParser {
-    if ([theParser isKindOfClass:[BMJSONParser class]]) {
-        BMJSONParser *jsonParser = (BMJSONParser *)theParser;
-        jsonParser.jsonRootElementName = [self.rootElementClass rootElementName];
-    }
-}
-
 - (void)setRootElementClass:(Class<BMMappableObject>)c {
     if (self.rootElementClass != c) {
         self.rootXPath = [self xpathFromElementName:[c rootElementName]];

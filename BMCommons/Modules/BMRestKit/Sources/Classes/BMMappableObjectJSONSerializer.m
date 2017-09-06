@@ -59,8 +59,8 @@
     
     BMXMLElement *element = [xmlSerializer xmlElementWithName:elementName namespaceURI:nil namespacePrefixes:nil fromObject:mappableObject jsonMode:YES];
     
-    if (attributePrefix == nil) attributePrefix = @"";
-    if (textContentIdentifier == nil) textContentIdentifier = @"#text";
+    if (attributePrefix == nil) attributePrefix = BM_JSON_DEFAULT_ATTRIBUTE_SPECIFIER;
+    if (textContentIdentifier == nil) textContentIdentifier = BM_JSON_DEFAULT_ELEMENT_TEXT_SPECIFIER;
     
     NSString *string = [element JSONStringWithAttributePrefix:attributePrefix textContentIdentifier:textContentIdentifier];
 

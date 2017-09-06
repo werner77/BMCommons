@@ -245,13 +245,13 @@ static BMUICore *instance = nil;
 }
 
 + (NSBundle *)bundle {
-    static NSBundle *bundle = nil;
-    if (bundle == nil) {
-        NSString* path = [[[NSBundle mainBundle] resourcePath]
-                          stringByAppendingPathComponent:@"BMUICore.bundle"];
-        bundle = [NSBundle bundleWithPath:path];
-    }
-    return bundle;
+	static NSBundle *bundle = nil;
+	if (bundle == nil) {
+		NSString* path = [[[NSBundle bundleForClass:self] resourcePath]
+				stringByAppendingPathComponent:@"BMUICore.bundle"];
+		bundle = [NSBundle bundleWithPath:path];
+	}
+	return bundle;
 }
 
 @end
