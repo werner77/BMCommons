@@ -11,6 +11,7 @@
 #import <BMCommons/BMRestKit.h>
 #import "BMAbstractMappableObject.h"
 #import "BMJSONParser.h"
+#import "BMStringHelper.h"
 
 @implementation BMObjectMappingParserService
 
@@ -34,8 +35,8 @@ static NSString * const kJSONPrefix = @"json";
 - (BMParserHandler *)handlerForService {
 	BMObjectMappingParserHandler *theHandler = [[BMObjectMappingParserHandler alloc] initWithXPath:[self modifiedXPathForXPath:self.rootXPath]
 																							   rootElementClass:self.rootElementClass 
-													 												 errorXPath:[self modifiedXPathForXPath:self.errorXPath]
-																						  errorRootElementClass:self.errorElementClass
+													 												 errorXPath:nil
+																						  errorRootElementClass:nil
 																									   delegate:nil];
 	return theHandler;
 }
@@ -55,8 +56,12 @@ static NSString * const kJSONPrefix = @"json";
 }
 
 - (NSString *)modifiedXPathForXPath:(NSString *)xPath {
-	if ([self.parserClass isKindOfClass:BMJSONParser.class]) {
-		return [NSString stringWithFormat:@"/%@%@%@", kJSONPrefix, [xPath hasPrefix:@"/"] ? @"" : @"/", xPath];
+	if ([self.parserClass isSubclassOfClass:BMJSONParser.class]) {
+		if ([BMStringHelper isEmpty:xPath]) {
+			return [NSString stringWithFormat:@"/%@", kJSONPrefix];
+		} else {
+			return [NSString stringWithFormat:@"/%@%@%@", kJSONPrefix, [xPath hasPrefix:@"/"] ? @"" : @"/", xPath];
+		}
 	} else {
 		return xPath;
 	}
