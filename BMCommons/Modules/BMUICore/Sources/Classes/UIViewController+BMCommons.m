@@ -78,17 +78,23 @@
 
 - (void)bmPresentChildViewController:(UIViewController *)vc inView:(UIView *)parentView aboveView:(UIView *)view {
     [self addChildViewController:vc];
-    
-    if (view == nil || ![parentView.subviews containsObject:view]) {
-        [parentView addSubview:vc.view];
-    } else {
-        [parentView insertSubview:vc.view aboveSubview:view];
+    if (vc.view.superview != parentView) {
+        [vc.view removeFromSuperview];
+        if (view == nil || ![parentView.subviews containsObject:view]) {
+            [parentView addSubview:vc.view];
+        } else {
+            [parentView insertSubview:vc.view aboveSubview:view];
+        }
     }
     [vc didMoveToParentViewController:self];
 }
 
 - (void)bmPresentChildViewController:(UIViewController *)vc aboveView:(UIView *)view {
-    [self bmPresentChildViewController:vc inView:self.view aboveView:view];
+    UIView *parentView = vc.view.superview;
+    if (parentView == nil) {
+        parentView = self.view;
+    }
+    [self bmPresentChildViewController:vc inView:parentView aboveView:view];
 }
 
 - (void)bmPresentChildViewController:(UIViewController *)vc {

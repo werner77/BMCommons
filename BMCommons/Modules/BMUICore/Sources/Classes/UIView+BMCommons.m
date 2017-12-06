@@ -687,6 +687,57 @@ static UIView * __BMHitTest(UIView *self, SEL cmd, CGPoint point, UIEvent *event
     return encompassingRect;
 }
 
+- (UIView *)bmReusableSubviewOfClass:(Class)viewClass fromArray:(NSMutableArray *)views atIndex:(NSUInteger)index createIfNotExists:(BOOL)createIfNotExists created:(BOOL *)created {
+    NSAssert(views != nil,@"Views parameter should not be nil");
+
+    UIView *subView = nil;
+    BOOL wasCreated = NO;
+
+    if (views != nil) {
+        subView = [views bmSafeObjectAtIndex:index];
+        if (subView == nil && createIfNotExists) {
+            wasCreated = YES;
+            UIView *lastSubView = nil;
+            while (views.count <= index) {
+                UIView *newSubView = [viewClass new];
+                [views addObject:newSubView];
+                [self addSubview:newSubView];
+                lastSubView = newSubView;
+            }
+            subView = lastSubView;
+        }
+    }
+
+    if (created) {
+        *created = wasCreated;
+    }
+    return subView;
+}
+
+- (void)bmRemoveReusableSubviewFromArray:(NSMutableArray *)views atIndex:(NSUInteger)index {
+    UIView *lineView = [views bmPopObjectAtIndex:index];
+    [lineView removeFromSuperview];
+}
+
+- (BOOL)bmUpdateReusableSubviews:(NSMutableArray *)views ofClass:(Class)viewClass withData:(NSArray *)data
+                     updateBlock:(BOOL (^)(NSUInteger index, UIView *view, id dataObject))updateBlock {
+    BOOL changed = NO;
+    for (NSUInteger i = 0; i < data.count; ++i) {
+        BOOL created = NO;
+        UIView *lineView = [self bmReusableSubviewOfClass:viewClass fromArray:views atIndex:i createIfNotExists:YES created:&created];
+        changed = created || changed;
+        id d = data[i];
+        if (updateBlock) {
+            changed = updateBlock(i, lineView, d) || changed;
+        }
+    }
+    while (views.count > data.count) {
+        changed = YES;
+        [self bmRemoveReusableSubviewFromArray:views atIndex:(views.count - 1)];
+    }
+    return changed;
+}
+
 + (void)_BMDidReceiveMemoryWarning:(NSNotification *)notification {
     @synchronized([UIView class]) {
         prototypes = nil;
