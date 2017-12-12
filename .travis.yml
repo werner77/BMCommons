@@ -2,7 +2,7 @@
 # * http://www.objc.io/issue-6/travis-ci.html
 # * https://github.com/supermarin/xcpretty#usage
 
-osx_image: xcode8.1
+osx_image: xcode9.1
 language: objective-c
 cache: cocoapods
 podfile: Example/Podfile
@@ -11,7 +11,7 @@ before_install:
 - pod repo add BMPodSpecs https://github.com/werner77/BMPodSpecs.git
 - pod install --project-directory=Example
 script:
-- set -o pipefail && xcodebuild clean build build-for-testing -workspace Example/BMCommons.xcworkspace -scheme BMCommons-Example -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.1' ONLY_ACTIVE_ARCH=NO | xcpretty
-- set -o pipefail && xcodebuild test-without-building -workspace Example/BMCommons.xcworkspace -scheme BMCommons-Example -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.1' ONLY_ACTIVE_ARCH=NO | xcpretty
+- set -o pipefail && xcodebuild clean build build-for-testing -workspace Example/BMCommons.xcworkspace -scheme BMCommons-Example -destination 'platform=iOS Simulator,name=iPhone 6,OS=11.1' ONLY_ACTIVE_ARCH=NO | xcpretty
+- set -o pipefail && xcodebuild test-without-building -workspace Example/BMCommons.xcworkspace -scheme BMCommons-Example -destination 'platform=iOS Simulator,name=iPhone 6,OS=11.1' ONLY_ACTIVE_ARCH=NO | xcpretty
 - pod lib lint --sources=https://github.com/werner77/BMPodSpecs.git,master --allow-warnings
 
