@@ -54,7 +54,7 @@ static BOOL decodePNGOnLoad = YES;
         CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((CFDataRef)data);
         
         CGImageRef newImage = NULL;
-        CGBitmapInfo bitmapInfo;
+        CGBitmapInfo bitmapInfo = 0;
         if (isJPEG) {
             newImage = CGImageCreateWithJPEGDataProvider(dataProvider,
                                                          NULL, NO,

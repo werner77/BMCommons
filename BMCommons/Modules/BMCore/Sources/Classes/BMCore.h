@@ -155,12 +155,12 @@ extern "C" {
     /**
      * Creates a mutable array which does not retain references to the objects it contains.
      */
-    NSMutableArray* BMCreateNonRetainingArray();
+    NSMutableArray* BMCreateNonRetainingArray(void);
     
     /**
      * Creates a mutable dictionary which does not retain references to the values it contains.
      */
-    NSMutableDictionary* BMCreateNonRetainingDictionary();
+    NSMutableDictionary* BMCreateNonRetainingDictionary(void);
     
     /**
      * Tests if an object is an array which is empty.
@@ -192,7 +192,7 @@ extern "C" {
      *
      * This is necessary because [NSLocale currentLocale] always returns en_US.
      */
-    NSLocale* BMCurrentLocale();
+    NSLocale* BMCurrentLocale(void);
     
     /**
      Tests whether the specified URL has the bundle:// protocol prefix, specifying a file within the main bundle.
