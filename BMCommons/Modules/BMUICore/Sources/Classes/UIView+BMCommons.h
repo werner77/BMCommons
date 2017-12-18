@@ -545,12 +545,27 @@ typedef NS_OPTIONS(NSUInteger, BMHitTestMode) {
  * The update block is called for all the views to update their state with the matching data object. This block should return true if the view was updated (changed) and false if no update was necessary.
  *
  * @param views The array of views to manage, may be empty initially because views will be created as needed.
- * @param viewClass The class of views to use for instantiation (should be a sub class of UIView)
  * @param data The array of data. The method will ensure that for every data object a subview will be created.
+ * @param viewClass The class of views to use for instantiation (should be a sub class of UIView)
  * @param updateBlock Block to update the view with the specified data. Should return true if the view was updated from it's previous state, or false otherwise. If the previous state is not known true should be returned.
  * @return true if any of the subviews was updated or there were views added/removed, false otherwise.
  */
-- (BOOL)bmUpdateReusableSubviews:(NSMutableArray<UIView *> *)views ofClass:(Class)viewClass withData:(NSArray *)data
+- (BOOL)bmUpdateReusableSubviews:(NSMutableArray<UIView *> *)views withData:(NSArray *)data viewClass:(Class)viewClass
+                     updateBlock:(BOOL (^)(NSUInteger index, UIView *view, id dataObject))updateBlock;
+
+/**
+ * Manages the specified array of reusable subviews by adding/removing views of the specified viewClass to it/from it to match the number of data objects supplied.
+ * For every data object a view of is instantiated by calling the creationBlock (if no such view existed yet) or dequeued and added as sub view.
+ *
+ * The update block is called for all the views to update their state with the matching data object. This block should return true if the view was updated (changed) and false if no update was necessary.
+ *
+ * @param views The array of views to manage, may be empty initially because views will be created as needed.
+ * @param data The array of data. The method will ensure that for every data object a subview will be created.
+ * @param creationBlock Block to create a new reusable view.
+ * @param updateBlock Block to update the view with the specified data. Should return true if the view was updated from it's previous state, or false otherwise. If the previous state is not known true should be returned.
+ * @return true if any of the subviews was updated or there were views added/removed, false otherwise.
+ */
+- (BOOL)bmUpdateReusableSubviews:(NSMutableArray<UIView *> *)views withData:(NSArray *)data creationBlock:(UIView* (^)())creationBlock
                      updateBlock:(BOOL (^)(NSUInteger index, UIView *view, id dataObject))updateBlock;
 
 

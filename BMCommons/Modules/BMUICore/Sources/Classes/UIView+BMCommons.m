@@ -9,6 +9,7 @@
 #import "UIView+BMCommons.h"
 #import "UIGestureRecognizer+BMCommons.h"
 #import "BMUICore.h"
+#import "NSObject+BMCommons.h"
 
 @implementation UIView(BMCommons)
 
@@ -687,7 +688,7 @@ static UIView * __BMHitTest(UIView *self, SEL cmd, CGPoint point, UIEvent *event
     return encompassingRect;
 }
 
-- (UIView *)bmReusableSubviewOfClass:(Class)viewClass fromArray:(NSMutableArray *)views atIndex:(NSUInteger)index createIfNotExists:(BOOL)createIfNotExists created:(BOOL *)created {
+- (UIView *)bmReusableSubviewWithCreationBlock:(UIView* (^)())viewCreationBlock fromArray:(NSMutableArray *)views atIndex:(NSUInteger)index createIfNotExists:(BOOL)createIfNotExists created:(BOOL *)created {
     NSAssert(views != nil,@"Views parameter should not be nil");
 
     UIView *subView = nil;
@@ -699,7 +700,7 @@ static UIView * __BMHitTest(UIView *self, SEL cmd, CGPoint point, UIEvent *event
             wasCreated = YES;
             UIView *lastSubView = nil;
             while (views.count <= index) {
-                UIView *newSubView = [viewClass new];
+                UIView *newSubView = viewCreationBlock();
                 [views addObject:newSubView];
                 [self addSubview:newSubView];
                 lastSubView = newSubView;
@@ -719,12 +720,21 @@ static UIView * __BMHitTest(UIView *self, SEL cmd, CGPoint point, UIEvent *event
     [lineView removeFromSuperview];
 }
 
-- (BOOL)bmUpdateReusableSubviews:(NSMutableArray *)views ofClass:(Class)viewClass withData:(NSArray *)data
+- (BOOL)bmUpdateReusableSubviews:(NSMutableArray<UIView *> *)views withData:(NSArray *)data viewClass:(Class)viewClass
+                     updateBlock:(BOOL (^)(NSUInteger index, UIView *view, id dataObject))updateBlock {
+    return [self bmUpdateReusableSubviews:views withData:data creationBlock:^UIView * {
+        id v = [viewClass new];
+        NSAssert([v isKindOfClass:UIView.class], @"Class should be a subclass of UIView");
+        return [v bmCastSafely:UIView.class];
+    } updateBlock:updateBlock];
+}
+
+- (BOOL)bmUpdateReusableSubviews:(NSMutableArray<UIView *> *)views withData:(NSArray *)data creationBlock:(UIView* (^)())viewCreationBlock
                      updateBlock:(BOOL (^)(NSUInteger index, UIView *view, id dataObject))updateBlock {
     BOOL changed = NO;
     for (NSUInteger i = 0; i < data.count; ++i) {
         BOOL created = NO;
-        UIView *lineView = [self bmReusableSubviewOfClass:viewClass fromArray:views atIndex:i createIfNotExists:YES created:&created];
+        UIView *lineView = [self bmReusableSubviewWithCreationBlock:viewCreationBlock fromArray:views atIndex:i createIfNotExists:YES created:&created];
         changed = created || changed;
         id d = data[i];
         if (updateBlock) {
@@ -743,7 +753,6 @@ static UIView * __BMHitTest(UIView *self, SEL cmd, CGPoint point, UIEvent *event
         prototypes = nil;
     }
 }
-
 
 @end
 
