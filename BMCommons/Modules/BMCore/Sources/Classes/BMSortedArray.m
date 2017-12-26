@@ -36,16 +36,18 @@
                         return result;
                     }
                 }
+                return NSOrderedSame;
             } else if ((sortSelector = strongSelf.sortSelector) != NULL) {
                 NSComparisonResult result;
                 void *args[] = {&obj2};
                 NSUInteger argSizes[] = {sizeof(id)};
-                
                 [obj1 bmInvokeSelector:sortSelector withArgs:args argSizes:argSizes argCount:1 returnBuffer:&result returnLength:sizeof(result)];
-                
                 return result;
             }
-            return NSOrderedSame;
+
+            NSInteger address1 = (NSInteger)obj1;
+            NSInteger address2 = (NSInteger)obj2;
+            return address1 < address2 ? NSOrderedAscending : address1 > address2 ? NSOrderedDescending : NSOrderedSame;
         };
     }
 }
