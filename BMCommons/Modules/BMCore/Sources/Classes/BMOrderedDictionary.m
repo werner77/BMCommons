@@ -15,6 +15,13 @@
 
 #pragma mark - Public methods
 
+- (id)copyWithZone:(NSZone *)zone {
+    __typeof(self) copy = [[[self class] allocWithZone:zone] initWithCapacity:self.count];
+    copy->_dictionary = [self->_dictionary mutableCopyWithZone:zone];
+    copy->_keys = [self->_keys mutableCopyWithZone:zone];
+    return copy;
+}
+
 - (void)moveObjectFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
 	[_keys bmMoveObjectFromIndex:fromIndex toIndex:toIndex];
 }

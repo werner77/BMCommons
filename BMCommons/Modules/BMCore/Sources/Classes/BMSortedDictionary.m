@@ -12,10 +12,19 @@
     BMSortedArray *_keys;
 }
 
+- (id)copyWithZone:(NSZone *)zone {
+    __typeof(self) copy = [[[self class] allocWithZone:zone] initWithCapacity:self.count];
+    copy->_dictionary = [self->_dictionary mutableCopyWithZone:zone];
+    copy->_keys = [self->_keys mutableCopyWithZone:zone];
+    return copy;
+}
+
 - (void)commonInitWithCapacity:(NSUInteger)capacity {
     [super commonInitWithCapacity:capacity];
-    _dictionary = [[NSMutableDictionary alloc] initWithCapacity:capacity];
-    _keys = [[BMSortedArray alloc] initWithCapacity:capacity];
+    if (_dictionary == nil) {
+        _dictionary = [[NSMutableDictionary alloc] initWithCapacity:capacity];
+        _keys = [[BMSortedArray alloc] initWithCapacity:capacity];
+    }
 }
 
 - (void)setComparator:(NSComparator)comparator {

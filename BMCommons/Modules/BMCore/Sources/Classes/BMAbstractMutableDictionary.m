@@ -12,20 +12,13 @@
 static NSString *DescriptionForObject(NSObject *object, id locale, NSUInteger indent)
 {
 	NSString *objectString;
-	if ([object isKindOfClass:[NSString class]])
-	{
+	if ([object isKindOfClass:[NSString class]]) {
 		objectString = (NSString *)object;
-	}
-	else if ([object respondsToSelector:@selector(descriptionWithLocale:indent:)])
-	{
+	} else if ([object respondsToSelector:@selector(descriptionWithLocale:indent:)]) {
 		objectString = [(NSDictionary *)object descriptionWithLocale:locale indent:indent];
-	}
-	else if ([object respondsToSelector:@selector(descriptionWithLocale:)])
-	{
+	} else if ([object respondsToSelector:@selector(descriptionWithLocale:)]) {
 		objectString = [(NSSet *)object descriptionWithLocale:locale];
-	}
-	else
-	{
+	} else {
 		objectString = [object description];
 	}
 	return objectString;
@@ -35,15 +28,13 @@ static NSString *DescriptionForObject(NSObject *object, id locale, NSUInteger in
 {
 	NSMutableString *indentString = [NSMutableString string];
 	NSUInteger i, count = level;
-	for (i = 0; i < count; i++)
-	{
+	for (i = 0; i < count; i++) {
 		[indentString appendFormat:@"    "];
 	}
 
 	NSMutableString *description = [NSMutableString string];
 	[description appendFormat:@"%@{\n", indentString];
-	for (NSObject *key in self)
-	{
+	for (NSObject *key in self) {
 		[description appendFormat:@"%@    %@ = %@;\n",
 			indentString,
 			DescriptionForObject(key, locale, level),
@@ -65,27 +56,24 @@ static NSString *DescriptionForObject(NSObject *object, id locale, NSUInteger in
 	return self;
 }
 
-- (id)init
-{
+- (id)init {
 	if ((self = [super init])) {
 		[self commonInitWithCapacity:16];
 	}
 	return self;
 }
 
-- (id)initWithCapacity:(NSUInteger)capacity
-{
-	if ((self = [super init]))
-	{
+- (id)initWithCapacity:(NSUInteger)capacity {
+	if ((self = [super init])) {
 		[self commonInitWithCapacity:capacity];
 	}
 	return self;
 }
 
-- (id)copyWithZone:(NSZone *)zone
-{
-	id copy = [[[self class] allocWithZone:zone] initWithCapacity:self.count];
-	[copy addEntriesFromDictionary:self];
+- (id)copyWithZone:(NSZone *)zone {
+	__typeof(self) copy = [[[self class] allocWithZone:zone] initWithCapacity:self.count];
+    [copy.dictionaryInternal setDictionary:self.dictionaryInternal];
+    [copy.keysInternal setArray:self.keysInternal];
 	return copy;
 }
 
@@ -93,42 +81,35 @@ static NSString *DescriptionForObject(NSObject *object, id locale, NSUInteger in
 	return [self copyWithZone:zone];
 }
 
-
-- (id)keyAtIndex:(NSUInteger)anIndex
-{
+- (id)keyAtIndex:(NSUInteger)anIndex {
 	return [self.keysInternal objectAtIndex:anIndex];
 }
 
-- (NSEnumerator *)keyEnumerator
-{
+- (NSEnumerator *)keyEnumerator {
 	return [self.keysInternal objectEnumerator];
 }
 
 #pragma mark - Primitive methods of NSDictionary
 
-- (NSUInteger)count
-{
+- (NSUInteger)count {
 	return [self.dictionaryInternal count];
 }
 
-- (id)objectForKey:(id)aKey
-{
+- (id)objectForKey:(id)aKey {
 	return [self.dictionaryInternal objectForKey:aKey];
 }
 
 #pragma mark - Primitive methods of NSMutableDictionary
 
-- (void)setObject:(id)anObject forKey:(id)aKey
-{
-	if (![self.dictionaryInternal objectForKey:aKey])
-	{
+- (void)setObject:(id)anObject forKey:(id)aKey {
+    NSMutableDictionary *dict = self.dictionaryInternal;
+	if (![dict objectForKey:aKey]) {
 		[self.keysInternal addObject:aKey];
 	}
-	[self.dictionaryInternal setObject:anObject forKey:aKey];
+	[dict setObject:anObject forKey:aKey];
 }
 
-- (void)removeObjectForKey:(id)aKey
-{
+- (void)removeObjectForKey:(id)aKey {
 	[self.dictionaryInternal removeObjectForKey:aKey];
 	[self.keysInternal removeObject:aKey];
 }
@@ -164,7 +145,6 @@ static NSString *DescriptionForObject(NSObject *object, id locale, NSUInteger in
 }
 
 - (void)commonInitWithCapacity:(NSUInteger)capacity {
-
 }
 
 - (NSEnumerator *)reverseKeyEnumerator

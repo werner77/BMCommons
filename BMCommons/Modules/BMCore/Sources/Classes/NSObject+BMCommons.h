@@ -162,6 +162,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable void *)bmInvokeSelector:(SEL)selector withArgs:(void *_Nonnull *_Nonnull)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount returnLength:(nullable NSUInteger *)returnLength;
 
 /**
+ Invoke selector with multiple args. Compared to performSelector this also allows for primitive types. The void* arguments specified by the array args are supplied as is to NSInvocation as method arguments. For supplying id arguments you have to supply the address of the id (that is &id) for primitives the address of the primitive argument.
+ 
+ The returnBuffer supplied should be of length returnLength. The returnLength is checked with the method signature for safety.
+ */
+- (void)bmInvokeSelector:(SEL)selector withArgs:(void *_Nonnull *_Nonnull)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount returnBuffer:(void *)returnBuffer returnLength:(NSUInteger)returnLength;
+
+
+/**
  Safe invoke selector method.
  
  Instead of failing with an NSInvalidArgumentException these methods will just return nil and fail silently if the selector does not exist.
@@ -196,6 +204,13 @@ NS_ASSUME_NONNULL_BEGIN
  @see invokeSelector:withArgs:argCount:returnLength:
  */
 - (nullable void *)bmSafeInvokeSelector:(SEL)selector withArgs:(void *_Nonnull *_Nonnull)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount returnLength:(nullable NSUInteger *)returnLength;
+
+/**
+ Safe invoke selector method.
+ 
+ Instead of failing with an NSInvalidArgumentException these methods will just return nil and fail silently if the selector does not exist.
+ */
+- (void)bmSafeInvokeSelector:(SEL)selector withArgs:(void *_Nonnull *_Nonnull)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount returnBuffer:(void *)returbBuffer returnLength:(NSUInteger)returnLength;
 
 /**
  Performs a safe cast: checks whether this object is an instance of the supplied class, if not returns nil.

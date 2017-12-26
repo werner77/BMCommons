@@ -19,6 +19,9 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		7414013A1DAF8E9800054D1D /* ExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 741401371DAF8E9800054D1D /* ExampleAppDelegate.m */; };
 		7414013B1DAF8E9800054D1D /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741401391DAF8E9800054D1D /* ExampleViewController.m */; };
+		74D550B71FF0DD4400090282 /* BMSortedArrayTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D550B61FF0DD4400090282 /* BMSortedArrayTestCase.m */; };
+		74D550B91FF1034000090282 /* BMSortedDictionaryTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D550B81FF1034000090282 /* BMSortedDictionaryTestCase.m */; };
+		74D550BF1FF278BD00090282 /* BMSortedSetTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D550BE1FF278BD00090282 /* BMSortedSetTestCase.m */; };
 		74DD2E2B1E28D52C00C8581A /* BMBooleanStackTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2DF11E28D52C00C8581A /* BMBooleanStackTestCase.m */; };
 		74DD2E2C1E28D52C00C8581A /* BMCacheTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2DF31E28D52C00C8581A /* BMCacheTestCase.m */; };
 		74DD2E2D1E28D52C00C8581A /* BMCollectionClassesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DD2DF51E28D52C00C8581A /* BMCollectionClassesTestCase.m */; };
@@ -86,6 +89,9 @@
 		741401391DAF8E9800054D1D /* ExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController.m; sourceTree = "<group>"; };
 		7414013C1DAF8EB500054D1D /* Example-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Example-Info.plist"; sourceTree = "<group>"; };
 		7414013D1DAF8EB500054D1D /* Example-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example-Prefix.pch"; sourceTree = "<group>"; };
+		74D550B61FF0DD4400090282 /* BMSortedArrayTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMSortedArrayTestCase.m; sourceTree = "<group>"; };
+		74D550B81FF1034000090282 /* BMSortedDictionaryTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMSortedDictionaryTestCase.m; sourceTree = "<group>"; };
+		74D550BE1FF278BD00090282 /* BMSortedSetTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMSortedSetTestCase.m; sourceTree = "<group>"; };
 		74DD2DF01E28D52C00C8581A /* BMBooleanStackTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMBooleanStackTestCase.h; sourceTree = "<group>"; };
 		74DD2DF11E28D52C00C8581A /* BMBooleanStackTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMBooleanStackTestCase.m; sourceTree = "<group>"; };
 		74DD2DF21E28D52C00C8581A /* BMCacheTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMCacheTestCase.h; sourceTree = "<group>"; };
@@ -339,6 +345,9 @@
 				74DD2DF91E28D52C00C8581A /* BMHTTPRequestTestCase.m */,
 				A83DF5C011B1912B7F935590 /* BMNullableArrayTestCase.m */,
 				A83DF075003C193A11BBBBE8 /* BMNullableArrayTestCase.h */,
+				74D550B61FF0DD4400090282 /* BMSortedArrayTestCase.m */,
+				74D550B81FF1034000090282 /* BMSortedDictionaryTestCase.m */,
+				74D550BE1FF278BD00090282 /* BMSortedSetTestCase.m */,
 			);
 			name = BMCore;
 			sourceTree = "<group>";
@@ -617,7 +626,10 @@
 				74DD2E2F1E28D52C00C8581A /* BMHTTPRequestTestCase.m in Sources */,
 				74DD2E321E28D52C00C8581A /* BMMiscTestCase.m in Sources */,
 				74DD2E381E28D52C00C8581A /* BMWeakTimerTestCase.m in Sources */,
+				74D550B71FF0DD4400090282 /* BMSortedArrayTestCase.m in Sources */,
+				74D550BF1FF278BD00090282 /* BMSortedSetTestCase.m in Sources */,
 				A83DFE59BB311F320D740EFA /* BMNullableArrayTestCase.m in Sources */,
+				74D550B91FF1034000090282 /* BMSortedDictionaryTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

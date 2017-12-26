@@ -4,8 +4,12 @@
 //
 
 #import <BMCommons/BMSortedArray.h>
+#import <BMCommons/NSObject+BMCommons.h>
+#import <BMCommons/NSInvocation+BMCommons.h>
 
 @interface BMSortedArray()
+
+@property(nonatomic, copy) NSComparator internalComparator;
 
 @end
 
@@ -14,7 +18,36 @@
 }
 
 - (void)commonInitWithCapacity:(NSUInteger)capacity {
-    _array = [[NSMutableArray alloc] initWithCapacity:capacity];
+    if (_array == nil) {
+        _array = [[NSMutableArray alloc] initWithCapacity:capacity];
+        
+        __typeof(self) __weak weakSelf = self;
+        self.internalComparator = ^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            typeof(self) __strong strongSelf = weakSelf;
+            NSComparator comparator;
+            NSArray *sortDescriptors;
+            SEL sortSelector;
+            if ((comparator = strongSelf.comparator) != nil) {
+                return comparator(obj1, obj2);
+            } else if ((sortDescriptors = strongSelf.sortDescriptors) != nil) {
+                for (NSSortDescriptor *sortDescriptor in sortDescriptors) {
+                    NSComparisonResult result = [sortDescriptor compareObject:obj1 toObject:obj2];
+                    if (result != NSOrderedSame) {
+                        return result;
+                    }
+                }
+            } else if ((sortSelector = strongSelf.sortSelector) != NULL) {
+                NSComparisonResult result;
+                void *args[] = {&obj2};
+                NSUInteger argSizes[] = {sizeof(id)};
+                
+                [obj1 bmInvokeSelector:sortSelector withArgs:args argSizes:argSizes argCount:1 returnBuffer:&result returnLength:sizeof(result)];
+                
+                return result;
+            }
+            return NSOrderedSame;
+        };
+    }
 }
 
 - (id)init {
@@ -31,6 +64,24 @@
     return self;
 }
 
+- (id)initForCopy {
+    return [super init];
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+    BMSortedArray *copy = [[self.class allocWithZone:zone] initForCopy];
+    copy.comparator = self.comparator;
+    copy.sortDescriptors = self.sortDescriptors;
+    copy.sortSelector = self.sortSelector;
+    copy.internalComparator = self.internalComparator;
+    copy->_array = [self->_array mutableCopyWithZone:zone];
+    return copy;
+}
+
+- (id)mutableCopyWithZone:(NSZone *)zone {
+    return [self copyWithZone:zone];
+}
+
 #pragma mark - Overridden primitive methods
 
 - (void)insertObject:(id)anObject atIndex:(NSUInteger)index {
@@ -42,8 +93,8 @@
 }
 
 - (void)addObject:(id)anObject {
-    [_array addObject:anObject];
-    [self sort];
+    NSUInteger insertionIndex = [self insertionIndexForObject:anObject];
+    [_array insertObject:anObject atIndex:insertionIndex];
 }
 
 - (void)removeLastObject {
@@ -51,8 +102,22 @@
 }
 
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject {
-    [_array replaceObjectAtIndex:index withObject:anObject];
-    [self sort];
+    [_array removeObjectAtIndex:index];
+    [self addObject:anObject];
+}
+
+- (NSUInteger)indexOfObject:(id)object {
+    return [_array indexOfObject:object
+                   inSortedRange:NSMakeRange(0, _array.count)
+                         options:NSBinarySearchingFirstEqual
+                 usingComparator:self.internalComparator];
+}
+
+- (void)removeObject:(id)anObject {
+    NSUInteger index = [self indexOfObject:anObject];
+    if (index != NSNotFound) {
+        [self removeObjectAtIndex:index];
+    }
 }
 
 - (NSUInteger)count {
@@ -64,13 +129,7 @@
 }
 
 - (void)sort {
-    if (self.comparator) {
-        [_array sortUsingComparator:self.comparator];
-    } else if (self.sortDescriptors) {
-        [_array sortUsingDescriptors:self.sortDescriptors];
-    } else if (self.sortSelector) {
-        [_array sortUsingSelector:self.sortSelector];
-    }
+    [_array sortUsingComparator:self.internalComparator];
 }
 
 - (void)setSortDescriptors:(NSArray *)sortDescriptors {
@@ -90,6 +149,13 @@
         _sortSelector = sortSelector;
         [self sort];
     }
+}
+
+- (NSUInteger)insertionIndexForObject:(id)object {
+    return [_array indexOfObject:object
+                   inSortedRange:NSMakeRange(0, _array.count)
+                         options:NSBinarySearchingInsertionIndex
+                 usingComparator:self.internalComparator];
 }
 
 @end

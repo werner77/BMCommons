@@ -1,18 +1,16 @@
 //
-// Created by Werner Altewischer on 22/10/15.
-// Copyright (c) 2015 BehindMedia. All rights reserved.
+//  BMSortedSet.h
+//  BMCommons
+//
+//  Created by Werner Altewischer on 25/12/2017.
 //
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 /**
- * Array which maintains sorting order upon adding/insertion of objects using the specified comparator/sortDescriptors/sortSelector in this order of precedence.
- 
- Behaviour is not defined if neither of the comparator/sortDescriptors/sortSelector is set.
+ Set which maintains sorting order according to the comparator, sortDescriptors or sortSelector set (in that order of precedence).
  */
-@interface BMSortedArray<ObjectType> : NSMutableArray<ObjectType>
+@interface BMSortedSet : NSMutableSet
 
 /**
  * Set to sort using the specified comparator, highest precedence
@@ -30,5 +28,3 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, assign) SEL sortSelector;
 
 @end
-
-NS_ASSUME_NONNULL_END

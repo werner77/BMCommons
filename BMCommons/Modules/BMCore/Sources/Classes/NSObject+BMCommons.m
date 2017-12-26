@@ -181,6 +181,10 @@
     return [self invokeSelector:selector withArgs:args argSizes:argSizes argCount:argCount safe:NO returnLength:returnLength];
 }
 
+- (void)bmInvokeSelector:(SEL)selector withArgs:(void *_Nonnull *_Nonnull)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount returnBuffer:(void *)returnBuffer returnLength:(NSUInteger)returnLength {
+    return [self invokeSelector:selector withArgs:args argSizes:argSizes argCount:argCount returnBuffer:returnBuffer returnBufferCreationBlock:NULL returnSize:returnLength safe:NO pointerType:NO];
+}
+
 - (void *)bmSafeInvokeSelector:(SEL)selector returnLength:(NSUInteger *)returnLength {
     return [self invokeSelector:selector withArgs:nil argSizes:nil argCount:0 safe:YES returnLength:returnLength];
 }
@@ -202,6 +206,9 @@
     return [self invokeSelector:selector withArgs:args argSizes:argSizes argCount:argCount safe:YES returnLength:returnLength];
 }
 
+- (void)bmSafeInvokeSelector:(SEL)selector withArgs:(void *_Nonnull *_Nonnull)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount returnBuffer:(void *)returnBuffer returnLength:(NSUInteger)returnLength {
+    return [self invokeSelector:selector withArgs:args argSizes:argSizes argCount:argCount returnBuffer:returnBuffer returnBufferCreationBlock:NULL returnSize:returnLength safe:YES pointerType:NO];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void *)invokeSelector:(SEL)selector withArgs:(void **)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount safe:(BOOL)safe returnLength:(NSUInteger *)returnLength {
@@ -217,13 +224,42 @@
 }
 
 - (NSData *)dataFromInvokeSelector:(SEL)selector withArgs:(void **)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount safe:(BOOL)safe pointerType:(BOOL)pointerType {
+    
+    __block void *buffer = NULL;
+    __block NSUInteger bufferSize = 0;
+    
+    [self invokeSelector:selector withArgs:args argSizes:argSizes argCount:argCount returnBuffer:NULL returnBufferCreationBlock:^void *(NSUInteger size) {
+        buffer = malloc(size);
+        bufferSize = size;
+        return buffer;
+    } returnSize:0 safe:safe pointerType:pointerType];
+    
+    NSData *data = buffer == NULL ? nil : [NSData dataWithBytesNoCopy:buffer length:bufferSize freeWhenDone:YES];
+    return data;
+}
+
+- (void)invokeSelector:(SEL)selector withArgs:(void **)args argSizes:(NSUInteger *)argSizes argCount:(NSUInteger)argCount returnBuffer:(void *)returnBuffer returnBufferCreationBlock:(void * (^)(NSUInteger size))returnBufferCreationBlock returnSize:(NSUInteger)returnSize safe:(BOOL)safe pointerType:(BOOL)pointerType {
+    
     NSMethodSignature *sig = [self methodSignatureForSelector:selector];
     
     if (safe && ![self respondsToSelector:selector]) {
-        return nil;
+        return;
     }
     
     if (sig) {
+        if (returnBufferCreationBlock == NULL) {
+            if (sig.methodReturnLength != returnSize) {
+                if (safe) {
+                    return;
+                } else {
+                    NSString *message = @"Return size of method signature does not match specified size";
+                    @throw [NSException exceptionWithName:@"BMInvalidArgumentException" reason:message userInfo:nil];
+                }
+            }
+        } else {
+            returnBuffer = NULL;
+        }
+        
         NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
         [invo setTarget:self];
         [invo setSelector:selector];
@@ -253,7 +289,7 @@
                         [invo setArgument:arg atIndex:(i + 2)];
                     } else {
                         if (safe) {
-                            return nil;
+                            return;
                         } else {
                             NSString *message = [NSString stringWithFormat:@"Invalid size for argument at index %tu specified for selector %@", i, NSStringFromSelector(selector)];
                             @throw [NSException exceptionWithName:@"BMInvalidArgumentException" reason:message userInfo:nil];
@@ -262,26 +298,19 @@
                 }
             }
         }
-        
         [invo invoke];
         if (sig.methodReturnLength > 0) {
-            void *buffer = malloc(sig.methodReturnLength);
-            [invo getReturnValue:buffer];
-            
-            NSData *data = [NSData dataWithBytesNoCopy:buffer length:sig.methodReturnLength freeWhenDone:YES];
-            return data;
-        } else {
-            return nil;
+            if (returnBufferCreationBlock != NULL) {
+                returnBuffer = returnBufferCreationBlock(sig.methodReturnLength);
+            }
+            [invo getReturnValue:returnBuffer];
         }
-        
     } else {
         if (!safe) {
             [self doesNotRecognizeSelector:selector];
         }
-        return nil;
     }
 }
-
 
 - (id)bmCastSafely:(Class)expectedClass {
     return [[self class] checkTypeSafetyForValue:self andClass:expectedClass];
