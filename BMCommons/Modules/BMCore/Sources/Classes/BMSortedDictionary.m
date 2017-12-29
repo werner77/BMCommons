@@ -51,6 +51,14 @@
     return _keys.sortDescriptors;
 }
 
+- (void)setOrderingConsistentWithEquals:(BOOL)orderingConsistentWithEquals {
+    [_keys setOrderingConsistentWithEquals:orderingConsistentWithEquals];
+}
+
+- (BOOL)isOrderingConsistentWithEquals {
+    return _keys.isOrderingConsistentWithEquals;
+}
+
 #pragma mark - Abstract method implementations
 
 - (NSMutableArray *)keysInternal {

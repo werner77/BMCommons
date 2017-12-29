@@ -41,6 +41,14 @@
     }
 }
 
+- (void)setOrderingConsistentWithEquals:(BOOL)orderingConsistentWithEquals {
+    [_array setOrderingConsistentWithEquals:orderingConsistentWithEquals];
+}
+
+- (BOOL)isOrderingConsistentWithEquals {
+    return _array.isOrderingConsistentWithEquals;
+}
+
 - (void)setComparator:(NSComparator)comparator {
     _array.comparator = comparator;
 }

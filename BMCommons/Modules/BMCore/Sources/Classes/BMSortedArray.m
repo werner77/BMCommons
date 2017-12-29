@@ -109,10 +109,14 @@
 }
 
 - (NSUInteger)indexOfObject:(id)object {
-    return [_array indexOfObject:object
-                   inSortedRange:NSMakeRange(0, _array.count)
-                         options:NSBinarySearchingFirstEqual
-                 usingComparator:self.internalComparator];
+    if (self.isOrderingConsistentWithEquals) {
+        return [_array indexOfObject:object
+                       inSortedRange:NSMakeRange(0, _array.count)
+                             options:NSBinarySearchingFirstEqual
+                     usingComparator:self.internalComparator];
+    } else {
+        return [super indexOfObject:object];
+    }
 }
 
 - (void)removeObject:(id)anObject {
