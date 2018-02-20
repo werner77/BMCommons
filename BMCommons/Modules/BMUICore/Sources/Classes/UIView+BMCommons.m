@@ -688,7 +688,7 @@ static UIView * __BMHitTest(UIView *self, SEL cmd, CGPoint point, UIEvent *event
     return encompassingRect;
 }
 
-- (UIView *)bmReusableSubviewWithCreationBlock:(UIView* (^)())viewCreationBlock fromArray:(NSMutableArray *)views atIndex:(NSUInteger)index createIfNotExists:(BOOL)createIfNotExists created:(BOOL *)created {
+- (UIView *)bmReusableSubviewWithCreationBlock:(UIView* (^)(void))viewCreationBlock fromArray:(NSMutableArray *)views atIndex:(NSUInteger)index createIfNotExists:(BOOL)createIfNotExists created:(BOOL *)created {
     NSAssert(views != nil,@"Views parameter should not be nil");
 
     UIView *subView = nil;
@@ -729,7 +729,7 @@ static UIView * __BMHitTest(UIView *self, SEL cmd, CGPoint point, UIEvent *event
     } updateBlock:updateBlock];
 }
 
-- (BOOL)bmUpdateReusableSubviews:(NSMutableArray<UIView *> *)views withData:(NSArray *)data creationBlock:(UIView* (^)())viewCreationBlock
+- (BOOL)bmUpdateReusableSubviews:(NSMutableArray<UIView *> *)views withData:(NSArray *)data creationBlock:(UIView* (^)(void))viewCreationBlock
                      updateBlock:(BOOL (^)(NSUInteger index, UIView *view, id dataObject))updateBlock {
     BOOL changed = NO;
     for (NSUInteger i = 0; i < data.count; ++i) {

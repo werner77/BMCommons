@@ -241,16 +241,20 @@ static NSMutableDictionary *serialVersionUIDCache = nil;
 
 static inline int64_t hash(NSString *s) {
 	int64_t h = 0;
-	if (s != nil && s.length > 0) {
-		const char * buffer = [s cStringUsingEncoding:NSUTF8StringEncoding];
-		int i = 0;
-		while (YES) {
-			char c = buffer[i++];
-			if (c == '\0') {
-				break;
-			}
-			h = 31 * h + (int64_t)c;
-		}
+    NSUInteger stringLength = s.length;
+	if (s != nil && stringLength > 0) {
+        const unichar *buffer = CFStringGetCharactersPtr((__bridge CFStringRef)s);
+        if (buffer == NULL) {
+            for (int i = 0; i < stringLength; ++i) {
+                unichar c = [s characterAtIndex:i];
+                h = 37 * h + (int64_t)c;
+            }
+        } else {
+            for (int i = 0; i < stringLength; ++i) {
+                unichar c = buffer[i];
+                h = 37 * h + (int64_t)c;
+            }
+        }
 	}
 	return h;
 }

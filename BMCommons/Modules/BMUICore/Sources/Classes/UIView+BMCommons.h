@@ -565,7 +565,7 @@ typedef NS_OPTIONS(NSUInteger, BMHitTestMode) {
  * @param updateBlock Block to update the view with the specified data. Should return true if the view was updated from it's previous state, or false otherwise. If the previous state is not known true should be returned.
  * @return true if any of the subviews was updated or there were views added/removed, false otherwise.
  */
-- (BOOL)bmUpdateReusableSubviews:(NSMutableArray<UIView *> *)views withData:(NSArray *)data creationBlock:(UIView* (^)())creationBlock
+- (BOOL)bmUpdateReusableSubviews:(NSMutableArray<UIView *> *)views withData:(NSArray *)data creationBlock:(UIView* (^)(void))creationBlock
                      updateBlock:(BOOL (^)(NSUInteger index, UIView *view, id dataObject))updateBlock;
 
 

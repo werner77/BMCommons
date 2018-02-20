@@ -353,12 +353,17 @@ static BOOL gImageCacheEnabled = YES;
 
     unsigned char md5[CC_MD5_DIGEST_LENGTH];
     {
+        const unichar *internalPointer = CFStringGetCharactersPtr((__bridge CFStringRef)URL);
         NSUInteger urlLength = URL.length;
         NSUInteger bufferLength = urlLength * sizeof(unichar);
-        unichar *buffer = malloc(bufferLength);
-        [URL getCharacters:buffer range:NSMakeRange(0, urlLength)];
-        CC_MD5(buffer, (CC_LONG)bufferLength, md5);
-        free(buffer);
+        if (internalPointer == NULL) {
+            unichar *buffer = malloc(bufferLength);
+            [URL getCharacters:buffer range:NSMakeRange(0, urlLength)];
+            CC_MD5(buffer, (CC_LONG)bufferLength, md5);
+            free(buffer);
+        } else {
+            CC_MD5(internalPointer, (CC_LONG)bufferLength, md5);
+        }
     }
 
     static const unichar base[] = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
