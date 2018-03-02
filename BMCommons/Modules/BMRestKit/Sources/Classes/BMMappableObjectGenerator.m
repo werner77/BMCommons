@@ -160,7 +160,6 @@ typedef NS_ENUM(NSUInteger, BMFileType) {
             }
         }
         
-        [BMFieldMapping setClassChecksEnabled:classChecksEnabled];
         if (error != nil) {
             LogError(@"Bailed out because of file writing error: %@", error);
         }
@@ -168,6 +167,8 @@ typedef NS_ENUM(NSUInteger, BMFileType) {
     } else {
         LogError(@"Could not parse schema: %@", error);
     }
+    
+    [BMFieldMapping setClassChecksEnabled:classChecksEnabled];
     
     if (errorOut) {
         *errorOut = error;

@@ -32,41 +32,49 @@
 
 @implementation BMFieldMapping {
 @private
-    NSString *fieldName;
-    NSString *fieldFormat;
-    NSString *namespaceURI;
+    NSString *_fieldName;
+    NSString *_fieldFormat;
+    NSString *_namespaceURI;
     
-    NSArray *elementNameComponents;
-    NSString *attributeName;
-    NSString *mappingPath;
+    NSArray *_elementNameComponents;
+    NSString *_attributeName;
+    NSString *_mappingPath;
     
-    SEL setterSelector;
-    SEL getterSelector;
-    SEL converterSelector;
-    id converterTarget;
-    SEL inverseConverterSelector;
-    id inverseConverterTarget;
-    BOOL array;
-    BOOL set;
-    BOOL dictionary;
-    BOOL date;
-    Class fieldObjectClass;
-    NSString *fieldObjectClassName;
+    SEL _setterSelector;
+    SEL _getterSelector;
+    SEL _converterSelector;
+    id _converterTarget;
+    SEL _inverseConverterSelector;
+    id _inverseConverterTarget;
+    BOOL _array;
+    BOOL _set;
+    BOOL _dictionary;
+    BOOL _date;
+    Class _fieldObjectClass;
+    NSString *_fieldObjectClassName;
+    NSString *_swiftClassName;
 }
 
 static BOOL classChecksEnabled = YES;
 static NSString *defaultDateFormat = nil;
 static NSTimeZone *defaultTimeZone = nil;
 
-@synthesize namespaceURI;
-@synthesize fieldName;
-@synthesize setterSelector;
-@synthesize converterSelector;
-@synthesize converterTarget;
-@synthesize inverseConverterTarget;
-@synthesize inverseConverterSelector;
-@synthesize getterSelector;
-@synthesize array, elementNameComponents, attributeName, mappingPath, fieldObjectClass, date, dictionary, set;
+@synthesize namespaceURI = _namespaceURI;
+@synthesize fieldName = _fieldName;
+@synthesize setterSelector = _setterSelector;
+@synthesize converterSelector = _converterSelector;
+@synthesize converterTarget = _converterTarget;
+@synthesize inverseConverterTarget = _inverseConverterTarget;
+@synthesize inverseConverterSelector = _inverseConverterSelector;
+@synthesize getterSelector = _getterSelector;
+@synthesize array = _array;
+@synthesize elementNameComponents = _elementNameComponents;
+@synthesize attributeName = _attributeName;
+@synthesize mappingPath = _mappingPath;
+@synthesize fieldObjectClass = _fieldObjectClass;
+@synthesize date = _date;
+@synthesize dictionary = _dictionary;
+@synthesize set = _set;
 
 + (void)setClassChecksEnabled:(BOOL)enabled {
     classChecksEnabled = enabled;
@@ -107,7 +115,6 @@ static NSTimeZone *defaultTimeZone = nil;
     if (!defaultTimeZone) {
         [self setDefaultTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
     }
-
 }
 
 + (NSDictionary *)parseFieldDescriptorDictionary:(NSDictionary *)dict withNamespaces:(NSDictionary *)namespaceDict error:(NSError **)error {
@@ -162,10 +169,10 @@ static NSTimeZone *defaultTimeZone = nil;
         currentComponent = [fieldDescriptor substringWithRange:NSMakeRange(startLocation, range.location + range.length - 1 - startLocation)];
         
         if (fieldComponents.count > 0) {
-            if (fieldFormat) {
-                fieldFormat = [fieldFormat stringByAppendingFormat:@":%@", currentComponent];
+            if (_fieldFormat) {
+                _fieldFormat = [_fieldFormat stringByAppendingFormat:@":%@", currentComponent];
             } else {
-                fieldFormat = currentComponent;
+                _fieldFormat = currentComponent;
             }
         }
         currentComponent = [currentComponent  stringByReplacingOccurrencesOfString:@"\\:" withString:@":"];
@@ -180,7 +187,7 @@ static NSTimeZone *defaultTimeZone = nil;
         return NO;
     }
     
-    fieldName = [fieldComponents objectAtIndex:0];
+    _fieldName = [fieldComponents objectAtIndex:0];
     
     NSString *type = nil;
     NSString *subType = nil;
@@ -205,7 +212,7 @@ static NSTimeZone *defaultTimeZone = nil;
         }
     }
 
-    [self initSelectorFromFieldName:fieldName andType:type andFormat:format];
+    [self initSelectorFromFieldName:_fieldName andType:type andFormat:format];
     if (!self.setterSelector || !self.getterSelector) {
         if (error) {
             *error = [BMErrorHelper genericErrorWithDescription:@"Could not determine getter and/or setter selector"];
@@ -214,12 +221,16 @@ static NSTimeZone *defaultTimeZone = nil;
     }
     
     //Default class is NSString
-    fieldObjectClass = [NSString class];
-    BM_RELEASE_SAFELY(fieldObjectClassName);
+    _fieldObjectClass = [NSString class];
+    _swiftClassName = nil;
+    _fieldObjectClassName = nil;
     if (type && subType) {
         if (![self initConverterWithType:type subType:subType andFormat:format error:error]) {
             return NO;
         }
+    }
+    if ([self.fieldObjectClassName isEqual:@"NSString"]) {
+        _swiftClassName = @"String";
     }
     _initialized = YES;
     return YES;
@@ -402,11 +413,32 @@ static NSTimeZone *defaultTimeZone = nil;
 }
 
 - (NSString *)fieldObjectClassName {
-	if (fieldObjectClass) {
-		return NSStringFromClass(fieldObjectClass);
+    NSString *ret = nil;
+	if (_fieldObjectClass) {
+		ret = NSStringFromClass(_fieldObjectClass);
 	} else {
-		return fieldObjectClassName;
+		ret = _fieldObjectClassName;
 	}
+    return ret;
+}
+
+- (NSString *)swiftFieldClassName {
+    NSString *fieldObjectClassName = self.swiftFieldObjectClassName;
+    if (self.isArray) {
+        return [NSString stringWithFormat:@"[%@]", fieldObjectClassName];
+    } else if (self.isSet) {
+        return [NSString stringWithFormat:@"Set<%@>", fieldObjectClassName];
+    } else {
+        return fieldObjectClassName;
+    }
+}
+
+- (NSString *)swiftFieldObjectClassName {
+    if (_swiftClassName) {
+        return _swiftClassName;
+    } else {
+        return self.unqualifiedFieldObjectClassName;
+    }
 }
 
 - (BOOL)isJSONStringField {
@@ -416,20 +448,20 @@ static NSTimeZone *defaultTimeZone = nil;
 }
 
 - (BOOL)fieldObjectClassIsMappable {
-	return [(id)fieldObjectClass conformsToProtocol:@protocol(BMMappableObject)];
+	return [(id)_fieldObjectClass conformsToProtocol:@protocol(BMMappableObject)];
 }
 
 - (BOOL)fieldObjectClassIsCustom {
-	return self.fieldObjectClassIsMappable || (fieldObjectClass == nil && fieldObjectClassName != nil);
+	return self.fieldObjectClassIsMappable || (_fieldObjectClass == nil && _fieldObjectClassName != nil);
 }
 
 - (NSString *)fieldMappingFormatString {
-	if (fieldFormat) {
-		return [NSString stringWithFormat:@"%@;%@;%@", fieldName, mappingPath, fieldFormat];
-	} else if ([mappingPath isEqual:fieldName]) {
-		return fieldName;
+	if (_fieldFormat) {
+		return [NSString stringWithFormat:@"%@;%@;%@", _fieldName, _mappingPath, _fieldFormat];
+	} else if ([_mappingPath isEqual:_fieldName]) {
+		return _fieldName;
 	} else {
-		return [NSString stringWithFormat:@"%@;%@", fieldName, mappingPath];
+		return [NSString stringWithFormat:@"%@;%@", _fieldName, _mappingPath];
 	}
 }
 
@@ -438,7 +470,7 @@ static NSTimeZone *defaultTimeZone = nil;
 }
 			
 - (NSString *)fieldFormat {
-	return fieldFormat;
+	return _fieldFormat;
 }
 
 - (BOOL)isCollection {
@@ -454,9 +486,9 @@ static NSTimeZone *defaultTimeZone = nil;
 
 - (void)setMappingPath:(NSString *)path {
     
-    BM_RELEASE_SAFELY(attributeName);
-    BM_RELEASE_SAFELY(elementNameComponents);
-    BM_AUTORELEASE_SAFELY(mappingPath);
+    BM_RELEASE_SAFELY(_attributeName);
+    BM_RELEASE_SAFELY(_elementNameComponents);
+    BM_AUTORELEASE_SAFELY(_mappingPath);
     
     if (path) {
         NSMutableArray *components = [NSMutableArray arrayWithArray:[path componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:MAPPING_ELEMENT_SEPARATOR]]];
@@ -465,13 +497,13 @@ static NSTimeZone *defaultTimeZone = nil;
         
         if (lastComponents.count > 1) {
             lastComponent = [lastComponents objectAtIndex:0];
-            attributeName = [lastComponents objectAtIndex:1];
+            _attributeName = [lastComponents objectAtIndex:1];
             [components removeLastObject];
             [components addObject:lastComponent];
         }
         
-        elementNameComponents = [NSArray arrayWithArray:components];
-        mappingPath = path;
+        _elementNameComponents = [NSArray arrayWithArray:components];
+        _mappingPath = path;
     }
 }
 
@@ -493,34 +525,34 @@ static NSTimeZone *defaultTimeZone = nil;
 @implementation BMFieldMapping(Private)
 
 - (void)setConverterTarget:(id)target {
-	if (target != converterTarget) {
-		converterTarget = nil;
-		converterTarget = target;
+	if (target != _converterTarget) {
+		_converterTarget = nil;
+		_converterTarget = target;
 	}
 }
 
 - (void)setInverseConverterTarget:(id)target {
-    if (target != inverseConverterTarget) {
-		inverseConverterTarget = nil;
-		inverseConverterTarget = target;
+    if (target != _inverseConverterTarget) {
+		_inverseConverterTarget = nil;
+		_inverseConverterTarget = target;
 	}
 }
 
 - (void)initSelectorFromFieldName:(NSString *)theFieldName andType:(NSString *)type andFormat:(NSString *)format {
-	getterSelector = NSSelectorFromString(theFieldName);
+	_getterSelector = NSSelectorFromString(theFieldName);
 	if ([type isEqualToString:@"custom"]) {
-		setterSelector = NSSelectorFromString([format stringByAppendingString:@":"]);
+		_setterSelector = NSSelectorFromString([format stringByAppendingString:@":"]);
 	} else {
-		array = [type isEqualToString:@"array"];
-        dictionary = [type isEqualToString:@"dictionary"];
-        set = [type isEqualToString:@"set"];
+		_array = [type isEqualToString:@"array"];
+        _dictionary = [type isEqualToString:@"dictionary"];
+        _set = [type isEqualToString:@"set"];
 		
 		NSString *setterName = @"";
 		if (theFieldName.length > 0) {
 			NSString *firstChar = [[theFieldName substringToIndex:1] uppercaseString];
 			setterName = [NSString stringWithFormat:@"set%@%@:", firstChar, [theFieldName substringFromIndex:1]];
 		}		
-		setterSelector = NSSelectorFromString(setterName);
+		_setterSelector = NSSelectorFromString(setterName);
 	}
 }
 
@@ -528,29 +560,33 @@ static NSTimeZone *defaultTimeZone = nil;
     if ([subType isEqualToString:@"string"]) {
         //Do nothing
     } else if ([subType isEqualToString:@"int"]) {
-		converterSelector = @selector(intNumberForString:);
+		_converterSelector = @selector(intNumberForString:);
 		self.converterTarget = [BMNumberHelper class];
-		inverseConverterSelector = @selector(stringValue);
-		fieldObjectClass = [NSNumber class];
+		_inverseConverterSelector = @selector(stringValue);
+		_fieldObjectClass = [NSNumber class];
+        _swiftClassName = @"Int";
 	} else if ([subType isEqualToString:@"double"]) {
-		converterSelector = @selector(doubleNumberForString:);
+		_converterSelector = @selector(doubleNumberForString:);
 		self.converterTarget = [BMNumberHelper class];
-		inverseConverterSelector = @selector(stringValue);
-		fieldObjectClass = [NSNumber class];
+		_inverseConverterSelector = @selector(stringValue);
+		_fieldObjectClass = [NSNumber class];
+        _swiftClassName = @"Double";
 	} else if ([subType isEqualToString:@"bool"]) {
-		converterSelector = @selector(boolNumberForString:);
+		_converterSelector = @selector(boolNumberForString:);
 		self.converterTarget = [BMNumberHelper class];	
-		inverseConverterSelector = @selector(bmBoolStringValue);
-		fieldObjectClass = [NSNumber class];
+		_inverseConverterSelector = @selector(bmBoolStringValue);
+		_fieldObjectClass = [NSNumber class];
+        _swiftClassName = @"Bool";
 	} else if ([subType isEqualToString:@"url"]) {
-		converterSelector = @selector(urlFromString:);
+		_converterSelector = @selector(urlFromString:);
 		self.converterTarget = [BMStringHelper class];
-        inverseConverterSelector = @selector(absoluteString);
+        _inverseConverterSelector = @selector(absoluteString);
         self.inverseConverterTarget = nil;
-		fieldObjectClass = [NSURL class];
+		_fieldObjectClass = [NSURL class];
+        _swiftClassName = @"URL";
 	} else if ([subType isEqualToString:@"date"]) {
-		converterSelector = @selector(bmDateByParsingFromString:);
-		inverseConverterSelector = @selector(stringFromDate:);
+		_converterSelector = @selector(bmDateByParsingFromString:);
+		_inverseConverterSelector = @selector(stringFromDate:);
         if ([BMStringHelper isEmpty:format]) {
             //Default
             format = [[self class] defaultDateFormat];
@@ -560,8 +596,8 @@ static NSTimeZone *defaultTimeZone = nil;
 				self.converterTarget = [BMDateHelper standardTimestampFormatter];
 			} else if ([format isEqualToString:@"RFC3339"]) {
 				self.converterTarget = [BMDateHelper class];
-				converterSelector = @selector(dateFromRFC3339String:);
-				inverseConverterSelector = @selector(rfc3339StringFromDate:);
+				_converterSelector = @selector(dateFromRFC3339String:);
+				_inverseConverterSelector = @selector(rfc3339StringFromDate:);
 			} else if ([format isEqualToString:@"standardDate"]) {
 				self.converterTarget = [BMDateHelper standardDateFormatter];
 			} else {
@@ -570,24 +606,25 @@ static NSTimeZone *defaultTimeZone = nil;
 		} else {
             self.converterTarget = [BMDateHelper defaultDateFormatter];
         }
-        if (!converterTarget) {
+        if (!_converterTarget) {
             if (error) {
                 *error = [BMErrorHelper errorForDomain:BM_ERROR_DOMAIN_DATA code:BM_ERROR_INVALID_DATA description:[NSString stringWithFormat:@"Invalid date format specified: %@", format]];
             }
             return NO;
         }
         
-		self.inverseConverterTarget = converterTarget;
-		fieldObjectClass = [NSDate class];
-        date = YES;
-	} else if (subType && ([type isEqualToString:@"object"] || [type isEqualToString:@"custom"] || [type isEqualToString:@"array"] || [type isEqualToString:@"dictionary"])) {
+		self.inverseConverterTarget = _converterTarget;
+		_fieldObjectClass = [NSDate class];
+        _swiftClassName = @"Date";
+        _date = YES;
+	} else if (subType && ([type isEqualToString:@"object"] || [type isEqualToString:@"custom"] || [type isEqualToString:@"array"] || [type isEqualToString:@"set"] || [type isEqualToString:@"dictionary"])) {
 		if ([subType isEqual:type]) {
 			//Default sub type is string
-			fieldObjectClass = [NSString class];
+			_fieldObjectClass = [NSString class];
+            _swiftClassName = @"String";
 		} else {
-            BM_RELEASE_SAFELY(fieldObjectClassName);
-            fieldObjectClassName = subType;
-            fieldObjectClass = NSClassFromString(subType);
+            _fieldObjectClassName = subType;
+            _fieldObjectClass = NSClassFromString(subType);
             if (classChecksEnabled && !self.fieldObjectClassIsMappable) {
                 if (error) {
                     *error = [BMErrorHelper errorForDomain:BM_ERROR_DOMAIN_DATA code:BM_ERROR_INVALID_DATA description:[NSString stringWithFormat:@"Invalid class specified: '%@'. Could not be found or is no mappable class. Failed fieldName: %@, mappingPath: %@",

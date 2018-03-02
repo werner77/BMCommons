@@ -124,11 +124,9 @@
     if (self.bgTaskIdentifier == UIBackgroundTaskInvalid && (self.isBackgroundService || self.isSendToBackgroundSupported)) {
         __typeof(self) __weak weakSelf = self;
         self.bgTaskIdentifier = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^(void) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (weakSelf.isExecuting) {
-                    [weakSelf cancel];
-                }
-            });
+            if (weakSelf.isExecuting) {
+                [weakSelf cancel];
+            }
         }];
     }
 #endif
