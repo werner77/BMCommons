@@ -20,6 +20,8 @@
 @implementation BMJSONSchemaParser
 
 static NSDictionary *jsonDataTypeDict = nil;
+static NSDictionary *jsonFormatTypeDict = nil;
+static NSDictionary *jsonFormatPatternDict = nil;
 
 #define JS_MULTIPLE_OF @"multipleOf" //int: valid if <instance count>/multipleOf is an integer
 #define JS_MAXIMUM @"maximum" //max value
@@ -32,12 +34,14 @@ static NSDictionary *jsonDataTypeDict = nil;
 #define JS_PATTERN @"pattern" //regex validation pattern
 
 #define JS_PROPERTIES @"properties"
+#define JS_REQUIRED @"required"
 #define JS_ENUM @"enum"
 #define JS_TYPE @"type"
 #define JS_REF @"$ref"
 #define JS_ID @"id"
 #define JS_ITEMS @"items"
 #define JS_TITLE @"title"
+#define JS_FORMAT @"format"
 
 #define JS_TYPE_OBJECT  @"object"
 #define JS_TYPE_ARRAY @"array"
@@ -46,6 +50,13 @@ static NSDictionary *jsonDataTypeDict = nil;
 #define JS_TYPE_NUMBER @"number"
 #define JS_TYPE_BOOLEAN @"boolean"
 #define JS_TYPE_NULL @"null"
+
+#define JS_FORMAT_EMAIL @"email"
+#define JS_FORMAT_DATETIME @"date-time"
+#define JS_FORMAT_HOSTNAME @"hostname"
+#define JS_FORMAT_IPV4 @"ipv4"
+#define JS_FORMAT_IPV6 @"ipv6"
+#define JS_FORMAT_URI @"uri"
 
 + (void)initialize {
 
@@ -76,6 +87,21 @@ static NSDictionary *jsonDataTypeDict = nil;
                              };
     }
     
+    if (jsonFormatTypeDict == nil) {
+        jsonFormatTypeDict = @{
+                             JS_FORMAT_URI : BM_FIELD_TYPE_URL,
+                             JS_FORMAT_DATETIME : BM_FIELD_TYPE_DATE,
+                             };
+    }
+    
+    if (jsonFormatPatternDict == nil) {
+        jsonFormatPatternDict = @{
+                               JS_FORMAT_EMAIL : @"",
+                               JS_FORMAT_HOSTNAME : @"",
+                               JS_FORMAT_IPV4: @"",
+                               JS_FORMAT_IPV6: @""
+                               };
+    }
 }
 
 #pragma mark - Protected
@@ -125,9 +151,10 @@ static NSDictionary *jsonDataTypeDict = nil;
 #pragma mark - Private
 
 - (BMSchemaFieldType)parseSchemaDict:(NSDictionary *)schemaDict withName:(NSString *)theName objectMapping:(BMObjectMapping *)objectMapping objectMappingDict:(NSMutableDictionary *)objectMappingDict addToFieldMappings:(BOOL)addToFieldMappings fieldTypeRef:(NSString **)fieldTypeRef error:(NSError **)error {
-    NSString *jsonType = [schemaDict objectForKey:JS_TYPE];
-    NSString *refId = [schemaDict objectForKey:JS_REF];
-    NSString *title = [schemaDict objectForKey:JS_TITLE];
+    NSString *jsonType = [schemaDict bmObjectForKey:JS_TYPE ofClass:NSString.class];
+    NSString *refId = [schemaDict bmObjectForKey:JS_REF ofClass:NSString.class];
+    NSString *title = [schemaDict bmObjectForKey:JS_TITLE ofClass:NSString.class];
+    NSString *regexPattern = nil;
     NSString *fieldType = nil;
     BMSchemaFieldType schemaFieldType = BMSchemaFieldTypeNone;
     
@@ -137,7 +164,7 @@ static NSDictionary *jsonDataTypeDict = nil;
 
     } else if ([jsonType isEqual:JS_TYPE_OBJECT]) {
         
-        NSString *mappingId = [schemaDict objectForKey:JS_ID];
+        NSString *mappingId = [schemaDict bmObjectForKey:JS_ID ofClass:NSString.class];
         if (title == nil) {
             //Ignore object mappings without a title
             LogWarn(@"Object mapping without title is ignored for element name: %@", theName);
@@ -146,11 +173,16 @@ static NSDictionary *jsonDataTypeDict = nil;
         
         schemaFieldType = BMSchemaFieldTypeObject;
         
-        NSDictionary *jsonProperties = [schemaDict objectForKey:JS_PROPERTIES];
+        NSDictionary *jsonProperties = [schemaDict bmObjectForKey:JS_PROPERTIES ofClass:NSDictionary.class];
         BMObjectMapping *om = [self objectMappingForProperties:jsonProperties withElementName:theName title:title mappingId:mappingId objectMappingDict:objectMappingDict error:error];
         
         if (om == nil) {
             return BMSchemaFieldTypeNone;
+        }
+        
+        NSSet *requiredProperties = [NSSet setWithArray:[schemaDict bmObjectForKey:JS_REQUIRED ofClass:NSArray.class]];
+        for (BMFieldMapping *fm in om.fieldMappings) {
+            fm.required = [requiredProperties containsObject:fm.mappingPath];
         }
         
         if (!objectMapping) {
@@ -174,8 +206,16 @@ static NSDictionary *jsonDataTypeDict = nil;
         
         schemaFieldType |= retType;
     } else {
-        fieldType = [self.primitiveTypeDictionary objectForKey:jsonType];
-        
+        fieldType = [self.primitiveTypeDictionary bmObjectForKey:jsonType ofClass:NSString.class];
+        if ([fieldType isEqualToString:BM_FIELD_TYPE_STRING]) {
+            NSString *format = [schemaDict bmObjectForKey:JS_FORMAT ofClass:NSString.class];
+            NSString *formatFieldType = [jsonFormatTypeDict bmObjectForKey:format ofClass:NSString.class];
+            if (formatFieldType != nil) {
+                fieldType = formatFieldType;
+            } else {
+                regexPattern = [jsonFormatPatternDict bmObjectForKey:format ofClass:NSString.class];
+            }
+        }
         schemaFieldType = BMSchemaFieldTypePrimitive;
     }
     
@@ -198,15 +238,15 @@ static NSDictionary *jsonDataTypeDict = nil;
             
         } else {
             NSString *fieldDescriptor = [self fieldDescriptorForField:mappingPath type:fieldType fieldType:schemaFieldType];
-            
             BMFieldMapping *fieldMapping = [[BMFieldMapping alloc] initWithFieldDescriptor:fieldDescriptor
                                                                                mappingPath:mappingPath];
+            fieldMapping.pattern = regexPattern;
             [objectMapping addFieldMapping:fieldMapping];
         }
     }
     
     if (objectMapping != nil) {
-        BMObjectMapping* existingObjectMapping = [objectMappingDict objectForKey:objectMapping.name];
+        BMObjectMapping* existingObjectMapping = [objectMappingDict bmObjectForKey:objectMapping.name ofClass:BMObjectMapping.class];
         
         if (existingObjectMapping && !existingObjectMapping.rootElement && objectMapping.rootElement) {
             existingObjectMapping.rootElement = YES;
@@ -346,7 +386,7 @@ static NSDictionary *jsonDataTypeDict = nil;
     currentMapping.parentName = parentMappingName;
     
     for (NSString *propertyName in jsonProperties) {
-        NSDictionary *propertyDict = [jsonProperties objectForKey:propertyName];
+        NSDictionary *propertyDict = [jsonProperties bmObjectForKey:propertyName ofClass:NSDictionary.class];
         if ([self parseSchemaDict:propertyDict withName:propertyName objectMapping:currentMapping objectMappingDict:objectMappingDict addToFieldMappings:YES fieldTypeRef:nil error:error] == BMSchemaFieldTypeNone) {
             return nil;
         }

@@ -250,6 +250,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BMSchemaFieldType schemaFieldType;
 
 /**
+ Whether the property is required or not.
+ */
+@property (nonatomic, assign, getter=isRequired) BOOL required;
+
+/**
+ Regex pattern to validate a string value against.
+ */
+@property (nonatomic, nullable, strong) NSString *pattern;
+
+/**
  Returns true iff the field represented by this mapping converts to a JSON string. 
  
  If true it should be quoted in the resulting JSON, either with single or double quotes.
