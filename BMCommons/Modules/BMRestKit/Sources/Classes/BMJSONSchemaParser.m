@@ -156,6 +156,7 @@ static NSDictionary *jsonFormatPatternDict = nil;
     NSString *title = [schemaDict bmObjectForKey:JS_TITLE ofClass:NSString.class];
     NSString *regexPattern = nil;
     NSString *fieldType = nil;
+    NSArray *enumValues = nil;
     BMSchemaFieldType schemaFieldType = BMSchemaFieldTypeNone;
     
     if (refId != nil) {
@@ -216,6 +217,8 @@ static NSDictionary *jsonFormatPatternDict = nil;
                 regexPattern = [jsonFormatPatternDict bmObjectForKey:format ofClass:NSString.class];
             }
         }
+
+        enumValues = [schemaDict bmObjectForKey:JS_ENUM ofClass:NSArray.class];
         schemaFieldType = BMSchemaFieldTypePrimitive;
     }
     
@@ -241,6 +244,7 @@ static NSDictionary *jsonFormatPatternDict = nil;
             BMFieldMapping *fieldMapping = [[BMFieldMapping alloc] initWithFieldDescriptor:fieldDescriptor
                                                                                mappingPath:mappingPath];
             fieldMapping.pattern = regexPattern;
+            fieldMapping.enumeratedValues = enumValues;
             [objectMapping addFieldMapping:fieldMapping];
         }
     }

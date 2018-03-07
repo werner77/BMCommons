@@ -37,7 +37,7 @@ public struct {{ mapping.unqualifiedObjectClassName }}Value : OptionSet {
     }
 }
 {% /if %}
-public class _{{ mapping.unqualifiedObjectClassName }} : {% if mapping.parentName == nil %}BMAbstractMappableObject{% else %}{{ mapping.parentName }}{% /if %} {
+public class _{{ mapping.unqualifiedObjectClassName }} : {% if mapping.unqualifiedParentObjectClassName == nil %}BMAbstractMappableObject{% else %}{{ mapping.unqualifiedParentObjectClassName }}{% /if %} {
 
     {% for fieldMapping in mapping.fieldMappings %}public var {{ fieldMapping.fieldName }} {% if fieldMapping.isArray %}= NSMutableArray(){% else %}: {{ fieldMapping.unqualifiedFieldObjectClassName }}?{% /if %}
     {% /for %}
@@ -76,7 +76,7 @@ public class _{{ mapping.unqualifiedObjectClassName }} : {% if mapping.parentNam
 
     public override class func fieldMappingFormatArray() -> [Any] {
         var mappings = [String]()
-        {% if mapping.parentName != nil %}mappings += super.fieldMappingFormatArray()
+        {% if mapping.unqualifiedParentObjectClassName != nil %}mappings += super.fieldMappingFormatArray()
         {% /if %}
         {% for fieldMapping in mapping.fieldMappings %}{% if fieldMapping.isDate %}mappings.append("{{ fieldMapping.fieldMappingFormatString }}:\(self.dateFormatForField("{{ fieldMapping.fieldName }}")"){% else %}mappings.append("{{ fieldMapping.fieldMappingFormatString }}"){% /if %}
         {% /for %}
@@ -89,7 +89,7 @@ public class _{{ mapping.unqualifiedObjectClassName }} : {% if mapping.parentNam
 
     {% /if %}public override class func fieldMappingNamespaces() -> [AnyHashable: Any] {
         var namespaces = [String: String]()
-        {% if mapping.parentName != nil %}namespaces += super.fieldMappingNamespaces
+        {% if mapping.unqualifiedParentObjectClassName != nil %}namespaces += super.fieldMappingNamespaces
         {% /if %}
         {% for fieldMapping in mapping.fieldMappings %}{% if fieldMapping.namespaceURI != nil %}namespaces["{{ fieldMapping.mappingPath }}"] = "{{ fieldMapping.namespaceURI }}"{% /if %}
         {% /for %}
@@ -97,7 +97,7 @@ public class _{{ mapping.unqualifiedObjectClassName }} : {% if mapping.parentNam
     }
 
     public override class func namespaceURI() -> String {
-        return {% if mapping.namespaceURI == nil %}nil{% else %}"{{ mapping.namespaceURI }}"{% /if %}
+        return {% if mapping.unqualifiedObjectClassNamespaceURI == nil %}nil{% else %}"{{ mapping.unqualifiedObjectClassNamespaceURI }}"{% /if %}
     }
 
     class func dateFormat(forField fieldName: String) -> String {
@@ -110,7 +110,7 @@ public class _{{ mapping.unqualifiedObjectClassName }} : {% if mapping.parentNam
 
     public override var description : String {
         var s = String()
-        {% if mapping.parentName != nil %}
+        {% if mapping.unqualifiedParentObjectClassName != nil %}
         s += super.description(){% else %}s += String(reflecting : type(of:self)){% /if %}
         s += "{"
 

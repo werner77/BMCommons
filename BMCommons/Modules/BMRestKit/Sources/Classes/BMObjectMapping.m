@@ -78,6 +78,14 @@
 - (NSString *)unqualifiedObjectClassName {
     return [self.name bmStringByCroppingUptoLastOccurenceOfString:@"."];
 }
+    
+- (NSString *)parentObjectClassName {
+    return self.parentName;
+}
+    
+- (NSString *)unqualifiedParentObjectClassName {
+    return [self.parentName bmStringByCroppingUptoLastOccurenceOfString:@"."];
+}
 
 @end
 

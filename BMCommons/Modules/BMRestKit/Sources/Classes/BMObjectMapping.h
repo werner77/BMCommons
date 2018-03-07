@@ -93,8 +93,17 @@ NS_ASSUME_NONNULL_BEGIN
  Returns the unqualified typeName (name without any modules prepended).
  */
 - (NSString *)unqualifiedObjectClassName;
+    
+/**
+ * Returns the fully qualified type name of the parent of this object (name including any modules).
+ */
+- (NSString *)parentObjectClassName;
+
+/**
+ Returns the unqualified typeName of the parent of this object (name without any modules prepended).
+ */
+- (NSString *)unqualifiedParentObjectClassName;
 
 @end
 
 NS_ASSUME_NONNULL_END
-

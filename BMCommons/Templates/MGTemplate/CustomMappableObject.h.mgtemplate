@@ -1,5 +1,5 @@
 //
-//  {{ mapping.name }}.h
+//  {{ mapping.unqualifiedObjectClassName }}.h
 //  BMCommons
 //
 //  Generated Class
@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "_{{ mapping.name }}.h"
+#import "_{{ mapping.unqualifiedObjectClassName }}.h"
 
-@interface {{ mapping.name }} : _{{ mapping.name }} {
+@interface {{ mapping.unqualifiedObjectClassName }} : _{{ mapping.unqualifiedObjectClassName }} {
 }
 
 @end

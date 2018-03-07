@@ -260,11 +260,31 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable, strong) NSString *pattern;
 
 /**
+ Valid values in case of an enumeration
+ */
+@property (nonatomic, strong) NSArray *enumeratedValues;
+
+/**
  Returns true iff the field represented by this mapping converts to a JSON string. 
  
  If true it should be quoted in the resulting JSON, either with single or double quotes.
  */
 - (BOOL)isJSONStringField;
+
+/**
+ Returns true iff the field represents an enumeration, i.e. enumeratedValues contains a finite amount of values.
+ */
+- (BOOL)isEnumeration;
+
+/**
+ Returns true iff the field represents an enumeration AND all enumeratedValues are strings.
+ */
+- (BOOL)isStringEnumeration;
+
+/**
+ The type name in case it is an enumeration, else nil
+ */
+- (NSString *)enumerationTypeName;
 
 /**
  Initializes with the specified field descriptor.

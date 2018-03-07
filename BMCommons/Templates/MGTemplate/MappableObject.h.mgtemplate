@@ -1,5 +1,5 @@
 //
-//  _{{ mapping.name }}.h
+//  _{{ mapping.unqualifiedObjectClassName }}.h
 //  BMCommons
 //
 //  Generated Class
@@ -8,18 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import <BMCommons/BMAbstractMappableObject.h>
-{% if mapping.parentName != nil %}#import "{{ mapping.parentName }}.h"{% /if %}
+{% if mapping.unqualifiedParentObjectClassName != nil %}#import "{{ mapping.unqualifiedParentObjectClassName }}.h"{% /if %}
 {% for fieldMapping in mapping.fieldMappings %}
 {% if fieldMapping.fieldObjectClassIsCustom %}@class {{ fieldMapping.unqualifiedFieldObjectClassName }};{% /if %}{% /for %}
 
 {% if mapping.isEnumeration %}
-typedef NS_ENUM(NSUInteger, {{ mapping.name }}Value) {
-	{% for value in mapping.enumeratedValues %}{{ mapping.name }}{{ value.formattedValue }} = {{ currentLoop.currentIndex }},
+typedef NS_ENUM(NSUInteger, {{ mapping.unqualifiedObjectClassName }}Value) {
+	{% for value in mapping.enumeratedValues %}{{ mapping.unqualifiedObjectClassName }}{{ value.formattedValue }} = {{ currentLoop.currentIndex }},
 	{% /for %}
 };
 {% /if %}
 
-@interface _{{ mapping.name }} : {% if mapping.parentName == nil %}BMAbstractMappableObject{% else %}{{ mapping.parentName }}{% /if %} {
+@interface _{{ mapping.unqualifiedObjectClassName }} : {% if mapping.unqualifiedParentObjectClassName == nil %}BMAbstractMappableObject{% else %}{{ mapping.unqualifiedParentObjectClassName }}{% /if %} {
 	{% for fieldMapping in mapping.fieldMappings %}
 	{{ fieldMapping.fieldClassName }}{% if fieldMapping.isArray %}<{{ fieldMapping.unqualifiedFieldObjectClassName }} *>{% /if %} *_{{ fieldMapping.fieldName }};{% /for %}
 }
@@ -27,8 +27,8 @@ typedef NS_ENUM(NSUInteger, {{ mapping.name }}Value) {
 {% for fieldMapping in mapping.fieldMappings %}
 @property (nonatomic, strong) {{ fieldMapping.fieldClassName }}{% if fieldMapping.isCollection %}<{{ fieldMapping.unqualifiedFieldObjectClassName }} *>{% /if %} *{{ fieldMapping.fieldName }};{% /for %}
 {% if mapping.isEnumeration %}
-@property (nonatomic, assign) {{ mapping.name }}Value enumValue;
-+ (id)instanceWithEnumValue:({{ mapping.name }}Value)enumValue;
+@property (nonatomic, assign) {{ mapping.unqualifiedObjectClassName }}Value enumValue;
++ (id)instanceWithEnumValue:({{ mapping.unqualifiedObjectClassName }}Value)enumValue;
 {% /if %}
 
 {% if mapping.isRootElement %}

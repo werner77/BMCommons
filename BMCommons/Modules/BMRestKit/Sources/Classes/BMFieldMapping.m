@@ -20,6 +20,7 @@
 #import <BMCommons/NSNumber+BMCommons.h>
 #import <BMCommons/BMErrorHelper.h>
 #import <BMCommons/NSObject+BMCommons.h>
+#import <BMCommons/NSString+BMCommons.h>
 
 @interface BMFieldMapping(Private)
 
@@ -482,6 +483,22 @@ static NSTimeZone *defaultTimeZone = nil;
 											  converterSelector:self.converterSelector
 												  inverseTarget:self.inverseConverterTarget 
 												inverseSelector:self.inverseConverterSelector];
+}
+
+- (BOOL)isEnumeration {
+    return self.enumeratedValues.count > 0;
+}
+
+- (BOOL)isStringEnumeration {
+    return self.isEnumeration && [self.fieldClassName isEqual:@"NSString"];
+}
+
+- (NSString *)enumerationTypeName {
+    NSString *ret = nil;
+    if (self.isEnumeration) {
+        ret = [NSString stringWithFormat:@"%@Type", [self.fieldName bmStringWithUppercaseFirstChar]];
+    }
+    return ret;
 }
 
 - (void)setMappingPath:(NSString *)path {

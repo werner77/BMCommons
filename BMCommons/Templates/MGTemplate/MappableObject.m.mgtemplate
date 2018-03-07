@@ -1,5 +1,5 @@
 //
-//  _{{ mapping.name }}.m
+//  _{{ mapping.unqualifiedObjectClassName }}.m
 //  BTFD
 //
 //  Generated Class
@@ -14,12 +14,12 @@
 #import <BMRestKit/BMFieldMapping.h>
 #import <BMCommons/BMLogging.h>
 
-#import "_{{ mapping.name }}.h"
+#import "_{{ mapping.unqualifiedObjectClassName }}.h"
 {% for fieldMapping in mapping.fieldMappings %}{% if fieldMapping.fieldObjectClassIsCustom %}#import "{{ fieldMapping.fieldObjectClassName }}.h"{% /if %}
 {% /for %}
 
 
-@implementation _{{ mapping.name }} 
+@implementation _{{ mapping.unqualifiedObjectClassName }} 
 
 {% if mapping.isEnumeration %}
 static BMTwoWayDictionary *valueMapping = nil;
@@ -27,7 +27,7 @@ static BMTwoWayDictionary *valueMapping = nil;
 + (void)initialize {
 	if (!valueMapping) {
 		valueMapping = [[BMTwoWayDictionary alloc] initWithObjectsAndKeys:
-		{% for value in mapping.enumeratedValues %}{{ value.valueDeclaration }}, @({{ mapping.name }}{{ value.formattedValue }}),
+		{% for value in mapping.enumeratedValues %}{{ value.valueDeclaration }}, @({{ mapping.unqualifiedObjectClassName }}{{ value.formattedValue }}),
 		{% /for %} 
 		nil];
 	}
@@ -36,7 +36,7 @@ static BMTwoWayDictionary *valueMapping = nil;
 
 + (NSArray *)fieldMappingFormatArray {
     NSMutableArray *mappings = [NSMutableArray array];
-	{% if mapping.parentName != nil %}
+	{% if mapping.unqualifiedParentObjectClassName != nil %}
     [mappings addObjectsFromArray:[super fieldMappingFormatArray]];
     {% /if %}
 	{% for fieldMapping in mapping.fieldMappings %}{% if fieldMapping.isDate %}[mappings bmSafeAddObject:[NSString stringWithFormat:@"{{ fieldMapping.fieldMappingFormatString }}:%@", [self dateFormatForField:@"{{ fieldMapping.fieldName }}"]]];{% else %}[mappings bmSafeAddObject:@"{{ fieldMapping.fieldMappingFormatString }}"];{% /if %}
@@ -52,7 +52,7 @@ static BMTwoWayDictionary *valueMapping = nil;
 
 + (NSDictionary *)fieldMappingNamespaces {
     NSMutableDictionary *namespaces = [NSMutableDictionary dictionary];
-    {% if mapping.parentName != nil %}
+    {% if mapping.unqualifiedParentObjectClassName != nil %}
 	[namespaces addEntriesFromDictionary:[super fieldMappingNamespaces]];
 	{% /if %}
 	{% for fieldMapping in mapping.fieldMappings %}{% if fieldMapping.namespaceURI != nil %}[namespaces bmSafeSetObject:@"{{ fieldMapping.namespaceURI }}" forKey:@"{{ fieldMapping.mappingPath }}"];{% /if %}
@@ -61,7 +61,7 @@ static BMTwoWayDictionary *valueMapping = nil;
 }
 
 + (NSString *)namespaceURI {
-	return {% if mapping.namespaceURI == nil %}nil{% else %}@"{{ mapping.namespaceURI }}"{% /if %};
+	return {% if mapping.unqualifiedObjectClassNamespaceURI == nil %}nil{% else %}@"{{ mapping.unqualifiedObjectClassNamespaceURI }}"{% /if %};
 }
 
 + (NSString *)dateFormatForField:(NSString *)fieldName {
@@ -82,7 +82,7 @@ static BMTwoWayDictionary *valueMapping = nil;
 
 - (NSString *)description {
 	NSMutableString *s = [NSMutableString string];
-	{% if mapping.parentName != nil %}
+	{% if mapping.unqualifiedParentObjectClassName != nil %}
 	[s appendString:[super description]];
 	{% else %}
 	[s appendString:NSStringFromClass([self class])];
@@ -99,12 +99,12 @@ static BMTwoWayDictionary *valueMapping = nil;
 }
 
 {% if mapping.isEnumeration %}
-- ({{ mapping.name }}Value) enumValue {
+- ({{ mapping.unqualifiedObjectClassName }}Value) enumValue {
 	NSNumber *n = [valueMapping keyForObject:self.value];
 	return [n intValue];
 }
 
-- (void)setEnumValue:({{ mapping.name }}Value)theValue {
+- (void)setEnumValue:({{ mapping.unqualifiedObjectClassName }}Value)theValue {
 	NSString *sValue = [valueMapping objectForKey:[NSNumber numberWithInt:theValue]];
 	if (sValue == nil) {
 		LogWarn(@"Value %tu is not allowed for enumeration %@", theValue, NSStringFromClass([self class]));
@@ -124,7 +124,7 @@ static BMTwoWayDictionary *valueMapping = nil;
     if (![other isKindOfClass:[self class]]) {
         return NO;
     }
-    _{{ mapping.name }} *otherValue = (_{{ mapping.name }} *)other;
+    _{{ mapping.unqualifiedObjectClassName }} *otherValue = (_{{ mapping.unqualifiedObjectClassName }} *)other;
     
     return (self.value == otherValue.value || [self.value isEqual:otherValue.value]);
 }
@@ -133,8 +133,8 @@ static BMTwoWayDictionary *valueMapping = nil;
     return self.value.hash;
 }
 
-+ (id)instanceWithEnumValue:({{ mapping.name }}Value)theValue {
-    _{{ mapping.name }} * instance = [[self alloc] init];
++ (id)instanceWithEnumValue:({{ mapping.unqualifiedObjectClassName }}Value)theValue {
+    _{{ mapping.unqualifiedObjectClassName }} * instance = [[self alloc] init];
     [instance setEnumValue:theValue];
     return instance;
 }
