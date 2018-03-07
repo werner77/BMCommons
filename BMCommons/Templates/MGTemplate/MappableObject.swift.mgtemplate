@@ -1,0 +1,123 @@
+//
+//  _{{ mapping.unqualifiedObjectClassName }}.swift
+//  WarOfTheRingCore
+//
+//  Generated Class
+//  Copyright 2017 BehindMedia. All rights reserved.
+//
+
+import Foundation
+import BMCommons
+
+{% if mapping.isEnumeration %}
+public struct {{ mapping.unqualifiedObjectClassName }}Value : OptionSet {
+    public let rawValue : UInt
+    {% for value in mapping.enumeratedValues %}static let {{ value.formattedValue }} =  {{ mapping.unqualifiedObjectClassName }}Value(rawValue: {{ currentLoop.currentIndex }})
+    {% /for %}static let All : {{ mapping.unqualifiedObjectClassName }}Value = [{% for value in mapping.enumeratedValues %}{% if currentLoop.currentIndex != 0 %}, {% /if %}.{{ value.formattedValue }}{% /for %}]
+
+    static private let valueMap = BMTwoWayDictionary.init(dictionary: [{% for value in mapping.enumeratedValues %}{{ mapping.unqualifiedObjectClassName }}Value.{{ value.formattedValue }}.rawValue : {{ value.swiftValueDeclaration }},
+                                                                       {% /for %}])!
+
+    public init(rawValue: UInt) {
+        self.rawValue = rawValue
+    }
+
+    public var stringValue : NSString? {
+        get {
+            return {{ mapping.unqualifiedObjectClassName }}Value.valueMap.object(forKey: self.rawValue) as? NSString
+        }
+    }
+
+    public static func from(stringValue: NSString?) -> {{ mapping.unqualifiedObjectClassName }}Value {
+        if let key = {{ mapping.unqualifiedObjectClassName }}Value.valueMap.key(for: stringValue) as? UInt {
+            return {{ mapping.unqualifiedObjectClassName }}Value(rawValue: key)
+        } else {
+            return []
+        }
+    }
+}
+{% /if %}
+public class _{{ mapping.unqualifiedObjectClassName }} : {% if mapping.parentName == nil %}BMAbstractMappableObject{% else %}{{ mapping.parentName }}{% /if %} {
+
+    {% for fieldMapping in mapping.fieldMappings %}public var {{ fieldMapping.fieldName }} {% if fieldMapping.isArray %}= NSMutableArray(){% else %}: {{ fieldMapping.unqualifiedFieldObjectClassName }}?{% /if %}
+    {% /for %}
+
+    public override init() {
+        super.init()
+    }
+
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder : aDecoder)
+    }
+
+    {% if mapping.isEnumeration %}
+    public var enumValue : {{ mapping.unqualifiedObjectClassName }}Value {
+        get {
+            return {{ mapping.unqualifiedObjectClassName }}Value.from(stringValue:self.value)
+        }
+
+        set(enumValue) {
+            self.value = enumValue.stringValue
+        }
+    }
+
+    public override func isEqual(_ object: Any?) -> Bool {
+        if let other = object as? _{{ mapping.unqualifiedObjectClassName }} {
+            return self.value == other.value
+        } else {
+            return false
+        }
+    }
+
+    public override var hash: Int {
+        return self.value?.hashValue ?? 0
+    }
+    {% /if %}
+
+    public override class func fieldMappingFormatArray() -> [Any] {
+        var mappings = [String]()
+        {% if mapping.parentName != nil %}mappings += super.fieldMappingFormatArray()
+        {% /if %}
+        {% for fieldMapping in mapping.fieldMappings %}{% if fieldMapping.isDate %}mappings.append("{{ fieldMapping.fieldMappingFormatString }}:\(self.dateFormatForField("{{ fieldMapping.fieldName }}")"){% else %}mappings.append("{{ fieldMapping.fieldMappingFormatString }}"){% /if %}
+        {% /for %}
+        return mappings
+    }
+
+    {% if mapping.isRootElement %}public override class func rootElementName() -> String {
+        return "{{ mapping.elementName }}"
+    }
+
+    {% /if %}public override class func fieldMappingNamespaces() -> [AnyHashable: Any] {
+        var namespaces = [String: String]()
+        {% if mapping.parentName != nil %}namespaces += super.fieldMappingNamespaces
+        {% /if %}
+        {% for fieldMapping in mapping.fieldMappings %}{% if fieldMapping.namespaceURI != nil %}namespaces["{{ fieldMapping.mappingPath }}"] = "{{ fieldMapping.namespaceURI }}"{% /if %}
+        {% /for %}
+        return namespaces
+    }
+
+    public override class func namespaceURI() -> String {
+        return {% if mapping.namespaceURI == nil %}nil{% else %}"{{ mapping.namespaceURI }}"{% /if %}
+    }
+
+    class func dateFormat(forField fieldName: String) -> String {
+        return self.defaultDateFormat()
+    }
+
+    class func defaultDateFormat() -> String {
+        return BMFieldMapping.defaultDateFormat()
+    }
+
+    public override var description : String {
+        var s = String()
+        {% if mapping.parentName != nil %}
+        s += super.description(){% else %}s += String(reflecting : type(of:self)){% /if %}
+        s += "{"
+
+        {% for fieldMapping in mapping.fieldMappings %}s += "{% if currentLoop.currentIndex != 0 %}, {% /if %}{{ fieldMapping.fieldName }}=\(self.{{ fieldMapping.fieldName }})"
+        {% /for %}
+        s += "}"
+        return s
+    }
+
+}

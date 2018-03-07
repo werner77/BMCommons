@@ -1,31 +1,34 @@
 //
 //  _{{ mapping.name }}.h
-//  BTFD
+//  BMCommons
 //
 //  Generated Class
-//  Copyright 2011 BehindMedia. All rights reserved.
+//  Copyright 2017 BehindMedia. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import <BMRestKit/BMAbstractMappableObject.h>
+#import <BMCommons/BMAbstractMappableObject.h>
 {% if mapping.parentName != nil %}#import "{{ mapping.parentName }}.h"{% /if %}
 {% for fieldMapping in mapping.fieldMappings %}
-{% if fieldMapping.fieldObjectClassIsCustom %}@class {{ fieldMapping.fieldObjectClassName }};{% /if %}{% /for %}
+{% if fieldMapping.fieldObjectClassIsCustom %}@class {{ fieldMapping.unqualifiedFieldObjectClassName }};{% /if %}{% /for %}
 
 {% if mapping.isEnumeration %}
 typedef NS_ENUM(NSUInteger, {{ mapping.name }}Value) {
-	{% for value in mapping.enumeratedValues %}{{ mapping.name }}{{ value.formattedValue }} = 1 << {{ currentLoop.currentIndex }},
+	{% for value in mapping.enumeratedValues %}{{ mapping.name }}{{ value.formattedValue }} = {{ currentLoop.currentIndex }},
 	{% /for %}
 };
 {% /if %}
 
-@interface _{{ mapping.name }} : {% if mapping.parentName == nil %}BMAbstractMappableObject{% else %}{{ mapping.parentName }}{% /if %} 
+@interface _{{ mapping.name }} : {% if mapping.parentName == nil %}BMAbstractMappableObject{% else %}{{ mapping.parentName }}{% /if %} {
+	{% for fieldMapping in mapping.fieldMappings %}
+	{{ fieldMapping.fieldClassName }}{% if fieldMapping.isArray %}<{{ fieldMapping.unqualifiedFieldObjectClassName }} *>{% /if %} *_{{ fieldMapping.fieldName }};{% /for %}
+}
 
 {% for fieldMapping in mapping.fieldMappings %}
-@property (nonatomic, strong) {{ fieldMapping.fieldClassName }}{% if fieldMapping.isCollection %}<{{ fieldMapping.fieldObjectClassName }}*>{% /if %} *{{ fieldMapping.fieldName }};{% /for %}
+@property (nonatomic, strong) {{ fieldMapping.fieldClassName }}{% if fieldMapping.isCollection %}<{{ fieldMapping.unqualifiedFieldObjectClassName }} *>{% /if %} *{{ fieldMapping.fieldName }};{% /for %}
 {% if mapping.isEnumeration %}
 @property (nonatomic, assign) {{ mapping.name }}Value enumValue;
-+ (id)instanceWithEnumValue:({{ mapping.name }}Value)theValue;
++ (id)instanceWithEnumValue:({{ mapping.name }}Value)enumValue;
 {% /if %}
 
 {% if mapping.isRootElement %}

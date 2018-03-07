@@ -1,15 +1,15 @@
 //
 //  {{ mapping.name }}.m
-//  BTFD
+//  BMCommons
 //
 //  Generated Class
-//  Copyright 2011 BehindMedia. All rights reserved.
+//  Copyright 2017 BehindMedia. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "{{ mapping.name }}.h"
 
-@implementation {{ mapping.name }} 
+@implementation {{ mapping.name }}
 
 //Put custom code here
 

@@ -1,0 +1,12 @@
+//
+//  {{ mapping.className }}.swift
+//  BMCommons
+//
+//  Generated Class
+//  Copyright 2017 BehindMedia. All rights reserved.
+//
+
+public class {{ mapping.unqualifiedObjectClassName }} : _{{ mapping.unqualifiedObjectClassName }} {
+
+}
+

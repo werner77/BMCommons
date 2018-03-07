@@ -27,7 +27,7 @@ static BMTwoWayDictionary *valueMapping = nil;
 + (void)initialize {
 	if (!valueMapping) {
 		valueMapping = [[BMTwoWayDictionary alloc] initWithObjectsAndKeys:
-		{% for value in mapping.enumeratedValues %}{{ value.valueDeclaration }}, [NSNumber numberWithInt:{{ mapping.name }}{{ value.formattedValue }}],
+		{% for value in mapping.enumeratedValues %}{{ value.valueDeclaration }}, @({{ mapping.name }}{{ value.formattedValue }}),
 		{% /for %} 
 		nil];
 	}
@@ -39,7 +39,7 @@ static BMTwoWayDictionary *valueMapping = nil;
 	{% if mapping.parentName != nil %}
     [mappings addObjectsFromArray:[super fieldMappingFormatArray]];
     {% /if %}
-	{% for fieldMapping in mapping.fieldMappings %}{% if fieldMapping.isDate %}[mappings addObject:[NSString stringWithFormat:@"{{ fieldMapping.fieldMappingFormatString }}:%@", [self dateFormatForField:@"{{ fieldMapping.fieldName }}"]]];{% else %}[mappings addObject:@"{{ fieldMapping.fieldMappingFormatString }}"];{% /if %}
+	{% for fieldMapping in mapping.fieldMappings %}{% if fieldMapping.isDate %}[mappings bmSafeAddObject:[NSString stringWithFormat:@"{{ fieldMapping.fieldMappingFormatString }}:%@", [self dateFormatForField:@"{{ fieldMapping.fieldName }}"]]];{% else %}[mappings bmSafeAddObject:@"{{ fieldMapping.fieldMappingFormatString }}"];{% /if %}
     {% /for %}
 	return mappings;
 }
@@ -55,7 +55,7 @@ static BMTwoWayDictionary *valueMapping = nil;
     {% if mapping.parentName != nil %}
 	[namespaces addEntriesFromDictionary:[super fieldMappingNamespaces]];
 	{% /if %}
-	{% for fieldMapping in mapping.fieldMappings %}{% if fieldMapping.namespaceURI != nil %}[namespaces setObject:@"{{ fieldMapping.namespaceURI }}" forKey:@"{{ fieldMapping.mappingPath }}"];{% /if %}
+	{% for fieldMapping in mapping.fieldMappings %}{% if fieldMapping.namespaceURI != nil %}[namespaces bmSafeSetObject:@"{{ fieldMapping.namespaceURI }}" forKey:@"{{ fieldMapping.mappingPath }}"];{% /if %}
 	{% /for %}
     return namespaces;
 }

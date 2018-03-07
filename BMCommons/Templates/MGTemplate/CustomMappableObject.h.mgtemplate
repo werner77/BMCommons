@@ -1,9 +1,9 @@
 //
 //  {{ mapping.name }}.h
-//  BTFD
+//  BMCommons
 //
 //  Generated Class
-//  Copyright 2011 BehindMedia. All rights reserved.
+//  Copyright 2017 BehindMedia. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
