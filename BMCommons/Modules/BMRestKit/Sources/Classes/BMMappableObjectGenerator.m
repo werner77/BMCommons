@@ -115,14 +115,21 @@ typedef NS_ENUM(NSUInteger, BMFileType) {
             if (self.swiftMode) {
                 if ([self writeFileFromTemplate:self.implementationTemplatePath objectMapping:objectMapping fileType:BMFileTypeSwift custom:NO referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
                 if (outputFile) [generatedFiles addObject:outputFile];
-                if ([self writeFileFromTemplate:self.customImplementationTemplatePath objectMapping:objectMapping fileType:BMFileTypeSwift custom:YES referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
+                if (self.customImplementationTemplatePath != nil) {
+                    if ([self writeFileFromTemplate:self.customImplementationTemplatePath objectMapping:objectMapping fileType:BMFileTypeSwift custom:YES referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
+                }
             } else {
                 if ([self writeFileFromTemplate:self.headerTemplatePath objectMapping:objectMapping fileType:BMFileTypeObjCHeader custom:NO referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
                 if (outputFile) [generatedFiles addObject:outputFile];
                 if ([self writeFileFromTemplate:self.implementationTemplatePath objectMapping:objectMapping fileType:BMFileTypeObjCImplementation custom:NO referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
                 if (outputFile) [generatedFiles addObject:outputFile];
-                if ([self writeFileFromTemplate:self.customHeaderTemplatePath objectMapping:objectMapping fileType:BMFileTypeObjCHeader custom:YES referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
-                if ([self writeFileFromTemplate:self.customImplementationTemplatePath objectMapping:objectMapping fileType:BMFileTypeObjCImplementation custom:YES referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
+                
+                if (self.customHeaderTemplatePath != nil) {
+                    if ([self writeFileFromTemplate:self.customHeaderTemplatePath objectMapping:objectMapping fileType:BMFileTypeObjCHeader custom:YES referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
+                }
+                if (self.customImplementationTemplatePath != nil) {
+                    if ([self writeFileFromTemplate:self.customImplementationTemplatePath objectMapping:objectMapping fileType:BMFileTypeObjCImplementation custom:YES referenceDate:referenceDate outputFile:&outputFile error:&error]) numberOfFilesWritten++;
+                }
             }
 
             if (error != nil) {
@@ -136,7 +143,7 @@ typedef NS_ENUM(NSUInteger, BMFileType) {
             NSMutableArray *filesToRemove = [NSMutableArray array];
             
             for (NSString *filename in allItems) {
-                if ([filename hasPrefix:@"_"] && ([filename hasSuffix:@".m"] || [filename hasSuffix:@".h"]) && ![generatedFiles containsObject:filename]) {
+                if ([filename hasPrefix:@"_"] && ([filename hasSuffix:@".m"] || [filename hasSuffix:@".h"] || [filename hasSuffix:@".swift"]) && ![generatedFiles containsObject:filename]) {
                     NSString *underscoreFile = [self.outputDir stringByAppendingPathComponent:filename];
                     NSString *nonUnderscoreFile = [self.outputDir stringByAppendingPathComponent:[filename substringFromIndex:1]];
                     NSDictionary *underscoreAttributes = [fm attributesOfItemAtPath:underscoreFile error:nil];

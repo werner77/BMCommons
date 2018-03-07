@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Set which maintains sorting order according to the comparator, sortDescriptors or sortSelector set (in that order of precedence).
  */
@@ -40,3 +42,5 @@
 @property (nonatomic, assign, getter=isOrderingConsistentWithEquals) BOOL orderingConsistentWithEquals;
 
 @end
+
+NS_ASSUME_NONNULL_END
