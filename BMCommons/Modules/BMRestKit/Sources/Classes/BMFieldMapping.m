@@ -426,9 +426,9 @@ static NSTimeZone *defaultTimeZone = nil;
 - (NSString *)swiftFieldClassName {
     NSString *fieldObjectClassName = self.swiftFieldObjectClassName;
     if (self.isArray) {
-        return [NSString stringWithFormat:@"[%@]", fieldObjectClassName];
+        return @"Array";
     } else if (self.isSet) {
-        return [NSString stringWithFormat:@"Set<%@>", fieldObjectClassName];
+        return @"Set";
     } else {
         return fieldObjectClassName;
     }

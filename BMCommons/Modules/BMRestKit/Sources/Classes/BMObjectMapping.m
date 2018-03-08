@@ -87,5 +87,15 @@
     return [self.parentName bmStringByCroppingUptoLastOccurenceOfString:@"."];
 }
 
+- (NSArray *)inheritedFieldMappings {
+    NSMutableArray *ret = [NSMutableArray new];
+    BMObjectMapping *parent = self.parentMapping;
+    while (parent != nil) {
+        [ret addObjectsFromArray:parent.fieldMappings];
+        parent = parent.parentMapping;
+    }
+    return ret;
+}
+
 @end
 

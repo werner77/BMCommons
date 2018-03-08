@@ -223,9 +223,11 @@ static NSSet *reservedPrefixes = nil;
         
         //Eliminate duplicate field mappings in parent mappings
         NSString *parentName = mapping.parentName;
-        while (parentName != nil) {
-            BMObjectMapping *parentMapping = [objectMappings objectForKey:parentName];
-            
+        BMObjectMapping *parentMapping = [objectMappings objectForKey:parentName];
+        
+        mapping.parentMapping = parentMapping;
+        
+        while (parentMapping != nil) {
             for (BMFieldMapping *fieldMapping in mapping.fieldMappings) {
                 NSString *fieldName = fieldMapping.fieldName;
                 
@@ -237,6 +239,7 @@ static NSSet *reservedPrefixes = nil;
                 }
             }
             parentName = parentMapping.parentName;
+            parentMapping = [objectMappings objectForKey:parentName];
         }
     }
 }
