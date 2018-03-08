@@ -35,10 +35,12 @@
 
 - (void)addFieldMapping:(BMFieldMapping *)fm {
 	[_fieldMappings addObject:fm];
+    fm.parentObjectMapping = self;
 }
 
 - (void)removeFieldMapping:(BMFieldMapping *)fm {
     [_fieldMappings removeObject:fm];
+    fm.parentObjectMapping = nil;
 }
 
 - (void)addEnumerationValue:(BMEnumerationValue *)value {
@@ -94,6 +96,13 @@
         [ret addObjectsFromArray:parent.fieldMappings];
         parent = parent.parentMapping;
     }
+    return ret;
+}
+
+- (NSArray *)allFieldMappings {
+    NSMutableArray *ret = [NSMutableArray new];
+    [ret addObjectsFromArray:self.fieldMappings];
+    [ret addObjectsFromArray:self.inheritedFieldMappings];
     return ret;
 }
 

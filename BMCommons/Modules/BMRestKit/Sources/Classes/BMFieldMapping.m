@@ -21,6 +21,7 @@
 #import <BMCommons/BMErrorHelper.h>
 #import <BMCommons/NSObject+BMCommons.h>
 #import <BMCommons/NSString+BMCommons.h>
+#import <BMCommons/BMObjectMapping.h>
 
 @interface BMFieldMapping(Private)
 
@@ -496,7 +497,7 @@ static NSTimeZone *defaultTimeZone = nil;
 - (NSString *)enumerationTypeName {
     NSString *ret = nil;
     if (self.isEnumeration) {
-        ret = [NSString stringWithFormat:@"%@Type", [self.fieldName bmStringWithUppercaseFirstChar]];
+        ret = [NSString stringWithFormat:@"%@%@Type", self.parentObjectMapping.unqualifiedObjectClassName, [self.fieldName bmStringWithUppercaseFirstChar]];
     }
     return ret;
 }

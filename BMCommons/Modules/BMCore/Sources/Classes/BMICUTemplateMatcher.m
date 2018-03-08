@@ -96,6 +96,7 @@
             if (markerComponents && [markerComponents count] > 0) {
                 [markerInfo setObject:[markerComponents objectAtIndex:0] forKey:MARKER_NAME_KEY];
                 NSUInteger count = [markerComponents count];
+                BOOL shouldTrim = YES;
                 if (count > 1) {
                     [markerInfo setObject:[markerComponents subarrayWithRange:NSMakeRange(1, count - 1)]
                                    forKey:MARKER_ARGUMENTS_KEY];

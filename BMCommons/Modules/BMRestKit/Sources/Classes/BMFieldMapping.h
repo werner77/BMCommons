@@ -15,6 +15,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class BMObjectMapping;
+
 /**
  Class that describes a field mapping between object and XML/JSON.
  */
@@ -263,6 +265,11 @@ NS_ASSUME_NONNULL_BEGIN
  Valid values in case of an enumeration
  */
 @property (nonatomic, strong) NSArray *enumeratedValues;
+
+/**
+ The object mapping this field mapping belongs to if any.
+ */
+@property (nonatomic, weak) BMObjectMapping *parentObjectMapping;
 
 /**
  Returns true iff the field represented by this mapping converts to a JSON string. 

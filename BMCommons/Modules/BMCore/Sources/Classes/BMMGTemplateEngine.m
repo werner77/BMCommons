@@ -423,15 +423,31 @@
 	// Tell our matcher to take note of our settings.
 	[_matcher engineSettingsChanged];
 	NSMutableString *output = [NSMutableString string];
-	
-	while (_remainingRange.location != NSNotFound) {
-		NSDictionary *matchInfo = [_matcher firstMarkerWithinRange:_remainingRange];
+    NSDictionary *matchInfo = nil;
+    NSDictionary *previousMatchInfo = nil;
+    while (_remainingRange.location != NSNotFound) {
+        previousMatchInfo = matchInfo;
+		matchInfo = [_matcher firstMarkerWithinRange:_remainingRange];
 		if (matchInfo) {
 			// Append output before marker if appropriate.
 			NSRange matchRange = [[matchInfo objectForKey:MARKER_RANGE_KEY] rangeValue];
+            NSString *matchMarker = [matchInfo objectForKey:MARKER_NAME_KEY];
+            NSString *markerType = [matchInfo objectForKey:MARKER_TYPE_KEY];
+            // Check to see if the match is a marker.
+            BOOL isMarker = [markerType isEqualToString:MARKER_TYPE_MARKER];
+            BOOL previousWasMarker = [[previousMatchInfo objectForKey:MARKER_TYPE_KEY] isEqualToString:MARKER_TYPE_MARKER];
+            BOOL shouldTrim = isMarker && previousWasMarker;
+            BOOL shouldRightTrim = isMarker;
 			if (_outputDisabledCount == 0) {
 				NSRange preMarkerRange = NSMakeRange(_remainingRange.location, matchRange.location - _remainingRange.location);
-				[output appendFormat:@"%@", [_templateContents substringWithRange:preMarkerRange]];
+                NSString *s = [_templateContents substringWithRange:preMarkerRange];
+                if (shouldTrim) {
+                    s = [self trimmedString:s];
+                }
+                if (shouldRightTrim) {
+                    s = [self rightTrimmedString:s];
+                }
+                [output appendString:s];
 			}
 			
 			// Adjust remainingRange.
@@ -440,7 +456,6 @@
 			
 			// Process the marker we found.
 			//NSLog(@"Match: %@", matchInfo);
-			NSString *matchMarker = [matchInfo objectForKey:MARKER_NAME_KEY];
 			
 			// Deal with literal mode.
 			if ([matchMarker isEqualToString:self.literalStartMarker]) {
@@ -461,8 +476,6 @@
 				continue;
 			}
 			
-			// Check to see if the match is a marker.
-			BOOL isMarker = [[matchInfo objectForKey:MARKER_TYPE_KEY] isEqualToString:MARKER_TYPE_MARKER];
 			NSObject <BMMGTemplateMarker> *markerHandler = nil;
 			NSObject *val = nil;
 			if (isMarker && matchMarker != nil) {
@@ -601,7 +614,7 @@ but current block was started by \"%@\" marker",
 				}
 				
 				// Output result.
-				[output appendFormat:@"%@", val];
+                [output appendFormat:@"%@", [self trimmedString:val]];
 			} else if ((!val && !isMarker && _outputDisabledCount == 0) || (isMarker && !markerHandler)) {
 				// Call delegate's error-reporting method, if implemented.
 				[self reportError:[NSString stringWithFormat:@"\"%@\" is not a valid %@", 
@@ -638,6 +651,27 @@ but current block was started by \"%@\" marker",
 	return output;
 }
 
+- (NSString *)trimmedString:(NSString *)s {
+    NSCharacterSet *whitespaceSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSCharacterSet *newlineSet = [NSCharacterSet newlineCharacterSet];
+    
+    if ([s stringByTrimmingCharactersInSet:whitespaceSet].length == 0) {
+        return @"";
+    }
+    return s;
+}
+
+- (NSString *)rightTrimmedString:(NSString *)s {
+    NSCharacterSet *whitespaceSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    NSUInteger i = s.length - 1;
+    for (i = s.length; i > 0; --i) {
+        unichar c = [s characterAtIndex:i-1];
+        if (![whitespaceSet characterIsMember:c]) {
+            break;
+        }
+    }
+    return [s substringToIndex:i];
+}
 
 - (NSString *)processTemplateInFileAtPath:(NSString *)templatePath withVariables:(NSDictionary *)variables
 {

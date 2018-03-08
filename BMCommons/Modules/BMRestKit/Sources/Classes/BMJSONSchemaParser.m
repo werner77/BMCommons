@@ -23,6 +23,8 @@ static NSDictionary *jsonDataTypeDict = nil;
 static NSDictionary *jsonFormatTypeDict = nil;
 static NSDictionary *jsonFormatPatternDict = nil;
 
+#define JS_ALL_OF @"allOf"
+
 #define JS_MULTIPLE_OF @"multipleOf" //int: valid if <instance count>/multipleOf is an integer
 #define JS_MAXIMUM @"maximum" //max value
 #define JS_EXCLUSIVE_MAXIMUM @"exclusiveMaximum" //bool
@@ -174,14 +176,31 @@ static NSDictionary *jsonFormatPatternDict = nil;
         
         schemaFieldType = BMSchemaFieldTypeObject;
         
-        NSDictionary *jsonProperties = [schemaDict bmObjectForKey:JS_PROPERTIES ofClass:NSDictionary.class];
+        NSArray *unionSchemas = [schemaDict bmObjectForKey:JS_ALL_OF ofClass:NSArray.class];
+        NSMutableSet *requiredProperties = [NSMutableSet set];
+        NSMutableDictionary *jsonProperties = [NSMutableDictionary dictionary];
+        if (unionSchemas) {
+            //Merge the properties
+            for (id dict in unionSchemas) {
+                //Ignore non properties for now
+                NSDictionary *props = [[dict bmCastSafely:NSDictionary.class] bmObjectForKey:JS_PROPERTIES ofClass:NSDictionary.class];
+                NSArray *requiredProps = [[dict bmCastSafely:NSDictionary.class] bmObjectForKey:JS_REQUIRED ofClass:NSArray.class];
+                [jsonProperties addEntriesFromDictionary:props];
+                [requiredProperties addObjectsFromArray:requiredProps];
+            }
+        } else {
+            NSDictionary *props = [schemaDict bmObjectForKey:JS_PROPERTIES ofClass:NSDictionary.class];
+            [jsonProperties addEntriesFromDictionary:props];
+            NSArray *requiredProps = [schemaDict bmObjectForKey:JS_REQUIRED ofClass:NSArray.class];
+            [requiredProperties addObjectsFromArray:requiredProps];
+        }
+        
         BMObjectMapping *om = [self objectMappingForProperties:jsonProperties withElementName:theName title:title mappingId:mappingId objectMappingDict:objectMappingDict error:error];
         
         if (om == nil) {
             return BMSchemaFieldTypeNone;
         }
         
-        NSSet *requiredProperties = [NSSet setWithArray:[schemaDict bmObjectForKey:JS_REQUIRED ofClass:NSArray.class]];
         for (BMFieldMapping *fm in om.fieldMappings) {
             fm.required = [requiredProperties containsObject:fm.mappingPath];
         }

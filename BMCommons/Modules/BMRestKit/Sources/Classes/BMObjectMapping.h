@@ -58,9 +58,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, strong, nonatomic, readonly) NSArray *inheritedFieldMappings;
 
 /**
+ An array containing both the fieldmappings defined by this object as well as the inherited mappings.
+ */
+@property (nullable, strong, nonatomic, readonly) NSArray *allFieldMappings;
+
+/**
  The parent mapping for this mapping or nil if no parent mapping exists.
  */
-@property (nullable, nonatomic, strong) BMObjectMapping *parentMapping;
+@property (nullable, nonatomic, weak) BMObjectMapping *parentMapping;
 
 /**
  Whether or not this element is a root element.
