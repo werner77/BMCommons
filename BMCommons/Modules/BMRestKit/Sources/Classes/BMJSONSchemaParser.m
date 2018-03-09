@@ -63,6 +63,11 @@ static NSDictionary *jsonFieldFormatDict = nil;
 #define JS_UNIQUE_ITEMS @"uniqueItems"
 #define JS_MIN_ITEMS @"minItems"
 #define JS_MAX_ITEMS @"maxItems"
+#define JS_MAXIMUM @"maximum"
+#define JS_MINIMUM @"minimum"
+#define JS_EXCLUSIVE_MAXIMUM @"exclusiveMaximum"
+#define JS_EXCLUSIVE_MINIMUM @"exclusiveMinimum"
+#define JS_MULTIPLE_OF @"multipleOf"
 
 + (void)initialize {
 
@@ -170,6 +175,11 @@ static NSDictionary *jsonFieldFormatDict = nil;
     BOOL uniqueItems = NO;
     NSInteger minItems = 0;
     NSInteger maxItems = -1;
+    BOOL exclusiveMaximum = NO;
+    BOOL exclusiveMinimum = NO;
+    NSNumber *maximum = nil;
+    NSNumber *minimum = nil;
+    NSNumber *multipleOf = nil;
     BMSchemaFieldType schemaFieldType = BMSchemaFieldTypeNone;
     BMSchemaFieldFormatType fieldFormatType = BMSchemaFieldFormatTypeNone;
     
@@ -253,6 +263,8 @@ static NSDictionary *jsonFieldFormatDict = nil;
             regexPattern = [schemaDict bmObjectForKey:JS_PATTERN ofClass:NSString.class];
             minLength = [[schemaDict bmObjectForKey:JS_MIN_LENGTH ofClass:NSNumber.class defaultValue:@(0)] integerValue];
             maxLength = [[schemaDict bmObjectForKey:JS_MAX_LENGTH ofClass:NSNumber.class defaultValue:@(-1)] integerValue];
+        } else if ([fieldType isEqualToString:BM_FIELD_TYPE_INT] || [fieldType isEqualToString:BM_FIELD_TYPE_DOUBLE]) {
+            //TODO: handle maximum/minimum/multipleOf
         }
 
         enumValues = [schemaDict bmObjectForKey:JS_ENUM ofClass:NSArray.class];
@@ -289,6 +301,11 @@ static NSDictionary *jsonFieldFormatDict = nil;
             fieldMapping.uniqueItems = uniqueItems;
             fieldMapping.minItems = minItems;
             fieldMapping.maxItems = maxItems;
+            //fieldMapping.maximum = maximum;
+            //fieldMapping.minimum = minimum;
+            //fieldMapping.exclusiveMaximum = exclusiveMaximum;
+            //fieldMapping.exclusiveMinimum = exclusiveMinimum;
+            //fieldMapping.multipleOf = multipleOf;
             [objectMapping addFieldMapping:fieldMapping];
         }
     }
