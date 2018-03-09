@@ -139,14 +139,17 @@ static NSTimeZone *defaultTimeZone = nil;
 
 - (id)init {
     if ((self = [super init])) {
-
+        self.minLength = 0;
+        self.maxLength = -1;
+        self.minItems = 0;
+        self.maxItems = -1;
+        self.uniqueItems = NO;
     }
     return self;
 }
 
 - (id)initWithFieldDescriptor:(NSString *)fieldDescriptor mappingPath:(NSString *)theMappingPath {
-	if ((self = [super init])) {
-
+	if ((self = [self init])) {
         NSError *error;
         if (![self setFieldDescriptor:fieldDescriptor withError:&error]) {
             LogWarn(@"Could not initialize from the specified fieldDescriptor: %@: %@", fieldDescriptor, error);
@@ -499,6 +502,17 @@ static NSTimeZone *defaultTimeZone = nil;
     if (self.isEnumeration) {
         ret = [NSString stringWithFormat:@"%@%@Type", self.parentObjectMapping.unqualifiedObjectClassName, [self.fieldName bmStringWithUppercaseFirstChar]];
     }
+    return ret;
+}
+
+- (BOOL)hasConstraints {
+    return self.schemaFieldFormatType >= 3 || self.pattern != nil || self.minLength > 0 || self.maxLength >= 0 || self.uniqueItems || self.minItems > 0 || self.maxItems >= 0;
+}
+
+- (NSString *)escapedPattern {
+    NSString *ret = self.pattern;
+    ret = [ret stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+    ret = [ret stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
     return ret;
 }
 

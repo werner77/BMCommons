@@ -25,6 +25,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable id)bmObjectForKey:(id)aKey ofClass:(Class)c;
 
 /**
+ Type-safe version of objectForKey:.
+ 
+ The object is returned if it meets isKindOfClass: for the supplied class else the defaultValue is returned.
+ */
+- (id)bmObjectForKey:(id)aKey ofClass:(Class)c defaultValue:(id)defaultValue;
+
+/**
  Retrieves a value from this dictionary via an XPath-like expression.
  
  Say you have:

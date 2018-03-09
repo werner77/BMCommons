@@ -252,14 +252,49 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BMSchemaFieldType schemaFieldType;
 
 /**
+ The schema field format type for pre-defined field formats (e.g. as defined by the JSON schema spec).
+ */
+@property (nonatomic, assign) BMSchemaFieldFormatType schemaFieldFormatType;
+
+/**
  Whether the property is required or not.
  */
 @property (nonatomic, assign, getter=isRequired) BOOL required;
 
 /**
+ Defaults to 0. If set to something > 0 a string value is only valid if its length >= this limit.
+ */
+@property (nonatomic, assign) NSInteger minLength;
+
+/**
+ Defaults to -1. If set to something > 0 a string value is only valid if its length <= this limit.
+ */
+@property (nonatomic, assign) NSInteger maxLength;
+    
+/**
+ Defaults to 0. If set to something > 0 a collection value is only valid if its size >= this limit.
+ */
+@property (nonatomic, assign) NSInteger minItems;
+
+/**
+ Defaults to -1. If set to something > 0 a collection value is only valid if its size <= this limit.
+ */
+@property (nonatomic, assign) NSInteger maxItems;
+
+/**
+ If set to true a collection value is required to have distinct (unique) items.
+ */
+@property (nonatomic, assign) BOOL uniqueItems;
+
+/**
  Regex pattern to validate a string value against.
  */
 @property (nonatomic, nullable, strong) NSString *pattern;
+
+/**
+ Escaped pattern which can be used within a string litteral: "<escaped pattern>"
+ */
+@property (nonatomic, nullable, strong) NSString *escapedPattern;
 
 /**
  Valid values in case of an enumeration

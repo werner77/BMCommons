@@ -67,6 +67,14 @@
     return [o bmCastSafely:c];
 }
 
+- (id)bmObjectForKey:(id)aKey ofClass:(Class)c defaultValue:(id)defaultValue {
+    id ret = [self bmObjectForKey:aKey ofClass:c];
+    if (ret == nil) {
+        ret = defaultValue;
+    }
+    return ret;
+}
+
 - (id)bmValueForXPath:(NSString *)xpath {
     
     NSMutableArray *xpathComponents = [NSMutableArray arrayWithArray:[xpath componentsSeparatedByCharactersInSet:[[self class] delimiterCharacterSet]]];

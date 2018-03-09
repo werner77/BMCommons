@@ -16,3 +16,12 @@ typedef NS_OPTIONS(NSUInteger, BMSchemaFieldType) {
     BMSchemaFieldTypeUnique = 1 << 4,
 };
 
+typedef NS_ENUM(NSUInteger, BMSchemaFieldFormatType) {
+    BMSchemaFieldFormatTypeNone = 0,
+    BMSchemaFieldFormatTypeURI = 1,
+    BMSchemaFieldFormatTypeDateTime = 2,
+    BMSchemaFieldFormatTypeEmailAddress = 3,
+    BMSchemaFieldFormatTypeHostname = 4,
+    BMSchemaFieldFormatTypeIPV4Address = 5,
+    BMSchemaFieldFormatTypeIPV6Address = 6,
+};

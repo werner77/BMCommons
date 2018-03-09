@@ -220,6 +220,10 @@
 	// is contained in, and the key used on that parent object to access the variable.
 	// e.g. for var "thing.stuff.2", where thing = NSDictionary and stuff = NSArray,
 	// parent would be a pointer to the "stuff" array, and parentKey would be "2".
+    
+    if ([var isEqualToString:@"nil"]) {
+        return nil;
+    }
 	
 	NSString *dot = @".";
 	NSArray *dotBits = [var componentsSeparatedByString:dot];
@@ -614,7 +618,7 @@ but current block was started by \"%@\" marker",
 				}
 				
 				// Output result.
-                [output appendFormat:@"%@", [self trimmedString:val]];
+                [output appendFormat:@"%@", [self trimmedString:[val description]]];
 			} else if ((!val && !isMarker && _outputDisabledCount == 0) || (isMarker && !markerHandler)) {
 				// Call delegate's error-reporting method, if implemented.
 				[self reportError:[NSString stringWithFormat:@"\"%@\" is not a valid %@", 

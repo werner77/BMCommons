@@ -21,7 +21,7 @@
 
 static NSDictionary *jsonDataTypeDict = nil;
 static NSDictionary *jsonFormatTypeDict = nil;
-static NSDictionary *jsonFormatPatternDict = nil;
+static NSDictionary *jsonFieldFormatDict = nil;
 
 #define JS_ALL_OF @"allOf"
 
@@ -59,6 +59,10 @@ static NSDictionary *jsonFormatPatternDict = nil;
 #define JS_FORMAT_IPV4 @"ipv4"
 #define JS_FORMAT_IPV6 @"ipv6"
 #define JS_FORMAT_URI @"uri"
+    
+#define JS_UNIQUE_ITEMS @"uniqueItems"
+#define JS_MIN_ITEMS @"minItems"
+#define JS_MAX_ITEMS @"maxItems"
 
 + (void)initialize {
 
@@ -96,29 +100,15 @@ static NSDictionary *jsonFormatPatternDict = nil;
                              };
     }
     
-    if (jsonFormatPatternDict == nil) {
-        jsonFormatPatternDict = @{
-                               JS_FORMAT_EMAIL : @"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])",
-                               JS_FORMAT_HOSTNAME : @"^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$",
-                               JS_FORMAT_IPV4: @"^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$",
-                               JS_FORMAT_IPV6: @"(\A([0-9a-f]{1,4}:){1,1}(:[0-9a-f]{1,4}){1,6}\Z)|"
-                               @"(\A([0-9a-f]{1,4}:){1,2}(:[0-9a-f]{1,4}){1,5}\Z)|"
-                               @"(\A([0-9a-f]{1,4}:){1,3}(:[0-9a-f]{1,4}){1,4}\Z)|"
-                               @"(\A([0-9a-f]{1,4}:){1,4}(:[0-9a-f]{1,4}){1,3}\Z)|"
-                               @"(\A([0-9a-f]{1,4}:){1,5}(:[0-9a-f]{1,4}){1,2}\Z)|"
-                               @"(\A([0-9a-f]{1,4}:){1,6}(:[0-9a-f]{1,4}){1,1}\Z)|"
-                               @"(\A(([0-9a-f]{1,4}:){1,7}|:):\Z)|"
-                               @"(\A:(:[0-9a-f]{1,4}){1,7}\Z)|"
-                               @"(\A((([0-9a-f]{1,4}:){6})(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3})\Z)|"
-                               @"(\A(([0-9a-f]{1,4}:){5}[0-9a-f]{1,4}:(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3})\Z)|"
-                               @"(\A([0-9a-f]{1,4}:){5}:[0-9a-f]{1,4}:(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\Z)|"
-                               @"(\A([0-9a-f]{1,4}:){1,1}(:[0-9a-f]{1,4}){1,4}:(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\Z)|"
-                               @"(\A([0-9a-f]{1,4}:){1,2}(:[0-9a-f]{1,4}){1,3}:(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\Z)|"
-                               @"(\A([0-9a-f]{1,4}:){1,3}(:[0-9a-f]{1,4}){1,2}:(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\Z)|"
-                               @"(\A([0-9a-f]{1,4}:){1,4}(:[0-9a-f]{1,4}){1,1}:(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\Z)|"
-                               @"(\A(([0-9a-f]{1,4}:){1,5}|:):(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\Z)|"
-                               @"(\A:(:[0-9a-f]{1,4}){1,5}:(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\Z)"
-                               };
+    if (jsonFieldFormatDict == nil) {
+        jsonFieldFormatDict = @{
+                                JS_FORMAT_URI: @(BMSchemaFieldFormatTypeURI),
+                                JS_FORMAT_DATETIME: @(BMSchemaFieldFormatTypeDateTime),
+                                JS_FORMAT_IPV4: @(BMSchemaFieldFormatTypeIPV4Address),
+                                JS_FORMAT_IPV6: @(BMSchemaFieldFormatTypeIPV6Address),
+                                JS_FORMAT_EMAIL: @(BMSchemaFieldFormatTypeEmailAddress),
+                                JS_FORMAT_HOSTNAME: @(BMSchemaFieldFormatTypeHostname),
+                                };
     }
 }
 
@@ -175,7 +165,13 @@ static NSDictionary *jsonFormatPatternDict = nil;
     NSString *regexPattern = nil;
     NSString *fieldType = nil;
     NSArray *enumValues = nil;
+    NSInteger minLength = 0;
+    NSInteger maxLength = -1;
+    BOOL uniqueItems = NO;
+    NSInteger minItems = 0;
+    NSInteger maxItems = -1;
     BMSchemaFieldType schemaFieldType = BMSchemaFieldTypeNone;
+    BMSchemaFieldFormatType fieldFormatType = BMSchemaFieldFormatTypeNone;
     
     if (refId != nil) {
         schemaFieldType = BMSchemaFieldTypeObjectReference;
@@ -236,6 +232,10 @@ static NSDictionary *jsonFormatPatternDict = nil;
         
         BMSchemaFieldType retType = [self parseSchemaDict:itemDict withName:theName objectMapping:objectMapping objectMappingDict:objectMappingDict addToFieldMappings:NO fieldTypeRef:&fieldType error:error];
         
+        uniqueItems = [[schemaDict bmObjectForKey:JS_UNIQUE_ITEMS ofClass:[NSNumber class] defaultValue:@(NO)] boolValue];
+        minItems = [[schemaDict bmObjectForKey:JS_MIN_ITEMS ofClass:[NSNumber class] defaultValue:@(0)] integerValue];
+        maxItems = [[schemaDict bmObjectForKey:JS_MAX_ITEMS ofClass:[NSNumber class] defaultValue:@(-1)] integerValue];
+        
         if (retType == BMSchemaFieldTypeNone) {
             return BMSchemaFieldTypeNone;
         }
@@ -248,9 +248,11 @@ static NSDictionary *jsonFormatPatternDict = nil;
             NSString *formatFieldType = [jsonFormatTypeDict bmObjectForKey:format ofClass:NSString.class];
             if (formatFieldType != nil) {
                 fieldType = formatFieldType;
-            } else {
-                regexPattern = [jsonFormatPatternDict bmObjectForKey:format ofClass:NSString.class];
             }
+            fieldFormatType = [[jsonFieldFormatDict bmObjectForKey:format ofClass:NSNumber.class] unsignedIntegerValue];
+            regexPattern = [schemaDict bmObjectForKey:JS_PATTERN ofClass:NSString.class];
+            minLength = [[schemaDict bmObjectForKey:JS_MIN_LENGTH ofClass:NSNumber.class defaultValue:@(0)] integerValue];
+            maxLength = [[schemaDict bmObjectForKey:JS_MAX_LENGTH ofClass:NSNumber.class defaultValue:@(-1)] integerValue];
         }
 
         enumValues = [schemaDict bmObjectForKey:JS_ENUM ofClass:NSArray.class];
@@ -278,8 +280,15 @@ static NSDictionary *jsonFormatPatternDict = nil;
             NSString *fieldDescriptor = [self fieldDescriptorForField:mappingPath type:fieldType fieldType:schemaFieldType];
             BMFieldMapping *fieldMapping = [[BMFieldMapping alloc] initWithFieldDescriptor:fieldDescriptor
                                                                                mappingPath:mappingPath];
+            fieldMapping.minLength = minLength;
+            fieldMapping.maxLength = maxLength;
             fieldMapping.pattern = regexPattern;
             fieldMapping.enumeratedValues = enumValues;
+            fieldMapping.schemaFieldType = schemaFieldType;
+            fieldMapping.schemaFieldFormatType = fieldFormatType;
+            fieldMapping.uniqueItems = uniqueItems;
+            fieldMapping.minItems = minItems;
+            fieldMapping.maxItems = maxItems;
             [objectMapping addFieldMapping:fieldMapping];
         }
     }
