@@ -24,6 +24,7 @@ static NSDictionary *jsonFormatTypeDict = nil;
 static NSDictionary *jsonFieldFormatDict = nil;
 
 #define JS_ALL_OF @"allOf"
+#define JS_ANY_OF @"anyOf"
 
 #define JS_MULTIPLE_OF @"multipleOf" //int: valid if <instance count>/multipleOf is an integer
 #define JS_MAXIMUM @"maximum" //max value
@@ -34,6 +35,10 @@ static NSDictionary *jsonFieldFormatDict = nil;
 #define JS_MAX_LENGTH @"maxLength" //max string length: UINT
 #define JS_MIN_LENGTH @"minLength" //min string length: UINT, default 0
 #define JS_PATTERN @"pattern" //regex validation pattern
+
+#define JS_UNIQUE_ITEMS @"uniqueItems"
+#define JS_MIN_ITEMS @"minItems"
+#define JS_MAX_ITEMS @"maxItems"
 
 #define JS_PROPERTIES @"properties"
 #define JS_REQUIRED @"required"
@@ -59,15 +64,6 @@ static NSDictionary *jsonFieldFormatDict = nil;
 #define JS_FORMAT_IPV4 @"ipv4"
 #define JS_FORMAT_IPV6 @"ipv6"
 #define JS_FORMAT_URI @"uri"
-    
-#define JS_UNIQUE_ITEMS @"uniqueItems"
-#define JS_MIN_ITEMS @"minItems"
-#define JS_MAX_ITEMS @"maxItems"
-#define JS_MAXIMUM @"maximum"
-#define JS_MINIMUM @"minimum"
-#define JS_EXCLUSIVE_MAXIMUM @"exclusiveMaximum"
-#define JS_EXCLUSIVE_MINIMUM @"exclusiveMinimum"
-#define JS_MULTIPLE_OF @"multipleOf"
 
 + (void)initialize {
 
@@ -264,7 +260,11 @@ static NSDictionary *jsonFieldFormatDict = nil;
             minLength = [[schemaDict bmObjectForKey:JS_MIN_LENGTH ofClass:NSNumber.class defaultValue:@(0)] integerValue];
             maxLength = [[schemaDict bmObjectForKey:JS_MAX_LENGTH ofClass:NSNumber.class defaultValue:@(-1)] integerValue];
         } else if ([fieldType isEqualToString:BM_FIELD_TYPE_INT] || [fieldType isEqualToString:BM_FIELD_TYPE_DOUBLE]) {
-            //TODO: handle maximum/minimum/multipleOf
+            multipleOf = [schemaDict bmObjectForKey:JS_MULTIPLE_OF ofClass:NSNumber.class];
+            minimum = [schemaDict bmObjectForKey:JS_MINIMUM ofClass:NSNumber.class];
+            maximum = [schemaDict bmObjectForKey:JS_MAXIMUM ofClass:NSNumber.class];
+            exclusiveMinimum = [[schemaDict bmObjectForKey:JS_EXCLUSIVE_MINIMUM ofClass:NSNumber.class] boolValue];
+            exclusiveMaximum = [[schemaDict bmObjectForKey:JS_EXCLUSIVE_MAXIMUM ofClass:NSNumber.class] boolValue];
         }
 
         enumValues = [schemaDict bmObjectForKey:JS_ENUM ofClass:NSArray.class];
@@ -301,11 +301,11 @@ static NSDictionary *jsonFieldFormatDict = nil;
             fieldMapping.uniqueItems = uniqueItems;
             fieldMapping.minItems = minItems;
             fieldMapping.maxItems = maxItems;
-            //fieldMapping.maximum = maximum;
-            //fieldMapping.minimum = minimum;
-            //fieldMapping.exclusiveMaximum = exclusiveMaximum;
-            //fieldMapping.exclusiveMinimum = exclusiveMinimum;
-            //fieldMapping.multipleOf = multipleOf;
+            fieldMapping.maximum = maximum;
+            fieldMapping.minimum = minimum;
+            fieldMapping.exclusiveMaximum = exclusiveMaximum;
+            fieldMapping.exclusiveMinimum = exclusiveMinimum;
+            fieldMapping.multipleOf = multipleOf;
             [objectMapping addFieldMapping:fieldMapping];
         }
     }

@@ -287,6 +287,46 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL uniqueItems;
 
 /**
+ If set, the minimum valid value for a numeric value type.
+ */
+@property (nonatomic, strong) NSNumber *minimum;
+
+/**
+ If set, the maximum valid value for a numeric value type.
+ */
+@property (nonatomic, strong) NSNumber *maximum;
+
+/**
+ If set, a numeric value is only valid if it is divisible by this number.
+ */
+@property (nonatomic, strong) NSNumber *multipleOf;
+
+/**
+ Returns true iif minimum != nil
+ */
+@property (nonatomic, readonly) BOOL hasMinimum;
+
+/**
+ Returns true iif maximum != nil
+ */
+@property (nonatomic, readonly) BOOL hasMaximum;
+
+/**
+ Returns true iif multipleOf != nil
+ */
+@property (nonatomic, readonly) BOOL hasMultipleOf;
+
+/**
+ If set, the minimum is exclusive, else inclusive.
+ */
+@property (nonatomic, assign, getter=isExclusiveMinimum) BOOL exclusiveMinimum;
+
+/**
+ If set, the maximum is exclusive, else inclusive.
+ */
+@property (nonatomic, assign, getter=isExclusiveMaximum) BOOL exclusiveMaximum;
+
+/**
  Regex pattern to validate a string value against.
  */
 @property (nonatomic, nullable, strong) NSString *pattern;

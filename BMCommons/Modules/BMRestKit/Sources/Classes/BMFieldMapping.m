@@ -506,7 +506,19 @@ static NSTimeZone *defaultTimeZone = nil;
 }
 
 - (BOOL)hasConstraints {
-    return self.schemaFieldFormatType >= 3 || self.pattern != nil || self.minLength > 0 || self.maxLength >= 0 || self.uniqueItems || self.minItems > 0 || self.maxItems >= 0;
+    return self.schemaFieldFormatType >= 3 || self.pattern != nil || self.minLength > 0 || self.maxLength >= 0 || self.uniqueItems || self.minItems > 0 || self.maxItems >= 0 || self.maximum != nil || self.minimum != nil || self.multipleOf != nil;
+}
+
+- (BOOL)hasMinimum {
+    return self.minimum != nil;
+}
+
+- (BOOL)hasMaximum {
+    return self.maximum != nil;
+}
+
+- (BOOL)hasMultipleOf {
+    return self.multipleOf != nil;
 }
 
 - (NSString *)escapedPattern {
