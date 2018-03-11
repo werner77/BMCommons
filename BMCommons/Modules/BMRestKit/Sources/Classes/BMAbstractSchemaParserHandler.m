@@ -90,7 +90,7 @@ static NSSet *reservedPrefixes = nil;
 }
 
 - (NSArray *)parseSchema:(NSData *)schemaData withError:(NSError **)error {
-    NSDictionary *objectMappings = [self parseSchemaImpl:schemaData objectMappings:[NSMutableDictionary new] withError:error];
+    NSDictionary *objectMappings = [self parseSchemaImpl:schemaData fromURL:nil objectMappings:[NSMutableDictionary new] withError:error];
     if (objectMappings != nil) {
         return [self processObjectMappings:objectMappings];
     } else {
@@ -118,12 +118,18 @@ static NSSet *reservedPrefixes = nil;
     if (error == nil) {
         error = &theError;
     }
+
+    if (![self preProcessSchemaURLs:schemaURLs withError:error]) {
+        LogError(@"Schema preprocessing failed: %@", *error);
+        return nil;
+    }
+
     NSMutableDictionary *objectMappings = [NSMutableDictionary dictionary];
     for (NSURL *url in schemaURLs) {
         LogInfo(@"Parsing data from schema at url: %@", url);
         NSData *data = [NSData dataWithContentsOfURL:url options:0 error:error];
         if (data) {
-            if ([self parseSchemaImpl:data objectMappings:objectMappings withError:error]) {
+            if ([self parseSchemaImpl:data fromURL:url objectMappings:objectMappings withError:error]) {
                 LogInfo(@"Successfully parsed schema data");
             } else {
                 LogError(@"Could not parse schema from url '%@': %@", url, *error);
@@ -135,6 +141,10 @@ static NSSet *reservedPrefixes = nil;
         }
     }
     return [self processObjectMappings:objectMappings];
+}
+
+- (BOOL)preProcessSchemaURLs:(NSArray *)schemaURLs withError:(NSError **)error {
+    return YES;
 }
 
 - (NSString *)targetNamespace {
@@ -296,7 +306,7 @@ static NSSet *reservedPrefixes = nil;
     return [objectMappings allValues];
 }
 
-- (NSDictionary *)parseSchemaImpl:(NSData *)schemaData objectMappings:(NSMutableDictionary *)objectMappings withError:(NSError *__autoreleasing *)error {
+- (NSDictionary *)parseSchemaImpl:(NSData *)schemaData fromURL:(NSURL *)url objectMappings:(NSMutableDictionary *)objectMappings withError:(NSError *__autoreleasing *)error {
     //Should be implemented by sub classes
     [self doesNotRecognizeSelector:_cmd];
     return nil;

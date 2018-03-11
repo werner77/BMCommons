@@ -40,7 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)resolveUninitializedFieldMappingsFromObjectMappings:(NSDictionary *)objectMappings;
 
 //Main method to be implemented by sub classes
-- (nullable NSDictionary *)parseSchemaImpl:(NSData *)schemaData objectMappings:(NSMutableDictionary *)objectMappings withError:(NSError *_Nullable __autoreleasing * _Nullable)error;
+- (nullable NSDictionary *)parseSchemaImpl:(NSData *)schemaData fromURL:(nullable NSURL *)url objectMappings:(NSMutableDictionary *)objectMappings withError:(NSError *_Nullable __autoreleasing * _Nullable)error;
+- (BOOL)preProcessSchemaURLs:(NSArray *)schemaURLs withError:(NSError *_Nullable __autoreleasing * _Nullable)error;
 
 @end
 

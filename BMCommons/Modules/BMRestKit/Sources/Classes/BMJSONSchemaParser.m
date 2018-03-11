@@ -17,6 +17,15 @@
 #import <BMCommons/NSArray+BMCommons.h>
 #import <BMCommons/BMCore.h>
 
+@interface BMJSONSchemaParser()
+
+@property (nonatomic, strong) NSMutableDictionary *schemaLookupDict;
+@property (nonatomic, strong) NSDictionary *rootSchemaDict;
+@property (nonatomic, strong) NSString *rootSchemaId;
+@property (nonatomic, strong) NSURL *schemaURL;
+
+@end
+
 @implementation BMJSONSchemaParser
 
 static NSDictionary *jsonDataTypeDict = nil;
@@ -120,40 +129,95 @@ static NSDictionary *jsonFieldFormatDict = nil;
     return jsonDataTypeDict;
 }
 
-- (NSDictionary *)parseSchemaImpl:(NSData *)schemaData objectMappings:(NSMutableDictionary *)objectMappings withError:(NSError *__autoreleasing *)error {
-    
+- (BOOL)preProcessSchemaURLs:(NSArray *)schemaURLs withError:(NSError **)error {
+
+    self.schemaLookupDict = [NSMutableDictionary new];
+
+    //Pre convert all URLs to JSON data so they can be found by references
+    for (NSURL *url in schemaURLs) {
+        NSData *data = [NSData dataWithContentsOfURL:url options:0 error:error];
+        if (data) {
+            NSDictionary *schemaDict = [self schemaDictFromData:data url:url withError:error];
+            if (schemaDict) {
+                NSString *schemaId = [schemaDict bmValueForXPath:@"id" withClass:NSString.class];
+                if (schemaId) {
+                    self.schemaLookupDict[schemaId] = schemaDict;
+                }
+            } else {
+                return NO;
+            }
+        } else {
+            LogError(@"Could not read data from url '%@': %@", url, *error);
+            return NO;
+        }
+    }
+    return YES;
+}
+
+- (NSDictionary *)schemaDictFromData:(NSData *)schemaData url:(NSURL *)url withError:(NSError **)error {
+
+    NSDictionary *schemaDict = nil;
+    NSString *urlString = url.absoluteString;
+
+    if (urlString != nil) {
+        schemaDict = self.schemaLookupDict[urlString];
+
+        if (schemaDict != nil) {
+            return schemaDict;
+        }
+    }
+
     Class sbjsonClass = NSClassFromString(@"SBJSON");
     id jsonObject = nil;
-    
+
     SEL objectFromJSONDataSelector = NSSelectorFromString(@"objectFromJSONData");
-    
+
     if ([schemaData respondsToSelector:objectFromJSONDataSelector]) {
         BM_IGNORE_SELECTOR_LEAK_WARNING(
-        jsonObject = [schemaData performSelector:objectFromJSONDataSelector withObject:nil];
+                jsonObject = [schemaData performSelector:objectFromJSONDataSelector withObject:nil];
         )
     } else if (sbjsonClass) {
         id jsonParser = [sbjsonClass new];
-        
+
         SEL objectWithStringSelector = NSSelectorFromString(@"objectWithString:");
         if ([jsonParser respondsToSelector:objectWithStringSelector]) {
             NSString *jsonString = [[NSString alloc] initWithData:schemaData encoding:NSUTF8StringEncoding];
             BM_IGNORE_SELECTOR_LEAK_WARNING(
-            jsonObject = [jsonParser performSelector:objectWithStringSelector withObject:jsonString];
+                    jsonObject = [jsonParser performSelector:objectWithStringSelector withObject:jsonString];
             )
         }
     }
-    
+
     if (!jsonObject) {
         jsonObject = [NSJSONSerialization JSONObjectWithData:schemaData options:0 error:error];
     }
+
+    schemaDict = [jsonObject bmCastSafely:[NSDictionary class]];
+
+    if (schemaDict == nil && jsonObject != nil && error) {
+        *error = [BMErrorHelper genericErrorWithDescription:[NSString stringWithFormat:@"Schema data does not have a root-level dictionary"]];
+    }
+
+    if (schemaDict != nil && urlString != nil) {
+        self.schemaLookupDict[urlString] = schemaDict;
+    }
+
+    return schemaDict;
+}
+
+- (NSDictionary *)parseSchemaImpl:(NSData *)schemaData fromURL:(NSURL *)url objectMappings:(NSMutableDictionary *)objectMappings withError:(NSError *__autoreleasing *)error {
     
-    NSDictionary *schemaDict = [jsonObject bmCastSafely:[NSDictionary class]];
+    NSDictionary *schemaDict = [self schemaDictFromData:schemaData url:url withError:error];
     NSString *rootElementName = @"";
     
     if (schemaDict) {
-        NSMutableDictionary *definitionsDict = [NSMutableDictionary new];
-        if ([self parseSchemaDict:schemaDict withName:rootElementName currentXPath:@"#" objectMapping:nil objectMappingDict:objectMappings
-                  addToFieldMappings:NO fieldTypeRef:nil error:error] != BMSchemaFieldTypeNone) {
+        self.rootSchemaDict = schemaDict;
+        self.rootSchemaId = nil;
+        self.schemaURL = url;
+        BMSchemaFieldType fieldType = [self parseSchemaDict:schemaDict withName:rootElementName currentSchemaId:nil objectMapping:nil objectMappingDict:objectMappings
+                                         addToFieldMappings:NO fieldTypeRef:nil error:error];
+        BOOL containsDefinitions = [schemaDict bmObjectForKey:JS_DEFINITIONS ofClass:NSDictionary.class] != nil;
+        if (fieldType != BMSchemaFieldTypeNone || containsDefinitions) {
             return objectMappings;
         }
     }
@@ -162,23 +226,134 @@ static NSDictionary *jsonFieldFormatDict = nil;
 
 #pragma mark - Private
 
-- (NSDictionary *)resolveDefinitionForRef:(NSString *)refId fromCurrentXPath:(NSString *)currentXPath {
-    return nil;
+- (NSDictionary *)resolveDefinitionForRef:(NSString *)refId {
+    NSRange range = [refId rangeOfString:@"#/"];
+    if (range.location == NSNotFound) {
+        //Not a valid definition reference
+        return nil;
+    }
+
+    NSString *jsonPointer = [refId substringFromIndex:range.location + 1];
+    NSString *uri = range.location == 0 ? nil : [refId substringToIndex:range.location];
+
+    NSDictionary *schemaDict = self.rootSchemaDict;
+
+    if (uri.length > 0 && ![uri isEqualToString:self.rootSchemaId]) {
+        schemaDict = self.schemaLookupDict[uri];
+    }
+
+    NSDictionary *ret = [schemaDict bmValueForXPath:jsonPointer withClass:NSDictionary.class];
+    return ret;
 }
 
-- (BMSchemaFieldType)parseSchemaDict:(NSDictionary *)schemaDict withName:(NSString *)theName currentXPath:(NSString *)currentXPath
-                       objectMapping:(BMObjectMapping *)objectMapping
-                   objectMappingDict:(NSMutableDictionary *)objectMappingDict addToFieldMappings:(BOOL)addToFieldMappings fieldTypeRef:(NSString **)fieldTypeRef error:(NSError **)error {
+- (NSString *)fullUriFromBase:(NSString *)base andPointer:(NSString *)pointer {
+    NSUInteger index1 = base.length;
+    while (index1 > 0) {
+        unichar c = [base characterAtIndex:index1 - 1];
+        if (c != '#') {
+            break;
+        }
+        index1--;
+    }
+    NSUInteger index2 = 0;
+    while (index2 < pointer.length) {
+        unichar c = [pointer characterAtIndex:index2];
+        if (c != '#') {
+            break;
+        }
+        index2++;
+    }
+    return [NSString stringWithFormat:@"%@#%@", [base substringToIndex:index1], [pointer substringFromIndex:index2]];
+}
 
-    NSString *refId = [schemaDict bmObjectForKey:JS_REF ofClass:NSString.class];
-    NSDictionary *referencedDefinition = [self resolveDefinitionForRef:refId fromCurrentXPath:currentXPath];
-    if (referencedDefinition != nil) {
-        schemaDict = referencedDefinition;
+- (NSString *)resolveReference:(NSString *)reference relativeTo:(NSString *)currentSchemaId isDefinitionReference:(BOOL *)isDefinitionReference {
+    static NSRegularExpression *uriExpression = nil;
+    BM_DISPATCH_ONCE(^{
+        uriExpression = [[NSRegularExpression alloc] initWithPattern:@"^[a-zA-Z0-9]+:.*$" options:0 error:nil];
+        NSAssert(uriExpression != nil, @"Expected expression to be valid");
+    });
+
+    NSString *ret = nil;
+    if (reference != nil) {
+        if ([reference hasPrefix:@"#"]) {
+            //JSONPointer within current schema
+            if (currentSchemaId) {
+                ret = [self fullUriFromBase:currentSchemaId andPointer:reference];
+            }
+        } else if ([uriExpression matchesInString:reference options:0 range:NSMakeRange(0, reference.length)].count == 1) {
+            //Absolute schema Id
+            ret = reference;
+        } else if (currentSchemaId) {
+            //Relative schema: resolve against parent of current schema
+            NSRange range = [reference rangeOfString:@"#"];
+            NSString *pathPart = nil;
+            NSString *refPart = nil;
+            if (range.location != NSNotFound) {
+                pathPart = [reference substringToIndex:range.location];
+                refPart = [reference substringFromIndex:range.location];
+            } else {
+                pathPart = reference;
+            }
+
+            NSURLComponents *urlComponents = [[NSURLComponents alloc] initWithString:currentSchemaId];
+            NSString *path = [[urlComponents path] stringByDeletingLastPathComponent];
+            if (path == nil) {
+                path = @"/";
+            }
+            urlComponents.path = [path stringByAppendingPathComponent:pathPart];
+            ret = urlComponents.URL.absoluteString;
+            if (refPart != nil) {
+                ret = [ret stringByAppendingString:refPart];
+            }
+        }
+
+        //Strip of trailing '#' identifier
+        while ([ret hasSuffix:@"#"]) {
+            ret = [ret substringToIndex:ret.length - 1];
+        }
+    }
+
+    if (isDefinitionReference) {
+        *isDefinitionReference = [ret containsString:@"#/"];
+    }
+
+    return ret;
+}
+
+- (BMSchemaFieldType)parseSchemaDict:(NSDictionary *)schemaDict
+                            withName:(NSString *)theName
+                     currentSchemaId:(NSString *)currentSchemaId
+                       objectMapping:(BMObjectMapping *)objectMapping
+                   objectMappingDict:(NSMutableDictionary *)objectMappingDict
+                  addToFieldMappings:(BOOL)addToFieldMappings
+                        fieldTypeRef:(NSString **)fieldTypeRef
+                               error:(NSError **)error {
+
+    NSString *schemaId = [self resolveReference:[schemaDict bmObjectForKey:JS_ID ofClass:NSString.class] relativeTo:currentSchemaId isDefinitionReference:NULL];
+    if (schemaId != nil) {
+        currentSchemaId = schemaId;
+        if (self.rootSchemaId == nil) {
+            self.rootSchemaId = schemaId;
+        }
+    }
+
+    BOOL isDefinitionReference = NO;
+    NSString *refId = [self resolveReference:[schemaDict bmObjectForKey:JS_REF ofClass:NSString.class] relativeTo:currentSchemaId isDefinitionReference:&isDefinitionReference];
+
+    if (isDefinitionReference) {
+        schemaDict = [self resolveDefinitionForRef:refId];
+
+        if (schemaDict == nil) {
+            LogWarn(@"Could not resolve definition reference: %@", refId);
+            return BMSchemaFieldTypeNone;
+        }
+
         refId = nil;
     }
 
     NSString *jsonType = [schemaDict bmObjectForKey:JS_TYPE ofClass:NSString.class];
     NSString *title = [schemaDict bmObjectForKey:JS_TITLE ofClass:NSString.class];
+    NSDictionary *definitions = [schemaDict bmObjectForKey:JS_DEFINITIONS ofClass:NSDictionary.class];
     NSString *regexPattern = nil;
     NSString *fieldType = nil;
     NSArray *enumValues = nil;
@@ -201,8 +376,8 @@ static NSDictionary *jsonFieldFormatDict = nil;
         fieldType = refId;
 
     } else if ([jsonType isEqual:JS_TYPE_OBJECT]) {
-        
-        NSString *mappingId = [schemaDict bmObjectForKey:JS_ID ofClass:NSString.class];
+
+        NSString *mappingId = schemaId;
         if (title == nil) {
             //Ignore object mappings without a title
             LogWarn(@"Object mapping without title is ignored for element name: %@", theName);
@@ -230,7 +405,8 @@ static NSDictionary *jsonFieldFormatDict = nil;
             [requiredProperties addObjectsFromArray:requiredProps];
         }
         
-        BMObjectMapping *om = [self objectMappingForProperties:jsonProperties withElementName:theName currentXPath:currentXPath title:title mappingId:mappingId objectMappingDict:objectMappingDict error:error];
+        BMObjectMapping *om = [self objectMappingForProperties:jsonProperties withElementName:theName title:title
+                                               currentSchemaId:currentSchemaId mappingId:mappingId objectMappingDict:objectMappingDict error:error];
         
         if (om == nil) {
             return BMSchemaFieldTypeNone;
@@ -253,7 +429,7 @@ static NSDictionary *jsonFieldFormatDict = nil;
         
         NSDictionary *itemDict = [schemaDict bmObjectForKey:JS_ITEMS ofClass:[NSDictionary class]];
         
-        BMSchemaFieldType retType = [self parseSchemaDict:itemDict withName:theName currentXPath:[NSString stringWithFormat:@"%@/%@", currentXPath, JS_ITEMS] objectMapping:objectMapping objectMappingDict:objectMappingDict addToFieldMappings:NO fieldTypeRef:&fieldType error:error];
+        BMSchemaFieldType retType = [self parseSchemaDict:itemDict withName:theName currentSchemaId:currentSchemaId objectMapping:objectMapping objectMappingDict:objectMappingDict addToFieldMappings:NO fieldTypeRef:&fieldType error:error];
         
         uniqueItems = [[schemaDict bmObjectForKey:JS_UNIQUE_ITEMS ofClass:[NSNumber class] defaultValue:@(NO)] boolValue];
         minItems = [[schemaDict bmObjectForKey:JS_MIN_ITEMS ofClass:[NSNumber class] defaultValue:@(0)] integerValue];
@@ -272,7 +448,7 @@ static NSDictionary *jsonFieldFormatDict = nil;
             if (formatFieldType != nil) {
                 fieldType = formatFieldType;
             }
-            fieldFormatType = [[jsonFieldFormatDict bmObjectForKey:format ofClass:NSNumber.class] unsignedIntegerValue];
+            fieldFormatType = (BMSchemaFieldFormatType)[[jsonFieldFormatDict bmObjectForKey:format ofClass:NSNumber.class] unsignedIntegerValue];
             regexPattern = [schemaDict bmObjectForKey:JS_PATTERN ofClass:NSString.class];
             minLength = [[schemaDict bmObjectForKey:JS_MIN_LENGTH ofClass:NSNumber.class defaultValue:@(0)] integerValue];
             maxLength = [[schemaDict bmObjectForKey:JS_MAX_LENGTH ofClass:NSNumber.class defaultValue:@(-1)] integerValue];
@@ -290,7 +466,9 @@ static NSDictionary *jsonFieldFormatDict = nil;
     
     if (fieldType == nil) {
         //Ignore object mappings without a title
-        LogWarn(@"JSON type: '%@' is not supported by the BMRestKit framework for mapping with name: '%@' for object mapping: '%@'", jsonType, theName, objectMapping.name);
+        if (definitions == nil) {
+            LogWarn(@"JSON type: '%@' is not supported by the BMRestKit framework for mapping with name: '%@' for object mapping: '%@'", jsonType, theName, objectMapping.name);
+        }
         return BMSchemaFieldTypeNone;
     }
     
@@ -445,8 +623,13 @@ static NSDictionary *jsonFieldFormatDict = nil;
     return valid;
 }
 
-- (BMObjectMapping *)objectMappingForProperties:(NSDictionary *)jsonProperties withElementName:(NSString *)elementName currentXPath:(NSString *)currentXPath title:(NSString *)title
-                                      mappingId:(NSString *)mappingId objectMappingDict:(NSMutableDictionary *)objectMappingDict error:(NSError **)error {
+- (BMObjectMapping *)objectMappingForProperties:(NSDictionary *)jsonProperties
+                                withElementName:(NSString *)elementName
+                                          title:(NSString *)title
+                                currentSchemaId:(NSString *)currentSchemaId
+                                      mappingId:(NSString *)mappingId
+                              objectMappingDict:(NSMutableDictionary *)objectMappingDict
+                                          error:(NSError **)error {
     NSString *mappingName = nil;
     NSString *parentMappingName = nil;
     
@@ -469,7 +652,7 @@ static NSDictionary *jsonFieldFormatDict = nil;
     
     for (NSString *propertyName in jsonProperties) {
         NSDictionary *propertyDict = [jsonProperties bmObjectForKey:propertyName ofClass:NSDictionary.class];
-        if ([self parseSchemaDict:propertyDict withName:propertyName currentXPath:[NSString stringWithFormat:@"%@/%@/%@", currentXPath, JS_PROPERTIES, propertyName] objectMapping:currentMapping objectMappingDict:objectMappingDict addToFieldMappings:YES fieldTypeRef:nil error:error] == BMSchemaFieldTypeNone) {
+        if ([self parseSchemaDict:propertyDict withName:propertyName currentSchemaId:currentSchemaId objectMapping:currentMapping objectMappingDict:objectMappingDict addToFieldMappings:YES fieldTypeRef:nil error:error] == BMSchemaFieldTypeNone) {
             return nil;
         }
     }

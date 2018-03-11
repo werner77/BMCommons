@@ -269,7 +269,7 @@ static NSArray *w3cNamespaces = nil;
 
 #pragma mark - Protected methods
 
-- (NSDictionary *)parseSchemaImpl:(NSData *)schemaData objectMappings:(NSMutableDictionary *)objectMappings withError:(NSError *__autoreleasing *)error {
+- (NSDictionary *)parseSchemaImpl:(NSData *)schemaData fromURL:(NSURL *)url objectMappings:(NSMutableDictionary *)objectMappings withError:(NSError *__autoreleasing *)error {
 
     _objectMappings = objectMappings;
     BMXMLParser *xmlParser = [[BMXMLParser alloc] initWithData:schemaData];
