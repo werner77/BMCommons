@@ -25,6 +25,7 @@ static NSDictionary *jsonFieldFormatDict = nil;
 
 #define JS_ALL_OF @"allOf"
 #define JS_ANY_OF @"anyOf"
+#define JS_DEFINITIONS @"definitions"
 
 #define JS_MULTIPLE_OF @"multipleOf" //int: valid if <instance count>/multipleOf is an integer
 #define JS_MAXIMUM @"maximum" //max value
@@ -150,7 +151,9 @@ static NSDictionary *jsonFieldFormatDict = nil;
     NSString *rootElementName = @"";
     
     if (schemaDict) {
-        if ([self parseSchemaDict:schemaDict withName:rootElementName objectMapping:nil objectMappingDict:objectMappings addToFieldMappings:NO fieldTypeRef:nil error:error] != BMSchemaFieldTypeNone) {
+        NSMutableDictionary *definitionsDict = [NSMutableDictionary new];
+        if ([self parseSchemaDict:schemaDict withName:rootElementName currentXPath:@"#" objectMapping:nil objectMappingDict:objectMappings
+                  addToFieldMappings:NO fieldTypeRef:nil error:error] != BMSchemaFieldTypeNone) {
             return objectMappings;
         }
     }
@@ -159,9 +162,22 @@ static NSDictionary *jsonFieldFormatDict = nil;
 
 #pragma mark - Private
 
-- (BMSchemaFieldType)parseSchemaDict:(NSDictionary *)schemaDict withName:(NSString *)theName objectMapping:(BMObjectMapping *)objectMapping objectMappingDict:(NSMutableDictionary *)objectMappingDict addToFieldMappings:(BOOL)addToFieldMappings fieldTypeRef:(NSString **)fieldTypeRef error:(NSError **)error {
-    NSString *jsonType = [schemaDict bmObjectForKey:JS_TYPE ofClass:NSString.class];
+- (NSDictionary *)resolveDefinitionForRef:(NSString *)refId fromCurrentXPath:(NSString *)currentXPath {
+    return nil;
+}
+
+- (BMSchemaFieldType)parseSchemaDict:(NSDictionary *)schemaDict withName:(NSString *)theName currentXPath:(NSString *)currentXPath
+                       objectMapping:(BMObjectMapping *)objectMapping
+                   objectMappingDict:(NSMutableDictionary *)objectMappingDict addToFieldMappings:(BOOL)addToFieldMappings fieldTypeRef:(NSString **)fieldTypeRef error:(NSError **)error {
+
     NSString *refId = [schemaDict bmObjectForKey:JS_REF ofClass:NSString.class];
+    NSDictionary *referencedDefinition = [self resolveDefinitionForRef:refId fromCurrentXPath:currentXPath];
+    if (referencedDefinition != nil) {
+        schemaDict = referencedDefinition;
+        refId = nil;
+    }
+
+    NSString *jsonType = [schemaDict bmObjectForKey:JS_TYPE ofClass:NSString.class];
     NSString *title = [schemaDict bmObjectForKey:JS_TITLE ofClass:NSString.class];
     NSString *regexPattern = nil;
     NSString *fieldType = nil;
@@ -178,8 +194,9 @@ static NSDictionary *jsonFieldFormatDict = nil;
     NSNumber *multipleOf = nil;
     BMSchemaFieldType schemaFieldType = BMSchemaFieldTypeNone;
     BMSchemaFieldFormatType fieldFormatType = BMSchemaFieldFormatTypeNone;
-    
+
     if (refId != nil) {
+
         schemaFieldType = BMSchemaFieldTypeObjectReference;
         fieldType = refId;
 
@@ -213,7 +230,7 @@ static NSDictionary *jsonFieldFormatDict = nil;
             [requiredProperties addObjectsFromArray:requiredProps];
         }
         
-        BMObjectMapping *om = [self objectMappingForProperties:jsonProperties withElementName:theName title:title mappingId:mappingId objectMappingDict:objectMappingDict error:error];
+        BMObjectMapping *om = [self objectMappingForProperties:jsonProperties withElementName:theName currentXPath:currentXPath title:title mappingId:mappingId objectMappingDict:objectMappingDict error:error];
         
         if (om == nil) {
             return BMSchemaFieldTypeNone;
@@ -236,7 +253,7 @@ static NSDictionary *jsonFieldFormatDict = nil;
         
         NSDictionary *itemDict = [schemaDict bmObjectForKey:JS_ITEMS ofClass:[NSDictionary class]];
         
-        BMSchemaFieldType retType = [self parseSchemaDict:itemDict withName:theName objectMapping:objectMapping objectMappingDict:objectMappingDict addToFieldMappings:NO fieldTypeRef:&fieldType error:error];
+        BMSchemaFieldType retType = [self parseSchemaDict:itemDict withName:theName currentXPath:[NSString stringWithFormat:@"%@/%@", currentXPath, JS_ITEMS] objectMapping:objectMapping objectMappingDict:objectMappingDict addToFieldMappings:NO fieldTypeRef:&fieldType error:error];
         
         uniqueItems = [[schemaDict bmObjectForKey:JS_UNIQUE_ITEMS ofClass:[NSNumber class] defaultValue:@(NO)] boolValue];
         minItems = [[schemaDict bmObjectForKey:JS_MIN_ITEMS ofClass:[NSNumber class] defaultValue:@(0)] integerValue];
@@ -428,7 +445,7 @@ static NSDictionary *jsonFieldFormatDict = nil;
     return valid;
 }
 
-- (BMObjectMapping *)objectMappingForProperties:(NSDictionary *)jsonProperties withElementName:(NSString *)elementName title:(NSString *)title
+- (BMObjectMapping *)objectMappingForProperties:(NSDictionary *)jsonProperties withElementName:(NSString *)elementName currentXPath:(NSString *)currentXPath title:(NSString *)title
                                       mappingId:(NSString *)mappingId objectMappingDict:(NSMutableDictionary *)objectMappingDict error:(NSError **)error {
     NSString *mappingName = nil;
     NSString *parentMappingName = nil;
@@ -452,7 +469,7 @@ static NSDictionary *jsonFieldFormatDict = nil;
     
     for (NSString *propertyName in jsonProperties) {
         NSDictionary *propertyDict = [jsonProperties bmObjectForKey:propertyName ofClass:NSDictionary.class];
-        if ([self parseSchemaDict:propertyDict withName:propertyName objectMapping:currentMapping objectMappingDict:objectMappingDict addToFieldMappings:YES fieldTypeRef:nil error:error] == BMSchemaFieldTypeNone) {
+        if ([self parseSchemaDict:propertyDict withName:propertyName currentXPath:[NSString stringWithFormat:@"%@/%@/%@", currentXPath, JS_PROPERTIES, propertyName] objectMapping:currentMapping objectMappingDict:objectMappingDict addToFieldMappings:YES fieldTypeRef:nil error:error] == BMSchemaFieldTypeNone) {
             return nil;
         }
     }
