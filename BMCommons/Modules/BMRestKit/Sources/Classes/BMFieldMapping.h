@@ -262,6 +262,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, getter=isRequired) BOOL required;
 
 /**
+ Whether the property is readOnly or not.
+*/
+@property (nonatomic, assign, getter=isReadOnly) BOOL readOnly;
+
+/**
  Defaults to 0. If set to something > 0 a string value is only valid if its length >= this limit.
  */
 @property (nonatomic, assign) NSInteger minLength;

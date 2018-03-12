@@ -49,6 +49,8 @@ static NSDictionary *jsonFieldFormatDict = nil;
 #define JS_UNIQUE_ITEMS @"uniqueItems"
 #define JS_MIN_ITEMS @"minItems"
 #define JS_MAX_ITEMS @"maxItems"
+    
+#define JS_READ_ONLY @"readOnly"
 
 #define JS_PROPERTIES @"properties"
 #define JS_REQUIRED @"required"
@@ -369,6 +371,7 @@ static NSDictionary *jsonFieldFormatDict = nil;
     NSNumber *multipleOf = nil;
     BMSchemaFieldType schemaFieldType = BMSchemaFieldTypeNone;
     BMSchemaFieldFormatType fieldFormatType = BMSchemaFieldFormatTypeNone;
+    BOOL readOnly = [[schemaDict bmObjectForKey:JS_READ_ONLY ofClass:NSNumber.class defaultValue:@NO] boolValue];
 
     if (refId != nil) {
 
@@ -501,6 +504,7 @@ static NSDictionary *jsonFieldFormatDict = nil;
             fieldMapping.exclusiveMaximum = exclusiveMaximum;
             fieldMapping.exclusiveMinimum = exclusiveMinimum;
             fieldMapping.multipleOf = multipleOf;
+            fieldMapping.readOnly = readOnly;
             [objectMapping addFieldMapping:fieldMapping];
         }
     }
