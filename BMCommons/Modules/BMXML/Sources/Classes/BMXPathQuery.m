@@ -14,8 +14,7 @@
 
 #import <BMCommons/BMXPathQuery.h>
 #import <BMCommons/BMLogging.h>
-#import <libxml/tree.h>
-#import <libxml/parser.h>
+#import <libxml/globals.h>
 #import <libxml/HTMLparser.h>
 #import <libxml/xpath.h>
 #import <libxml/xpathInternals.h>

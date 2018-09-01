@@ -1,4 +1,4 @@
-#import <libxml/tree.h>
+#import <libxml/globals.h>
 #import <BMCommons/BMXPathQuery.h>
 
 NS_ASSUME_NONNULL_BEGIN

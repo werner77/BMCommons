@@ -1,4 +1,4 @@
-#import <libxml/xmlmemory.h>
+#import <libxml/globals.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

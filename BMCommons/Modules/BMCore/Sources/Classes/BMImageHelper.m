@@ -15,8 +15,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import <CoreMedia/CoreMedia.h>
 
-//#import "EXF.h"
-
 #define INTERPOLATION_QUALITY kCGInterpolationDefault
 
 @interface BMImageHelper(Private)

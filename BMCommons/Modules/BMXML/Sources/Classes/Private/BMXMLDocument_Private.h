@@ -1,4 +1,4 @@
-#import <libxml/xmlmemory.h>
+#import <libxml/globals.h>
 #import <BMCommons/BMXMLDocument.h>
 
 NS_ASSUME_NONNULL_BEGIN

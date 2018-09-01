@@ -8,18 +8,11 @@
 
 #import <BMCommons/BMXMLParser.h>
 
-#import <libxml/parser.h> // add -I/usr/include/libxml2 -lxml2 if you have No such file or directory errors
+#import <libxml/globals.h>
 #import <libxml/HTMLparser.h>
-#import <libxml/parserInternals.h>
-#import <libxml/SAX2.h>
-#import <libxml/xmlerror.h>
-#import <libxml/encoding.h>
-#import <libxml/entities.h>
 
 #if TARGET_OS_IPHONE
 #import <CFNetwork/CFNetwork.h>
-#else
-//#import <CoreServices/../Frameworks/CFNetwork.framework/Headers/CFNetwork.h>
 #endif
 
 #import <BMCommons/BMRestKit.h>

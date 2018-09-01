@@ -64,7 +64,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 */
 
 #import <Foundation/Foundation.h>
-#import <libxml/xmlmemory.h>
+#import <libxml/globals.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

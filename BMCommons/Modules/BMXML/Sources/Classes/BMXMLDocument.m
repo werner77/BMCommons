@@ -65,7 +65,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 #import <BMCommons/BMXMLDocument.h>
 #import <BMCommons/BMXMLReader.h>
-#import <libxml/xmlmemory.h>
+#import <libxml/globals.h>
 #import "BMXMLDocument_Private.h"
 #import "BMXMLNode_Private.h"
 

@@ -64,14 +64,8 @@
  */
 
 #import <BMCommons/BMXMLElement.h>
-#import <libxml/xmlmemory.h>
-#import <libxml/xpath.h>
 #import <libxml/globals.h>
-#import <libxml/xmlerror.h>
-#import <libxml/parserInternals.h>
-#import <libxml/xmlmemory.h>
-#import <libxml/parser.h>
-#import <libxml/xpathInternals.h>
+#import <libxml/xpath.h>
 #import "BMXMLUtilities.h"
 #import <BMCommons/BMOrderedDictionary.h>
 #import "BMXMLNode_Private.h"
