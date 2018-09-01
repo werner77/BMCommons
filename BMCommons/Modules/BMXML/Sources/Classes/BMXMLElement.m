@@ -66,6 +66,7 @@
 #import <BMCommons/BMXMLElement.h>
 #import <libxml/globals.h>
 #import <libxml/xpath.h>
+#import <libxml/xpathInternals.h>
 #import "BMXMLUtilities.h"
 #import <BMCommons/BMOrderedDictionary.h>
 #import "BMXMLNode_Private.h"
