@@ -222,7 +222,7 @@ static NSArray *w3cNamespaces = nil;
 				)
 			}
 			BMEnumerationValue *enumValue = [BMEnumerationValue enumerationValueWithValue:value];
-			[currentMapping addEnumerationValue:enumValue];
+			[currentMapping addEnumeratedValue:enumValue];
 		}
 	} else if ([elementName isEqual:@"extension"]) {
 		NSString *baseName = [attributeDict objectForKey:@"base"];

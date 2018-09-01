@@ -15,7 +15,7 @@
 @implementation BMObjectMapping {
 @private
     NSMutableArray *_fieldMappings;
-    NSMutableArray *_enumerationValues;
+    NSMutableArray *_enumeratedValues;
 }
 
 @synthesize name = _name, namespaceURI = _namespaceURI, parentName = _parentName, elementName = _elementName, rootElement = _rootElement;
@@ -28,7 +28,7 @@
     if ((self = [super init])) {
         _name = theName;
         _fieldMappings = [NSMutableArray new];
-        _enumerationValues = [NSMutableArray new];
+        _enumeratedValues = [NSMutableArray new];
     }
     return self;
 }
@@ -43,22 +43,22 @@
     fm.parentObjectMapping = nil;
 }
 
-- (void)addEnumerationValue:(BMEnumerationValue *)value {
-	if (![_enumerationValues containsObject:value]) {
-		[_enumerationValues addObject:value];
+- (void)addEnumeratedValue:(BMEnumerationValue *)value {
+	if (![_enumeratedValues containsObject:value]) {
+		[_enumeratedValues addObject:value];
 	}
 }
 
 - (BOOL)isEnumeration {
-	return _enumerationValues.count > 0;
+	return _enumeratedValues.count > 0;
 }
 
 - (NSArray *)fieldMappings {
 	return [NSArray arrayWithArray:_fieldMappings];
 }
 
-- (NSArray *)enumerationValues {
-	return [NSArray arrayWithArray:_enumerationValues];
+- (NSArray *)enumeratedValues {
+	return [NSArray arrayWithArray:_enumeratedValues];
 }
 
 - (NSString *)fqElementName {

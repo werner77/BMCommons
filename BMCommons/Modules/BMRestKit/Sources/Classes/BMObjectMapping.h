@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  An array of the enumeration values part of this elements' mapping
  */
-@property (nullable, nonatomic, readonly) NSArray *enumerationValues;
+@property (nullable, nonatomic, readonly) NSArray *enumeratedValues;
 
 /**
  An array of the field mappings contained within this mapping
@@ -87,7 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Adds an enumerated value to this mapping: makes the mapping an enumeration
  */
-- (void)addEnumerationValue:(BMEnumerationValue *)value;
+- (void)addEnumeratedValue:(BMEnumerationValue *)value;
 
 /**
  Returns true if and only if this mapping has at least one enumerated value
