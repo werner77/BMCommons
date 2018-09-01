@@ -441,15 +441,11 @@
             BOOL isMarker = [markerType isEqualToString:MARKER_TYPE_MARKER];
             BOOL previousWasMarker = [[previousMatchInfo objectForKey:MARKER_TYPE_KEY] isEqualToString:MARKER_TYPE_MARKER];
             BOOL shouldTrim = isMarker && previousWasMarker;
-            BOOL shouldRightTrim = isMarker;
-			if (_outputDisabledCount == 0) {
+            if (_outputDisabledCount == 0) {
 				NSRange preMarkerRange = NSMakeRange(_remainingRange.location, matchRange.location - _remainingRange.location);
                 NSString *s = [_templateContents substringWithRange:preMarkerRange];
                 if (shouldTrim) {
                     s = [self trimmedString:s];
-                }
-                if (shouldRightTrim) {
-                    s = [self rightTrimmedString:s];
                 }
                 [output appendString:s];
 			}

@@ -51,6 +51,7 @@ static NSArray *w3cNamespaces = nil;
 							 BM_FIELD_TYPE_DOUBLE, @"duration",
 							 BM_FIELD_TYPE_STRING, @"anyURI", //Should this be url?
 							 BM_FIELD_TYPE_STRING, @"normalizedString",
+                             BM_FIELD_TYPE_STRING, @"token",
 							 BM_FIELD_TYPE_INT, @"integer",
 							 BM_FIELD_TYPE_INT, @"negativeInteger",
 							 BM_FIELD_TYPE_INT, @"nonNegativeInteger",
