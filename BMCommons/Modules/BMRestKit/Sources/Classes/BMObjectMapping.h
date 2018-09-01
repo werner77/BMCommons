@@ -119,6 +119,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSString *)unqualifiedParentObjectClassName;
 
+/**
+ The field mapping for the value of an enumeration if this object mapping points to an enumeration.
+ */
+- (nullable BMFieldMapping *)enumeratedFieldValueMapping;
+
 @end
 
 NS_ASSUME_NONNULL_END

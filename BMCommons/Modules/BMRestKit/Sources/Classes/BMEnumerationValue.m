@@ -35,9 +35,15 @@
 	id theValue = _value;
 	if ([_value isKindOfClass:[NSString class]]) {
 		NSString *valueString = _value;
-		NSArray *components = [valueString componentsSeparatedByString:@"_"];
+        NSArray *components = [valueString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" \n\r\t+=_-{[}]|\\\"':;?/>.<,±§!@#$%^&*~`"]];
 		NSMutableString *s = [NSMutableString stringWithCapacity:valueString.length];
+        BOOL first = YES;
 		for (NSString *component in components) {
+            if (!first) {
+                [s appendString:@"_"];
+            } else {
+                first = NO;
+            }
 			[s appendString:[component capitalizedString]];
 		}
 		theValue = s;

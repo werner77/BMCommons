@@ -53,6 +53,16 @@
 	return _enumeratedValues.count > 0;
 }
 
+- (BMFieldMapping *)enumeratedFieldValueMapping {
+    BMFieldMapping *ret = nil;
+    if (self.isEnumeration) {
+        ret = [self.fieldMappings bmFirstObjectWithPredicate:^BOOL(BMFieldMapping* fm) {
+            return [fm.fieldName isEqualToString:@"value"];
+        }];
+    }
+    return ret;
+}
+
 - (NSArray *)fieldMappings {
 	return [NSArray arrayWithArray:_fieldMappings];
 }
