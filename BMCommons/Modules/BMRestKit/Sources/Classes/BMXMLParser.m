@@ -10,6 +10,7 @@
 
 #import <libxml/globals.h>
 #import <libxml/HTMLparser.h>
+#import <libxml/parserInternals.h>
 
 #if TARGET_OS_IPHONE
 #import <CFNetwork/CFNetwork.h>
