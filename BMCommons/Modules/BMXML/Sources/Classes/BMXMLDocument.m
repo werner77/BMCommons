@@ -136,16 +136,22 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 - (NSString *)XMLString
 {
-    xmlChar *XMLStr; 
-    xmlDocDumpMemoryEnc	(self.xmlDocument, &XMLStr, NULL, "UTF-8");
-    
+    return [self XMLStringWithFormatting:NO];
+}
+
+- (NSString *)XMLStringWithFormatting:(BOOL)format
+{
+    xmlChar *XMLStr;
+    xmlDocDumpFormatMemoryEnc    (self.xmlDocument, &XMLStr, NULL, "UTF-8", format ? 1 : 0);
+
     if (XMLStr) {
-		NSString *nsxmlStr = [NSString stringWithUTF8String:(const char *)XMLStr];
-		xmlFree(XMLStr);
+        NSString *nsxmlStr = [NSString stringWithUTF8String:(const char *)XMLStr];
+        xmlFree(XMLStr);
         return nsxmlStr;
     }
     return nil;
 }
+
 
 - (void)dealloc
 {

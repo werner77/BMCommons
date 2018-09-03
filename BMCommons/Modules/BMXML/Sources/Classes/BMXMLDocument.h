@@ -84,6 +84,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, strong, readonly) NSString *XMLString;
 
 /**
+ * Returns the XMLString, optionally formatting the output (ensuring indentation is correct).
+ */
+- (nullable NSString *)XMLStringWithFormatting:(BOOL)format;
+
+/**
  * Parses the specified data to an XML document.
  *
  * @param data The data to parse
