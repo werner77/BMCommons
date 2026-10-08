@@ -20,8 +20,8 @@ Pod::Spec.new do |s|
   s.author           = 'Werner Altewischer'
   s.source           = { :git => 'https://github.com/werner77/BMCommons.git', :tag => '0.3.3' }
   
-  s.ios.deployment_target = '8.0'
-  s.osx.deployment_target = '10.9'
+  s.ios.deployment_target = '15.0'
+  s.osx.deployment_target = '10.13'
   s.default_subspec = 'BMCore'
 
   s.subspec 'BMCore' do |s_core|

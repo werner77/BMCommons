@@ -1193,7 +1193,7 @@ static BOOL gImageCacheEnabled = YES;
             if (self.lastWriteDate == nil) {
                 self.lastWriteDate = lastDate;
             }
-            _expiringFilesFromDisk = NO;
+            self->_expiringFilesFromDisk = NO;
             if (completion) {
                 completion();
             }
